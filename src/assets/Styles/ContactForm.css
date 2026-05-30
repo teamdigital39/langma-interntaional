@@ -1,0 +1,10 @@
+.contact-card {
+  border-style: solid;
+  border-color: #2FC7A1; /* Tailwind green-600 */
+  border-width: 2px;      /* default border */
+  border-top-width: 6px;  /* thicker top border */
+  border-left-width: 3px; /* thicker left border */
+  border-bottom-width: 5px; /* thicker bottom border */
+  border-right-width: 4px;  /* thicker right border */
+  border-radius: 1rem;    /* rounded corners like rounded-2xl */
+}

@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── GLOBAL MOBILE FIX ── */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+body{
+  font-family: "Roboto", sans-serif;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.swiper-slide {
+  height: auto !important;
+  display: flex;
+}
+.swiper {
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+  padding-bottom: 30px;
+}
+
+.swiper-wrapper {
+  overflow: visible !important;
+}
+@media (max-width: 640px) {
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 14px !important;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 28px !important;
+    height: 28px !important;
+
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+
+  .swiper-button-prev {
+    left: -6px !important;
+  }
+
+  .swiper-button-next {
+    right: -6px !important;
+  }
+}
+@media (max-width: 767px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
+}
+     .language-swiper {
+  padding-bottom: 50px; 
+}
+
+/* move dots below slider */
+.language-swiper .swiper-pagination {
+  bottom: 0 !important;
+  position: relative;
+  margin-top: 0px;
+}
+
+
+.language-swiper .swiper-pagination-bullet {
+  /* background: #1E5C5A; */
+  opacity: 0.3;
+}
+
+.language-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  /* background: #1E5C5A; */
+}
+/* ══════════════════════════════════════════════════════════════
+   SCROLL REVEAL ANIMATIONS
+   ══════════════════════════════════════════════════════════════ */
+
+/* Slide-up + fade-in on scroll */
+.reveal-section {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-section.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SMOOTH CARD HOVER
+   ══════════════════════════════════════════════════════════════ */
+.hover-card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.hover-card:hover {
+  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+  transform: translateY(-4px);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BUTTON HOVER ANIMATIONS
+   ══════════════════════════════════════════════════════════════ */
+.btn-animated {
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease,
+              box-shadow 0.3s ease;
+}
+.btn-animated:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+.btn-animated:active {
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   NAVBAR SMOOTH TRANSITION
+   ══════════════════════════════════════════════════════════════ */
+header {
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SWIPER SMOOTH TRANSITIONS
+   ══════════════════════════════════════════════════════════════ */
+.swiper-slide {
+  transition: opacity 0.4s ease;
+}
+
+/* Language swiper arrows */
+.language-swiper .swiper-button-prev,
+.language-swiper .swiper-button-next {
+  color: #0A6B64;
+  background: white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.language-swiper .swiper-button-prev::after,
+.language-swiper .swiper-button-next::after {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   STATS CARDS — ENTRANCE + HOVER ANIMATIONS
+   ══════════════════════════════════════════════════════════════ */
+
+/* Pulse glow on the big number when card is hovered */
+@keyframes pulseNumber {
+  0%   { text-shadow: 0 0 0px rgba(255,255,255,0); }
+  50%  { text-shadow: 0 0 12px rgba(255,255,255,0.6); }
+  100% { text-shadow: 0 0 0px rgba(255,255,255,0); }
+}
+
+/* Floating animation for the language card image */
+@keyframes floatImage {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Shimmer sweep */
+@keyframes shimmerSweep {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+/* Staggered card entrance */
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Apply float to the languages card image */
+.stats-lang-image {
+  animation: floatImage 3s ease-in-out infinite;
+}
+
+/* Shimmer overlay on cards */
+.stats-card-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.stats-card-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  transition: transform 0s;
+}
+.stats-card-shimmer:hover::after {
+  transform: translateX(200%);
+  transition: transform 0.7s ease;
+}
+

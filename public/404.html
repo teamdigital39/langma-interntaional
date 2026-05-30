@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Langma</title>
+    <script>
+      // GitHub Pages SPA — redirect trick
+      // Saves the full URL to sessionStorage then bounces to the root,
+      // where index.html picks it up and restores the route via history.replaceState.
+      var base = '/Langma/';
+      var path = window.location.pathname.slice(base.length);
+      var search = window.location.search;
+      var hash = window.location.hash;
+      sessionStorage.redirect = window.location.href;
+      window.location.replace(
+        window.location.origin + base +
+        '?p=' + encodeURIComponent(path) +
+        (search ? '&q=' + encodeURIComponent(search.slice(1)) : '') +
+        hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
