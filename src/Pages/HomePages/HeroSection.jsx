@@ -122,7 +122,7 @@ const HeroSection = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res  = await fetch("https://www.langmainternational.com/api/home");
+        const res  = await fetch("/api/home");
         const data = await res.json();
         setApiData(data);
       } catch (error) {
