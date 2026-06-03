@@ -16,7 +16,7 @@ const StudyAbroad = () => {
             {/* Image */}
             <div className="relative w-full max-w-[300px] h-[280px] sm:h-[340px] flex items-center justify-center">
               <img
-                src="/images/abrotegirl.png"
+                src="/images/llnn.jpeg"
                 alt="Study Abroad"
                 className="w-full h-full object-contain"
               />
