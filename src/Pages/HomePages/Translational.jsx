@@ -17,7 +17,7 @@ function Translational() {
 
         {/* Heading */}
         <h2 className="text-2xl md:text-[32px] font-bold text-[#296166] mb-4">
-          TRANSCRIPTION
+          TRANSLATIONAL
         </h2>
 
         {/* Intro */}
