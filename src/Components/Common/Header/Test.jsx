@@ -153,13 +153,12 @@ function Test() {
         <div
           className="
             course-content
-            text-gray-700
             leading-9
-            text-[17px]
+            text-[12px] md:text-[17px]
             bg-white
             rounded-[35px]
             shadow-[0_10px_35px_rgba(0,0,0,0.08)]
-            p-5
+            p-2
             md:p-12
           "
           dangerouslySetInnerHTML={{
