@@ -58,7 +58,7 @@ function Event() {
 
         {/* HEADING */}
         <div className="absolute inset-0 z-20 flex items-center justify-center text-white text-center px-4">
-          <h2 className="text-[28px] md:text-[42px] font-bold">Events</h2>
+          <h2 className="text-[28px] md:text-[42px] font-bold"></h2>
         </div>
 
         {/* SOUND TOGGLE BUTTON */}
