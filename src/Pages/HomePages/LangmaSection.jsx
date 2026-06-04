@@ -117,7 +117,7 @@ const LangmaSection = () => {
         <section className="bg-white pb-4">
           <div className="max-w-[1400px] mx-auto px-4 flex flex-col lg:flex-row items-center gap-10">
 
-            <div className="lg:w-1/2 text-center lg:text-left">
+            <div className="lg:w-1/2 text-center lg:text-left mt-0 md:mt-35">
               <h2 className="text-[28px] lg:text-[32px] font-bold text-gray-900">
                 We Prepare You For <br />
                 <span className="text-[#296166]">International Exam</span>
@@ -153,7 +153,7 @@ const LangmaSection = () => {
         <img
           src="/images/lu1.svg"
           alt="Exam"
-          className="w-full h-[160px] object-cover"
+          className="w-full h-[160px]"
         />
       </div>
     </SwiperSlide>
@@ -163,7 +163,7 @@ const LangmaSection = () => {
         <img
           src="/images/lu2.svg"
           alt="Exam"
-          className="w-full h-[160px] object-cover"
+          className="w-full h-[160px]"
         />
       </div>
     </SwiperSlide>
@@ -173,7 +173,7 @@ const LangmaSection = () => {
         <img
           src="/images/lu3.svg"
           alt="Exam"
-          className="w-full h-[160px] object-cover"
+          className="w-full h-[160px]"
         />
       </div>
     </SwiperSlide>
@@ -183,7 +183,7 @@ const LangmaSection = () => {
         <img
           src="/images/lu4.svg"
           alt="Exam"
-          className="w-full h-[160px] object-cover"
+          className="w-full h-[160px]"
         />
       </div>
     </SwiperSlide>
