@@ -234,4 +234,8 @@ header {
   transform: translateX(200%);
   transition: transform 0.7s ease;
 }
-
+.language-swiper .swiper-button-next,
+.language-swiper .swiper-button-prev {
+  background: transparent !important;
+  box-shadow: none !important;
+}
