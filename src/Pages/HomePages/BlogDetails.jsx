@@ -109,7 +109,7 @@ const BlogDetailPage = () => {
                       className="w-16 h-16 object-cover rounded-md"
                     />
                     <a
-                      href={`/newuilangma/blog-detail/${item.slug}`}
+                      href={`/blog-detail/${item.slug}`}
                       className="text-sm font-medium hover:text-[#FC6441] line-clamp-2"
                     >
                       {item.title}
