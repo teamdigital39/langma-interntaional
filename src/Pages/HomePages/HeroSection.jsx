@@ -248,7 +248,7 @@ const HeroSection = () => {
         <StudyAbroad />
                 <FlagSlider title="Explore your study Destination" />
 
-        <StudyDestinations data={apiData?.study_destinations} />
+        {/* <StudyDestinations data={apiData?.study_destinations} /> */}
       </RevealSection>
 
         {/* Countries flag slider — comes AFTER the language cards */}
@@ -268,6 +268,7 @@ const HeroSection = () => {
 
       {/* ── Contact Form ────────────────────────────────────────── */}
       <RevealSection>
+        <StudyDestinations data={apiData?.study_destinations} />
         <ContactForm />
       </RevealSection>
 
