@@ -11,6 +11,7 @@ import LangmaSection from "./LangmaSection";
 import PopularCourses from "./PopularCourses";
 import ContactForm from "./ContactForm";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import WorkAbroadSlider from "./WorkAbroadSlider";
 
 /* ── Countries for the flag slider (used in Language & Work sections) */
@@ -139,6 +140,11 @@ const HeroSection = () => {
 
   return (
     <>
+    <Helmet>
+        <title>Langma International</title>
+        <meta name="description" content="Langma International provides modern web solutions and digital services for businesses worldwide." />
+      </Helmet>
+
       {/* ── 1. HERO ─────────────────────────────────────────────── */}
       <section className="w-full bg-white py-6 sm:py-10 relative overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid gap-8 lg:grid-cols-2 items-center">
