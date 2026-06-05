@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.zip
+*.rar
+*.mp4
+*.download
+lz_files/
+qr_files/
+.env.production
