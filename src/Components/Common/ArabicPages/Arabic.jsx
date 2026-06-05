@@ -14,11 +14,7 @@ import ArabicCoursesSlider from "./ArabicCoursesSlider";
 // import PopularCoursess from "../../../Pages/HomePages/PopularCourse1";
 import PopularCourses from "../../../Pages/HomePages/PopularCourses";
 import PopupForm from "../../PopupForm";
-<<<<<<< HEAD
-import { Helmet } from "react-helmet";
-=======
 
->>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
 
 const Arabic = () => {
    const [open, setOpen] = useState(false);
