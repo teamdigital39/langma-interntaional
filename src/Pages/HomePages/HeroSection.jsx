@@ -139,16 +139,6 @@ const HeroSection = () => {
 
   return (
     <>
-      <Helmet>
-        <title>
-          Foreign Language Courses, Foreign Language Classes, Study Abroad, Work
-          Abroad Delhi, India
-        </title>
-        <meta
-          name="description"
-          content="Langma International offers foreign language courses, international language training, study abroad, work abroad, PR by investment, foreign language classes Delhi NCR, India."
-        ></meta>
-      </Helmet>
       {/* ── 1. HERO ─────────────────────────────────────────────── */}
       <section className="w-full bg-white py-6 sm:py-10 relative overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid gap-8 lg:grid-cols-2 items-center">
