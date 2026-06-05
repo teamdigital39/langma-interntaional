@@ -14,7 +14,11 @@ import ArabicCoursesSlider from "./ArabicCoursesSlider";
 // import PopularCoursess from "../../../Pages/HomePages/PopularCourse1";
 import PopularCourses from "../../../Pages/HomePages/PopularCourses";
 import PopupForm from "../../PopupForm";
+<<<<<<< HEAD
 import { Helmet } from "react-helmet";
+=======
+
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
 
 const Arabic = () => {
    const [open, setOpen] = useState(false);
@@ -290,9 +294,15 @@ useEffect(() => {
     </section>
       {/* <ArabicCoursesSlider /> */}
       {/* <PopularCourses data={apiData?.languages} /> */}
+<<<<<<< HEAD
      <div className="max-w-7xl mx-auto my-8 px-4 relative">
 
   {/* LEFT ARROW */}
+=======
+     {/* <div className="max-w-7xl mx-auto my-8 px-4 relative">
+
+ 
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
   <button
     ref={prevRef}
     className="
@@ -315,7 +325,11 @@ useEffect(() => {
     <ChevronLeft size={22} />
   </button>
 
+<<<<<<< HEAD
   {/* RIGHT ARROW */}
+=======
+
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
   <button
     ref={nextRef}
     className="
@@ -338,7 +352,11 @@ useEffect(() => {
     <ChevronRight size={22} />
   </button>
 
+<<<<<<< HEAD
   {/* SWIPER */}
+=======
+  
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
   <Swiper
     slidesPerView={1}
     spaceBetween={28}
@@ -365,7 +383,11 @@ useEffect(() => {
     {languages.map((item, index) => (
       <SwiperSlide key={index} className="py-4">
 
+<<<<<<< HEAD
         {/* CARD */}
+=======
+        
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
         <div
           className="
             bg-white
@@ -386,7 +408,11 @@ useEffect(() => {
           "
         >
 
+<<<<<<< HEAD
           {/* IMAGE */}
+=======
+    
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
           <div className="overflow-hidden relative">
             <img
               src={item.image || "/placeholder.png"}
@@ -401,7 +427,11 @@ useEffect(() => {
               "
             />
 
+<<<<<<< HEAD
             {/* OVERLAY */}
+=======
+          
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
             <div
               className="
                 absolute inset-0
@@ -412,10 +442,17 @@ useEffect(() => {
             ></div>
           </div>
 
+<<<<<<< HEAD
           {/* CONTENT */}
           <div className="p-6 flex flex-col items-start">
 
             {/* TITLE */}
+=======
+         
+          <div className="p-6 flex flex-col items-start">
+
+          
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
             <h3
               className="
                 text-xl
@@ -428,7 +465,11 @@ useEffect(() => {
               {item.title}
             </h3>
 
+<<<<<<< HEAD
             {/* BUTTON */}
+=======
+           
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
             <Link
               to={`/${item.url}`}
               className="
@@ -478,6 +519,7 @@ useEffect(() => {
       </SwiperSlide>
     ))}
   </Swiper>
+<<<<<<< HEAD
 </div>
 
       <CTASection
@@ -485,6 +527,11 @@ useEffect(() => {
         desc=""
         buttonText="Start Your Journey Today"
       />
+=======
+</div> */}
+
+     
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
      <div className="max-w-7xl mx-auto py-10 px-4">
   <Swiper
     slidesPerView={1}
@@ -554,10 +601,22 @@ useEffect(() => {
     ))}
   </Swiper>
 </div>
+<<<<<<< HEAD
+=======
+        <CTASection
+        title={`Start your ${languageData.title} journey with Langma today!`}
+        desc=""
+        buttonText="Start Your Journey Today"
+      />
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
       <FAQ />
       <PopupForm open={open} onClose={() => setOpen(false)} />
     </>
   );
 };
 
+<<<<<<< HEAD
 export default Arabic;
+=======
+export default Arabic;
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c

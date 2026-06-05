@@ -187,4 +187,8 @@ function Event() {
   );
 }
 
+<<<<<<< HEAD
 export default Event;
+=======
+export default Event;
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c

@@ -19,7 +19,10 @@
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+<<<<<<< HEAD
     "react-helmet": "^6.1.0",
+=======
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.11.0",
     "swiper": "^12.1.1",

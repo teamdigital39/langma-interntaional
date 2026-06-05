@@ -151,6 +151,7 @@ function Test() {
 
         {/* CONTENT */}
         <div
+<<<<<<< HEAD
           className="      
             course-content
             text-gray-700
@@ -160,6 +161,16 @@ function Test() {
             rounded-[35px]
             shadow-[0_10px_35px_rgba(0,0,0,0.08)]
             p-1
+=======
+          className="
+            course-content
+            leading-9
+            text-[12px] md:text-[17px]
+            bg-white
+            rounded-[35px]
+            shadow-[0_10px_35px_rgba(0,0,0,0.08)]
+            p-2
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
             md:p-12
           "
           dangerouslySetInnerHTML={{
@@ -431,4 +442,8 @@ function Test() {
   );
 }
 
+<<<<<<< HEAD
 export default Test;
+=======
+export default Test;
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c

@@ -141,4 +141,8 @@ const BlogDetailPage = () => {
   );
 };
 
+<<<<<<< HEAD
 export default BlogDetailPage;
+=======
+export default BlogDetailPage;
+>>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
