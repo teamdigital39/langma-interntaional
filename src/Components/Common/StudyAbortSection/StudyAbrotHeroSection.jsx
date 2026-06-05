@@ -17,28 +17,39 @@ import { Autoplay } from "swiper/modules";
 
 import "swiper/css";
 import { Link } from "react-router-dom";
+// const destinations = [
+//   { name: "Kingdom of Saudi Arabia", flag: "https://flagcdn.com/w320/sa.png", link: "/" },
+//   { name: "Israel", flag: "https://flagcdn.com/w320/il.png", link: "/" },
+//   { name: "Qatar", flag: "/images/qt1.jpg", link: "/" },
+//   { name: "Australia", flag: "/images/ast.jpg", link: "/" },
+//   { name: "Germany", flag: "https://flagcdn.com/w320/de.png", link: "/" },
+//   { name: "Japan", flag: "https://flagcdn.com/w320/jp.png", link: "/" },
+//   { name: "Mauritius", flag: "https://flagcdn.com/w320/mu.png", link: "/" },
+//   { name: "Austria", flag: "https://flagcdn.com/w320/at.png", link: "/" },
+//   { name: "United Arab Emirates", flag: "/images/ua.jpg", link: "/" },
+//   { name: "Bahrain", flag: "https://flagcdn.com/w320/bh.png", link: "/" },
+//   { name: "United Kingdom", flag: "/images/amm.jpg", link: "/" },
+//   { name: "Oman", flag: "/images/omn.jpg", link: "/" },
+//   { name: "Kuwait", flag: "/images/kw.jpg", link: "/" },
+//   { name: "France", flag: "https://flagcdn.com/w320/fr.png", link: "/" },
+//   { name: "Italy", flag: "https://flagcdn.com/w320/it.png", link: "/" },
+//   { name: "Jordan", flag: "/images/jd.jpg", link: "/" },
+//   { name: "Portugal", flag: "https://flagcdn.com/w320/pt.png", link: "/" },
+//   { name: "Taiwan", flag: "https://flagcdn.com/w320/tw.png", link: "/" },
+//   { name: "Poland", flag: "https://flagcdn.com/w320/pl.png", link: "/poland" },
+// ];
+
 const destinations = [
-  { name: "Kingdom of Saudi Arabia", flag: "https://flagcdn.com/w320/sa.png", link: "/" },
-  { name: "Israel", flag: "https://flagcdn.com/w320/il.png", link: "/" },
-  { name: "Qatar", flag: "/images/qt1.jpg", link: "/" },
-  { name: "Australia", flag: "/images/ast.jpg", link: "/" },
   { name: "Germany", flag: "https://flagcdn.com/w320/de.png", link: "/" },
   { name: "Japan", flag: "https://flagcdn.com/w320/jp.png", link: "/" },
-  { name: "Mauritius", flag: "https://flagcdn.com/w320/mu.png", link: "/" },
-  { name: "Austria", flag: "https://flagcdn.com/w320/at.png", link: "/" },
-  { name: "United Arab Emirates", flag: "/images/ua.jpg", link: "/" },
-  { name: "Bahrain", flag: "https://flagcdn.com/w320/bh.png", link: "/" },
-  { name: "United Kingdom", flag: "/images/amm.jpg", link: "/" },
-  { name: "Oman", flag: "/images/omn.jpg", link: "/" },
-  { name: "Kuwait", flag: "/images/kw.jpg", link: "/" },
-  { name: "France", flag: "https://flagcdn.com/w320/fr.png", link: "/" },
-  { name: "Italy", flag: "https://flagcdn.com/w320/it.png", link: "/" },
-  { name: "Jordan", flag: "/images/jd.jpg", link: "/" },
-  { name: "Portugal", flag: "https://flagcdn.com/w320/pt.png", link: "/" },
-  { name: "Taiwan", flag: "https://flagcdn.com/w320/tw.png", link: "/" },
   { name: "Poland", flag: "https://flagcdn.com/w320/pl.png", link: "/poland" },
+  { name: "South Korea", flag: "https://flagcdn.com/w320/kr.png", link: "/" },
+  { name: "Mauritius", flag: "https://flagcdn.com/w320/mu.png", link: "/" },
+  { name: "Cyprus", flag: "https://flagcdn.com/w320/cy.png", link: "/" },
+  { name: "United Arab Emirates (Dubai)", flag: "https://flagcdn.com/w320/ae.png", link: "/" },
+  { name: "Singapore", flag: "https://flagcdn.com/w320/sg.png", link: "/" },
+  { name: "Malta", flag: "https://flagcdn.com/w320/mt.png", link: "/" },
 ];
-
 
 const StudyAbrotHeroSection = () => {
     const [open, setOpen] = useState(false);

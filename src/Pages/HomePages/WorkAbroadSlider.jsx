@@ -37,9 +37,9 @@ const WorkAbroadSlider = () => {
       <div className="max-w-6xl mx-auto px-4 pt-10 pb-4 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         {/* Right image */}
         <div className="relative flex justify-center lg:justify-start">
-          <div className="relative w-full max-w-[300px] h-[280px] sm:h-[340px] flex items-center justify-center">
+          <div className="relative w-full h-auto flex items-center justify-center">
             <img
-              src="/images/llnn.png"
+              src="/images/llnn1.png"
               alt="Work Abroad"
               className="w-full h-full object-contain"
             />
