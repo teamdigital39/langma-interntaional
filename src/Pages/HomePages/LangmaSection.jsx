@@ -123,11 +123,9 @@ const LangmaSection = () => {
                 <span className="text-[#296166]">International Exam</span>
               </h2>
 
-<<<<<<< HEAD
+
               <p className="text-gray-700 text-[16px] md:text-lg mt-3">
-=======
-              <p className="text-gray-700 text-[16px] md:text-lg mt-7">
->>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
+
                 Our expert faculty and resources help you achieve top scores in international exams.
                 Learn from experienced mentors and get personalized guidance.
               </p>
@@ -157,11 +155,9 @@ const LangmaSection = () => {
         <img
           src="/images/lu1.svg"
           alt="Exam"
-<<<<<<< HEAD
-          className="w-full h-[160px] object-cover"
-=======
+
           className="w-full h-[160px]"
->>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
+
         />
       </div>
     </SwiperSlide>
@@ -171,11 +167,9 @@ const LangmaSection = () => {
         <img
           src="/images/lu2.svg"
           alt="Exam"
-<<<<<<< HEAD
-          className="w-full h-[160px] object-cover"
-=======
+
           className="w-full h-[160px]"
->>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
+
         />
       </div>
     </SwiperSlide>
@@ -185,11 +179,9 @@ const LangmaSection = () => {
         <img
           src="/images/lu3.svg"
           alt="Exam"
-<<<<<<< HEAD
-          className="w-full h-[160px] object-cover"
-=======
+
           className="w-full h-[160px]"
->>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
+
         />
       </div>
     </SwiperSlide>
@@ -199,11 +191,8 @@ const LangmaSection = () => {
         <img
           src="/images/lu4.svg"
           alt="Exam"
-<<<<<<< HEAD
-          className="w-full h-[160px] object-cover"
-=======
           className="w-full h-[160px]"
->>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
+
         />
       </div>
     </SwiperSlide>
@@ -219,8 +208,6 @@ const LangmaSection = () => {
   );
 };
 
-<<<<<<< HEAD
+
 export default LangmaSection;
-=======
-export default LangmaSection;
->>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
+

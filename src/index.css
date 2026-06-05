@@ -234,12 +234,10 @@ header {
   transform: translateX(200%);
   transition: transform 0.7s ease;
 }
-<<<<<<< HEAD
 
-=======
 .language-swiper .swiper-button-next,
 .language-swiper .swiper-button-prev {
   background: transparent !important;
   box-shadow: none !important;
 }
->>>>>>> 287d8012cf62cbfeeb2a3a56f2703d0cbce5f41c
+
