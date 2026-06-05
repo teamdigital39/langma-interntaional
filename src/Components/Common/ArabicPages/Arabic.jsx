@@ -14,6 +14,8 @@ import ArabicCoursesSlider from "./ArabicCoursesSlider";
 // import PopularCoursess from "../../../Pages/HomePages/PopularCourse1";
 import PopularCourses from "../../../Pages/HomePages/PopularCourses";
 import PopupForm from "../../PopupForm";
+import { Helmet } from "react-helmet-async";
+
 
 const Arabic = () => {
    const [open, setOpen] = useState(false);
@@ -124,6 +126,13 @@ useEffect(() => {
 
   return (
     <>
+    <Helmet>
+        <title>{languageData?.seo_title}</title>
+
+        <meta name="description" content={languageData?.seo_description} />
+
+        <meta name="keywords" content={languageData?.seo_keyword} />
+      </Helmet>
       {/* ================= BANNER ================= */}
       <section className="relative w-full min-h-[500px] overflow-hidden flex items-center py-12 px-6 lg:px-20">
 
