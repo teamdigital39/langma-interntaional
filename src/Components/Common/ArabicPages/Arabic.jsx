@@ -298,9 +298,9 @@ useEffect(() => {
     </section>
       {/* <ArabicCoursesSlider /> */}
       {/* <PopularCourses data={apiData?.languages} /> */}
-     <div className="max-w-7xl mx-auto my-8 px-4 relative">
+     {/* <div className="max-w-7xl mx-auto my-8 px-4 relative">
 
-  {/* LEFT ARROW */}
+  
   <button
     ref={prevRef}
     className="
@@ -323,7 +323,7 @@ useEffect(() => {
     <ChevronLeft size={22} />
   </button>
 
-  {/* RIGHT ARROW */}
+ 
   <button
     ref={nextRef}
     className="
@@ -346,7 +346,7 @@ useEffect(() => {
     <ChevronRight size={22} />
   </button>
 
-  {/* SWIPER */}
+  
   <Swiper
     slidesPerView={1}
     spaceBetween={28}
@@ -373,7 +373,7 @@ useEffect(() => {
     {languages.map((item, index) => (
       <SwiperSlide key={index} className="py-4">
 
-        {/* CARD */}
+       
         <div
           className="
             bg-white
@@ -394,7 +394,7 @@ useEffect(() => {
           "
         >
 
-          {/* IMAGE */}
+        
           <div className="overflow-hidden relative">
             <img
               src={item.image || "/placeholder.png"}
@@ -409,7 +409,7 @@ useEffect(() => {
               "
             />
 
-            {/* OVERLAY */}
+        
             <div
               className="
                 absolute inset-0
@@ -420,10 +420,9 @@ useEffect(() => {
             ></div>
           </div>
 
-          {/* CONTENT */}
           <div className="p-6 flex flex-col items-start">
 
-            {/* TITLE */}
+            
             <h3
               className="
                 text-xl
@@ -436,7 +435,7 @@ useEffect(() => {
               {item.title}
             </h3>
 
-            {/* BUTTON */}
+            
             <Link
               to={`/${item.url}`}
               className="
@@ -486,14 +485,9 @@ useEffect(() => {
       </SwiperSlide>
     ))}
   </Swiper>
-</div>
+</div> */}
 
-      <CTASection
-        title={`Start your ${languageData.title} journey with Langma today!`}
-        desc=""
-        buttonText="Start Your Journey Today"
-      />
-     <div className="max-w-7xl mx-auto py-10 px-4">
+ <div className="max-w-7xl mx-auto py-10 px-4">
   <Swiper
     slidesPerView={1}
     spaceBetween={20}
@@ -562,6 +556,13 @@ useEffect(() => {
     ))}
   </Swiper>
 </div>
+
+      <CTASection
+        title={`Start your ${languageData.title} journey with Langma today!`}
+        desc=""
+        buttonText="Start Your Journey Today"
+      />
+    
       <FAQ />
       <PopupForm open={open} onClose={() => setOpen(false)} />
     </>
