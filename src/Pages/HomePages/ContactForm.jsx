@@ -274,7 +274,7 @@ const ContactForm = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="Enter Your Name"
+                        placeholder="Name"
                         className={`w-full border rounded-2xl px-4 py-3 pl-12 bg-white/90 focus:outline-none focus:ring-2 focus:ring-[#27C4A8] transition ${inputError("name")}`}
                       />
                     </div>
@@ -300,7 +300,7 @@ const ContactForm = () => {
                           setFormData({ ...formData, phone: value });
                           setErrors({ ...errors, phone: "" });
                         }}
-                        placeholder="Enter Your Contact Number"
+                        placeholder="Contact Number"
                         className={`w-full border rounded-2xl px-4 py-3 pl-12 bg-white/90 focus:outline-none focus:ring-2 focus:ring-[#27C4A8] transition ${inputError("phone")}`}
                       />
                     </div>
@@ -322,7 +322,7 @@ const ContactForm = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="Enter Your Email"
+                        placeholder="Email"
                         className={`w-full border rounded-2xl px-4 py-3 pl-12 bg-white/90 focus:outline-none focus:ring-2 focus:ring-[#27C4A8] transition ${inputError("email")}`}
                       />
                     </div>

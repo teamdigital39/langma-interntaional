@@ -151,84 +151,123 @@ const HeroSection = () => {
       </Helmet>
       {/* ── 1. HERO ─────────────────────────────────────────────── */}
       <section className="w-full bg-white py-6 sm:py-10 relative overflow-x-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid gap-8 lg:grid-cols-2 items-center">
+       <div className="max-w-7xl mx-auto px-4 sm:px-6 grid gap-8 lg:grid-cols-2 items-center">
 
-          {/* LEFT */}
-          <div className="text-center lg:text-left z-10">
-            <span className="inline-block bg-[#E6F8F3] text-[#2FC7A1] px-3 py-1 rounded-sm text-[11px]">
-              Learn & Get Certificates
-            </span>
-            <h1 className="mt-4 font-bold text-[#15224C] leading-tight text-[22px] xs:text-[26px] sm:text-[32px] lg:text-[42px] xl:text-[48px]">
-              Langma International {" "}
-              <span className="relative inline-block mt-1">
-                <span className="bg-yellow-300 px-2 rounded-md leading-relaxed">
-                  Where Language Transforms
-                </span>
-                <img
-                  src="/images/Journyicon.png"
-                  alt=""
-                  className="absolute -top-5 sm:-top-8 lg:-top-10 left-[78%] sm:left-[80%] w-7 sm:w-9 lg:w-11 pointer-events-none"
-                />
-              </span>
-              <br />
-              <span className="text-[#4FA3D1]">Careers, Cultures, and Continents.</span>
-              <br />
-            </h1>
-            <div className="flex flex-col sm:flex-row gap-3 mt-6 items-center lg:items-start">
-              <button
-                onClick={() => setOpen(true)}
-                className="w-full sm:w-auto bg-[#0A6B64] text-white px-6 py-3 rounded-full text-sm sm:text-base font-medium shadow-md cursor-pointer hover:bg-[#064d48] transition-colors duration-300"
-              >
-                Let's Connect →
-              </button>
-              <button
-                onClick={() => setOpen(true)}
-                className="w-full sm:w-auto bg-[#4FA3D1] text-white px-6 py-3 rounded-full text-sm sm:text-base font-medium shadow-md cursor-pointer hover:bg-[#3a8ab8] transition-colors duration-300"
-              >
-                Book Instant Online Counselling
-              </button>
-            </div>
-          </div>
+  {/* LEFT CONTENT */}
+  <div className="text-center lg:text-left z-10 order-2 lg:order-1">
+    <span className="inline-block bg-[#E6F8F3] text-[#2FC7A1] px-3 py-1 rounded-sm text-[11px]">
+      Learn & Get Certificates
+    </span>
 
-          {/* RIGHT VIDEO */}
-          <div className="relative mt-10 sm:mt-14 lg:mt-0">
-            <div className="relative border-2 border-[#333931] rounded-[26px] p-2">
-              <div className="relative w-full h-[220px] sm:h-[280px] lg:h-[333px] rounded-2xl overflow-hidden bg-black mx-auto">
-                <video
-                  className="w-full h-full object-cover"
-                  autoPlay muted={muted} loop playsInline controls={false}
-                >
-                  <source
-                    src="https://res.cloudinary.com/dzv9zcrlz/video/upload/v1779520185/Website_Final_Video_Updated_01_f4npde.mp4"
-                    type="video/mp4"
-                  />
-                </video>
-                {muted && (
-                  <button
-                    onClick={() => setMuted(false)}
-                    className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-2 rounded-full text-sm"
-                  >
-                    Tap for Sound
-                  </button>
-                )}
-              </div>
-              <div className="absolute -top-8 sm:-top-10 left-2 sm:left-0 bg-white shadow-md px-3 py-2 sm:py-4 rounded-[30px] flex items-center gap-2">
-                <span className="font-semibold text-[#704FE6] text-[14px] sm:text-[18px]">200k+</span>
-                <span className="text-[#17254E] text-[14px] sm:text-[18px]">Student</span>
-                <div className="flex -space-x-2">
-                  <img src="https://i.pravatar.cc/40?img=1" alt="" className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover border-2 border-white" />
-                  <img src="https://i.pravatar.cc/40?img=2" alt="" className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover border-2 border-white" />
-                  <img src="https://i.pravatar.cc/40?img=3" alt="" className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover border-2 border-white" />
-                </div>
-              </div>
-              <div className="absolute -bottom-4 -right-3 sm:-right-5 bg-white shadow-md px-3 py-1.5 rounded-[30px] text-center">
-                <span className="text-[#2FC7A1] font-bold block text-[15px] sm:text-[19px]">5.8k</span>
-                <span className="text-[#333931] block text-[11px] sm:text-sm">Success Courses</span>
-              </div>
-            </div>
-          </div>
+    <h1 className="mt-4 font-bold text-[#15224C] leading-tight text-[22px] xs:text-[26px] sm:text-[32px] lg:text-[42px] xl:text-[48px]">
+      Langma International{" "}
+      <span className="relative inline-block mt-1">
+        <span className="bg-yellow-300 px-2 rounded-md leading-relaxed">
+          Where Language Transforms
+        </span>
 
+        <img
+          src="/images/Journyicon.png"
+          alt=""
+          className="absolute -top-5 sm:-top-8 lg:-top-10 left-[78%] sm:left-[80%] w-7 sm:w-9 lg:w-11 pointer-events-none"
+        />
+      </span>
+
+      <br />
+
+      <span className="text-[#4FA3D1]">
+        Careers, Cultures, and Continents.
+      </span>
+
+      <br />
+    </h1>
+
+    <div className="flex flex-col sm:flex-row gap-3 mt-6 items-center lg:items-start">
+      <button
+        onClick={() => setOpen(true)}
+        className="w-full sm:w-auto bg-[#0A6B64] text-white px-6 py-3 rounded-full text-sm sm:text-base font-medium shadow-md cursor-pointer hover:bg-[#064d48] transition-colors duration-300"
+      >
+        Let's Connect →
+      </button>
+
+      <button
+        onClick={() => setOpen(true)}
+        className="w-full sm:w-auto bg-[#4FA3D1] text-white px-6 py-3 rounded-full text-sm sm:text-base font-medium shadow-md cursor-pointer hover:bg-[#3a8ab8] transition-colors duration-300"
+      >
+        Book Instant Online Counselling
+      </button>
+    </div>
+  </div>
+
+  {/* RIGHT VIDEO */}
+  <div className="relative mt-10 sm:mt-14 lg:mt-0 order-1 lg:order-2">
+    <div className="relative border-2 border-[#333931] rounded-[26px] p-2">
+      <div className="relative w-full h-[220px] sm:h-[280px] lg:h-[333px] rounded-2xl overflow-hidden bg-black mx-auto">
+        <video
+          className="w-full h-full object-cover"
+          autoPlay
+          muted={muted}
+          loop
+          playsInline
+          controls={false}
+        >
+          <source
+            src="https://res.cloudinary.com/dzv9zcrlz/video/upload/v1779520185/Website_Final_Video_Updated_01_f4npde.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        {muted && (
+          <button
+            onClick={() => setMuted(false)}
+            className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-2 rounded-full text-sm"
+          >
+            Tap for Sound
+          </button>
+        )}
+      </div>
+
+      <div className="absolute -top-8 sm:-top-10 left-2 sm:left-0 bg-white shadow-md px-3 py-2 sm:py-4 rounded-[30px] flex items-center gap-2">
+        <span className="font-semibold text-[#704FE6] text-[14px] sm:text-[18px]">
+          200k+
+        </span>
+
+        <span className="text-[#17254E] text-[14px] sm:text-[18px]">
+          Student
+        </span>
+
+        <div className="flex -space-x-2">
+          <img
+            src="https://i.pravatar.cc/40?img=1"
+            alt=""
+            className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover border-2 border-white"
+          />
+          <img
+            src="https://i.pravatar.cc/40?img=2"
+            alt=""
+            className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover border-2 border-white"
+          />
+          <img
+            src="https://i.pravatar.cc/40?img=3"
+            alt=""
+            className="w-5 h-5 sm:w-6 sm:h-6 rounded-full object-cover border-2 border-white"
+          />
         </div>
+      </div>
+
+      <div className="absolute -bottom-4 -right-3 sm:-right-5 bg-white shadow-md px-3 py-1.5 rounded-[30px] text-center">
+        <span className="text-[#2FC7A1] font-bold block text-[15px] sm:text-[19px]">
+          5.8k
+        </span>
+
+        <span className="text-[#333931] block text-[11px] sm:text-sm">
+          Success Courses
+        </span>
+      </div>
+    </div>
+  </div>
+
+</div>
       </section>
 
       {/* ── Stats ───────────────────────────────────────────────── */}
