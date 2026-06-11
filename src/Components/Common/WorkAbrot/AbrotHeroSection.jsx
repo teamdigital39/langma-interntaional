@@ -50,16 +50,13 @@ const destinations = [
   { name: "Japan", flag: "https://flagcdn.com/w320/jp.png", link: "/" },
   { name: "Mauritius", flag: "https://flagcdn.com/w320/mu.png", link: "/" },
   { name: "Poland", flag: "https://flagcdn.com/w320/pl.png", link: "/poland" },
-
   { name: "Serbia", flag: "https://flagcdn.com/w320/rs.png", link: "/" },
   { name: "Czech Republic", flag: "https://flagcdn.com/w320/cz.png", link: "/" },
   { name: "Bulgaria", flag: "https://flagcdn.com/w320/bg.png", link: "/" },
   { name: "Libya", flag: "https://flagcdn.com/w320/ly.png", link: "/" },
   { name: "Montenegro", flag: "https://flagcdn.com/w320/me.png", link: "/" },
   { name: "Russia", flag: "https://flagcdn.com/w320/ru.png", link: "/" },
-
   { name: "Bosnia and Herzegovina", flag: "https://flagcdn.com/w320/ba.png", link: "/" },
-
   { name: "United Arab Emirates (Dubai)", flag: "https://flagcdn.com/w320/ae.png", link: "/" },
 ];
 

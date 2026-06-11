@@ -7,6 +7,21 @@ import { Link } from "react-router-dom";
 import PopupForm from "./PopupForm";
 
 const workDestinations = [
+
+    { name: "Israel", flag: "https://flagcdn.com/w320/il.png", link: "/" },
+  { name: "Qatar", flag: "https://flagcdn.com/w320/qa.png", link: "/" },
+  { name: "Germany", flag: "https://flagcdn.com/w320/de.png", link: "/" },
+  { name: "Japan", flag: "https://flagcdn.com/w320/jp.png", link: "/" },
+  { name: "Mauritius", flag: "https://flagcdn.com/w320/mu.png", link: "/" },
+  { name: "Poland", flag: "https://flagcdn.com/w320/pl.png", link: "/poland" },
+  { name: "Serbia", flag: "https://flagcdn.com/w320/rs.png", link: "/" },
+  { name: "Czech Republic", flag: "https://flagcdn.com/w320/cz.png", link: "/" },
+  { name: "Bulgaria", flag: "https://flagcdn.com/w320/bg.png", link: "/" },
+  { name: "Libya", flag: "https://flagcdn.com/w320/ly.png", link: "/" },
+  { name: "Montenegro", flag: "https://flagcdn.com/w320/me.png", link: "/" },
+  { name: "Russia", flag: "https://flagcdn.com/w320/ru.png", link: "/" },
+  { name: "Bosnia and Herzegovina", flag: "https://flagcdn.com/w320/ba.png", link: "/" },
+  { name: "United Arab Emirates (Dubai)", flag: "https://flagcdn.com/w320/ae.png", link: "/" },
   // { name: "Kingdom of Saudi Arabia", flag: "https://flagcdn.com/w320/sa.png", link: "/" },
   // { name: "Israel",                  flag: "https://flagcdn.com/w320/il.png", link: "/" },
   // { name: "Qatar",                   flag: "/images/qt1.jpg",                 link: "/" },
@@ -26,25 +41,7 @@ const workDestinations = [
   // { name: "Portugal",                flag: "https://flagcdn.com/w320/pt.png", link: "/" },
   // { name: "Taiwan",                  flag: "https://flagcdn.com/w320/tw.png", link: "/" },
   // { name: "Poland",                  flag: "https://flagcdn.com/w320/pl.png", link: "/poland" },
-   { name: "Kingdom of Saudi Arabia", flag: "https://flagcdn.com/w320/sa.png", link: "/" },
-  { name: "Israel",                  flag: "https://flagcdn.com/w320/il.png", link: "/" },
-  { name: "Qatar",                   flag: "/images/qtr.jpg",                 link: "/" },
-  { name: "Australia",               flag: "/images/ast.jpg",                 link: "/" },
-  { name: "Germany",                 flag: "https://flagcdn.com/w320/de.png", link: "/" },
-  { name: "Japan",                   flag: "https://flagcdn.com/w320/jp.png", link: "/" },
-  { name: "Mauritius",               flag: "https://flagcdn.com/w320/mu.png", link: "/" },
-  { name: "Austria",                 flag: "https://flagcdn.com/w320/at.png", link: "/" },
-  { name: "United Arab Emirates",    flag: "/images/ua.jpg",                  link: "/" },
-  { name: "Bahrain",                 flag: "https://flagcdn.com/w320/bh.png", link: "/" },
-  { name: "United Kingdom",          flag: "/images/unkd.jpg",                 link: "/" },
-  { name: "Oman",                    flag: "/images/ommnn.jpg",                 link: "/" },
-  { name: "Kuwait",                  flag: "/images/kuwt.jpg",                  link: "/" },
-  { name: "France",                  flag: "https://flagcdn.com/w320/fr.png", link: "/" },
-  { name: "Italy",                   flag: "https://flagcdn.com/w320/it.png", link: "/" },
-  { name: "Jordan",                  flag: "/images/jrrd.jpg",                  link: "/" },
-  { name: "Portugal",                flag: "https://flagcdn.com/w320/pt.png", link: "/" },
-  { name: "Taiwan",                  flag: "https://flagcdn.com/w320/tw.png", link: "/" },
-  { name: "Poland",                  flag: "https://flagcdn.com/w320/pl.png", link: "/poland" },
+ 
 ];
 
 const WorkAbroadSlider = () => {
