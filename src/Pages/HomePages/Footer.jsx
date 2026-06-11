@@ -71,7 +71,7 @@ const Footer = () => {
           <img
             src="/images/Whitelogo.png"
             alt="Langma International"
-            className="w-28 sm:w-32 mb-3"
+            className=" mb-3 h-14"
           />
           <p className="text-xs sm:text-sm leading-relaxed text-gray-400">
             At Langma we offer you a complete insight into the language and the
