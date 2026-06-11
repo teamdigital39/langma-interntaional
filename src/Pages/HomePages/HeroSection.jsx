@@ -156,7 +156,8 @@ const HeroSection = () => {
   {/* LEFT CONTENT */}
   <div className="text-center lg:text-left z-10 order-2 lg:order-1">
     <span className="inline-block bg-[#E6F8F3] text-[#2FC7A1] px-3 py-1 rounded-sm text-[11px]">
-      Learn & Get Certificates
+      {/* Learn & Get Certificates */}
+      Learn & Earn Globally 
     </span>
 
     <h1 className="mt-4 font-bold text-[#15224C] leading-tight text-[22px] xs:text-[26px] sm:text-[32px] lg:text-[42px] xl:text-[48px]">
