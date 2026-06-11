@@ -161,15 +161,15 @@ const Footer = () => {
             >
               <FaInstagram size={13} />
             </a>
-            <a
-              href="https://www.youtube.com/@langmaInternational"
+             <a
+              href="https://www.linkedin.com/school/langma-international"
               target="_blank" rel="noopener noreferrer"
               className="p-2 bg-gray-800 rounded-full hover:bg-[#80CBC4] transition"
-              aria-label="YouTube"
+              aria-label="LinkedIn"
             >
-              <FaYoutube size={13} />
+              <FaLinkedinIn size={13} />
             </a>
-            <a
+             <a
               href="https://x.com/official_langma"
               target="_blank" rel="noopener noreferrer"
               className="p-2 bg-gray-800 rounded-full hover:bg-[#80CBC4] transition"
@@ -178,13 +178,14 @@ const Footer = () => {
               <FaXTwitter size={13} />
             </a>
             <a
-              href="https://www.linkedin.com/school/langma-international"
+              href="https://www.youtube.com/@langmaInternational"
               target="_blank" rel="noopener noreferrer"
               className="p-2 bg-gray-800 rounded-full hover:bg-[#80CBC4] transition"
-              aria-label="LinkedIn"
+              aria-label="YouTube"
             >
-              <FaLinkedinIn size={13} />
+              <FaYoutube size={13} />
             </a>
+                      
           </div>
         </div>
 

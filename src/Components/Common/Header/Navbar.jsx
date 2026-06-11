@@ -51,7 +51,7 @@ const Navbar = () => {
               <img
                 src="/images/Logo.png"
                 alt="Langma International"
-                className="h-10 sm:h-14 w-auto"
+                className="h-10 sm:h-18 w-auto"
               />
             </Link>
 

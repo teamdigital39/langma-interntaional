@@ -43,16 +43,16 @@ const BlogSection = () => {
         {/* HEADER */}
         <div className="flex justify-between items-center">
           <div>
-            <p className="text-sm text-[#2FC7A1] font-medium mb-2">
+            {/* <p className="text-sm text-[#2FC7A1] font-medium mb-2">
               ◇ ALL BLOG POST
-            </p>
+            </p> */}
             <h2 className="text-[28px] lg:text-[32px] font-bold text-[#0F172A]">
               Most Popular Post.
             </h2>
           </div>
 
           <Link to="/blog">
-            <button className="whitespace-nowrap bg-[#2FC7A1] text-[9px] md:text-[17px] text-white px-4 py-2 rounded-full flex items-center gap-2">
+            <button className="cursor-pointer whitespace-nowrap bg-[#2FC7A1] text-[9px] md:text-[17px] text-white px-4 py-2 rounded-full flex items-center gap-2">
               See All Post
               <ArrowRight size={14} />
             </button>

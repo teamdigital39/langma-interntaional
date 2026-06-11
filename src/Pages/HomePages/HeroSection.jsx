@@ -6,12 +6,14 @@ import StatsCards from "./StatsCards";
 import GlobalOpportunity from "./GlobalOpportunity";
 import StudyAbroad from "./StudyAbroad";
 import PopupForm from "./PopupForm";
+import BlogSection from "./BlogSection";
 import StudyDestinations from "./StudyDestinations";
 import LangmaSection from "./LangmaSection";
 import PopularCourses from "./PopularCourses";
 import ContactForm from "./ContactForm";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import AboutSection from "./AboutSection";
 import WorkAbroadSlider from "./WorkAbroadSlider";
 
 /* ── Countries for the flag slider (used in Language & Work sections) */
@@ -290,7 +292,9 @@ const HeroSection = () => {
           PopularCourses already renders its own
           "Top Popular Course / Speak a language fearlessly" heading
           + the language card swiper — so we just mount it directly.
+          
         */}
+        <AboutSection />
         <PopularCourses data={apiData?.languages} />
 
       {/* ── 4. STUDY ABROAD SLIDER ──────────────────────────────── */}
@@ -309,6 +313,10 @@ const HeroSection = () => {
       {/* ── 5. WORK ABROAD SLIDER ───────────────────────────────── */}
       <RevealSection>
         <WorkAbroadSlider />
+      </RevealSection>
+
+        <RevealSection>
+        <BlogSection  data={apiData?.blogs} />
       </RevealSection>
 
       {/* ── 6. WHY YOU SHOULD JOIN LANGMA ───────────────────────── */}
