@@ -149,17 +149,17 @@ const StatsCards = () => (
 
         <PlainCard
           value="300+"
-          label="Trainers"
-          description="Learn from experienced certified trainers who are experts in fluency and culture."
+          label="Expert Trainers"
+          description="Learn from experienced, certified trainers who specialise in fluency, communication, and cultural understanding."
           bg="bg-[#80CBC4]"
           text="text-[#004D40]"
           delay={150}
         />
 
         <PlainCard
-          value="50k+"
-          label="Jobs"
-          description="Students empowered globally, achieving their educational and professional aspirations with Langma."
+          value="200k+"
+          label="Learners Worldwide"
+          description=" Students empowered globally, achieving their educational and professional aspirations with Langma International."
           bg="bg-[#E0F7FA]"
           text="text-[#004D40]"
           delay={300}
@@ -167,8 +167,8 @@ const StatsCards = () => (
 
         <PlainCard
           value="100k+"
-          label="Students Taught"
-          description="Successful career placements worldwide, matching talent with top international companies."
+          label="Successful Global Placements"
+          description="Successful career placements worldwide, connecting talented individuals with leading international companies.."
           bg="bg-[#80CBC4]"
           text="text-[#004D40]"
           delay={450}
