@@ -18,7 +18,7 @@ import WorkAbroadSlider from "./WorkAbroadSlider";
 const destinations = [
   { name: "Kingdom of Saudi Arabia", flag: "https://flagcdn.com/w320/sa.png", link: "/" },
   { name: "Israel",                  flag: "https://flagcdn.com/w320/il.png", link: "/" },
-  { name: "Qatar",                   flag: "/images/qt1.jpg",                 link: "/" },
+  { name: "Qatar",                   flag: "/images/qtr.jpg",                 link: "/" },
   { name: "Australia",               flag: "/images/ast.jpg",                 link: "/" },
   { name: "Germany",                 flag: "https://flagcdn.com/w320/de.png", link: "/" },
   { name: "Japan",                   flag: "https://flagcdn.com/w320/jp.png", link: "/" },
@@ -26,12 +26,12 @@ const destinations = [
   { name: "Austria",                 flag: "https://flagcdn.com/w320/at.png", link: "/" },
   { name: "United Arab Emirates",    flag: "/images/ua.jpg",                  link: "/" },
   { name: "Bahrain",                 flag: "https://flagcdn.com/w320/bh.png", link: "/" },
-  { name: "United Kingdom",          flag: "/images/amm.jpg",                 link: "/" },
-  { name: "Oman",                    flag: "/images/omn.jpg",                 link: "/" },
-  { name: "Kuwait",                  flag: "/images/kw.jpg",                  link: "/" },
+  { name: "United Kingdom",          flag: "/images/unkd.jpg",                 link: "/" },
+  { name: "Oman",                    flag: "/images/ommnn.jpg",                 link: "/" },
+  { name: "Kuwait",                  flag: "/images/kuwt.jpg",                  link: "/" },
   { name: "France",                  flag: "https://flagcdn.com/w320/fr.png", link: "/" },
   { name: "Italy",                   flag: "https://flagcdn.com/w320/it.png", link: "/" },
-  { name: "Jordan",                  flag: "/images/jd.jpg",                  link: "/" },
+  { name: "Jordan",                  flag: "/images/jrrd.jpg",                  link: "/" },
   { name: "Portugal",                flag: "https://flagcdn.com/w320/pt.png", link: "/" },
   { name: "Taiwan",                  flag: "https://flagcdn.com/w320/tw.png", link: "/" },
   { name: "Poland",                  flag: "https://flagcdn.com/w320/pl.png", link: "/poland" },
@@ -41,7 +41,7 @@ const destinations = [
 const FlagSlider = ({ title }) => (
   <div className="py-8 bg-gray-50">
     {title && (
-      <h2 className="text-center text-[20px] sm:text-[24px] lg:text-[28px] font-semibold text-[#296166] mb-6 px-4">
+      <h2 className="text-center text-[22px] sm:text-[28px] lg:text-[32px] font-semibold text-[#296166] mb-6 px-4">
         {title}
       </h2>
     )}
@@ -296,7 +296,7 @@ const HeroSection = () => {
       {/* ── 4. STUDY ABROAD SLIDER ──────────────────────────────── */}
       <RevealSection>
         <StudyAbroad />
-                <FlagSlider title="Explore your study Destination" />
+                <FlagSlider title="Explore Your Study Destination" />
 
 
       </RevealSection>

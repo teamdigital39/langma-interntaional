@@ -37,8 +37,8 @@ const Study = ({ data = [] }) => {
 
         {/* HEADING */}
         <h2 className="text-center text-[28px] lg:text-[32px] font-bold text-gray-900 px-4">
-          Why you should join{" "}
-          <span className="text-[#4FA3D1]">langma</span>
+          Why Choose  {" "}
+          <span className="text-[#4FA3D1]">Langma International</span>
         </h2>
 
         <div className="relative flex flex-col xl:flex-row items-center">

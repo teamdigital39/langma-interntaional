@@ -31,7 +31,7 @@ const LangmaSection = () => {
     <section className="bg-white pt-16 overflow-hidden">
       <div className="max-w-[1400px] mx-auto relative px-4">
 
-        <div className="text-center mb-3 lg:mb-7 ml-0 lg:ml-[25%]">
+        <div className="text-center mb-3 lg:mb-7  ml-0 md:ml-[25%] lg:ml-[25%]">
           <h2 className="text-[28px] md:text-[34px] font-bold mb-2">
             Langma Unites <span className="text-[#296166]">the World</span>
           </h2>
@@ -43,7 +43,7 @@ const LangmaSection = () => {
         <div className="relative">
 
       {/* LEFT IMAGE */}
-      <div className="hidden md:block absolute -bottom-28 left-0 w-2/5 lg:w-1/3 z-0 overflow-hidden shadow-xl rounded-tr-[40px] rounded-br-[40px]">
+      <div className="hidden md:block absolute -bottom-28 left-0 w-1/3 lg:w-1/3 z-0 overflow-hidden shadow-xl rounded-tr-[40px] rounded-br-[40px]">
 
         <img
           src={leftImage}

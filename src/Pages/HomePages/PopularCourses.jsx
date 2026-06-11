@@ -37,7 +37,7 @@ const PopularCourses = ({ data }) => {
             </p>
 
             <h2 className="text-[28px] lg:text-[32px] font-bold text-gray-900 pb-4">
-              Speak a <span className="text-[#4FA3D1]">language</span> fearlessly
+              Speak Any  <span className="text-[#4FA3D1]">Language </span>with Confidence
             </h2>
 
             {/* TABS */}
