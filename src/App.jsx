@@ -72,6 +72,8 @@ import Test from "./Components/Common/Header/Test";
 import Termscondition from "./Pages/HomePages/Termscondition";
 import Test1 from "./Pages/HomePages/Test1";
 import Certificate from "./Pages/HomePages/Certificate";
+import StudyDubaiPage from "./Pages/HomePages/Studynew";
+import StudyPolandPage from "./Pages/HomePages/StudyPolandPage";
 
 
 
@@ -141,7 +143,7 @@ function App() {
           <Route path="/america" element={<America/>} />
           <Route path="/blog" element={<BlogPage/>} />
           <Route path="/blog-detail/:slug" element={<BlogDetailPage />} />
-          <Route path="/poland" element={<Poland/>} />
+          {/* <Route path="/poland" element={<Poland/>} /> */}
           <Route path="/contact" element={<ContactUs/>} />
           <Route path="/career" element={<Career/>} />
           <Route path="/privacy-policy" element={<Privacy/>} />
@@ -164,6 +166,8 @@ function App() {
           <Route path="/certificate" element={<Certificate />} />
           <Route path="/terms-and-conditions" element={<Termscondition />} />
           <Route path="/tt" element={<Test1 />} />
+          <Route path="/tyt" element={<StudyDubaiPage />} />
+          <Route path="/poland" element={<StudyPolandPage />} />
         </Routes>
       )}
 
