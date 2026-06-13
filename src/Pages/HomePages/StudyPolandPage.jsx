@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import PopupForm from "./PopupForm";
 
 /**
  * Study in Poland — Langma International
@@ -18,10 +19,10 @@ import React, { useState, useEffect, useRef } from "react";
 
 const C = {
   // navy: "#1A2E5A",
-  navy: "#2E6466",
-  navyD: "#2E6466",
+  navy: "#429198",
+  navyD: "#429198",
   // navyDark: "#0E1A2E",
-  navyDark: "#2E6466",
+  navyDark: "#429198",
   navyL: "#2E6466",
   gold: "#4197a2",
   goldL: "#4197a2",
@@ -193,7 +194,7 @@ function SectionHead({ tag, title, sub, light, center }) {
               fontWeight: 700,
               letterSpacing: "2.5px",
               textTransform: "uppercase",
-              color: light ? C.gold : C.navy,
+              color:"#FFFFFF"
             }}
           >
             {tag}
@@ -217,7 +218,7 @@ function SectionHead({ tag, title, sub, light, center }) {
             style={{
               fontSize: 16,
               lineHeight: 1.75,
-              color: light ? "rgba(255,255,255,0.62)" : C.slate,
+              color: "#FFFFFF",
               margin: 0,
               maxWidth: 640,
               marginLeft: center ? "auto" : 0,
@@ -235,12 +236,15 @@ function SectionHead({ tag, title, sub, light, center }) {
 /* ===================================================================
  *  Buttons
  * ================================================================ */
-function NavyButton({ children, style }) {
+function NavyButton({ children, style, onClick }) {
   const [h, setH] = useState(false);
+  const [open, setOpen]  = useState(false);
   return (
+    <>
     <button
       onMouseEnter={() => setH(true)}
       onMouseLeave={() => setH(false)}
+      onClick={onClick}
       style={{
         position: "relative",
         background: h ? C.navyL : C.navy,
@@ -272,20 +276,24 @@ function NavyButton({ children, style }) {
         }}
       />
     </button>
+    <PopupForm open={open} onClose={() => setOpen(false)} />
+      </>
   );
 }
 
-function GhostButton({ children, dark, style }) {
+function GhostButton({ children, dark, style, onClick }) {
   const [h, setH] = useState(false);
+  const [open, setOpen]  = useState(false);
   return (
     <button
       onMouseEnter={() => setH(true)}
       onMouseLeave={() => setH(false)}
+      onClick={onClick}
       style={{
-        background: h ? (dark ? C.goldTint : "rgba(240,192,64,0.1)") : "transparent",
-        color: h ? (dark ? C.navy : C.gold) : dark ? C.ink : C.white,
+        background: (dark ? C.goldTint : "rgba(240,192,64,0.1)"),
+        // color: h ? (dark ? C.navy : C.gold) : dark ? C.ink : C.white,
         border: `1px solid ${
-          h ? (dark ? C.navy : C.gold) : dark ? "rgba(14,26,46,0.2)" : "rgba(255,255,255,0.25)"
+          dark ? "rgba(14,26,46,0.2)" : "rgba(255,255,255,0.25)"
         }`,
         padding: "14px 28px",
         fontSize: 14.5,
@@ -294,6 +302,7 @@ function GhostButton({ children, dark, style }) {
         cursor: "pointer",
         transition: "all 0.25s ease",
         borderRadius: 999,
+        color:"#ffffff",
         ...style,
       }}
     >
@@ -420,7 +429,7 @@ function FactRow({ label, value }) {
           fontWeight: 600,
           textTransform: "uppercase",
           letterSpacing: "1px",
-          color: "rgba(255,255,255,0.42)",
+          color: "rgb(255, 255, 255)",
           whiteSpace: "nowrap",
         }}
       >
@@ -430,7 +439,7 @@ function FactRow({ label, value }) {
         style={{
           fontSize: 13.5,
           fontWeight: 600,
-          color: h ? C.gold : C.white,
+          color: "white",
           textAlign: "right",
           transition: "color 0.2s ease",
         }}
@@ -552,7 +561,7 @@ function CourseCard({ num, title, body, delay }) {
             width: 36,
             height: 36,
             background: h ? "rgba(255,255,255,0.15)" : C.goldTint,
-            color: h ? C.gold : C.navy,
+            color: h ? "#FFFFFF" : "#429198",
             fontSize: 13,
             fontWeight: 700,
             borderRadius: 10,
@@ -1240,6 +1249,7 @@ const outlooks = [
  * ================================================================ */
 export default function StudyPolandPage() {
   const [openFAQ, setOpenFAQ] = useState(0);
+  const [open, setOpen] = useState(false);
 
   return (
     <div
@@ -1293,7 +1303,8 @@ export default function StudyPolandPage() {
       {/* ---------------- HERO ---------------- */}
       <section
         style={{
-          background: `linear-gradient(135deg, ${C.navyDark} 0%, ${C.navyD} 50%, ${C.navy} 100%)`,
+          background: `linear-gradient(135deg, ${C.navyDark} 0%, ${C.navyD} 50%, ${C.navy})`,
+          // background :"#429198",
           backgroundSize: "200% 200%",
           animation: "lm-bg-shift 18s ease infinite",
           minHeight: "92vh",
@@ -1378,7 +1389,7 @@ export default function StudyPolandPage() {
               </span>
               <span
                 style={{
-                  color: C.gold,
+                  color: "#ffffff",
                   fontSize: 11,
                   fontWeight: 700,
                   letterSpacing: "2px",
@@ -1415,7 +1426,7 @@ export default function StudyPolandPage() {
           <Reveal delay={300}>
             <p
               style={{
-                color: "rgba(255,255,255,0.7)",
+                color: "rgb(255, 255, 255)",
                 fontSize: 17,
                 fontWeight: 300,
                 lineHeight: 1.8,
@@ -1425,7 +1436,7 @@ export default function StudyPolandPage() {
             >
               World-ranked universities. English-taught degrees. An EU passport to your
               future career.{" "}
-              <strong style={{ color: C.gold, fontWeight: 500 }}>Tuition from €2,550/year</strong> —
+              <strong>Tuition from €2,550/year</strong> —
               without the global debt.
             </p>
           </Reveal>
@@ -1457,8 +1468,8 @@ export default function StudyPolandPage() {
 
           <Reveal delay={540}>
             <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginBottom: 56 }}>
-              <NavyButton style={{ background: C.forest }}>Book Free Counselling →</NavyButton>
-              <GhostButton>Check My Eligibility</GhostButton>
+              <NavyButton onClick={() => setOpen(true)} style={{ background: C.forest }}>Book Free Counselling →</NavyButton>
+              <GhostButton onClick={() => setOpen(true)} >Check My Eligibility</GhostButton>
             </div>
           </Reveal>
 
@@ -1490,11 +1501,19 @@ export default function StudyPolandPage() {
       {/* ---------------- WHY POLAND ---------------- */}
       <section style={{ background: C.cream, padding: "100px 48px", position: "relative" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag="Why Poland"
-            title="8 Reasons Students Are Choosing Poland in 2026"
-            sub="Affordable, safe, and strategically placed in the heart of Europe — Poland delivers world-class education with unbeatable value."
-          />
+         <SectionHead
+  tag={
+    <span style={{ color: "#429198" }}>
+      Why Poland
+    </span>
+  }
+  title="8 Reasons Students Are Choosing Poland in 2026"
+  sub={
+    <span style={{ color: "#429198" }}>
+      Affordable, safe, and strategically placed in the heart of Europe — Poland delivers world-class education with unbeatable value.
+    </span>
+  }
+/>
           <div
             style={{
               display: "grid",
@@ -1559,7 +1578,7 @@ export default function StudyPolandPage() {
             zIndex: 2,
           }}
           onMouseEnter={(e) => {
-            e.target.style.background = C.gold;
+            // e.target.style.background = C.gold;
             e.target.style.color = C.navy;
             e.target.style.transform = "translateY(-2px)";
           }}
@@ -1567,7 +1586,8 @@ export default function StudyPolandPage() {
             e.target.style.background = C.white;
             e.target.style.color = C.navy;
             e.target.style.transform = "translateY(0)";
-          }}
+          }} 
+          onClick={() => setOpen(true)}
         >
           Get Free Eligibility Check →
         </button>
@@ -1647,11 +1667,19 @@ export default function StudyPolandPage() {
       {/* ---------------- COSTS ---------------- */}
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag="Cost of Studying in Poland"
-            title="What Will It Actually Cost You?"
-            sub="Poland offers one of the most competitive price-to-quality ratios in Europe. Here are realistic cost ranges for 2026."
-          />
+         <SectionHead
+  tag={
+    <span style={{ color: "#429198" }}>
+      Cost of Studying in Poland
+    </span>
+  }
+  title="What Will It Actually Cost You?"
+  sub={
+    <span style={{ color: "#429198" }}>
+      Poland offers one of the most competitive price-to-quality ratios in Europe. Here are realistic cost ranges for 2026.
+    </span>
+  }
+/>
           <div
             style={{
               display: "grid",
@@ -1673,10 +1701,18 @@ export default function StudyPolandPage() {
       <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag="Popular Programmes"
-            title="Industry-Aligned Degrees Built for European Careers"
-            sub="From tech to business to healthcare — accredited Polish higher education providers offer industry-aligned degrees with strong global employment outcomes."
-          />
+  tag={
+    <span style={{ color: "#429198" }}>
+      Popular Programmes
+    </span>
+  }
+  title="Industry-Aligned Degrees Built for European Careers"
+  sub={
+    <span style={{ color: "#429198" }}>
+      From tech to business to healthcare — accredited Polish higher education providers offer industry-aligned degrees with strong global employment outcomes.
+    </span>
+  }
+/>
           <div
             style={{
               display: "grid",
@@ -1773,7 +1809,7 @@ export default function StudyPolandPage() {
                       style={{
                         fontSize: 13,
                         fontWeight: 700,
-                        color: C.gold,
+                        color: "#FFFFFF",
                         padding: "4px 12px",
                         background: "rgba(240,192,64,0.12)",
                         borderRadius: 999,
@@ -1847,7 +1883,7 @@ export default function StudyPolandPage() {
                       style={{
                         fontSize: 13,
                         fontWeight: 700,
-                        color: C.gold,
+                        color: "#FFFFFF",
                         padding: "4px 12px",
                         background: "rgba(240,192,64,0.12)",
                         borderRadius: 999,
@@ -1880,11 +1916,19 @@ export default function StudyPolandPage() {
       {/* ---------------- VISA GUIDE ---------------- */}
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag="Poland Student Visa Guide"
-            title="Straightforward, Efficient & Fully Guided"
-            sub="Poland's student visa process is straightforward. Langma International guides you through every document and every step."
-          />
+         <SectionHead
+  tag={
+    <span style={{ color: "#429198" }}>
+      Poland Student Visa Guide
+    </span>
+  }
+  title="Straightforward, Efficient & Fully Guided"
+  sub={
+    <span style={{ color: "#429198" }}>
+      Poland's student visa process is straightforward. Langma International guides you through every document and every step.
+    </span>
+  }
+/>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }} className="lm-visa-wrap">
             <div>
               <VisaStep n={1} title="Receive Final Acceptance Letter" body="Once your application to the partner institution is approved and first-year fees are paid, you receive a Final Acceptance Letter — the core document required for your National Visa application." delay={0} />
@@ -1976,7 +2020,7 @@ export default function StudyPolandPage() {
                         width: 20,
                         height: 20,
                         background: "rgba(240,192,64,0.15)",
-                        color: C.gold,
+                        color: "#FFFFFF",
                         borderRadius: "50%",
                         display: "inline-flex",
                         alignItems: "center",
@@ -2003,11 +2047,11 @@ export default function StudyPolandPage() {
                     borderRadius: 8,
                   }}
                 >
-                  <strong style={{ color: C.gold }}>Processing:</strong> ~30–60 working days
+                  <strong style={{ color: "#FFFFFF" }}>Processing:</strong> ~30–60 working days
                   <br />
-                  <strong style={{ color: C.gold }}>Visa Fee:</strong> ~€90
+                  <strong style={{ color: "#FFFFFF" }}>Visa Fee:</strong> ~€90
                   <br />
-                  <strong style={{ color: C.gold }}>Financial Proof:</strong> PLN 700–800/month + PLN 2,500 travel reserve
+                  <strong style={{ color: "#FFFFFF" }}>Financial Proof:</strong> PLN 700–800/month + PLN 2,500 travel reserve
                 </div>
               </div>
             </Reveal>
@@ -2018,11 +2062,19 @@ export default function StudyPolandPage() {
       {/* ---------------- SALARY OUTLOOK ---------------- */}
       <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag="Salary Outlook · Poland & EU 2026"
-            title="Career Earnings Across Key Polish & EU Sectors"
-            sub="Poland's growing economy and access to the EU labour market make it one of the most strategically valuable study destinations in Europe for international graduates."
-          />
+         <SectionHead
+  tag={
+    <span style={{ color: "#429198" }}>
+      Salary Outlook · Poland & EU 2026
+    </span>
+  }
+  title="Career Earnings Across Key Polish & EU Sectors"
+  sub={
+    <span style={{ color: "#429198" }}>
+      Poland's growing economy and access to the EU labour market make it one of the most strategically valuable study destinations in Europe for international graduates.
+    </span>
+  }
+/>
           <div
             style={{
               display: "grid",
@@ -2043,11 +2095,19 @@ export default function StudyPolandPage() {
       {/* ---------------- CAREER OUTLOOK ---------------- */}
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag="Career Outlook · Poland & EU 2026"
-            title="Why Polish Graduates Get Hired"
-            sub="Poland's graduates are employable because their degrees are built to match what the European economy actually needs — with access to an entire continent of opportunity."
-          />
+         <SectionHead
+  tag={
+    <span style={{ color: "#429198" }}>
+      Career Outlook · Poland & EU 2026
+    </span>
+  }
+  title="Why Polish Graduates Get Hired"
+  sub={
+    <span style={{ color: "#429198" }}>
+      Poland's graduates are employable because their degrees are built to match what the European economy actually needs — with access to an entire continent of opportunity.
+    </span>
+  }
+/>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22 }}>
             {outlooks.map((o, i) => (
               <OutlookCard key={o.title} {...o} delay={i * 100} />
@@ -2101,7 +2161,11 @@ export default function StudyPolandPage() {
       {/* ---------------- FAQ ---------------- */}
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead tag="FAQs" title="Frequently Asked Questions" center />
+          <SectionHead  tag={
+    <span style={{ color: "#429198" }}>
+      FAQs
+    </span>
+  } title="Frequently Asked Questions" center />
           <Reveal>
             <div style={{ maxWidth: 860, margin: "0 auto" }}>
               {faqs.map((f, i) => (
@@ -2169,7 +2233,7 @@ export default function StudyPolandPage() {
             >
               Your European Future Starts
               <br />
-              <em className="lm-grad-text" style={{ fontStyle: "italic" }}>
+              <em className="lm-grd-text" style={{ fontStyle: "italic" }}>
                 With One Conversation.
               </em>
             </h2>
@@ -2191,11 +2255,11 @@ export default function StudyPolandPage() {
           </Reveal>
           <Reveal delay={300}>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <NavyButton style={{ background: C.forest, padding: "16px 36px" }}>
+              <NavyButton onClick={() => setOpen(true)} style={{ background: C.forest, padding: "16px 36px" }}>
                 Book Free Counselling →
               </NavyButton>
-              <GhostButton>Apply Now</GhostButton>
-              <GhostButton>Talk to an Expert</GhostButton>
+              <GhostButton onClick={() => setOpen(true)}>Apply Now</GhostButton>
+              <GhostButton onClick={() => setOpen(true)}>Talk to an Expert</GhostButton>
             </div>
           </Reveal>
         </div>
@@ -2214,13 +2278,13 @@ export default function StudyPolandPage() {
           borderTop: `1px solid rgba(240,192,64,0.1)`,
         }}
       >
-        <span style={{ fontSize: 13, color: "rgba(255,255,255,0.45)" }}>
+        <span style={{ fontSize: 13, color: "rgb(255, 255, 255)" }}>
           📍 E 73, South Extension Part-1, New Delhi — 110049
         </span>
-        <span style={{ fontSize: 13, color: "rgba(255,255,255,0.45)" }}>
+        <span style={{ fontSize: 13, color: "rgb(255, 255, 255)" }}>
           📞 +91-9810117094
         </span>
-        <span style={{ fontSize: 13, color: "rgba(255,255,255,0.45)" }}>
+        <span style={{ fontSize: 13, color: "rgb(255, 255, 255)" }}>
           ✉️ info@langmainternational.com
         </span>
       </div>
@@ -2231,6 +2295,10 @@ export default function StudyPolandPage() {
           .lm-visa-wrap { grid-template-columns: 1fr !important; }
         }
       `}</style>
+      <PopupForm
+  open={open}
+  onClose={() => setOpen(false)}
+/>
     </div>
   );
 }
