@@ -156,7 +156,7 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay }) {
 /* ===================================================================
  *  Section header
  * ================================================================ */
-function SectionHead({ tag, title, sub, light, center }) {
+function SectionHead({  style, tag, title, sub, light, center }) {
   return (
     <Reveal>
       <div
@@ -1845,7 +1845,7 @@ title={
       <section
         style={{
           background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD} 60%, ${C.navy})`,
-          padding: "100px 48px",
+          padding: "50px 8px",
           position: "relative",
           overflow: "hidden",
         }}
@@ -1863,12 +1863,13 @@ title={
           }}
         />
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
-          <SectionHead
-            tag="English Requirements"
-            title="IELTS, TOEFL & PTE Score Guide"
-            sub="Most programmes require proof of English proficiency. A Medium of Instruction (MOI) certificate may be accepted for academic admission — but IELTS 5.5+ or PTE 50+ are strongly recommended for your Embassy National Visa application."
-            light
-          />
+         <SectionHead
+  style={{ paddingLeft: "24px", paddingRight: "24px" }}
+  tag="English Requirements"
+  title="IELTS, TOEFL & PTE Score Guide"
+  sub="Most programmes require proof of English proficiency. A Medium of Instruction (MOI) certificate may be accepted for academic admission — but IELTS 5.5+ or PTE 50+ are strongly recommended for your Embassy National Visa application."
+  light
+/>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 24 }}>
             <Reveal>
               <div
@@ -2406,7 +2407,7 @@ title={
     href="https://www.google.com/maps/place/Langma+International/@28.5700637,77.2214716,765m/data=!3m1!1e3!4m15!1m8!3m7!1s0x390ce25c4343e17b:0x9f40fbe93cafcba5!2s73,+South+Extension+I,+Block+H,+New+Delhi,+Delhi+110049!3b1!8m2!3d28.5700637!4d77.2214716!16s%2Fg%2F11hfk14hwt!3m5!1s0x390ce25dba89c087:0x6b74c7356d18b11a!8m2!3d28.5700396!4d77.2209663!16s%2Fg%2F1jglvgls2?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D"
     target="_blank"
     rel="noopener noreferrer"
-    style={{ color: "#4197a2", textDecoration: "none" }}
+    style={{ color: "#ffffff", textDecoration: "none" }}
   >
     E 73, South Extension Part-1, New Delhi — 110049
   </a>
