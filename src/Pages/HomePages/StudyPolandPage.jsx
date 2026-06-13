@@ -1603,7 +1603,11 @@ export default function StudyPolandPage() {
       Why Poland
     </span>
   }
-  title="8 Reasons Students Are Choosing Poland in 2026"
+title={
+  <span style={{ color: "#4197a2" }}>
+    8 Reasons Students Are Choosing Poland in 2026
+  </span>
+}
   sub={
     <span style={{ color: "#429198" }}>
       Affordable, safe, and strategically placed in the heart of Europe — Poland delivers world-class education with unbeatable value.
@@ -1769,7 +1773,11 @@ export default function StudyPolandPage() {
       Cost of Studying in Poland
     </span>
   }
-  title="What Will It Actually Cost You?"
+  title={
+  <span style={{ color: "#4197a2" }}>
+    What Will It Actually Cost You?
+  </span>
+}
   sub={
     <span style={{ color: "#429198" }}>
       Poland offers one of the most competitive price-to-quality ratios in Europe. Here are realistic cost ranges for 2026.
@@ -1802,7 +1810,11 @@ export default function StudyPolandPage() {
       Popular Programmes
     </span>
   }
-  title="Industry-Aligned Degrees Built for European Careers"
+ title={
+  <span style={{ color: "#4197a2" }}>
+    Industry-Aligned Degrees Built for European Careers
+  </span>
+}
   sub={
     <span style={{ color: "#429198" }}>
       From tech to business to healthcare — accredited Polish higher education providers offer industry-aligned degrees with strong global employment outcomes.
@@ -2018,7 +2030,11 @@ export default function StudyPolandPage() {
       Poland Student Visa Guide
     </span>
   }
-  title="Straightforward, Efficient & Fully Guided"
+ title={
+  <span style={{ color: "#4197a2" }}>
+    Straightforward, Efficient & Fully Guided
+  </span>
+}
   sub={
     <span style={{ color: "#429198" }}>
       Poland's student visa process is straightforward. Langma International guides you through every document and every step.
@@ -2164,7 +2180,11 @@ export default function StudyPolandPage() {
       Salary Outlook · Poland & EU 2026
     </span>
   }
-  title="Career Earnings Across Key Polish & EU Sectors"
+  title={
+  <span style={{ color: "#4197a2" }}>
+    Career Earnings Across Key Polish & EU Sectors
+  </span>
+}
   sub={
     <span style={{ color: "#429198" }}>
       Poland's growing economy and access to the EU labour market make it one of the most strategically valuable study destinations in Europe for international graduates.
@@ -2197,7 +2217,11 @@ export default function StudyPolandPage() {
       Career Outlook · Poland & EU 2026
     </span>
   }
-  title="Why Polish Graduates Get Hired"
+title={
+  <span style={{ color: "#4197a2" }}>
+    Why Polish Graduates Get Hired
+  </span>
+}
   sub={
     <span style={{ color: "#429198" }}>
       Poland's graduates are employable because their degrees are built to match what the European economy actually needs — with access to an entire continent of opportunity.
@@ -2376,15 +2400,31 @@ export default function StudyPolandPage() {
           borderTop: `1px solid rgba(240,192,64,0.1)`,
         }}
       >
-        <span style={{ fontSize: 13, color: "rgb(255, 255, 255)" }}>
-          📍 E 73, South Extension Part-1, New Delhi — 110049
-        </span>
-        <span style={{ fontSize: 13, color: "rgb(255, 255, 255)" }}>
-          📞 +91-9810117094
-        </span>
-        <span style={{ fontSize: 13, color: "rgb(255, 255, 255)" }}>
-          ✉️ info@langmainternational.com
-        </span>
+        <span style={{ fontSize: 13, color: "#4197a2", display: "block" }}>
+  📍{" "}
+  <a
+    href="https://www.google.com/maps/place/Langma+International/@28.5700637,77.2214716,765m/data=!3m1!1e3!4m15!1m8!3m7!1s0x390ce25c4343e17b:0x9f40fbe93cafcba5!2s73,+South+Extension+I,+Block+H,+New+Delhi,+Delhi+110049!3b1!8m2!3d28.5700637!4d77.2214716!16s%2Fg%2F11hfk14hwt!3m5!1s0x390ce25dba89c087:0x6b74c7356d18b11a!8m2!3d28.5700396!4d77.2209663!16s%2Fg%2F1jglvgls2?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ color: "#4197a2", textDecoration: "none" }}
+  >
+    E 73, South Extension Part-1, New Delhi — 110049
+  </a>
+</span>
+
+<span style={{ fontSize: 13, color: "#ffffff", display: "block" }}>
+  📞{" "}
+  <a href="tel:+919810117094" style={{ color: "#ffffff", textDecoration: "none" }}>
+    +91-9810117094
+  </a>
+</span>
+
+<span style={{ fontSize: 13, color: "#ffffff", display: "block" }}>
+  ✉️{" "}
+  <a href="mailto:info@langmainternational.com" style={{ color: "#ffffff", textDecoration: "none" }}>
+    info@langmainternational.com
+  </a>
+</span>
       </div>
 
       {/* ---------------- RESPONSIVE ---------------- */}
