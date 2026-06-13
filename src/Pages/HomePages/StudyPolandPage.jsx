@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import PopupForm from "./PopupForm";
+import FAQ from "./FAQ";
 
 /**
  * Study in Poland — Langma International
@@ -19,13 +20,13 @@ import PopupForm from "./PopupForm";
 
 const C = {
   // navy: "#1A2E5A",
-  navy: "#429198",
-  navyD: "#429198",
+  navy: "#1AB7AC",
+  navyD: "#1AB7AC",
   // navyDark: "#0E1A2E",
-  navyDark: "#429198",
+  navyDark: "#1AB7AC",
   navyL: "#2E6466",
-  gold: "#4197a2",
-  goldL: "#4197a2",
+  gold: "#1AB7AC",
+  goldL: "#1AB7AC",
   goldSoft: "#FDF3C8",
   goldTint: "#FFFAE8",
   cream: "#F5F7FA",
@@ -33,7 +34,7 @@ const C = {
   forest: "#2E7D5A",
   forestL: "#4CAF80",
   white: "#FFFFFF",
-  ink: "#2E6466",
+  ink: "#1ab7ac",
   slate: "#5A6A7A",
   border: "#D8E0EC",
   muted: "#7A8A9A",
@@ -1301,10 +1302,10 @@ export default function StudyPolandPage() {
       <ScrollProgress />
 
       {/* ---------------- HERO ---------------- */}
-      <section
+      {/* <section
         style={{
-          background: `linear-gradient(135deg, ${C.navyDark} 0%, ${C.navyD} 50%, ${C.navy})`,
-          // background :"#429198",
+          // background: `linear-gradient(135deg, ${C.navyDark} 0%, #3c4c8b 50%, ${C.navy} 100%)`,
+          background :"#1AB7AC",
           backgroundSize: "200% 200%",
           animation: "lm-bg-shift 18s ease infinite",
           minHeight: "92vh",
@@ -1315,9 +1316,8 @@ export default function StudyPolandPage() {
           padding: "70px 48px",
         }}
       >
-        <HeroMotif />
-
-        {/* ambient blobs */}
+        <div className="flex flex-col lg:flex-row">
+       
         <div
           style={{
             position: "absolute",
@@ -1493,7 +1493,103 @@ export default function StudyPolandPage() {
             </div>
           </Reveal>
         </div>
-      </section>
+        <img
+  src="/images/pplld.png"
+  alt="Study in Poland"
+  className="mx-5 lg:h-[700px]"
+  style={{
+    position: "",
+    right: 0,
+    top: 0,
+    opacity: 0.9,
+    zIndex: 1,
+  }}
+/>
+        </div>
+      </section> */}
+      <section className="bg-[#f5f5f5] overflow-hidden">
+      <div className="max-w-8xl mx-auto px-6 lg:px-12 py-16 lg:py-20">
+        <div className="grid lg:grid-cols-2 items-center gap-12">
+          
+          {/* Left Content */}
+          <div className="z-10">
+            <h1
+  className="text-[#15224C]"
+  style={{
+    fontSize: "clamp(28px, 3.6vw, 46px)",
+    fontWeight: 600,
+    lineHeight: 1.12,
+    letterSpacing: "-0.6px",
+  }}
+>
+              Study In <span className="text-[#1ab7ac]">Poland</span>
+              <br />
+              Europe At A
+              <br />
+              Fraction Of The Price.
+            </h1>
+
+            <p className="mt-6 text-gray-600 text-lg leading-relaxed max-w-xl">
+              World-Ranked Universities. English-Taught Degrees.
+              An EU Passport To Your Future Career. Tuition From
+              €2,550 year - Without The Global Debt.
+            </p>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-3 mt-8">
+              {[
+                "✓300+ English Programs",
+                "✓22 QS-Ranked Universities",
+                "✓EU Work Rights",
+                "✓Erasmus+ Eligible",
+                "✓No Polish Required",
+              ].map((item, index) => (
+                <span
+                  key={index}
+                  className="bg-[#1ab7ac] text-white px-4 py-2 rounded-full text-sm md:text-base"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            {/* Button */}
+            <button onClick={() => setOpen(true)} className="mt-10 bg-[#006C70] hover:bg-[#00575a] transition-all text-white px-8 py-4 rounded-full font-semibold text-lg cursor-pointer">
+              Book Free Counselling →
+            </button>
+          </div>
+
+          {/* Right Image */}
+          <div className="relative flex justify-center lg:justify-end">
+            
+            {/* Decorative Rectangle */}
+            <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-50 h-[490px] bg-[#2C6D73] rounded-[24px]"></div>
+
+            {/* Dots */}
+            <div className="hidden lg:grid absolute left-12 top-1/2 -translate-y-1/2 grid-cols-12 gap-4 z-0">
+              {[...Array(180)].map((_, i) => (
+                <span
+                  key={i}
+                  className="w-2 h-2 rounded-full bg-[#C7E8E5]"
+                ></span>
+              ))}
+            </div>
+
+            {/* Circle Image */}
+            <div className="relative z-10">
+              <div className="w-[320px] h-[320px] md:w-[420px] md:h-[420px] lg:w-[520px] lg:h-[520px] rounded-full overflow-hidden">
+                <img
+                  src="images/wd.png"
+                  alt="Study in Poland"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
 
       {/* ---------------- MARQUEE ---------------- */}
       <Marquee />
@@ -2159,7 +2255,8 @@ export default function StudyPolandPage() {
       </section>
 
       {/* ---------------- FAQ ---------------- */}
-      <section style={{ background: C.cream, padding: "100px 48px" }}>
+      <FAQ />
+      {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead  tag={
     <span style={{ color: "#429198" }}>
@@ -2180,7 +2277,7 @@ export default function StudyPolandPage() {
             </div>
           </Reveal>
         </div>
-      </section>
+      </section> */}
 
       {/* ---------------- FINAL CTA ---------------- */}
       <section
@@ -2266,7 +2363,8 @@ export default function StudyPolandPage() {
       </section>
 
       {/* ---------------- FOOTER INFO ---------------- */}
-      <div
+      <div 
+      className="-mb-[40px]"
         style={{
           background: C.navyDark,
           padding: "24px 48px",

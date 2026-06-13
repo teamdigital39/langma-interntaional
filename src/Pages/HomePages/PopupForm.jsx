@@ -260,7 +260,7 @@ const PopupForm = ({ open, onClose }) => {
               value={formData.name}
               onChange={handleChange}
               placeholder="Your Name"
-              className={`w-full border rounded-xl px-4 py-3 outline-none ${inputError(
+              className={`w-full border text-black placeholder:text-[#837f7f] rounded-xl px-4 py-3 outline-none ${inputError(
                 "name"
               )}`}
             />
@@ -280,7 +280,7 @@ const PopupForm = ({ open, onClose }) => {
               value={formData.phone}
               onChange={handleChange}
               placeholder="Phone Number"
-              className={`w-full border rounded-xl px-4 py-3 outline-none ${inputError(
+              className={`w-full border text-black placeholder:text-[#837f7f] rounded-xl px-4 py-3 outline-none ${inputError(
                 "phone"
               )}`}
             />
@@ -300,7 +300,7 @@ const PopupForm = ({ open, onClose }) => {
               value={formData.email}
               onChange={handleChange}
               placeholder="Email Address"
-              className={`w-full border rounded-xl px-4 py-3 outline-none ${inputError(
+              className={`w-full border text-black placeholder:text-[#837f7f] rounded-xl px-4 py-3 outline-none ${inputError(
                 "email"
               )}`}
             />
@@ -366,7 +366,7 @@ const PopupForm = ({ open, onClose }) => {
               onChange={handleChange}
               rows="4"
               placeholder="Describe Your Requirement"
-              className={`w-full border rounded-xl px-4 py-3 outline-none resize-none ${inputError(
+              className={`w-full border text-black placeholder:text-[#837f7f] rounded-xl px-4 py-3 outline-none resize-none ${inputError(
                 "message"
               )}`}
             />

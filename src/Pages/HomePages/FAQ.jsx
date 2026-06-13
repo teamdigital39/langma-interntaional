@@ -62,12 +62,12 @@ const FAQ = () => {
         {faqs.map((faq, index) => (
           <div
             key={index}
-            className={`bg-[#F6F6F6] rounded-xl p-5 transition-all duration-300 ${
-              openIndex === index ? "shadow-md" : ""
+            className={`bg-[#F6F6F6] shadow-md rounded-xl p-5 transition-all duration-300 ${
+              openIndex === index ? "shadow-xl" : ""
             }`}
           >
             <div
-              className="flex justify-between items-center gap-3 cursor-pointer"
+              className="flex  justify-between items-center gap-3 cursor-pointer"
               onClick={() => toggleFAQ(index)}
             >
               <h3 className="text-[#4D5756] font-semibold text-sm md:text-[17px] flex-1">
