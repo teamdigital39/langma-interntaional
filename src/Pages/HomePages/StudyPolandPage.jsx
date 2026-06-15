@@ -2427,7 +2427,6 @@ title={
   </a>
 </span>
       </div>
-
       {/* ---------------- RESPONSIVE ---------------- */}
       <style>{`
         @media (max-width: 860px) {
