@@ -2305,7 +2305,7 @@ title={
       </section> */}
 
       {/* ---------------- FINAL CTA ---------------- */}
-      <section
+      <section className="mb-[-40px]"
         style={{
           background: `linear-gradient(135deg, ${C.navyDark} 0%, ${C.navy} 60%, ${C.navyL} 100%)`,
           backgroundSize: "200% 200%",
@@ -2388,7 +2388,7 @@ title={
       </section>
 
       {/* ---------------- FOOTER INFO ---------------- */}
-      <div 
+      {/* <div 
       className="-mb-[40px]"
         style={{
           background: C.navyDark,
@@ -2426,7 +2426,7 @@ title={
     info@langmainternational.com
   </a>
 </span>
-      </div>
+      </div> */}
 
       {/* ---------------- RESPONSIVE ---------------- */}
       <style>{`
