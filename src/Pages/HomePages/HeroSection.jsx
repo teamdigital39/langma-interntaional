@@ -324,9 +324,9 @@ const HeroSection = () => {
         <WorkAbroadSlider />
       </RevealSection>
 
-        <RevealSection>
+        {/* <RevealSection> */}
         {/* <BlogSection  data={apiData?.blogs} /> */}
-      </RevealSection>
+      {/* </RevealSection> */}
 
       {/* ── 6. WHY YOU SHOULD JOIN LANGMA ───────────────────────── */}
       <RevealSection>
