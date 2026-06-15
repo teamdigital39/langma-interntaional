@@ -2388,7 +2388,7 @@ title={
       </section>
 
       {/* ---------------- FOOTER INFO ---------------- */}
-      {/* <div 
+      <div 
       className="-mb-[40px]"
         style={{
           background: C.navyDark,
@@ -2426,7 +2426,7 @@ title={
     info@langmainternational.com
   </a>
 </span>
-      </div> */}
+      </div>
 
       {/* ---------------- RESPONSIVE ---------------- */}
       <style>{`
