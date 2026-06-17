@@ -49,9 +49,9 @@ const Navbar = () => {
             {/* ── LOGO ─────────────────────────────────────────── */}
             <Link to="/" className="shrink-0" onClick={closeMenu}>
               <img
-                src="/images/Logo.png"
+                src="/images/langma.svg"
                 alt="Langma International"
-                className="h-10 sm:h-18 w-auto"
+                className="h-10 sm:h-16 w-auto"
               />
             </Link>
 
