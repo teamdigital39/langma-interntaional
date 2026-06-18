@@ -129,7 +129,7 @@ function Test() {
           <img
             src={course.image}
             alt={course.title}
-            className="w-full h-[260px] md:h-[600px] object-cover hover:scale-105 transition duration-700"
+            className="w-full h-[260px] md:h-[600px]  hover:scale-105 transition duration-700"
           />
 
         </div>

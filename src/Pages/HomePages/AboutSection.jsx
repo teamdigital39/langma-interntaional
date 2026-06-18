@@ -7,6 +7,7 @@ const AboutSection = () => {
   const [aboutData, setAboutData] = useState(null);
   const [showFull, setShowFull] = useState(false);
 
+  
   useEffect(() => {
     fetch(`${API_BASE}/api/home`)
       .then((res) => res.json())
@@ -29,7 +30,7 @@ const AboutSection = () => {
   // 👉 Limit content (first 500 characters)
   const getLimitedContent = (html) => {
     if (!html) return "";
-    const text = html.replace(/<[^>]+>/g, ""); // remove tags for counting
+    const text = html.replace(/<[^>]+>/g, ""); 
     if (text.length <= 500) return html;
 
     const trimmedText = text.substring(0, 500) + "...";
@@ -102,7 +103,7 @@ const AboutSection = () => {
         <img
           src="/images/twogirl.png"
           alt="Students"
-          className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+          className="w-full h-full  group-hover:scale-105 transition duration-500"
         />
       </div>
 
@@ -115,7 +116,7 @@ const AboutSection = () => {
         <div>
           <div className="flex items-center gap-2 mb-3">
             <img src="/images/dot.png" alt="dot" className="w-4 h-4" />
-            <p className="text-sm font-semibold text-[#2FC7A1] uppercase">
+            <p className="text-[18px] font-semibold text-[#2FC7A1] uppercase">
               {aboutData?.title}
             </p>
           </div>

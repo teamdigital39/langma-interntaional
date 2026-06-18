@@ -283,65 +283,27 @@ const HeroSection = () => {
       </section>
 
       {/* ── Stats ───────────────────────────────────────────────── */}
-      <RevealSection>
-        <StatsCards />
-      </RevealSection>
+    <StatsCards />
 
-      {/* ── 2. LANGUAGES SLIDER ─────────────────────────────────────
-          Order inside this block:
-            a) "Speak a language fearlessly" heading  ← already IN PopularCourses
-            b) Language course cards (PopularCourses)
-            c) Flag/countries slider BELOW the cards
-         {/* ── 3. GLOBAL OPPORTUNITY SLIDER ────────────────────────── */}
-      <RevealSection>
-        <GlobalOpportunity />
-      </RevealSection>
-      <RevealSection>
-        {/*
-          PopularCourses already renders its own
-          "Top Popular Course / Speak a language fearlessly" heading
-          + the language card swiper — so we just mount it directly.
-          
-        */}
-        <AboutSection />
-        <PopularCourses data={apiData?.languages} />
+<GlobalOpportunity />
 
-      {/* ── 4. STUDY ABROAD SLIDER ──────────────────────────────── */}
-      <RevealSection>
-        <StudyAbroad />
-                <FlagSlider title="Explore Your Study Destination" />
+<AboutSection />
 
+<PopularCourses data={apiData?.languages} />
 
-      </RevealSection>
+<StudyAbroad />
 
-        {/* Countries flag slider — comes AFTER the language cards */}
-      </RevealSection>
+<FlagSlider title="Explore Your Study Destination" />
 
-     
+<WorkAbroadSlider />
 
-      {/* ── 5. WORK ABROAD SLIDER ───────────────────────────────── */}
-      <RevealSection>
-        <WorkAbroadSlider />
-      </RevealSection>
+<LangmaSection />
 
-        <RevealSection>
-        {/* <BlogSection  data={apiData?.blogs} /> */}
-      </RevealSection>
+<StudyDestinations data={apiData?.study_destinations} />
 
-      {/* ── 6. WHY YOU SHOULD JOIN LANGMA ───────────────────────── */}
-      <RevealSection>
-        <LangmaSection />
-      </RevealSection>
+<ContactForm />
 
-      {/* ── Contact Form ────────────────────────────────────────── */}
-      <RevealSection>
-
-       
-        <StudyDestinations data={apiData?.study_destinations} />
-        <ContactForm />
-      </RevealSection>
-
-      <PopupForm open={open} onClose={() => setOpen(false)} />
+<PopupForm open={open} onClose={() => setOpen(false)} />
     </>
   );
 };

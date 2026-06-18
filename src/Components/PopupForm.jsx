@@ -192,6 +192,8 @@ const PopupForm = ({ open, onClose }) => {
       ? "border-red-500"
       : "border-gray-200";
 
+      
+
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
       <div className="bg-white w-full max-w-md rounded-2xl sm:rounded-3xl shadow-2xl relative p-5 sm:p-8 border border-gray-100 max-h-[95vh] overflow-y-auto">

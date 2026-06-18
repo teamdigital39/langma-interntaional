@@ -264,7 +264,7 @@ Langma is where your journey begins.
           {currentOpportunities.map((item, index) => (
             <div
               key={index}
-              className="bg-[#2f5d62] text-white rounded-full md:rounded-[40px] px-6 py-4 transition-all duration-300"
+              className="bg-[#2f5d62] text-white rounded-[20px] md:rounded-[40px] px-6 py-4 transition-all duration-300"
             >
               
               {/* HEADER */}

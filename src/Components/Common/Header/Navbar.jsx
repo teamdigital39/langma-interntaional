@@ -189,7 +189,7 @@ const Navbar = () => {
                   className={`transition-transform duration-300 shrink-0 ${mobileDrop === "languages" ? "rotate-180" : ""}`}
                 />
               </button>
-              <div className={`overflow-hidden transition-all duration-500 ${mobileDrop === "languages" ? "max-h-[500px] opacity-100 mt-2" : "max-h-0 opacity-0"}`}>
+              <div className={`overflow-hidden transition-all duration-500 ${mobileDrop === "languages" ? "max-h-[600px] opacity-100 mt-2" : "max-h-0 opacity-0"}`}>
                 <div className="grid grid-cols-2 gap-2 pl-2 pb-3 text-sm">
                   {languages.map((lang) => (
                     <Link key={lang.id} to={`/${lang.url}`} onClick={closeMenu} className="py-1 hover:text-teal-700">
