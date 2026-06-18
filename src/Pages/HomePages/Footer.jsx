@@ -69,7 +69,7 @@ const Footer = () => {
         {/* 1 — Logo + About */}
         <div className="col-span-2 md:col-span-1">
           <img
-            src="/images/langma.svg"
+            src="/images/nlngm.png"
             alt="Langma International"
             className=" mb-3 h-14"
           />
