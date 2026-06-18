@@ -325,7 +325,7 @@ const HeroSection = () => {
       </RevealSection>
 
         <RevealSection>
-        <BlogSection  data={apiData?.blogs} />
+        {/* <BlogSection  data={apiData?.blogs} /> */}
       </RevealSection>
 
       {/* ── 6. WHY YOU SHOULD JOIN LANGMA ───────────────────────── */}
