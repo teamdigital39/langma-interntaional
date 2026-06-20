@@ -74,6 +74,7 @@ import Test1 from "./Pages/HomePages/Test1";
 import Certificate from "./Pages/HomePages/Certificate";
 import StudyDubaiPage from "./Pages/HomePages/Studynew";
 import StudyPolandPage from "./Pages/HomePages/StudyPolandPage";
+import Investment1 from "./Pages/HomePages/Investment1";
 
 
 
@@ -168,6 +169,7 @@ function App() {
           <Route path="/tt" element={<Test1 />} />
           <Route path="/tyt" element={<StudyDubaiPage />} />
           <Route path="/poland" element={<StudyPolandPage />} />
+          <Route path="/pr-by-investment" element={<Investment1/>} />
         </Routes>
       )}
 

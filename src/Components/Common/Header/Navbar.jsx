@@ -14,7 +14,8 @@ const globalAssistLinks = [
   { label: "Cultural Holidays",        path: "/holidays" },
   { label: "Business Exchange",        path: "/business_Programs" },
   { label: "Business Delegation",      path: "/business_delegation_programs" },
-  { label: "PR by Investment",         path: "/investment" },
+  // { label: "PR by Investment",         path: "/investment" },
+  { label: "PR by Investment",         path: "/pr-by-investment" },
   { label: "Golden Visa",              path: "/global-assist" },
 ];
 
