@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import AboutSection from "./AboutSection";
 import WorkAbroadSlider from "./WorkAbroadSlider";
+import API_BASE from "../../config";
 
 /* ── Countries for the flag slider (used in Language & Work sections) */
 const destinations = [

@@ -5,6 +5,7 @@ import {
   FiAlertCircle,
   FiX,
 } from "react-icons/fi";
+import API_BASE from "../../config";
 
 const ConnectedSection = () => {
   const [formData, setFormData] = useState({
