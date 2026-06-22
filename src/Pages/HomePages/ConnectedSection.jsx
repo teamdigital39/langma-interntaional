@@ -116,7 +116,7 @@ const ConnectedSection = () => {
       console.log("Payload:", payload);
 
       const response = await fetch(
-        "/api/contact-lead",
+        `${API_BASE}/api/contact-lead`,
         {
           method: "POST",
           headers: {

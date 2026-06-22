@@ -134,7 +134,7 @@ const HeroSection = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res  = await fetch("/api/home");
+        const res  = await fetch(`${API_BASE}/api/home`);
         const data = await res.json();
         setApiData(data);
       } catch (error) {
