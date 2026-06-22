@@ -75,6 +75,7 @@ import Certificate from "./Pages/HomePages/Certificate";
 import StudyDubaiPage from "./Pages/HomePages/Studynew";
 import StudyPolandPage from "./Pages/HomePages/StudyPolandPage";
 import Investment1 from "./Pages/HomePages/Investment1";
+import PRAssessment from "./Pages/HomePages/PRAssessment";
 
 
 
@@ -170,6 +171,7 @@ function App() {
           <Route path="/tyt" element={<StudyDubaiPage />} />
           <Route path="/poland" element={<StudyPolandPage />} />
           <Route path="/pr-by-investment" element={<Investment1/>} />
+          <Route path="/assessment" element={<PRAssessment />} />
         </Routes>
       )}
 
