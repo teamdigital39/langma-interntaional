@@ -5,6 +5,7 @@ import {
   FiAlertCircle,
   FiX,
 } from "react-icons/fi";
+import API_BASE from "../../config";
 
 const ConnectedSection = () => {
   const [formData, setFormData] = useState({
@@ -116,7 +117,7 @@ const ConnectedSection = () => {
       console.log("Payload:", payload);
 
       const response = await fetch(
-        "/api/contact-lead",
+        `${API_BASE}/api/contact-lead`,
         {
           method: "POST",
           headers: {
