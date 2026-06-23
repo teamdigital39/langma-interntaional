@@ -77,6 +77,7 @@ import StudyPolandPage from "./Pages/HomePages/StudyPolandPage";
 import Investment1 from "./Pages/HomePages/Investment1";
 import PRAssessment from "./Pages/HomePages/PRAssessment";
 import StudyAbrotHeroSection1 from "./Pages/HomePages/StudyAbrotHeroSection1";
+import GoldenVisaPage from "./Pages/HomePages/GoldenVisa";
 
 
 
@@ -107,7 +108,8 @@ function App() {
           {/* <Route path="/study-abroad" element={<StudyAbrotHeroSection />} /> */}
           <Route path="/study-abroad" element={<StudyAbrotHeroSection1 />} />
           <Route path="/languages" element={<InternationalHeroSection />} />
-          <Route path="/global-assist" element={<GlobleHeroSection />} />
+          {/* <Route path="/global-assist" element={<GlobleHeroSection />} /> */}
+          <Route path="/global-assist" element={<GoldenVisaPage />} />
           <Route path="/investment" element={<Investment />} />
           <Route path="/programs" element={<Cultural_Programs />} />
           <Route path="/holidays" element={<CulturalHolidays />} />
