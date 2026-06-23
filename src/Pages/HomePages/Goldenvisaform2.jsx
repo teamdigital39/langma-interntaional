@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FiCheckCircle, FiAlertCircle, FiX } from "react-icons/fi";
 
 function Goldenvisaform2() {
-  const [leadForm, setLeadForm]       = useState({ name: "", phone: "" });
+  const [leadForm, setLeadForm]       = useState({ name: "", phone: "", email: "" });
   const [leadErrors, setLeadErrors]   = useState({});
   const [leadLoading, setLeadLoading] = useState(false);
   const [leadMsg, setLeadMsg]         = useState("");
@@ -12,6 +12,7 @@ function Goldenvisaform2() {
 
   const validateName  = (v) => /^[A-Za-z\s]{2,}$/.test(v.trim());
   const validatePhone = (v) => /^[0-9]{10,15}$/.test(v);
+  const validateEmail = (v) => /^\S+@\S+\.\S+$/.test(v.trim());
 
   const handleLeadSubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +26,9 @@ function Goldenvisaform2() {
     if (!leadForm.phone)                    ve.phone = "Phone is required";
     else if (!validatePhone(leadForm.phone)) ve.phone = "Enter valid 10-15 digit number";
 
+    if (!leadForm.email)                    ve.email = "Email is required";
+    else if (!validateEmail(leadForm.email)) ve.email = "Invalid email";
+
     setLeadErrors(ve);
     if (Object.keys(ve).length > 0) return;
 
@@ -34,7 +38,7 @@ function Goldenvisaform2() {
 
       const payload = {
         name:    leadForm.name,
-        email:   "noreply@langmainternational.com",
+        email:   leadForm.email,
         mobile:  leadForm.phone,
         message: "Callback request from Golden Visa page.",
         type:    "Callback Request",
@@ -53,7 +57,7 @@ function Goldenvisaform2() {
         setLeadSuccess(true);
         setLeadMsg("We'll call you back shortly ✅");
         setLeadSent(true);
-        setLeadForm({ name: "", phone: "" });
+        setLeadForm({ name: "", phone: "", email: "" });
         setLeadErrors({});
       } else {
         setLeadSuccess(false);
@@ -122,6 +126,20 @@ function Goldenvisaform2() {
             </p>
           )}
 
+          {/* EMAIL */}
+          <input type="email" className="lead-input" placeholder="Email Address"
+            style={leadErrors.email ? { outline: "1.5px solid #ef4444" } : {}}
+            value={leadForm.email}
+            onChange={e => {
+              setLeadForm({ ...leadForm, email: e.target.value });
+              setLeadErrors({ ...leadErrors, email: "" });
+            }} />
+          {leadErrors.email && (
+            <p style={{ color: "#ef4444", fontSize: 12, marginTop: 4, marginBottom: 4 }}>
+              {leadErrors.email}
+            </p>
+          )}
+
           <button type="submit" className="btn btn-gold" disabled={leadLoading}>
             {leadLoading ? "Sending..." : "Request a Callback →"}
           </button>
@@ -130,8 +148,8 @@ function Goldenvisaform2() {
       ) : (
         <div style={{ textAlign: "center", padding: "12px 0" }}>
           <div style={{ fontSize: 36, marginBottom: 8 }}>📞</div>
-          <p style={{ fontSize: 14, fontWeight: 600 }}>Thank you!</p>
-          <p style={{ fontSize: 13, color: "var(--ink-soft)", marginTop: 4 }}>We'll call you back shortly.</p>
+          <p style={{ fontSize: 14, fontWeight: 600, color: "white" }}>Thank you!</p>
+          <p style={{ fontSize: 13, marginTop: 4, color: "white" }}>We'll call you back shortly.</p>
           <button type="button" className="btn btn-gold"
             style={{ marginTop: 14, fontSize: 13 }}
             onClick={() => { setLeadSent(false); setLeadMsg(""); setLeadSuccess(false); }}>
