@@ -76,6 +76,7 @@ import StudyDubaiPage from "./Pages/HomePages/Studynew";
 import StudyPolandPage from "./Pages/HomePages/StudyPolandPage";
 import Investment1 from "./Pages/HomePages/Investment1";
 import PRAssessment from "./Pages/HomePages/PRAssessment";
+import StudyAbrotHeroSection1 from "./Pages/HomePages/StudyAbrotHeroSection1";
 
 
 
@@ -103,7 +104,8 @@ function App() {
           <Route path="/" element={<HeroSection />} />
           <Route path="/about" element={<AboutHeroSection />} />
           <Route path="/work-abroad" element={<AbrotHeroSection />} />
-          <Route path="/study-abroad" element={<StudyAbrotHeroSection />} />
+          {/* <Route path="/study-abroad" element={<StudyAbrotHeroSection />} /> */}
+          <Route path="/study-abroad" element={<StudyAbrotHeroSection1 />} />
           <Route path="/languages" element={<InternationalHeroSection />} />
           <Route path="/global-assist" element={<GlobleHeroSection />} />
           <Route path="/investment" element={<Investment />} />
@@ -172,6 +174,7 @@ function App() {
           <Route path="/poland" element={<StudyPolandPage />} />
           <Route path="/pr-by-investment" element={<Investment1/>} />
           <Route path="/assessment" element={<PRAssessment />} />
+          {/* <Route path="/jkl" element={<StudyAbrotHeroSection1 />} /> */}
         </Routes>
       )}
 
