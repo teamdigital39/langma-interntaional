@@ -139,7 +139,7 @@ const AboutSection = () => {
           {aboutData?.content && (
             <button
               onClick={() => setShowFull(!showFull)}
-              className="mt-4 text-[#006064] font-semibold hover:underline"
+              className="mt-4 mx-4 text-[#006064] font-semibold hover:underline"
             >
               {showFull ? "Read Less" : "Read More.."}
             </button>

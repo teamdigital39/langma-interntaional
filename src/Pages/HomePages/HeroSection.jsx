@@ -168,7 +168,7 @@ const HeroSection = () => {
   {/* LEFT CONTENT */}
   <div className="text-center lg:text-left z-10 order-2 lg:order-1">
     <span className="inline-block bg-[#E6F8F3] text-[#2FC7A1] px-3 py-1 rounded-sm text-[11px]">
-      {/* Learn & Get Certificates */}
+      
       Learn & Earn Globally 
     </span>
 
@@ -211,6 +211,8 @@ const HeroSection = () => {
       </button>
     </div>
   </div>
+
+
 
   {/* RIGHT VIDEO */}
   <div className="relative mt-10 sm:mt-14 lg:mt-0 order-1 lg:order-2">

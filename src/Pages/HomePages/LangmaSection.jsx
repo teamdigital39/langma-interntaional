@@ -7,20 +7,20 @@ import PopupForm from "../../Components/PopupForm";
 import { useState } from "react";
  
 const cards = [
-  { id: 1, image: "/images/01.png", title: "Mr. Sanjeev Rawat", desc: " Ms. Persy Jain and Mr. Sanjeev Rawat with Ms. Kerstin Peckl, Commercial Attache of Austria to India. " },
-  { id: 2, image: "/images/02.png", title: "Mr. Sanjeev Rawat", desc: "and the Langma Team welcoming H.E Oleksandr Polishchuk, Ambassador of Ukraine to India." },
-  { id: 3, image: "/images/04.png", title: "Mr. Sanjeev Rawat", desc: "with the Indian delegation at the World Chinese Language Conference." },
-  { id: 4, image: "/images/05.png", title: "Mr. Sanjeev Rawat", desc: " Mr. Sanjeev Rawat with the Indian delegation at the World Chinese Language Conference visiting the Great Wall of China." },
-  { id: 5, image: "/images/06.png", title: "Mr. Sanjeev Rawat", desc: "Langma’s Team with Mr. Hee Chun Lee, the Director of International Affairs Office Prof. of Graduate School of Culture and Arts (Korea) along with Mr. Manit Acharya from Global Education Services Co., Ltd." },
-  { id: 6, image: "/images/07.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat with the Indian delegation at the World Chinese Language Conference, China." },
-  { id: 7, image: "/images/08.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat with the First Secretary of Japan Mr. Rysusuke Hagiwara." },
-  { id: 8, image: "/images/09.png", title: "Mr. Sanjeev Rawat", desc: "Mr.Gopal Kumar Kar and Mr. Sanjeev Rawat with the Ambassador of China H.E. Xu Feihong." },
-  { id: 9, image: "/images/10.png", title: "Mr. Sanjeev Rawat", desc: "Langma’s Team exploring Vietnamese culture." },
-  { id: 10, image: "/images/11.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat with Mr and Mrs. Wang Zhen, Minister Counsellor for the People’s Republic of China, India." },
-  { id: 11, image: "/images/12.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat and Ms. Persy Jain felicitating the German Counterpart." },
-  { id: 12, image: "/images/13.png", title: "Mr. Sanjeev Rawat", desc: "Mr Sanjeev Rawat felicitating the H.E. Oleksandr Polishchuk, Ambassador of Ukraine to India at Langma International." },
+  { id: 1, image: "/images/01.png", title: "Mr. Sanjeev Rawat", desc: " Mr. Sanjeev Rawat and Ms. Persy Jain alongside Ms. Kerstin Peckl, Commercial Attaché of Austria to India. " },
+  // { id: 2, image: "/images/02.png", title: "Mr. Sanjeev Rawat", desc: "and the Langma Team welcoming H.E Oleksandr Polishchuk, Ambassador of Ukraine to India." },
+  { id: 3, image: "/images/04.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat with the Indian delegation at the Great Wall of China during a cultural visit." },
+  { id: 4, image: "/images/05.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat with the Indian delegation at the World Chinese Language Conference, fostering international language and cultural exchange." },
+  { id: 5, image: "/images/06.png", title: "Mr. Sanjeev Rawat", desc: "Langma International Team with Mr. Hee Chun Lee, Director of International Affairs Office, Graduate School of Culture and Arts, Korea, alongside Mr. Manit Acharya from Global Education Services Co., Ltd." },
+  { id: 6, image: "/images/07.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat, Founder of Langma International, with the Indian delegation at the World Chinese Language Conference, China." },
+  { id: 7, image: "/images/08.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat with Mr. Rysusuke Hagiwara, First Secretary of Japan, during an international cultural and educational engagement." },
+  { id: 8, image: "/images/09.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat and Mr. Gopal Kumar Kar with H.E. Xu Feihong, Ambassador of China to India." },
+  { id: 9, image: "/images/10.png", title: "Mr. Sanjeev Rawat", desc: "Langma International Team experiencing Vietnamese culture and strengthening global cultural understanding." },
+  { id: 10, image: "/images/11.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat during an official interaction with Mr. and Mrs. Wang Zhen, Minister Counsellor of the People’s Republic of China in India." },
+  { id: 11, image: "/images/12.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat and Ms. Persy Jain honouring the German delegation ." },
+  { id: 12, image: "/images/13.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat with H.E. Oleksandr Polishchuk, Ambassador of Ukraine to India, during a diplomatic engagement at Langma International." },
   { id: 13, image: "/images/14.png", title: "Mr. Sanjeev Rawat", desc: "Mr Sanjeev Rawat and the Langma Team welcoming H.E Oleksandr Polishchuk, Ambassador of Ukraine to India at Langma International." },
-  { id: 14, image: "/images/15.png", title: "Mr. Sanjeev Rawat", desc: "Mr Sanjeev Rawat with Ms Ekaterina Dynyak, Head of Russian Language Educational Centre, Russian Centre of Science and Culture, New Delhi." },
+  { id: 14, image: "/images/15.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat with Ms. Ekaterina Dynyak, Head of the Russian Language Educational Centre, Russian Centre of Science and Culture, New Delhi, during an engagement fostering international educational collaboration." },
   // { id: 5, image: "/images/16.webp", title: "Mr. Sanjeev Rawat", desc: "and the Langma Team welcoming H.E Oleksandr Polishchuk, Ambassador of Ukraine to India." },
 ];
 
