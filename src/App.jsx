@@ -78,6 +78,7 @@ import Investment1 from "./Pages/HomePages/Investment1";
 import PRAssessment from "./Pages/HomePages/PRAssessment";
 import StudyAbrotHeroSection1 from "./Pages/HomePages/StudyAbrotHeroSection1";
 import GoldenVisaPage from "./Pages/HomePages/GoldenVisa";
+import LangmaStudyAbroadAssessment from "./Pages/HomePages/LangmaStudyAbroadAssessment";
 
 
 
@@ -176,6 +177,7 @@ function App() {
           <Route path="/poland" element={<StudyPolandPage />} />
           <Route path="/pr-by-investment" element={<Investment1/>} />
           <Route path="/assessment" element={<PRAssessment />} />
+          <Route path="/study-assessment" element={<LangmaStudyAbroadAssessment />} />
           {/* <Route path="/jkl" element={<StudyAbrotHeroSection1 />} /> */}
         </Routes>
       )}

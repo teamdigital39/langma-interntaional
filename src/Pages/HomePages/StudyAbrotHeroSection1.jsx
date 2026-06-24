@@ -911,7 +911,7 @@ export default function StudyAbrotHeroSection1() {
               <p className="section-sub">Answer a short assessment and get a personalized country recommendation for your study abroad plans.</p>
             </div>
             <div style={{ textAlign: "center", marginTop: 24 }}>
-              <a href="/assessment" className="btn btn-primary">
+              <a href="/study-assessment" className="btn btn-primary">
                 Not Sure Which Country Fits You? Take the Study Abroad Global Mobility Assessment →
               </a>
             </div>
