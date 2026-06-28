@@ -259,7 +259,7 @@ const ClientOrbit = () => {
           h-[460px]
           sm:h-[540px]
           md:h-[620px]
-          lg:h-[720px]
+          lg:h-[721px]
           xl:h-[800px]
           max-w-7xl mx-auto
         "
