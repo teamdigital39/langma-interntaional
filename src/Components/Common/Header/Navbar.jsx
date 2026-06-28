@@ -16,7 +16,7 @@ const globalAssistLinks = [
   { label: "Business Delegation",      path: "/business_delegation_programs" },
   // { label: "PR by Investment",         path: "/investment" },
   { label: "PR by Investment",         path: "/pr-by-investment" },
-  { label: "Golden Visa",              path: "/global-assist" },
+  { label: "Golden Visa",              path: "/golden-visa" },
 ];
 
 const Navbar = () => {

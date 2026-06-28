@@ -109,8 +109,8 @@ function App() {
           {/* <Route path="/study-abroad" element={<StudyAbrotHeroSection />} /> */}
           <Route path="/study-abroad" element={<StudyAbrotHeroSection1 />} />
           <Route path="/languages" element={<InternationalHeroSection />} />
-          {/* <Route path="/global-assist" element={<GlobleHeroSection />} /> */}
-          <Route path="/global-assist" element={<GoldenVisaPage />} />
+          <Route path="/global-assist" element={<GlobleHeroSection />} />
+          <Route path="/golden-visa" element={<GoldenVisaPage />} />
           <Route path="/investment" element={<Investment />} />
           <Route path="/programs" element={<Cultural_Programs />} />
           <Route path="/holidays" element={<CulturalHolidays />} />

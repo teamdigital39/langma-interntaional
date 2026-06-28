@@ -166,7 +166,66 @@ const HeroSection = () => {
        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid gap-8 lg:grid-cols-2 items-center">
 
   {/* LEFT CONTENT */}
-  <div className="text-center lg:text-left z-10 order-2 lg:order-1">
+    <div className="relative rounded-xl px-10 py-14 overflow-hidden font-sans min-h-[520px]"
+  style={{ fontFamily: "'" }}>
+
+  {/* Left gold accent bar */}
+  <div className="absolute left-0 top-20 bottom-20 w-[3px] rounded-full bg-gradient-to-b from-transparent via-[#C8A96E] to-transparent" />
+
+  {/* Eyebrow badge */}
+  <div className="inline-flex items-center gap-2 border border-[#C8B89A] rounded-full px-4 py-1.5 mb-5">
+    <span className="w-1.5 h-1.5 rounded-full bg-[#C8A96E]" />
+    <span className="text-[11px] font-semibold tracking-widest uppercase text-[#6B5840]">
+      Learn &amp; Earn Globally
+    </span>
+  </div>
+
+  {/* Brand label */}
+  <div className="flex items-center gap-2 mb-5">
+    <span className="w-7 h-[1.5px] bg-[#8A7A66]" />
+    <span className="text-[11px] tracking-[0.12em] uppercase text-[#8A7A66] font-medium">
+      Langma International
+    </span>
+  </div>
+
+  {/* Headline */}
+  <h1
+    className="text-[#1A2540] font-regular leading-[1.08] mb-2 max-w-[560px]"
+    style={{ fontFamily: "", fontSize: "clamp(32px, 5vw, 48px)" }}
+  >
+   <span className="font-semibold"> Where Language </span> <br />
+    <span className="italic font-semibold text-[#C8A96E]">Transforms</span><br />
+    Careers, Cultures,<br />
+    and Continents.
+  </h1>
+
+  {/* Body text */}
+  <p className="text-[18px] leading-[1.7] text-[#5A5040] max-w-[480px] mt-5 mb-8">
+    Langma International is a globally recognised institution dedicated to
+    linguistic excellence, cultural understanding, and international growth.
+    Through world-class language education and global mobility solutions, we
+    empower individuals, professionals, and organisations to communicate
+    confidently and succeed in an interconnected world.
+  </p>
+
+  {/* Buttons */}
+  <div className="flex flex-wrap gap-3">
+    <button
+      onClick={() => setOpen(true)}
+      className="bg-[#1A2540] text-[#F5F2EC] rounded-full px-6 py-3 text-sm font-medium inline-flex items-center gap-1.5 tracking-wide cursor-pointer hover:bg-[#243160] transition-colors duration-200"
+    >
+      Let's Connect →
+    </button>
+    <button
+      onClick={() => setOpen(true)}
+      className="bg-transparent text-[#1A2540] border border-[#C0B09A] rounded-full px-6 py-3 text-sm font-medium inline-flex items-center gap-2 tracking-wide cursor-pointer hover:bg-[#EDE8DF] transition-colors duration-200"
+    >
+      <span>📅</span>
+      Book Instant Online Counselling
+    </button>
+  </div>
+</div>
+  {/* <div className="text-center lg:text-left z-10 order-2 lg:order-1">
     <span className="inline-block bg-[#E6F8F3] text-[#2FC7A1] px-3 py-1 rounded-sm text-[11px]">
       
       Learn & Earn Globally 
@@ -210,7 +269,7 @@ const HeroSection = () => {
         Book Instant Online Counselling
       </button>
     </div>
-  </div>
+  </div> */}
 
 
 
