@@ -241,3 +241,20 @@ header {
   box-shadow: none !important;
 }
 
+/* Exam logo swiper — hide default arrows (custom buttons used) */
+.exam-logo-swiper .swiper-button-next,
+.exam-logo-swiper .swiper-button-prev {
+  display: none !important;
+}
+
+/* Popular courses swiper — hide default arrows (custom buttons used) */
+.popular-courses-swiper .swiper-button-next,
+.popular-courses-swiper .swiper-button-prev {
+  display: none !important;
+}
+@keyframes orbitSpin  { from { transform: translate(-50%,-50%) rotate(0deg);   } to { transform: translate(-50%,-50%) rotate(360deg);  } }
+@keyframes counterSpin{ from { transform: translate(-50%,-50%) rotate(0deg);   } to { transform: translate(-50%,-50%) rotate(-360deg); } }
+@keyframes sunPulse   {
+  0%,100% { box-shadow: 0 0 40px 16px rgba(255,160,0,0.35), 0 0 80px 32px rgba(255,100,0,0.15); }
+  50%      { box-shadow: 0 0 55px 22px rgba(255,160,0,0.5),  0 0 100px 40px rgba(255,100,0,0.22); }
+}

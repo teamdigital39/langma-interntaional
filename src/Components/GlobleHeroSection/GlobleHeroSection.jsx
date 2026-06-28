@@ -38,7 +38,7 @@ const GlobleHeroSection = () => {
         </div>
       </section>
       {/* <StatsCards /> */}
-      <ConnectedSection />
+      
       <GlobalPlacementSection />
       <WhatIsGlobalPlacement />
       <Supportbox2 />
@@ -52,6 +52,7 @@ const GlobleHeroSection = () => {
       {/* <BlogSection />
       <LangmaSection /> */}
       <FAQ />
+      <ConnectedSection />
       {/* <ContactForm /> */}
       <PopupForm open={open} onClose={() => setOpen(false)} />
     </>

@@ -82,7 +82,7 @@ const WorkAbroadSlider = () => {
       </div>
 
       {/* Work Destinations Slider */}
-      <div className="py-8 bg-gray-50">
+      <div className="pt-8 pb-14 md:pb-20 lg:pb-24 bg-gray-50">
         <h2 className="text-center text-[22px] sm:text-[28px] lg:text-[32px] font-semibold text-[#296166] mb-6 px-4">
           Explore Your Work Destinations
         </h2>

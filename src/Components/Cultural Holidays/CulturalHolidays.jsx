@@ -122,7 +122,7 @@ const CulturalHolidays = () => {
       </section>
       {/* <ContactForm/> */}
       {/* <StatsCards/> */}
-      <ConnectedSection />
+      
        <section className="bg-[#F4FEFF] py-12 px-6">
       <div className="max-w-7xl mx-auto text-center">
         
@@ -260,6 +260,7 @@ const CulturalHolidays = () => {
       {/* <BlogSection />
       <LangmaSection /> */}
       <FAQ />
+      <ConnectedSection />
       <PopupForm open={open} onClose={() => setOpen(false)} />
     </>
   );

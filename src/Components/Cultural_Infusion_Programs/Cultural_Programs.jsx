@@ -42,7 +42,7 @@ const Cultural_Programs = () => {
       </section>
       {/* <ContactForm/> */}
       {/* <StatsCards/> */}
-      <ConnectedSection />
+      
 
       <Cultural_Infusion_Programs />
 
@@ -59,6 +59,7 @@ const Cultural_Programs = () => {
       /> */}
      
       <FAQ />
+      <ConnectedSection />
       <PopupForm open={open} onClose={() => setOpen(false)} />
     </>
   );

@@ -202,7 +202,7 @@ useEffect(() => {
 
       </section>
 
-      <ConnectedSection />
+      
 
       <section className="w-full bg-[#f4fbfb] py-10 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
@@ -564,6 +564,7 @@ useEffect(() => {
       />
     
       <FAQ />
+      <ConnectedSection />
       <PopupForm open={open} onClose={() => setOpen(false)} />
     </>
   );

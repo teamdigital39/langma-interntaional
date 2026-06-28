@@ -37,7 +37,7 @@ const Business_Delegation_Programs = () => {
           </div> 
         </div>
       </section>
-      <ConnectedSection />
+      
       <Business_Delegation />
       <WhyChooseLangmabusiness />
       <Business_Program_Highlights />
@@ -51,6 +51,7 @@ const Business_Delegation_Programs = () => {
       {/* <BlogSection />
       <LangmaSection /> */}
       <FAQ />
+      <ConnectedSection />
       <PopupForm open={open} onClose={() => setOpen(false)} />
     </>
   );

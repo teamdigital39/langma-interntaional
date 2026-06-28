@@ -1,6 +1,7 @@
 import API_BASE from "../../config.js";
 import React, { useEffect, useState } from "react";
 import PopupForm from "../../Components/PopupForm";
+import ClientOrbit from "./Client.jsx";
 
 const AboutSection = () => {
   const [open, setOpen] = useState(false);
@@ -153,115 +154,7 @@ const AboutSection = () => {
           </button>
         </div>
       </div>
-<div className="w-full mt-16 relative flex justify-center overflow-hidden">
-  <div className="relative w-full h-[350px] sm:h-[450px] md:h-[650px] lg:h-[760px]">
-
-    <img
-      src="/images/client.png"
-      alt="Our Clients"
-      className="absolute inset-0 w-full h-full object-cover"
-    />
-
-    <div className="max-w-7xl mx-auto w-full h-full relative">
-
-      {/* CENTER */}
-      <img
-        src="/images/cts.png"
-        alt="center"
-        className="
-          absolute
-          top-1/2 left-1/2
-          w-40 sm:w-52 md:w-72 lg:w-80
-          -translate-x-1/2 -translate-y-1/2
-          z-10
-        "
-      />
-
-      {/* TOP CENTER */}
-      <img
-        src="/images/ct5.jpeg"
-        alt="top-center"
-        className="
-          absolute
-          top-[12%] left-1/2
-          w-24 sm:w-28 md:w-36 lg:w-44
-          aspect-square
-          rounded-full shadow-lg
-          -translate-x-1/2 -translate-y-1/2
-        "
-      />
-
-      {/* TOP LEFT */}
-      <img
-        src="/images/acc.jpeg"
-        alt="left-top"
-        className="
-          absolute
-          top-[28%] left-[28%]
-          w-24 sm:w-28 md:w-36 lg:w-44
-          aspect-square
-          rounded-full shadow-lg
-         
-          -translate-x-1/2 -translate-y-1/2
-        "
-      />
-
-      {/* TOP RIGHT */}
-      <img
-        src="/images/ez.jpeg"
-        alt="right-top"
-        className="
-          absolute
-          top-[28%] left-[72%]
-          w-24 sm:w-28 md:w-36 lg:w-44
-          aspect-square
-          rounded-full shadow-lg
-          
-          -translate-x-1/2 -translate-y-1/2
-        "
-      />
-
-      {/* BOTTOM LEFT */}
-      <img
-        src="/images/ymm.png"
-        alt="left"
-        className="
-          absolute
-          bottom-[22%] left-[28%]
-          w-24 sm:w-28 md:w-36 lg:w-44
-          -translate-x-1/2 translate-y-1/2
-        "
-      />
-
-      {/* BOTTOM RIGHT */}
-      <img
-        src="/images/smm.png"
-        alt="right"
-        className="
-          absolute
-          bottom-[22%] left-[72%]
-          w-24 sm:w-28 md:w-36 lg:w-44
-          -translate-x-1/2 translate-y-1/2
-        "
-      />
-
-      {/* BOTTOM CENTER */}
-      <img
-        src="/images/clt6.webp"
-        alt="bottom-center"
-        className="
-          absolute
-          bottom-[5%] left-1/2
-          w-24 sm:w-28 md:w-36 lg:w-44
-          aspect-square
-          rounded-full shadow-lg
-          -translate-x-1/2 translate-y-[20%]
-        "
-      />
-
-    </div>
-  </div>
-</div>
+      <ClientOrbit />
       <PopupForm open={open} onClose={() => setOpen(false)} />
     </section>
   );

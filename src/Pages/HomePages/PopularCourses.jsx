@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
@@ -9,6 +10,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const PopularCourses = ({ data }) => {
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+
   if (!data) return <p className="text-center">Loading...</p>;
 
   const courses = data.map((item) => ({
@@ -60,62 +64,108 @@ const PopularCourses = ({ data }) => {
         </div>
 
         {/* SWIPER */}
-     <Swiper
-  modules={[Navigation, Pagination, Autoplay]}
-  spaceBetween={30}
-  navigation={{
-    enabled: window.innerWidth >= 768,
-  }}
-  pagination={{ clickable: true }}
-  autoplay={{
-    delay: 2500,
-    disableOnInteraction: false,
-    pauseOnMouseEnter: true,
-  }}
-  speed={500}
-  loop={true}
-  className="
-    pb-16 
-    [&_.swiper-pagination]:!relative 
-    [&_.swiper-pagination]:!mt-6
-  "
-  breakpoints={{
-    0: { slidesPerView: 1 },
-    768: { slidesPerView: 2 },
-    1024: { slidesPerView: 3 },
-  }}
->
-  {filteredCourses.map((course, index) => (
-    <SwiperSlide key={`${course.link}-${index}`}>
-      <div className="bg-white rounded-2xl shadow-md p-4 h-full">
+        <div className="relative px-2 sm:px-12">
+          <button
+            ref={prevRef}
+            type="button"
+            aria-label="Previous course"
+            className="
+              hidden md:flex
+              absolute left-0 top-1/2 -translate-y-1/2 z-10
+              w-10 h-10 items-center justify-center
+              rounded-full bg-white
+              border border-[#d9e8e7]
+              text-[#006064]
+              shadow-[0_2px_10px_rgba(0,0,0,0.08)]
+              hover:bg-[#006064] hover:text-white hover:border-[#006064]
+              transition-all duration-300
+            "
+          >
+            <ChevronLeft size={20} strokeWidth={2.5} />
+          </button>
 
-        <div className="h-[190px] overflow-hidden rounded-xl">
-          <img
-            src={course.image}
-            alt={course.title}
-            className="w-full h-full"
-          />
+          <button
+            ref={nextRef}
+            type="button"
+            aria-label="Next course"
+            className="
+              hidden md:flex
+              absolute right-0 top-1/2 -translate-y-1/2 z-10
+              w-10 h-10 items-center justify-center
+              rounded-full bg-white
+              border border-[#d9e8e7]
+              text-[#006064]
+              shadow-[0_2px_10px_rgba(0,0,0,0.08)]
+              hover:bg-[#006064] hover:text-white hover:border-[#006064]
+              transition-all duration-300
+            "
+          >
+            <ChevronRight size={20} strokeWidth={2.5} />
+          </button>
+
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={30}
+            navigation={{
+              prevEl: prevRef.current,
+              nextEl: nextRef.current,
+            }}
+            onBeforeInit={(swiper) => {
+              swiper.params.navigation.prevEl = prevRef.current;
+              swiper.params.navigation.nextEl = nextRef.current;
+            }}
+            pagination={{ clickable: true }}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            speed={500}
+            loop={true}
+            className="
+              popular-courses-swiper
+              pb-16
+              [&_.swiper-pagination]:!relative
+              [&_.swiper-pagination]:!mt-6
+            "
+            breakpoints={{
+              0: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+          >
+            {filteredCourses.map((course, index) => (
+              <SwiperSlide key={`${course.link}-${index}`}>
+                <div className="bg-white rounded-2xl shadow-md p-4 h-full">
+
+                  <div className="h-[190px] overflow-hidden rounded-xl">
+                    <img
+                      src={course.image}
+                      alt={course.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  <h3 className="mt-3 font-bold">
+                    {course.title}
+                  </h3>
+
+                  <p className="text-sm text-gray-500">
+                    {course.desc}
+                  </p>
+
+                  <Link
+                    to={course.link}
+                    className="mt-3 inline-block bg-yellow-300 px-4 py-2 rounded-full"
+                  >
+                    Learn More
+                  </Link>
+
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
-
-        <h3 className="mt-3 font-bold">
-          {course.title}
-        </h3>
-
-        <p className="text-sm text-gray-500">
-          {course.desc}
-        </p>
-
-        <Link
-          to={course.link}
-          className="mt-3 inline-block bg-yellow-300 px-4 py-2 rounded-full"
-        >
-          Learn More
-        </Link>
-
-      </div>
-    </SwiperSlide>
-  ))}
-</Swiper>
       </div>
     </section>
   );

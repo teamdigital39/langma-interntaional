@@ -46,7 +46,7 @@ const BusinessPrograms = () => {
       </section>
       {/* <ContactForm/> */}
       {/* <StatsCards/> */}
-      <ConnectedSection />
+      
       <BusinessExchange />
       <Whychooselagma />
       <Program_Highlights />
@@ -60,6 +60,7 @@ const BusinessPrograms = () => {
       {/* <BlogSection />
       <LangmaSection /> */}
       <FAQ />
+      <ConnectedSection />
       <PopupForm open={open} onClose={() => setOpen(false)} />
     </>
   );

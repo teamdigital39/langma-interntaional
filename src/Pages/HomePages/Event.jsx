@@ -36,48 +36,47 @@ function Event() {
   return (
     <>
       {/* ───────────── HERO VIDEO BANNER ───────────── */}
-      <div className="relative w-full h-64 md:h-[600px] overflow-hidden">
+      <div className="relative w-full overflow-hidden">
+        <div className="relative w-full aspect-[2/1] sm:aspect-[21/9] md:h-[520px] md:aspect-auto lg:h-[580px]">
+          <video
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            autoPlay
+            muted={muted}
+            loop
+            playsInline
+            controls={false}
+          >
+            <source
+              src="https://res.cloudinary.com/dzv9zcrlz/video/upload/q_auto/f_auto/v1779535873/EVENT-VIDEO-WEBSITE_vaqbrb.mp4"
+              type="video/mp4"
+            />
+          </video>
 
-        {/* VIDEO */}
-        <video
-          className="absolute inset-0 w-full h-full object-cover z-0"
-          autoPlay
-          muted={muted}
-          loop
-          playsInline
-          controls={false}
-        >
-          <source
-            src="https://res.cloudinary.com/dzv9zcrlz/video/upload/q_auto/f_auto/v1779535873/EVENT-VIDEO-WEBSITE_vaqbrb.mp4"
-            type="video/mp4"
-          />
-        </video>
+          {/* DARK OVERLAY */}
+          <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none" />
 
-        {/* DARK OVERLAY */}
-        <div className="absolute inset-0 bg-black/40 z-10 pointer-events-none"></div>
+          {/* HEADING */}
+          <div className="absolute inset-0 z-20 flex items-center justify-center text-white text-center px-4">
+            <h2 className="text-[28px] md:text-[42px] font-bold" />
+          </div>
 
-        {/* HEADING */}
-        <div className="absolute inset-0 z-20 flex items-center justify-center text-white text-center px-4">
-          <h2 className="text-[28px] md:text-[42px] font-bold"></h2>
+          {/* SOUND TOGGLE BUTTON */}
+          {muted ? (
+            <button
+              onClick={() => setMuted(false)}
+              className="absolute bottom-4 right-4 z-30 bg-black/60 text-white px-3 py-2 rounded-full text-sm hover:bg-black/80 transition"
+            >
+              🔇 Tap for Sound
+            </button>
+          ) : (
+            <button
+              onClick={() => setMuted(true)}
+              className="absolute bottom-4 right-4 z-30 bg-black/60 text-white px-3 py-2 rounded-full text-sm hover:bg-black/80 transition"
+            >
+              🔊 Mute
+            </button>
+          )}
         </div>
-
-        {/* SOUND TOGGLE BUTTON */}
-        {muted ? (
-          <button
-            onClick={() => setMuted(false)}
-            className="absolute bottom-4 right-4 z-30 bg-black/60 text-white px-3 py-2 rounded-full text-sm hover:bg-black/80 transition"
-          >
-            🔇 Tap for Sound
-          </button>
-        ) : (
-          <button
-            onClick={() => setMuted(true)}
-            className="absolute bottom-4 right-4 z-30 bg-black/60 text-white px-3 py-2 rounded-full text-sm hover:bg-black/80 transition"
-          >
-            🔊 Mute
-          </button>
-        )}
-
       </div>
 
       {/* ───────────── ABOUT SECTION ───────────── */}

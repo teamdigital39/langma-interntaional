@@ -38,7 +38,7 @@ const Supportbox2 = () => {
     <section className="w-full py-5 flex justify-center bg-[#E9F8FF]">
       <div className="max-w-5xl w-full">
         {/* Heading */}
-        <h2 className="text-[28px] lg:text-[32px] font-bold text-center text-[#296166] mb-10">
+        <h2 className="text-[28px] lg:text-[32px] font-bold text-center text-[#296166] mt-6 mb-7">
           How We Support You
         </h2>
 
@@ -69,7 +69,7 @@ const Supportbox2 = () => {
               </h3>
 
               {/* DESCRIPTION */}
-              <p className="text-[18px] text-[#0E2A46] leading-relaxed">
+              <p className="text-[16px] text-[#0E2A46] leading-relaxed">
                 {item.desc}
               </p>
             </div>

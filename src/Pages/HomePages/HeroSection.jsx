@@ -166,41 +166,40 @@ const HeroSection = () => {
        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid gap-8 lg:grid-cols-2 items-center">
 
   {/* LEFT CONTENT */}
-    <div className="relative rounded-xl px-10 py-14 overflow-hidden font-sans min-h-[520px]"
-  style={{ fontFamily: "'" }}>
+    <div className="relative rounded-xl px-10 py-14 overflow-hidden font-sans min-h-[520px]">
 
-  {/* Left gold accent bar */}
-  <div className="absolute left-0 top-20 bottom-20 w-[3px] rounded-full bg-gradient-to-b from-transparent via-[#C8A96E] to-transparent" />
+  {/* Left accent bar */}
+  <div className="absolute left-0 top-20 bottom-20 w-[3px] rounded-full bg-gradient-to-b from-transparent via-[#2FC7A1] to-transparent" />
 
   {/* Eyebrow badge */}
-  <div className="inline-flex items-center gap-2 border border-[#C8B89A] rounded-full px-4 py-1.5 mb-5">
-    <span className="w-1.5 h-1.5 rounded-full bg-[#C8A96E]" />
-    <span className="text-[11px] font-semibold tracking-widest uppercase text-[#6B5840]">
+  <div className="inline-flex items-center gap-2 border border-[#2FC7A1]/40 rounded-full px-4 py-1.5 mb-5">
+    <span className="w-1.5 h-1.5 rounded-full bg-[#2FC7A1]" />
+    <span className="text-[11px] font-semibold tracking-widest uppercase text-[#2FC7A1]">
       Learn &amp; Earn Globally
     </span>
   </div>
 
   {/* Brand label */}
   <div className="flex items-center gap-2 mb-5">
-    <span className="w-7 h-[1.5px] bg-[#8A7A66]" />
-    <span className="text-[11px] tracking-[0.12em] uppercase text-[#8A7A66] font-medium">
+    <span className="w-7 h-[1.5px] bg-[#296166]" />
+    <span className="text-[11px] tracking-[0.12em] uppercase text-[#296166] font-medium">
       Langma International
     </span>
   </div>
 
   {/* Headline */}
   <h1
-    className="text-[#1A2540] font-regular leading-[1.08] mb-2 max-w-[560px]"
-    style={{ fontFamily: "", fontSize: "clamp(32px, 5vw, 48px)" }}
+    className="text-gray-900 font-bold leading-[1.08] mb-2 max-w-[560px]"
+    style={{ fontSize: "clamp(32px, 5vw, 48px)" }}
   >
-   <span className="font-semibold"> Where Language </span> <br />
-    <span className="italic font-semibold text-[#C8A96E]">Transforms</span><br />
+   <span className="font-bold"> Where Language </span> <br />
+    <span className="italic font-bold text-[#4FA3D1]">Transforms</span><br />
     Careers, Cultures,<br />
     and Continents.
   </h1>
 
   {/* Body text */}
-  <p className="text-[18px] leading-[1.7] text-[#5A5040] max-w-[480px] mt-5 mb-8">
+  <p className="text-[18px] leading-[1.7] text-gray-600 max-w-[480px] mt-5 mb-8">
     Langma International is a globally recognised institution dedicated to
     linguistic excellence, cultural understanding, and international growth.
     Through world-class language education and global mobility solutions, we

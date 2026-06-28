@@ -85,7 +85,7 @@ const AbrotHeroSection = () => {
 
       </section>
       {/* <StatsCards /> */}
-      <ConnectedSection />
+      
       <WorkAbroadSection />
       <WhyLangmaSection />
       <WhatWeHelpYouWith />
@@ -170,6 +170,7 @@ const AbrotHeroSection = () => {
   </div>
 </div>
       <FAQ />
+      <ConnectedSection />
       {/* <ContactForm /> */}
       <PopupForm open={open} onClose={() => setOpen(false)} />
     </>

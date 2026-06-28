@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/navigation";
 import PopupForm from "../../Components/PopupForm";
-import { useState } from "react";
  
 const cards = [
   { id: 1, image: "/images/01.png", title: "Mr. Sanjeev Rawat", desc: " Mr. Sanjeev Rawat and Ms. Persy Jain alongside Ms. Kerstin Peckl, Commercial Attaché of Austria to India. " },
@@ -24,11 +24,20 @@ const cards = [
   // { id: 5, image: "/images/16.webp", title: "Mr. Sanjeev Rawat", desc: "and the Langma Team welcoming H.E Oleksandr Polishchuk, Ambassador of Ukraine to India." },
 ];
 
+const examLogos = [
+  { id: 1, image: "/images/lu1.svg", alt: "Exam certification 1" },
+  { id: 2, image: "/images/lu2.svg", alt: "Exam certification 2" },
+  { id: 3, image: "/images/lu3.svg", alt: "Goethe Institut" },
+  { id: 4, image: "/images/lu4.svg", alt: "Exam certification 4" },
+];
+
 const LangmaSection = () => {
   const [open, setOpen] = useState(false);
-    const [leftImage, setLeftImage] = useState(cards[0].image);
+  const [leftImage, setLeftImage] = useState(cards[0].image);
+  const examPrevRef = useRef(null);
+  const examNextRef = useRef(null);
   return (
-    <section className="bg-white pt-16 overflow-hidden">
+    <section className="bg-white pt-20 md:pt-28 lg:pt-32 overflow-hidden">
       <div className="max-w-[1400px] mx-auto relative px-4">
 
         <div className="text-center mb-3 lg:mb-7  ml-0 md:ml-[25%] lg:ml-[25%]">
@@ -135,70 +144,86 @@ const LangmaSection = () => {
               </button>
             </div>
 
-            <div className="lg:w-1/2 w-full overflow-visible">
-  <Swiper
-    modules={[Navigation, Autoplay]}
-    spaceBetween={16}
-    slidesPerView={1}
-    loop={true}
-    navigation={window.innerWidth >= 640}
-    autoplay={{ delay: 2500, disableOnInteraction: false }}
-    breakpoints={{
-      640: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 },
-    }}
-    className=" py-6"
-  >
+            <div className="lg:w-1/2 w-full overflow-visible relative px-2 sm:px-12">
+              <button
+                ref={examPrevRef}
+                aria-label="Previous exam logo"
+                className="
+                  hidden sm:flex
+                  absolute left-0 top-1/2 -translate-y-1/2 z-10
+                  w-10 h-10 items-center justify-center
+                  rounded-full bg-white
+                  border border-[#d9e8e7]
+                  text-[#006064]
+                  shadow-[0_2px_10px_rgba(0,0,0,0.08)]
+                  hover:bg-[#006064] hover:text-white hover:border-[#006064]
+                  transition-all duration-300
+                "
+              >
+                <ChevronLeft size={20} strokeWidth={2.5} />
+              </button>
 
-    <SwiperSlide className="p-0">
-      <div className="rounded-xl shadow-2xl overflow-hidden bg-white">
-        <img
-          src="/images/lu1.svg"
-          alt="Exam"
+              <button
+                ref={examNextRef}
+                aria-label="Next exam logo"
+                className="
+                  hidden sm:flex
+                  absolute right-0 top-1/2 -translate-y-1/2 z-10
+                  w-10 h-10 items-center justify-center
+                  rounded-full bg-white
+                  border border-[#d9e8e7]
+                  text-[#006064]
+                  shadow-[0_2px_10px_rgba(0,0,0,0.08)]
+                  hover:bg-[#006064] hover:text-white hover:border-[#006064]
+                  transition-all duration-300
+                "
+              >
+                <ChevronRight size={20} strokeWidth={2.5} />
+              </button>
 
-          className="w-full h-[160px]"
-
-        />
-      </div>
-    </SwiperSlide>
-
-    <SwiperSlide className="p-3">
-      <div className="rounded-xl shadow-2xl overflow-hidden bg-white">
-        <img
-          src="/images/lu2.svg"
-          alt="Exam"
-
-          className="w-full h-[160px]"
-
-        />
-      </div>
-    </SwiperSlide>
-
-    <SwiperSlide className="p-3">
-      <div className="rounded-xl shadow-2xl overflow-hidden bg-white">
-        <img
-          src="/images/lu3.svg"
-          alt="Exam"
-
-          className="w-full h-[160px]"
-
-        />
-      </div>
-    </SwiperSlide>
-
-    <SwiperSlide className="p-3">
-      <div className="rounded-xl shadow-2xl overflow-hidden bg-white">
-        <img
-          src="/images/lu4.svg"
-          alt="Exam"
-          className="w-full h-[160px]"
-
-        />
-      </div>
-    </SwiperSlide>
-
-  </Swiper>
-</div>
+              <Swiper
+                modules={[Navigation, Autoplay]}
+                spaceBetween={16}
+                slidesPerView={1}
+                loop={true}
+                autoplay={{ delay: 2500, disableOnInteraction: false }}
+                breakpoints={{
+                  640: { slidesPerView: 2 },
+                  1024: { slidesPerView: 3 },
+                }}
+                navigation={{
+                  prevEl: examPrevRef.current,
+                  nextEl: examNextRef.current,
+                }}
+                onBeforeInit={(swiper) => {
+                  swiper.params.navigation.prevEl = examPrevRef.current;
+                  swiper.params.navigation.nextEl = examNextRef.current;
+                }}
+                className="exam-logo-swiper py-6"
+              >
+                {examLogos.map((logo) => (
+                  <SwiperSlide key={logo.id} className="p-2">
+                    <div
+                      className="
+                        rounded-2xl bg-white
+                        border border-[#e2ebe9]
+                        shadow-[0_2px_14px_rgba(0,96,100,0.06)]
+                        hover:border-[#2FC7A1]/40
+                        hover:shadow-[0_6px_20px_rgba(47,199,161,0.12)]
+                        transition-all duration-300
+                        p-5
+                      "
+                    >
+                      <img
+                        src={logo.image}
+                        alt={logo.alt}
+                        className="w-full h-[140px] object-contain"
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
 
           </div>
         </section>
