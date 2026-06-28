@@ -557,6 +557,40 @@ useEffect(() => {
   </Swiper>
 </div>
 
+      {slug === "online-english-language-course" && (
+        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+              <div className="flex justify-center lg:justify-start">
+                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
+                  <img
+                    src="/images/ielts-british-council-partner.png"
+                    alt="British Council IELTS Partnership Programme certificate for Langma School of Languages"
+                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
+                  />
+                </div>
+              </div>
+
+              <div className="text-center lg:text-left">
+                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
+                  Langma International:{" "}
+                  <span className="text-[#296166]">
+                    Trusted British Council IELTS Registration Partner
+                  </span>
+                </h2>
+                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
+                  At Langma International, excellence is backed by recognition. As an
+                  authorized IELTS Registration Centre and an accredited member of the
+                  British Council IELTS Partnership Programme (2019–2020), we have
+                  demonstrated our commitment to delivering trusted guidance, ethical
+                  practices, and internationally aligned student support.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       <CTASection
         title={`Start your ${languageData.title} journey with Langma today!`}
         desc=""
