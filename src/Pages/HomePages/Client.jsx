@@ -14,8 +14,8 @@ const IMAGE_SRCS = [
   "/images/cl23.jpg",
   "/images/cl24.jpg",
   "/images/cl25.jpg",
-  "/images/cl26.jpg",
-  "/images/cl27.jpg",
+  // "/images/cl26.jpg",
+  // "/images/cl27.jpg",
   "/images/cl28.jpg",
 ];
 
