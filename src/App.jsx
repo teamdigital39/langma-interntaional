@@ -7,7 +7,7 @@ import AboutHeroSection from "./Pages/HomePages/Aboutpage/AboutHeroSection";
 import Footer from "./Pages/HomePages/Footer";
 import AbrotHeroSection from "./Components/Common/WorkAbrot/AbrotHeroSection";
 import StudyAbrotHeroSection from "./Components/Common/StudyAbortSection/StudyAbrotHeroSection";
-import InternationalHeroSection from "./Components/InternationlHeroSection/InternationalHeroSection";
+// import InternationalHeroSection1 from "./Components/InternationlHeroSection/InternationalHeroSection1";
 import GlobleHeroSection from "./Components/GlobleHeroSection/GlobleHeroSection";
 import ScrollToTop from "./Pages/HomePages/Loader/ScrollToTop";
 import Loader from "./Pages/HomePages/Loader/Loader";
@@ -79,6 +79,7 @@ import PRAssessment from "./Pages/HomePages/PRAssessment";
 import StudyAbrotHeroSection1 from "./Pages/HomePages/StudyAbrotHeroSection1";
 import GoldenVisaPage from "./Pages/HomePages/GoldenVisa";
 import LangmaStudyAbroadAssessment from "./Pages/HomePages/LangmaStudyAbroadAssessment";
+import InternationalHeroSection from "./Pages/HomePages/InternationalHeroSection";
 
 
 
@@ -108,7 +109,7 @@ function App() {
           <Route path="/work-abroad" element={<AbrotHeroSection />} />
           {/* <Route path="/study-abroad" element={<StudyAbrotHeroSection />} /> */}
           <Route path="/study-abroad" element={<StudyAbrotHeroSection1 />} />
-          <Route path="/languages" element={<InternationalHeroSection />} />
+          {/* <Route path="/languages" element={<InternationalHeroSection />} /> */}
           <Route path="/global-assist" element={<GlobleHeroSection />} />
           <Route path="/golden-visa" element={<GoldenVisaPage />} />
           <Route path="/investment" element={<Investment />} />
@@ -179,6 +180,7 @@ function App() {
           <Route path="/assessment" element={<PRAssessment />} />
           <Route path="/study-assessment" element={<LangmaStudyAbroadAssessment />} />
           {/* <Route path="/jkl" element={<StudyAbrotHeroSection1 />} /> */}
+          <Route path="/languages" element={<InternationalHeroSection />} />
         </Routes>
       )}
 

@@ -14,7 +14,7 @@ import ConnectedSection from "../../Pages/HomePages/ConnectedSection";
 import PopupForm from "../PopupForm";
 import { useState, useEffect } from "react";
 
-const InternationalHeroSection = () => {
+const InternationalHeroSection1 = () => {
   const [open, setOpen] = useState(false);
   const [apiData, setApiData] = useState(null);
    useEffect(() => {
@@ -71,4 +71,4 @@ const InternationalHeroSection = () => {
   );
 };
 
-export default InternationalHeroSection;
+export default InternationalHeroSection1;
