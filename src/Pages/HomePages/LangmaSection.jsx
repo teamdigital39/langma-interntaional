@@ -42,10 +42,10 @@ const LangmaSection = () => {
 
         <div className="text-center mb-3 lg:mb-7  ml-0 md:ml-[25%] lg:ml-[25%]">
           <h2 className="text-[28px] md:text-[34px] font-bold mb-2">
-            Langma Unites <span className="text-[#296166]">the World</span>
+           Langma International<span className="text-[#296166]"> Expands Horizons </span>
           </h2>
           <p className="text-[16px] md:text-[18px] text-gray-700">
-            Connecting minds, cultures, and opportunities worldwide.
+            Supporting individuals and organizations in achieving their international aspirations.
           </p>
         </div>
 

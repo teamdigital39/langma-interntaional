@@ -590,9 +590,15 @@ useEffect(() => {
           </div>
         </section>
       )}
-
+{/* 
       <CTASection
-        title={`Start your ${languageData.title} journey with Langma today!`}
+        title={` ${languageData.title} journey with Langma today!`}
+        desc=""
+        buttonText="Start Your Journey Today"
+      /> */}
+      
+      <CTASection
+        title={`Begin Your Global Education Journey With Us`}
         desc=""
         buttonText="Start Your Journey Today"
       />
