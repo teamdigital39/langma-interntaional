@@ -18,7 +18,7 @@ function Dubbing() {
 
         {/* Heading */}
         <h1 className="text-2xl md:text-[32px] capitalized font-bold text-[#296166] mb-4">
-          Enhance Your Content's Impact, Expand Your Global Reach: Experience the Dubbing & Voiceover Expertise of Langma Consulting.
+          Enhance Your Content's Impact Expand Your Global Reach: Experience the Dubbing & Voiceover Expertise of Langma Consulting.
         </h1>
 
         {/* Intro */}
