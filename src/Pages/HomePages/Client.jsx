@@ -214,7 +214,7 @@ const ClientOrbit = () => {
       const cy = H / 2;
 
       const { centerSize, planetSize, firstRadius, orbitGap, isMobile } = getLayout(W, H);
-      const speed = W < 640 ? 0.2 : 0.3;
+      const speed = 0.19;
 
       ctx.clearRect(0, 0, W, H);
 
