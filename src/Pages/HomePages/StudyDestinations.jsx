@@ -129,7 +129,7 @@ import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 
-/* Buttons */
+
 const SwiperButtons = () => {
   const swiper = useSwiper();
 
@@ -156,14 +156,14 @@ const Study = () => {
   const cards = [
     {
       image: "/images/personalization-.webp",
-      title: "Personalization",
+      title: "Personalized Learning",
       content:
-        "The language courses in Langma School can be personalized based on the requirement of the candidate. We provide customized programs based on the purpose of study and convenient time period or duration (academic, examination, business or employment) if it is employment we further customize the program according to the industry, including vocabulary from the respective field.",
+        "The language courses in Langma International can be personalized based on the requirement of the candidate. We provide customized programs based on the purpose of study and convenient time period or duration (academic, examination, business or employment) if it is employment we further customize the program according to the industry, including vocabulary from the respective field.",
       path: "/study-in-australia",
     },
     {
       image: "/images/flexible-time.webp",
-      title: "Flexible",
+      title: "Flexible Schedules",
       content:
         "Candidate is able to select the timings and mode for the language classes. Online and offline modes are available for all languages, and for students connecting via internet, the suitable time slot can be offered which aligns with the country’s timings. Also the option of taking individual or group classes is made available for candidates.",
       path: "/study-in-canada",
@@ -177,7 +177,7 @@ const Study = () => {
     },
     {
       image: "/images/placement-opportunities.webp",
-      title: "Placement Opportunity",
+      title: "Placement Opportunities",
       content:
         "Upon completion of the foreign language courses, students will be offered placements or internships with within our network of partners who hire candidates for linguistic skills. Our clients are from different industries and students can select according to their preferences.",
       path: "/study-in-usa",
@@ -188,7 +188,7 @@ const Study = () => {
     <section className="w-full py-14 overflow-hidden bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-full mx-auto">
 
-        {/* Static Heading */}
+        
         <h2 className="text-center text-[28px] lg:text-[32px] font-bold text-gray-900 px-4">
           Why Choose{" "}
           <span className="text-[#4FA3D1]">Langma International</span>
@@ -196,7 +196,6 @@ const Study = () => {
 
         <div className="relative flex flex-col xl:flex-row items-center">
 
-          {/* Left Image */}
           <div className="hidden xl:block w-[340px] h-[620px] rounded-tr-[10px] rounded-br-[10px] overflow-hidden shadow-xl flex-shrink-0">
             <img
               src="/images/Group 4467.png"
@@ -205,7 +204,7 @@ const Study = () => {
             />
           </div>
 
-          {/* Swiper */}
+          
           <div className="w-full ml-0 xl:-ml-16 relative">
             <Swiper
               modules={[Navigation, Autoplay]}
@@ -232,7 +231,6 @@ const Study = () => {
                 <SwiperSlide key={index}>
                   <div className="group w-full h-[420px] rounded-[45px] relative overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-2xl cursor-pointer">
 
-                    {/* Image */}
                     <div
                       className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
                       style={{
@@ -240,7 +238,7 @@ const Study = () => {
                       }}
                     />
 
-                    {/* Overlay */}
+                   
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition duration-500"></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
 
