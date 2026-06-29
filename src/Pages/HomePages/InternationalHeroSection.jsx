@@ -256,7 +256,7 @@ const InternationalHeroSection = () => {
               margin: isTablet ? "0 auto" : 0,
             }}>
               <img
-                src="/images/Group 4459.png"
+                src="/images/lngway.jpeg"
                 alt="Langma International — language learning"
                 loading="lazy"
                 style={{
