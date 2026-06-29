@@ -30,23 +30,64 @@ const splitIntoOrbits = (items, orbitCount) => {
 
 const getLayout = (width, height) => {
   const minSide = Math.min(width, height);
+  const isMobile = width < 640;
 
   const centerSize = Math.round(
     Math.max(80, Math.min(210, minSide * 0.28))
   );
+
+  if (isMobile) {
+    const itemCount = IMAGE_SRCS.length;
+    const orbitCount = 2;
+    const itemsPerOrbit = Math.ceil(itemCount / orbitCount);
+    const padding = Math.max(14, minSide * 0.042);
+    const gapRatio = 1.32;
+
+    let planetSize = Math.round(
+      Math.max(40, Math.min(56, minSide * 0.108))
+    );
+
+    const ringRadius = minSide / 2 - padding - planetSize / 2;
+    const maxPlanetForRing = Math.floor(
+      (2 * ringRadius * Math.sin(Math.PI / itemsPerOrbit)) / gapRatio
+    );
+    planetSize = Math.min(planetSize, maxPlanetForRing);
+    planetSize = Math.max(40, planetSize);
+
+    const maxRadius = minSide / 2 - planetSize / 2 - padding;
+    const firstRadius = centerSize / 2 + planetSize / 2 + padding * 1.15;
+    const orbitGap = Math.max(28, (maxRadius - firstRadius) / (orbitCount - 1));
+
+    return {
+      centerSize,
+      planetSize,
+      orbitCount,
+      firstRadius,
+      orbitGap,
+      padding,
+      isMobile,
+    };
+  }
+
   const planetSize = Math.round(
     Math.max(48, Math.min(112, minSide * 0.135))
   );
-
   const orbitCount = width < 480 ? 1 : width < 820 ? 2 : 3;
   const padding = Math.max(10, minSide * 0.03);
-
   const maxRadius = minSide / 2 - planetSize / 2 - padding;
   const firstRadius = centerSize / 2 + planetSize / 2 + padding * 0.8;
   const orbitGap =
     orbitCount > 1 ? (maxRadius - firstRadius) / (orbitCount - 1) : 0;
 
-  return { centerSize, planetSize, orbitCount, firstRadius, orbitGap, padding };
+  return {
+    centerSize,
+    planetSize,
+    orbitCount,
+    firstRadius,
+    orbitGap,
+    padding,
+    isMobile,
+  };
 };
 
 const ClientOrbit = () => {
@@ -87,7 +128,7 @@ const ClientOrbit = () => {
       x,
       y,
       size,
-      { counterAngle = 0, paddingRatio = 0.14, fallback = "#143c67" } = {}
+      { paddingRatio = 0.14, fallback = "#143c67" } = {}
     ) => {
       const r = size / 2;
 
@@ -108,7 +149,7 @@ const ClientOrbit = () => {
       ctx.clip();
 
       ctx.translate(x, y);
-      ctx.rotate(-counterAngle);
+      // Logos orbit around the center but never spin on their own axis
 
       if (img) {
         const maxDim = size * (1 - paddingRatio * 2);
@@ -172,8 +213,8 @@ const ClientOrbit = () => {
       const cx = W / 2;
       const cy = H / 2;
 
-      const { centerSize, planetSize, firstRadius, orbitGap } = getLayout(W, H);
-      const speed = W < 640 ? 0.22 : 0.3;
+      const { centerSize, planetSize, firstRadius, orbitGap, isMobile } = getLayout(W, H);
+      const speed = W < 640 ? 0.2 : 0.3;
 
       ctx.clearRect(0, 0, W, H);
 
@@ -192,17 +233,19 @@ const ClientOrbit = () => {
         const orbitSpeed = 1 - orbitIndex * 0.12;
 
         group.forEach((img, index) => {
+          const orbitOffset =
+            isMobile && orbitIndex % 2 === 1 ? 180 / group.length : 0;
           const angleDeg =
             direction * angleRef.current * orbitSpeed +
-            (360 / group.length) * index;
+            (360 / group.length) * index +
+            orbitOffset;
           const angleRad = angleDeg * (Math.PI / 180);
 
           const x = cx + radius * Math.cos(angleRad);
           const y = cy + radius * Math.sin(angleRad);
 
           drawContainedImage(img, x, y, planetSize, {
-            counterAngle: angleRad,
-            paddingRatio: W < 480 ? 0.06 : 0.08,
+            paddingRatio: isMobile ? 0.12 : W < 480 ? 0.06 : 0.08,
           });
         });
       });
