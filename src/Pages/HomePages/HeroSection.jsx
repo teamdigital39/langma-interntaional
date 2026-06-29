@@ -1,3 +1,4 @@
+import { ArrowRight, Calendar } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -162,11 +163,11 @@ const HeroSection = () => {
         />
       </Helmet>
       {/* ── 1. HERO ─────────────────────────────────────────────── */}
-      <section className="w-full bg-white py-6 sm:py-10 relative overflow-x-hidden">
-       <div className="max-w-7xl mx-auto px-4 sm:px-6 grid gap-8 lg:grid-cols-2 items-center">
+      <section className="w-full bg-white pt-12 pb-0 sm:py-10 relative overflow-x-hidden">
+       <div className="max-w-7xl mx-auto px-4 sm:px-6 grid gap-8 lg:grid-cols-2 items-center ">
 
   {/* LEFT CONTENT */}
-    <div className="relative rounded-xl px-10 py-14 overflow-hidden font-sans min-h-[520px]">
+    <div className="relative rounded-xl px-4 sm:px-10 py-4 md:py-14 overflow-hidden font-sans min-h-[520px] order-2 lg:order-1">
 
   {/* Left accent bar */}
   <div className="absolute left-0 top-20 bottom-20 w-[3px] rounded-full bg-gradient-to-b from-transparent via-[#2FC7A1] to-transparent" />
@@ -180,7 +181,7 @@ const HeroSection = () => {
   </div>
 
   {/* Brand label */}
-  <div className="flex items-center gap-2 mb-5">
+  <div className="flex items-center gap-2 mb-5 ">
     <span className="w-7 h-[1.5px] bg-[#296166]" />
     <span className="text-[11px] tracking-[0.12em] uppercase text-[#296166] font-medium">
       Langma International
@@ -208,19 +209,21 @@ const HeroSection = () => {
   </p>
 
   {/* Buttons */}
-  <div className="flex flex-wrap gap-3">
+  <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 w-full max-w-full">
     <button
       onClick={() => setOpen(true)}
-      className="bg-[#1A2540] text-[#F5F2EC] rounded-full px-6 py-3 text-sm font-medium inline-flex items-center gap-1.5 tracking-wide cursor-pointer hover:bg-[#243160] transition-colors duration-200"
+      className="w-full sm:w-auto max-sm:bg-gradient-to-r max-sm:from-[#1A2540] max-sm:to-[#2d3a5c] bg-[#1A2540] text-[#F5F2EC] rounded-full px-5 sm:px-6 py-4 sm:py-3 text-sm font-semibold sm:font-medium inline-flex items-center justify-center gap-2 tracking-wide cursor-pointer whitespace-nowrap max-sm:shadow-lg max-sm:shadow-[#1A2540]/30 hover:bg-[#243160] active:scale-[0.98] sm:active:scale-100 transition-all duration-200"
     >
-      Let's Connect →
+      Let's Connect
+      <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
     </button>
     <button
       onClick={() => setOpen(true)}
-      className="bg-transparent text-[#1A2540] border border-[#C0B09A] rounded-full px-6 py-3 text-sm font-medium inline-flex items-center gap-2 tracking-wide cursor-pointer hover:bg-[#EDE8DF] transition-colors duration-200"
+      className="w-full sm:w-auto bg-white sm:bg-transparent text-[#1A2540] border-2 sm:border border-[#2FC7A1] sm:border-[#C0B09A] rounded-full px-5 sm:px-6 py-4 sm:py-3 text-sm font-semibold sm:font-medium inline-flex items-center justify-center gap-2 tracking-wide cursor-pointer whitespace-nowrap max-sm:shadow-md max-sm:shadow-[#2FC7A1]/20 hover:bg-[#E6F8F3] sm:hover:bg-[#EDE8DF] active:scale-[0.98] sm:active:scale-100 transition-all duration-200"
     >
-      <span>📅</span>
-      Book Instant Online Counselling
+      <Calendar className="w-4 h-4 shrink-0 text-[#2FC7A1] sm:text-[#1A2540]" aria-hidden="true" />
+      <span className="sm:hidden">Book Online Counselling</span>
+      <span className="hidden sm:inline">Book Instant Online Counselling</span>
     </button>
   </div>
 </div>
@@ -273,7 +276,7 @@ const HeroSection = () => {
 
 
   {/* RIGHT VIDEO */}
-  <div className="relative mt-10 sm:mt-14 lg:mt-0 order-1 lg:order-2">
+  <div className="relative order-1 lg:order-2">
     <div className="relative border-2 border-[#333931] rounded-[26px] p-2">
       <div className="relative w-full h-[220px] sm:h-[280px] lg:h-[333px] rounded-2xl overflow-hidden bg-black mx-auto">
         <video
