@@ -9,11 +9,17 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-const PopularCourses = ({ data }) => {
+const PopularCourses = ({ data, loading, error }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
-  if (!data) return <p className="text-center">Loading...</p>;
+  if (loading || data === null) {
+    return <p className="text-center py-10 text-gray-500">Loading...</p>;
+  }
+
+  if (error || !data.length) {
+    return <p className="text-center py-10 text-red-500">Failed to load courses.</p>;
+  }
 
   const courses = data.map((item) => ({
     id: item.id,

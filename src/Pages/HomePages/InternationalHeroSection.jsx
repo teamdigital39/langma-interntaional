@@ -13,26 +13,7 @@ import FAQSection from "./FAQSection";
 import FinalCTASection from "./FinalCTASection";
 import { useMediaQuery, BP } from "./styles.jsx";
 import PopupForm from "./PopupForm.jsx";
-
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "";
-
-/* Endpoints tried in order until one returns a non-empty languages list.
-   Adjust/trim this list to match your backend. */
-const LANGUAGE_ENDPOINTS = ["/api/languages", "/api/home"];
-
-/* Pulls a languages array out of whatever shape the API returns:
-   [ ... ]                         → itself
-   { languages: [ ... ] }          → .languages
-   { data: [ ... ] }               → .data
-   { data: { languages: [ ... ] }} → .data.languages */
-const extractLanguages = (payload) => {
-  if (Array.isArray(payload)) return payload;
-  if (!payload || typeof payload !== "object") return [];
-  if (Array.isArray(payload.languages)) return payload.languages;
-  if (Array.isArray(payload.data)) return payload.data;
-  if (payload.data && Array.isArray(payload.data.languages)) return payload.data.languages;
-  return [];
-};
+import API_BASE from "../../config.js";
 
 /* ── inline styles ── */
 const S = {
@@ -59,29 +40,23 @@ const InternationalHeroSection = () => {
     const controller = new AbortController();
 
     const fetchLanguages = async () => {
-      for (const path of LANGUAGE_ENDPOINTS) {
-        try {
-          const res = await fetch(`${API_BASE}${path}`, { signal: controller.signal });
-          if (!res.ok) continue; // try the next endpoint on 4xx/5xx
+      try {
+        const res = await fetch(`${API_BASE}/api/home`, { signal: controller.signal });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-          const ct = res.headers.get("content-type") || "";
-          if (!ct.includes("application/json")) continue; // skip HTML error pages
-
-          const data = await res.json();
-          const list = extractLanguages(data);
-          if (list.length) {
-            setLanguages(list);
-            setLoadError(false);
-            return; // success — stop trying further endpoints
-          }
-        } catch (error) {
-          if (error.name === "AbortError") return; // unmounted; do nothing
-          console.warn(`Languages API error (${path}):`, error);
+        const data = await res.json();
+        if (data?.status && Array.isArray(data.languages) && data.languages.length) {
+          setLanguages(data.languages);
+          setLoadError(false);
+          return;
         }
+        throw new Error("No languages in response");
+      } catch (error) {
+        if (error.name === "AbortError") return;
+        console.warn("Languages API error:", error);
+        setLanguages([]);
+        setLoadError(true);
       }
-      // Nothing usable came back from any endpoint
-      setLanguages([]);
-      setLoadError(true);
     };
 
     fetchLanguages();
@@ -279,7 +254,7 @@ const InternationalHeroSection = () => {
       {/* ────────────────────────────────────────────
           POPULAR COURSES — API driven
       ──────────────────────────────────────────── */}
-      <PopularCourses data={languages || []} loading={languages === null} error={loadError} />
+      <PopularCourses data={languages} loading={languages === null} error={loadError} />
 
       {/* ────────────────────────────────────────────
           ALL HTML SECTIONS
