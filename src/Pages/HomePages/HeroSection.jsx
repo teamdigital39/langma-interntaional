@@ -54,7 +54,7 @@ const destinations = [
 
 /* ── Reusable flag-strip slider ──────────────────────────────────── */
 const FlagSlider = ({ title }) => (
-  <div className="py-8 bg-gray-50">
+  <div className="py-8 bg-white">
     {title && (
       <h2 className="text-center text-[22px] sm:text-[28px] lg:text-[32px] font-semibold text-[#296166] mb-6 px-4">
         {title}
@@ -63,29 +63,32 @@ const FlagSlider = ({ title }) => (
     <div className="px-2">
       <Swiper
         modules={[Autoplay]}
-        spaceBetween={8}
+        spaceBetween={12}
         slidesPerView={2}
         autoplay={{ delay: 2000, disableOnInteraction: false }}
         loop={true}
         breakpoints={{
-          640:  { slidesPerView: 3,  spaceBetween: 10 },
-          768:  { slidesPerView: 4,  spaceBetween: 10 },
-          1024: { slidesPerView: 9,  spaceBetween: 10 },
+          640:  { slidesPerView: 3,  spaceBetween: 14 },
+          768:  { slidesPerView: 4,  spaceBetween: 14 },
+          1024: { slidesPerView: 9,  spaceBetween: 16 },
         }}
       >
         {destinations.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="text-center">
+            <div className="text-center px-1">
               <div className="w-full flex items-center justify-center">
-                <Link to={item.link}>
-                  <img
-                    src={item.flag}
-                    alt={item.name}
-                    className="w-24 h-16 sm:w-28 sm:h-20 lg:w-32 lg:h-24 object-contain mx-auto hover:scale-105 transition-transform duration-300"
-                  />
+                <Link to={item.link} className="block w-full max-w-[132px] sm:max-w-[148px] mx-auto">
+                  <div className="aspect-[3/2] w-full rounded-lg overflow-hidden bg-white shadow-[0_4px_16px_rgba(46,100,102,0.2)] ring-1 ring-[#D8E0EC] hover:shadow-[0_8px_28px_rgba(46,100,102,0.28)] hover:-translate-y-0.5 transition-all duration-300">
+                    <img
+                      src={item.flag.includes("flagcdn.com") ? item.flag.replace("/w320/", "/w640/") : item.flag}
+                      alt={item.name}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
                 </Link>
               </div>
-              <p className="text-xs sm:text-sm font-medium mt-2 px-1 leading-tight">
+              <p className="text-xs sm:text-sm font-medium mt-3 px-1 leading-tight text-[#296166]">
                 {item.name}
               </p>
             </div>

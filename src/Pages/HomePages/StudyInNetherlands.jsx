@@ -1681,7 +1681,7 @@ export default function StudyNetherlandsPage() {
           <div className="nl-hero-image" style={{ display: "flex", justifyContent: "center", alignItems: "center", position: "relative" }}>
             <div style={{ position: "absolute", right: 0, top: "50%", transform: "translateY(-50%)", width: 200, height: 500, background: "rgba(255,255,255,0.08)", borderRadius: 24 }} />
             <div style={{ position: "relative", zIndex: 1, width: 460, height: 460, borderRadius: "50%", overflow: "hidden", border: "4px solid rgba(255,255,255,0.25)" }}>
-              <img src="/images/wd.png" alt="Study in Netherlands" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <img src="/images/Netherland.jpeg" alt="Study in Netherlands" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
             </div>
           </div>
         </div>

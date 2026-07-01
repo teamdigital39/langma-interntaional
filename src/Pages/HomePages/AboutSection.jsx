@@ -3,6 +3,82 @@ import React, { useEffect, useState } from "react";
 import PopupForm from "../../Components/PopupForm";
 import ClientOrbit from "./Client.jsx";
 
+const PIE_SEGMENTS = [
+  { value: 35, color: "#2FC7A1" },
+  { value: 28, color: "#429198" },
+  { value: 22, color: "#4FA3D1" },
+  { value: 15, color: "#80CBC4" },
+];
+
+function AboutPieChart() {
+  const total = PIE_SEGMENTS.reduce((sum, s) => sum + s.value, 0);
+  const radius = 42;
+  const innerRadius = 26;
+  let angle = -90;
+
+  const toCoord = (deg, r) => {
+    const rad = (deg * Math.PI) / 180;
+    return { x: 60 + r * Math.cos(rad), y: 60 + r * Math.sin(rad) };
+  };
+
+  const slices = PIE_SEGMENTS.map((segment, i) => {
+    const sweep = (segment.value / total) * 360;
+    const start = angle;
+    const end = angle + sweep;
+    angle = end;
+
+    const outerStart = toCoord(start, radius);
+    const outerEnd = toCoord(end, radius);
+    const innerStart = toCoord(end, innerRadius);
+    const innerEnd = toCoord(start, innerRadius);
+    const largeArc = sweep > 180 ? 1 : 0;
+
+    const d = [
+      `M ${outerStart.x} ${outerStart.y}`,
+      `A ${radius} ${radius} 0 ${largeArc} 1 ${outerEnd.x} ${outerEnd.y}`,
+      `L ${innerStart.x} ${innerStart.y}`,
+      `A ${innerRadius} ${innerRadius} 0 ${largeArc} 0 ${innerEnd.x} ${innerEnd.y}`,
+      "Z",
+    ].join(" ");
+
+    return <path key={i} d={d} fill={segment.color} />;
+  });
+
+  return (
+    <svg
+      viewBox="0 0 120 120"
+      className="w-full h-full p-2"
+      aria-label="18+ years of experience"
+    >
+      {slices}
+      <text
+        x="60"
+        y="54"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fill="#2E6466"
+        fontSize="18"
+        fontWeight="700"
+        fontFamily="Roboto, sans-serif"
+      >
+        18+
+      </text>
+      <text
+        x="60"
+        y="72"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fill="#7A8A9A"
+        fontSize="7.5"
+        fontWeight="600"
+        fontFamily="Roboto, sans-serif"
+      >
+        Years of Experience
+      </text>
+    </svg>
+  );
+}
+
 const AboutSection = () => {
   const [open, setOpen] = useState(false);
   const [aboutData, setAboutData] = useState(null);
@@ -81,11 +157,7 @@ const AboutSection = () => {
         flex items-center justify-center
         bg-white shadow-2xl border border-gray-100
       ">
-        <img
-          src="/images/yearexperince.png"
-          alt="Experience"
-          className="w-full h-full object-contain p-2"
-        />
+        <AboutPieChart />
       </div>
 
     </div>
@@ -147,7 +219,7 @@ const AboutSection = () => {
           )}
 
           <button onClick={() => setOpen(!open)} className="cursor-pointer mt-8 inline-flex items-center gap-3 bg-[#006064] hover:bg-[#004d4d] transition text-white px-7 py-0.5 rounded-full text-sm font-medium shadow-md">
-            Admission Open
+            Admissions Open
             <span className="bg-[#80CBC4] text-white text-[15px] -mr-7 rounded-full flex items-center justify-center px-4 py-3">
               →
             </span>

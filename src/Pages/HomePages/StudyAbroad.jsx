@@ -27,14 +27,12 @@ const StudyAbroad = () => {
           <div className="max-w-xl px-0 sm:pl-6 text-[#296166]">
             <h3 className="text-[28px] lg:text-[32px] font-semibold  mb-0">Study Abroad</h3>
 
-            <h2 className="text-[28px] md:text-2xl font-bold  mb-4">
+            <h2 className="text-[28px] md:text-2xl font-regular  mb-4">
               Launchpad to Global Success
             </h2>
 
             <p className="text-[18px] leading-relaxed mb-6">
-              Step beyond borders to gain education that opens global
-              opportunities, builds cultural confidence, shapes future leaders
-              and prepares you for worldwide academic success.
+             Step beyond borders and gain an education that unlocks international opportunities, builds cultural confidence, shapes future leaders, and prepares students for worldwide academic and professional success.
             </p>
 
             <button onClick={() => setOpen(!open)} className="bg-[#296166] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-[#174C4A] transition shadow-md">
