@@ -3,8 +3,8 @@ import PopupForm from "./PopupForm";
 import FAQ from "./FAQ";
 
 /**
- * Study in the Netherlands — Langma International
- * Palette matches the Study in Poland / South Korea / Malta / Dubai / Singapore / Mauritius pages (teal brand accent over navy panels)
+ * Study in Georgia — Langma International
+ * Palette matches the Study in Poland / South Korea / Malta / Dubai / Singapore / Mauritius / Netherlands / Cyprus pages
  */
 
 const C = {
@@ -107,7 +107,7 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay, text
     >
       <div
         style={{
-          fontSize: "clamp(24px, 2.6vw, 36px)",
+          fontSize: "clamp(22px, 2.4vw, 34px)",
           fontWeight: 600,
           color: C.gold,
           lineHeight: 1,
@@ -440,7 +440,7 @@ function FactRow({ label, value }) {
 /* ===================================================================
  *  Cost card
  * ================================================================ */
-function CostCard({ label, amount, note, detail, highlight, delay }) {
+function CostCard({ label, amount, note, highlight, delay }) {
   const [h, setH] = useState(false);
   return (
     <Reveal delay={delay}>
@@ -457,7 +457,6 @@ function CostCard({ label, amount, note, detail, highlight, delay }) {
           borderRadius: 16,
           transform: h ? "translateY(-4px)" : "translateY(0)",
           boxShadow: h ? `0 16px 32px -16px rgba(26,46,90,0.3)` : "none",
-          height: "100%",
         }}
       >
         {highlight && (
@@ -495,7 +494,7 @@ function CostCard({ label, amount, note, detail, highlight, delay }) {
         </span>
         <div
           style={{
-            fontSize: 26,
+            fontSize: 24,
             fontWeight: 600,
             color: highlight ? C.white : C.ink,
             lineHeight: 1,
@@ -513,21 +512,6 @@ function CostCard({ label, amount, note, detail, highlight, delay }) {
         >
           {note}
         </div>
-        {detail && (
-          <div
-            style={{
-              fontSize: 11.5,
-              color: highlight ? "rgba(255,255,255,0.6)" : C.muted,
-              marginTop: 10,
-              paddingTop: 10,
-              borderTop: `1px solid ${highlight ? "rgba(255,255,255,0.2)" : C.border}`,
-              lineHeight: 1.6,
-              textAlign: "left",
-            }}
-          >
-            {detail}
-          </div>
-        )}
       </div>
     </Reveal>
   );
@@ -536,7 +520,7 @@ function CostCard({ label, amount, note, detail, highlight, delay }) {
 /* ===================================================================
  *  Course card
  * ================================================================ */
-function CourseCard({ num, title, body, icon, tag, delay }) {
+function CourseCard({ num, title, body, icon, delay }) {
   const [h, setH] = useState(false);
   return (
     <Reveal delay={delay}>
@@ -554,7 +538,6 @@ function CourseCard({ num, title, body, icon, tag, delay }) {
           boxShadow: h ? `0 22px 40px -20px rgba(26,46,90,0.4)` : "none",
           overflow: "hidden",
           cursor: "pointer",
-          height: "100%",
         }}
       >
         <div
@@ -592,28 +575,11 @@ function CourseCard({ num, title, body, icon, tag, delay }) {
             fontSize: 12.5,
             color: h ? "rgba(255,255,255,0.75)" : C.slate,
             lineHeight: 1.7,
-            marginBottom: tag ? 12 : 0,
             transition: "color 0.3s ease",
           }}
         >
           {body}
         </div>
-        {tag && (
-          <span
-            style={{
-              display: "inline-block",
-              background: h ? "rgba(255,255,255,0.15)" : C.cream,
-              color: h ? C.white : C.slate,
-              fontSize: 11,
-              fontWeight: 600,
-              padding: "3px 10px",
-              borderRadius: 999,
-              letterSpacing: "0.4px",
-            }}
-          >
-            {tag}
-          </span>
-        )}
         <div
           style={{
             position: "absolute",
@@ -635,7 +601,7 @@ function CourseCard({ num, title, body, icon, tag, delay }) {
 /* ===================================================================
  *  Visa step
  * ================================================================ */
-function VisaStep({ n, title, body, fee, isLast, delay }) {
+function VisaStep({ n, title, body, isLast, delay }) {
   const [ref, visible] = useReveal();
   return (
     <div
@@ -695,108 +661,8 @@ function VisaStep({ n, title, body, fee, isLast, delay }) {
         <p style={{ fontSize: 13.5, color: C.slate, lineHeight: 1.75, margin: 0 }}>
           {body}
         </p>
-        {fee && (
-          <span
-            style={{
-              display: "inline-block",
-              background: C.goldTint,
-              color: C.navy,
-              fontSize: 12,
-              fontWeight: 700,
-              padding: "4px 12px",
-              borderRadius: 999,
-              marginTop: 10,
-              border: `1px solid ${C.goldSoft}`,
-            }}
-          >
-            {fee}
-          </span>
-        )}
       </div>
     </div>
-  );
-}
-
-/* ===================================================================
- *  Payment step (horizontal, with amount)
- * ================================================================ */
-function PayStep({ num, title, amount, note, isLast, delay }) {
-  const [h, setH] = useState(false);
-  return (
-    <Reveal delay={delay}>
-      <div
-        onMouseEnter={() => setH(true)}
-        onMouseLeave={() => setH(false)}
-        style={{
-          background: h ? C.goldTint : C.white,
-          padding: "28px 22px",
-          position: "relative",
-          borderRadius: 16,
-          border: `1px solid ${h ? C.navy : C.border}`,
-          transition: "all 0.25s ease",
-          height: "100%",
-        }}
-      >
-        {!isLast && (
-          <div
-            className="lm-pay-arrow"
-            style={{
-              position: "absolute",
-              right: -14,
-              top: "50%",
-              transform: "translateY(-50%)",
-              width: 28,
-              height: 28,
-              background: C.navy,
-              color: C.white,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 13,
-              fontWeight: 700,
-              borderRadius: "50%",
-              zIndex: 2,
-            }}
-          >
-            →
-          </div>
-        )}
-        <div
-          style={{
-            fontSize: 32,
-            fontWeight: 600,
-            color: C.cream2,
-            lineHeight: 1,
-            marginBottom: 8,
-          }}
-        >
-          {num}
-        </div>
-        <h4
-          style={{
-            fontSize: 12.5,
-            fontWeight: 700,
-            color: C.ink,
-            textTransform: "uppercase",
-            letterSpacing: "0.5px",
-            marginBottom: 6,
-          }}
-        >
-          {title}
-        </h4>
-        <div
-          style={{
-            fontSize: 21,
-            fontWeight: 600,
-            color: C.navy,
-            marginBottom: 6,
-          }}
-        >
-          {amount}
-        </div>
-        <p style={{ fontSize: 12, color: C.slate, lineHeight: 1.6, margin: 0 }}>{note}</p>
-      </div>
-    </Reveal>
   );
 }
 
@@ -939,48 +805,6 @@ function SupportCard({ icon, title, body, delay }) {
 }
 
 /* ===================================================================
- *  Testimonial card (dark theme, matches SupportCard)
- * ================================================================ */
-function TestiCard({ quote, name, meta, delay }) {
-  const [h, setH] = useState(false);
-  return (
-    <Reveal delay={delay}>
-      <div
-        onMouseEnter={() => setH(true)}
-        onMouseLeave={() => setH(false)}
-        style={{
-          background: h ? "rgba(240,192,64,0.1)" : "rgba(255,255,255,0.03)",
-          border: `1px solid ${h ? "rgba(240,192,64,0.35)" : "rgba(255,255,255,0.06)"}`,
-          padding: 32,
-          borderRadius: 18,
-          transition: "all 0.3s ease",
-          height: "100%",
-        }}
-      >
-        <div style={{ color: C.gold, fontSize: 14, marginBottom: 16, letterSpacing: 2 }}>
-          ★★★★★
-        </div>
-        <p
-          style={{
-            fontSize: 15,
-            fontStyle: "italic",
-            color: "rgba(255,255,255,0.85)",
-            lineHeight: 1.75,
-            marginBottom: 20,
-          }}
-        >
-          {quote}
-        </p>
-        <p style={{ fontSize: 13, fontWeight: 700, color: C.white, margin: 0 }}>{name}</p>
-        <p style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", margin: "3px 0 0 0" }}>
-          {meta}
-        </p>
-      </div>
-    </Reveal>
-  );
-}
-
-/* ===================================================================
  *  Docs / checklist box
  * ================================================================ */
 function DocsBox({ title, items, note }) {
@@ -1091,58 +915,6 @@ function DocsBox({ title, items, note }) {
 }
 
 /* ===================================================================
- *  Process step (horizontal strip)
- * ================================================================ */
-function ProcessStep({ n, title, body, delay }) {
-  const [ref, visible] = useReveal();
-  return (
-    <div
-      ref={ref}
-      style={{
-        padding: "28px 18px",
-        textAlign: "center",
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(14px)",
-        transition: `all 0.6s ease ${delay}ms`,
-      }}
-    >
-      <div
-        style={{
-          width: 44,
-          height: 44,
-          background: C.gold,
-          color: C.navyD,
-          borderRadius: "50%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: 15,
-          fontWeight: 700,
-          margin: "0 auto 16px",
-        }}
-      >
-        {n}
-      </div>
-      <h4
-        style={{
-          fontSize: 12,
-          fontWeight: 700,
-          color: C.white,
-          marginBottom: 8,
-          textTransform: "uppercase",
-          letterSpacing: "0.6px",
-        }}
-      >
-        {title}
-      </h4>
-      <p style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", lineHeight: 1.6, margin: 0 }}>
-        {body}
-      </p>
-    </div>
-  );
-}
-
-/* ===================================================================
  *  FAQ accordion
  * ================================================================ */
 function FAQItem({ q, a, isOpen, onClick }) {
@@ -1217,14 +989,14 @@ function FAQItem({ q, a, isOpen, onClick }) {
  * ================================================================ */
 function Marquee() {
   const items = [
-    "🇳🇱 Netherlands January 2027 Intake Open",
-    "✦ #1 English Proficiency Globally",
-    "✦ Mandatory Paid Internship",
-    "✦ 160+ Nationalities on Campus",
-    "✦ Post-Study Orientation Visa",
-    "✦ Assignment-Based — No Exams",
-    "✦ Guaranteed Student Housing",
-    "✦ 50% Internship-to-Job Rate",
+    "🇬🇪 Georgia 2026 Intake Open",
+    "✦ European Academic Standards",
+    "✦ English-Medium Programs",
+    "✦ 5-Hour Direct Flight from Delhi",
+    "✦ Highest FMGE Passing Ratio",
+    "✦ 10,000+ Indian Students",
+    "✦ WHO / FAIMER / ECFMG Recognised",
+    "✦ Career Access Across 28+ EU Countries",
   ];
   const loop = [...items, ...items];
   return (
@@ -1289,145 +1061,96 @@ function ScrollProgress() {
 }
 
 /* ===================================================================
- *  DATA — Netherlands content
+ *  DATA — Georgia content
  * ================================================================ */
 const reasons = [
-  { icon: "🗣️", title: "World-Class English Education", body: "The Netherlands ranks #1 globally in non-native English proficiency. Every degree programme is delivered entirely in English — no language barrier, no compromise on quality." },
-  { icon: "🏢", title: "Multinational Career Access", body: "Home to the European headquarters of Tesla, Netflix, Uber, KPMG, ING, and Booking.com. ASML — the second most valuable company in Europe — is headquartered here." },
-  { icon: "🎯", title: "Practical, Industry-Led Learning", body: "Over 60% of education time is spent on real-world projects, internships, and practical assignments. A mandatory paid internship is built into every programme." },
-  { icon: "🚀", title: "Thriving Startup Ecosystem", body: "One of Europe's fastest-growing startup scenes. Amsterdam's Brainport and thriving tech corridors connect students directly with entrepreneurs and investors." },
-  { icon: "🛡️", title: "Safe, Happy & Stable", body: "Consistently ranked among the world's happiest and safest countries. A stable, welcoming, multicultural society with a high quality of life." },
-  { icon: "🌿", title: "Sustainability Leader", body: "A global pioneer in sustainability, circular economy, and green innovation, integrated into national identity — and into its education." },
-  { icon: "🗺️", title: "Gateway to All of Europe", body: "Amsterdam's Schiphol Airport connects to over 300 destinations worldwide. Paris, London, Berlin, or Barcelona are all within a 2-hour flight." },
-  { icon: "✈️", title: "Post-Study Work Visa Available", body: "The Dutch Orientation Year Visa (Zoekjaar permit) allows graduates to stay and find work for up to one year after completing their degree." },
+  { icon: "🇪🇺", title: "European Academic Standards", body: "Georgia's higher education system follows European and international accreditation standards, including the Bologna Process and ECTS credit system — meaning your degree is structured to global benchmarks from day one." },
+  { icon: "🗣️", title: "English-Medium Programs", body: "Degree programs in medicine, business, law, engineering, and more are taught entirely in English across Georgian institutions — no language barrier, no local language prerequisite to begin your studies." },
+  { icon: "💰", title: "Genuinely Affordable Tuition", body: "Tuition fees in Georgia are significantly lower than in Western Europe, the UK, or the USA — and substantially more affordable than private medical or professional colleges in India." },
+  { icon: "🏠", title: "Budget-Friendly Living Costs", body: "The average monthly cost of living — including food and accommodation — is approximately ₹20,000 per month. Tbilisi alone has over 100 Indian restaurants, and public transport is extremely affordable." },
+  { icon: "🛡️", title: "Safe, Student-Friendly Environment", body: "Georgia is known for its low crime rates, offering a safe and secure environment for foreign students. It is considered safe for foreigners even at night — a genuine priority for students and families alike." },
+  { icon: "🏆", title: "Highest FMGE Passing Ratio", body: "For Indian medical aspirants, Georgia consistently delivers the highest FMGE passing ratio compared to other overseas medical study destinations such as Russia, Kazakhstan, Kyrgyzstan, and Nepal." },
+  { icon: "✈️", title: "5-Hour Direct Flight from India", body: "A direct flight from New Delhi to Tbilisi takes approximately 5 hours. With IndiGo operating daily direct flights since August 2024, Georgia is one of the most physically accessible study destinations for Indian students." },
+  { icon: "🎓", title: "Globally Recognised Degrees", body: "Medical and professional degrees from Georgian institutions are listed with the WHO, FAIMER, ECFMG (USA), and recognised by the NMC/MCI — making graduates eligible to pursue careers and licensing examinations globally." },
+  { icon: "🌍", title: "International Exposure & Career Mobility", body: "Georgian institutions follow European and American accreditation standards, and graduates can apply to practise in 28+ European countries — with recognition extending to Australia, New Zealand, Canada, and Germany." },
+  { icon: "🤝", title: "Thriving Indian Student Community", body: "Georgia is home to over 10,000 Indian students, with a strong cultural support network — Indian messes, cultural events, and Indo-Georgian exchanges — making the transition from home genuinely smooth." },
+];
+
+const eduCards = [
+  { icon: "🏅", title: "International & European Recognition", body: "Georgian institutions adhere to European and American accreditation standards. Programs are listed with WHO, FAIMER, ECFMG (USMLE), and follow the Bologna Process — ensuring degrees hold genuine international standing.", tag: "Accreditation" },
+  { icon: "🗣️", title: "Fully English-Medium Instruction", body: "Degree programs across medicine, law, business, and engineering are conducted entirely in English. There is no requirement to learn Georgian to pursue or complete your degree.", tag: "Language" },
+  { icon: "🏥", title: "Hands-On Learning from Early Years", body: "Medical education in Georgia provides clinical exposure beginning in the third year. Students train in real hospital environments, developing diagnostic, procedural, and patient-care skills.", tag: "Clinical Training" },
+  { icon: "📋", title: "India's Highest Foreign MD Pass Rate", body: "Georgia consistently offers the highest FMGE passing ratio for Indian medical graduates compared to other overseas study destinations, with a curriculum recognised for preparing students for Indian licensing exams.", tag: "FMGE / NExT" },
+  { icon: "🚀", title: "Career Readiness Beyond Georgia", body: "Graduates can pursue postgraduate residencies and careers across 28+ European countries, with recognition extending to Australia, New Zealand, Canada, and Germany — subject to each country's own requirements.", tag: "Global Pathways" },
+  { icon: "🏛️", title: "Modern Campus & Research Environment", body: "Georgian institutions feature modern simulation labs, advanced digital libraries, and research partnerships with international institutions — producing graduates ready for global professional environments.", tag: "Infrastructure" },
 ];
 
 const courses = [
-  { icon: "🌐", title: "International Business Management", body: "Entrepreneurship, global markets, finance, and marketing combined. Rated the top programme for over 11 consecutive years.", tag: "Bachelor's · MBA" },
-  { icon: "🎨", title: "Creative Business", body: "Design thinking, media strategy, branding, and commercial creativity — built for careers in the creative economy.", tag: "Bachelor's" },
-  { icon: "💻", title: "Digital Business & Generative AI", body: "Data strategy, AI applications, and digital transformation for tomorrow's business leaders.", tag: "Bachelor's · MBA" },
-  { icon: "🏨", title: "Hotel & Event Management", body: "Luxury hospitality management, event strategy, and festival production in one of Europe's busiest tourism capitals.", tag: "Bachelor's" },
-  { icon: "✈️", title: "International Tourism Management", body: "Experience travel, luxury management, and festival specialisations with direct industry exposure.", tag: "Bachelor's" },
-  { icon: "🚀", title: "Entrepreneurship", body: "Launch your own venture — guided by active entrepreneurs and connected directly to Amsterdam's startup scene.", tag: "Bachelor's · MBA" },
-  { icon: "📣", title: "Influencer Marketing", body: "Digital influence, content strategy, creator economics, and modern brand communications built for the social economy.", tag: "Bachelor's" },
-  { icon: "📊", title: "Commerce, Economics & Entrepreneurship", body: "Commercial strategy, economic fundamentals, and entrepreneurial leadership in a rigorous three-discipline degree.", tag: "Bachelor's" },
-  { icon: "🏆", title: "MBA — Master of Business Administration", body: "1-year intensive MBA with specialisations in Data Strategy, Real Estate, Hospitality Management & Global Leadership.", tag: "Master's · 1 Year" },
-];
-
-const visaSteps = [
-  { title: "Choose Programme & Apply Online", body: "Select your programme level and preferred intake. Submit your initial application through the official admissions portal along with your basic supporting documents." },
-  { title: "Receive Conditional Offer Letter", body: "Your application is reviewed by the admissions team. A conditional offer letter is issued pending receipt of full documentation and the credibility interview stage." },
-  { title: "Pay Application Fee & Credibility Interview", body: "Pay the application fee and complete a credibility interview. Langma International prepares you fully with mock sessions and guidance.", fee: "€95 — Application Fee" },
-  { title: "Receive Unconditional Offer Letter", body: "Upon successfully passing the credibility interview and completing full document verification, an unconditional offer letter is issued confirming your place." },
-  { title: "Pay Initial Package Deposit", body: "The non-EU/EEA package fee is paid to confirm your acceptance. This covers IND visa processing, health insurance, and airport pickup on arrival.", fee: "€6,050 — Initial Package Fee" },
-  { title: "Visa Applied via IND / Dutch Ministry", body: "The institution applies for your student visa through the IND (Dutch Immigration and Naturalisation Service) directly on your behalf." },
-  { title: "VFS Biometric Registration & Visa Stamping", body: "Visit your nearest VFS Global centre for biometric data registration. Receive your visa stamping in your passport and prepare pre-departure documents." },
-  { title: "Pay Balance & Travel to the Netherlands", body: "Balance payment is due after visa approval. The remaining tuition is paid in 12 equal monthly instalments. Airport pickup is arranged.", fee: "€8,000 due · Remainder in 12 monthly instalments" },
-];
-
-const visaDocs = [
-  "Valid passport — clear copy of all pages",
-  "Academic transcripts and degree certificates (all levels)",
-  "Grade sheets and mark lists for every academic year",
-  "English proficiency test result — IELTS / TOEFL iBT / PTE / Cambridge",
-  "Passport-size photograph with white background",
-  "Resume / CV in professional format",
-  "Statement of Purpose (SOP) — 1,500 to 4,000 words",
-  "Proof of financial capability or sponsorship documentation",
-  "Unconditional offer letter from the institution",
-];
-
-const admissionDocs = [
-  "Valid passport — clear copy of front and back pages",
-  "Academic transcripts of your highest completed level of education",
-  "Grade sheets and mark lists for all academic years",
-  "Degree certificate or school leaving certificate",
-  "English proficiency test result — IELTS / TOEFL iBT / PTE / Cambridge",
-  "Passport-size photograph with white background",
-  "Resume / CV in professional format",
-  "Statement of Purpose (SOP) — 1,500 to 4,000 words",
-  "Dedicated email address for all institution communications",
-];
-
-const academicQuals = [
-  "Class 12th — Indian Standard Boards (CBSE, ICSE, State Boards)",
-  "International Baccalaureate (IB) — Diploma & Career Programme",
-  "British (I)GCSE A(S)-Levels",
-  "BTEC Level 3",
-  "European Baccalaureate (EB)",
-  "German Abitur (Allgemeine Hochschulreife)",
-  "American High School Diploma (college preparatory programme)",
-  "Intermediate Vocational Education — Level 4",
-  "Higher General Secondary Education / Pre-University Diploma",
-];
-
-const careerOutlooks = [
-  { icon: "💼", tag: "During Studies", title: "16 hrs/Week Part-Time Work Rights", body: "International students can work up to 16 hours per week during term time — a meaningful income stream that offsets living costs in Amsterdam." },
-  { icon: "🎓", tag: "Internship", title: "Mandatory Paid Internship in Every Programme", body: "A full-time paid internship is built into every degree. With a 50% internship-to-employment conversion rate, many students receive job offers before graduation." },
-  { icon: "🌍", tag: "Post-Study", title: "Dutch Orientation Year Visa — Up to 1 Year", body: "The Zoekjaar permit allows international graduates to remain in the Netherlands for up to a year after completing their degree, to search for employment." },
-  { icon: "🏢", tag: "Employers", title: "100+ Companies at the Annual Career Fair", body: "Fortune 500 employers including Tesla, Netflix, KPMG, Booking.com, ASML, and Unilever actively recruit from campus every year." },
-];
-
-const careerTags = [
-  "Investment Banking", "Business Consulting", "Digital Marketing", "Data Strategy", "AI & Technology",
-  "Hospitality Management", "Event Management", "Entrepreneurship", "Real Estate", "International Sales",
-  "Logistics & Supply Chain", "Sustainability Management", "Project Management", "Brand Management",
-  "Luxury Retail", "Creative Direction",
+  { icon: "🩺", title: "Medicine & Health Sciences", body: "The most sought-after field for Indian students. 6-year MD programs taught in English, recognised by WHO, NMC/MCI, and FAIMER — eligible for FMGE/NExT on return to India." },
+  { icon: "🦷", title: "Dentistry", body: "Internationally accredited dental degree programs with strong clinical training. Globally portable qualification with growing career demand across India and abroad." },
+  { icon: "💊", title: "Pharmacy", body: "English-medium pharmacy programs aligned with global pharmaceutical standards and recognised by international health bodies for professional practice." },
+  { icon: "🏥", title: "Nursing & Midwifery", body: "High-demand healthcare degrees with strong clinical placement components. Graduates are well positioned for careers across Europe, the Gulf, and India." },
+  { icon: "🌐", title: "Public Health", body: "Postgraduate and undergraduate programs in public health policy, epidemiology, and health administration — a fast-growing field with global career scope." },
+  { icon: "💼", title: "Business & Management", body: "BBA and MBA programs with a European academic structure. Combines management theory with practical, real-world business application across key industries." },
+  { icon: "⚖️", title: "Law", body: "Undergraduate and graduate law degrees structured to European legal standards. Excellent preparation for international legal practice and postgraduate specialisations." },
+  { icon: "💻", title: "Information Technology", body: "Engineering and IT degrees in software development, data science, and computer systems. Georgia's growing tech economy creates on-ground opportunities for students." },
+  { icon: "🔧", title: "Engineering", body: "Technical undergraduate degrees across civil, mechanical, and environmental engineering — structured to European credit systems and globally applicable." },
 ];
 
 const lifeCards = [
-  { icon: "🏙️", tag: "Living", title: "Affordable & Vibrant Cities", body: "Amsterdam combines world-class culture, food, and nightlife with a compact, student-friendly layout, and a cost of living manageable on a student budget." },
-  { icon: "🌍", tag: "Community", title: "160+ Nationalities on Campus", body: "Study alongside peers from over 160 countries every day. The classroom itself becomes a global network of lifelong professional relationships." },
-  { icon: "🏠", tag: "Accommodation", title: "Guaranteed Student Housing", body: "Purpose-built student residences reserved exclusively for international students, located less than 15 minutes from campus for your full programme." },
-  { icon: "✈️", tag: "Travel", title: "Europe on Your Doorstep", body: "Amsterdam Schiphol connects to over 300 destinations worldwide. Weekend trips to Paris, London, Berlin, or Barcelona are a normal part of student life." },
-  { icon: "🛡️", tag: "Safety", title: "Safe, Stable & Welcoming", body: "Consistently ranked among the world's safest and happiest countries, with an open multicultural society and centuries of welcoming international residents." },
-  { icon: "⚖️", tag: "Balance", title: "Work-Life Balance Built In", body: "The Dutch are internationally recognised for healthy work-life boundaries — sports facilities, societies, and city trips are integrated into campus life." },
+  { icon: "🛡️", tag: "Safety", title: "Safe for International Students", body: "Georgia is known for its low crime rates and a welcoming environment for international students. Tbilisi is considered safe for foreigners even at night." },
+  { icon: "🍛", tag: "Food", title: "Indian Food — Everywhere", body: "Tbilisi has over 100 Indian restaurants, and student hostels frequently provide dedicated Indian mess facilities with fresh, home-style cooking." },
+  { icon: "🌍", tag: "Community", title: "A Truly International Community", body: "With over 60,000 international students from more than 21 nationalities, Georgia's campuses are genuinely diverse. The Indian student community is active and supportive." },
+  { icon: "🌤️", tag: "Climate", title: "Familiar Climate", body: "Georgia's climate ranges from −4°C to 30°C — broadly familiar to students from across India. The Greater Caucasus Mountains moderate extremes." },
+  { icon: "🚌", tag: "Transport", title: "Affordable & Accessible Transport", body: "Public transport in Tbilisi — including metro, buses, and taxis (Bolt, Yandex) — is extremely affordable. A 7-km taxi ride costs approximately ₹156." },
+  { icon: "🏛️", tag: "Culture", title: "Rich Culture & Modern Lifestyle", body: "Tbilisi blends ancient churches, modernist architecture, and traditional markets. Landmarks like Narikala Fortress and the Bridge of Peace create a unique backdrop." },
+  { icon: "🏠", tag: "Accommodation", title: "Modern, Comfortable Accommodation", body: "Student hostels are typically fully furnished with AC, refrigerator, washing machine, and 24/7 security — many within walking distance of campus." },
+  { icon: "🎭", tag: "Culture", title: "Indo-Georgian Cultural Connection", body: "Georgia actively supports Indo-Georgian cultural exchange events, and Georgians hold a warm appreciation for Indian culture and students." },
 ];
 
-const processSteps = [
-  { title: "Profile Evaluation", body: "Free honest assessment of your academic background and English proficiency — before you commit to anything." },
-  { title: "Document Preparation", body: "We help you gather, organise, and format your complete application package correctly the first time." },
-  { title: "Credibility Interview", body: "Mock interview sessions, question guidance, and confidence-building practice so you walk in ready to succeed." },
-  { title: "Offer Letter", body: "Receive your unconditional offer letter confirming your programme, level, intake date, and place." },
-  { title: "Visa Process", body: "Initial package payment, IND application submission, VFS biometric scheduling, and visa stamp collection." },
-  { title: "Pre-Departure Brief", body: "What to pack, customs guidance, accommodation confirmation, arrival logistics, and Day 1 expectations." },
-  { title: "Begin Your Journey", body: "Airport pickup confirmed. Student housing ready. Orientation week scheduled. Your future starts on landing." },
+const careerCards = [
+  { icon: "🩺", tag: "For Medical Graduates", title: "Practice in India via FMGE / NExT", body: "Indian students completing an MD in Georgia are eligible to appear for the FMGE and the forthcoming NExT examination — the gateway to practising medicine in India." },
+  { icon: "🇪🇺", tag: "Global Recognition", title: "Careers in 28+ European Countries", body: "Graduates from Georgian institutions aligned with European frameworks can apply to practise across 28+ European countries, with recognition extending to Australia, New Zealand, Canada, and Germany." },
+  { icon: "📚", tag: "Further Education", title: "Postgraduate & Specialisation Pathways", body: "Georgian degrees serve as strong foundations for postgraduate specialisations internationally. Medical graduates may pursue MD+MPH, MD+MBA, or MD+MSc combinations." },
+  { icon: "🏥", tag: "During Studies", title: "Early Clinical & Practical Exposure", body: "Medical students gain real clinical exposure from the third year onwards, training in hospital environments and building diagnostic, procedural, and patient-care skills." },
 ];
 
 const support = [
-  { icon: "🔍", title: "Free Profile Evaluation", body: "We assess your academic background and English profile honestly — then tell you exactly which programmes you qualify for, before you commit to anything." },
-  { icon: "🎯", title: "Personalised Programme Matching", body: "We match you to the right course, level, and intake based on your academic history, career ambitions, and long-term goals." },
-  { icon: "📝", title: "SOP & Application Support", body: "We guide your Statement of Purpose from concept to final draft, prepare your complete application, and review every document before submission." },
-  { icon: "🎤", title: "Credibility Interview Preparation", body: "Full structured preparation for the admissions credibility interview — mock sessions, likely question sets, and confidence-building support." },
-  { icon: "🛂", title: "Visa Documentation Support", body: "Complete, precise guidance on IND application requirements, financial sponsorship documentation, and biometric appointment scheduling." },
-  { icon: "🏠", title: "Accommodation Confirmation", body: "We confirm your guaranteed student housing arrangements near campus in Amsterdam before you depart." },
-  { icon: "✈️", title: "Pre-Departure Briefing", body: "Comprehensive travel preparation — what to bring, customs guidance, accommodation check-in, and orientation week overview." },
-  { icon: "💬", title: "Dedicated Student Advisor", body: "One real person, available throughout your entire journey from first enquiry to first week of class. No automated responses." },
+  { icon: "🔍", title: "Free Profile Evaluation", body: "We review your academic profile, career aspirations, and budget — giving you a clear, honest picture of your Georgia options before you commit to anything." },
+  { icon: "🎓", title: "Admissions Guidance", body: "From shortlisting the right institution to preparing a strong application — we manage every step of the admissions process with precision and care." },
+  { icon: "📄", title: "Documentation Support", body: "Complete assistance with document preparation, apostille, notarisation, translation, and correct submission format — so nothing is rejected on a technicality." },
+  { icon: "🛂", title: "Visa Assistance", body: "Professional, step-by-step guidance on your Georgia student visa application — from checklist preparation to submission — with updates at every stage of the process." },
+  { icon: "✈️", title: "Pre-Departure Briefing", body: "Know what to pack, what to expect on arrival, and how to settle into Tbilisi — before you board the flight. No surprises, no unnecessary anxiety on day one." },
+  { icon: "🏠", title: "Accommodation Guidance", body: "We advise on student hostel options near campus — including Indian mess facilities, security arrangements, and proximity to your institution." },
+  { icon: "🛫", title: "Travel Assistance", body: "Flight booking guidance, forex support, local SIM card and bank account assistance, airport pickup coordination — practical help for every part of your journey." },
+  { icon: "💬", title: "Dedicated Student Counsellor", body: "One real, experienced counsellor — available throughout your entire journey. No call centres, no scripted responses. Honest, personalised guidance when you need it most." },
 ];
 
-const testimonials = [
-  { quote: "I had a gap of two years and was nervous no institution would accept me. Langma assessed my profile honestly and matched me to the right programme. I'm now completing my Bachelor's and have already secured a paid internship in Rotterdam.", name: "Priya Mehta", meta: "International Business Management · New Delhi, India" },
-  { quote: "The credibility interview preparation Langma provided was exceptional. Within three months of submitting my documents I had my visa, my housing confirmed, and my flight booked.", name: "Ahmed Al-Rashidi", meta: "Digital Business & AI · Dubai, UAE" },
-  { quote: "As someone coming from Bangladesh, I was worried about the additional sponsorship requirements. Langma walked me through exactly what I needed. I'm now interning at a Dutch fintech company.", name: "Farhan Hossain", meta: "MBA — Data Strategy · Dhaka, Bangladesh" },
+const visaDocs = [
+  "Valid passport (with sufficient validity)",
+  "Class 10 and 12 mark sheets and certificates",
+  "Transfer certificate / school leaving certificate",
+  "Official offer letter or invitation letter from institution",
+  "Passport-size photographs (as specified)",
+  "Bank statement / proof of financial support",
+  "Medical fitness certificate",
+  "HIV test report (as required)",
+  "Immigration clearance certificate (if applicable)",
+  "Apostille of academic documents (notarised & translated)",
 ];
 
 const faqs = [
-  { q: "Can I study in the Netherlands without IELTS?", a: "IELTS Academic is the most commonly accepted English test, but TOEFL iBT, PTE Academic, and Cambridge English qualifications are all accepted alternatives. Foundation entry requires IELTS 5.0–5.5; direct Bachelor's entry requires IELTS 6.0; Master's/MBA entry requires IELTS 6.5." },
-  { q: "How much does it cost to study in the Netherlands?", a: "Foundation programmes are €12,250/year (all-inclusive). Bachelor's tuition is €24,500/year. Master's and MBA tuition is €25,500/year. Non-EU/EEA students pay an initial package fee of €6,050 covering visa, insurance, and airport pickup. Monthly living costs range €800–€1,200." },
-  { q: "Can international students work part-time in the Netherlands?", a: "Yes. Students from outside the EU/EEA can work up to 16 hours per week during term. Every programme also includes a mandatory full-time paid internship — with 50% of interns receiving a direct job offer from their employer." },
-  { q: "What is the Dutch Orientation Year Visa?", a: "The Zoekjaar permit allows international graduates to remain in the Netherlands for up to one year after completing their degree specifically to search for employment." },
-  { q: "What is the visa process for international students?", a: "The visa is applied for through the institution directly via the IND — you do not approach the Dutch embassy independently. The process involves an online application, conditional offer, credibility interview, unconditional offer, initial package payment, IND submission, VFS biometrics, and travel." },
-  { q: "Are study gaps or age restrictions an issue?", a: "Study gaps and all ages are accepted. Applications are assessed on your current academic profile, English proficiency, and programme suitability — not penalised for time gaps or age." },
-  { q: "What programmes are available and how long do they take?", a: "Programmes span Foundation (6–12 months), Bachelor's (3-year fast-track or 4-year standard), and Master's/MBA (1-year intensive). Key study areas include International Business Management, Digital Business & AI, Hotel & Event Management, and Entrepreneurship." },
-  { q: "Is the Netherlands safe for international students?", a: "The Netherlands is consistently ranked among the world's safest, happiest, and most politically stable countries, with large, well-established international student communities in Amsterdam, Rotterdam, and Utrecht." },
-  { q: "What career opportunities exist after graduating?", a: "Graduates access careers in investment banking, consulting, digital marketing, data strategy, AI and technology, hospitality, logistics, sustainability, and entrepreneurship, with the Dutch Orientation Year Visa providing up to a year post-graduation to find a role." },
-  { q: "When should I apply for the September 2026 intake?", a: "We recommend starting your application at least 4 to 5 months before your intended start date, to allow time for document preparation, SOP drafting, credibility interview scheduling, IND visa processing, and VFS biometric appointments." },
+  { q: "Why study in Georgia?", a: "Georgia has become one of the most preferred destinations for higher education among Indian and international students. It offers European-standard education, English-medium programs, affordable tuition, budget-friendly living, and a safe, low-crime environment. Over 60,000 international students — including more than 10,000 Indian students — currently study there, with Tbilisi just a 5-hour direct flight from New Delhi." },
+  { q: "What is the average cost of studying and living in Georgia?", a: "Tuition for medicine is USD 5,550 per year, with an estimated total of ₹20–25 Lakh for the full course. Living costs average around ₹20,000 per month including food and accommodation, with a recommended food budget of about ₹6,000. The Georgian Lari trades at roughly ₹31.20." },
+  { q: "Is IELTS or TOEFL required for studying in Georgia?", a: "English language requirements vary by institution and program. Applicants may be required to demonstrate English proficiency through accepted tests or other institution-approved methods. Your Langma International advisor will confirm the exact requirement for your chosen course before you apply." },
+  { q: "What documents are generally required for a Georgia student visa?", a: "Key documents typically include your valid passport, Class 10 and 12 academic certificates and mark sheets, an official offer or invitation letter, bank statements, passport-size photographs, a medical fitness certificate, HIV test report, and apostille-authenticated academic documents." },
+  { q: "Why choose Langma International for studying in Georgia?", a: "Langma International is your end-to-end study abroad Georgia partner — from free profile evaluation and admissions guidance to documentation, visa assistance, pre-departure briefing, accommodation guidance, and on-arrival support, with one dedicated counsellor throughout." },
 ];
 
 /* ===================================================================
  *  MAIN
  * ================================================================ */
-export default function StudyNetherlandsPage() {
+export default function StudyGeorgiaPage() {
   const [openFAQ, setOpenFAQ] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -1472,10 +1195,6 @@ export default function StudyNetherlandsPage() {
           -webkit-text-fill-color: transparent;
           animation: lm-bg-shift 6s ease infinite;
         }
-
-        @media (max-width: 860px) {
-          .lm-pay-arrow { display: none !important; }
-        }
       `}</style>
 
       <ScrollProgress />
@@ -1496,30 +1215,28 @@ export default function StudyNetherlandsPage() {
                   letterSpacing: "-0.6px",
                 }}
               >
-                Study In <span className="text-[#1ab7ac]">the Netherlands</span>
+                Study In <span className="text-[#1ab7ac]">Georgia</span>
                 <br />
-                Where Global
+                Europe's Most
                 <br />
-                Careers Begin.
+                Accessible Education Hub.
               </h1>
 
               <p className="mt-6 text-gray-600 text-lg leading-relaxed max-w-xl">
-                English-taught degrees. Paid internships. Fortune 500
-                employers. Europe's most practical business education — in
-                one of the world's most liveable countries. A mandatory paid
-                internship is built into every programme, plus a post-study
-                orientation visa allowing you to stay and work for up to a
-                year.
+                A sovereign European country at the crossroads of East and
+                West. Globally recognised degrees. English-medium programs.
+                Affordable tuition and living costs. Just a 5-hour direct
+                flight from New Delhi.
               </p>
 
               {/* Tags */}
               <div className="flex flex-wrap gap-3 mt-8">
                 {[
-                  "✓160+ Nationalities",
-                  "✓Paid Internship Included",
-                  "✓Post-Study Visa",
-                  "✓Assignment-Based — No Exams",
-                  "✓Guaranteed Housing",
+                  "✓European Academic Standards",
+                  "✓English-Medium Programs",
+                  "✓Affordable Tuition & Living",
+                  "✓5-Hour Direct Flight from Delhi",
+                  "✓Growing Indian Student Community",
                 ].map((item, index) => (
                   <span
                     key={index}
@@ -1564,8 +1281,8 @@ export default function StudyNetherlandsPage() {
               <div className="relative z-10">
                 <div className="w-[320px] h-[320px] md:w-[420px] md:h-[420px] lg:w-[520px] lg:h-[520px] rounded-full overflow-hidden">
                   <img
-                    src="images//Netherland.jpeg"
-                    alt="Study in the Netherlands"
+                    src="images/wd.png"
+                    alt="Study in Georgia"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -1587,10 +1304,10 @@ export default function StudyNetherlandsPage() {
                 marginTop: 56,
               }}
             >
-              <BoardingStat text="#1" label="English Proficiency" sub="Global ranking" delay={100} />
-              <BoardingStat value={160} suffix="+" label="Nationalities" sub="On campus" delay={250} />
-              <BoardingStat value={50} suffix="%" label="Internship-to-Job" sub="Conversion rate" delay={400} />
-              <BoardingStat text="#11" label="Global GDP" sub="Netherlands ranking" delay={550} />
+              <BoardingStat value={10000} suffix="+" label="Indian Students in Georgia" sub="Growing every year" delay={100} />
+              <BoardingStat value={60000} suffix="+" label="International Students" sub="From 21+ nationalities" delay={250} />
+              <BoardingStat text="Low" label="Crime · Safe Environment" sub="For international students" delay={400} />
+              <BoardingStat text="₹20K" label="Avg Monthly Living Cost" sub="Food, stay & essentials" delay={550} />
             </div>
           </Reveal>
         </div>
@@ -1599,15 +1316,19 @@ export default function StudyNetherlandsPage() {
       {/* ---------------- MARQUEE ---------------- */}
       <Marquee />
 
-      {/* ---------------- WHY NETHERLANDS ---------------- */}
+      {/* ---------------- WHY GEORGIA ---------------- */}
       <section style={{ background: C.cream, padding: "100px 48px", position: "relative" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Why the Netherlands</span>}
-            title={<span style={{ color: "#4197a2" }}>8 Reasons the Netherlands Stands Apart</span>}
+            tag={<span style={{ color: "#429198" }}>Why Georgia</span>}
+            title={
+              <span style={{ color: "#4197a2" }}>
+                10 Reasons Georgia Is India's Smartest Study Abroad Choice in 2026
+              </span>
+            }
             sub={
               <span style={{ color: "#429198" }}>
-                More than 160 nationalities. Europe's top English-proficiency ranking. A job market stacked with global multinationals. Here's why thousands of students choose the Netherlands every year.
+                Located at the crossroads of Europe and Asia, Georgia combines European-standard education with one of the most student-friendly environments in the world — at a fraction of the cost of Western destinations.
               </span>
             }
           />
@@ -1625,7 +1346,7 @@ export default function StudyNetherlandsPage() {
                 title={r.title}
                 body={r.body}
                 icon={r.icon}
-                delay={i * 80}
+                delay={i * 70}
               />
             ))}
           </div>
@@ -1656,7 +1377,7 @@ export default function StudyNetherlandsPage() {
           }}
         />
         <p style={{ color: C.white, fontSize: 15.5, fontWeight: 600, margin: 0, position: "relative", zIndex: 2 }}>
-          ✨ September 2026 intake is now open. Our advisors can assess your profile today — free, with no obligation.
+          ✨ India and Georgia have shared diplomatic ties since 1992. Over 1.2 lakh Indian tourists visited Georgia in 2024 alone.
         </p>
         <button
           style={{
@@ -1713,8 +1434,8 @@ export default function StudyNetherlandsPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead
             tag="At a Glance"
-            title="Netherlands — Quick Facts for International Students"
-            sub="Essential information to help you plan your study journey with confidence and clarity."
+            title="Georgia — Essential Facts for International Students"
+            sub="Everything you need to plan your study abroad journey with clarity, accuracy, and confidence."
             light
           />
           <Reveal>
@@ -1733,14 +1454,12 @@ export default function StudyNetherlandsPage() {
                   overflow: "hidden",
                 }}
               >
-                <FactRow label="Location" value="Western Europe · Heart of the EU · Schengen Zone" />
-                <FactRow label="Capital City" value="Amsterdam — Education & Business Hub" />
-                <FactRow label="Currency" value="Euro (€)" />
-                <FactRow label="Language of Instruction" value="English — #1 Globally in Non-Native Proficiency" />
-                <FactRow label="International Students" value="160+ Nationalities Represented on Campus" />
-                <FactRow label="Available Intakes" value="September · January" />
-                <FactRow label="Foundation Programme Fee" value="€12,250 / year (all-inclusive)" />
-                <FactRow label="Bachelor's Tuition" value="€24,500 / year (same fee for all students)" />
+                <FactRow label="Country" value="Georgia (Sakartvelo)" />
+                <FactRow label="Capital City" value="Tbilisi" />
+                <FactRow label="Currency" value="Georgian Lari (GEL) · 1 GEL ≈ ₹31" />
+                <FactRow label="Languages" value="Georgian (first) · English (second)" />
+                <FactRow label="Population" value="3.80 million (2024)" />
+                <FactRow label="Time Zone" value="UTC+4 (GET)" />
               </div>
               <div
                 style={{
@@ -1750,89 +1469,57 @@ export default function StudyNetherlandsPage() {
                   overflow: "hidden",
                 }}
               >
-                <FactRow label="Master's / MBA Tuition" value="€25,500 / year" />
-                <FactRow label="Application Fee" value="€95 (one-time, non-refundable)" />
-                <FactRow label="Initial Package (Non-EU/EEA)" value="€6,050 — visa + insurance + pickup" />
-                <FactRow label="Avg. Monthly Living Cost" value="€800 – €1,200 / month" />
-                <FactRow label="Part-Time Work Rights" value="Up to 16 hours / week during term" />
-                <FactRow label="Internship" value="Mandatory full-time paid internship" />
-                <FactRow label="Post-Study Work Option" value="Dutch Orientation Year Visa — up to 1 year" />
-                <FactRow label="Internship-to-Job Rate" value="50% receive a job offer from their employer" />
+                <FactRow label="Climate" value="−4°C to 30°C · Diverse zones" />
+                <FactRow label="Travel Time from India" value="~5 Hours (direct flight from Delhi)" />
+                <FactRow label="International Airport" value="Tbilisi International Airport" />
+                <FactRow label="Avg Living Cost (Student)" value="~₹20,000 per month incl. food & stay" />
+                <FactRow label="Indian Restaurants" value="100+ in Tbilisi alone · Indian mess available" />
+                <FactRow label="Safety" value="Low crime · safe for international students" />
               </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ---------------- COSTS ---------------- */}
-      <section style={{ background: C.cream, padding: "100px 48px" }}>
+      {/* ---------------- EDUCATION SYSTEM ---------------- */}
+      <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Cost of Studying</span>}
-            title={<span style={{ color: "#4197a2" }}>Study Investment — Netherlands 2026</span>}
-            sub={
-              <span style={{ color: "#429198" }}>
-                Transparent, all-in pricing. No hidden charges. The same fee structure applies to every international student regardless of nationality.
-              </span>
-            }
-          />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: 18,
-            }}
-          >
-            <CostCard label="Foundation Programme" amount="€12,250" note="Per year · All-inclusive" detail="Projects & study trips included. Duration: 6–12 months. Pathway to direct Bachelor's entry." delay={0} />
-            <CostCard label="Bachelor's Tuition" amount="€24,500" note="Per year · Same fee for all students" detail="3-year fast-track or 4-year standard pathway, taught entirely in English." highlight delay={80} />
-            <CostCard label="Master's / MBA" amount="€25,500" note="Per year · 1-year fast-track available" detail="1-year intensive MBA with specialisations: Data Strategy, Real Estate, Hospitality & Global Leadership." delay={160} />
-            <CostCard label="Initial Package (Non-EU/EEA)" amount="€6,050" note="One-time deposit" detail="Covers visa processing through IND, health insurance, and airport pickup on arrival." delay={240} />
-            <CostCard label="Monthly Living Cost" amount="€800–1,200" note="Per month estimate" detail="Covers accommodation, food & transport. Part-time work (16 hrs/week) helps offset costs." delay={320} />
-            <CostCard label="Application Fee" amount="€95" note="One-time, non-refundable" detail="Paid at the credibility interview stage. Covers admissions processing and assessment." delay={400} />
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- PAYMENT SCHEDULE ---------------- */}
-      <section style={{ background: C.white, padding: "80px 48px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag={<span style={{ color: "#429198" }}>Payment Schedule</span>}
-            title={<span style={{ color: "#4197a2" }}>How & When You Pay</span>}
-            sub={
-              <span style={{ color: "#429198" }}>
-                A clear, staged payment structure — you never pay everything upfront. Fees are tied to milestones in your application and visa journey.
-              </span>
-            }
-          />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: 18,
-            }}
-          >
-            <PayStep num="01" title="Application Fee" amount="€95" note="Paid at credibility interview stage. One-time, non-refundable." delay={0} />
-            <PayStep num="02" title="Initial Package" amount="€6,050" note="Paid after unconditional offer letter. Covers visa, insurance & pickup." delay={80} />
-            <PayStep num="03" title="Post-Visa Balance" amount="€8,000" note="Due after visa is approved. Confirms your place and pre-departure arrangements." delay={160} />
-            <PayStep num="04" title="Monthly Instalments" amount="12×" note="Remaining tuition paid in 12 equal instalments after arrival." isLast delay={240} />
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- PROGRAMMES ---------------- */}
-      <section style={{ background: C.cream, padding: "100px 48px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag={<span style={{ color: "#429198" }}>Popular Study Areas</span>}
+            tag={<span style={{ color: "#429198" }}>Education in Georgia</span>}
             title={
               <span style={{ color: "#4197a2" }}>
-                In-Demand Programmes for International Students
+                A Globally Recognised Education System Built for International Students
               </span>
             }
             sub={
               <span style={{ color: "#429198" }}>
-                Career-aligned, English-taught, and built for the global business world. Foundation to MBA — choose from a 3-year fast-track or 4-year standard Bachelor's pathway.
+                Georgian higher education is structured to European standards — rigorous, internationally connected, and home to over 60,000 international students from more than 21 nationalities.
+              </span>
+            }
+          />
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: 20,
+            }}
+          >
+            {eduCards.map((e, i) => (
+              <OutlookCard key={e.title} {...e} delay={i * 90} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- POPULAR FIELDS ---------------- */}
+      <section style={{ background: C.cream, padding: "100px 48px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <SectionHead
+            tag={<span style={{ color: "#429198" }}>Popular Fields of Study</span>}
+            title={<span style={{ color: "#4197a2" }}>What Can You Study in Georgia?</span>}
+            sub={
+              <span style={{ color: "#429198" }}>
+                Georgian institutions offer a broad range of English-medium undergraduate and postgraduate programs across health sciences, professional fields, and the arts.
               </span>
             }
           />
@@ -1846,10 +1533,10 @@ export default function StudyNetherlandsPage() {
             {courses.map((c, i) => (
               <CourseCard
                 key={c.title}
-                icon={c.icon}
+                num={String(i + 1).padStart(2, "0")}
                 title={c.title}
                 body={c.body}
-                tag={c.tag}
+                icon={c.icon}
                 delay={i * 70}
               />
             ))}
@@ -1857,7 +1544,42 @@ export default function StudyNetherlandsPage() {
         </div>
       </section>
 
-      {/* ---------------- LANGUAGE REQUIREMENTS ---------------- */}
+      {/* ---------------- COSTS ---------------- */}
+      <section
+        style={{
+          background: `linear-gradient(135deg, ${C.navyDark}, ${C.navyD})`,
+          padding: "100px 48px",
+        }}
+      >
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <SectionHead
+            tag="Cost of Studying in Georgia"
+            title="What Does It Actually Cost to Study in Georgia?"
+            sub="Georgia offers a European-standard education at a cost that is genuinely competitive — especially compared to private colleges in India or medical programs in Western countries."
+            light
+          />
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))",
+              gap: 18,
+            }}
+          >
+            <CostCard label="Annual Tuition (Medicine)" amount="USD 5,550" note="Per year · 6-year MD program" delay={0} />
+            <CostCard label="Total Tuition (6 Years)" amount="~₹20–25L" note="Estimated total course fees" highlight delay={80} />
+            <CostCard label="Food & Accommodation (Monthly)" amount="~₹15–20K" note="Fully furnished hostel with AC · Indian mess available" delay={160} />
+            <CostCard label="Food Budget (Monthly)" amount="~₹6,000" note="Including Indian restaurants & groceries" delay={240} />
+            <CostCard label="Public Transport" amount="0.50 GEL" note="Regular ticket · 0.20 GEL for students · 7-km taxi ~₹156" delay={320} />
+            <CostCard label="Total Cumulative Cost" amount="~₹35L" note="Fees + visa + food + hostel (full 6 years)" delay={400} />
+            <CostCard label="Total Monthly Living" amount="~₹20,000" note="Food + accommodation + daily expenses" delay={480} />
+          </div>
+          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", marginTop: 22 }}>
+            All figures are indicative estimates based on published brochure data. Currency rates are subject to change. Speak to a Langma International advisor for an accurate, personalised cost breakdown.
+          </p>
+        </div>
+      </section>
+
+      {/* ---------------- LANGUAGE / ELIGIBILITY REQUIREMENTS ---------------- */}
       <section
         style={{
           background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD} 60%, ${C.navy})`,
@@ -1881,187 +1603,197 @@ export default function StudyNetherlandsPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead
             style={{ paddingLeft: "24px", paddingRight: "24px" }}
-            tag="English Requirements"
-            title="IELTS, TOEFL, PTE & Cambridge Score Guide"
-            sub="Score requirements vary by programme level. Foundation entry is available for students who need to strengthen their English before beginning a degree — you don't need IELTS 6.0 to start."
+            tag="English & Language Requirements"
+            title="What English Proof Do You Need to Study in Georgia?"
+            sub="English proficiency requirements in Georgia vary by institution and program. Here is an accurate, honest overview of what to expect — so you can plan with confidence."
             light
           />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
-            {[
-              {
-                title: "🎓 Foundation Programme",
-                icon: "🎓",
-                rows: [["IELTS Academic", "5.0 – 5.5"], ["TOEFL iBT", "35 – 45 pts"], ["PTE Academic", "36 – 42"], ["Cambridge", "160 – 170"]],
-                note: "💡 The Foundation Programme (6–12 months) is a structured bridge for students who don't yet meet direct entry requirements. Successful completion guarantees direct Bachelor's entry.",
-              },
-              {
-                title: "📚 Bachelor's Programmes",
-                icon: "📚",
-                rows: [["IELTS Academic", "6.0 overall"], ["TOEFL iBT", "80 points"], ["PTE Academic", "61 points"], ["Cambridge", "160 minimum"]],
-                note: "⚠️ Minimum academic requirement: equivalent to Higher General Secondary Education, Pre-University, IB Diploma, A-levels, BTEC Level 3, or Class 12th.",
-              },
-              {
-                title: "📖 Master's / MBA",
-                icon: "📖",
-                rows: [["IELTS Academic", "6.5 overall"], ["TOEFL iBT", "90 points"], ["PTE Academic", "64 points"], ["Cambridge", "180 minimum"]],
-                note: "⚠️ A recognised Bachelor's degree is required for Master's / MBA entry. Requirements may vary by specific programme. Contact Langma International to confirm eligibility.",
-              },
-            ].map((card, ci) => (
-              <Reveal key={card.title} delay={ci * 120}>
-                <div
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 24 }}>
+            <Reveal>
+              <div
+                style={{
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(240,192,64,0.18)",
+                  padding: 36,
+                  borderRadius: 20,
+                  backdropFilter: "blur(8px)",
+                }}
+              >
+                <h3
                   style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(240,192,64,0.18)",
-                    padding: 32,
-                    borderRadius: 20,
-                    backdropFilter: "blur(8px)",
-                    height: "100%",
+                    fontSize: 20,
+                    fontWeight: 600,
+                    color: C.white,
+                    marginBottom: 22,
+                    paddingBottom: 16,
+                    borderBottom: `2px solid ${C.gold}`,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 10,
                   }}
                 >
-                  <h3
-                    style={{
-                      fontSize: 18,
-                      fontWeight: 600,
-                      color: C.white,
-                      marginBottom: 20,
-                      paddingBottom: 14,
-                      borderBottom: `2px solid ${C.gold}`,
-                    }}
-                  >
-                    {card.title}
-                  </h3>
-                  {card.rows.map(([t, s], idx, arr) => (
-                    <div
-                      key={t}
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        padding: "12px 0",
-                        borderBottom: idx === arr.length - 1 ? "none" : "1px solid rgba(255,255,255,0.06)",
-                      }}
-                    >
-                      <span style={{ fontSize: 13.5, fontWeight: 600, color: "rgba(255,255,255,0.82)" }}>{t}</span>
-                      <span
-                        style={{
-                          fontSize: 12.5,
-                          fontWeight: 700,
-                          color: "#FFFFFF",
-                          padding: "4px 12px",
-                          background: "rgba(240,192,64,0.12)",
-                          borderRadius: 999,
-                        }}
-                      >
-                        {s}
-                      </span>
-                    </div>
-                  ))}
+                  <span>🗣️</span> English Proficiency — Key Facts
+                </h3>
+                {[
+                  ["Medium of Instruction", "English ✓"],
+                  ["IELTS / TOEFL", "Varies by Institution"],
+                  ["Student Interview", "Varies by Institution"],
+                  ["School English Certificate", "Varies by Institution"],
+                  ["Medium of Instruction Letter", "Varies by Institution"],
+                ].map(([t, s], idx, arr) => (
                   <div
-                    style={{
-                      background: "rgba(240,192,64,0.08)",
-                      border: "1px solid rgba(240,192,64,0.2)",
-                      padding: "14px 16px",
-                      marginTop: 20,
-                      fontSize: 12,
-                      color: "rgba(255,255,255,0.65)",
-                      lineHeight: 1.7,
-                      borderRadius: 12,
-                    }}
-                  >
-                    {card.note}
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- ADMISSION REQUIREMENTS ---------------- */}
-      <section style={{ background: C.cream, padding: "100px 48px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag={<span style={{ color: "#429198" }}>Admission Requirements</span>}
-            title={<span style={{ color: "#4197a2" }}>What You Need to Apply</span>}
-            sub={
-              <span style={{ color: "#429198" }}>
-                A clear, straightforward process. Here is exactly what to prepare before submitting your application — no surprises, no hidden requirements.
-              </span>
-            }
-          />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }} className="lm-visa-wrap">
-            <Reveal>
-              <div>
-                {admissionDocs.map((d, idx, arr) => (
-                  <div
-                    key={d}
+                    key={t}
                     style={{
                       display: "flex",
-                      gap: 12,
-                      alignItems: "flex-start",
+                      justifyContent: "space-between",
+                      alignItems: "center",
                       padding: "13px 0",
-                      borderBottom: idx === arr.length - 1 ? "none" : `1px solid ${C.border}`,
-                      fontSize: 14,
-                      color: C.slate,
+                      borderBottom: idx === arr.length - 1 ? "none" : "1px solid rgba(255,255,255,0.06)",
                     }}
                   >
-                    <span style={{ color: C.navy, fontWeight: 700, flexShrink: 0 }}>✓</span>
-                    {d}
+                    <span style={{ fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.82)" }}>{t}</span>
+                    <span
+                      style={{
+                        fontSize: 13,
+                        fontWeight: 700,
+                        color: "#FFFFFF",
+                        padding: "4px 12px",
+                        background: "rgba(240,192,64,0.12)",
+                        borderRadius: 999,
+                      }}
+                    >
+                      {s}
+                    </span>
                   </div>
                 ))}
                 <div
                   style={{
-                    background: C.goldTint,
-                    border: `1px solid ${C.goldSoft}`,
-                    borderLeft: `3px solid ${C.navy}`,
+                    background: "rgba(240,192,64,0.08)",
+                    border: "1px solid rgba(240,192,64,0.2)",
                     padding: "16px 18px",
-                    marginTop: 18,
-                    fontSize: 13,
-                    color: "#8a3810",
+                    marginTop: 22,
+                    fontSize: 12.5,
+                    color: "rgba(255,255,255,0.65)",
                     lineHeight: 1.7,
+                    borderRadius: 12,
                   }}
                 >
-                  ℹ️ Requirements may vary depending on the programme level and your specific academic background. Age gaps and study gaps are accepted. Contact Langma International for a personalised eligibility review.
+                  💡 English language requirements vary by institution and program. Applicants may be required to demonstrate English proficiency through accepted tests or other institution-approved methods.
                 </div>
               </div>
             </Reveal>
-            <DocsBox title="Academic Entry Qualifications Accepted" items={academicQuals} />
+
+            <Reveal delay={120}>
+              <div
+                style={{
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(240,192,64,0.18)",
+                  padding: 36,
+                  borderRadius: 20,
+                  backdropFilter: "blur(8px)",
+                }}
+              >
+                <h3
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 600,
+                    color: C.white,
+                    marginBottom: 22,
+                    paddingBottom: 16,
+                    borderBottom: `2px solid ${C.gold}`,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 10,
+                  }}
+                >
+                  <span>✅</span> Who Is Eligible to Apply?
+                </h3>
+                {[
+                  ["Completed Grade 12 (PCB)", "Eligible ✓"],
+                  ["NEET Qualified (Medicine)", "Required for MD ✓"],
+                  ["Bachelor's Graduates", "Eligible for PG ✓"],
+                  ["Study Gap Applicants", "Generally Accepted ✓"],
+                  ["Age Restrictions", "Generally Flexible ✓"],
+                ].map(([t, s], idx, arr) => (
+                  <div
+                    key={t}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      padding: "13px 0",
+                      borderBottom: idx === arr.length - 1 ? "none" : "1px solid rgba(255,255,255,0.06)",
+                    }}
+                  >
+                    <span style={{ fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.82)" }}>{t}</span>
+                    <span
+                      style={{
+                        fontSize: 13,
+                        fontWeight: 700,
+                        color: "#FFFFFF",
+                        padding: "4px 12px",
+                        background: "rgba(240,192,64,0.12)",
+                        borderRadius: 999,
+                      }}
+                    >
+                      {s}
+                    </span>
+                  </div>
+                ))}
+                <div
+                  style={{
+                    background: "rgba(46,125,90,0.08)",
+                    border: "1px solid rgba(46,125,90,0.25)",
+                    padding: "16px 18px",
+                    marginTop: 22,
+                    fontSize: 12.5,
+                    color: "rgba(255,255,255,0.65)",
+                    lineHeight: 1.7,
+                    borderRadius: 12,
+                  }}
+                >
+                  ⚠️ Admission requirements — including NEET eligibility for Indian students pursuing medicine abroad — are subject to NMC (India) regulations and individual institutional criteria. Always confirm requirements with a verified advisor.
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* ---------------- VISA GUIDE ---------------- */}
-      <section style={{ background: C.white, padding: "100px 48px" }}>
+      <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Netherlands Student Visa Guide</span>}
+            tag={<span style={{ color: "#429198" }}>Georgia Student Visa Guide</span>}
             title={
               <span style={{ color: "#4197a2" }}>
-                Straightforward, Efficient & Fully Guided
+                Georgia Student Visa — A Clear, Accessible Process
               </span>
             }
             sub={
               <span style={{ color: "#429198" }}>
-                The visa process is managed by the institution through the IND (Immigration and Naturalisation Service). Langma International guides you through every step from application to arrival.
+                Georgia's student visa process is straightforward and well-structured. With professional guidance from Langma International at every stage, the path from application to arrival is as smooth as possible.
               </span>
             }
           />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }} className="lm-visa-wrap">
             <div>
-              {visaSteps.map((s, i) => (
-                <VisaStep key={s.title} n={i + 1} title={s.title} body={s.body} fee={s.fee} isLast={i === visaSteps.length - 1} delay={i * 70} />
-              ))}
+              <VisaStep n={1} title="Profile Evaluation & Course Selection" body="Your Langma International advisor reviews your academic background, goals, and budget — and recommends the best-fit program and institution in Georgia for your profile." delay={0} />
+              <VisaStep n={2} title="Application & Offer Letter" body="Your application is submitted to your chosen institution. Once approved, you receive an official offer letter or invitation letter — the foundation document for your visa application." delay={80} />
+              <VisaStep n={3} title="Documentation Preparation" body="We help you compile and authenticate all required documents — academic transcripts, passport copies, photos, financial records, and institutional registration letters — in the correct format." delay={160} />
+              <VisaStep n={4} title="Visa Application & Submission" body="Your student visa or Temporary Residence Card (TRC) application is submitted with full documentation. Georgia's visa process is known for being relatively efficient and accessible for Indian students." delay={240} />
+              <VisaStep n={5} title="Pre-Departure & Arrival Support" body="We provide a comprehensive pre-departure briefing — covering travel, accommodation, airport pickup coordination, local SIM and bank account guidance, and city registration." isLast delay={320} />
             </div>
             <div style={{ position: "sticky", top: 100 }}>
               <DocsBox
-                title="Visa Documents Checklist"
+                title="Required Documents Checklist"
                 items={visaDocs}
                 note={
                   <>
-                    <strong style={{ color: "#FFFFFF" }}>⚠️ Regional Applicants:</strong> Applicants from Bangladesh, Pakistan, Afghanistan, and Nigeria are required to demonstrate proof of funds or sponsorship from an approved third country.
+                    <strong style={{ color: "#FFFFFF" }}>Note:</strong> Specific documentation requirements may vary by institution and program. Your Langma International advisor will provide a tailored, step-by-step checklist and guide every document from preparation to submission.
                     <br />
                     <br />
-                    <strong style={{ color: "#FFFFFF" }}>✅ Gaps & Age:</strong> Study gaps and all ages are accepted — applications are not penalised for career breaks or time between education.
+                    Exact visa fees and processing timelines will be confirmed at the time of application.
                   </>
                 }
               />
@@ -2070,104 +1802,41 @@ export default function StudyNetherlandsPage() {
         </div>
       </section>
 
-      {/* ---------------- CAREER OUTLOOK ---------------- */}
-      <section style={{ background: C.cream, padding: "100px 48px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag={<span style={{ color: "#429198" }}>Career Outlook · Netherlands 2026</span>}
-            title={<span style={{ color: "#4197a2" }}>Why Dutch Graduates Get Hired</span>}
-            sub={
-              <span style={{ color: "#429198" }}>
-                The Netherlands doesn't just prepare you for a career — it places you inside one. With a mandatory paid internship, a 100+ company career fair, and a 50% internship-to-job rate, graduates are work-ready before they collect their diploma.
-              </span>
-            }
-          />
-
-          <Reveal>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 18, marginBottom: 40 }}>
-              {[["50%", "Internship-to-Job Rate"], ["100+", "Companies at Career Fair"], ["1 Year", "Post-Study Orientation Visa"], ["#1", "English Proficiency Globally"]].map(([num, lbl]) => (
-                <div key={lbl} style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: 16, padding: "28px 22px", textAlign: "center" }}>
-                  <div style={{ fontSize: 32, fontWeight: 600, color: C.navy, lineHeight: 1, marginBottom: 8 }}>{num}</div>
-                  <div style={{ fontSize: 12, fontWeight: 600, color: C.slate, textTransform: "uppercase", letterSpacing: "0.8px" }}>{lbl}</div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22, marginBottom: 40 }}>
-            {careerOutlooks.map((o, i) => (
-              <OutlookCard key={o.title} {...o} delay={i * 100} />
-            ))}
-          </div>
-
-          <Reveal delay={200}>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center" }}>
-              {careerTags.map((tag) => (
-                <span
-                  key={tag}
-                  style={{
-                    background: C.white,
-                    border: `1px solid ${C.border}`,
-                    color: C.navy,
-                    fontSize: 13,
-                    fontWeight: 600,
-                    padding: "9px 20px",
-                    borderRadius: 999,
-                  }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ---------------- STUDENT LIFE ---------------- */}
       <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Student Life</span>}
-            title={<span style={{ color: "#4197a2" }}>Life in the Netherlands — More Than Just Study</span>}
+            tag={<span style={{ color: "#429198" }}>Student Life in Georgia</span>}
+            title={<span style={{ color: "#4197a2" }}>What Is It Like to Live and Study in Tbilisi?</span>}
             sub={
               <span style={{ color: "#429198" }}>
-                World-class education inside one of the world's most liveable countries. Here is what everyday life actually looks like as an international student.
+                Tbilisi is a city that welcomes international students with open arms. Rich history, a vibrant social scene, affordable living, and a large, close-knit Indian student community make Georgia feel far more like home than most expect.
               </span>
             }
           />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22 }}>
             {lifeCards.map((l, i) => (
-              <OutlookCard key={l.title} {...l} delay={i * 100} />
+              <OutlookCard key={l.title} {...l} delay={i * 90} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* ---------------- APPLICATION PROCESS ---------------- */}
-      <section
-        style={{
-          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
-          padding: "90px 48px",
-        }}
-      >
+      {/* ---------------- CAREER & GLOBAL OPPORTUNITIES ---------------- */}
+      <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag="Application Process"
-            title="7 Steps to Studying in the Netherlands"
-            sub="A clear, fully guided process from first enquiry to first day of class. Langma International is with you at every single step."
-            light
+            tag={<span style={{ color: "#429198" }}>Career & Global Opportunities</span>}
+            title={<span style={{ color: "#4197a2" }}>Where Can a Georgian Degree Take You?</span>}
+            sub={
+              <span style={{ color: "#429198" }}>
+                A degree from Georgia is not a local credential — it is an internationally accepted qualification that opens doors across India, Europe, and beyond.
+              </span>
+            }
           />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-              background: "rgba(255,255,255,0.04)",
-              borderRadius: 18,
-              overflow: "hidden",
-            }}
-          >
-            {processSteps.map((s, i) => (
-              <ProcessStep key={s.title} n={i + 1} title={s.title} body={s.body} delay={i * 70} />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22 }}>
+            {careerCards.map((c, i) => (
+              <OutlookCard key={c.title} {...c} delay={i * 100} />
             ))}
           </div>
         </div>
@@ -2197,8 +1866,8 @@ export default function StudyNetherlandsPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead
             tag="Why Choose Langma International"
-            title="Your Study Abroad Partner — Not Just an Agent"
-            sub="From your first eligibility check to your first day on campus, we handle everything. No stress, no guesswork."
+            title="Your End-to-End Study Abroad Partner for Georgia"
+            sub="We go far beyond an application form. From your first enquiry to your first week on campus in Tbilisi, Langma International is with you — professionally, personally, and practically."
             light
           />
           <div
@@ -2215,28 +1884,11 @@ export default function StudyNetherlandsPage() {
         </div>
       </section>
 
-      {/* ---------------- TESTIMONIALS ---------------- */}
-      <section
-        style={{
-          background: `linear-gradient(135deg, ${C.navyDark}, ${C.navyD})`,
-          padding: "100px 48px",
-        }}
-      >
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead tag="Student Stories" title="What Our Students Say" light />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 22 }}>
-            {testimonials.map((t, i) => (
-              <TestiCard key={t.name} {...t} delay={i * 100} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ---------------- FAQ ---------------- */}
       <FAQ />
       {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead tag={<span style={{ color: "#429198" }}>FAQs</span>} title="Frequently Asked Questions — Study in the Netherlands" center />
+          <SectionHead tag={<span style={{ color: "#429198" }}>FAQs</span>} title="Common Questions About Studying in Georgia" center />
           <Reveal>
             <div style={{ maxWidth: 860, margin: "0 auto" }}>
               {faqs.map((f, i) => (
@@ -2303,10 +1955,10 @@ export default function StudyNetherlandsPage() {
                 lineHeight: 1.1,
               }}
             >
-              Start Your Netherlands Journey
+              Georgia Is Ready.
               <br />
               <em className="lm-grd-text" style={{ fontStyle: "italic" }}>
-                With One Conversation.
+                Is This Your Year?
               </em>
             </h2>
           </Reveal>
@@ -2322,7 +1974,7 @@ export default function StudyNetherlandsPage() {
                 lineHeight: 1.8,
               }}
             >
-              September 2026 intake is open now. Europe's #1 English-proficiency country. Paid internships built into your programme. A post-study work visa. Your future is one free conversation away.
+              European-standard education. English-medium programs. Affordable tuition and living costs. A safe, welcoming student city — just 5 hours from home. Your 2026 Georgia journey begins with one free conversation.
             </p>
           </Reveal>
           <Reveal delay={300}>
@@ -2330,8 +1982,8 @@ export default function StudyNetherlandsPage() {
               <NavyButton onClick={() => setOpen(true)} style={{ background: C.forest, padding: "16px 36px" }}>
                 Book Free Counselling →
               </NavyButton>
-              <GhostButton onClick={() => setOpen(true)}>Apply Now</GhostButton>
-              <GhostButton onClick={() => setOpen(true)}>Talk to an Expert</GhostButton>
+              <GhostButton onClick={() => setOpen(true)}>Check My Eligibility</GhostButton>
+              <GhostButton onClick={() => setOpen(true)}>Talk to an Advisor</GhostButton>
             </div>
           </Reveal>
         </div>

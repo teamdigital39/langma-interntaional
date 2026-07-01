@@ -3,8 +3,8 @@ import PopupForm from "./PopupForm";
 import FAQ from "./FAQ";
 
 /**
- * Study in the Netherlands — Langma International
- * Palette matches the Study in Poland / South Korea / Malta / Dubai / Singapore / Mauritius pages (teal brand accent over navy panels)
+ * Study in Cyprus — Langma International
+ * Palette matches the Study in Poland / South Korea / Malta / Dubai / Singapore / Mauritius / Netherlands pages
  */
 
 const C = {
@@ -440,7 +440,7 @@ function FactRow({ label, value }) {
 /* ===================================================================
  *  Cost card
  * ================================================================ */
-function CostCard({ label, amount, note, detail, highlight, delay }) {
+function CostCard({ label, amount, note, highlight, delay }) {
   const [h, setH] = useState(false);
   return (
     <Reveal delay={delay}>
@@ -457,7 +457,6 @@ function CostCard({ label, amount, note, detail, highlight, delay }) {
           borderRadius: 16,
           transform: h ? "translateY(-4px)" : "translateY(0)",
           boxShadow: h ? `0 16px 32px -16px rgba(26,46,90,0.3)` : "none",
-          height: "100%",
         }}
       >
         {highlight && (
@@ -513,21 +512,6 @@ function CostCard({ label, amount, note, detail, highlight, delay }) {
         >
           {note}
         </div>
-        {detail && (
-          <div
-            style={{
-              fontSize: 11.5,
-              color: highlight ? "rgba(255,255,255,0.6)" : C.muted,
-              marginTop: 10,
-              paddingTop: 10,
-              borderTop: `1px solid ${highlight ? "rgba(255,255,255,0.2)" : C.border}`,
-              lineHeight: 1.6,
-              textAlign: "left",
-            }}
-          >
-            {detail}
-          </div>
-        )}
       </div>
     </Reveal>
   );
@@ -536,7 +520,7 @@ function CostCard({ label, amount, note, detail, highlight, delay }) {
 /* ===================================================================
  *  Course card
  * ================================================================ */
-function CourseCard({ num, title, body, icon, tag, delay }) {
+function CourseCard({ num, title, body, icon, delay }) {
   const [h, setH] = useState(false);
   return (
     <Reveal delay={delay}>
@@ -554,7 +538,6 @@ function CourseCard({ num, title, body, icon, tag, delay }) {
           boxShadow: h ? `0 22px 40px -20px rgba(26,46,90,0.4)` : "none",
           overflow: "hidden",
           cursor: "pointer",
-          height: "100%",
         }}
       >
         <div
@@ -592,28 +575,11 @@ function CourseCard({ num, title, body, icon, tag, delay }) {
             fontSize: 12.5,
             color: h ? "rgba(255,255,255,0.75)" : C.slate,
             lineHeight: 1.7,
-            marginBottom: tag ? 12 : 0,
             transition: "color 0.3s ease",
           }}
         >
           {body}
         </div>
-        {tag && (
-          <span
-            style={{
-              display: "inline-block",
-              background: h ? "rgba(255,255,255,0.15)" : C.cream,
-              color: h ? C.white : C.slate,
-              fontSize: 11,
-              fontWeight: 600,
-              padding: "3px 10px",
-              borderRadius: 999,
-              letterSpacing: "0.4px",
-            }}
-          >
-            {tag}
-          </span>
-        )}
         <div
           style={{
             position: "absolute",
@@ -635,7 +601,7 @@ function CourseCard({ num, title, body, icon, tag, delay }) {
 /* ===================================================================
  *  Visa step
  * ================================================================ */
-function VisaStep({ n, title, body, fee, isLast, delay }) {
+function VisaStep({ n, title, body, isLast, delay }) {
   const [ref, visible] = useReveal();
   return (
     <div
@@ -695,113 +661,13 @@ function VisaStep({ n, title, body, fee, isLast, delay }) {
         <p style={{ fontSize: 13.5, color: C.slate, lineHeight: 1.75, margin: 0 }}>
           {body}
         </p>
-        {fee && (
-          <span
-            style={{
-              display: "inline-block",
-              background: C.goldTint,
-              color: C.navy,
-              fontSize: 12,
-              fontWeight: 700,
-              padding: "4px 12px",
-              borderRadius: 999,
-              marginTop: 10,
-              border: `1px solid ${C.goldSoft}`,
-            }}
-          >
-            {fee}
-          </span>
-        )}
       </div>
     </div>
   );
 }
 
 /* ===================================================================
- *  Payment step (horizontal, with amount)
- * ================================================================ */
-function PayStep({ num, title, amount, note, isLast, delay }) {
-  const [h, setH] = useState(false);
-  return (
-    <Reveal delay={delay}>
-      <div
-        onMouseEnter={() => setH(true)}
-        onMouseLeave={() => setH(false)}
-        style={{
-          background: h ? C.goldTint : C.white,
-          padding: "28px 22px",
-          position: "relative",
-          borderRadius: 16,
-          border: `1px solid ${h ? C.navy : C.border}`,
-          transition: "all 0.25s ease",
-          height: "100%",
-        }}
-      >
-        {!isLast && (
-          <div
-            className="lm-pay-arrow"
-            style={{
-              position: "absolute",
-              right: -14,
-              top: "50%",
-              transform: "translateY(-50%)",
-              width: 28,
-              height: 28,
-              background: C.navy,
-              color: C.white,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 13,
-              fontWeight: 700,
-              borderRadius: "50%",
-              zIndex: 2,
-            }}
-          >
-            →
-          </div>
-        )}
-        <div
-          style={{
-            fontSize: 32,
-            fontWeight: 600,
-            color: C.cream2,
-            lineHeight: 1,
-            marginBottom: 8,
-          }}
-        >
-          {num}
-        </div>
-        <h4
-          style={{
-            fontSize: 12.5,
-            fontWeight: 700,
-            color: C.ink,
-            textTransform: "uppercase",
-            letterSpacing: "0.5px",
-            marginBottom: 6,
-          }}
-        >
-          {title}
-        </h4>
-        <div
-          style={{
-            fontSize: 21,
-            fontWeight: 600,
-            color: C.navy,
-            marginBottom: 6,
-          }}
-        >
-          {amount}
-        </div>
-        <p style={{ fontSize: 12, color: C.slate, lineHeight: 1.6, margin: 0 }}>{note}</p>
-      </div>
-    </Reveal>
-  );
-}
-
-/* ===================================================================
- *  Outlook card
+ *  Outlook card (used for Work Opportunities)
  * ================================================================ */
 function OutlookCard({ tag, title, body, icon, delay }) {
   return (
@@ -845,25 +711,23 @@ function OutlookCard({ tag, title, body, icon, delay }) {
         >
           {icon}
         </div>
-        {tag && (
-          <span
-            style={{
-              display: "inline-block",
-              background: C.cream,
-              color: C.navy,
-              fontSize: 10.5,
-              fontWeight: 700,
-              padding: "4px 12px",
-              letterSpacing: "1px",
-              marginBottom: 14,
-              textTransform: "uppercase",
-              borderRadius: 999,
-              border: `1px solid ${C.goldSoft}`,
-            }}
-          >
-            {tag}
-          </span>
-        )}
+        <span
+          style={{
+            display: "inline-block",
+            background: C.cream,
+            color: C.navy,
+            fontSize: 10.5,
+            fontWeight: 700,
+            padding: "4px 12px",
+            letterSpacing: "1px",
+            marginBottom: 14,
+            textTransform: "uppercase",
+            borderRadius: 999,
+            border: `1px solid ${C.goldSoft}`,
+          }}
+        >
+          {tag}
+        </span>
         <h4
           style={{
             fontSize: 16,
@@ -932,48 +796,6 @@ function SupportCard({ icon, title, body, delay }) {
           }}
         >
           {body}
-        </p>
-      </div>
-    </Reveal>
-  );
-}
-
-/* ===================================================================
- *  Testimonial card (dark theme, matches SupportCard)
- * ================================================================ */
-function TestiCard({ quote, name, meta, delay }) {
-  const [h, setH] = useState(false);
-  return (
-    <Reveal delay={delay}>
-      <div
-        onMouseEnter={() => setH(true)}
-        onMouseLeave={() => setH(false)}
-        style={{
-          background: h ? "rgba(240,192,64,0.1)" : "rgba(255,255,255,0.03)",
-          border: `1px solid ${h ? "rgba(240,192,64,0.35)" : "rgba(255,255,255,0.06)"}`,
-          padding: 32,
-          borderRadius: 18,
-          transition: "all 0.3s ease",
-          height: "100%",
-        }}
-      >
-        <div style={{ color: C.gold, fontSize: 14, marginBottom: 16, letterSpacing: 2 }}>
-          ★★★★★
-        </div>
-        <p
-          style={{
-            fontSize: 15,
-            fontStyle: "italic",
-            color: "rgba(255,255,255,0.85)",
-            lineHeight: 1.75,
-            marginBottom: 20,
-          }}
-        >
-          {quote}
-        </p>
-        <p style={{ fontSize: 13, fontWeight: 700, color: C.white, margin: 0 }}>{name}</p>
-        <p style={{ fontSize: 12, color: "rgba(255,255,255,0.45)", margin: "3px 0 0 0" }}>
-          {meta}
         </p>
       </div>
     </Reveal>
@@ -1091,58 +913,6 @@ function DocsBox({ title, items, note }) {
 }
 
 /* ===================================================================
- *  Process step (horizontal strip)
- * ================================================================ */
-function ProcessStep({ n, title, body, delay }) {
-  const [ref, visible] = useReveal();
-  return (
-    <div
-      ref={ref}
-      style={{
-        padding: "28px 18px",
-        textAlign: "center",
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(14px)",
-        transition: `all 0.6s ease ${delay}ms`,
-      }}
-    >
-      <div
-        style={{
-          width: 44,
-          height: 44,
-          background: C.gold,
-          color: C.navyD,
-          borderRadius: "50%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: 15,
-          fontWeight: 700,
-          margin: "0 auto 16px",
-        }}
-      >
-        {n}
-      </div>
-      <h4
-        style={{
-          fontSize: 12,
-          fontWeight: 700,
-          color: C.white,
-          marginBottom: 8,
-          textTransform: "uppercase",
-          letterSpacing: "0.6px",
-        }}
-      >
-        {title}
-      </h4>
-      <p style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", lineHeight: 1.6, margin: 0 }}>
-        {body}
-      </p>
-    </div>
-  );
-}
-
-/* ===================================================================
  *  FAQ accordion
  * ================================================================ */
 function FAQItem({ q, a, isOpen, onClick }) {
@@ -1217,14 +987,14 @@ function FAQItem({ q, a, isOpen, onClick }) {
  * ================================================================ */
 function Marquee() {
   const items = [
-    "🇳🇱 Netherlands January 2027 Intake Open",
-    "✦ #1 English Proficiency Globally",
-    "✦ Mandatory Paid Internship",
-    "✦ 160+ Nationalities on Campus",
-    "✦ Post-Study Orientation Visa",
-    "✦ Assignment-Based — No Exams",
-    "✦ Guaranteed Student Housing",
-    "✦ 50% Internship-to-Job Rate",
+    "🇨🇾 Cyprus 2026 Intake Open",
+    "✦ EU-Recognised Degrees",
+    "✦ Tuition from €5,500/yr",
+    "✦ No Visa Interview",
+    "✦ IELTS 4.0 Minimum Accepted",
+    "✦ 300+ Sunny Days a Year",
+    "✦ #31 Safest Country Globally",
+    "✦ Study Gaps & Rejected Cases Accepted",
   ];
   const loop = [...items, ...items];
   return (
@@ -1289,145 +1059,85 @@ function ScrollProgress() {
 }
 
 /* ===================================================================
- *  DATA — Netherlands content
+ *  DATA — Cyprus content
  * ================================================================ */
 const reasons = [
-  { icon: "🗣️", title: "World-Class English Education", body: "The Netherlands ranks #1 globally in non-native English proficiency. Every degree programme is delivered entirely in English — no language barrier, no compromise on quality." },
-  { icon: "🏢", title: "Multinational Career Access", body: "Home to the European headquarters of Tesla, Netflix, Uber, KPMG, ING, and Booking.com. ASML — the second most valuable company in Europe — is headquartered here." },
-  { icon: "🎯", title: "Practical, Industry-Led Learning", body: "Over 60% of education time is spent on real-world projects, internships, and practical assignments. A mandatory paid internship is built into every programme." },
-  { icon: "🚀", title: "Thriving Startup Ecosystem", body: "One of Europe's fastest-growing startup scenes. Amsterdam's Brainport and thriving tech corridors connect students directly with entrepreneurs and investors." },
-  { icon: "🛡️", title: "Safe, Happy & Stable", body: "Consistently ranked among the world's happiest and safest countries. A stable, welcoming, multicultural society with a high quality of life." },
-  { icon: "🌿", title: "Sustainability Leader", body: "A global pioneer in sustainability, circular economy, and green innovation, integrated into national identity — and into its education." },
-  { icon: "🗺️", title: "Gateway to All of Europe", body: "Amsterdam's Schiphol Airport connects to over 300 destinations worldwide. Paris, London, Berlin, or Barcelona are all within a 2-hour flight." },
-  { icon: "✈️", title: "Post-Study Work Visa Available", body: "The Dutch Orientation Year Visa (Zoekjaar permit) allows graduates to stay and find work for up to one year after completing their degree." },
+  { icon: "💰", title: "Genuinely Affordable Education", body: "Foundation programs from €5,500 and master's degrees from €7,500 — with living costs around €300/month. A fraction of what you'd pay in the UK or Western Europe." },
+  { icon: "🎓", title: "EU-Recognised Degrees", body: "Qualifications earned in Cyprus carry EU recognition — opening career doors across all 27 EU member states and are respected by employers worldwide." },
+  { icon: "🌐", title: "Fully English-Medium Programs", body: "No Greek language requirement. Business, law, science, design, and technology programs are all delivered in English — no language barrier, no compromise on quality." },
+  { icon: "🛡️", title: "One of Europe's Safest Countries", body: "Ranked 31st safest country globally by World Population Review 2026, with a low Global Terrorism Index score of 0.347. Safe for students, reassuring for parents." },
+  { icon: "☀️", title: "300+ Sunny Days a Year", body: "The only EU country where the sea stays warm enough for swimming even in November. Mediterranean winters average 13–15°C — mild, dry, and perfect for outdoor living year-round." },
+  { icon: "🤝", title: "EU Networking & Career Access", body: "As a full EU member, Cyprus offers direct networking into European business markets. Graduates connect with employers across finance, tourism, technology, and professional services." },
+  { icon: "📚", title: "American-Style Flexible Curriculum", body: "Cyprus colleges follow a flexible, American-style credit system — giving you greater freedom to choose electives, change specialisations, and shape your own academic path." },
+  { icon: "🏛️", title: "Rich Culture & Strategic Location", body: "Three UNESCO World Heritage Sites. A crossroads between Europe, Asia, and Africa. Cyprus blends ancient history with modern cosmopolitan living — a genuinely unique study environment." },
 ];
 
 const courses = [
-  { icon: "🌐", title: "International Business Management", body: "Entrepreneurship, global markets, finance, and marketing combined. Rated the top programme for over 11 consecutive years.", tag: "Bachelor's · MBA" },
-  { icon: "🎨", title: "Creative Business", body: "Design thinking, media strategy, branding, and commercial creativity — built for careers in the creative economy.", tag: "Bachelor's" },
-  { icon: "💻", title: "Digital Business & Generative AI", body: "Data strategy, AI applications, and digital transformation for tomorrow's business leaders.", tag: "Bachelor's · MBA" },
-  { icon: "🏨", title: "Hotel & Event Management", body: "Luxury hospitality management, event strategy, and festival production in one of Europe's busiest tourism capitals.", tag: "Bachelor's" },
-  { icon: "✈️", title: "International Tourism Management", body: "Experience travel, luxury management, and festival specialisations with direct industry exposure.", tag: "Bachelor's" },
-  { icon: "🚀", title: "Entrepreneurship", body: "Launch your own venture — guided by active entrepreneurs and connected directly to Amsterdam's startup scene.", tag: "Bachelor's · MBA" },
-  { icon: "📣", title: "Influencer Marketing", body: "Digital influence, content strategy, creator economics, and modern brand communications built for the social economy.", tag: "Bachelor's" },
-  { icon: "📊", title: "Commerce, Economics & Entrepreneurship", body: "Commercial strategy, economic fundamentals, and entrepreneurial leadership in a rigorous three-discipline degree.", tag: "Bachelor's" },
-  { icon: "🏆", title: "MBA — Master of Business Administration", body: "1-year intensive MBA with specialisations in Data Strategy, Real Estate, Hospitality Management & Global Leadership.", tag: "Master's · 1 Year" },
-];
-
-const visaSteps = [
-  { title: "Choose Programme & Apply Online", body: "Select your programme level and preferred intake. Submit your initial application through the official admissions portal along with your basic supporting documents." },
-  { title: "Receive Conditional Offer Letter", body: "Your application is reviewed by the admissions team. A conditional offer letter is issued pending receipt of full documentation and the credibility interview stage." },
-  { title: "Pay Application Fee & Credibility Interview", body: "Pay the application fee and complete a credibility interview. Langma International prepares you fully with mock sessions and guidance.", fee: "€95 — Application Fee" },
-  { title: "Receive Unconditional Offer Letter", body: "Upon successfully passing the credibility interview and completing full document verification, an unconditional offer letter is issued confirming your place." },
-  { title: "Pay Initial Package Deposit", body: "The non-EU/EEA package fee is paid to confirm your acceptance. This covers IND visa processing, health insurance, and airport pickup on arrival.", fee: "€6,050 — Initial Package Fee" },
-  { title: "Visa Applied via IND / Dutch Ministry", body: "The institution applies for your student visa through the IND (Dutch Immigration and Naturalisation Service) directly on your behalf." },
-  { title: "VFS Biometric Registration & Visa Stamping", body: "Visit your nearest VFS Global centre for biometric data registration. Receive your visa stamping in your passport and prepare pre-departure documents." },
-  { title: "Pay Balance & Travel to the Netherlands", body: "Balance payment is due after visa approval. The remaining tuition is paid in 12 equal monthly instalments. Airport pickup is arranged.", fee: "€8,000 due · Remainder in 12 monthly instalments" },
+  { icon: "💼", title: "Business Administration", body: "Careers in management, strategy & operations across EU markets." },
+  { icon: "📊", title: "Accounting & Finance", body: "ACCA-linked programs; direct pathway to European financial careers." },
+  { icon: "🏨", title: "Hospitality & Tourism", body: "Industry-tied programs with real hotel & travel placement opportunities." },
+  { icon: "💻", title: "Computing & IT", body: "Software, networking & systems roles in Cyprus's growing tech sector." },
+  { icon: "🔐", title: "Cybersecurity", body: "Critical shortage globally — graduates in immediate demand across EU." },
+  { icon: "📈", title: "MBA", body: "18-month business leadership program — open to working professionals." },
+  { icon: "⚖️", title: "Law (LLB / LLM)", body: "EU & UK-aligned legal education; corporate, commercial & international law." },
+  { icon: "🎨", title: "Design (Graphic / Fashion / Interior)", body: "Creative industry degrees for the European and global design economy." },
+  { icon: "🧠", title: "Psychology", body: "High-satisfaction programs with clinical and business specialisations." },
+  { icon: "📡", title: "Media & Web Production", body: "Digital media, UX design & web development for the creative economy." },
+  { icon: "🔬", title: "Science & Engineering", body: "Computer, electrical & electronic engineering with strong employment outcomes." },
+  { icon: "✈️", title: "Travel & Tourism Management", body: "Specialist degree for Cyprus's major economic sector — hospitality & travel." },
 ];
 
 const visaDocs = [
-  "Valid passport — clear copy of all pages",
-  "Academic transcripts and degree certificates (all levels)",
-  "Grade sheets and mark lists for every academic year",
-  "English proficiency test result — IELTS / TOEFL iBT / PTE / Cambridge",
-  "Passport-size photograph with white background",
-  "Resume / CV in professional format",
-  "Statement of Purpose (SOP) — 1,500 to 4,000 words",
-  "Proof of financial capability or sponsorship documentation",
-  "Unconditional offer letter from the institution",
+  "Valid passport — colour print (front data page)",
+  "High school certificate / bachelor's degree — colour print",
+  "English language certificate (IELTS or PTE) — colour print",
+  "Medical report — original (HBV, HCV, HIV/AIDS, VDRL/RPR, chest X-ray — valid 4 months)",
+  "Bank balance letter — original",
+  "Bank statement showing €7,000 current/one-day balance — original",
+  "Police Clearance Certificate (PCC) — original",
+  "All documents must be Apostilled and couriered to the college address",
 ];
 
-const admissionDocs = [
-  "Valid passport — clear copy of front and back pages",
-  "Academic transcripts of your highest completed level of education",
-  "Grade sheets and mark lists for all academic years",
-  "Degree certificate or school leaving certificate",
-  "English proficiency test result — IELTS / TOEFL iBT / PTE / Cambridge",
-  "Passport-size photograph with white background",
-  "Resume / CV in professional format",
-  "Statement of Purpose (SOP) — 1,500 to 4,000 words",
-  "Dedicated email address for all institution communications",
-];
-
-const academicQuals = [
-  "Class 12th — Indian Standard Boards (CBSE, ICSE, State Boards)",
-  "International Baccalaureate (IB) — Diploma & Career Programme",
-  "British (I)GCSE A(S)-Levels",
-  "BTEC Level 3",
-  "European Baccalaureate (EB)",
-  "German Abitur (Allgemeine Hochschulreife)",
-  "American High School Diploma (college preparatory programme)",
-  "Intermediate Vocational Education — Level 4",
-  "Higher General Secondary Education / Pre-University Diploma",
-];
-
-const careerOutlooks = [
-  { icon: "💼", tag: "During Studies", title: "16 hrs/Week Part-Time Work Rights", body: "International students can work up to 16 hours per week during term time — a meaningful income stream that offsets living costs in Amsterdam." },
-  { icon: "🎓", tag: "Internship", title: "Mandatory Paid Internship in Every Programme", body: "A full-time paid internship is built into every degree. With a 50% internship-to-employment conversion rate, many students receive job offers before graduation." },
-  { icon: "🌍", tag: "Post-Study", title: "Dutch Orientation Year Visa — Up to 1 Year", body: "The Zoekjaar permit allows international graduates to remain in the Netherlands for up to a year after completing their degree, to search for employment." },
-  { icon: "🏢", tag: "Employers", title: "100+ Companies at the Annual Career Fair", body: "Fortune 500 employers including Tesla, Netflix, KPMG, Booking.com, ASML, and Unilever actively recruit from campus every year." },
+const workCards = [
+  { icon: "🕒", tag: "During Studies", title: "Part-Time Work Rights", body: "International students in Cyprus can work part-time as permitted under student immigration regulations. Guidance on finding and applying for roles is included in our support service." },
+  { icon: "🏨", tag: "Popular Sectors", title: "Where Students Find Work", body: "Tourism and hospitality, retail, finance and banking services, IT support, and on-campus roles are the most common sectors for student employment. The service economy (85% of GDP) keeps demand high." },
+  { icon: "🇪🇺", tag: "Post-Graduation", title: "EU-Wide Career Access", body: "Your Cyprus degree and EU residency status open career doors across all 27 EU member states — Germany, Netherlands, Ireland, Sweden, and beyond. One degree, a continent of opportunities." },
+  { icon: "💶", tag: "Average Earnings", title: "Competitive Graduate Salaries", body: "Average monthly salaries in Cyprus range from €1,800 to €2,200 gross. The private sector — particularly finance, professional services, and tourism — typically offers higher rates than the public sector." },
 ];
 
 const careerTags = [
-  "Investment Banking", "Business Consulting", "Digital Marketing", "Data Strategy", "AI & Technology",
-  "Hospitality Management", "Event Management", "Entrepreneurship", "Real Estate", "International Sales",
-  "Logistics & Supply Chain", "Sustainability Management", "Project Management", "Brand Management",
-  "Luxury Retail", "Creative Direction",
-];
-
-const lifeCards = [
-  { icon: "🏙️", tag: "Living", title: "Affordable & Vibrant Cities", body: "Amsterdam combines world-class culture, food, and nightlife with a compact, student-friendly layout, and a cost of living manageable on a student budget." },
-  { icon: "🌍", tag: "Community", title: "160+ Nationalities on Campus", body: "Study alongside peers from over 160 countries every day. The classroom itself becomes a global network of lifelong professional relationships." },
-  { icon: "🏠", tag: "Accommodation", title: "Guaranteed Student Housing", body: "Purpose-built student residences reserved exclusively for international students, located less than 15 minutes from campus for your full programme." },
-  { icon: "✈️", tag: "Travel", title: "Europe on Your Doorstep", body: "Amsterdam Schiphol connects to over 300 destinations worldwide. Weekend trips to Paris, London, Berlin, or Barcelona are a normal part of student life." },
-  { icon: "🛡️", tag: "Safety", title: "Safe, Stable & Welcoming", body: "Consistently ranked among the world's safest and happiest countries, with an open multicultural society and centuries of welcoming international residents." },
-  { icon: "⚖️", tag: "Balance", title: "Work-Life Balance Built In", body: "The Dutch are internationally recognised for healthy work-life boundaries — sports facilities, societies, and city trips are integrated into campus life." },
-];
-
-const processSteps = [
-  { title: "Profile Evaluation", body: "Free honest assessment of your academic background and English proficiency — before you commit to anything." },
-  { title: "Document Preparation", body: "We help you gather, organise, and format your complete application package correctly the first time." },
-  { title: "Credibility Interview", body: "Mock interview sessions, question guidance, and confidence-building practice so you walk in ready to succeed." },
-  { title: "Offer Letter", body: "Receive your unconditional offer letter confirming your programme, level, intake date, and place." },
-  { title: "Visa Process", body: "Initial package payment, IND application submission, VFS biometric scheduling, and visa stamp collection." },
-  { title: "Pre-Departure Brief", body: "What to pack, customs guidance, accommodation confirmation, arrival logistics, and Day 1 expectations." },
-  { title: "Begin Your Journey", body: "Airport pickup confirmed. Student housing ready. Orientation week scheduled. Your future starts on landing." },
+  "Business & Management", "Finance & Banking", "Hospitality & Tourism", "Information Technology", "Cybersecurity",
+  "Law & Legal Services", "Design & Creative Industries", "Digital Marketing", "International Business", "Real Estate & Property",
 ];
 
 const support = [
-  { icon: "🔍", title: "Free Profile Evaluation", body: "We assess your academic background and English profile honestly — then tell you exactly which programmes you qualify for, before you commit to anything." },
-  { icon: "🎯", title: "Personalised Programme Matching", body: "We match you to the right course, level, and intake based on your academic history, career ambitions, and long-term goals." },
-  { icon: "📝", title: "SOP & Application Support", body: "We guide your Statement of Purpose from concept to final draft, prepare your complete application, and review every document before submission." },
-  { icon: "🎤", title: "Credibility Interview Preparation", body: "Full structured preparation for the admissions credibility interview — mock sessions, likely question sets, and confidence-building support." },
-  { icon: "🛂", title: "Visa Documentation Support", body: "Complete, precise guidance on IND application requirements, financial sponsorship documentation, and biometric appointment scheduling." },
-  { icon: "🏠", title: "Accommodation Confirmation", body: "We confirm your guaranteed student housing arrangements near campus in Amsterdam before you depart." },
-  { icon: "✈️", title: "Pre-Departure Briefing", body: "Comprehensive travel preparation — what to bring, customs guidance, accommodation check-in, and orientation week overview." },
-  { icon: "💬", title: "Dedicated Student Advisor", body: "One real person, available throughout your entire journey from first enquiry to first week of class. No automated responses." },
-];
-
-const testimonials = [
-  { quote: "I had a gap of two years and was nervous no institution would accept me. Langma assessed my profile honestly and matched me to the right programme. I'm now completing my Bachelor's and have already secured a paid internship in Rotterdam.", name: "Priya Mehta", meta: "International Business Management · New Delhi, India" },
-  { quote: "The credibility interview preparation Langma provided was exceptional. Within three months of submitting my documents I had my visa, my housing confirmed, and my flight booked.", name: "Ahmed Al-Rashidi", meta: "Digital Business & AI · Dubai, UAE" },
-  { quote: "As someone coming from Bangladesh, I was worried about the additional sponsorship requirements. Langma walked me through exactly what I needed. I'm now interning at a Dutch fintech company.", name: "Farhan Hossain", meta: "MBA — Data Strategy · Dhaka, Bangladesh" },
+  { icon: "🔍", title: "Free Eligibility Assessment", body: "We evaluate your academic profile, budget, and career goals to identify the best-fit programs in Cyprus — at zero cost to you." },
+  { icon: "🎓", title: "Program Shortlisting", body: "Access to multiple programs across Cyprus's leading colleges. We match you with courses that align with your academic background and career goals." },
+  { icon: "📝", title: "Application Assistance", body: "We prepare and submit your full college application — including document checking, offer letter follow-up, and all admission formalities." },
+  { icon: "🛂", title: "Visa Documentation Support", body: "Complete guidance on apostilling documents, medical reports, bank statements, PCC, and couriering your visa file correctly first time." },
+  { icon: "🏠", title: "Accommodation Guidance", body: "We help you find safe, affordable accommodation near your campus in Larnaca, Nicosia, Limassol, or Paphos — before you land." },
+  { icon: "✈️", title: "Airport Pickup Coordination", body: "We coordinate your airport pickup on arrival in Cyprus so your first day is smooth, not stressful — straight from the airport to your new home." },
+  { icon: "💼", title: "Part-Time Job Guidance", body: "We provide guidance on finding part-time employment opportunities in Cyprus permitted under student regulations — so you can support your studies financially." },
+  { icon: "💬", title: "Dedicated Student Advisor", body: "One point of contact from application to arrival. Real people, real answers — not a call centre queue or an automated chatbot." },
 ];
 
 const faqs = [
-  { q: "Can I study in the Netherlands without IELTS?", a: "IELTS Academic is the most commonly accepted English test, but TOEFL iBT, PTE Academic, and Cambridge English qualifications are all accepted alternatives. Foundation entry requires IELTS 5.0–5.5; direct Bachelor's entry requires IELTS 6.0; Master's/MBA entry requires IELTS 6.5." },
-  { q: "How much does it cost to study in the Netherlands?", a: "Foundation programmes are €12,250/year (all-inclusive). Bachelor's tuition is €24,500/year. Master's and MBA tuition is €25,500/year. Non-EU/EEA students pay an initial package fee of €6,050 covering visa, insurance, and airport pickup. Monthly living costs range €800–€1,200." },
-  { q: "Can international students work part-time in the Netherlands?", a: "Yes. Students from outside the EU/EEA can work up to 16 hours per week during term. Every programme also includes a mandatory full-time paid internship — with 50% of interns receiving a direct job offer from their employer." },
-  { q: "What is the Dutch Orientation Year Visa?", a: "The Zoekjaar permit allows international graduates to remain in the Netherlands for up to one year after completing their degree specifically to search for employment." },
-  { q: "What is the visa process for international students?", a: "The visa is applied for through the institution directly via the IND — you do not approach the Dutch embassy independently. The process involves an online application, conditional offer, credibility interview, unconditional offer, initial package payment, IND submission, VFS biometrics, and travel." },
-  { q: "Are study gaps or age restrictions an issue?", a: "Study gaps and all ages are accepted. Applications are assessed on your current academic profile, English proficiency, and programme suitability — not penalised for time gaps or age." },
-  { q: "What programmes are available and how long do they take?", a: "Programmes span Foundation (6–12 months), Bachelor's (3-year fast-track or 4-year standard), and Master's/MBA (1-year intensive). Key study areas include International Business Management, Digital Business & AI, Hotel & Event Management, and Entrepreneurship." },
-  { q: "Is the Netherlands safe for international students?", a: "The Netherlands is consistently ranked among the world's safest, happiest, and most politically stable countries, with large, well-established international student communities in Amsterdam, Rotterdam, and Utrecht." },
-  { q: "What career opportunities exist after graduating?", a: "Graduates access careers in investment banking, consulting, digital marketing, data strategy, AI and technology, hospitality, logistics, sustainability, and entrepreneurship, with the Dutch Orientation Year Visa providing up to a year post-graduation to find a role." },
-  { q: "When should I apply for the September 2026 intake?", a: "We recommend starting your application at least 4 to 5 months before your intended start date, to allow time for document preparation, SOP drafting, credibility interview scheduling, IND visa processing, and VFS biometric appointments." },
+  { q: "How much does it cost to study in Cyprus as an international student?", a: "Foundation programs start at €5,500 per year (all fees included). Bachelor's programs are €6,500 in the first year with reduced fees from Year 2. Master's programs are €7,500 for the full 18-month course. Living costs average approximately €300 per month — making Cyprus one of the most affordable EU study destinations." },
+  { q: "Can international students work while studying in Cyprus?", a: "Yes. International students can work part-time in Cyprus as permitted under student immigration regulations. The service sector — tourism, hospitality, retail and IT — offers the most student work opportunities." },
+  { q: "What is the minimum IELTS score required to study in Cyprus?", a: "Cyprus accepts some of the lowest English proficiency scores in the EU. Foundation programs require IELTS 4.0–4.5 or PTE 43–57. Bachelor's programs require IELTS 5.0–6.0 depending on the course. Master's programs require IELTS 6.0–6.5. TOEFL is not accepted." },
+  { q: "How long does the Cyprus student visa take?", a: "The Cyprus student visa (E-Visa) typically takes approximately 90 working days from the date your complete visa documents are submitted to the college. No visa interview is required at any stage." },
+  { q: "Are study gaps and previously rejected visa cases accepted?", a: "Yes. Study gaps of any length and all ages are generally acceptable for Cyprus programs. Previously rejected visa cases may also apply in most circumstances, with two specific exception cases — contact our counsellors to confirm your eligibility." },
+  { q: "What documents do I need for the Cyprus student visa?", a: "Key documents include: valid passport copy, academic certificates, English test result, medical report (including blood tests and chest X-ray — valid 4 months), bank balance letter and statement showing at least €7,000, and a Police Clearance Certificate (PCC). All originals must be apostilled and couriered to the college." },
+  { q: "What are the most popular programs for Indian students in Cyprus?", a: "The most popular programs among Indian students in Cyprus are MBA, Business Administration, Accounting & Finance, Hospitality & Tourism Management, Computing & IT, and Law. All are taught entirely in English and carry EU recognition." },
+  { q: "Is Cyprus safe for international students?", a: "Yes. Cyprus is ranked the 31st safest country in the world according to World Population Review 2026, with a low Global Terrorism Index score of 0.347. It is consistently rated safer than France and comparable to countries like Switzerland and Sweden." },
+  { q: "Can I do a Foundation program and then continue to a degree in Cyprus?", a: "Yes. The 1-year Foundation (English Language) program is specifically designed as a pathway for students who don't yet meet direct bachelor's entry requirements, leading directly into a Bachelor's or Master's program." },
+  { q: "When does the 2026 Cyprus intake start and when should I apply?", a: "The main October 2026 intake begins with induction in late September. A February/Spring intake is also available for select programs. We recommend beginning your application at least 4–5 months before your intended start date." },
 ];
 
 /* ===================================================================
  *  MAIN
  * ================================================================ */
-export default function StudyNetherlandsPage() {
+export default function StudyCyprusPage() {
   const [openFAQ, setOpenFAQ] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -1472,10 +1182,6 @@ export default function StudyNetherlandsPage() {
           -webkit-text-fill-color: transparent;
           animation: lm-bg-shift 6s ease infinite;
         }
-
-        @media (max-width: 860px) {
-          .lm-pay-arrow { display: none !important; }
-        }
       `}</style>
 
       <ScrollProgress />
@@ -1496,30 +1202,30 @@ export default function StudyNetherlandsPage() {
                   letterSpacing: "-0.6px",
                 }}
               >
-                Study In <span className="text-[#1ab7ac]">the Netherlands</span>
+                Study In <span className="text-[#1ab7ac]">Cyprus</span>
                 <br />
-                Where Global
+                Europe's Modern
                 <br />
-                Careers Begin.
+                Student Destination.
               </h1>
 
               <p className="mt-6 text-gray-600 text-lg leading-relaxed max-w-xl">
-                English-taught degrees. Paid internships. Fortune 500
-                employers. Europe's most practical business education — in
-                one of the world's most liveable countries. A mandatory paid
-                internship is built into every programme, plus a post-study
-                orientation visa allowing you to stay and work for up to a
-                year.
+                EU-recognised qualifications. English-taught programs.
+                Mediterranean lifestyle at some of Europe's most accessible
+                tuition fees. Cyprus is the only EU island where the sea
+                stays warm enough to swim in November — and one of the most
+                affordable places in Europe to earn an internationally
+                respected degree.
               </p>
 
               {/* Tags */}
               <div className="flex flex-wrap gap-3 mt-8">
                 {[
-                  "✓160+ Nationalities",
-                  "✓Paid Internship Included",
-                  "✓Post-Study Visa",
-                  "✓Assignment-Based — No Exams",
-                  "✓Guaranteed Housing",
+                  "✓EU-Recognised Degrees",
+                  "✓Tuition from €5,500/yr",
+                  "✓No Visa Interview",
+                  "✓#31 Safest Country Globally",
+                  "✓300+ Sunny Days a Year",
                 ].map((item, index) => (
                   <span
                     key={index}
@@ -1564,8 +1270,8 @@ export default function StudyNetherlandsPage() {
               <div className="relative z-10">
                 <div className="w-[320px] h-[320px] md:w-[420px] md:h-[420px] lg:w-[520px] lg:h-[520px] rounded-full overflow-hidden">
                   <img
-                    src="images//Netherland.jpeg"
-                    alt="Study in the Netherlands"
+                    src="images/cyp1.jpeg"
+                    alt="Study in Cyprus"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -1587,10 +1293,10 @@ export default function StudyNetherlandsPage() {
                 marginTop: 56,
               }}
             >
-              <BoardingStat text="#1" label="English Proficiency" sub="Global ranking" delay={100} />
-              <BoardingStat value={160} suffix="+" label="Nationalities" sub="On campus" delay={250} />
-              <BoardingStat value={50} suffix="%" label="Internship-to-Job" sub="Conversion rate" delay={400} />
-              <BoardingStat text="#11" label="Global GDP" sub="Netherlands ranking" delay={550} />
+              <BoardingStat value={300} suffix="+" label="Sunny Days / Year" sub="Mediterranean climate" delay={100} />
+              <BoardingStat prefix="€" value={5500} label="From / Year" sub="Foundation tuition fee" delay={250} />
+              <BoardingStat text="#31" label="Safest Country" sub="World Population Review 2026" delay={400} />
+              <BoardingStat text="IELTS 4" label="Min. Accepted" sub="Foundation programs" delay={550} />
             </div>
           </Reveal>
         </div>
@@ -1599,15 +1305,19 @@ export default function StudyNetherlandsPage() {
       {/* ---------------- MARQUEE ---------------- */}
       <Marquee />
 
-      {/* ---------------- WHY NETHERLANDS ---------------- */}
+      {/* ---------------- WHY CYPRUS ---------------- */}
       <section style={{ background: C.cream, padding: "100px 48px", position: "relative" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Why the Netherlands</span>}
-            title={<span style={{ color: "#4197a2" }}>8 Reasons the Netherlands Stands Apart</span>}
+            tag={<span style={{ color: "#429198" }}>Why Cyprus</span>}
+            title={
+              <span style={{ color: "#4197a2" }}>
+                8 Reasons Students Are Choosing Cyprus in 2026
+              </span>
+            }
             sub={
               <span style={{ color: "#429198" }}>
-                More than 160 nationalities. Europe's top English-proficiency ranking. A job market stacked with global multinationals. Here's why thousands of students choose the Netherlands every year.
+                An EU member state with affordable fees, English-medium programs, and a Mediterranean lifestyle that no other European destination can match.
               </span>
             }
           />
@@ -1656,7 +1366,7 @@ export default function StudyNetherlandsPage() {
           }}
         />
         <p style={{ color: C.white, fontSize: 15.5, fontWeight: 600, margin: 0, position: "relative", zIndex: 2 }}>
-          ✨ September 2026 intake is now open. Our advisors can assess your profile today — free, with no obligation.
+          ✨ Not sure if Cyprus is right for you? Let our experts assess your profile — free, no obligation.
         </p>
         <button
           style={{
@@ -1713,8 +1423,8 @@ export default function StudyNetherlandsPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead
             tag="At a Glance"
-            title="Netherlands — Quick Facts for International Students"
-            sub="Essential information to help you plan your study journey with confidence and clarity."
+            title="Cyprus — Quick Facts for International Students"
+            sub="Everything you need to know before you decide."
             light
           />
           <Reveal>
@@ -1733,14 +1443,14 @@ export default function StudyNetherlandsPage() {
                   overflow: "hidden",
                 }}
               >
-                <FactRow label="Location" value="Western Europe · Heart of the EU · Schengen Zone" />
-                <FactRow label="Capital City" value="Amsterdam — Education & Business Hub" />
+                <FactRow label="Location" value="Eastern Mediterranean · European Union Member State" />
                 <FactRow label="Currency" value="Euro (€)" />
-                <FactRow label="Language of Instruction" value="English — #1 Globally in Non-Native Proficiency" />
-                <FactRow label="International Students" value="160+ Nationalities Represented on Campus" />
-                <FactRow label="Available Intakes" value="September · January" />
-                <FactRow label="Foundation Programme Fee" value="€12,250 / year (all-inclusive)" />
-                <FactRow label="Bachelor's Tuition" value="€24,500 / year (same fee for all students)" />
+                <FactRow label="Language of Instruction" value="English (all programs available in English)" />
+                <FactRow label="Main Student Cities" value="Larnaca · Nicosia · Limassol · Paphos" />
+                <FactRow label="Foundation Program Fee" value="€5,500 (all-inclusive, visa processing included)" />
+                <FactRow label="Bachelor's Tuition" value="€6,500 first year · reduced fees from Year 2" />
+                <FactRow label="Master's Tuition" value="€7,500 (18 months, complete course fee)" />
+                <FactRow label="Average Living Cost" value="~€300 / month (accommodation, food & essentials)" />
               </div>
               <div
                 style={{
@@ -1750,14 +1460,13 @@ export default function StudyNetherlandsPage() {
                   overflow: "hidden",
                 }}
               >
-                <FactRow label="Master's / MBA Tuition" value="€25,500 / year" />
-                <FactRow label="Application Fee" value="€95 (one-time, non-refundable)" />
-                <FactRow label="Initial Package (Non-EU/EEA)" value="€6,050 — visa + insurance + pickup" />
-                <FactRow label="Avg. Monthly Living Cost" value="€800 – €1,200 / month" />
-                <FactRow label="Part-Time Work Rights" value="Up to 16 hours / week during term" />
-                <FactRow label="Internship" value="Mandatory full-time paid internship" />
-                <FactRow label="Post-Study Work Option" value="Dutch Orientation Year Visa — up to 1 year" />
-                <FactRow label="Internship-to-Job Rate" value="50% receive a job offer from their employer" />
+                <FactRow label="Average Graduate Salary" value="€1,800 – €2,200 / month (gross)" />
+                <FactRow label="Intakes" value="October (main) · February / September (select programs)" />
+                <FactRow label="Student Work Rights" value="Part-time work permitted per Cyprus immigration regulations" />
+                <FactRow label="Safety Ranking" value="#31 Safest Country Globally (World Population Review 2026)" />
+                <FactRow label="Climate" value="300–340 sunny days/year · Winter avg. 13–15°C · Summer avg. 30–36°C" />
+                <FactRow label="Visa Type" value="Cyprus Student Residence Permit (E-Visa issued)" />
+                <FactRow label="Visa Timeline" value="Approximately 90 working days after document submission" />
               </div>
             </div>
           </Reveal>
@@ -1769,10 +1478,10 @@ export default function StudyNetherlandsPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
             tag={<span style={{ color: "#429198" }}>Cost of Studying</span>}
-            title={<span style={{ color: "#4197a2" }}>Study Investment — Netherlands 2026</span>}
+            title={<span style={{ color: "#4197a2" }}>What Will It Actually Cost You?</span>}
             sub={
               <span style={{ color: "#429198" }}>
-                Transparent, all-in pricing. No hidden charges. The same fee structure applies to every international student regardless of nationality.
+                Cyprus offers one of the best price-to-quality ratios in the EU. Here are realistic cost ranges for the 2026 intake — all fees include visa processing charges.
               </span>
             }
           />
@@ -1783,56 +1492,29 @@ export default function StudyNetherlandsPage() {
               gap: 18,
             }}
           >
-            <CostCard label="Foundation Programme" amount="€12,250" note="Per year · All-inclusive" detail="Projects & study trips included. Duration: 6–12 months. Pathway to direct Bachelor's entry." delay={0} />
-            <CostCard label="Bachelor's Tuition" amount="€24,500" note="Per year · Same fee for all students" detail="3-year fast-track or 4-year standard pathway, taught entirely in English." highlight delay={80} />
-            <CostCard label="Master's / MBA" amount="€25,500" note="Per year · 1-year fast-track available" detail="1-year intensive MBA with specialisations: Data Strategy, Real Estate, Hospitality & Global Leadership." delay={160} />
-            <CostCard label="Initial Package (Non-EU/EEA)" amount="€6,050" note="One-time deposit" detail="Covers visa processing through IND, health insurance, and airport pickup on arrival." delay={240} />
-            <CostCard label="Monthly Living Cost" amount="€800–1,200" note="Per month estimate" detail="Covers accommodation, food & transport. Part-time work (16 hrs/week) helps offset costs." delay={320} />
-            <CostCard label="Application Fee" amount="€95" note="One-time, non-refundable" detail="Paid at the credibility interview stage. Covers admissions processing and assessment." delay={400} />
+            <CostCard label="Foundation Program" amount="€5,500" note="1 year · visa processing included" delay={0} />
+            <CostCard label="Bachelor's — Year 1" amount="€6,500" note="All-inclusive · reduced fees from Year 2" highlight delay={80} />
+            <CostCard label="Master's Program" amount="€7,500" note="18 months · complete course fee" delay={160} />
+            <CostCard label="Monthly Living" amount="~€300" note="Food, accommodation & miscellaneous" delay={240} />
+            <CostCard label="On Arrival (once)" amount="€650" note="Medical, insurance & student card" delay={320} />
+            <CostCard label="Bank Balance Required" amount="€7,000" note="Current/one-day balance for visa" delay={400} />
           </div>
         </div>
       </section>
 
-      {/* ---------------- PAYMENT SCHEDULE ---------------- */}
-      <section style={{ background: C.white, padding: "80px 48px" }}>
+      {/* ---------------- COURSES ---------------- */}
+      <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Payment Schedule</span>}
-            title={<span style={{ color: "#4197a2" }}>How & When You Pay</span>}
-            sub={
-              <span style={{ color: "#429198" }}>
-                A clear, staged payment structure — you never pay everything upfront. Fees are tied to milestones in your application and visa journey.
-              </span>
-            }
-          />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: 18,
-            }}
-          >
-            <PayStep num="01" title="Application Fee" amount="€95" note="Paid at credibility interview stage. One-time, non-refundable." delay={0} />
-            <PayStep num="02" title="Initial Package" amount="€6,050" note="Paid after unconditional offer letter. Covers visa, insurance & pickup." delay={80} />
-            <PayStep num="03" title="Post-Visa Balance" amount="€8,000" note="Due after visa is approved. Confirms your place and pre-departure arrangements." delay={160} />
-            <PayStep num="04" title="Monthly Instalments" amount="12×" note="Remaining tuition paid in 12 equal instalments after arrival." isLast delay={240} />
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- PROGRAMMES ---------------- */}
-      <section style={{ background: C.cream, padding: "100px 48px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag={<span style={{ color: "#429198" }}>Popular Study Areas</span>}
+            tag={<span style={{ color: "#429198" }}>Popular Programs for International Students</span>}
             title={
               <span style={{ color: "#4197a2" }}>
-                In-Demand Programmes for International Students
+                In-Demand Courses Across Cyprus
               </span>
             }
             sub={
               <span style={{ color: "#429198" }}>
-                Career-aligned, English-taught, and built for the global business world. Foundation to MBA — choose from a 3-year fast-track or 4-year standard Bachelor's pathway.
+                From business to technology to law — Cyprus colleges offer career-focused, industry-aligned degrees taught entirely in English with strong employment outcomes.
               </span>
             }
           />
@@ -1846,10 +1528,10 @@ export default function StudyNetherlandsPage() {
             {courses.map((c, i) => (
               <CourseCard
                 key={c.title}
-                icon={c.icon}
+                num={String(i + 1).padStart(2, "0")}
                 title={c.title}
                 body={c.body}
-                tag={c.tag}
+                icon={c.icon}
                 delay={i * 70}
               />
             ))}
@@ -1882,29 +1564,26 @@ export default function StudyNetherlandsPage() {
           <SectionHead
             style={{ paddingLeft: "24px", paddingRight: "24px" }}
             tag="English Requirements"
-            title="IELTS, TOEFL, PTE & Cambridge Score Guide"
-            sub="Score requirements vary by programme level. Foundation entry is available for students who need to strengthen their English before beginning a degree — you don't need IELTS 6.0 to start."
+            title="IELTS & PTE Score Guide for Cyprus"
+            sub="Cyprus programs accept lower English scores than most EU destinations — making it accessible even if your IELTS result is not high. TOEFL is not accepted. Requirements vary by level and program — your counsellor will confirm exact requirements."
             light
           />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
             {[
               {
-                title: "🎓 Foundation Programme",
-                icon: "🎓",
-                rows: [["IELTS Academic", "5.0 – 5.5"], ["TOEFL iBT", "35 – 45 pts"], ["PTE Academic", "36 – 42"], ["Cambridge", "160 – 170"]],
-                note: "💡 The Foundation Programme (6–12 months) is a structured bridge for students who don't yet meet direct entry requirements. Successful completion guarantees direct Bachelor's entry.",
+                title: "Foundation Program",
+                rows: [["IELTS", "4.0 – 4.5"], ["PTE Academic", "43 – 57"], ["Cambridge", "B1 Preliminary"], ["TOEFL", "Not Accepted"]],
+                note: "💡 Ideal entry point if your English score is below direct bachelor's requirements. Leads to full degree pathways after one year.",
               },
               {
-                title: "📚 Bachelor's Programmes",
-                icon: "📚",
-                rows: [["IELTS Academic", "6.0 overall"], ["TOEFL iBT", "80 points"], ["PTE Academic", "61 points"], ["Cambridge", "160 minimum"]],
-                note: "⚠️ Minimum academic requirement: equivalent to Higher General Secondary Education, Pre-University, IB Diploma, A-levels, BTEC Level 3, or Class 12th.",
+                title: "Bachelor's Programs",
+                rows: [["IELTS (BBA & BHM)", "5.0 – 5.5"], ["IELTS (Other programs)", "5.5 – 6.0"], ["PTE Academic", "58"], ["Cambridge B2 First", "Grade C"], ["TOEFL", "Not Accepted"]],
+                note: "💡 Also accepted: IB English, Cambridge IGCSE/GCSE, GCE A Levels, SAT EBRW 530, Michigan ECCE 52, and CEFR B1.",
               },
               {
-                title: "📖 Master's / MBA",
-                icon: "📖",
-                rows: [["IELTS Academic", "6.5 overall"], ["TOEFL iBT", "90 points"], ["PTE Academic", "64 points"], ["Cambridge", "180 minimum"]],
-                note: "⚠️ A recognised Bachelor's degree is required for Master's / MBA entry. Requirements may vary by specific programme. Contact Langma International to confirm eligibility.",
+                title: "Master's Programs",
+                rows: [["IELTS (MBA / Hospitality)", "6.0"], ["IELTS (Other programs)", "6.5"], ["PTE Academic", "59"], ["Cambridge B2 First", "Grade C"], ["TOEFL", "Not Accepted"]],
+                note: "⚠️ MBA applicants must also submit 2 reference letters confirming a minimum of 3 years professional/administrative experience.",
               },
             ].map((card, ci) => (
               <Reveal key={card.title} delay={ci * 120}>
@@ -1977,80 +1656,30 @@ export default function StudyNetherlandsPage() {
         </div>
       </section>
 
-      {/* ---------------- ADMISSION REQUIREMENTS ---------------- */}
+      {/* ---------------- VISA GUIDE ---------------- */}
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Admission Requirements</span>}
-            title={<span style={{ color: "#4197a2" }}>What You Need to Apply</span>}
-            sub={
-              <span style={{ color: "#429198" }}>
-                A clear, straightforward process. Here is exactly what to prepare before submitting your application — no surprises, no hidden requirements.
-              </span>
-            }
-          />
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }} className="lm-visa-wrap">
-            <Reveal>
-              <div>
-                {admissionDocs.map((d, idx, arr) => (
-                  <div
-                    key={d}
-                    style={{
-                      display: "flex",
-                      gap: 12,
-                      alignItems: "flex-start",
-                      padding: "13px 0",
-                      borderBottom: idx === arr.length - 1 ? "none" : `1px solid ${C.border}`,
-                      fontSize: 14,
-                      color: C.slate,
-                    }}
-                  >
-                    <span style={{ color: C.navy, fontWeight: 700, flexShrink: 0 }}>✓</span>
-                    {d}
-                  </div>
-                ))}
-                <div
-                  style={{
-                    background: C.goldTint,
-                    border: `1px solid ${C.goldSoft}`,
-                    borderLeft: `3px solid ${C.navy}`,
-                    padding: "16px 18px",
-                    marginTop: 18,
-                    fontSize: 13,
-                    color: "#8a3810",
-                    lineHeight: 1.7,
-                  }}
-                >
-                  ℹ️ Requirements may vary depending on the programme level and your specific academic background. Age gaps and study gaps are accepted. Contact Langma International for a personalised eligibility review.
-                </div>
-              </div>
-            </Reveal>
-            <DocsBox title="Academic Entry Qualifications Accepted" items={academicQuals} />
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- VISA GUIDE ---------------- */}
-      <section style={{ background: C.white, padding: "100px 48px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag={<span style={{ color: "#429198" }}>Netherlands Student Visa Guide</span>}
+            tag={<span style={{ color: "#429198" }}>Student Visa</span>}
             title={
               <span style={{ color: "#4197a2" }}>
-                Straightforward, Efficient & Fully Guided
+                Cyprus Student Visa — Step-by-Step Guide
               </span>
             }
             sub={
               <span style={{ color: "#429198" }}>
-                The visa process is managed by the institution through the IND (Immigration and Naturalisation Service). Langma International guides you through every step from application to arrival.
+                The Cyprus student visa (E-Visa) process is straightforward. No visa interview required. Langma International guides you through every document and every step.
               </span>
             }
           />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }} className="lm-visa-wrap">
             <div>
-              {visaSteps.map((s, i) => (
-                <VisaStep key={s.title} n={i + 1} title={s.title} body={s.body} fee={s.fee} isLast={i === visaSteps.length - 1} delay={i * 70} />
-              ))}
+              <VisaStep n={1} title="Submit Admission Documents" body="Send scanned copies of your education certificates, passport, and English test results. Your offer letter is issued within 2–3 working days." delay={0} />
+              <VisaStep n={2} title="Receive Offer Letter & Pay Initial Deposit" body="Review and sign your offer letter. Pay the initial tuition deposit to secure your place. Deposit amount: €3,000–€4,000 (varies by program)." delay={80} />
+              <VisaStep n={3} title="Prepare & Courier Visa Documents" body="Compile all required original and apostilled documents (see checklist). Courier the complete set to the college address as directed by your counsellor." delay={160} />
+              <VisaStep n={4} title="Visa Processing Period" body="The Cyprus immigration authority processes the student visa in approximately 90 working days from the date of submission. No interview is required at any stage." delay={240} />
+              <VisaStep n={5} title="Receive E-Visa & Travel" body="Once approved, you receive your E-Visa. Transfer the remaining tuition balance, book your flight, and travel to Cyprus to begin your studies." delay={320} />
+              <VisaStep n={6} title="Arrive & Complete Registration" body="On arrival, pay €650 directly to the college for medical tests, insurance, and student card. Your Langma advisor provides full pre-departure and arrival guidance." isLast delay={400} />
             </div>
             <div style={{ position: "sticky", top: 100 }}>
               <DocsBox
@@ -2058,10 +1687,13 @@ export default function StudyNetherlandsPage() {
                 items={visaDocs}
                 note={
                   <>
-                    <strong style={{ color: "#FFFFFF" }}>⚠️ Regional Applicants:</strong> Applicants from Bangladesh, Pakistan, Afghanistan, and Nigeria are required to demonstrate proof of funds or sponsorship from an approved third country.
+                    <strong style={{ color: "#FFFFFF" }}>Processing Time:</strong> ~90 working days · No visa interview required
                     <br />
                     <br />
-                    <strong style={{ color: "#FFFFFF" }}>✅ Gaps & Age:</strong> Study gaps and all ages are accepted — applications are not penalised for career breaks or time between education.
+                    <strong style={{ color: "#FFFFFF" }}>Note:</strong> All ages, study gaps, and most previously rejected cases are accepted. Contact our counsellors to confirm eligibility for your profile.
+                    <br />
+                    <br />
+                    Visa requirements may change according to immigration policies. Always confirm current requirements with your Langma counsellor.
                   </>
                 }
               />
@@ -2070,47 +1702,53 @@ export default function StudyNetherlandsPage() {
         </div>
       </section>
 
-      {/* ---------------- CAREER OUTLOOK ---------------- */}
-      <section style={{ background: C.cream, padding: "100px 48px" }}>
+      {/* ---------------- WORK OPPORTUNITIES ---------------- */}
+      <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Career Outlook · Netherlands 2026</span>}
-            title={<span style={{ color: "#4197a2" }}>Why Dutch Graduates Get Hired</span>}
+            tag={<span style={{ color: "#429198" }}>Work Opportunities</span>}
+            title={<span style={{ color: "#4197a2" }}>Work While You Study — and After</span>}
             sub={
               <span style={{ color: "#429198" }}>
-                The Netherlands doesn't just prepare you for a career — it places you inside one. With a mandatory paid internship, a 100+ company career fair, and a 50% internship-to-job rate, graduates are work-ready before they collect their diploma.
+                Cyprus's service-driven economy and EU membership create genuine work opportunities for international students both during and after their degree.
               </span>
             }
           />
-
-          <Reveal>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 18, marginBottom: 40 }}>
-              {[["50%", "Internship-to-Job Rate"], ["100+", "Companies at Career Fair"], ["1 Year", "Post-Study Orientation Visa"], ["#1", "English Proficiency Globally"]].map(([num, lbl]) => (
-                <div key={lbl} style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: 16, padding: "28px 22px", textAlign: "center" }}>
-                  <div style={{ fontSize: 32, fontWeight: 600, color: C.navy, lineHeight: 1, marginBottom: 8 }}>{num}</div>
-                  <div style={{ fontSize: 12, fontWeight: 600, color: C.slate, textTransform: "uppercase", letterSpacing: "0.8px" }}>{lbl}</div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22, marginBottom: 40 }}>
-            {careerOutlooks.map((o, i) => (
-              <OutlookCard key={o.title} {...o} delay={i * 100} />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22 }}>
+            {workCards.map((w, i) => (
+              <OutlookCard key={w.title} {...w} delay={i * 100} />
             ))}
           </div>
+        </div>
+      </section>
 
-          <Reveal delay={200}>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 10, justifyContent: "center" }}>
+      {/* ---------------- CAREER OUTLOOK ---------------- */}
+      <section
+        style={{
+          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
+          padding: "90px 48px",
+          textAlign: "center",
+        }}
+      >
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+          <SectionHead
+            tag="Career Outlook"
+            title="Why Cyprus Graduates Get Hired"
+            center
+            light
+            sub="Cyprus graduates are employable because their degrees are built around what the EU economy actually needs. With a GDP per capita of $42,413 and a services sector that accounts for 85% of national output, Cyprus produces graduates with direct industry exposure — particularly in finance, tourism, technology, and international business. As an EU member state, graduates can pursue careers across the entire European Union."
+          />
+          <Reveal>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center" }}>
               {careerTags.map((tag) => (
                 <span
                   key={tag}
                   style={{
-                    background: C.white,
-                    border: `1px solid ${C.border}`,
-                    color: C.navy,
+                    background: "rgba(255,255,255,0.07)",
+                    border: "1px solid rgba(255,255,255,0.14)",
+                    color: "rgba(255,255,255,0.85)",
                     fontSize: 13,
-                    fontWeight: 600,
+                    fontWeight: 500,
                     padding: "9px 20px",
                     borderRadius: 999,
                   }}
@@ -2120,56 +1758,6 @@ export default function StudyNetherlandsPage() {
               ))}
             </div>
           </Reveal>
-        </div>
-      </section>
-
-      {/* ---------------- STUDENT LIFE ---------------- */}
-      <section style={{ background: C.white, padding: "100px 48px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag={<span style={{ color: "#429198" }}>Student Life</span>}
-            title={<span style={{ color: "#4197a2" }}>Life in the Netherlands — More Than Just Study</span>}
-            sub={
-              <span style={{ color: "#429198" }}>
-                World-class education inside one of the world's most liveable countries. Here is what everyday life actually looks like as an international student.
-              </span>
-            }
-          />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22 }}>
-            {lifeCards.map((l, i) => (
-              <OutlookCard key={l.title} {...l} delay={i * 100} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------------- APPLICATION PROCESS ---------------- */}
-      <section
-        style={{
-          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
-          padding: "90px 48px",
-        }}
-      >
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag="Application Process"
-            title="7 Steps to Studying in the Netherlands"
-            sub="A clear, fully guided process from first enquiry to first day of class. Langma International is with you at every single step."
-            light
-          />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-              background: "rgba(255,255,255,0.04)",
-              borderRadius: 18,
-              overflow: "hidden",
-            }}
-          >
-            {processSteps.map((s, i) => (
-              <ProcessStep key={s.title} n={i + 1} title={s.title} body={s.body} delay={i * 70} />
-            ))}
-          </div>
         </div>
       </section>
 
@@ -2196,9 +1784,9 @@ export default function StudyNetherlandsPage() {
         />
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead
-            tag="Why Choose Langma International"
+            tag="Why Langma International"
             title="Your Study Abroad Partner — Not Just an Agent"
-            sub="From your first eligibility check to your first day on campus, we handle everything. No stress, no guesswork."
+            sub="From your first eligibility check to your first day on campus in Cyprus, we handle everything. No stress, no guesswork."
             light
           />
           <div
@@ -2215,28 +1803,11 @@ export default function StudyNetherlandsPage() {
         </div>
       </section>
 
-      {/* ---------------- TESTIMONIALS ---------------- */}
-      <section
-        style={{
-          background: `linear-gradient(135deg, ${C.navyDark}, ${C.navyD})`,
-          padding: "100px 48px",
-        }}
-      >
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead tag="Student Stories" title="What Our Students Say" light />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 22 }}>
-            {testimonials.map((t, i) => (
-              <TestiCard key={t.name} {...t} delay={i * 100} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ---------------- FAQ ---------------- */}
       <FAQ />
       {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead tag={<span style={{ color: "#429198" }}>FAQs</span>} title="Frequently Asked Questions — Study in the Netherlands" center />
+          <SectionHead tag={<span style={{ color: "#429198" }}>FAQs</span>} title="Frequently Asked Questions — Study in Cyprus" center />
           <Reveal>
             <div style={{ maxWidth: 860, margin: "0 auto" }}>
               {faqs.map((f, i) => (
@@ -2303,7 +1874,7 @@ export default function StudyNetherlandsPage() {
                 lineHeight: 1.1,
               }}
             >
-              Start Your Netherlands Journey
+              Your European Future Starts
               <br />
               <em className="lm-grd-text" style={{ fontStyle: "italic" }}>
                 With One Conversation.
@@ -2322,7 +1893,7 @@ export default function StudyNetherlandsPage() {
                 lineHeight: 1.8,
               }}
             >
-              September 2026 intake is open now. Europe's #1 English-proficiency country. Paid internships built into your programme. A post-study work visa. Your future is one free conversation away.
+              Seats for the October 2026 Cyprus intake are filling now. Get a free profile assessment from our Cyprus specialists and know exactly where you stand — today.
             </p>
           </Reveal>
           <Reveal delay={300}>

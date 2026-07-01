@@ -74,9 +74,11 @@ import FloatingCallButton from "./Components/Floatingcalbutton";
 import Test from "./Components/Common/Header/Test";
 import Termscondition from "./Pages/HomePages/Termscondition";
 import Test1 from "./Pages/HomePages/Test1";
+import StudyCyprusPage from "./Pages/HomePages/StudyInCyprus";
 import Certificate from "./Pages/HomePages/Certificate";
 import StudyDubaiPage from "./Pages/HomePages/Studynew";
 import StudyPolandPage from "./Pages/HomePages/StudyPolandPage";
+import StudyGeorgiaPage from "./Pages/HomePages/StudyInGeorgia";
 import Investment1 from "./Pages/HomePages/Investment1";
 import PRAssessment from "./Pages/HomePages/PRAssessment";
 import StudyAbrotHeroSection1 from "./Pages/HomePages/StudyAbrotHeroSection1";
@@ -192,6 +194,8 @@ function App() {
           <Route path="/study-in-mauritius" element={<StudyMauritiusPage />} />
           <Route path="/study-in-singapore" element={<StudySingaporePage/>} />
           {/* <Route path="/dubai" element={<StudyDubaiPage />} /> */}
+          <Route path="/georgia" element={<StudyGeorgiaPage />} />
+          <Route path="/study-in-cyprus" element={<StudyCyprusPage />} />
         </Routes>
       )}
 
