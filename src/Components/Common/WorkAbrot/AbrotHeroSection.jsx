@@ -124,51 +124,47 @@ const AbrotHeroSection = () => {
 </div>
     </div> */}
       {/* <LangmaSection /> */}
-      <div className="py-10 bg-gray-100">
-  <h2 className="text-center text-[32px] font-semibold text-[#296166] mb-8">
-    Explore Your Work Destinations
-  </h2>
-
-  <div className="px-2"> {/* reduced padding */}
-    <Swiper
-      modules={[Autoplay]}
-      spaceBetween={8}   // 🔥 reduced gap
-      slidesPerView={2}
-      autoplay={{
-        delay: 2000,
-        disableOnInteraction: false,
-      }}
-      loop={true}
-      breakpoints={{
-        640: { slidesPerView: 3, spaceBetween: 10 },
-        768: { slidesPerView: 4, spaceBetween: 10 },
-        1024: { slidesPerView: 9, spaceBetween: 10 },
-      }}
-    >
-      {destinations.map((item, index) => (
-        <SwiperSlide key={index}>
-          <div className="text-center">
-            
-            {/* Bigger Image Box */}
-            <div className="w-full flex items-center justify-center">
-              <Link to={item.link} className="cursor-pointer">
-              <img
-                src={item.flag}
-                alt={item.name}
-                className="w-32 h-24 object-contain mx-auto" // 🔥 increased size
-              />
-              </Link>
-            </div>
-
-            <p className="text-sm font-medium mt-2">
-              {item.name}
-            </p>
-          </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
-  </div>
-</div>
+      <div className="pt-8 pb-14 md:pb-20 lg:pb-24 bg-white">
+        <h2 className="text-center text-[22px] sm:text-[28px] lg:text-[32px] font-semibold text-[#296166] mb-6 px-4">
+          Explore Your Work Destinations
+        </h2>
+        <div className="px-2">
+          <Swiper
+            modules={[Autoplay]}
+            spaceBetween={12}
+            slidesPerView={2}
+            autoplay={{ delay: 2000, disableOnInteraction: false }}
+            loop={true}
+            breakpoints={{
+              640:  { slidesPerView: 3, spaceBetween: 14 },
+              768:  { slidesPerView: 4, spaceBetween: 14 },
+              1024: { slidesPerView: 9, spaceBetween: 16 },
+            }}
+          >
+            {destinations.map((item, index) => (
+              <SwiperSlide key={index}>
+                <div className="text-center px-1">
+                  <div className="w-full flex items-center justify-center">
+                    <Link to={item.link} className="block w-full max-w-[132px] sm:max-w-[148px] mx-auto">
+                      <div className="aspect-[3/2] w-full rounded-lg overflow-hidden bg-white shadow-[0_4px_16px_rgba(46,100,102,0.2)] ring-1 ring-[#D8E0EC] hover:shadow-[0_8px_28px_rgba(46,100,102,0.28)] hover:-translate-y-0.5 transition-all duration-300">
+                        <img
+                          src={item.flag.includes("flagcdn.com") ? item.flag.replace("/w320/", "/w640/") : item.flag}
+                          alt={item.name}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    </Link>
+                  </div>
+                  <p className="text-xs sm:text-sm font-medium mt-3 px-1 leading-tight text-[#296166]">
+                    {item.name}
+                  </p>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
       <FAQ />
       <ConnectedSection />
       {/* <ContactForm /> */}
