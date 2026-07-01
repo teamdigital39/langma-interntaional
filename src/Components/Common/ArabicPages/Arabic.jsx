@@ -625,6 +625,44 @@ useEffect(() => {
               </div>
             </div>
           </section>
+
+          <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+                <div className="flex justify-center lg:justify-start">
+                  <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
+                    <img
+                      src="/images/English13.jpg"
+                      alt="Cambridge Assessment English qualifications preparation centre certificate"
+                      className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
+                    />
+                  </div>
+                </div>
+
+                <div className="text-center lg:text-left">
+                  <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
+                    Langma International:{" "}
+                    <span className="text-[#296166]">
+                      Preparing Global Achievers Through Cambridge Excellence
+                    </span>
+                  </h2>
+                  <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed mb-4">
+                    Recognition by Cambridge Assessment English reflects Langma International&apos;s
+                    unwavering commitment to delivering English language education that meets
+                    internationally respected standards. Through structured preparation aligned with
+                    the Cambridge assessment framework, we help learners build the confidence,
+                    proficiency, and communication skills required to thrive in academic, professional,
+                    and international environments.
+                  </p>
+                  <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
+                    This distinction reinforces our position as a trusted destination for students
+                    seeking globally recognized English language qualifications and world-class
+                    learning experiences.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
         </>
       )}
 
