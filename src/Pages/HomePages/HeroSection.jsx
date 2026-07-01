@@ -29,7 +29,7 @@ const destinations = [
 { name: "United Arab Emirates (Dubai)", flag: "https://flagcdn.com/w320/ae.png", link: "/" },
 { name: "Singapore", flag: "https://flagcdn.com/w320/sg.png", link: "/" },
 { name: "Malta", flag: "https://flagcdn.com/w320/mt.png", link: "/" },
-{ name: "Netherlands", flag: "https://flagcdn.com/w320/nl.png", link: "/" },
+{ name: "Netherlands", flag: "https://flagcdn.com/w320/nl.png", link: "/netherland" },
 { name: "Georgia", flag: "https://flagcdn.com/w320/ge.png", link: "/" },
   // { name: "Kingdom of Saudi Arabia", flag: "https://flagcdn.com/w320/sa.png", link: "/" },
   // { name: "Israel",                  flag: "https://flagcdn.com/w320/il.png", link: "/" },

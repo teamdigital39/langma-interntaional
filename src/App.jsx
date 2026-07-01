@@ -57,6 +57,7 @@ import Career from "./Pages/HomePages/Career";
 import Privacy from "./Pages/HomePages/Privacy";
 import Payment from "./Pages/HomePages/Payment";
 import Event from "./Pages/HomePages/Event";
+import StudyNetherlandsPage from "./Pages/HomePages/StudyInNetherlands";
 import Transcription from "./Pages/HomePages/Transcription";
 import Translational from "./Pages/HomePages/Translational";
 import Localization from "./Pages/HomePages/Localization";
@@ -181,6 +182,7 @@ function App() {
           <Route path="/study-assessment" element={<LangmaStudyAbroadAssessment />} />
           {/* <Route path="/jkl" element={<StudyAbrotHeroSection1 />} /> */}
           <Route path="/languages" element={<InternationalHeroSection />} />
+          <Route path="/netherland" element={<StudyNetherlandsPage />} />
         </Routes>
       )}
 
