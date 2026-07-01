@@ -694,13 +694,13 @@ useEffect(() => {
                   accurate proficiency evaluation while reflecting our commitment to globally
                   benchmarked language education and student success.
                 </p>
-                <h3 className="text-[20px] lg:text-[24px] font-bold text-gray-900 leading-snug mb-4">
+                {/* <h3 className="text-[20px] lg:text-[24px] font-bold text-gray-900 leading-snug mb-4">
                   Langma International — Advancing Arabic Language Excellence Through ALPT Accreditation
                 </h3>
                 <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
                   Aligned with internationally recognized ACTFL and AERO standards, reinforcing our commitment
                   to quality assessment, academic excellence, and measurable language proficiency.
-                </p>
+                </p> */}
               </div>
             </div>
           </div>

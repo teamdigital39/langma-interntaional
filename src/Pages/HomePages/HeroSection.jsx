@@ -23,7 +23,7 @@ const destinations = [
    { name: "Germany", flag: "https://flagcdn.com/w320/de.png", link: "/" },
 { name: "Japan", flag: "https://flagcdn.com/w320/jp.png", link: "/" },
 { name: "Poland", flag: "https://flagcdn.com/w320/pl.png", link: "/poland" },
-{ name: "South Korea", flag: "https://flagcdn.com/w320/kr.png", link: "/" },
+{ name: "South Korea", flag: "https://flagcdn.com/w320/kr.png", link: "/south-korea" },
 { name: "Mauritius", flag: "https://flagcdn.com/w320/mu.png", link: "/" },
 { name: "Cyprus", flag: "https://flagcdn.com/w320/cy.png", link: "/" },
 { name: "United Arab Emirates (Dubai)", flag: "https://flagcdn.com/w320/ae.png", link: "/" },

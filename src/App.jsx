@@ -58,6 +58,7 @@ import Privacy from "./Pages/HomePages/Privacy";
 import Payment from "./Pages/HomePages/Payment";
 import Event from "./Pages/HomePages/Event";
 import StudyNetherlandsPage from "./Pages/HomePages/StudyInNetherlands";
+import StudyInSouthKorea from "./Pages/HomePages/StudyInSouthKorea";
 import Transcription from "./Pages/HomePages/Transcription";
 import Translational from "./Pages/HomePages/Translational";
 import Localization from "./Pages/HomePages/Localization";
@@ -183,6 +184,7 @@ function App() {
           {/* <Route path="/jkl" element={<StudyAbrotHeroSection1 />} /> */}
           <Route path="/languages" element={<InternationalHeroSection />} />
           <Route path="/netherland" element={<StudyNetherlandsPage />} />
+          <Route path="/south-korea" element={<StudyInSouthKorea />} />
         </Routes>
       )}
 
