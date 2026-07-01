@@ -677,7 +677,8 @@ const COUNTRIES = [
   // { name: "Japan", code: "jp", link: null, blurb: "World-ranked universities, generous scholarships, leading tech hubs." },
   { name: "South Korea", code: "kr", link: "/south-korea", blurb: "Global campuses, TOPIK-linked scholarships, and a rising study culture." },
   { name: "Malta", code: "mt", link: "/malta", blurb: "English-speaking EU island with full Schengen access." },
-  { name: "Netherland", code: "nl", link: "/netherland", blurb: "Ranked #1 in English proficiency, with a post-study orientation visa." },
+  { name: "Netherlands", code: "nl", link: "/netherlands", blurb: "Ranked #1 in English proficiency, with a post-study orientation visa." },
+  { name: "Georgia", code: "ge", link: "/georgia", blurb: "Unique cultural experience with growing educational opportunities." },
 ];
 
 function CountrySlider() {
