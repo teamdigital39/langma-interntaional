@@ -278,12 +278,14 @@ function HeroStat({ prefix = "", value, suffix = "", label, sub, delay }) {
           alignItems: "baseline",
           gap: 2,
         }}
+        className="nl-hero-stat-value"
       >
         <span style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.7em" }}>{prefix}</span>
         {typeof value === "number" ? animated : value}
         <span style={{ color: "rgba(255,255,255,0.7)", fontSize: "0.7em" }}>{suffix}</span>
       </div>
       <div
+        className="nl-hero-stat-label"
         style={{
           marginTop: 8,
           fontSize: 11,
@@ -397,6 +399,7 @@ function FactRow({ label, value }) {
   const [h, setH] = useState(false);
   return (
     <div
+      className="nl-fact-row"
       onMouseEnter={() => setH(true)}
       onMouseLeave={() => setH(false)}
       style={{
@@ -411,6 +414,7 @@ function FactRow({ label, value }) {
       }}
     >
       <span
+        className="nl-fact-label"
         style={{
           fontSize: 11.5,
           fontWeight: 600,
@@ -424,6 +428,7 @@ function FactRow({ label, value }) {
         {label}
       </span>
       <span
+        className="nl-fact-value"
         style={{
           fontSize: 13.5,
           fontWeight: 600,
@@ -1293,11 +1298,14 @@ export default function StudyNetherlandsPage() {
 
   return (
     <div
+      className="nl-page"
       style={{
         fontFamily: "'DM Sans', sans-serif",
         color: "#0E2A2A",
         background: C.cream,
         lineHeight: 1.6,
+        overflowX: "hidden",
+        maxWidth: "100%",
       }}
     >
       <style>{`
@@ -1306,6 +1314,9 @@ export default function StudyNetherlandsPage() {
         a { text-decoration: none; }
         html { scroll-behavior: smooth; }
         ::selection { background: ${C.teal}; color: #fff; }
+
+        .nl-page, .nl-page * { box-sizing: border-box; }
+        .nl-page img { max-width: 100%; height: auto; }
 
         @keyframes nl-marquee {
           0% { transform: translateX(0); }
@@ -1333,7 +1344,8 @@ export default function StudyNetherlandsPage() {
         .nl-nav-cta { display: block; }
 
         /* ── Hero grid ── */
-        .nl-hero-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; }
+        .nl-hero-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; min-width: 0; max-width: 100%; }
+        .nl-hero-grid > div { min-width: 0; max-width: 100%; }
 
         /* ── Stats bar ── */
         .nl-stats-bar { display: flex; flex-wrap: wrap; }
@@ -1377,6 +1389,58 @@ export default function StudyNetherlandsPage() {
           .nl-pay-grid { grid-template-columns: repeat(2, 1fr); }
           .nl-footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
           .pay-arrow { display: none !important; }
+
+          .nl-hero-badge {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: center;
+            max-width: 100%;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 8px 14px 8px 8px !important;
+            gap: 8px !important;
+            margin-bottom: 20px !important;
+          }
+          .nl-hero-badge-text {
+            font-size: 10px !important;
+            letter-spacing: 1px !important;
+            line-height: 1.45 !important;
+            white-space: normal !important;
+          }
+          .nl-hero-title {
+            font-size: clamp(28px, 8vw, 42px) !important;
+            text-align: center;
+            margin-bottom: 18px !important;
+          }
+          .nl-hero-title br { display: none; }
+          .nl-hero-lead,
+          .nl-hero-sub {
+            max-width: 100% !important;
+            text-align: center;
+            font-size: 15px !important;
+          }
+          .nl-hero-sub { font-size: 13px !important; margin-bottom: 28px !important; }
+          .nl-hero-pills { justify-content: center; gap: 8px !important; margin-bottom: 28px !important; }
+          .nl-hero-pills span { font-size: 11px !important; padding: 6px 12px !important; text-align: center; }
+          .nl-hero-btns { justify-content: stretch; margin-bottom: 36px !important; }
+          .nl-hero-btns button { width: 100%; }
+          .nl-stats-bar {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr;
+          }
+          .nl-stats-bar > div {
+            min-width: 0 !important;
+            flex: unset !important;
+            border-right: none !important;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 18px 14px !important;
+          }
+          .nl-stats-bar > div:nth-child(odd) {
+            border-right: 1px solid rgba(255,255,255,0.1) !important;
+          }
+          .nl-stats-bar > div:nth-last-child(-n+2) {
+            border-bottom: none;
+          }
         }
 
         @media (max-width: 600px) {
@@ -1387,10 +1451,97 @@ export default function StudyNetherlandsPage() {
           .nl-apply-steps > div:first-child .nl-apply-step { border-top: none !important; }
           .nl-pay-grid { grid-template-columns: 1fr; }
           .nl-footer-grid { grid-template-columns: 1fr; }
-          .nl-stats-bar > div { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.1); }
-          .nl-hero-pills { flex-direction: column; }
+          .nl-stats-bar { grid-template-columns: 1fr !important; }
+          .nl-stats-bar > div {
+            border-right: none !important;
+            border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+          }
+          .nl-stats-bar > div:last-child { border-bottom: none !important; }
+          .nl-hero-pills { flex-direction: column; align-items: stretch; }
+          .nl-hero-pills span { width: 100%; }
           .nl-hero-btns { flex-direction: column; }
           .nl-cta-strip { flex-direction: column !important; text-align: center; padding: 20px !important; }
+          .nl-hero-title { font-size: clamp(26px, 9vw, 34px) !important; }
+        }
+
+        @media (max-width: 450px) {
+          .nl-section { padding: 48px 16px !important; }
+          .nl-hero { padding: 44px 16px !important; }
+          .nl-hero-glow { display: none !important; }
+          .nl-section-glow { display: none !important; }
+
+          .nl-hero-badge {
+            border-radius: 14px !important;
+            padding: 10px 12px !important;
+            gap: 6px !important;
+          }
+          .nl-hero-badge-text {
+            font-size: 9px !important;
+            letter-spacing: 0.4px !important;
+            text-align: center;
+          }
+          .nl-hero-title {
+            font-size: clamp(22px, 7vw, 28px) !important;
+            letter-spacing: -0.4px !important;
+            word-break: break-word;
+          }
+          .nl-hero-lead { font-size: 14px !important; line-height: 1.7 !important; }
+          .nl-hero-sub { font-size: 12.5px !important; line-height: 1.75 !important; margin-bottom: 22px !important; }
+          .nl-hero-pills { gap: 6px !important; margin-bottom: 22px !important; }
+          .nl-hero-pills span {
+            font-size: 10.5px !important;
+            padding: 8px 10px !important;
+            border-radius: 10px !important;
+            line-height: 1.45;
+          }
+          .nl-hero-btns { gap: 10px !important; margin-bottom: 28px !important; }
+          .nl-hero-btns button {
+            padding: 13px 14px !important;
+            font-size: 13px !important;
+          }
+          .nl-stats-bar > div { padding: 14px 12px !important; }
+          .nl-hero-stat-label {
+            font-size: 9px !important;
+            letter-spacing: 0.6px !important;
+            white-space: normal !important;
+            line-height: 1.35;
+          }
+          .nl-hero-stat-value { font-size: clamp(22px, 6vw, 28px) !important; }
+
+          .nl-fact-row {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 6px !important;
+            padding: 14px 16px !important;
+          }
+          .nl-fact-label { white-space: normal !important; }
+          .nl-fact-value { text-align: left !important; width: 100%; }
+
+          .nl-cta-strip { padding: 16px !important; gap: 12px !important; }
+          .nl-cta-strip p { font-size: 13px !important; line-height: 1.55 !important; }
+          .nl-cta-btn {
+            white-space: normal !important;
+            width: 100%;
+            padding: 12px 14px !important;
+            font-size: 12.5px !important;
+          }
+
+          .nl-auto-grid { grid-template-columns: 1fr !important; }
+
+          .nl-final-cta { padding: 64px 16px !important; }
+          .nl-final-cta-title br { display: none; }
+          .nl-final-cta-title { font-size: clamp(24px, 7vw, 32px) !important; }
+          .nl-final-cta p { font-size: 14px !important; margin-bottom: 32px !important; }
+          .nl-final-cta-btns {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 10px !important;
+          }
+          .nl-final-cta-btns button {
+            width: 100% !important;
+            padding: 14px 16px !important;
+            font-size: 14px !important;
+          }
         }
       `}</style>
 
@@ -1409,14 +1560,15 @@ export default function StudyNetherlandsPage() {
         }}
       >
         {/* glow blobs */}
-        <div style={{ position: "absolute", top: "-10%", left: "-5%", width: 380, height: 380, background: `radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%)`, filter: "blur(20px)", animation: "nl-float 10s ease-in-out infinite", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", bottom: "-10%", right: "10%", width: 300, height: 300, background: `radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)`, filter: "blur(30px)", animation: "nl-float 13s ease-in-out infinite reverse", pointerEvents: "none" }} />
+        <div className="nl-hero-glow" style={{ position: "absolute", top: "-10%", left: "-5%", width: 380, height: 380, background: `radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%)`, filter: "blur(20px)", animation: "nl-float 10s ease-in-out infinite", pointerEvents: "none" }} />
+        <div className="nl-hero-glow" style={{ position: "absolute", bottom: "-10%", right: "10%", width: 300, height: 300, background: `radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)`, filter: "blur(30px)", animation: "nl-float 13s ease-in-out infinite reverse", pointerEvents: "none" }} />
 
-        <div className="nl-hero-grid" style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
+        <div className="nl-hero-grid" style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2, width: "100%" }}>
           {/* LEFT */}
           <div>
             <Reveal>
               <div
+                className="nl-hero-badge"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -1440,7 +1592,7 @@ export default function StudyNetherlandsPage() {
                   <span style={{ position: "absolute", inset: 0, background: C.white, borderRadius: "50%", animation: "nl-pulse 2s ease-out infinite" }} />
                   <span style={{ position: "relative", width: 8, height: 8, background: C.white, borderRadius: "50%" }} />
                 </span>
-                <span style={{ color: C.white, fontSize: 11, fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase" }}>
+                <span className="nl-hero-badge-text" style={{ color: C.white, fontSize: 11, fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase" }}>
                   Europe's Innovation Hub · September 2026 Intake Open
                 </span>
               </div>
@@ -1448,6 +1600,7 @@ export default function StudyNetherlandsPage() {
 
             <Reveal delay={120}>
               <h1
+                className="nl-hero-title"
                 style={{
                   color: C.white,
                   fontSize: "clamp(36px, 5vw, 68px)",
@@ -1466,10 +1619,10 @@ export default function StudyNetherlandsPage() {
             </Reveal>
 
             <Reveal delay={240}>
-              <p style={{ color: "rgba(255,255,255,0.85)", fontSize: 17, fontWeight: 300, lineHeight: 1.85, marginBottom: 10, maxWidth: 520 }}>
+              <p className="nl-hero-lead" style={{ color: "rgba(255,255,255,0.85)", fontSize: 17, fontWeight: 300, lineHeight: 1.85, marginBottom: 10, maxWidth: 520 }}>
                 English-taught degrees. Paid internships. Fortune 500 employers. Europe's most practical business education — in one of the world's most liveable countries.
               </p>
-              <p style={{ color: "rgba(255,255,255,0.6)", fontSize: 14, lineHeight: 1.9, marginBottom: 36, maxWidth: 500 }}>
+              <p className="nl-hero-sub" style={{ color: "rgba(255,255,255,0.6)", fontSize: 14, lineHeight: 1.9, marginBottom: 36, maxWidth: 500 }}>
                 The Netherlands ranks #1 globally in English proficiency, sits at the heart of Europe's economic engine, and is home to some of the world's most ambitious international students. A mandatory paid internship is built into every programme, plus a post-study orientation visa allowing you to stay and work for up to a year.
               </p>
             </Reveal>
@@ -1545,7 +1698,7 @@ export default function StudyNetherlandsPage() {
             title="8 Reasons the Netherlands Stands Apart"
             sub="More than 160 nationalities. Europe's top English-proficiency ranking. A job market stacked with global multinationals. Here's why thousands of students choose the Netherlands every year."
           />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 18 }}>
+          <div className="nl-auto-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 18 }}>
             {whyReasons.map((r, i) => (
               <ReasonCard key={r.title} num={String(i + 1).padStart(2, "0")} icon={r.icon} title={r.title} body={r.body} delay={i * 70} />
             ))}
@@ -1573,6 +1726,7 @@ export default function StudyNetherlandsPage() {
           ✨ September 2026 intake is now open. Our advisors can assess your profile today — free, with no obligation.
         </p>
         <button
+          className="nl-cta-btn"
           onClick={() => setOpen(true)}
           style={{ background: C.white, color: C.teal, border: "none", padding: "12px 28px", fontSize: 13, fontWeight: 700, cursor: "pointer", whiteSpace: "nowrap", borderRadius: 999, transition: "all 0.25s", position: "relative", zIndex: 2 }}
           onMouseEnter={(e) => e.target.style.transform = "translateY(-2px)"}
@@ -1604,7 +1758,7 @@ export default function StudyNetherlandsPage() {
       <section id="costs" className="nl-section" style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead tag="Cost of Studying" title="Study Investment — Netherlands 2026" sub="Transparent, all-in pricing. No hidden charges. The same fee structure applies to every international student regardless of nationality." />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: 18 }}>
+          <div className="nl-auto-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: 18 }}>
             <CostCard label="Foundation Programme" amount="€12,250" note="Per year · All-inclusive" detail="Projects & study trips included. Duration: 6–12 months. Pathway to direct Bachelor's entry upon successful completion." delay={0} />
             <CostCard label="Bachelor's Tuition" amount="€24,500" note="Per year · Same fee for all students" detail="3-year fast-track or 4-year standard pathway. All programmes taught entirely in English." delay={80} />
             <CostCard label="Master's / MBA" amount="€25,500" note="Per year · 1-year fast-track available" detail="1-year intensive MBA with specialisations: Data Strategy, Real Estate, Hospitality & Global Leadership." delay={160} />
@@ -1632,7 +1786,7 @@ export default function StudyNetherlandsPage() {
       <section id="programmes" className="nl-section" style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead tag="Popular Study Areas" title="In-Demand Programmes for International Students" sub="Career-aligned, English-taught, and built for the global business world. Foundation to MBA — choose from a 3-year fast-track or 4-year standard Bachelor's pathway." />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 18 }}>
+          <div className="nl-auto-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 18 }}>
             {courses.map((c, i) => (
               <CourseCard key={c.title} icon={c.icon} title={c.title} body={c.body} tag={c.tag} delay={i * 70} />
             ))}
@@ -1645,7 +1799,7 @@ export default function StudyNetherlandsPage() {
         <div style={{ position: "absolute", top: 50, right: -100, width: 360, height: 360, background: "radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)", filter: "blur(30px)", pointerEvents: "none" }} />
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead tag="English Requirements" title="IELTS, TOEFL, PTE & Cambridge Score Guide" sub="Score requirements vary by programme level. Foundation entry is available for students who need to strengthen their English before beginning a degree — you don't need IELTS 6.0 to start." light />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
+          <div className="nl-auto-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
             {langCards.map((lc, i) => (
               <LangCard key={lc.badge} {...lc} delay={i * 100} />
             ))}
@@ -1759,7 +1913,7 @@ export default function StudyNetherlandsPage() {
 
           {/* career stats */}
           <Reveal>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 18, marginBottom: 40 }}>
+            <div className="nl-auto-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 18, marginBottom: 40 }}>
               {[["50%", "Internship-to-Job Rate"], ["100+", "Companies at Career Fair"], ["1 Year", "Post-Study Orientation Visa"], ["#1", "English Proficiency Globally"]].map(([num, lbl]) => (
                 <div key={lbl} style={{ background: C.white, border: `1px solid ${C.border}`, borderRadius: 16, padding: "28px 22px", textAlign: "center" }}>
                   <div style={{ fontSize: 34, fontWeight: 600, color: C.teal, lineHeight: 1, marginBottom: 8 }}>{num}</div>
@@ -1769,7 +1923,7 @@ export default function StudyNetherlandsPage() {
             </div>
           </Reveal>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22 }}>
+          <div className="nl-auto-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22 }}>
             {careerOutlooks.map((o, i) => (
               <OutlookCard key={o.title} {...o} delay={i * 100} />
             ))}
@@ -1808,7 +1962,7 @@ export default function StudyNetherlandsPage() {
         <div style={{ position: "absolute", bottom: "-10%", left: "-5%", width: 400, height: 400, background: "radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%)", filter: "blur(20px)", pointerEvents: "none" }} />
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead tag="Why Choose Langma International" title="Your Study Abroad Partner — Not Just an Agent" sub="From your first eligibility check to your first day on campus, we handle everything. No stress, no guesswork." light />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: 18 }}>
+          <div className="nl-auto-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: 18 }}>
             {supportCards.map((s, i) => (
               <SupportCard key={s.title} {...s} delay={i * 80} />
             ))}
@@ -1820,7 +1974,7 @@ export default function StudyNetherlandsPage() {
       <section className="nl-section" style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead tag="Student Life" title="Life in the Netherlands — More Than Just Study" sub="World-class education inside one of the world's most liveable countries. Here is what everyday life actually looks like as an international student." />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 20 }}>
+          <div className="nl-auto-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 20 }}>
             {[
               { icon: "🏙️", tag: "Living", title: "Affordable & Vibrant Cities", body: "Amsterdam combines world-class culture, food, and nightlife with a compact, student-friendly layout. Excellent public transport, cycling infrastructure, and a cost of living manageable on a student budget — especially with part-time work rights." },
               { icon: "🌍", tag: "Community", title: "160+ Nationalities on Campus", body: "Study alongside peers from over 160 countries every day. The classroom itself becomes a global network — the connections built here frequently become the professional relationships of a lifetime." },
@@ -1883,7 +2037,7 @@ export default function StudyNetherlandsPage() {
       <section className="nl-section" style={{ background: `linear-gradient(135deg, ${C.tealDark}, ${C.teal})`, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead tag="Student Stories" title="What Our Students Say" light />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 22 }}>
+          <div className="nl-auto-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 22 }}>
             {testimonials.map((t, i) => (
               <TestiCard key={t.name} {...t} delay={i * 100} />
             ))}
@@ -1913,7 +2067,7 @@ export default function StudyNetherlandsPage() {
 
       {/* ── FINAL CTA ── */}
       <section
-        className="nl-section"
+        className="nl-section nl-final-cta"
         style={{
           background: `linear-gradient(135deg, ${C.tealDark} 0%, ${C.teal} 60%, #3DCEC5 100%)`,
           backgroundSize: "200% 200%",
@@ -1924,11 +2078,11 @@ export default function StudyNetherlandsPage() {
           overflow: "hidden",
         }}
       >
-        <div style={{ position: "absolute", top: "-20%", left: "20%", width: 500, height: 500, background: "radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%)", filter: "blur(40px)", animation: "nl-float 10s ease-in-out infinite", pointerEvents: "none" }} />
-        <div style={{ position: "absolute", bottom: "-20%", right: "10%", width: 500, height: 500, background: "radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%)", filter: "blur(40px)", animation: "nl-float 13s ease-in-out infinite reverse", pointerEvents: "none" }} />
+        <div className="nl-section-glow" style={{ position: "absolute", top: "-20%", left: "20%", width: 500, height: 500, background: "radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%)", filter: "blur(40px)", animation: "nl-float 10s ease-in-out infinite", pointerEvents: "none" }} />
+        <div className="nl-section-glow" style={{ position: "absolute", bottom: "-20%", right: "10%", width: 500, height: 500, background: "radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%)", filter: "blur(40px)", animation: "nl-float 13s ease-in-out infinite reverse", pointerEvents: "none" }} />
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <Reveal>
-            <h2 style={{ color: C.white, fontSize: "clamp(32px, 4.5vw, 56px)", marginBottom: 20, fontWeight: 600, lineHeight: 1.1 }}>
+            <h2 className="nl-final-cta-title" style={{ color: C.white, fontSize: "clamp(32px, 4.5vw, 56px)", marginBottom: 20, fontWeight: 600, lineHeight: 1.1 }}>
               Start Your Netherlands Journey<br />
               <em style={{ fontStyle: "italic", color: C.goldSoft }}>With One Conversation.</em>
             </h2>
@@ -1939,7 +2093,7 @@ export default function StudyNetherlandsPage() {
             </p>
           </Reveal>
           <Reveal delay={300}>
-            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
+            <div className="nl-final-cta-btns" style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
               <button
                 onClick={() => setOpen(true)}
                 style={{ background: C.tealDeep, color: C.white, border: "none", padding: "16px 36px", fontSize: 15, fontWeight: 700, cursor: "pointer", borderRadius: 999, boxShadow: "0 8px 24px rgba(0,0,0,0.15)", transition: "all 0.25s" }}
