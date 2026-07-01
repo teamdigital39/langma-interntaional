@@ -558,14 +558,85 @@ useEffect(() => {
 </div>
 
       {slug === "online-english-language-course" && (
+        <>
+          <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+                <div className="flex justify-center lg:justify-start">
+                  <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
+                    <img
+                      src="/images/ielts-british-council-partner.png"
+                      alt="British Council IELTS Partnership Programme certificate for Langma School of Languages"
+                      className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
+                    />
+                  </div>
+                </div>
+
+                <div className="text-center lg:text-left">
+                  <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
+                    Langma International:{" "}
+                    <span className="text-[#296166]">
+                      Trusted British Council IELTS Registration Partner
+                    </span>
+                  </h2>
+                  <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
+                    At Langma International, excellence is backed by recognition. As an
+                    authorized IELTS Registration Centre and an accredited member of the
+                    British Council IELTS Partnership Programme (2019–2020), we have
+                    demonstrated our commitment to delivering trusted guidance, ethical
+                    practices, and internationally aligned student support.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+                <div className="flex justify-center lg:justify-start">
+                  <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
+                    <img
+                      src="/images/English12.jpg"
+                      alt="Trinity College London GESE & ISE and QAI GETS exam centre accreditation"
+                      className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
+                    />
+                  </div>
+                </div>
+
+                <div className="text-center lg:text-left">
+                  <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
+                    Langma International:{" "}
+                    <span className="text-[#296166]">
+                      Accredited Centre for Trinity College London GESE & ISE Qualifications
+                    </span>
+                  </h2>
+                  <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
+                    Langma International is an accredited GESE (Graded Examinations in Spoken English)
+                    and ISE (Integrated Skills in English) Examination Centre of Trinity College London.
+                    Through this accreditation, learners gain access to internationally recognized English
+                    language qualifications that assess speaking, listening, reading, and writing competencies
+                    against globally benchmarked standards. Widely valued across academic, professional, and
+                    international mobility pathways, these qualifications reflect Langma International&apos;s
+                    commitment to excellence in language education, assessment integrity, and globally
+                    recognized certification.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+
+      {slug === "arabic-language-online-course" && (
         <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
               <div className="flex justify-center lg:justify-start">
                 <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
                   <img
-                    src="/images/ielts-british-council-partner.png"
-                    alt="British Council IELTS Partnership Programme certificate for Langma School of Languages"
+                    src="/images/Arabic12.jpg"
+                    alt="Arabic Language Proficiency Test (ALPT) accreditation — Arab Academy"
                     className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
                   />
                 </div>
@@ -575,22 +646,308 @@ useEffect(() => {
                 <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
                   Langma International:{" "}
                   <span className="text-[#296166]">
-                    Trusted British Council IELTS Registration Partner
+                    ALPT Accreditation for Arabic Language Excellence
                   </span>
                 </h2>
+                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed mb-4">
+                  Langma International utilizes the Arabic Language Proficiency Test (ALPT)
+                  as an internationally recognized assessment framework for Arabic language
+                  learning and placement. Aligned with ACTFL and AERO standards, ALPT supports
+                  accurate proficiency evaluation while reflecting our commitment to globally
+                  benchmarked language education and student success.
+                </p>
+                <h3 className="text-[20px] lg:text-[24px] font-bold text-gray-900 leading-snug mb-4">
+                  Langma International — Advancing Arabic Language Excellence Through ALPT Accreditation
+                </h3>
                 <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  At Langma International, excellence is backed by recognition. As an
-                  authorized IELTS Registration Centre and an accredited member of the
-                  British Council IELTS Partnership Programme (2019–2020), we have
-                  demonstrated our commitment to delivering trusted guidance, ethical
-                  practices, and internationally aligned student support.
+                  Aligned with internationally recognized ACTFL and AERO standards, reinforcing our commitment
+                  to quality assessment, academic excellence, and measurable language proficiency.
                 </p>
               </div>
             </div>
           </div>
         </section>
       )}
-{/* 
+
+      {slug === "online-chinese-language-course" && (
+        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+              <div className="flex justify-center lg:justify-start">
+                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
+                  <img
+                    src="/images/chinese13.jpg"
+                    alt="Langma International — TOCFL Chinese Test Center accreditation"
+                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
+                  />
+                </div>
+              </div>
+
+              <div className="text-center lg:text-left">
+                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
+                  Achieve Global Recognition in Chinese with{" "}
+                  <span className="text-[#296166]">
+                    TOCFL at Langma International
+                  </span>
+                </h2>
+                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
+                  Langma International is proud to be a recognized TOCFL Test Center in New Delhi.
+                  TOCFL is an internationally accepted benchmark for assessing Traditional Chinese
+                  language proficiency and is administered by Taiwan&apos;s authorized testing framework.
+                  This recognition enables Langma International to support learners seeking globally
+                  recognized certification for academic, professional, and immigration-related purposes
+                  while upholding the highest standards of language assessment and educational excellence.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {slug === "online-korean-language-courses" && (
+        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+              <div className="flex justify-center lg:justify-start">
+                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
+                  <img
+                    src="/images/Korean12.jpg"
+                    alt="Certificate of Official KLAT Center — Korea Educational Testing Service"
+                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
+                  />
+                </div>
+              </div>
+
+              <div className="text-center lg:text-left">
+                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
+                  Langma International:{" "}
+                  <span className="text-[#296166]">
+                    Recognized by Korea Educational Testing Service for KLAT Administration
+                  </span>
+                </h2>
+                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
+                  At Langma International, excellence is strengthened through international recognition.
+                  As an Official KLAT Center accredited by the Korea Educational Testing Service (KETS),
+                  we are authorized to conduct Korean language proficiency assessments in accordance with
+                  established international standards. This recognition supports our mission to provide
+                  learners with credible certification pathways for academic, professional, and global
+                  opportunities.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {slug === "online-spanish-language-courses" && (
+        <>
+          <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+                <div className="flex justify-center lg:justify-start">
+                  <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
+                    <img
+                      src="/images/Spanish1.jpg"
+                      alt="Diploma Internacional de Español (D.I.E.) — FIDESCU accredited centre certificate"
+                      className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
+                    />
+                  </div>
+                </div>
+
+                <div className="text-center lg:text-left">
+                  <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
+                    Langma International:{" "}
+                    <span className="text-[#296166]">
+                      Accredited Centre for Diploma Internacional de Español (D.I.E.)
+                    </span>
+                  </h2>
+                  <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
+                    At Langma International, excellence in language education is reinforced through
+                    internationally recognized accreditations. As an accredited examination centre for
+                    the Diploma Internacional de Español (D.I.E.), authorized by FIDESCU (Centre Code:
+                    30005) since 2018, we provide learners with access to a globally recognized benchmark
+                    of Spanish language proficiency. This accreditation reflects our commitment to
+                    maintaining international standards in language assessment and certification.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+                <div className="flex justify-center lg:justify-start">
+                  <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
+                    <img
+                      src="/images/Spanish2.jpg"
+                      alt="Authorized SIELE Center certificate — Langma School of Languages"
+                      className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
+                    />
+                  </div>
+                </div>
+
+                <div className="text-center lg:text-left">
+                  <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
+                    Langma International:{" "}
+                    <span className="text-[#296166]">
+                      Trusted Authorized SIELE Examination Centre
+                    </span>
+                  </h2>
+                  <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
+                    Recognition by SIELE (Servicio Internacional de Evaluación de la Lengua Española)
+                    underscores Langma International&apos;s dedication to delivering world-class language
+                    education and assessment services. This accreditation enables learners to obtain
+                    internationally accepted Spanish language certification aligned with global academic
+                    and professional standards.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+                <div className="flex justify-center lg:justify-start">
+                  <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
+                    <img
+                      src="/images/Spanish3.jpg"
+                      alt="UNIR examination centre certificate — Langma School of Languages"
+                      className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
+                    />
+                  </div>
+                </div>
+
+                <div className="text-center lg:text-left">
+                  <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
+                    Langma International:{" "}
+                    <span className="text-[#296166]">
+                      Official UNIR Examination Centre for Spanish Language Academic Excellence
+                    </span>
+                  </h2>
+                  <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
+                    Langma International is an officially recognized examination centre for UNIR
+                    (Universidad Internacional de La Rioja), supporting Spanish language academic
+                    programmes and facilitating the evaluation and defence of Final Degree and
+                    Master&apos;s research projects. This prestigious accreditation reflects our
+                    commitment to delivering internationally benchmarked academic assessment standards,
+                    fostering Spanish language academic advancement, and enabling learners to achieve
+                    globally recognized university qualifications.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+
+      {slug === "online-russian-language-course" && (
+        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+              <div className="flex justify-center lg:justify-start">
+                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
+                  <img
+                    src="/images/Russian12.jpg"
+                    alt="TORFL accreditation certificate — Herzen State Pedagogical University of Russia"
+                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
+                  />
+                </div>
+              </div>
+
+              <div className="text-center lg:text-left">
+                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
+                  Langma International:{" "}
+                  <span className="text-[#296166]">
+                    Trusted TORFL Examination Partner
+                  </span>
+                </h2>
+                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
+                  Langma International proudly serves as an authorized TORFL (Test of Russian as a
+                  Foreign Language) Examination Centre under the academic supervision of Herzen State
+                  Pedagogical University of Russia. This accreditation allows candidates to demonstrate
+                  certified Russian language proficiency through internationally recognized assessments
+                  aligned with global academic and professional standards.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {slug === "online-italian-language-course" && (
+        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+              <div className="flex justify-center lg:justify-start">
+                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
+                  <img
+                    src="/images/Italian12.jpg"
+                    alt="CILS authorized certification centre certificate — Università per Stranieri di Siena"
+                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
+                  />
+                </div>
+              </div>
+
+              <div className="text-center lg:text-left">
+                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
+                  Langma International:{" "}
+                  <span className="text-[#296166]">
+                    Official CILS Certification Centre for Italian Language Excellence
+                  </span>
+                </h2>
+                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
+                  Langma International is proud to be an officially authorized CILS (Certificazione di
+                  Italiano come Lingua Straniera) Examination Centre, accredited by the prestigious
+                  Università per Stranieri di Siena, Italy. This distinguished recognition enables
+                  candidates to earn internationally respected Italian language certification, widely
+                  accepted for higher education, professional advancement, citizenship applications, and
+                  integration into Italian-speaking academic and professional environments.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {slug === "dutch-language-course" && (
+        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+              <div className="flex justify-center lg:justify-start">
+                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
+                  <img
+                    src="/images/Dutch12.jpg"
+                    alt="CNaVT authorized test centre accreditation — Certificaat Nederlands als Vreemde Taal"
+                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
+                  />
+                </div>
+              </div>
+
+              <div className="text-center lg:text-left">
+                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
+                  Langma International:{" "}
+                  <span className="text-[#296166]">
+                    Accredited CNaVT Examination Centre for Dutch Language Certification
+                  </span>
+                </h2>
+                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
+                  As an accredited CNaVT (Certificaat Nederlands als Vreemde Taal) Examination Centre,
+                  Langma International provides access to internationally recognized Dutch language
+                  qualifications that assess proficiency against globally established standards. Widely
+                  valued by educational institutions, employers, and professional organizations, CNaVT
+                  certification supports academic progression, career development, and international
+                  opportunities across Dutch-speaking regions. This accreditation reflects Langma
+                  International&apos;s commitment to excellence in language education, assessment integrity,
+                  and globally recognized certification.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+{/*
       <CTASection
         title={` ${languageData.title} journey with Langma today!`}
         desc=""
