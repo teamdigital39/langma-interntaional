@@ -68,43 +68,44 @@ export default function StudyInSouthKorea() {
   return (
     <div className="sk-page" style={{ overflowX: "hidden", maxWidth: "100%" }}>
       <style>{`
-// .sk-page * {margin:0;padding:0;box-sizing:border-box}
 .sk-page {
-  --navy:#0B132B;
-  --royal:#1C2541;
-  --red:#C1121F;
-  --red-hover:#e01e2b;
-  --gold:#D4A017;
-  --gold-light:#f0c040;
+  --navy:#2E6466;
+  --royal:#1AB7AC;
+  --red:#1AB7AC;
+  --red-hover:#179e94;
+  --gold:#FDF3C8;
+  --gold-light:#FFFAE8;
+  --teal-deep:#006C70;
+  --teal-soft:#E6F7F6;
   --white:#FFFFFF;
-  --off:#F8F9FA;
-  --soft:#f2f3f7;
-  --muted:#64748b;
-  --border:#e2e8f0;
-  --text:#0f172a;
-  font-family:'Manrope',sans-serif;
+  --off:#F5F7FA;
+  --soft:#E8EDF5;
+  --muted:#7A8A9A;
+  --border:#D8E0EC;
+  --text:#296166;
+  font-family:'Roboto',sans-serif;
   color:var(--text);
   background:var(--off);
   line-height:1.6;
   font-size:15px;
 }
-.sk-page h1, .sk-page h2, .sk-page h3, .sk-page h4 {font-family:'DM Serif Display',serif}
+.sk-page h1, .sk-page h2, .sk-page h3, .sk-page h4 {font-family:'Roboto',sans-serif;font-weight:600}
 
 
 /* HERO */
-.sk-page .hero {background:linear-gradient(135deg,var(--navy) 0%,var(--royal) 55%,#0d1b38 100%);min-height:90vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:90px 44px}
-.sk-page .hero-bg-motif {position:absolute;right:0;top:0;width:55%;height:100%;background:radial-gradient(ellipse at 80% 30%,rgba(193,18,31,.12) 0%,transparent 60%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Ccircle cx='600' cy='200' r='280' fill='%23C1121F' opacity='.04'/%3E%3Ccircle cx='700' cy='600' r='180' fill='%23D4A017' opacity='.05'/%3E%3C/svg%3E") center/cover;pointer-events:none}
-.sk-page .hero-taegeuk {position:absolute;right:6%;top:50%;transform:translateY(-50%);width:340px;height:340px;opacity:.06;background:radial-gradient(circle,var(--red) 0%,var(--navy) 100%);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:220px;pointer-events:none}
+.sk-page .hero {background:linear-gradient(135deg,var(--navy) 0%,var(--royal) 60%,#3DCEC5 100%);min-height:90vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:90px 44px}
+.sk-page .hero-bg-motif {position:absolute;right:0;top:0;width:55%;height:100%;background:radial-gradient(ellipse at 80% 30%,rgba(26,183,172,.14) 0%,transparent 60%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Ccircle cx='600' cy='200' r='280' fill='%231AB7AC' opacity='.06'/%3E%3Ccircle cx='700' cy='600' r='180' fill='%232E6466' opacity='.08'/%3E%3C/svg%3E") center/cover;pointer-events:none}
+.sk-page .hero-taegeuk {position:absolute;right:6%;top:50%;transform:translateY(-50%);width:340px;height:340px;opacity:.06;background:radial-gradient(circle,var(--royal) 0%,var(--navy) 100%);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:220px;pointer-events:none}
 .sk-page .hero-content {max-width:680px;position:relative;z-index:2}
-.sk-page .hero-badge {display:inline-flex;align-items:center;gap:8px;background:rgba(193,18,31,.15);border:1px solid rgba(193,18,31,.35);color:#f87171;padding:7px 18px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:26px;font-family:'Manrope',sans-serif}
+.sk-page .hero-badge {display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);color:#e6fffb;padding:7px 18px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:26px;font-family:'Roboto',sans-serif}
 .sk-page .hero h1 {color:var(--white);font-size:clamp(38px,5.5vw,66px);line-height:1.08;margin-bottom:22px;font-weight:400}
 .sk-page .hero h1 em {color:var(--gold);font-style:italic}
-.sk-page .hero-sub {color:rgba(255,255,255,.78);font-size:18px;font-weight:400;margin-bottom:14px;line-height:1.75;max-width:560px;font-family:'Manrope',sans-serif}
-.sk-page .hero-intro {color:rgba(255,255,255,.55);font-size:14.5px;line-height:1.85;margin-bottom:38px;max-width:530px;font-family:'Manrope',sans-serif}
+.sk-page .hero-sub {color:rgba(255,255,255,.78);font-size:18px;font-weight:400;margin-bottom:14px;line-height:1.75;max-width:560px;font-family:'Roboto',sans-serif}
+.sk-page .hero-intro {color:rgba(255,255,255,.55);font-size:14.5px;line-height:1.85;margin-bottom:38px;max-width:530px;font-family:'Roboto',sans-serif}
 .sk-page .hero-btns {display:flex;gap:14px;flex-wrap:wrap;margin-bottom:52px}
-.sk-page .btn-primary {background:var(--red);color:var(--white);border:none;padding:14px 32px;border-radius:3px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.4px;transition:all .2s;font-family:'Manrope',sans-serif;text-transform:uppercase}
-.sk-page .btn-primary:hover {background:var(--red-hover);transform:translateY(-1px);box-shadow:0 6px 20px rgba(193,18,31,.35)}
-.sk-page .btn-secondary {background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.28);padding:12px 28px;border-radius:3px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Manrope',sans-serif}
+.sk-page .btn-primary {background:var(--teal-deep);color:var(--white);border:none;padding:14px 32px;border-radius:999px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.4px;transition:all .2s;font-family:'Roboto',sans-serif;text-transform:uppercase}
+.sk-page .btn-primary:hover {background:#005a5e;transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,108,112,.35)}
+.sk-page .btn-secondary {background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.28);padding:12px 28px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Roboto',sans-serif}
 .sk-page .btn-secondary:hover {border-color:var(--gold);color:var(--gold)}
 /* HERO STATS — Premium card strip. */
 .sk-page .hero-stats {
@@ -130,13 +131,13 @@ export default function StudyInSouthKorea() {
   position:absolute;
   top:0;left:0;right:0;
   height:2px;
-  background:linear-gradient(90deg,rgba(212,160,23,.0),rgba(212,160,23,.7),rgba(212,160,23,.0));
+  background:linear-gradient(90deg,rgba(253,243,200,0),rgba(253,243,200,.75),rgba(253,243,200,0));
   opacity:0;
   transition:opacity .25s;
 }
 .sk-page .hero-stat:hover {
   background:rgba(255,255,255,.09);
-  border-color:rgba(212,160,23,.35);
+  border-color:rgba(26,183,172,.4);
   transform:translateY(-3px);
 }
 .sk-page .hero-stat:hover::before {opacity:1;}
@@ -149,7 +150,7 @@ export default function StudyInSouthKorea() {
 }
 .sk-page .hero-stat .num {
   color:var(--gold);
-  font-family:'DM Serif Display',serif;
+  font-family:'Roboto',sans-serif;
   font-size:clamp(22px,2.4vw,30px);
   font-weight:400;
   display:block;
@@ -175,24 +176,24 @@ export default function StudyInSouthKorea() {
   letter-spacing:1.1px;
   margin-top:6px;
   display:block;
-  font-family:'Manrope',sans-serif;
+  font-family:'Roboto',sans-serif;
   line-height:1.4;
 }
 
 /* SECTION COMMONS */
 .sk-page section {padding:88px 44px}
 .sk-page .container {max-width:1160px;margin:0 auto}
-.sk-page .section-label {font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--red);margin-bottom:10px;font-family:'Manrope',sans-serif}
-.sk-page .section-title {font-size:clamp(28px,3.5vw,44px);color:var(--navy);margin-bottom:16px;line-height:1.18}
-.sk-page .section-sub {color:var(--muted);font-size:15.5px;max-width:600px;line-height:1.75;margin-bottom:52px;font-family:'Manrope',sans-serif}
+.sk-page .section-label {font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#429198;margin-bottom:10px;font-family:'Roboto',sans-serif}
+.sk-page .section-title {font-size:clamp(28px,3.5vw,44px);color:#4197a2;margin-bottom:16px;line-height:1.18}
+.sk-page .section-sub {color:var(--muted);font-size:15.5px;max-width:600px;line-height:1.75;margin-bottom:52px;font-family:'Roboto',sans-serif}
 
 /* WHY KOREA */
 .sk-page .why-korea {background:var(--white)}
 .sk-page .benefits-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:22px}
 .sk-page .benefit-card {background:var(--off);border-radius:6px;padding:30px 26px;border-left:3px solid var(--red);transition:transform .2s,box-shadow .2s}
-.sk-page .benefit-card:hover {transform:translateY(-3px);box-shadow:0 10px 30px rgba(11,19,43,.08)}
+.sk-page .benefit-card:hover {transform:translateY(-3px);box-shadow:0 10px 30px rgba(26,183,172,.12)}
 .sk-page .benefit-icon {font-size:30px;margin-bottom:14px;display:block}
-.sk-page .benefit-card h4 {color:var(--navy);font-size:16px;margin-bottom:9px;font-weight:700;font-family:'Manrope',sans-serif}
+.sk-page .benefit-card h4 {color:var(--navy);font-size:16px;margin-bottom:9px;font-weight:700;font-family:'Roboto',sans-serif}
 .sk-page .benefit-card p {color:var(--muted);font-size:13.5px;line-height:1.65}
 
 /* QUICK FACTS */
@@ -204,7 +205,7 @@ export default function StudyInSouthKorea() {
 .sk-page .facts-table tr {border-bottom:1px solid rgba(255,255,255,.07)}
 .sk-page .facts-table tr:last-child {border-bottom:none}
 .sk-page .facts-table tr:hover td {background:rgba(255,255,255,.04)}
-.sk-page .facts-table td {padding:15px 26px;font-size:14.5px;font-family:'Manrope',sans-serif}
+.sk-page .facts-table td {padding:15px 26px;font-size:14.5px;font-family:'Roboto',sans-serif}
 .sk-page .facts-table td:first-child {color:rgba(255,255,255,.45);font-weight:600;width:40%;font-size:12px;text-transform:uppercase;letter-spacing:.7px}
 .sk-page .facts-table td:last-child {color:var(--white);font-weight:500}
 .sk-page .facts-table td span.highlight {color:var(--gold);font-weight:600}
@@ -214,9 +215,9 @@ export default function StudyInSouthKorea() {
 .sk-page .cost-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:18px}
 .sk-page .cost-card {background:var(--white);border-radius:6px;padding:30px 22px;text-align:center;border:1px solid var(--border);transition:border-color .2s,transform .2s}
 .sk-page .cost-card:hover {border-color:var(--red);transform:translateY(-2px)}
-.sk-page .cost-card .label {font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin-bottom:12px;font-family:'Manrope',sans-serif}
-.sk-page .cost-card .amount {font-family:'DM Serif Display',serif;font-size:26px;font-weight:400;color:var(--navy);margin-bottom:6px}
-.sk-page .cost-card .note {font-size:12.5px;color:var(--muted);font-family:'Manrope',sans-serif}
+.sk-page .cost-card .label {font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin-bottom:12px;font-family:'Roboto',sans-serif}
+.sk-page .cost-card .amount {font-family:'Roboto',sans-serif;font-size:26px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.sk-page .cost-card .note {font-size:12.5px;color:var(--muted);font-family:'Roboto',sans-serif}
 .sk-page .cost-card .icon-top {font-size:26px;margin-bottom:10px;display:block}
 
 /* COURSES */
@@ -228,8 +229,8 @@ export default function StudyInSouthKorea() {
 .sk-page .course-card:hover .course-sub {color:rgba(255,255,255,.55)}
 .sk-page .course-card:hover .course-icon {filter:grayscale(0)}
 .sk-page .course-icon {font-size:24px;margin-bottom:10px;display:block}
-.sk-page .course-title {font-size:14.5px;font-weight:700;color:var(--navy);margin-bottom:4px;font-family:'Manrope',sans-serif}
-.sk-page .course-sub {font-size:12px;color:var(--muted);line-height:1.5;font-family:'Manrope',sans-serif}
+.sk-page .course-title {font-size:14.5px;font-weight:700;color:var(--navy);margin-bottom:4px;font-family:'Roboto',sans-serif}
+.sk-page .course-sub {font-size:12px;color:var(--muted);line-height:1.5;font-family:'Roboto',sans-serif}
 
 /* LANGUAGE REQUIREMENTS */
 .sk-page .lang-reqs {background:var(--soft)}
@@ -238,96 +239,96 @@ export default function StudyInSouthKorea() {
 .sk-page .lang-card h3 {font-size:19px;color:var(--navy);margin-bottom:22px;padding-bottom:14px;border-bottom:2px solid var(--red)}
 .sk-page .lang-row {display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid var(--border)}
 .sk-page .lang-row:last-child {border-bottom:none}
-.sk-page .lang-test {font-size:14px;font-weight:700;color:var(--navy);font-family:'Manrope',sans-serif}
-.sk-page .lang-score {font-size:13.5px;color:var(--muted);font-weight:500;font-family:'Manrope',sans-serif}
-.sk-page .lang-badge {display:inline-block;background:rgba(193,18,31,.08);color:var(--red);font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;letter-spacing:.5px}
-.sk-page .lang-note {background:#fefce8;border:1px solid #f5c842;border-radius:5px;padding:14px 18px;margin-top:22px;font-size:13px;color:#795a00;line-height:1.65;font-family:'Manrope',sans-serif}
+.sk-page .lang-test {font-size:14px;font-weight:700;color:var(--navy);font-family:'Roboto',sans-serif}
+.sk-page .lang-score {font-size:13.5px;color:var(--muted);font-weight:500;font-family:'Roboto',sans-serif}
+.sk-page .lang-badge {display:inline-block;background:var(--teal-soft);color:var(--teal-deep);font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;letter-spacing:.5px}
+.sk-page .lang-note {background:var(--teal-soft);border:1px solid rgba(26,183,172,.35);border-radius:8px;padding:14px 18px;margin-top:22px;font-size:13px;color:var(--navy);line-height:1.65;font-family:'Roboto',sans-serif}
 
 /* VISA */
 .sk-page .visa {background:var(--white)}
 .sk-page .visa-grid {display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
 .sk-page .visa-steps {counter-reset:step}
 .sk-page .visa-step {display:flex;gap:16px;margin-bottom:26px;align-items:flex-start}
-.sk-page .step-num {background:var(--red);color:var(--white);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'Manrope',sans-serif}
-.sk-page .step-content h4 {font-size:15px;color:var(--navy);margin-bottom:4px;font-weight:700;font-family:'Manrope',sans-serif}
-.sk-page .step-content p {font-size:13.5px;color:var(--muted);line-height:1.65;font-family:'Manrope',sans-serif}
+.sk-page .step-num {background:var(--royal);color:var(--white);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px;font-family:'Roboto',sans-serif}
+.sk-page .step-content h4 {font-size:15px;color:var(--navy);margin-bottom:4px;font-weight:700;font-family:'Roboto',sans-serif}
+.sk-page .step-content p {font-size:13.5px;color:var(--muted);line-height:1.65;font-family:'Roboto',sans-serif}
 .sk-page .docs-box {background:var(--off);border-radius:6px;padding:30px}
 .sk-page .docs-box h3 {font-size:18px;color:var(--navy);margin-bottom:18px;border-bottom:2px solid var(--red);padding-bottom:12px}
-.sk-page .doc-item {display:flex;gap:10px;align-items:flex-start;margin-bottom:13px;font-size:13.5px;color:var(--text);font-family:'Manrope',sans-serif;line-height:1.55}
+.sk-page .doc-item {display:flex;gap:10px;align-items:flex-start;margin-bottom:13px;font-size:13.5px;color:var(--text);font-family:'Roboto',sans-serif;line-height:1.55}
 .sk-page .doc-check {color:var(--red);font-weight:700;flex-shrink:0;margin-top:1px}
-.sk-page .visa-notice {background:rgba(193,18,31,.05);border:1px solid rgba(193,18,31,.15);border-radius:5px;padding:14px 18px;margin-top:20px;font-size:13px;color:var(--muted);font-family:'Manrope',sans-serif;line-height:1.65}
+.sk-page .visa-notice {background:var(--teal-soft);border:1px solid rgba(26,183,172,.2);border-radius:8px;padding:14px 18px;margin-top:20px;font-size:13px;color:var(--muted);font-family:'Roboto',sans-serif;line-height:1.65}
 
 /* WORK & CAREER */
 .sk-page .work {background:var(--off)}
 .sk-page .work-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:22px}
 .sk-page .work-card {background:var(--white);border-radius:6px;padding:30px 26px;border:1px solid var(--border);transition:transform .2s,border-color .2s}
 .sk-page .work-card:hover {transform:translateY(-2px);border-color:var(--red)}
-.sk-page .work-tag {display:inline-block;background:#fef2f2;color:var(--red);font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;letter-spacing:.6px;margin-bottom:14px;font-family:'Manrope',sans-serif}
-.sk-page .work-card h4 {color:var(--navy);font-size:16px;margin-bottom:10px;font-weight:700;font-family:'Manrope',sans-serif}
+.sk-page .work-tag {display:inline-block;background:var(--teal-soft);color:var(--teal-deep);font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;letter-spacing:.6px;margin-bottom:14px;font-family:'Roboto',sans-serif}
+.sk-page .work-card h4 {color:var(--navy);font-size:16px;margin-bottom:10px;font-weight:700;font-family:'Roboto',sans-serif}
 .sk-page .work-card p {color:var(--muted);font-size:13.5px;line-height:1.7}
 
 /* CAREER PANEL */
 .sk-page .career {background:var(--navy);text-align:center}
 .sk-page .career .section-title {color:var(--white)}
 .sk-page .career .section-label {color:var(--gold)}
-.sk-page .career-text {color:rgba(255,255,255,.65);font-size:16.5px;max-width:680px;margin:0 auto 42px;line-height:1.85;font-family:'Manrope',sans-serif}
+.sk-page .career-text {color:rgba(255,255,255,.65);font-size:16.5px;max-width:680px;margin:0 auto 42px;line-height:1.85;font-family:'Roboto',sans-serif}
 .sk-page .career-tags {display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
-.sk-page .career-tag {background:rgba(255,255,255,.07);color:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.13);padding:9px 18px;border-radius:20px;font-size:13px;font-weight:500;font-family:'Manrope',sans-serif;transition:all .2s}
-.sk-page .career-tag:hover {background:rgba(193,18,31,.2);border-color:rgba(193,18,31,.4);color:var(--white)}
+.sk-page .career-tag {background:rgba(255,255,255,.07);color:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.13);padding:9px 18px;border-radius:20px;font-size:13px;font-weight:500;font-family:'Roboto',sans-serif;transition:all .2s}
+.sk-page .career-tag:hover {background:rgba(26,183,172,.22);border-color:rgba(26,183,172,.45);color:var(--white)}
 
 /* WHY LANGMA */
 .sk-page .why-langma {background:var(--white)}
 .sk-page .langma-intro {display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center;margin-bottom:48px}
-.sk-page .langma-text p {color:var(--muted);font-size:15.5px;line-height:1.8;margin-bottom:14px;font-family:'Manrope',sans-serif}
+.sk-page .langma-text p {color:var(--muted);font-size:15.5px;line-height:1.8;margin-bottom:14px;font-family:'Roboto',sans-serif}
 .sk-page .langma-text strong {color:var(--navy)}
 .sk-page .langma-badge-row {display:flex;gap:14px;flex-wrap:wrap}
-.sk-page .langma-badge {background:var(--off);border:1px solid var(--border);padding:8px 16px;border-radius:20px;font-size:12.5px;font-weight:700;color:var(--navy);font-family:'Manrope',sans-serif}
+.sk-page .langma-badge {background:var(--off);border:1px solid var(--border);padding:8px 16px;border-radius:20px;font-size:12.5px;font-weight:700;color:var(--navy);font-family:'Roboto',sans-serif}
 .sk-page .langma-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
 .sk-page .langma-card {padding:28px 24px;border-radius:6px;background:var(--off);border-top:3px solid var(--red);transition:transform .2s}
 .sk-page .langma-card:hover {transform:translateY(-2px)}
 .sk-page .langma-card .icon {font-size:28px;margin-bottom:14px;display:block}
-.sk-page .langma-card h4 {font-size:15px;color:var(--navy);margin-bottom:8px;font-weight:700;font-family:'Manrope',sans-serif}
-.sk-page .langma-card p {font-size:13.5px;color:var(--muted);line-height:1.65;font-family:'Manrope',sans-serif}
+.sk-page .langma-card h4 {font-size:15px;color:var(--navy);margin-bottom:8px;font-weight:700;font-family:'Roboto',sans-serif}
+.sk-page .langma-card p {font-size:13.5px;color:var(--muted);line-height:1.65;font-family:'Roboto',sans-serif}
 
 /* FAQ */
 .sk-page .faq {background:var(--soft)}
 .sk-page .faq-wrapper {display:grid;grid-template-columns:1fr 2fr;gap:60px;align-items:start}
 .sk-page .faq-sidebar h3 {font-size:28px;color:var(--navy);margin-bottom:14px;line-height:1.2}
-.sk-page .faq-sidebar p {font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:24px;font-family:'Manrope',sans-serif}
-.sk-page .faq-contact-btn {background:var(--red);color:var(--white);border:none;padding:12px 24px;border-radius:3px;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:.5px;font-family:'Manrope',sans-serif;text-transform:uppercase;transition:background .2s}
-.sk-page .faq-contact-btn:hover {background:var(--red-hover)}
+.sk-page .faq-sidebar p {font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:24px;font-family:'Roboto',sans-serif}
+.sk-page .faq-contact-btn {background:var(--teal-deep);color:var(--white);border:none;padding:12px 24px;border-radius:999px;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:.5px;font-family:'Roboto',sans-serif;text-transform:uppercase;transition:background .2s}
+.sk-page .faq-contact-btn:hover {background:#005a5e}
 .sk-page .faq-list {max-width:100%}
 .sk-page .faq-item {background:var(--white);border-radius:6px;margin-bottom:10px;border:1px solid var(--border);overflow:hidden}
-.sk-page .faq-q {padding:20px 26px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:14.5px;font-weight:700;color:var(--navy);font-family:'Manrope',sans-serif;transition:background .2s;width:100%;border:none;background:transparent;text-align:left}
-.sk-page .faq-q:hover {background:#fef9f9}
-.sk-page .faq-q .arrow {color:var(--red);font-size:18px;transition:transform .3s;flex-shrink:0;margin-left:16px}
-.sk-page .faq-a {padding:0 26px;max-height:0;overflow:hidden;transition:all .35s ease;font-size:13.5px;color:var(--muted);line-height:1.75;font-family:'Manrope',sans-serif}
+.sk-page .faq-q {padding:20px 26px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:14.5px;font-weight:700;color:var(--navy);font-family:'Roboto',sans-serif;transition:background .2s;width:100%;border:none;background:transparent;text-align:left}
+.sk-page .faq-q:hover {background:var(--teal-soft)}
+.sk-page .faq-q .arrow {color:var(--royal);font-size:18px;transition:transform .3s;flex-shrink:0;margin-left:16px}
+.sk-page .faq-a {padding:0 26px;max-height:0;overflow:hidden;transition:all .35s ease;font-size:13.5px;color:var(--muted);line-height:1.75;font-family:'Roboto',sans-serif}
 .sk-page .faq-item.open .faq-a {max-height:250px;padding:0 26px 20px}
 .sk-page .faq-item.open .arrow {transform:rotate(180deg)}
 
 /* CTA STRIP */
-.sk-page .cta-strip {background:var(--red);padding:28px 44px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
-.sk-page .cta-strip p {color:var(--white);font-size:16px;font-weight:600;font-family:'Manrope',sans-serif}
-.sk-page .cta-strip-btn {background:var(--white);color:var(--red);border:none;padding:11px 24px;border-radius:3px;font-size:13.5px;font-weight:800;cursor:pointer;white-space:nowrap;font-family:'Manrope',sans-serif;letter-spacing:.3px;transition:all .2s}
+.sk-page .cta-strip {background:linear-gradient(90deg,var(--royal),var(--navy));padding:28px 44px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.sk-page .cta-strip p {color:var(--white);font-size:16px;font-weight:600;font-family:'Roboto',sans-serif}
+.sk-page .cta-strip-btn {background:var(--white);color:var(--teal-deep);border:none;padding:11px 24px;border-radius:999px;font-size:13.5px;font-weight:800;cursor:pointer;white-space:nowrap;font-family:'Roboto',sans-serif;letter-spacing:.3px;transition:all .2s}
 .sk-page .cta-strip-btn:hover {background:var(--off);transform:scale(1.02)}
 
 /* FINAL CTA */
-.sk-page .final-cta {background:linear-gradient(135deg,var(--navy) 0%,var(--royal) 60%,#0d1f40 100%);text-align:center;padding:110px 44px;position:relative;overflow:hidden}
-.sk-page .final-cta::before {content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(193,18,31,.2) 0%,transparent 65%)}
+.sk-page .final-cta {background:linear-gradient(135deg,var(--navy) 0%,var(--royal) 60%,#3DCEC5 100%);text-align:center;padding:110px 44px;position:relative;overflow:hidden}
+.sk-page .final-cta::before {content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.12) 0%,transparent 65%)}
 .sk-page .final-cta h2 {color:var(--white);font-size:clamp(30px,4.5vw,52px);margin-bottom:18px;position:relative;z-index:1}
 .sk-page .final-cta h2 em {color:var(--gold);font-style:italic}
-.sk-page .final-cta p {color:rgba(255,255,255,.7);font-size:17px;margin-bottom:42px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.8;position:relative;z-index:1;font-family:'Manrope',sans-serif}
+.sk-page .final-cta p {color:rgba(255,255,255,.7);font-size:17px;margin-bottom:42px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.8;position:relative;z-index:1;font-family:'Roboto',sans-serif}
 .sk-page .cta-buttons {display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
-.sk-page .cta-btn-gold {background:var(--gold);color:var(--navy);border:none;padding:15px 34px;border-radius:3px;font-size:14.5px;font-weight:800;cursor:pointer;transition:all .2s;letter-spacing:.3px;font-family:'Manrope',sans-serif;text-transform:uppercase}
-.sk-page .cta-btn-gold:hover {background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,160,23,.3)}
-.sk-page .cta-btn-outline {background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.35);padding:13px 30px;border-radius:3px;font-size:14.5px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Manrope',sans-serif}
+.sk-page .cta-btn-gold {background:var(--teal-deep);color:var(--white);border:none;padding:15px 34px;border-radius:999px;font-size:14.5px;font-weight:800;cursor:pointer;transition:all .2s;letter-spacing:.3px;font-family:'Roboto',sans-serif;text-transform:uppercase}
+.sk-page .cta-btn-gold:hover {background:#005a5e;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,108,112,.3)}
+.sk-page .cta-btn-outline {background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.35);padding:13px 30px;border-radius:999px;font-size:14.5px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Roboto',sans-serif}
 .sk-page .cta-btn-outline:hover {border-color:var(--white);background:rgba(255,255,255,.1)}
 .sk-page .cta-trust-row {display:flex;justify-content:center;gap:32px;flex-wrap:wrap;margin-top:40px;position:relative;z-index:1}
-.sk-page .cta-trust-item {color:rgba(255,255,255,.45);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;font-family:'Manrope',sans-serif;display:flex;align-items:center;gap:6px}
+.sk-page .cta-trust-item {color:rgba(255,255,255,.45);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;font-family:'Roboto',sans-serif;display:flex;align-items:center;gap:6px}
 
 /* FOOTER */
 .sk-page footer {background:var(--navy);padding:30px 44px;border-top:1px solid rgba(255,255,255,.07);text-align:center}
-.sk-page footer p{color:rgba(255,255,255,.35);font-size:12.5px;font-family:'Manrope',sans-serif;line-height:1.7}
+.sk-page footer p{color:rgba(255,255,255,.35);font-size:12.5px;font-family:'Roboto',sans-serif;line-height:1.7}
 .sk-page footer a {color:rgba(255,255,255,.5);text-decoration:none}
 .sk-page footer a:hover {color:var(--gold)}
 
@@ -712,9 +713,9 @@ export default function StudyInSouthKorea() {
               <p>International graduates from Korean institutions can explore various post-study visa options including the D-10 Job Seeker visa, allowing time to secure employment in South Korea. Specific eligibility conditions apply and are subject to prevailing immigration regulations.</p>
             </div>
           </div>
-          <div style={{ marginTop: 28, background: "#fff8e6", border: "1.5px solid #D4A017", borderLeft: "5px solid #D4A017", borderRadius: 6, padding: "18px 24px", display: "flex", alignItems: "flex-start", gap: 12 }}>
+          <div style={{ marginTop: 28, background: "#E6F7F6", border: "1.5px solid rgba(26,183,172,.35)", borderLeft: "5px solid #1AB7AC", borderRadius: 8, padding: "18px 24px", display: "flex", alignItems: "flex-start", gap: 12 }}>
             <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>⚠️</span>
-            <p style={{ margin: 0, fontSize: 13.5, color: "#5a4000", lineHeight: 1.75, fontFamily: "'Manrope',sans-serif" }}><strong style={{ color: "#3d2c00" }}>Important Note:</strong> International students in South Korea are generally permitted to engage in part-time employment after completing six months of study, subject to immigration regulations, university policies, academic performance requirements, and obtaining the necessary approvals from both the university and immigration authorities.</p>
+            <p style={{ margin: 0, fontSize: 13.5, color: "#2E6466", lineHeight: 1.75, fontFamily: "'Roboto',sans-serif" }}><strong style={{ color: "#006C70" }}>Important Note:</strong> International students in South Korea are generally permitted to engage in part-time employment after completing six months of study, subject to immigration regulations, university policies, academic performance requirements, and obtaining the necessary approvals from both the university and immigration authorities.</p>
           </div>
         </div>
       </section>
