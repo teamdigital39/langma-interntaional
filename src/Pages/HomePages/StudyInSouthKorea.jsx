@@ -106,7 +106,7 @@ export default function StudyInSouthKorea() {
 .sk-page .btn-primary:hover {background:var(--red-hover);transform:translateY(-1px);box-shadow:0 6px 20px rgba(193,18,31,.35)}
 .sk-page .btn-secondary {background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.28);padding:12px 28px;border-radius:3px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Manrope',sans-serif}
 .sk-page .btn-secondary:hover {border-color:var(--gold);color:var(--gold)}
-/* HERO STATS — Premium card strip */
+/* HERO STATS — Premium card strip. */
 .sk-page .hero-stats {
   display:grid;
   grid-template-columns:repeat(4,1fr);
