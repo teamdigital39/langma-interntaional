@@ -3,8 +3,8 @@ import PopupForm from "./PopupForm";
 import FAQ from "./FAQ";
 
 /**
- * Study in Dubai (MIBD) — Langma International
- * Palette matches the Study in Poland / South Korea / Malta pages (teal brand accent over navy panels)
+ * Study in Mauritius — Langma International
+ * Palette matches the Study in Poland / South Korea / Malta / Dubai / Singapore pages (teal brand accent over navy panels)
  */
 
 const C = {
@@ -46,24 +46,6 @@ function useReveal(threshold = 0.15) {
   return [ref, visible];
 }
 
-function useCountUp(target, duration = 1600, start = false) {
-  const [val, setVal] = useState(0);
-  useEffect(() => {
-    if (!start) return;
-    const t0 = performance.now();
-    let raf;
-    const tick = (t) => {
-      const p = Math.min(1, (t - t0) / duration);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setVal(Math.round(target * eased));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [start, target, duration]);
-  return val;
-}
-
 /* ===================================================================
  *  Reveal wrapper
  * ================================================================ */
@@ -81,68 +63,6 @@ function Reveal({ children, delay = 0, y = 24, as: Tag = "div", style }) {
     >
       {children}
     </Tag>
-  );
-}
-
-/* ===================================================================
- *  Animated counter stat
- * ================================================================ */
-function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay, text }) {
-  const [ref, visible] = useReveal();
-  const animated = useCountUp(value ?? 0, 1500, visible);
-  return (
-    <div
-      ref={ref}
-      style={{
-        flex: "1 1 0",
-        minWidth: 150,
-        padding: "26px 22px",
-        borderRight: `1px solid rgba(255,255,255,0.08)`,
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(14px)",
-        transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`,
-        position: "relative",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          fontSize: "clamp(30px, 3.2vw, 42px)",
-          fontWeight: 600,
-          color: C.gold,
-          lineHeight: 1,
-          letterSpacing: "-0.5px",
-          display: "flex",
-          alignItems: "baseline",
-          gap: 2,
-        }}
-      >
-        {text ? (
-          text
-        ) : (
-          <>
-            <span style={{ color: C.goldL, fontSize: "0.7em" }}>{prefix}</span>
-            {animated}
-            <span style={{ color: C.goldL, fontSize: "0.7em" }}>{suffix}</span>
-          </>
-        )}
-      </div>
-      <div
-        style={{
-          marginTop: 10,
-          fontSize: 11,
-          fontWeight: 700,
-          letterSpacing: "1.8px",
-          textTransform: "uppercase",
-          color: "rgba(255,255,255,0.85)",
-        }}
-      >
-        {label}
-      </div>
-      <div style={{ marginTop: 4, fontSize: 11.5, color: "rgba(255,255,255,0.45)" }}>
-        {sub}
-      </div>
-    </div>
   );
 }
 
@@ -359,17 +279,19 @@ function ReasonCard({ num, title, body, icon, delay }) {
           >
             {icon}
           </div>
-          <span
-            style={{
-              fontSize: 34,
-              fontWeight: 600,
-              color: h ? C.gold : C.goldSoft,
-              lineHeight: 1,
-              transition: "color 0.3s ease",
-            }}
-          >
-            {num}
-          </span>
+          {num && (
+            <span
+              style={{
+                fontSize: 34,
+                fontWeight: 600,
+                color: h ? C.gold : C.goldSoft,
+                lineHeight: 1,
+                transition: "color 0.3s ease",
+              }}
+            >
+              {num}
+            </span>
+          )}
         </div>
         <h4
           style={{
@@ -494,7 +416,7 @@ function CostCard({ label, amount, note, highlight, delay }) {
         </span>
         <div
           style={{
-            fontSize: 26,
+            fontSize: 22,
             fontWeight: 600,
             color: highlight ? C.white : C.ink,
             lineHeight: 1,
@@ -511,87 +433,6 @@ function CostCard({ label, amount, note, highlight, delay }) {
           }}
         >
           {note}
-        </div>
-      </div>
-    </Reveal>
-  );
-}
-
-/* ===================================================================
- *  Course card
- * ================================================================ */
-function CourseCard({ num, title, body, delay }) {
-  const [h, setH] = useState(false);
-  return (
-    <Reveal delay={delay}>
-      <div
-        onMouseEnter={() => setH(true)}
-        onMouseLeave={() => setH(false)}
-        style={{
-          position: "relative",
-          background: h ? C.navy : C.white,
-          border: `1px solid ${h ? C.navy : C.border}`,
-          padding: "28px 24px",
-          borderRadius: 16,
-          transition: "all 0.35s cubic-bezier(.2,.7,.2,1)",
-          transform: h ? "translateY(-6px)" : "translateY(0)",
-          boxShadow: h ? `0 22px 40px -20px rgba(26,46,90,0.4)` : "none",
-          overflow: "hidden",
-          cursor: "pointer",
-        }}
-      >
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: 36,
-            height: 36,
-            background: h ? "rgba(255,255,255,0.15)" : C.goldTint,
-            color: h ? "#FFFFFF" : "#429198",
-            fontSize: 13,
-            fontWeight: 700,
-            borderRadius: 10,
-            marginBottom: 14,
-            transition: "all 0.3s ease",
-          }}
-        >
-          {num}
-        </div>
-        <div
-          style={{
-            fontSize: 14.5,
-            fontWeight: 700,
-            color: h ? C.white : C.ink,
-            marginBottom: 8,
-            lineHeight: 1.35,
-            transition: "color 0.3s ease",
-          }}
-        >
-          {title}
-        </div>
-        <div
-          style={{
-            fontSize: 12.5,
-            color: h ? "rgba(255,255,255,0.75)" : C.slate,
-            lineHeight: 1.7,
-            transition: "color 0.3s ease",
-          }}
-        >
-          {body}
-        </div>
-        <div
-          style={{
-            position: "absolute",
-            bottom: 18,
-            right: 22,
-            color: h ? C.gold : "transparent",
-            fontSize: 18,
-            transition: "all 0.3s ease",
-            transform: h ? "translateX(0)" : "translateX(-8px)",
-          }}
-        >
-          →
         </div>
       </div>
     </Reveal>
@@ -667,97 +508,7 @@ function VisaStep({ n, title, body, isLast, delay }) {
 }
 
 /* ===================================================================
- *  Salary card (with animated bar)
- * ================================================================ */
-function SalaryCard({ sector, monthly, yearly, pct, delay }) {
-  const [ref, visible] = useReveal();
-  const [h, setH] = useState(false);
-  return (
-    <div
-      ref={ref}
-      onMouseEnter={() => setH(true)}
-      onMouseLeave={() => setH(false)}
-      style={{
-        background: h ? C.goldTint : C.white,
-        border: `1px solid ${h ? C.navy : C.border}`,
-        padding: "26px 22px",
-        borderRadius: 14,
-        transition: "all 0.3s ease",
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(16px)",
-        transitionDelay: `${delay}ms`,
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          marginBottom: 14,
-        }}
-      >
-        <span
-          style={{
-            fontSize: 11.5,
-            fontWeight: 700,
-            textTransform: "uppercase",
-            letterSpacing: "1px",
-            color: C.slate,
-          }}
-        >
-          {sector}
-        </span>
-        <span
-          style={{
-            background: C.goldSoft,
-            color: C.navy,
-            fontSize: 10,
-            fontWeight: 700,
-            padding: "3px 8px",
-            borderRadius: 999,
-          }}
-        >
-          Tax-Free
-        </span>
-      </div>
-      <div
-        style={{
-          fontSize: 24,
-          fontWeight: 600,
-          color: C.ink,
-          lineHeight: 1,
-          marginBottom: 4,
-        }}
-      >
-        {monthly}
-      </div>
-      <div style={{ fontSize: 11.5, color: C.slate, marginBottom: 14 }}>
-        per month · {yearly}/yr
-      </div>
-      <div
-        style={{
-          height: 6,
-          background: C.goldTint,
-          borderRadius: 999,
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            height: "100%",
-            width: visible ? `${pct}%` : "0%",
-            background: `linear-gradient(90deg, ${C.navy}, ${C.gold})`,
-            borderRadius: 999,
-            transition: `width 1.4s cubic-bezier(.2,.7,.2,1) ${delay + 200}ms`,
-          }}
-        />
-      </div>
-    </div>
-  );
-}
-
-/* ===================================================================
- *  Outlook card
+ *  Outlook card (student life, career advantages)
  * ================================================================ */
 function OutlookCard({ tag, title, body, icon, delay }) {
   return (
@@ -801,23 +552,25 @@ function OutlookCard({ tag, title, body, icon, delay }) {
         >
           {icon}
         </div>
-        <span
-          style={{
-            display: "inline-block",
-            background: C.cream,
-            color: C.navy,
-            fontSize: 10.5,
-            fontWeight: 700,
-            padding: "4px 12px",
-            letterSpacing: "1px",
-            marginBottom: 14,
-            textTransform: "uppercase",
-            borderRadius: 999,
-            border: `1px solid ${C.goldSoft}`,
-          }}
-        >
-          {tag}
-        </span>
+        {tag && (
+          <span
+            style={{
+              display: "inline-block",
+              background: C.cream,
+              color: C.navy,
+              fontSize: 10.5,
+              fontWeight: 700,
+              padding: "4px 12px",
+              letterSpacing: "1px",
+              marginBottom: 14,
+              textTransform: "uppercase",
+              borderRadius: 999,
+              border: `1px solid ${C.goldSoft}`,
+            }}
+          >
+            {tag}
+          </span>
+        )}
         <h4
           style={{
             fontSize: 16,
@@ -1077,14 +830,14 @@ function FAQItem({ q, a, isOpen, onClick }) {
  * ================================================================ */
 function Marquee() {
   const items = [
-    "🇦🇪 Dubai 2026 Intake Open",
-    "✦ No IELTS Required",
-    "✦ No Show Money",
-    "✦ UK-Accredited OTHM Diplomas",
-    "✦ 0% Income Tax",
-    "✦ Visa in 7 Working Days",
-    "✦ Age & Gap Accepted",
-    "✦ Pathway to UK & Australia",
+    "🇲🇺 Mauritius 2026 Intake Open",
+    "✦ English-Medium Education",
+    "✦ Multicultural Campuses",
+    "✦ No Embassy Interview",
+    "✦ Multiple Intakes Per Year",
+    "✦ 50+ Nationalities on Campus",
+    "✦ Safe, Stable Island Nation",
+    "✦ 40–60% Lower Cost vs the West",
   ];
   const loop = [...items, ...items];
   return (
@@ -1149,86 +902,127 @@ function ScrollProgress() {
 }
 
 /* ===================================================================
- *  DATA — Dubai (MIBD) content
+ *  DATA — Mauritius content
  * ================================================================ */
+const whyChecklist = [
+  "English-medium academic programmes recognised internationally",
+  "Multicultural community with students from 50+ nationalities",
+  "Strategic location bridging three major global regions",
+  "Industry-connected, career-oriented curriculum design",
+  "Growing international student population year on year",
+  "Stable, democratic, and politically peaceful environment",
+];
+
+const glanceFacts = [
+  { icon: "🗣️", label: "Languages", value: "English & French", sub: "English used in academia and business" },
+  { icon: "🌤️", label: "Climate", value: "Tropical & Warm", sub: "Avg. 25–30°C year-round" },
+  { icon: "🛡️", label: "Safety", value: "Very Safe", sub: "Ranked among safest African nations" },
+  { icon: "💰", label: "Currency", value: "Mauritian Rupee", sub: "Favourable for Indian students" },
+  { icon: "👥", label: "Population", value: "~1.3 Million", sub: "Compact, connected community" },
+  { icon: "🕐", label: "Time Zone", value: "UTC +4", sub: "Just 1.5 hrs ahead of India" },
+  { icon: "✈️", label: "Connectivity", value: "Well Connected", sub: "Direct flights from India & Asia" },
+  { icon: "🎓", label: "Student Life", value: "Vibrant & Inclusive", sub: "Diverse international campus culture" },
+];
+
 const reasons = [
-  { icon: "🗣️", title: "No IELTS or English Test Required", body: "English proficiency is assessed through a simple admission interview — no IELTS, TOEFL, or PTE scores needed. Saves you months of preparation and thousands in test fees." },
-  { icon: "🎓", title: "UK-Accredited, Globally Recognised Diplomas", body: "Earn OTHM-accredited qualifications (Levels 3–5) regulated by Ofqual (UK), recognised by KHDA (Dubai), and accepted by WES for international equivalency." },
-  { icon: "💰", title: "Tax-Free Professional Environment", body: "The UAE levies zero personal income tax. Every dirham you earn stays with you — a major financial advantage compared to Western study destinations." },
-  { icon: "🛂", title: "Streamlined Student Visa Process", body: "Dubai's student visa is processed efficiently with professional guidance at every step. No show money required. Age gaps and study gaps are fully accepted." },
-  { icon: "🌍", title: "Gateway to Global Academic Pathways", body: "Your Dubai diploma is your passport to top-up degrees in the UK, Australia, and Canada. MIBD's OTHM Level 4/5 qualifications provide direct entry to Year 2 or Year 3." },
-  { icon: "🛡️", title: "Ranked 3rd Safest City in the World", body: "Dubai's world-class infrastructure, low crime rates, and welcoming multicultural environment make it one of the most secure destinations for international students." },
-  { icon: "📈", title: "Booming Economy with Real Opportunity", body: "Dubai's GDP grew 4.4% in the first half of 2025 alone, driven by the D33 Agenda targeting a doubling of the economy by 2030 — needing ~1 million new skilled workers." },
-  { icon: "💼", title: "Paid Internship & Industry Exposure", body: "Access paid internships and industry placements across Dubai's finance, technology, hospitality, and logistics sectors — building real-world experience while you study." },
+  { icon: "💸", title: "Affordable Tuition Fees", body: "Study costs in Mauritius are significantly lower than destinations like the UK, Australia, or Canada — without compromising on academic quality or international recognition." },
+  { icon: "🏠", title: "Lower Living Expenses", body: "Day-to-day living in Mauritius is comfortably affordable. Students can manage accommodation, food, and transportation at a fraction of the cost in Western countries." },
+  { icon: "🔐", title: "Safe & Stable Environment", body: "Mauritius is consistently recognised as one of the safest and most stable nations in the African region, offering peace of mind for students and their families alike." },
+  { icon: "📋", title: "Straightforward Student Visa", body: "The Mauritian student visa process is known for being accessible and structured. Unlike many destinations, it does not require an embassy interview." },
+  { icon: "📅", title: "Flexible Intake Opportunities", body: "Multiple intake windows throughout the year give students the flexibility to plan their academic journey without waiting an entire year for the next cycle." },
+  { icon: "🛠️", title: "Practical, Hands-On Learning", body: "Academic programmes in Mauritius are designed around real-world application. Industry projects, internships, and case studies prepare students for actual workplace demands." },
+  { icon: "🌐", title: "Global Exposure", body: "With students from Asia, Africa, Europe, and beyond sharing classrooms, Mauritius delivers the kind of cross-cultural exposure that employers value." },
+  { icon: "🤝", title: "International Networking", body: "Your peer group becomes your global professional network. Friendships and connections formed in Mauritius can open doors across three continents." },
+  { icon: "🏆", title: "Globally Recognised Qualifications", body: "Degrees awarded by accredited institutions in Mauritius are recognised internationally and hold value in the global job market." },
+  { icon: "🌴", title: "Quality Island Lifestyle", body: "Where else can you study for an international degree with turquoise lagoons, warm weather, and vibrant festivals as your backdrop?" },
 ];
 
-const courses = [
-  { title: "Business Studies & Management", body: "Build leadership and strategic management skills for careers in consulting, operations, and corporate roles across the UAE and internationally." },
-  { title: "Information Technology", body: "Develop in-demand technical skills for Dubai's rapidly growing digital economy — from cybersecurity and AI to network infrastructure and software." },
-  { title: "Tourism & Hospitality", body: "Dubai's 17M+ annual visitors fuel year-round demand for hospitality professionals across hotels, events, and tourism management." },
-  { title: "Logistics & Supply Chain", body: "The UAE's position as a global trade hub makes logistics expertise one of the most sought-after skills in the region's workforce." },
-  { title: "Health & Social Care", body: "A critical, high-growth sector with globally portable qualifications and strong career prospects across both the UAE and international markets." },
-  { title: "Accounting & Business", body: "Dubai's DIFC is a tier-one global financial centre — finance and accounting graduates are consistently among the UAE's most in-demand professionals." },
-  { title: "Project Management", body: "An essential qualification across every sector — from real estate mega-projects to government transformation programmes across the UAE." },
-  { title: "Education & Training Management", body: "Dubai's expanding education sector creates growing demand for trained education managers, trainers, and programme coordinators at all levels." },
+const studyAreas = [
+  "Business Administration", "Management Studies", "Hospitality Management", "Tourism & Travel",
+  "Information Technology", "Finance & Accounting", "Digital Marketing", "Entrepreneurship",
+  "Healthcare Pathways", "Emerging Technologies", "Project Management", "Human Resources",
 ];
 
-const salaries = [
-  { sector: "Banking & Finance", monthly: "AED 26,000", yearly: "AED 312,000", pct: 100 },
-  { sector: "IT & Technology", monthly: "AED 23,000", yearly: "AED 276,000", pct: 88 },
-  { sector: "Real Estate", monthly: "AED 22,000", yearly: "AED 264,000", pct: 85 },
-  { sector: "Engineering", monthly: "AED 20,000", yearly: "AED 240,000", pct: 77 },
-  { sector: "Healthcare", monthly: "AED 19,000", yearly: "AED 228,000", pct: 73 },
-  { sector: "Logistics", monthly: "AED 15,000", yearly: "AED 180,000", pct: 58 },
-  { sector: "Education", monthly: "AED 14,500", yearly: "AED 174,000", pct: 56 },
-  { sector: "Hospitality", monthly: "AED 13,000", yearly: "AED 156,000", pct: 50 },
+const costs = [
+  { label: "Annual Tuition", amount: "Highly Competitive", note: "Significantly lower than UK, Australia, USA, and Canada equivalents" },
+  { label: "Monthly Accommodation", amount: "Budget-Friendly", note: "Shared and private options available; campus and off-campus choices" },
+  { label: "Monthly Food Expenses", amount: "Very Affordable", note: "Fresh produce, local cuisine, and student canteens keep costs low" },
+  { label: "Transport", amount: "Low Cost", note: "Reliable public bus network; student concessions widely available" },
+  { label: "vs. UK / Australia", amount: "Save Significantly", note: "Overall cost can be 40–60% lower than comparable Western destinations", highlight: true },
+  { label: "Total Monthly Budget", amount: "Student-Friendly", note: "A well-planned monthly budget covers all essentials comfortably" },
 ];
 
-const outlooks = [
-  { icon: "🚀", tag: "Future Demand", title: "~1 Million New Jobs Projected by 2030", body: "The UAE's Dubai Economic Agenda (D33) is targeting a doubling of the economy by 2030, requiring approximately 1 million new skilled professionals across technology, healthcare, education, and manufacturing." },
-  { icon: "💼", tag: "During Studies", title: "Paid Internships & Industry Placements", body: "MIBD connects students with paid internship opportunities and job fair access across Dubai's leading companies in finance, hospitality, technology, and logistics." },
-  { icon: "💰", tag: "Post-Study", title: "Tax-Free Employment in a Global Hub", body: "The UAE's zero personal income tax policy means your full salary is your take-home pay. Combined with competitive AED packages, Dubai offers outstanding value." },
-  { icon: "🌍", tag: "Global Pathway", title: "Springboard to the UK, Australia & More", body: "Your OTHM Level 4/5 diploma is designed as a progression pathway to top-up bachelor's degrees at universities in the UK, Australia, and Canada." },
+const lifeCards = [
+  { icon: "🏖️", tag: "Lifestyle", title: "Island Lifestyle & Beaches", body: "Some of the world's most pristine beaches are minutes from campus. Weekends in Mauritius feel like a reward that recharges you for the week ahead." },
+  { icon: "🎉", tag: "Culture", title: "Multicultural Festivals", body: "From Diwali and Eid to Christmas and the Chinese Spring Festival, Mauritius celebrates them all with equal enthusiasm." },
+  { icon: "🍛", tag: "Food", title: "Vibrant Food Culture", body: "Mauritian cuisine is a delicious fusion of Indian, African, Chinese, and French influences. Familiar flavours and vegetarian options are easy to find." },
+  { icon: "🤝", tag: "Community", title: "International Student Communities", body: "International student associations, cultural clubs, and peer networks make building meaningful friendships a natural part of the experience." },
+  { icon: "⚖️", tag: "Balance", title: "Work–Life Balance", body: "Mauritius moves at a pace that supports both academic rigour and personal wellbeing, with less commute stress and more time for what matters." },
+  { icon: "🏙️", tag: "Infrastructure", title: "Modern Infrastructure", body: "High-speed internet, modern healthcare facilities, well-maintained roads, and digital connectivity make daily student life smooth from day one." },
 ];
 
-const support = [
-  { icon: "🔍", title: "Free Eligibility Assessment", body: "We review your academic profile, career goals, and budget — giving you a clear, honest picture of your options before you commit to anything." },
-  { icon: "📝", title: "Application Support", body: "We prepare and review your complete application — documents, forms, and photographs — ensuring everything is accurate and ready before submission." },
-  { icon: "🏆", title: "Scholarship Guidance", body: "We help you access the 35% tuition scholarship and advise on any additional financial support opportunities you may qualify for." },
-  { icon: "🛂", title: "Visa Documentation Support", body: "Complete professional guidance on your Dubai student visa documentation — from checklist preparation to correct submission format — at every stage." },
-  { icon: "✈️", title: "Pre-Departure Briefing", body: "Know what to pack, what to expect on arrival, and how to settle in — before you board the flight. No surprises, no anxiety." },
-  { icon: "🏠", title: "Accommodation Guidance", body: "Professional advice on student accommodation and transport options in Dubai — so your transition from home to campus is smooth and stress-free." },
-  { icon: "💼", title: "Career & Internship Connections", body: "Access job fair recommendations, career guidance sessions, and internship pathways through our network of institutional and industry partners in Dubai." },
-  { icon: "💬", title: "Dedicated Student Advisor", body: "One real counsellor, available throughout your entire journey. No call centres, no chatbots — just experienced, honest guidance when you need it most." },
+const partTimeList = [
+  "Legal right to work up to 20 hours per week after the first 90 days",
+  "No part-time work permitted during the initial semester (first 90 days of arrival)",
+  "Employer must obtain Ministry of Labour clearance before student can commence work",
+  "Build professional skills and a global employment record during your studies",
+  "Expand your international network through workplace connections",
+  "Develop intercultural communication abilities highly valued by employers",
+  "Opportunities across hospitality, IT, financial services, and retail sectors",
+  "Internship pathways available through academic and industry partnerships",
 ];
 
 const visaDocs = [
-  "Valid passport copy (personal data pages)",
-  "All educational certificates (Grade 10 / 12 / degree)",
-  "Academic transcripts or mark sheets",
-  "Passport-size photograph (digital, white background)",
-  "Official Offer Letter from MIBD",
-  "Proof of fee payment / receipt",
-  "Visa application details (as specified by the institution)",
+  "Confirmed Offer Letter from an accredited institution in Mauritius",
+  "Valid passport — minimum 18 months validity advisable",
+  "Financial documentation — minimum USD 5,000–6,000 maintenance balance",
+  "Academic transcripts & certificates (Class 10, Class 12, graduation as applicable)",
+  "Passport-size photograph meeting specified format",
+  "Completed student visa application form",
+];
+
+const careerCards = [
+  { icon: "🌍", tag: "CV Impact", title: "International Brand on Your CV", body: "Completing a degree abroad immediately distinguishes you from candidates with only domestic education experience — in India and globally." },
+  { icon: "💼", tag: "Employability", title: "Stronger Employability Profile", body: "Adaptability, cross-cultural communication, and independent living are skills employers actively seek — inherent outcomes of international study." },
+  { icon: "🧠", tag: "Mindset", title: "Global Mindset", body: "Exposure to diverse perspectives, global business practices, and international academic standards trains your thinking in ways domestic education cannot." },
+  { icon: "🔗", tag: "Networks", title: "Industry Connections", body: "Mauritius's thriving sectors — financial services, tourism, and digital economy — offer access to real industry networks through internships and projects." },
+  { icon: "📈", tag: "Further Study", title: "Pathways for Further Study", body: "A Mauritius qualification provides a credible launching pad for postgraduate studies in the UK, Europe, Australia, or further advancement locally." },
+  { icon: "🚀", tag: "Growth", title: "Accelerated Professional Growth", body: "International graduates consistently report faster career progression — Mauritius graduates gain the added advantage of tri-continental network access." },
+];
+
+const support = [
+  { icon: "🎯", title: "Expert Career Counselling", body: "Our counsellors assess your academic background, career goals, and budget to match you with the ideal programme and pathway." },
+  { icon: "📝", title: "Application Assistance", body: "From selecting the right programme to completing application forms, we handle every step to ensure your application stands out." },
+  { icon: "📁", title: "Documentation Guidance", body: "We prepare, review, and organise your complete documentation package — eliminating common errors that cause delays or rejections." },
+  { icon: "🛂", title: "Visa Application Support", body: "Our visa team manages the entire student visa process, keeping you informed and prepared at every stage of the application." },
+  { icon: "✈️", title: "Pre-Departure Preparation", body: "From travel tips and packing guidance to orientation briefings and airport transfer support, we ensure you arrive confident and ready." },
+  { icon: "🏡", title: "Accommodation Support", body: "We assist with identifying and securing appropriate student accommodation — campus-based or private — before your arrival." },
+  { icon: "📞", title: "Ongoing Student Support", body: "Our relationship doesn't end when you board the flight. We remain your point of contact for guidance throughout your academic journey." },
+  { icon: "💯", title: "Student-First Approach", body: "Every decision we make is guided by what is genuinely best for your career, education, and future — not just what is convenient." },
 ];
 
 const faqs = [
-  { q: "Is IELTS required to study in Dubai?", a: "No — IELTS is not required to study in Dubai at MIBD. English proficiency is assessed through a straightforward admission interview conducted by the institution. No TOEFL, PTE, or any other standardised English test score is required." },
-  { q: "How much does it cost to study in Dubai at MIBD?", a: "The full programme tuition fee is USD 7,500. After a 35% merit scholarship is applied, the tuition reduces to USD 5,000. The all-inclusive student visa package costs USD 1,500. Monthly living costs typically range from AED 2,500 to AED 4,500." },
-  { q: "How long does the Dubai student visa process take?", a: "The Dubai student visa is typically processed within 7 working days from the point of submission, covering Entry Permit, Medical Check, Biometrics, Emirates ID, and Medical Insurance — all managed as a single coordinated package." },
-  { q: "Are study gaps and age restrictions an issue for Dubai admission?", a: "No — study gaps and age are fully accepted at MIBD Dubai. There is no upper age restriction, making Dubai a welcoming and practical option for mature students, career changers, and those returning to education after a break." },
-  { q: "What qualifications will I earn by studying in Dubai?", a: "Students at MIBD earn OTHM-accredited diplomas at Levels 3, 4, and 5, regulated by Ofqual (UK), recognised by KHDA (Dubai), and accepted by WES for global academic equivalency. They're widely accepted for top-up bachelor's degrees abroad." },
-  { q: "Can I work or intern during my studies in Dubai?", a: "MIBD supports students in accessing paid internship opportunities and job fair connections through its industry network. Post-graduation, professionals in the UAE earn in a fully tax-free environment." },
-  { q: "What does \"assignment-based assessment\" mean — are there no exams?", a: "All OTHM diploma programmes at MIBD are assessed entirely through coursework and practical assignments — there are no written end-of-year examinations. Students are evaluated on applied, work-ready skills." },
-  { q: "Can a Dubai diploma lead to a UK or Australian university degree?", a: "Yes. MIBD's OTHM Level 4/5 diplomas are specifically designed as academic progression pathways to top-up bachelor's degrees in the UK, Australia, and Canada, with entry directly into Year 2 or Year 3." },
-  { q: "What does \"No Show Money\" mean for the Dubai visa?", a: "Unlike student visas for the UK, USA, Canada, or Australia, the Dubai student visa does not require you to demonstrate large sums of money in your bank account as proof of financial capability." },
-  { q: "When can I apply — what are the 2026 intake dates?", a: "MIBD operates on a rolling intake basis — applications are accepted throughout the year with no single fixed deadline. We recommend applying at least 2 months before your intended start date." },
+  { q: "Is Mauritius a good destination for international students?", a: "Absolutely. Mauritius combines internationally recognised education, an English-friendly academic environment, a multicultural student community, and an exceptional quality of life — all at a cost significantly lower than traditional study-abroad destinations." },
+  { q: "Can I work part-time while studying in Mauritius?", a: "Yes — with conditions. Students have a legal right to work up to 20 hours per week, but this right does not apply during the first 90 days. After that, part-time employment requires an employer-obtained Ministry of Labour clearance." },
+  { q: "What is the cost of living in Mauritius for a student?", a: "Student living costs in Mauritius are genuinely affordable. Accommodation, food, transport, and personal expenses combined are far more manageable than equivalent costs in Western study destinations." },
+  { q: "Is IELTS required to study in Mauritius?", a: "Not necessarily. IELTS or TOEFL requirements depend on the specific programme and level of study. Many programmes accept students from English-medium educational backgrounds without requiring a separate language test." },
+  { q: "How safe is Mauritius for international students?", a: "Mauritius is consistently ranked among the safest nations in the African region and is known for its low crime rate, political stability, and welcoming attitude toward international visitors and students." },
+  { q: "How long does the Mauritius student visa take to process?", a: "Visa processing timelines can vary. Langma International manages this timeline proactively to ensure your application is submitted well in advance and processed without unnecessary delays." },
+  { q: "Do I need to appear for an embassy interview for the Mauritius student visa?", a: "In most cases, the Mauritius student visa process does not require an in-person embassy interview — making it significantly more accessible compared to visa procedures for countries like the USA, UK, or Australia." },
+  { q: "Are degrees from Mauritius recognised globally?", a: "Qualifications from accredited institutions in Mauritius are internationally recognised. Many programmes are designed in alignment with British academic frameworks and validated by international accreditation bodies." },
+  { q: "Can Class 12 students directly apply to study in Mauritius?", a: "Yes. Undergraduate programmes are available to students who have completed Class 12 (or equivalent) with the required academic profile. PCM, PCB, Commerce, or Arts backgrounds may be eligible depending on the programme." },
+  { q: "Can working professionals pursue studies in Mauritius?", a: "Definitely. Postgraduate, MBA, and professional diploma programmes are well-suited to working professionals. Flexible intake schedules and formats make it feasible to plan around professional commitments." },
+  { q: "What are the intake periods for studying in Mauritius?", a: "Mauritius typically offers multiple intake windows — often in January/February, May/June, and September/October, depending on the institution and programme." },
+  { q: "How is the language barrier managed in Mauritius?", a: "English is widely used in academic settings, business, and everyday communication. Indian students find the transition smooth and comfortable. French is also commonly spoken, offering an additional linguistic advantage." },
+  { q: "Can I extend my stay in Mauritius after graduation?", a: "Post-study opportunities depend on current immigration regulations, which are subject to periodic revision. Langma International can provide updated guidance on post-graduation options at the time of your consultation." },
+  { q: "How does Langma International help with the application process?", a: "Langma International provides end-to-end support — from initial career counselling and programme selection to application preparation, documentation review, visa processing, pre-departure briefings, and ongoing student support." },
+  { q: "Is there a consultation fee to speak with Langma International?", a: "Initial counselling with Langma International is complimentary. Our goal is to understand your aspirations and provide honest, personalised guidance before you commit to any application process." },
 ];
 
 /* ===================================================================
  *  MAIN
  * ================================================================ */
-export default function StudyDubaiPage() {
+export default function StudyMauritiusPage() {
   const [openFAQ, setOpenFAQ] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -1293,27 +1087,29 @@ export default function StudyDubaiPage() {
                   letterSpacing: "-0.6px",
                 }}
               >
-                Study In <span className="text-[#1ab7ac]">Dubai</span>
+                Study In <span className="text-[#1ab7ac]">Mauritius</span>
                 <br />
-                Where Global Careers
+                Where the Ocean
                 <br />
-                Begin.
+                Meets Opportunity.
               </h1>
 
               <p className="mt-6 text-gray-600 text-lg leading-relaxed max-w-xl">
-                Ranked among the world's top student cities. UK-accredited
-                diplomas. Tax-free professional environment. No IELTS needed
-                — just your ambition and a passport.
+                Earn a globally recognised degree on a paradise island.
+                Affordable fees, multicultural campuses, and a visa process
+                built for international students. The smart, strategic
+                alternative to traditional study-abroad destinations —
+                closer to home, lighter on the wallet, bigger in career
+                value.
               </p>
 
               {/* Tags */}
               <div className="flex flex-wrap gap-3 mt-8">
                 {[
-                  "✓No IELTS Required",
-                  "✓No Show Money",
-                  "✓Age & Gap Accepted",
-                  "✓Streamlined Visa Process",
-                  "✓Pathway to UK & Australia",
+                  "✓English-Medium Education",
+                  "✓No Embassy Interview",
+                  "✓Multiple Intakes a Year",
+                  "✓50+ Nationalities on Campus",
                 ].map((item, index) => (
                   <span
                     key={index}
@@ -1330,13 +1126,13 @@ export default function StudyDubaiPage() {
                   onClick={() => setOpen(true)}
                   className="bg-[#006C70] hover:bg-[#00575a] transition-all text-white px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
                 >
-                  Book Free Counselling →
+                  Start Your Application Today →
                 </button>
                 <button
                   onClick={() => setOpen(true)}
                   className="border border-[#006C70] text-[#006C70] hover:bg-[#006C70] hover:text-white transition-all px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
                 >
-                  Check My Eligibility
+                  Explore Mauritius
                 </button>
               </div>
             </div>
@@ -1358,8 +1154,8 @@ export default function StudyDubaiPage() {
               <div className="relative z-10">
                 <div className="w-[320px] h-[320px] md:w-[420px] md:h-[420px] lg:w-[520px] lg:h-[520px] rounded-full overflow-hidden">
                   <img
-                    src="images/duba.jpeg"
-                    alt="Study in Dubai"
+                    src="images/maur.jpeg"
+                    alt="Study in Mauritius"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -1367,45 +1163,156 @@ export default function StudyDubaiPage() {
 
             </div>
           </div>
-
-          {/* Hero stats strip */}
-          <Reveal delay={200}>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                background: C.navyDark,
-                border: "1px solid rgba(240,192,64,0.18)",
-                borderRadius: 18,
-                overflow: "hidden",
-                marginTop: 56,
-              }}
-            >
-              <BoardingStat text="#7" label="Global Student City 2025" sub="Education.com ranking" delay={100} />
-              <BoardingStat text="#3" label="Safest City Globally" sub="World safety ranking" delay={250} />
-              <BoardingStat value={37} suffix="+" label="International Campuses" sub="Across the UAE" delay={400} />
-              <BoardingStat text="0%" label="Income Tax in UAE" sub="Fully tax-free environment" delay={550} />
-            </div>
-          </Reveal>
         </div>
       </section>
 
       {/* ---------------- MARQUEE ---------------- */}
       <Marquee />
 
-      {/* ---------------- WHY DUBAI ---------------- */}
-      <section style={{ background: C.cream, padding: "100px 48px", position: "relative" }}>
+      {/* ---------------- WHY MAURITIUS INTRO ---------------- */}
+      <section style={{ background: C.white, padding: "100px 48px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 48, alignItems: "center" }} className="lm-visa-wrap">
+            <Reveal>
+              <div>
+                <SectionHead
+                  tag={<span style={{ color: "#429198" }}>Why Mauritius?</span>}
+                  title={<span style={{ color: "#4197a2" }}>A Rising Star in International Education</span>}
+                  style={{ marginBottom: 24 }}
+                />
+                <p style={{ fontSize: 15, color: C.slate, lineHeight: 1.85, marginBottom: 16 }}>
+                  Mauritius has quietly become one of the most compelling study destinations in the Indian Ocean region. Strategically positioned at the crossroads of Asia, Africa, and Europe, this island nation punches well above its weight in delivering world-class international education.
+                </p>
+                <p style={{ fontSize: 15, color: C.slate, lineHeight: 1.85, marginBottom: 24 }}>
+                  With English as a key medium of instruction, globally aligned academic programmes, and a multicultural society that welcomes students from every corner of the world, Mauritius offers an environment where learning goes beyond the classroom.
+                </p>
+                <div>
+                  {whyChecklist.map((item) => (
+                    <div key={item} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 12 }}>
+                      <span style={{ color: C.navy, fontWeight: 700, flexShrink: 0 }}>✓</span>
+                      <span style={{ fontSize: 14, color: C.slate, lineHeight: 1.7 }}>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={150}>
+              <div
+                style={{
+                  borderRadius: 20,
+                  overflow: "hidden",
+                  minHeight: 360,
+                  position: "relative",
+                }}
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1562602833-0f4ab2fc46e3?w=800&q=80"
+                  alt="Mauritius coastline representing international education opportunity"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: 20,
+                    left: 20,
+                    background: C.white,
+                    borderRadius: 10,
+                    padding: "12px 16px",
+                    boxShadow: "0 4px 16px rgba(0,0,0,0.14)",
+                    fontSize: 13,
+                    fontWeight: 700,
+                    color: C.ink,
+                  }}
+                >
+                  🌍 Globally Connected Island Nation
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- AT A GLANCE FACTS ---------------- */}
+      <section
+        style={{
+          background: `linear-gradient(135deg, ${C.navyDark}, ${C.navyD})`,
+          padding: "100px 48px",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            top: "10%",
+            right: "5%",
+            width: 400,
+            height: 400,
+            background: `radial-gradient(circle, ${C.gold} 0%, transparent 70%)`,
+            opacity: 0.06,
+            filter: "blur(20px)",
+          }}
+        />
+        <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
+          <SectionHead
+            tag="Quick Facts"
+            title="Mauritius at a Glance"
+            sub="Everything you need to know about life on the island before you decide to study here."
+            light
+          />
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gap: 18,
+            }}
+          >
+            {glanceFacts.map((f, i) => (
+              <Reveal key={f.label} delay={i * 60}>
+                <div
+                  style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(240,192,64,0.15)",
+                    borderRadius: 16,
+                    padding: "24px 20px",
+                    textAlign: "center",
+                  }}
+                >
+                  <div style={{ fontSize: 26, marginBottom: 10 }}>{f.icon}</div>
+                  <div
+                    style={{
+                      fontSize: 11,
+                      fontWeight: 700,
+                      letterSpacing: "1.2px",
+                      textTransform: "uppercase",
+                      color: C.goldL,
+                      marginBottom: 6,
+                    }}
+                  >
+                    {f.label}
+                  </div>
+                  <div style={{ fontSize: 16, fontWeight: 700, color: C.white }}>{f.value}</div>
+                  <div style={{ fontSize: 11.5, color: "rgba(255,255,255,0.5)", marginTop: 4 }}>{f.sub}</div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- 10 REASONS ---------------- */}
+      <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Why Dubai</span>}
+            tag={<span style={{ color: "#429198" }}>10 Compelling Reasons</span>}
             title={
               <span style={{ color: "#4197a2" }}>
-                8 Reasons Dubai Is South Asia's Smartest Study Destination in 2026
+                Why International Students Choose Mauritius
               </span>
             }
             sub={
               <span style={{ color: "#429198" }}>
-                Just a 3-hour flight from India. Decades ahead in opportunity. Dubai delivers internationally recognised education inside one of the world's fastest-growing economies.
+                From cost efficiency to career relevance, here's why more students are choosing Mauritius over traditional study destinations.
               </span>
             }
           />
@@ -1417,14 +1324,7 @@ export default function StudyDubaiPage() {
             }}
           >
             {reasons.map((r, i) => (
-              <ReasonCard
-                key={r.title}
-                num={String(i + 1).padStart(2, "0")}
-                title={r.title}
-                body={r.body}
-                icon={r.icon}
-                delay={i * 80}
-              />
+              <ReasonCard key={r.title} title={r.title} body={r.body} icon={r.icon} delay={i * 70} />
             ))}
           </div>
         </div>
@@ -1454,7 +1354,7 @@ export default function StudyDubaiPage() {
           }}
         />
         <p style={{ color: C.white, fontSize: 15.5, fontWeight: 600, margin: 0, position: "relative", zIndex: 2 }}>
-          ✨ Whether you completed Grade 10, 12, or hold a degree — Dubai welcomes you. Check your eligibility for free today.
+          ✨ Class 12 pass, diploma holder, or working professional? Mauritius has a pathway for you.
         </p>
         <button
           style={{
@@ -1487,121 +1387,88 @@ export default function StudyDubaiPage() {
         </button>
       </div>
 
-      {/* ---------------- AT A GLANCE FACTS ---------------- */}
-      <section
-        style={{
-          background: `linear-gradient(135deg, ${C.navyDark}, ${C.navyD})`,
-          padding: "100px 48px",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            top: "10%",
-            right: "5%",
-            width: 400,
-            height: 400,
-            background: `radial-gradient(circle, ${C.gold} 0%, transparent 70%)`,
-            opacity: 0.06,
-            filter: "blur(20px)",
-          }}
-        />
-        <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
-          <SectionHead
-            tag="At a Glance"
-            title="Dubai — Essential Facts for International Students"
-            sub="Key information to help you plan your study abroad journey with clarity and confidence."
-            light
-          />
-          <Reveal>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-                gap: 24,
-              }}
-            >
-              <div
-                style={{
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(240,192,64,0.15)",
-                  borderRadius: 18,
-                  overflow: "hidden",
-                }}
-              >
-                <FactRow label="Country" value="United Arab Emirates (UAE)" />
-                <FactRow label="Currency" value="UAE Dirham (AED) · 1 USD ≈ 3.67 AED" />
-                <FactRow label="Language" value="Arabic (official) · English (education & business)" />
-                <FactRow label="Global Student City Rank" value="#7 Worldwide — Education.com 2025" />
-                <FactRow label="Safety Ranking" value="#3 Safest City Globally" />
-                <FactRow label="International Campuses" value="37+ Branch Campuses in the UAE" />
-              </div>
-              <div
-                style={{
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(240,192,64,0.15)",
-                  borderRadius: 18,
-                  overflow: "hidden",
-                }}
-              >
-                <FactRow label="Tuition Fees" value="USD 5,000 (after 35% merit scholarship)" />
-                <FactRow label="Visa Fee" value="USD 1,500 (comprehensive all-in package)" />
-                <FactRow label="Visa Processing Time" value="Typically within 7 working days" />
-                <FactRow label="Intakes" value="Rolling intakes — apply year-round" />
-                <FactRow label="English Requirement" value="Interview-based — no IELTS or TOEFL needed" />
-                <FactRow label="Income Tax" value="0% — fully tax-free environment" />
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---------------- COSTS ---------------- */}
-      <section style={{ background: C.cream, padding: "100px 48px" }}>
+      {/* ---------------- STUDY AREAS ---------------- */}
+      <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag={<span style={{ color: "#429198" }}>Cost of Studying in Dubai</span>}
-            title={<span style={{ color: "#4197a2" }}>Transparent Fee Structure for 2026 Intake</span>}
-            sub={
-              <span style={{ color: "#429198" }}>
-                Dubai provides internationally recognised education at a significantly more accessible cost than the UK, USA, or Australia — especially with scholarship support applied.
-              </span>
-            }
-          />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: 18,
-            }}
-          >
-            <CostCard label="Tuition Fee (Original)" amount="USD 7,500" note="Full programme fee before scholarship" delay={0} />
-            <CostCard label="After 35% Merit Scholarship" amount="USD 5,000" note="You save USD 2,500 — apply for details" highlight delay={80} />
-            <CostCard label="Student Visa Package" amount="USD 1,500" note="Entry permit, medical, Emirates ID & insurance" delay={160} />
-            <CostCard label="Accommodation" amount="AED 1,500–3,500" note="Per month · shared or private options" delay={240} />
-            <CostCard label="Monthly Living Costs" amount="AED 2,500–4,500" note="Food, transport & daily essentials" delay={320} />
-            <CostCard label="Health Insurance" amount="Included" note="Fully covered within the visa package" delay={400} />
+          <div style={{ display: "grid", gridTemplateColumns: "0.9fr 1.1fr", gap: 48, alignItems: "center" }} className="lm-visa-wrap">
+            <Reveal>
+              <div
+                style={{
+                  borderRadius: 20,
+                  overflow: "hidden",
+                  minHeight: 360,
+                  position: "relative",
+                }}
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80"
+                  alt="Students in discussion representing diverse study programmes"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: 20,
+                    left: 20,
+                    background: C.white,
+                    borderRadius: 10,
+                    padding: "12px 16px",
+                    boxShadow: "0 4px 16px rgba(0,0,0,0.14)",
+                    fontSize: 13,
+                    fontWeight: 700,
+                    color: C.ink,
+                  }}
+                >
+                  📚 Career-Focused Programmes
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={150}>
+              <div>
+                <SectionHead
+                  tag={<span style={{ color: "#429198" }}>Academic Pathways</span>}
+                  title={<span style={{ color: "#4197a2" }}>What Can You Study in Mauritius?</span>}
+                  style={{ marginBottom: 24 }}
+                />
+                <p style={{ fontSize: 15, color: C.slate, lineHeight: 1.85, marginBottom: 20 }}>
+                  Mauritius offers a rich and growing catalogue of academic programmes across disciplines in high global demand — available at undergraduate, postgraduate, and professional diploma levels, all taught in English and aligned with industry standards.
+                </p>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+                  {studyAreas.map((area) => (
+                    <span
+                      key={area}
+                      style={{
+                        background: C.navy,
+                        color: C.white,
+                        borderRadius: 999,
+                        padding: "9px 20px",
+                        fontSize: 13,
+                        fontWeight: 600,
+                      }}
+                    >
+                      {area}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ---------------- PROGRAMMES ---------------- */}
-      <section style={{ background: C.white, padding: "100px 48px" }}>
+      {/* ---------------- COST OF STUDYING ---------------- */}
+      <section
+        style={{
+          background: `linear-gradient(135deg, ${C.navyDark}, ${C.navyD})`,
+          padding: "100px 48px",
+        }}
+      >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>MIBD Programmes — Study in Dubai</span>}
-            title={
-              <span style={{ color: "#4197a2" }}>
-                UK-Accredited Diplomas Designed for Dubai's Job Market
-              </span>
-            }
-            sub={
-              <span style={{ color: "#429198" }}>
-                Each programme is OTHM-accredited (UK), KHDA-recognised in Dubai, and accepted globally via WES. All assessed through practical assignments — no final exams.
-              </span>
-            }
+            tag="Transparent Cost Overview"
+            title="Cost of Studying in Mauritius"
+            sub="One of the most frequently asked questions — and one of the most pleasant surprises for prospective students. Here's an honest, realistic overview of what to expect financially."
+            light
           />
           <div
             style={{
@@ -1610,193 +1477,172 @@ export default function StudyDubaiPage() {
               gap: 18,
             }}
           >
-            {courses.map((c, i) => (
-              <CourseCard
-                key={c.title}
-                num={String(i + 1).padStart(2, "0")}
-                title={c.title}
-                body={c.body}
-                delay={i * 70}
-              />
+            {costs.map((c, i) => (
+              <CostCard key={c.label} {...c} delay={i * 70} />
+            ))}
+          </div>
+          <p style={{ textAlign: "center", marginTop: 32, color: "rgba(255,255,255,0.55)", fontSize: 12.5 }}>
+            Exact programme fees vary by course and level of study. Our counsellors will provide accurate, up-to-date cost breakdowns during your free consultation.
+          </p>
+        </div>
+      </section>
+
+      {/* ---------------- STUDENT LIFE ---------------- */}
+      <section style={{ background: C.cream, padding: "100px 48px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <SectionHead
+            tag={<span style={{ color: "#429198" }}>Beyond the Classroom</span>}
+            title={<span style={{ color: "#4197a2" }}>Student Life in Mauritius</span>}
+            sub={
+              <span style={{ color: "#429198" }}>
+                Life in Mauritius is not just about degrees — it's about experiences that shape who you become.
+              </span>
+            }
+          />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22 }}>
+            {lifeCards.map((l, i) => (
+              <OutlookCard key={l.title} {...l} delay={i * 100} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* ---------------- LANGUAGE / ELIGIBILITY REQUIREMENTS ---------------- */}
+      {/* ---------------- PART-TIME WORK ---------------- */}
+      <section style={{ background: C.white, padding: "100px 48px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }} className="lm-visa-wrap">
+            <Reveal>
+              <div>
+                <SectionHead
+                  tag={<span style={{ color: "#429198" }}>Work Up to 20 Hours Per Week</span>}
+                  title={<span style={{ color: "#4197a2" }}>Part-Time Work Rights for International Students</span>}
+                  style={{ marginBottom: 24 }}
+                />
+                <p style={{ fontSize: 14.5, color: C.slate, lineHeight: 1.85, marginBottom: 16 }}>
+                  International students in Mauritius have a legal right to work part-time for up to <strong style={{ color: C.ink }}>20 hours per week</strong> during term time — allowing you to gain professional experience, offset living costs, and build a credible international employment record alongside your degree.
+                </p>
+                <p style={{ fontSize: 14.5, color: C.slate, lineHeight: 1.85, marginBottom: 16 }}>
+                  Students are <strong style={{ color: C.ink }}>strictly prohibited from working during their first semester</strong> — the initial 90 days following arrival. This waiting period is a firm legal requirement and is not waivable under any circumstances.
+                </p>
+                <p style={{ fontSize: 14.5, color: C.slate, lineHeight: 1.85, marginBottom: 24 }}>
+                  Every part-time role also requires a specific <strong style={{ color: C.ink }}>employment clearance or work permit</strong>, applied for and approved through the <strong style={{ color: C.ink }}>Ministry of Labour</strong> by the prospective employer — not the student.
+                </p>
+                <NavyButton onClick={() => setOpen(true)}>Get Guidance on Work Clearance →</NavyButton>
+              </div>
+            </Reveal>
+            <Reveal delay={150}>
+              <div>
+                {partTimeList.map((item, idx, arr) => (
+                  <div
+                    key={item}
+                    style={{
+                      display: "flex",
+                      gap: 10,
+                      alignItems: "flex-start",
+                      padding: "13px 0",
+                      borderBottom: idx === arr.length - 1 ? "none" : `1px solid ${C.border}`,
+                      fontSize: 14,
+                      color: C.slate,
+                    }}
+                  >
+                    <span style={{ color: C.navy, fontWeight: 700, flexShrink: 0 }}>✓</span>
+                    {item}
+                  </div>
+                ))}
+                <div
+                  style={{
+                    background: C.goldTint,
+                    border: `1px solid ${C.goldSoft}`,
+                    borderLeft: `3px solid ${C.navy}`,
+                    padding: "16px 18px",
+                    marginTop: 18,
+                    fontSize: 12.5,
+                    color: "#8a3810",
+                    lineHeight: 1.7,
+                  }}
+                >
+                  ⚠️ The 90-day work restriction and Ministry of Labour clearance requirement are mandatory legal obligations under Mauritian immigration and labour law. Langma International will provide complete pre-arrival and post-arrival guidance on compliance.
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- ENGLISH LANGUAGE REQUIREMENTS ---------------- */}
       <section
         style={{
           background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD} 60%, ${C.navy})`,
-          padding: "50px 8px",
-          position: "relative",
-          overflow: "hidden",
+          padding: "90px 48px",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            top: 50,
-            right: -100,
-            width: 360,
-            height: 360,
-            background: `radial-gradient(circle, ${C.gold} 0%, transparent 70%)`,
-            opacity: 0.08,
-            filter: "blur(30px)",
-          }}
-        />
-        <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            style={{ paddingLeft: "24px", paddingRight: "24px" }}
-            tag="English Requirements for Dubai"
-            title="No IELTS Required to Study in Dubai"
-            sub="Unlike most Western destinations, Dubai does not require IELTS, TOEFL, or any standardised English test. Here is exactly what the admission process looks like for international students."
+            tag="Language Requirements"
+            title="IELTS, TOEFL & English Proficiency for Mauritius"
+            sub="One common concern for Indian and international students is language proficiency requirements. Here's what you need to know about studying in Mauritius in English."
             light
           />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 24 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 24 }}>
             <Reveal>
               <div
                 style={{
                   background: "rgba(255,255,255,0.04)",
                   border: "1px solid rgba(240,192,64,0.18)",
-                  padding: 36,
+                  padding: 32,
                   borderRadius: 20,
-                  backdropFilter: "blur(8px)",
                 }}
               >
-                <h3
-                  style={{
-                    fontSize: 20,
-                    fontWeight: 600,
-                    color: C.white,
-                    marginBottom: 22,
-                    paddingBottom: 16,
-                    borderBottom: `2px solid ${C.gold}`,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                  }}
-                >
-                  <span>🗣️</span> Standard Admission (All Levels)
+                <h3 style={{ fontSize: 17, fontWeight: 700, color: C.white, marginBottom: 14 }}>
+                  When IELTS or TOEFL May Be Required
+                </h3>
+                <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.7)", lineHeight: 1.8, marginBottom: 16 }}>
+                  Some postgraduate programmes, or those with formal accreditation ties to international bodies, may request proof of English proficiency through IELTS or TOEFL. Requirements vary widely — many programmes welcome students from English-medium schools without a separate test.
+                </p>
+                <h3 style={{ fontSize: 17, fontWeight: 700, color: C.white, marginBottom: 14 }}>
+                  Alternative Proof of Proficiency
                 </h3>
                 {[
-                  ["IELTS", "Not Required"],
-                  ["TOEFL", "Not Required"],
-                  ["PTE", "Not Required"],
-                  ["English Interview", "Accepted ✓"],
-                  ["Medium of Instruction Certificate", "Accepted ✓"],
-                ].map(([t, s], idx, arr) => (
-                  <div
-                    key={t}
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      padding: "13px 0",
-                      borderBottom: idx === arr.length - 1 ? "none" : "1px solid rgba(255,255,255,0.06)",
-                    }}
-                  >
-                    <span style={{ fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.82)" }}>{t}</span>
-                    <span
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 700,
-                        color: "#FFFFFF",
-                        padding: "4px 12px",
-                        background: "rgba(240,192,64,0.12)",
-                        borderRadius: 999,
-                      }}
-                    >
-                      {s}
-                    </span>
+                  "Previous study in an English-medium school or institution",
+                  "English as a primary subject in Class 12 or graduation",
+                  "Programme-specific English placement assessments",
+                  "Work experience letters in English-speaking environments",
+                ].map((item) => (
+                  <div key={item} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 10 }}>
+                    <span style={{ color: C.goldL, fontWeight: 700, flexShrink: 0 }}>✓</span>
+                    <span style={{ fontSize: 13.5, color: "rgba(255,255,255,0.75)", lineHeight: 1.7 }}>{item}</span>
                   </div>
                 ))}
-                <div
-                  style={{
-                    background: "rgba(240,192,64,0.08)",
-                    border: "1px solid rgba(240,192,64,0.2)",
-                    padding: "16px 18px",
-                    marginTop: 22,
-                    fontSize: 12.5,
-                    color: "rgba(255,255,255,0.65)",
-                    lineHeight: 1.7,
-                    borderRadius: 12,
-                  }}
-                >
-                  💡 English proficiency is confirmed through a straightforward institutional interview — no external test bookings, score submissions, or additional preparation required.
-                </div>
               </div>
             </Reveal>
-
             <Reveal delay={120}>
               <div
                 style={{
                   background: "rgba(255,255,255,0.04)",
                   border: "1px solid rgba(240,192,64,0.18)",
-                  padding: 36,
+                  padding: 32,
                   borderRadius: 20,
-                  backdropFilter: "blur(8px)",
                 }}
               >
-                <h3
-                  style={{
-                    fontSize: 20,
-                    fontWeight: 600,
-                    color: C.white,
-                    marginBottom: 22,
-                    paddingBottom: 16,
-                    borderBottom: `2px solid ${C.gold}`,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                  }}
-                >
-                  <span>✅</span> Who Is Eligible to Apply?
+                <h3 style={{ fontSize: 17, fontWeight: 700, color: C.white, marginBottom: 14 }}>
+                  Why You Should Verify Requirements Early
                 </h3>
-                {[
-                  ["Grade 10 Completed", "Eligible ✓"],
-                  ["Grade 12 Completed", "Eligible ✓"],
-                  ["Graduate Applicants", "Eligible ✓"],
-                  ["Study Gap Applicants", "Accepted ✓"],
-                  ["Age Restrictions", "None — All Ages Welcome ✓"],
-                ].map(([t, s], idx, arr) => (
-                  <div
-                    key={t}
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      padding: "13px 0",
-                      borderBottom: idx === arr.length - 1 ? "none" : "1px solid rgba(255,255,255,0.06)",
-                    }}
-                  >
-                    <span style={{ fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.82)" }}>{t}</span>
-                    <span
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 700,
-                        color: "#FFFFFF",
-                        padding: "4px 12px",
-                        background: "rgba(240,192,64,0.12)",
-                        borderRadius: 999,
-                      }}
-                    >
-                      {s}
-                    </span>
-                  </div>
-                ))}
+                <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.7)", lineHeight: 1.8, marginBottom: 20 }}>
+                  Language requirements can change and vary by intake. The safest approach is to confirm the exact requirements for your chosen programme as early as possible in the planning stage.
+                </p>
                 <div
                   style={{
-                    background: "rgba(46,125,90,0.08)",
-                    border: "1px solid rgba(46,125,90,0.25)",
-                    padding: "16px 18px",
-                    marginTop: 22,
-                    fontSize: 12.5,
-                    color: "rgba(255,255,255,0.65)",
-                    lineHeight: 1.7,
-                    borderRadius: 12,
+                    background: "rgba(0,0,0,0.2)",
+                    borderRadius: 14,
+                    padding: 22,
                   }}
                 >
-                  ⚠️ Specific entry requirements may vary slightly between Level 3 and Level 4/5 programmes. Your Langma International advisor will confirm exact criteria before you apply.
+                  <p style={{ color: "#FFFFFF", marginBottom: 10, fontWeight: 600, fontSize: 13.5 }}>
+                    💬 Langma International's Guidance
+                  </p>
+                  <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, lineHeight: 1.75, margin: 0 }}>
+                    Our experienced counsellors review your academic background and help you determine whether a language test is required, recommend preparation if needed, and ensure your application meets all proficiency criteria before submission.
+                  </p>
                 </div>
               </div>
             </Reveal>
@@ -1808,37 +1654,34 @@ export default function StudyDubaiPage() {
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Dubai Student Visa Guide</span>}
-            title={
-              <span style={{ color: "#4197a2" }}>
-                Dubai Student Visa — Straightforward, Efficient, Guided
-              </span>
-            }
+            tag={<span style={{ color: "#429198" }}>Visa Information</span>}
+            title={<span style={{ color: "#4197a2" }}>Mauritius Student Visa Guide</span>}
             sub={
               <span style={{ color: "#429198" }}>
-                Dubai's student visa process is among the most accessible in the world for international applicants. Langma International provides professional guidance through every stage.
+                Obtaining a student visa for Mauritius is a structured and manageable process. Requirements are subject to change and must be verified at the time of application — here is a general overview of what to expect through Langma International.
               </span>
             }
           />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }} className="lm-visa-wrap">
             <div>
-              <VisaStep n={1} title="Submit Your Application Online" body="Create your student profile and upload your passport copy and academic certificates. The process takes under 20 minutes and can be completed from anywhere." delay={0} />
-              <VisaStep n={2} title="Receive Your Offer Letter" body="MIBD's admissions team reviews your application within 2–3 working days. Upon approval, your official Offer Letter is issued with full programme and next-step details." delay={100} />
-              <VisaStep n={3} title="Confirm Your Place & Pay Fees" body="Secure your admission by paying the programme fees as outlined in your Offer Letter. A full payment invoice and receipt are issued immediately upon confirmation." delay={200} />
-              <VisaStep n={4} title="Visa Processing — Typically Within 7 Days" body="Your comprehensive visa package (USD 1,500) covers Entry Permit, Medical Check, Biometrics, Medical Insurance, Visa Stamping, and Emirates ID — all coordinated by our team." delay={300} />
-              <VisaStep n={5} title="Arrive & Begin Your Dubai Journey" body="Receive your orientation schedule, welcome pack, and accommodation guidance before departure. Langma International supports your complete pre-arrival and on-ground transition." isLast delay={400} />
+              <VisaStep n={1} title="Confirmed Offer Letter" body="Secure your official admission offer from an accredited institution in Mauritius. This document is fundamental to your visa application." delay={0} />
+              <VisaStep n={2} title="Valid Passport" body="Your passport must have sufficient validity beyond your expected period of study. Typically, a minimum of 18 months remaining validity is advisable." delay={80} />
+              <VisaStep n={3} title="Financial Documentation" body="The Passport and Immigration Office (PIO) requires proof of a minimum maintenance balance of USD 5,000–6,000, separate from tuition fee payment proof — via bank statements, sponsor declarations, or a fixed deposit certificate." delay={160} />
+              <VisaStep n={4} title="Academic Transcripts & Certificates" body="Submit certified copies of your educational qualifications — Class 10, Class 12, graduation, or any relevant academic records depending on your programme level." delay={240} />
+              <VisaStep n={5} title="Medical Screening — Mandatory In-Country Requirement" body="A compulsory requirement upon arrival: HIV testing, Hepatitis B screening, and a Chest X-ray at a registered laboratory or approved hospital, completed within the first few days of entry, before your permit can be validated." delay={320} />
+              <VisaStep n={6} title="Photograph & Application Form" body="Passport-size photographs meeting the specified format, along with a completed student visa application form, form the final layer of your submission." delay={400} />
+              <VisaStep n={7} title="Visa Processing & Guidance" body="Langma International manages the entire visa documentation process on your behalf — reviewing, organising, and submitting your application with precision to avoid delays or rejections." isLast delay={480} />
             </div>
             <div style={{ position: "sticky", top: 100 }}>
               <DocsBox
-                title="Required Documents"
+                title="Key Visa Requirements"
                 items={visaDocs}
                 note={
                   <>
-                    <strong style={{ color: "#FFFFFF" }}>Visa Fee:</strong> USD 1,500 (comprehensive all-inclusive package)
+                    ⚠️ Always verify the latest visa requirements with Langma International before initiating any application process, as immigration policies may be updated.
                     <br />
-                    <strong style={{ color: "#FFFFFF" }}>Covers:</strong> Entry Permit · Medical Check · Biometrics · Medical Insurance · Visa Stamping · Emirates ID
                     <br />
-                    <strong style={{ color: "#FFFFFF" }}>Processing Time:</strong> Typically 7 working days
+                    <strong style={{ color: "#FFFFFF" }}>Mandatory medical screening:</strong> HIV testing, Hepatitis B, and Chest X-ray required within the first few days of arrival.
                   </>
                 }
               />
@@ -1847,54 +1690,22 @@ export default function StudyDubaiPage() {
         </div>
       </section>
 
-      {/* ---------------- SALARY OUTLOOK ---------------- */}
+      {/* ---------------- CAREER ADVANTAGES ---------------- */}
       <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Tax-Free Salary Outlook — Dubai 2026</span>}
-            title={<span style={{ color: "#4197a2" }}>Career Earnings Across Key Dubai Sectors</span>}
+            tag={<span style={{ color: "#429198" }}>Career Impact</span>}
+            title={<span style={{ color: "#4197a2" }}>Career Advantages of Studying in Mauritius</span>}
             sub={
               <span style={{ color: "#429198" }}>
-                In the UAE, personal income tax is zero — meaning these figures reflect what professionals take home. Data sourced from Dubai 2026 salary benchmarks for reference purposes.
+                Your degree from Mauritius is more than a certificate — it's a career asset built through international experience, cross-cultural confidence, and globally relevant skills.
               </span>
             }
-          />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-              gap: 18,
-            }}
-          >
-            {salaries.map((s, i) => (
-              <SalaryCard key={s.sector} {...s} delay={i * 70} />
-            ))}
-          </div>
-          <p style={{ fontSize: 12, color: C.muted, marginTop: 22, fontStyle: "italic" }}>
-            Source: inedjobs.com Dubai salary benchmarks 2026. Figures are indicative averages. Individual salaries vary by employer, experience, and role. All UAE earnings are tax-free.
-          </p>
-        </div>
-      </section>
-
-      {/* ---------------- CAREER OUTLOOK ---------------- */}
-      <section style={{ background: C.cream, padding: "100px 48px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag={<span style={{ color: "#429198" }}>Career Outlook — UAE 2026 & Beyond</span>}
-            title={
-              <span style={{ color: "#4197a2" }}>
-                Dubai: A City Actively Building Its Workforce
-              </span>
-            }
-            sub={
-              <span style={{ color: "#429198" }}>
-                Dubai is not just a place to study — it is a city in deliberate expansion mode. The UAE's economic agenda is creating large-scale professional opportunities across every major industry.
-              </span>
-            }
+            center
           />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22 }}>
-            {outlooks.map((o, i) => (
-              <OutlookCard key={o.title} {...o} delay={i * 100} />
+            {careerCards.map((c, i) => (
+              <OutlookCard key={c.title} {...c} delay={i * 100} />
             ))}
           </div>
         </div>
@@ -1923,9 +1734,9 @@ export default function StudyDubaiPage() {
         />
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead
-            tag="Why Choose Langma International"
-            title="Your End-to-End Study Abroad Partner for Dubai"
-            sub="We go far beyond an application form. From your first enquiry to your first week on campus, Langma International is with you — professionally, personally, and practically."
+            tag="Your Trusted Partner"
+            title="Why Apply Through Langma International?"
+            sub="Studying abroad without the right guidance can be overwhelming. Langma International exists to remove that uncertainty — and turn your international ambition into a reality, step by step."
             light
           />
           <div
@@ -1946,7 +1757,7 @@ export default function StudyDubaiPage() {
       <FAQ />
       {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead tag={<span style={{ color: "#429198" }}>FAQs</span>} title="Common Questions About Studying in Dubai" center />
+          <SectionHead tag={<span style={{ color: "#429198" }}>Got Questions?</span>} title="Frequently Asked Questions" center />
           <Reveal>
             <div style={{ maxWidth: 860, margin: "0 auto" }}>
               {faqs.map((f, i) => (
@@ -2013,10 +1824,10 @@ export default function StudyDubaiPage() {
                 lineHeight: 1.1,
               }}
             >
-              Dubai Is Ready.
+              Your International Education
               <br />
               <em className="lm-grd-text" style={{ fontStyle: "italic" }}>
-                Is This Your Year?
+                Journey Starts Here.
               </em>
             </h2>
           </Reveal>
@@ -2032,16 +1843,16 @@ export default function StudyDubaiPage() {
                 lineHeight: 1.8,
               }}
             >
-              No IELTS. No show money. UK-accredited qualification. Tax-free professional environment waiting on the other side. Your 2026 Dubai journey begins with one free conversation.
+              Thousands of students have transformed their futures through international education — and Mauritius could be where yours begins. Speak with a Langma International counsellor today. No pressure. No obligation.
             </p>
           </Reveal>
           <Reveal delay={300}>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
               <NavyButton onClick={() => setOpen(true)} style={{ background: C.forest, padding: "16px 36px" }}>
-                Book Free Counselling →
+                📞 Book a Free Call
               </NavyButton>
-              <GhostButton onClick={() => setOpen(true)}>Check My Eligibility</GhostButton>
-              <GhostButton onClick={() => setOpen(true)}>Talk to an Advisor</GhostButton>
+              <GhostButton onClick={() => setOpen(true)}>✉️ Email Our Team</GhostButton>
+              <GhostButton onClick={() => setOpen(true)}>💬 WhatsApp Us Now</GhostButton>
             </div>
           </Reveal>
         </div>

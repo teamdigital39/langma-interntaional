@@ -3,8 +3,8 @@ import PopupForm from "./PopupForm";
 import FAQ from "./FAQ";
 
 /**
- * Study in South Korea — Langma International
- * Palette matches the Study in Poland page (teal brand accent over navy panels)
+ * Study in Singapore — Langma International
+ * Palette matches the Study in Poland / South Korea / Malta / Dubai pages (teal brand accent over navy panels)
  */
 
 const C = {
@@ -87,9 +87,9 @@ function Reveal({ children, delay = 0, y = 24, as: Tag = "div", style }) {
 /* ===================================================================
  *  Animated counter stat
  * ================================================================ */
-function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay }) {
+function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay, text }) {
   const [ref, visible] = useReveal();
-  const animated = useCountUp(value, 1500, visible);
+  const animated = useCountUp(value ?? 0, 1500, visible);
   return (
     <div
       ref={ref}
@@ -107,7 +107,7 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay }) {
     >
       <div
         style={{
-          fontSize: "clamp(30px, 3.2vw, 42px)",
+          fontSize: "clamp(24px, 2.6vw, 36px)",
           fontWeight: 600,
           color: C.gold,
           lineHeight: 1,
@@ -117,9 +117,15 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay }) {
           gap: 2,
         }}
       >
-        <span style={{ color: C.goldL, fontSize: "0.7em" }}>{prefix}</span>
-        {animated}
-        <span style={{ color: C.goldL, fontSize: "0.7em" }}>{suffix}</span>
+        {text ? (
+          text
+        ) : (
+          <>
+            <span style={{ color: C.goldL, fontSize: "0.7em" }}>{prefix}</span>
+            {animated}
+            <span style={{ color: C.goldL, fontSize: "0.7em" }}>{suffix}</span>
+          </>
+        )}
       </div>
       <div
         style={{
@@ -152,6 +158,7 @@ function SectionHead({ style, tag, title, sub, light, center }) {
           maxWidth: 760,
           margin: center ? "0 auto 52px" : "0 0 52px 0",
           textAlign: center ? "center" : "left",
+          ...style,
         }}
       >
         <div
@@ -487,7 +494,7 @@ function CostCard({ label, amount, note, highlight, delay }) {
         </span>
         <div
           style={{
-            fontSize: 30,
+            fontSize: 26,
             fontWeight: 600,
             color: highlight ? C.white : C.ink,
             lineHeight: 1,
@@ -511,9 +518,9 @@ function CostCard({ label, amount, note, highlight, delay }) {
 }
 
 /* ===================================================================
- *  Course card
+ *  Programme card (with duration + fee)
  * ================================================================ */
-function CourseCard({ num, title, body, icon, delay }) {
+function ProgramCard({ num, title, body, duration, fee, delay }) {
   const [h, setH] = useState(false);
   return (
     <Reveal delay={delay}>
@@ -524,13 +531,12 @@ function CourseCard({ num, title, body, icon, delay }) {
           position: "relative",
           background: h ? C.navy : C.white,
           border: `1px solid ${h ? C.navy : C.border}`,
-          padding: "28px 24px",
+          padding: "26px 22px",
           borderRadius: 16,
           transition: "all 0.35s cubic-bezier(.2,.7,.2,1)",
           transform: h ? "translateY(-6px)" : "translateY(0)",
           boxShadow: h ? `0 22px 40px -20px rgba(26,46,90,0.4)` : "none",
           overflow: "hidden",
-          cursor: "pointer",
         }}
       >
         <div
@@ -538,25 +544,25 @@ function CourseCard({ num, title, body, icon, delay }) {
             display: "inline-flex",
             alignItems: "center",
             justifyContent: "center",
-            width: 36,
-            height: 36,
+            width: 32,
+            height: 32,
             background: h ? "rgba(255,255,255,0.15)" : C.goldTint,
             color: h ? "#FFFFFF" : "#429198",
-            fontSize: 15,
+            fontSize: 12,
             fontWeight: 700,
             borderRadius: 10,
-            marginBottom: 14,
+            marginBottom: 12,
             transition: "all 0.3s ease",
           }}
         >
-          {icon || num}
+          {num}
         </div>
         <div
           style={{
-            fontSize: 14.5,
+            fontSize: 14,
             fontWeight: 700,
             color: h ? C.white : C.ink,
-            marginBottom: 8,
+            marginBottom: 6,
             lineHeight: 1.35,
             transition: "color 0.3s ease",
           }}
@@ -565,9 +571,10 @@ function CourseCard({ num, title, body, icon, delay }) {
         </div>
         <div
           style={{
-            fontSize: 12.5,
+            fontSize: 12,
             color: h ? "rgba(255,255,255,0.75)" : C.slate,
-            lineHeight: 1.7,
+            lineHeight: 1.6,
+            marginBottom: 14,
             transition: "color 0.3s ease",
           }}
         >
@@ -575,16 +582,22 @@ function CourseCard({ num, title, body, icon, delay }) {
         </div>
         <div
           style={{
-            position: "absolute",
-            bottom: 18,
-            right: 22,
-            color: h ? C.gold : "transparent",
-            fontSize: 18,
-            transition: "all 0.3s ease",
-            transform: h ? "translateX(0)" : "translateX(-8px)",
+            fontSize: 11.5,
+            fontWeight: 600,
+            color: h ? C.goldL : C.forest,
+            marginBottom: 4,
           }}
         >
-          →
+          {duration}
+        </div>
+        <div
+          style={{
+            fontSize: 13,
+            fontWeight: 700,
+            color: h ? "rgba(255,255,255,0.9)" : C.ink,
+          }}
+        >
+          {fee}
         </div>
       </div>
     </Reveal>
@@ -660,7 +673,58 @@ function VisaStep({ n, title, body, isLast, delay }) {
 }
 
 /* ===================================================================
- *  Outlook card (used for Work & Career opportunities)
+ *  Salary card
+ * ================================================================ */
+function SalaryCard({ sector, monthly, delay }) {
+  const [ref, visible] = useReveal();
+  const [h, setH] = useState(false);
+  return (
+    <div
+      ref={ref}
+      onMouseEnter={() => setH(true)}
+      onMouseLeave={() => setH(false)}
+      style={{
+        background: h ? C.goldTint : C.white,
+        border: `1px solid ${h ? C.navy : C.border}`,
+        padding: "24px 20px",
+        borderRadius: 14,
+        textAlign: "center",
+        transition: "all 0.3s ease",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(16px)",
+        transitionDelay: `${delay}ms`,
+      }}
+    >
+      <span
+        style={{
+          fontSize: 11,
+          fontWeight: 700,
+          textTransform: "uppercase",
+          letterSpacing: "1px",
+          color: C.slate,
+          marginBottom: 10,
+          display: "block",
+        }}
+      >
+        {sector}
+      </span>
+      <div
+        style={{
+          fontSize: 24,
+          fontWeight: 600,
+          color: C.ink,
+          lineHeight: 1,
+        }}
+      >
+        {monthly}
+      </div>
+      <div style={{ fontSize: 11.5, color: C.slate, marginTop: 6 }}>per month avg. starting</div>
+    </div>
+  );
+}
+
+/* ===================================================================
+ *  Outlook / Internship card
  * ================================================================ */
 function OutlookCard({ tag, title, body, icon, delay }) {
   return (
@@ -796,6 +860,116 @@ function SupportCard({ icon, title, body, delay }) {
 }
 
 /* ===================================================================
+ *  Docs / checklist box
+ * ================================================================ */
+function DocsBox({ title, items, note }) {
+  return (
+    <Reveal delay={150}>
+      <div
+        style={{
+          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
+          padding: 34,
+          borderRadius: 22,
+          overflow: "hidden",
+          position: "relative",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            top: -50,
+            right: -50,
+            width: 200,
+            height: 200,
+            background: `radial-gradient(circle, ${C.gold} 0%, transparent 70%)`,
+            opacity: 0.1,
+          }}
+        />
+        <h3
+          style={{
+            fontSize: 20,
+            fontWeight: 600,
+            color: C.white,
+            marginBottom: 20,
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+            position: "relative",
+          }}
+        >
+          <span
+            style={{
+              width: 36,
+              height: 36,
+              background: C.gold,
+              color: C.navyD,
+              borderRadius: 10,
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 16,
+            }}
+          >
+            📋
+          </span>
+          {title}
+        </h3>
+        {items.map((d) => (
+          <div
+            key={d}
+            style={{
+              display: "flex",
+              gap: 12,
+              marginBottom: 12,
+              fontSize: 13,
+              color: "rgba(255,255,255,0.75)",
+              alignItems: "flex-start",
+              lineHeight: 1.6,
+              position: "relative",
+            }}
+          >
+            <span
+              style={{
+                width: 20,
+                height: 20,
+                background: "rgba(240,192,64,0.15)",
+                color: "#FFFFFF",
+                borderRadius: "50%",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 11,
+                flexShrink: 0,
+                fontWeight: 700,
+              }}
+            >
+              ✓
+            </span>
+            {d}
+          </div>
+        ))}
+        {note && (
+          <div
+            style={{
+              background: "rgba(240,192,64,0.1)",
+              borderLeft: `3px solid ${C.gold}`,
+              padding: "16px 18px",
+              marginTop: 20,
+              fontSize: 12.5,
+              color: "rgba(255,255,255,0.7)",
+              lineHeight: 1.75,
+              borderRadius: 8,
+            }}
+          >
+            {note}
+          </div>
+        )}
+      </div>
+    </Reveal>
+  );
+}
+
+/* ===================================================================
  *  FAQ accordion
  * ================================================================ */
 function FAQItem({ q, a, isOpen, onClick }) {
@@ -870,14 +1044,14 @@ function FAQItem({ q, a, isOpen, onClick }) {
  * ================================================================ */
 function Marquee() {
   const items = [
-    "🇰🇷 South Korea 2026 Intake Open",
-    "✦ 170K+ International Students",
-    "✦ Tuition from ₩3.7M/Semester",
-    "✦ English-Taught Programs",
-    "✦ Part-Time Work Rights",
-    "✦ D-2 Student Visa",
-    "✦ Asia's Innovation Capital",
-    "✦ Spring & Fall Intakes",
+    "🇸🇬 Singapore 2026 Intake Open",
+    "✦ No IELTS Required",
+    "✦ Paid Internships Included",
+    "✦ SGD 1,000–2,000/mo Internship Earnings",
+    "✦ PR Pathway Available",
+    "✦ 6 Intakes Per Year",
+    "✦ EduTrust-Certified Programmes",
+    "✦ Age 18–32 Welcome",
   ];
   const loop = [...items, ...items];
   return (
@@ -942,84 +1116,87 @@ function ScrollProgress() {
 }
 
 /* ===================================================================
- *  DATA — South Korea content
+ *  DATA — Singapore content
  * ================================================================ */
 const reasons = [
-  { icon: "🤖", title: "World-Leading Technology Ecosystem", body: "Home to Samsung, LG, Hyundai, SK Hynix, and Kakao — South Korea ranks in the world's top tier for R&D investment as a share of GDP. Study where the technology shaping your future is actually being built." },
-  { icon: "🎓", title: "Globally Respected Academic Institutions", body: "South Korean universities consistently appear in QS and THE world rankings. Programs in engineering, computer science, business, and design are internationally recognised and sought-after by global employers." },
-  { icon: "💰", title: "Affordable Tuition vs Western Alternatives", body: "Tuition fees are significantly lower than universities in the US, UK, or Australia, making South Korea one of the most financially accessible developed-world study destinations available to international students." },
-  { icon: "🛡️", title: "Exceptionally Safe Country", body: "South Korea consistently ranks among the safest nations in the world. Low crime rates, excellent healthcare infrastructure, and a high standard of public safety make it an ideal environment for international students." },
-  { icon: "🌏", title: "Gateway to the Asian Career Market", body: "South Korea sits at the heart of Northeast Asia. A degree here opens pathways not just in Korea, but across Japan, China, Singapore, and the broader ASEAN region — the world's fastest-growing economic zone." },
-  { icon: "🌐", title: "Growing English-Taught Program Portfolio", body: "Many leading Korean universities now offer fully English-medium degree tracks across disciplines — from AI and engineering to global business and design arts — specifically designed for international students." },
-  { icon: "🎵", title: "Korean Culture Is a Global Phenomenon", body: "K-pop, K-drama, K-beauty, Korean cuisine — South Korea's cultural influence is unprecedented. Studying here means immersing yourself in a culture the world is actively watching, and building a truly unique personal brand." },
-  { icon: "📶", title: "World's Fastest Internet & Smart Infrastructure", body: "South Korea leads global rankings for internet speed and digital infrastructure. Studying here means access to a hyper-connected academic and social environment that matches your generation's pace." },
+  { icon: "🗣️", title: "No IELTS, TOEFL or PTE Required", body: "English proficiency is assessed during the admissions process itself — no external test scores needed. Any percentage, backlog, or study gap is accepted." },
+  { icon: "💼", title: "Structured Paid Internships", body: "Every diploma programme includes a 6-month paid internship, earning SGD 1,000–2,000 per month while building a CV that works in Singapore's competitive job market." },
+  { icon: "🎓", title: "EduTrust-Certified Education", body: "Programmes are government-certified under SkillsFuture Singapore and awarded EduTrust by the Committee for Private Education (CPE) since 2017 — a mark of quality and trust." },
+  { icon: "🌍", title: "Globally Recognised Qualifications", body: "Credentials recognised by top universities in Malaysia, the United Kingdom, Australia, and the United States — opening doors to top-up degree pathways internationally." },
+  { icon: "🏛️", title: "Pathway to Permanent Residency", body: "Singapore offers a structured PR pathway for international graduates who secure employment post-study. Work in key growth sectors and build your long-term future here." },
+  { icon: "🛡️", title: "World-Class Safety & Urban Lifestyle", body: "Consistently ranked among the world's safest cities. Clean, modern infrastructure, a multicultural community, and a warm tropical climate year-round." },
+  { icon: "🏢", title: "Asia's Global Business & Tech Hub", body: "Home to hundreds of Fortune 500 companies and multinational corporations, offering unparalleled access to internships, networking events, and career opportunities." },
+  { icon: "📅", title: "6 Flexible Intakes Per Year", body: "Unlike most study destinations that offer a single annual intake, Singapore provides six intake windows throughout the year — so you can start almost as soon as you decide." },
 ];
 
-const courses = [
-  { icon: "🤖", title: "Artificial Intelligence", body: "Machine learning, deep learning, AI systems — taught at institutions leading Asia's AI research frontier." },
-  { icon: "💻", title: "Computer Science & Engineering", body: "Software engineering, cybersecurity, computer engineering and information systems." },
-  { icon: "⚙️", title: "Mechanical & Electrical Engineering", body: "Semiconductor engineering, automotive, eco-energy, and electrical ICT engineering." },
-  { icon: "🎮", title: "Animation, Gaming & Webtoon", body: "South Korea is a global leader in gaming and webtoon culture — study in the industry's home market." },
-  { icon: "📊", title: "Business & Global Management", body: "International business, accounting, economics, finance, and trade — English-medium tracks available." },
-  { icon: "📺", title: "Media & Communication", body: "Visual content, advertising, PR, and media studies — in the heart of Hallyu's creative economy." },
-  { icon: "🗣️", title: "Korean Language Studies", body: "Korean language education, interpretation, and translation programs — an invaluable career differentiator." },
-  { icon: "💄", title: "Fashion, Beauty & Aesthetics", body: "Fashion design, hair design, makeup, skin care — study in one of the world's leading beauty industries." },
-  { icon: "🏨", title: "Hospitality & Tourism Management", body: "Tourism, airline management, hotel operations, and food service management." },
-  { icon: "📡", title: "Data Science & Analytics", body: "Applied data science, information engineering, and smart systems in a data-first economy." },
-  { icon: "🦾", title: "Robotics & Smart Systems", body: "Advanced robotics, automation, and smart manufacturing — Korea is a world leader in industrial robotics." },
-  { icon: "🔬", title: "Biotechnology & Health Sciences", body: "Health sciences, biotech, food science, animal resources, and companion animal industries." },
+const programs = [
+  { title: "Hospitality & Tourism Management", body: "Luxury resorts, global hotel chains, event management & international travel operations", duration: "6 months study + 6 months internship", fee: "SGD 6,024.50" },
+  { title: "Business & Retail Management", body: "Corporate management, retail operations, business strategy & entrepreneurship", duration: "6 months study + 6 months internship", fee: "SGD 6,024.50" },
+  { title: "Logistics & Supply Chain Management", body: "Singapore's role as a global trade hub creates consistent, high-demand career opportunities", duration: "6 months study + 6 months internship", fee: "SGD 6,024.50" },
+  { title: "Advanced Hospitality & Tourism Management", body: "Senior roles in hotel operations, tourism planning & premium guest experience management", duration: "6 months study + 6 months internship", fee: "SGD 6,224.50" },
+  { title: "Higher Diploma — Hospitality & Tourism", body: "Comprehensive 12-month programme designed for management-level hospitality careers", duration: "12 months study + 6 months internship", fee: "SGD 9,000" },
+  { title: "PG Diploma — Hospitality & Tourism", body: "Postgraduate-level credential for experienced hospitality professionals and graduates", duration: "6 months study + 6 months internship", fee: "SGD 6,500" },
+  { title: "Sports Science & Management", body: "Sports administration, facility management & performance consultancy across Asia's growing sports industry", duration: "6 months study + 6 months internship", fee: "SGD 6,024.50" },
+  { title: "Sports Science & Coaching", body: "Coach development, athlete training & professional sports industry careers in Singapore and beyond", duration: "6 months study + 6 months internship", fee: "SGD 6,024.50" },
+  { title: "Data Analytics & Business", body: "High-demand data skills applied across finance, technology, retail & business operations sectors", duration: "10 months", fee: "SGD 8,000" },
+  { title: "Diploma in Caregiving", body: "Healthcare & elderly care — a critical shortage sector with active hiring and strong PR prospects", duration: "12 months", fee: "SGD 8,000" },
+  { title: "Restaurant Entrepreneurship", body: "F&B business management, culinary entrepreneurship & food technology innovation", duration: "6 months study + 6 months internship", fee: "SGD 4,458 (subsidised)" },
 ];
 
-const faqs = [
-  { q: "Is IELTS mandatory to study in South Korea?", a: "For English-taught programs, an IELTS score of 5.5 or TOEFL iBT 51 is the typical minimum requirement. For Korean-medium programs, TOPIK Level 3 or above is generally required. Students from countries where English is the official medium of education may qualify for exemptions — this varies by institution. Our advisors will confirm the exact requirement for your chosen program." },
-  { q: "Can I work part-time while studying in South Korea?", a: "Yes. International students on a valid D-2 student visa are permitted to work part-time in South Korea. Bachelor's students may work up to 20 hours per week during academic sessions. Master's students may work up to 30 hours per week during academic sessions. During official university vacation periods, full-time work may be permitted. University and immigration authority approval is required." },
-  { q: "What is the student visa process for South Korea?", a: "After receiving your official Certificate of Admission, you apply for a D-2 student visa at the Korean Embassy or Visa Application Centre in your home country. You'll need your admission letter, valid passport, financial proof — Bank Balance Certificate showing approximately KRW 16,000,000 – KRW 25,000,000 (Approx. INR 9.5 Lakhs – INR 15 Lakhs) — academic certificates, and family/birth documents. Langma International provides step-by-step guidance through this process." },
-  { q: "Is South Korea affordable for Indian students?", a: "South Korea is considered one of the more accessible developed-country study destinations. Tuition fees typically range from approximately KRW 3,700,000 to 5,500,000 per semester (Approx. INR 2.25 Lakhs – INR 3.35 Lakhs) depending on your field of study. Monthly living expenses generally range from KRW 600,000 to 1,000,000 (Approx. INR 36,000 – INR 60,500). Merit-based tuition benefits linked to TOPIK or IELTS scores can reduce costs further." },
-  { q: "Are English-taught programs available in South Korea?", a: "Yes. Many Korean universities have dedicated English-medium degree tracks, particularly in business, AI, computer engineering, media, design, and global studies. These programs do not require Korean language proficiency for admission. IELTS 5.5 or TOEFL iBT 51 is the typical minimum requirement for English-track programs." },
-  { q: "What are the popular intakes in South Korea?", a: "South Korean universities offer two main intakes: the Spring semester (starting March) and the Fall semester (starting September). The Fall intake is the most popular for international students and typically has the widest program availability. Some institutions run multiple admission rounds within each intake." },
-  { q: "What is TOPIK and why does it matter?", a: "TOPIK (Test of Proficiency in Korean) is the standard Korean language proficiency test for non-native speakers. It is required for admission to Korean-medium programs and is also the primary criterion for merit-based tuition benefits — higher TOPIK levels can qualify students for significant tuition reductions, in some cases covering up to 100% of tuition for multiple semesters." },
+const salaries = [
+  { sector: "Finance & Banking", monthly: "SGD 4,200" },
+  { sector: "Technology & AI", monthly: "SGD 4,500" },
+  { sector: "Logistics & Supply Chain", monthly: "SGD 3,400" },
+  { sector: "Hospitality & Tourism", monthly: "SGD 3,000" },
+  { sector: "Healthcare & Caregiving", monthly: "SGD 3,200" },
+  { sector: "Sports & Fitness", monthly: "SGD 3,000" },
+];
+
+const internshipCards = [
+  { icon: "🏢", tag: "During Studies", title: "Structured Industry Placement", body: "Paid placements are arranged through 500+ corporate partners spanning hospitality, logistics, finance, technology, healthcare, and sports — giving you real-world exposure." },
+  { icon: "💰", tag: "Internship Earnings", title: "SGD 1,000–2,000 Per Month", body: "Earn a real salary during your 6-month internship placement — significantly offsetting your living expenses while building a professionally competitive CV." },
+  { icon: "🌍", tag: "Global Exposure", title: "Fortune 500 & MNC Access", body: "Career days, global industry networking events, and internship placements with international corporate partners are embedded into the programme experience." },
+  { icon: "🚀", tag: "Post-Internship", title: "Career Pathways & Employment Opportunities", body: "Strong internship performance frequently opens the door to full-time employment offers — building the profile needed to pursue Singapore's PR pathway." },
 ];
 
 const support = [
-  { icon: "🎯", title: "Profile-Matched Admissions Guidance", body: "We analyse your academic history, language scores, and goals to recommend only the most suitable and realistic options — no false promises." },
-  { icon: "📑", title: "Complete Document Assistance", body: "From Apostille guidance to SOP writing, bank certificate advice, and transcript preparation — we ensure your documentation is correct and professionally presented." },
-  { icon: "🛂", title: "Visa Application Support", body: "We walk you through the D-2 visa documentation checklist, common pitfalls, and consulate-specific requirements — with genuine expertise, not guarantees." },
-  { icon: "🗣️", title: "TOPIK & Language Strategy", body: "For students targeting Korean-medium programs or merit scholarships linked to TOPIK scores, we help you understand the timeline and preparation pathway." },
-  { icon: "✈️", title: "Pre-Departure Readiness", body: "Banking setup, SIM cards, accommodation options, campus registration — we give you a practical, honest pre-departure briefing so you arrive prepared." },
-  { icon: "💬", title: "Post-Arrival Check-In", body: "Our commitment doesn't end at departure. We follow up with enrolled students to support their initial settlement — because we care about outcomes, not just applications." },
-];
-
-const outlooks = [
-  { icon: "🕒", tag: "During Studies", title: "Part-Time Work Rights", body: "Bachelor's students may work up to 20 hours/week during academic sessions; Master's students up to 30 hours/week. Full-time work is possible during approved vacation periods, subject to immigration and university approval." },
-  { icon: "🏭", tag: "Internships", title: "Industry Internship Ecosystem", body: "South Korea's internship culture is strong, particularly in technology, media, design, and business, with many universities maintaining formal industry partnerships." },
-  { icon: "🏢", tag: "Global Employers", title: "Korea's World-Class Companies", body: "Samsung, Hyundai, LG, SK Group, Kakao, Naver, Lotte, and hundreds of global MNCs operate out of South Korea — strong demand for graduates with local degrees." },
-  { icon: "🚀", tag: "Post-Study", title: "Post-Graduation Pathways", body: "Graduates can explore post-study visa options including the D-10 Job Seeker visa, allowing time to secure employment in South Korea, subject to prevailing immigration regulations." },
-];
-
-const careerTags = [
-  "Semiconductor Technology", "Artificial Intelligence & ML", "Electric Vehicle Engineering", "Gaming & Esports",
-  "K-Content & Media", "K-Beauty & Fashion", "Biotechnology & Pharma", "Smart Manufacturing",
-  "Fintech & Digital Banking", "E-Commerce & Logistics", "Tourism & Hospitality", "Global Supply Chain",
-  "Architecture & Interior Design", "Healthcare & Rehabilitation",
+  { icon: "🔍", title: "Free Eligibility Assessment", body: "Understand your study options before you commit. We assess your academic profile, career goals, and best-fit programmes — completely free of charge." },
+  { icon: "📝", title: "Complete Application Preparation", body: "We prepare and submit your full application package — forms, documents, and photographs — reviewed for accuracy and completeness before submission." },
+  { icon: "🛂", title: "Professional Visa Filing Support", body: "Comprehensive Student Pass documentation support — from checklist preparation and document verification to submission tracking across the full 30-day window." },
+  { icon: "✈️", title: "Airport Pickup (On Request)", body: "Arranged on request — so your first hours in Singapore are seamless, well-supported, and completely stress-free." },
+  { icon: "🏦", title: "Bank Account Setup Assistance", body: "We help you set up a Singapore bank account from day one — essential for receiving your internship salary and managing your finances." },
+  { icon: "🏠", title: "Accommodation Arrangements", body: "Suitable student accommodation is sourced and confirmed before you travel — so you arrive knowing exactly where you'll be living." },
+  { icon: "💼", title: "Internship Placement Support", body: "Connected to 500+ industry partners across Singapore's top sectors — we actively support your internship placement to ensure it is secured and relevant." },
+  { icon: "💬", title: "Dedicated Student Advisor", body: "One dedicated advisor throughout your entire journey — from initial application to arrival and post-landing support. No bots, no call queues." },
 ];
 
 const visaDocs = [
-  "Valid international passport (min. 6 months validity beyond study period)",
-  "Official Certificate of Admission from the Korean institution",
-  "Bank Balance Certificate — approx. KRW 16,000,000–25,000,000 (approx. INR 9.5L–15L) in applicant's or parent's name, issued within 30 days",
-  "High school graduation certificate (Apostilled or consulate-verified)",
-  "Academic transcripts (covering all grades)",
-  "Birth certificate or family relationship document (with certified translation)",
-  "Copy of parent's passport or government-issued ID",
-  "Completed visa application form and passport-size photographs",
-  "Language proficiency certificate (IELTS, TOEFL iBT, or TOPIK as applicable)",
-  "Certified Korean or English translation for documents in other languages",
+  "Valid passport — original and photocopy",
+  "Passport-size photograph — digital, white background",
+  "All educational certificates and academic transcripts",
+  "Birth certificate or birth affidavit",
+  "Bank statement (if applicable)",
+  "Employment or experience letter (if applicable)",
+  "Completed application form (provided by Langma)",
+];
+
+const faqs = [
+  { q: "Is IELTS required to study in Singapore?", a: "No — IELTS, TOEFL, and PTE are not required for admission to diploma programmes in Singapore. English proficiency is assessed as part of the application and admissions process itself." },
+  { q: "Can I earn money while studying in Singapore?", a: "Yes — every diploma programme includes a structured 6-month paid internship where students earn SGD 1,000–2,000 per month. Placements are arranged through a network of 500+ corporate partners." },
+  { q: "How long does the Singapore student visa take to process?", a: "The Student Pass — Singapore's student visa — is processed by the Immigration and Checkpoints Authority (ICA) and typically takes approximately 30 days." },
+  { q: "What are the eligibility requirements for Singapore study programmes?", a: "Students who have completed at least Grade 10 are eligible to apply. Grade 12 graduates and university graduates are equally welcome. Any academic percentage is accepted, backlogs are accepted, and study gaps are accepted. Age range is 18 to 32 years." },
+  { q: "How much does it cost to study in Singapore?", a: "Most 6-month diploma programmes are priced at SGD 6,024.50. The Higher Diploma (12 months) costs SGD 9,000, payable in two instalments. Monthly living costs typically range from SGD 1,200–2,000, partly offset by internship earnings." },
+  { q: "Are Singapore qualifications recognised internationally?", a: "Yes. Programmes are EduTrust-certified by Singapore's Committee for Private Education and are recognised by leading universities in Malaysia, the UK (including the University of Portsmouth), Australia, and the US." },
+  { q: "Can studying in Singapore lead to Permanent Residency?", a: "Singapore offers a Permanent Residency pathway for international graduates who secure employment after completing their studies, particularly in high-demand sectors such as healthcare, technology, logistics, and hospitality." },
+  { q: "How many intakes are there per year in Singapore?", a: "Singapore offers 6 intake windows per year — giving you far greater flexibility than most international study destinations. We recommend applying at least 2 months before your preferred start date." },
+  { q: "What documents do I need to apply for a Singapore study programme?", a: "Core documents include your passport, a passport-size photograph, all educational certificates and transcripts, and a birth certificate or affidavit. An Offer Letter is typically issued within 2–3 working days of submission." },
+  { q: "What end-to-end support does Langma International provide?", a: "Langma International provides comprehensive support — including a free eligibility assessment, application preparation, professional visa filing guidance, airport pickup, bank account setup assistance, accommodation arrangements, internship placement support, and a dedicated student advisor." },
 ];
 
 /* ===================================================================
  *  MAIN
  * ================================================================ */
-export default function StudySouthKoreaPage() {
+export default function StudySingaporePage() {
   const [openFAQ, setOpenFAQ] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -1047,17 +1224,13 @@ export default function StudySouthKoreaPage() {
           0%, 100% { transform: translateY(0); }
           50%      { transform: translateY(-14px); }
         }
-        @keyframes lm-pulse {
-          0%, 100% { transform: scale(1);   opacity: 0.7; }
-          50%      { transform: scale(1.4); opacity: 0; }
+        @keyframes lm-bg-shift {
+          0%, 100% { background-position: 0% 50%; }
+          50%      { background-position: 100% 50%; }
         }
         @keyframes lm-shimmer {
           0%   { background-position: -200% 0; }
           100% { background-position:  200% 0; }
-        }
-        @keyframes lm-bg-shift {
-          0%, 100% { background-position: 0% 50%; }
-          50%      { background-position: 100% 50%; }
         }
 
         .lm-grad-text {
@@ -1088,29 +1261,29 @@ export default function StudySouthKoreaPage() {
                   letterSpacing: "-0.6px",
                 }}
               >
-                Study In <span className="text-[#1ab7ac]">South Korea</span>
+                Study In <span className="text-[#1ab7ac]">Singapore</span>
                 <br />
-                Asia's Innovation Hub
+                Asia's Gateway to
                 <br />
-                For Your Future.
+                a Global Career.
               </h1>
 
               <p className="mt-6 text-gray-600 text-lg leading-relaxed max-w-xl">
-                World-Ranked Universities. English-Taught Programs. A career
-                gateway to Asia's most dynamic economy. South Korea leads the
-                world in technology, innovation, and academic excellence —
-                from AI and semiconductors to design and K-culture, your
-                future starts here.
+                EduTrust-certified programmes. Structured paid internships. A
+                clear pathway to Permanent Residency — right in the heart of
+                Southeast Asia. Earn while you study with paid internships of
+                SGD 1,000–2,000 per month, built into every diploma
+                programme.
               </p>
 
               {/* Tags */}
               <div className="flex flex-wrap gap-3 mt-8">
                 {[
-                  "✓170K+ International Students",
-                  "✓English-Taught Programs",
-                  "✓Part-Time Work Rights",
-                  "✓D-2 Student Visa",
-                  "✓Spring & Fall Intakes",
+                  "✓No IELTS Required",
+                  "✓Paid Internships Included",
+                  "✓PR Pathway Available",
+                  "✓6 Intakes Per Year",
+                  "✓Age 18–32 Welcome",
                 ].map((item, index) => (
                   <span
                     key={index}
@@ -1127,13 +1300,13 @@ export default function StudySouthKoreaPage() {
                   onClick={() => setOpen(true)}
                   className="bg-[#006C70] hover:bg-[#00575a] transition-all text-white px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
                 >
-                  Apply for 2026 Intake →
+                  Book Free Counselling →
                 </button>
                 <button
                   onClick={() => setOpen(true)}
                   className="border border-[#006C70] text-[#006C70] hover:bg-[#006C70] hover:text-white transition-all px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
                 >
-                  Check Eligibility
+                  Check My Eligibility
                 </button>
               </div>
             </div>
@@ -1155,8 +1328,8 @@ export default function StudySouthKoreaPage() {
               <div className="relative z-10">
                 <div className="w-[320px] h-[320px] md:w-[420px] md:h-[420px] lg:w-[520px] lg:h-[520px] rounded-full overflow-hidden">
                   <img
-                    src="images/skv.jpeg"
-                    alt="Study in South Korea"
+                    src="images/singa.jpeg"
+                    alt="Study in Singapore"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -1178,10 +1351,10 @@ export default function StudySouthKoreaPage() {
                 marginTop: 56,
               }}
             >
-              <BoardingStat value={170} suffix="K+" label="International Students" sub="Studying in Korea" delay={100} />
-              <BoardingStat prefix="₩" value={3700000} label="From / Semester" sub="Tuition fee (KRW)" delay={250} />
-              <BoardingStat value={20} suffix="hrs" label="Part-Time Work / Week" sub="Bachelor's students" delay={400} />
-              <BoardingStat value={2} label="Intakes / Year" sub="March & September" delay={550} />
+              <BoardingStat text="SGD 3K–4.5K" label="Avg. Graduate Salary" sub="Per month, sector-dependent" delay={100} />
+              <BoardingStat value={500} suffix="+" label="Industry Partners" sub="Internship network" delay={250} />
+              <BoardingStat value={20} suffix="+" label="Years of Excellence" sub="Institutional track record" delay={400} />
+              <BoardingStat value={15} suffix="+" label="Countries Represented" sub="On campus" delay={550} />
             </div>
           </Reveal>
         </div>
@@ -1190,19 +1363,19 @@ export default function StudySouthKoreaPage() {
       {/* ---------------- MARQUEE ---------------- */}
       <Marquee />
 
-      {/* ---------------- WHY SOUTH KOREA ---------------- */}
+      {/* ---------------- WHY SINGAPORE ---------------- */}
       <section style={{ background: C.cream, padding: "100px 48px", position: "relative" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Why South Korea</span>}
+            tag={<span style={{ color: "#429198" }}>Why Singapore</span>}
             title={
               <span style={{ color: "#4197a2" }}>
-                8 Reasons South Korea Is the Smartest Study Choice of 2026
+                8 Reasons Singapore Is a Smart Study Destination in 2026
               </span>
             }
             sub={
               <span style={{ color: "#429198" }}>
-                A country that invented the future — and invites the world to study in it. Here's why thousands of international students are choosing South Korea every year.
+                Safe, cosmopolitan, and deeply connected to global business — Singapore offers a quality education with real, measurable career outcomes.
               </span>
             }
           />
@@ -1251,7 +1424,7 @@ export default function StudySouthKoreaPage() {
           }}
         />
         <p style={{ color: C.white, fontSize: 15.5, fontWeight: 600, margin: 0, position: "relative", zIndex: 2 }}>
-          ✨ Not sure if South Korea is right for you? Let our Korea specialists assess your profile — free, no obligation.
+          ✨ Grade 10, 12 pass, or a graduate? Aged 18–32? You may be eligible to apply right now.
         </p>
         <button
           style={{
@@ -1280,7 +1453,7 @@ export default function StudySouthKoreaPage() {
           }}
           onClick={() => setOpen(true)}
         >
-          Get Free Profile Evaluation →
+          Check My Eligibility →
         </button>
       </div>
 
@@ -1308,8 +1481,8 @@ export default function StudySouthKoreaPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead
             tag="At a Glance"
-            title="South Korea — Key Facts for International Students"
-            sub="The essential information you need before you begin your application journey."
+            title="Singapore — Essential Facts for International Students"
+            sub="Everything you need to know before making your decision — at a glance."
             light
           />
           <Reveal>
@@ -1328,12 +1501,12 @@ export default function StudySouthKoreaPage() {
                   overflow: "hidden",
                 }}
               >
-                <FactRow label="Capital City" value="Seoul" />
-                <FactRow label="Currency" value="South Korean Won (KRW) · ₩1,000 ≈ ₹62 approx." />
-                <FactRow label="Official Language" value="Korean · English-medium tracks widely available" />
-                <FactRow label="Top Student Cities" value="Seoul · Busan · Daegu · Incheon · Daejeon · Gwangju" />
-                <FactRow label="Intakes" value="Spring (March) · Fall (September)" />
-                <FactRow label="English Requirement" value="IELTS 5.5 / TOEFL iBT 51 · TOPIK Level 3+ (Korean track)" />
+                <FactRow label="Country" value="Republic of Singapore" />
+                <FactRow label="Currency" value="Singapore Dollar (SGD) · 1 SGD ≈ INR 63" />
+                <FactRow label="Language of Instruction" value="English — the primary medium across all programmes" />
+                <FactRow label="Climate" value="Tropical · 25°C–31°C year-round" />
+                <FactRow label="Intakes Per Year" value="6 intakes — flexible start dates" />
+                <FactRow label="IELTS / TOEFL / PTE" value="Not required — assessed during admissions" />
               </div>
               <div
                 style={{
@@ -1343,12 +1516,12 @@ export default function StudySouthKoreaPage() {
                   overflow: "hidden",
                 }}
               >
-                <FactRow label="Tuition (Per Semester)" value="₩3.7M – ₩5.5M (≈ INR 2.25L – 3.35L)" />
-                <FactRow label="Average Living Costs" value="₩600K – ₩1M / month (≈ INR 36K – 60.5K)" />
-                <FactRow label="On-Campus Dormitory" value="₩793K – ₩915K / semester · twin room" />
-                <FactRow label="Part-Time Work Rights" value="Bachelor's: 20 hrs/wk · Master's: 30 hrs/wk" />
-                <FactRow label="Student Visa Type" value="D-2 Student Visa" />
-                <FactRow label="Financial Proof Required" value="₩16M – ₩25M (≈ INR 9.5L – 15L)" />
+                <FactRow label="Eligibility" value="Grade 10 / 12 / Any Graduate · Any % · Backlogs & gaps accepted" />
+                <FactRow label="Age Limit" value="18 to 32 years" />
+                <FactRow label="Student Pass Processing" value="Approximately 30 days" />
+                <FactRow label="Internship Earnings" value="SGD 1,000 – 2,000 / month during 6-month placement" />
+                <FactRow label="Post-Study Opportunity" value="Permanent Residency (PR) pathway available" />
+                <FactRow label="Avg. Graduate Starting Salary" value="SGD 3,000 – 4,500 / month, sector-dependent" />
               </div>
             </div>
           </Reveal>
@@ -1359,11 +1532,11 @@ export default function StudySouthKoreaPage() {
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Cost of Study</span>}
-            title={<span style={{ color: "#4197a2" }}>Estimated Study Costs in South Korea</span>}
+            tag={<span style={{ color: "#429198" }}>Cost of Studying</span>}
+            title={<span style={{ color: "#4197a2" }}>How Much Does It Cost to Study in Singapore?</span>}
             sub={
               <span style={{ color: "#429198" }}>
-                South Korea offers excellent academic value. These are approximate ranges to help you plan your budget — actual costs vary by city, institution, and lifestyle.
+                Competitive programme fees, a paid internship that actively offsets living costs, and strong graduate earning potential — Singapore is significantly more accessible than it first appears.
               </span>
             }
           />
@@ -1374,54 +1547,55 @@ export default function StudySouthKoreaPage() {
               gap: 18,
             }}
           >
-            <CostCard label="Tuition / Semester" amount="₩3.7M–5.5M" note="≈ INR 2.25L–3.35L · Humanities to Engineering & Arts" delay={0} />
-            <CostCard label="Accommodation / Month" amount="₩200K–500K" note="≈ INR 12,000–30,000/mo · Dormitory to private room" highlight delay={80} />
-            <CostCard label="Food / Month" amount="₩200K–400K" note="≈ INR 12,000–24,000/mo · Canteen to budget restaurants" delay={160} />
-            <CostCard label="Transport / Month" amount="₩50K–100K" note="≈ INR 3,000–6,000/mo · Metro, bus & intercity travel" delay={240} />
-            <CostCard label="Miscellaneous / Month" amount="₩100K–200K" note="≈ INR 6,000–12,000/mo · Data, supplies, personal expenses" delay={320} />
-            <CostCard label="Health Insurance" amount="₩70K–120K" note="≈ INR 4,200–7,300/mo · Mandatory for visa holders" delay={400} />
+            <CostCard label="Diploma Tuition" amount="SGD 6,024" note="Most 6-month diploma programmes" delay={0} />
+            <CostCard label="Higher Diploma" amount="SGD 9,000" note="12-month programme · payable in 2 instalments" delay={80} />
+            <CostCard label="PG Diploma" amount="SGD 6,500" note="6-month course + 6-month internship" delay={160} />
+            <CostCard label="Internship Earnings" amount="SGD 1,000–2,000" note="Per month · earned during your 6-month placement" highlight delay={240} />
+            <CostCard label="Accommodation" amount="SGD 600–1,200" note="Per month · shared or private arrangements" delay={320} />
+            <CostCard label="Monthly Living Costs" amount="SGD 1,200–2,000" note="Food, transport & daily essentials" delay={400} />
           </div>
         </div>
       </section>
 
-      {/* ---------------- COURSES ---------------- */}
+      {/* ---------------- PROGRAMMES ---------------- */}
       <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Programs Available</span>}
+            tag={<span style={{ color: "#429198" }}>Programmes Available</span>}
             title={
               <span style={{ color: "#4197a2" }}>
-                Top Course Categories for International Students
+                Industry-Aligned Programmes Built for Real Career Outcomes
               </span>
             }
             sub={
               <span style={{ color: "#429198" }}>
-                South Korea offers internationally competitive programs across an impressive range of disciplines — from deep-tech to creative arts.
+                Every programme combines structured academic learning with a 6-month paid internship — delivering both internationally recognised qualifications and hands-on professional experience.
               </span>
             }
           />
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
               gap: 18,
             }}
           >
-            {courses.map((c, i) => (
-              <CourseCard
-                key={c.title}
+            {programs.map((p, i) => (
+              <ProgramCard
+                key={p.title}
                 num={String(i + 1).padStart(2, "0")}
-                title={c.title}
-                body={c.body}
-                icon={c.icon}
-                delay={i * 70}
+                title={p.title}
+                body={p.body}
+                duration={p.duration}
+                fee={p.fee}
+                delay={i * 60}
               />
             ))}
           </div>
         </div>
       </section>
 
-      {/* ---------------- LANGUAGE REQUIREMENTS ---------------- */}
+      {/* ---------------- LANGUAGE / ELIGIBILITY REQUIREMENTS ---------------- */}
       <section
         style={{
           background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD} 60%, ${C.navy})`,
@@ -1445,9 +1619,9 @@ export default function StudySouthKoreaPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead
             style={{ paddingLeft: "24px", paddingRight: "24px" }}
-            tag="Language Requirements"
-            title="English & Korean Language Pathways"
-            sub="South Korea welcomes international students through both English-taught and Korean-medium programs. Here's what you need to know."
+            tag="English & Admission Requirements"
+            title="No IELTS. No TOEFL. No Language Barrier."
+            sub="Singapore's admissions process is designed to be genuinely inclusive. English proficiency is assessed through the application itself — no external test booking or score submission required."
             light
           />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 24 }}>
@@ -1474,11 +1648,14 @@ export default function StudySouthKoreaPage() {
                     gap: 10,
                   }}
                 >
-                  <span>🌐</span> English-Medium Programs
+                  <span>🗣️</span> Language Requirements — All Levels
                 </h3>
                 {[
-                  ["IELTS Academic", "5.5 or above · Minimum"],
-                  ["TOEFL iBT", "51 or above"],
+                  ["IELTS", "Not Required"],
+                  ["TOEFL", "Not Required"],
+                  ["PTE Academic", "Not Required"],
+                  ["Cambridge / Duolingo English", "Not Required"],
+                  ["English Interview / Assessment", "Accepted ✓"],
                 ].map(([t, s], idx, arr) => (
                   <div
                     key={t}
@@ -1517,7 +1694,7 @@ export default function StudySouthKoreaPage() {
                     borderRadius: 12,
                   }}
                 >
-                  📌 Higher IELTS/TOEFL scores may qualify you for merit-based fee reductions. IELTS 7.0+ and TOEFL iBT 91+ can unlock significant first-semester tuition benefits at select institutions.
+                  💡 English proficiency is evaluated as part of the admissions process — removing one of the most common barriers for students from India and South Asia.
                 </div>
               </div>
             </Reveal>
@@ -1545,11 +1722,16 @@ export default function StudySouthKoreaPage() {
                     gap: 10,
                   }}
                 >
-                  <span>🗣️</span> Korean-Medium Programs
+                  <span>✅</span> Who Is Eligible to Apply?
                 </h3>
                 {[
-                  ["TOPIK (General)", "Level 3 or above · Standard"],
-                  ["Arts & Physical Education Majors", "TOPIK Level 2 accepted"],
+                  ["Grade 10 Completed", "Eligible ✓"],
+                  ["Grade 12 Completed", "Eligible ✓"],
+                  ["Graduates (Any Stream)", "Eligible ✓"],
+                  ["Any Academic Percentage", "Accepted ✓"],
+                  ["Academic Backlogs", "Accepted ✓"],
+                  ["Study Gaps", "Accepted ✓"],
+                  ["Age Range", "18 – 32 Years"],
                 ].map(([t, s], idx, arr) => (
                   <div
                     key={t}
@@ -1588,7 +1770,7 @@ export default function StudySouthKoreaPage() {
                     borderRadius: 12,
                   }}
                 >
-                  📌 TOPIK scores are also the primary criterion for merit scholarships — higher levels can secure up to 100% tuition waivers for multiple semesters. We help students plan their TOPIK preparation strategy.
+                  ⚠️ Entry criteria may vary slightly by programme. Your Langma International advisor will confirm the specific requirements for your chosen course before you apply.
                 </div>
               </div>
             </Reveal>
@@ -1600,211 +1782,90 @@ export default function StudySouthKoreaPage() {
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Visa Process</span>}
+            tag={<span style={{ color: "#429198" }}>Singapore Student Visa</span>}
             title={
               <span style={{ color: "#4197a2" }}>
-                South Korea D-2 Student Visa — Step-by-Step Guide
+                Your Student Pass — A Clear, Step-by-Step Process
               </span>
             }
             sub={
               <span style={{ color: "#429198" }}>
-                A clear, accurate overview of the South Korea student visa process. Our advisors guide you through every stage. Visa issuance is at the sole discretion of Korean immigration authorities.
+                The Singapore Student Pass is a structured, manageable process. Langma International provides professional visa guidance at every stage — from document preparation to submission and beyond.
               </span>
             }
           />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }} className="lm-visa-wrap">
             <div>
-              <VisaStep n={1} title="Receive Your Official Admission Letter" body="After completing your application and document submission, you receive your Certificate of Admission from the institution — the foundational document for your visa application." delay={0} />
-              <VisaStep n={2} title="Prepare Your Visa Application Documents" body="Gather all required documents including your valid passport, financial proof certificate, academic certificates, family relationship documents, and admission letter." delay={100} />
-              <VisaStep n={3} title="Apply at the Korean Embassy / Consulate" body="Submit your complete D-2 visa application at the Korean Embassy or authorised Visa Application Centre in your home country. Apply well in advance of your semester start date." delay={200} />
-              <VisaStep n={4} title="Visa Interview (If Required)" body="Some applicants may be called for a visa interview. Our team provides structured interview preparation, helping you demonstrate your genuine intent and preparation to the visa officer." delay={300} />
-              <VisaStep n={5} title="Travel & Register on Arrival" body="On arrival in South Korea, register with the immigration office and obtain your Alien Registration Card (ARC) — your official ID and the document that enables part-time work." isLast delay={400} />
+              <VisaStep n={1} title="Submit Your Application" body="Send your completed application form and supporting documents to the admissions team. The process is straightforward and can be prepared in under 30 minutes with our help." delay={0} />
+              <VisaStep n={2} title="Receive Your Offer Letter (2–3 Working Days)" body="Applications are reviewed promptly. If approved, you receive your Offer Letter within 2–3 working days — containing full admission details and programme fee breakdown." delay={100} />
+              <VisaStep n={3} title="Pay Initial Deposit & Confirm Your Place" body="Pay the initial deposit to secure your enrolment. The institution then proceeds to lodge your Student Pass application with the Immigration and Checkpoints Authority (ICA), Singapore." delay={200} />
+              <VisaStep n={4} title="Visa Decision — Approximately 30 Days" body="ICA Singapore processes your Student Pass application. The standard processing timeline is approximately 30 days. Langma International monitors progress and keeps you informed." delay={300} />
+              <VisaStep n={5} title="Pay Course Fee & Prepare to Travel" body="After your Student Pass is approved, pay the remaining programme fee. Langma International then coordinates your pre-departure orientation, airport pickup, bank account assistance, and accommodation arrangements." isLast delay={400} />
             </div>
-            <Reveal delay={200}>
-              <div
-                style={{
-                  background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
-                  padding: 40,
-                  borderRadius: 22,
-                  position: "sticky",
-                  top: 100,
-                  overflow: "hidden",
-                }}
-              >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: -50,
-                    right: -50,
-                    width: 200,
-                    height: 200,
-                    background: `radial-gradient(circle, ${C.gold} 0%, transparent 70%)`,
-                    opacity: 0.1,
-                  }}
-                />
-                <h3
-                  style={{
-                    fontSize: 22,
-                    fontWeight: 600,
-                    color: C.white,
-                    marginBottom: 24,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 12,
-                    position: "relative",
-                  }}
-                >
-                  <span
-                    style={{
-                      width: 38,
-                      height: 38,
-                      background: C.gold,
-                      color: C.navyD,
-                      borderRadius: 10,
-                      display: "inline-flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: 18,
-                    }}
-                  >
-                    📋
-                  </span>
-                  Key Documents for the D-2 Visa
-                </h3>
-                {visaDocs.map((d) => (
-                  <div
-                    key={d}
-                    style={{
-                      display: "flex",
-                      gap: 12,
-                      marginBottom: 12,
-                      fontSize: 13,
-                      color: "rgba(255,255,255,0.75)",
-                      alignItems: "flex-start",
-                      lineHeight: 1.6,
-                      position: "relative",
-                    }}
-                  >
-                    <span
-                      style={{
-                        width: 20,
-                        height: 20,
-                        background: "rgba(240,192,64,0.15)",
-                        color: "#FFFFFF",
-                        borderRadius: "50%",
-                        display: "inline-flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: 11,
-                        flexShrink: 0,
-                        fontWeight: 700,
-                      }}
-                    >
-                      ✓
-                    </span>
-                    {d}
-                  </div>
-                ))}
-                <div
-                  style={{
-                    background: "rgba(240,192,64,0.1)",
-                    borderLeft: `3px solid ${C.gold}`,
-                    padding: "16px 18px",
-                    marginTop: 22,
-                    fontSize: 12.5,
-                    color: "rgba(255,255,255,0.7)",
-                    lineHeight: 1.75,
-                    borderRadius: 8,
-                  }}
-                >
-                  <strong style={{ color: "#FFFFFF" }}>Financial Proof:</strong> ₩16M–₩25M (≈ INR 9.5L–15L)
-                  <br />
-                  <strong style={{ color: "#FFFFFF" }}>Application Fee:</strong> ₩100,000 (≈ INR 6,100)
-                  <br />
-                  <strong style={{ color: "#FFFFFF" }}>Visa Type:</strong> D-2 Student Visa
-                </div>
-              </div>
-            </Reveal>
+            <div style={{ position: "sticky", top: 100 }}>
+              <DocsBox
+                title="Required Documents Checklist"
+                items={visaDocs}
+                note={
+                  <>
+                    <strong style={{ color: "#FFFFFF" }}>Visa Processing Time:</strong> ~30 days via ICA Singapore
+                    <br />
+                    <strong style={{ color: "#FFFFFF" }}>Offer Letter:</strong> Issued within 2–3 working days
+                    <br />
+                    <strong style={{ color: "#FFFFFF" }}>Support Included:</strong> Airport pickup · Bank account assistance · Accommodation arrangements
+                  </>
+                }
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ---------------- WORK & CAREER OUTLOOK ---------------- */}
+      {/* ---------------- INTERNSHIP PROGRAMME ---------------- */}
+      <section
+        style={{
+          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
+          padding: "90px 48px",
+        }}
+      >
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <SectionHead
+            tag="Structured Paid Internship Programme"
+            title="Earn While You Study — SGD 1,000–2,000 Per Month"
+            sub="Every diploma programme includes a structured 6-month paid internship, arranged through a network of 500+ industry partners across Singapore's most active employment sectors."
+            light
+          />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22 }}>
+            {internshipCards.map((c, i) => (
+              <OutlookCard key={c.title} {...c} delay={i * 100} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- CAREER OUTLOOK ---------------- */}
       <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Work & Career</span>}
-            title={
-              <span style={{ color: "#4197a2" }}>
-                Work, Intern & Build Your Career in South Korea
-              </span>
-            }
+            tag={<span style={{ color: "#429198" }}>Career Outlook</span>}
+            title={<span style={{ color: "#4197a2" }}>Average Graduate Salaries in Singapore by Sector</span>}
             sub={
               <span style={{ color: "#429198" }}>
-                South Korea's thriving economy and student-friendly work policies make it one of the most career-friendly study destinations in Asia.
+                Singapore's multinational-heavy economy provides competitive graduate salaries across multiple sectors. Here is a realistic overview of average starting earnings by industry.
               </span>
             }
           />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22 }}>
-            {outlooks.map((o, i) => (
-              <OutlookCard key={o.title} {...o} delay={i * 100} />
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+              gap: 18,
+            }}
+          >
+            {salaries.map((s, i) => (
+              <SalaryCard key={s.sector} {...s} delay={i * 70} />
             ))}
           </div>
-          <Reveal delay={200}>
-            <div
-              style={{
-                marginTop: 28,
-                background: "#fff8e6",
-                border: `1.5px solid ${C.gold}`,
-                borderLeft: `5px solid ${C.gold}`,
-                borderRadius: 12,
-                padding: "18px 24px",
-                display: "flex",
-                alignItems: "flex-start",
-                gap: 12,
-              }}
-            >
-              <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>⚠️</span>
-              <p style={{ margin: 0, fontSize: 13.5, color: "#5a4000", lineHeight: 1.75 }}>
-                <strong style={{ color: "#3d2c00" }}>Important Note:</strong> International students in South Korea are generally permitted to engage in part-time employment after completing six months of study, subject to immigration regulations, university policies, academic performance requirements, and obtaining the necessary approvals from both the university and immigration authorities.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---------------- INDUSTRY LANDSCAPE ---------------- */}
-      <section style={{ background: C.cream, padding: "70px 48px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag={<span style={{ color: "#429198" }}>Industry Landscape</span>}
-            title={<span style={{ color: "#4197a2" }}>Industries Where Korean Graduates Excel</span>}
-            sub={
-              <span style={{ color: "#429198" }}>
-                South Korea is home to some of the world's most competitive industries. Your degree positions you at the intersection of technology, culture, and commerce in the world's 13th largest economy.
-              </span>
-            }
-          />
-          <Reveal>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-              {careerTags.map((tag) => (
-                <span
-                  key={tag}
-                  style={{
-                    background: C.white,
-                    border: `1px solid ${C.border}`,
-                    color: C.navy,
-                    fontSize: 13,
-                    fontWeight: 600,
-                    padding: "10px 18px",
-                    borderRadius: 999,
-                  }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -1831,9 +1892,9 @@ export default function StudySouthKoreaPage() {
         />
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead
-            tag="Your Partner in this Journey"
-            title="Why Students Trust Langma International"
-            sub="At Langma International, we are not just an admissions agent — we are your strategic partner for global education and career mobility, from your decision to study abroad to your first job."
+            tag="Why Langma International"
+            title="Your Singapore Study Partner — From Day One to Destination"
+            sub="We manage your complete journey — from your initial eligibility check to your first day in Singapore and every milestone that follows."
             light
           />
           <div
@@ -1850,45 +1911,11 @@ export default function StudySouthKoreaPage() {
         </div>
       </section>
 
-      {/* ---------------- CTA STRIP 2 ---------------- */}
-      <div
-        style={{
-          background: `linear-gradient(90deg, ${C.navy}, ${C.navyL})`,
-          padding: "26px 48px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: 20,
-          flexWrap: "wrap",
-        }}
-      >
-        <p style={{ color: C.white, fontSize: 15.5, fontWeight: 600, margin: 0 }}>
-          ✨ 2026 Fall intake applications are now open. Seats fill quickly — speak to our Korea team today.
-        </p>
-        <button
-          style={{
-            background: C.white,
-            color: C.navy,
-            border: "none",
-            padding: "12px 28px",
-            fontSize: 13,
-            fontWeight: 700,
-            letterSpacing: "0.5px",
-            cursor: "pointer",
-            whiteSpace: "nowrap",
-            borderRadius: 999,
-          }}
-          onClick={() => setOpen(true)}
-        >
-          Start My Application →
-        </button>
-      </div>
-
       {/* ---------------- FAQ ---------------- */}
       <FAQ />
       {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead tag={<span style={{ color: "#429198" }}>FAQs</span>} title="Frequently Asked Questions" center />
+          <SectionHead tag={<span style={{ color: "#429198" }}>FAQs</span>} title="Frequently Asked Questions About Studying in Singapore" center />
           <Reveal>
             <div style={{ maxWidth: 860, margin: "0 auto" }}>
               {faqs.map((f, i) => (
@@ -1955,10 +1982,10 @@ export default function StudySouthKoreaPage() {
                 lineHeight: 1.1,
               }}
             >
-              Your Korean Academic Journey
+              Your Singapore Journey
               <br />
               <em className="lm-grd-text" style={{ fontStyle: "italic" }}>
-                Starts With One Conversation.
+                Begins Today.
               </em>
             </h2>
           </Reveal>
@@ -1974,25 +2001,16 @@ export default function StudySouthKoreaPage() {
                 lineHeight: 1.8,
               }}
             >
-              Book a free, no-obligation counselling session with our South Korea specialists. We'll evaluate your profile, recommend programs, and map out your complete application roadmap — honestly and accurately.
+              6 intakes a year. A structured paid internship from the start. A genuine pathway to Permanent Residency. There's no reason to wait — let's build your future together.
             </p>
           </Reveal>
           <Reveal delay={300}>
-            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", marginBottom: 40 }}>
+            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
               <NavyButton onClick={() => setOpen(true)} style={{ background: C.forest, padding: "16px 36px" }}>
                 Book Free Counselling →
               </NavyButton>
               <GhostButton onClick={() => setOpen(true)}>Apply Now</GhostButton>
-              <GhostButton onClick={() => setOpen(true)}>Talk to an Expert</GhostButton>
-            </div>
-          </Reveal>
-          <Reveal delay={400}>
-            <div style={{ display: "flex", gap: 22, justifyContent: "center", flexWrap: "wrap" }}>
-              {["✓ Free Profile Evaluation", "✓ No Hidden Fees", "✓ Expert Korea Advisors", "✓ End-to-End Support"].map((t) => (
-                <span key={t} style={{ color: "rgba(255,255,255,0.8)", fontSize: 13, fontWeight: 600 }}>
-                  {t}
-                </span>
-              ))}
+              <GhostButton onClick={() => setOpen(true)}>Talk to an Advisor</GhostButton>
             </div>
           </Reveal>
         </div>

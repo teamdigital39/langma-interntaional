@@ -3,8 +3,8 @@ import PopupForm from "./PopupForm";
 import FAQ from "./FAQ";
 
 /**
- * Study in South Korea — Langma International
- * Palette matches the Study in Poland page (teal brand accent over navy panels)
+ * Study in Malta — Langma International
+ * Palette matches the Study in Poland / South Korea pages (teal brand accent over navy panels)
  */
 
 const C = {
@@ -152,6 +152,7 @@ function SectionHead({ style, tag, title, sub, light, center }) {
           maxWidth: 760,
           margin: center ? "0 auto 52px" : "0 0 52px 0",
           textAlign: center ? "center" : "left",
+          ...style,
         }}
       >
         <div
@@ -292,7 +293,7 @@ function GhostButton({ children, dark, style, onClick }) {
 }
 
 /* ===================================================================
- *  Reason card
+ *  Reason card (used for Why Malta + Differentiators)
  * ================================================================ */
 function ReasonCard({ num, title, body, icon, delay }) {
   const [h, setH] = useState(false);
@@ -352,17 +353,19 @@ function ReasonCard({ num, title, body, icon, delay }) {
           >
             {icon}
           </div>
-          <span
-            style={{
-              fontSize: 34,
-              fontWeight: 600,
-              color: h ? C.gold : C.goldSoft,
-              lineHeight: 1,
-              transition: "color 0.3s ease",
-            }}
-          >
-            {num}
-          </span>
+          {num && (
+            <span
+              style={{
+                fontSize: 34,
+                fontWeight: 600,
+                color: h ? C.gold : C.goldSoft,
+                lineHeight: 1,
+                transition: "color 0.3s ease",
+              }}
+            >
+              {num}
+            </span>
+          )}
         </div>
         <h4
           style={{
@@ -427,86 +430,6 @@ function FactRow({ label, value }) {
         {value}
       </span>
     </div>
-  );
-}
-
-/* ===================================================================
- *  Cost card
- * ================================================================ */
-function CostCard({ label, amount, note, highlight, delay }) {
-  const [h, setH] = useState(false);
-  return (
-    <Reveal delay={delay}>
-      <div
-        onMouseEnter={() => setH(true)}
-        onMouseLeave={() => setH(false)}
-        style={{
-          background: highlight ? C.navy : h ? C.goldTint : C.white,
-          padding: "32px 22px",
-          textAlign: "center",
-          transition: "all 0.3s cubic-bezier(.2,.7,.2,1)",
-          position: "relative",
-          border: `1px solid ${highlight ? C.navy : C.border}`,
-          borderRadius: 16,
-          transform: h ? "translateY(-4px)" : "translateY(0)",
-          boxShadow: h ? `0 16px 32px -16px rgba(26,46,90,0.3)` : "none",
-        }}
-      >
-        {highlight && (
-          <span
-            style={{
-              position: "absolute",
-              top: -10,
-              left: "50%",
-              transform: "translateX(-50%)",
-              background: C.forest,
-              color: C.white,
-              fontSize: 10,
-              fontWeight: 700,
-              letterSpacing: "1.2px",
-              padding: "4px 12px",
-              borderRadius: 999,
-              textTransform: "uppercase",
-            }}
-          >
-            ★ Best Value
-          </span>
-        )}
-        <span
-          style={{
-            fontSize: 11,
-            fontWeight: 700,
-            textTransform: "uppercase",
-            letterSpacing: "1.5px",
-            color: highlight ? "rgba(255,255,255,0.7)" : C.slate,
-            marginBottom: 14,
-            display: "block",
-          }}
-        >
-          {label}
-        </span>
-        <div
-          style={{
-            fontSize: 30,
-            fontWeight: 600,
-            color: highlight ? C.white : C.ink,
-            lineHeight: 1,
-            marginBottom: 8,
-          }}
-        >
-          {amount}
-        </div>
-        <div
-          style={{
-            fontSize: 12,
-            color: highlight ? "rgba(255,255,255,0.7)" : C.slate,
-            lineHeight: 1.5,
-          }}
-        >
-          {note}
-        </div>
-      </div>
-    </Reveal>
   );
 }
 
@@ -660,7 +583,7 @@ function VisaStep({ n, title, body, isLast, delay }) {
 }
 
 /* ===================================================================
- *  Outlook card (used for Work & Career opportunities)
+ *  Outlook card (used for Student Life)
  * ================================================================ */
 function OutlookCard({ tag, title, body, icon, delay }) {
   return (
@@ -796,6 +719,168 @@ function SupportCard({ icon, title, body, delay }) {
 }
 
 /* ===================================================================
+ *  Application process step (horizontal strip)
+ * ================================================================ */
+function ProcessStep({ n, title, body, delay }) {
+  const [ref, visible] = useReveal();
+  return (
+    <div
+      ref={ref}
+      style={{
+        padding: "28px 18px",
+        textAlign: "center",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(14px)",
+        transition: `all 0.6s ease ${delay}ms`,
+      }}
+    >
+      <div
+        style={{
+          width: 44,
+          height: 44,
+          background: C.gold,
+          color: C.navyD,
+          borderRadius: "50%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: 15,
+          fontWeight: 700,
+          margin: "0 auto 16px",
+        }}
+      >
+        {n}
+      </div>
+      <h4
+        style={{
+          fontSize: 12,
+          fontWeight: 700,
+          color: C.white,
+          marginBottom: 8,
+          textTransform: "uppercase",
+          letterSpacing: "0.6px",
+        }}
+      >
+        {title}
+      </h4>
+      <p style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", lineHeight: 1.6, margin: 0 }}>
+        {body}
+      </p>
+    </div>
+  );
+}
+
+/* ===================================================================
+ *  Docs / checklist box
+ * ================================================================ */
+function DocsBox({ title, items, note }) {
+  return (
+    <Reveal delay={150}>
+      <div
+        style={{
+          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
+          padding: 34,
+          borderRadius: 22,
+          overflow: "hidden",
+          position: "relative",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            top: -50,
+            right: -50,
+            width: 200,
+            height: 200,
+            background: `radial-gradient(circle, ${C.gold} 0%, transparent 70%)`,
+            opacity: 0.1,
+          }}
+        />
+        <h3
+          style={{
+            fontSize: 20,
+            fontWeight: 600,
+            color: C.white,
+            marginBottom: 20,
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+            position: "relative",
+          }}
+        >
+          <span
+            style={{
+              width: 36,
+              height: 36,
+              background: C.gold,
+              color: C.navyD,
+              borderRadius: 10,
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 16,
+            }}
+          >
+            📋
+          </span>
+          {title}
+        </h3>
+        {items.map((d) => (
+          <div
+            key={d}
+            style={{
+              display: "flex",
+              gap: 12,
+              marginBottom: 12,
+              fontSize: 13,
+              color: "rgba(255,255,255,0.75)",
+              alignItems: "flex-start",
+              lineHeight: 1.6,
+              position: "relative",
+            }}
+          >
+            <span
+              style={{
+                width: 20,
+                height: 20,
+                background: "rgba(240,192,64,0.15)",
+                color: "#FFFFFF",
+                borderRadius: "50%",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 11,
+                flexShrink: 0,
+                fontWeight: 700,
+              }}
+            >
+              ✓
+            </span>
+            {d}
+          </div>
+        ))}
+        {note && (
+          <div
+            style={{
+              background: "rgba(240,192,64,0.1)",
+              borderLeft: `3px solid ${C.gold}`,
+              padding: "16px 18px",
+              marginTop: 20,
+              fontSize: 12.5,
+              color: "rgba(255,255,255,0.7)",
+              lineHeight: 1.75,
+              borderRadius: 8,
+            }}
+          >
+            {note}
+          </div>
+        )}
+      </div>
+    </Reveal>
+  );
+}
+
+/* ===================================================================
  *  FAQ accordion
  * ================================================================ */
 function FAQItem({ q, a, isOpen, onClick }) {
@@ -870,14 +955,14 @@ function FAQItem({ q, a, isOpen, onClick }) {
  * ================================================================ */
 function Marquee() {
   const items = [
-    "🇰🇷 South Korea 2026 Intake Open",
-    "✦ 170K+ International Students",
-    "✦ Tuition from ₩3.7M/Semester",
-    "✦ English-Taught Programs",
-    "✦ Part-Time Work Rights",
-    "✦ D-2 Student Visa",
-    "✦ Asia's Innovation Capital",
-    "✦ Spring & Fall Intakes",
+    "🇲🇹 Malta 2026 Intake Open",
+    "✦ 100% English-Speaking Country",
+    "✦ MQF / EQF Recognised Degrees",
+    "✦ Tuition from €6,000/yr",
+    "✦ EU Member · Schengen Zone",
+    "✦ 300+ Days of Sunshine",
+    "✦ Foundation to Master's",
+    "✦ 80+ Nationalities on Campus",
   ];
   const loop = [...items, ...items];
   return (
@@ -942,84 +1027,134 @@ function ScrollProgress() {
 }
 
 /* ===================================================================
- *  DATA — South Korea content
+ *  DATA — Malta content
  * ================================================================ */
 const reasons = [
-  { icon: "🤖", title: "World-Leading Technology Ecosystem", body: "Home to Samsung, LG, Hyundai, SK Hynix, and Kakao — South Korea ranks in the world's top tier for R&D investment as a share of GDP. Study where the technology shaping your future is actually being built." },
-  { icon: "🎓", title: "Globally Respected Academic Institutions", body: "South Korean universities consistently appear in QS and THE world rankings. Programs in engineering, computer science, business, and design are internationally recognised and sought-after by global employers." },
-  { icon: "💰", title: "Affordable Tuition vs Western Alternatives", body: "Tuition fees are significantly lower than universities in the US, UK, or Australia, making South Korea one of the most financially accessible developed-world study destinations available to international students." },
-  { icon: "🛡️", title: "Exceptionally Safe Country", body: "South Korea consistently ranks among the safest nations in the world. Low crime rates, excellent healthcare infrastructure, and a high standard of public safety make it an ideal environment for international students." },
-  { icon: "🌏", title: "Gateway to the Asian Career Market", body: "South Korea sits at the heart of Northeast Asia. A degree here opens pathways not just in Korea, but across Japan, China, Singapore, and the broader ASEAN region — the world's fastest-growing economic zone." },
-  { icon: "🌐", title: "Growing English-Taught Program Portfolio", body: "Many leading Korean universities now offer fully English-medium degree tracks across disciplines — from AI and engineering to global business and design arts — specifically designed for international students." },
-  { icon: "🎵", title: "Korean Culture Is a Global Phenomenon", body: "K-pop, K-drama, K-beauty, Korean cuisine — South Korea's cultural influence is unprecedented. Studying here means immersing yourself in a culture the world is actively watching, and building a truly unique personal brand." },
-  { icon: "📶", title: "World's Fastest Internet & Smart Infrastructure", body: "South Korea leads global rankings for internet speed and digital infrastructure. Studying here means access to a hyper-connected academic and social environment that matches your generation's pace." },
+  { icon: "🗣️", title: "English is the Official Language", body: "One of only two countries in the EU where English is an official language. No language courses, no adjustment period — just focused, global-standard learning from day one." },
+  { icon: "🎓", title: "MQF / EQF Recognised Qualifications", body: "All qualifications are aligned to the Malta Qualifications Framework (MQF) and the European Qualifications Framework (EQF) — internationally recognised across Europe and beyond." },
+  { icon: "💼", title: "Career-First Education Model", body: "Malta's education system is built around practical outcomes. Industry exposure, project-based learning, and skills-first delivery prepare students for employment, not just examinations." },
+  { icon: "💰", title: "Affordable European Education", body: "Tuition and living costs in Malta are significantly lower than Western European destinations — without compromising the quality, recognition, or prestige of a European degree." },
+  { icon: "🌍", title: "EU Member — Schengen Access", body: "Study in an EU member state and gain exposure to European business, travel, and professional networks. Your Malta qualification opens doors across 27 EU countries." },
+  { icon: "💻", title: "Technology & AI Growth Hub", body: "Malta has positioned itself as a growing centre for fintech, iGaming, AI, and digital business. Students in tech and business fields gain access to a fast-growing industry ecosystem." },
+  { icon: "🏨", title: "Tourism & Hospitality Capital", body: "Malta welcomes millions of visitors annually. For students in hospitality, tourism, and events management, this is a live, active classroom — not just a theory-based programme." },
+  { icon: "🛡️", title: "Safe, Welcoming & Multicultural", body: "Malta consistently ranks among Europe's safest countries. Its international student community spans dozens of nationalities — making it a genuinely global learning environment." },
+];
+
+const differentiators = [
+  { icon: "🗣️", title: "No Language Barrier — Ever", body: "English is woven into every corner of Maltese life — business, government, education, and daily interaction. You'll never need a translator or a language bridge course." },
+  { icon: "⚡", title: "Fast-Track Study Pathways", body: "Accelerated programmes allow students to complete Foundation, Diploma, and Bachelor's qualifications in a shorter timeframe — without sacrificing academic rigour or recognition." },
+  { icon: "🏨", title: "Live Tourism Education", body: "Malta's tourism industry is one of the most active in the Mediterranean. Hospitality and tourism students learn in a fully operational, internationally-facing industry environment." },
+  { icon: "💻", title: "Emerging Tech & Fintech Hub", body: "Malta is home to a rapidly expanding digital economy — fintech, iGaming, AI, and blockchain are active sectors, offering a real-world professional environment for students." },
+  { icon: "📋", title: "MQF-Aligned Qualifications", body: "Every programme is structured under the Malta Qualifications Framework — aligned to European standards and recognised by employers and academic institutions globally." },
+  { icon: "🌍", title: "Gateway to European Career Networks", body: "As an EU member state, Malta gives students access to European professional networks, business communities, and career pathways that extend far beyond the island itself." },
+  { icon: "🏥", title: "Healthcare & Nursing Pathways", body: "Malta offers structured healthcare and nursing education pathways with European accreditation — an increasingly valuable qualification for mobile healthcare professionals." },
+  { icon: "☀️", title: "Mediterranean Quality of Life", body: "300+ days of sunshine, a safe environment, a compact and walkable capital, and a genuinely welcoming culture make Malta one of Europe's most liveable student destinations." },
 ];
 
 const courses = [
-  { icon: "🤖", title: "Artificial Intelligence", body: "Machine learning, deep learning, AI systems — taught at institutions leading Asia's AI research frontier." },
-  { icon: "💻", title: "Computer Science & Engineering", body: "Software engineering, cybersecurity, computer engineering and information systems." },
-  { icon: "⚙️", title: "Mechanical & Electrical Engineering", body: "Semiconductor engineering, automotive, eco-energy, and electrical ICT engineering." },
-  { icon: "🎮", title: "Animation, Gaming & Webtoon", body: "South Korea is a global leader in gaming and webtoon culture — study in the industry's home market." },
-  { icon: "📊", title: "Business & Global Management", body: "International business, accounting, economics, finance, and trade — English-medium tracks available." },
-  { icon: "📺", title: "Media & Communication", body: "Visual content, advertising, PR, and media studies — in the heart of Hallyu's creative economy." },
-  { icon: "🗣️", title: "Korean Language Studies", body: "Korean language education, interpretation, and translation programs — an invaluable career differentiator." },
-  { icon: "💄", title: "Fashion, Beauty & Aesthetics", body: "Fashion design, hair design, makeup, skin care — study in one of the world's leading beauty industries." },
-  { icon: "🏨", title: "Hospitality & Tourism Management", body: "Tourism, airline management, hotel operations, and food service management." },
-  { icon: "📡", title: "Data Science & Analytics", body: "Applied data science, information engineering, and smart systems in a data-first economy." },
-  { icon: "🦾", title: "Robotics & Smart Systems", body: "Advanced robotics, automation, and smart manufacturing — Korea is a world leader in industrial robotics." },
-  { icon: "🔬", title: "Biotechnology & Health Sciences", body: "Health sciences, biotech, food science, animal resources, and companion animal industries." },
+  { icon: "🌐", title: "Business & Management", body: "International business strategy, leadership, operations, and global management — Foundation to Master's level." },
+  { icon: "📊", title: "Accounting & Finance", body: "Financial reporting, management accounting, corporate finance, and professional accountancy pathways." },
+  { icon: "🤖", title: "Artificial Intelligence & Cloud", body: "AI fundamentals, machine learning, cloud infrastructure, and data-driven decision making for modern business." },
+  { icon: "💻", title: "Information Technology", body: "Software development, cybersecurity, systems administration, and digital infrastructure programmes." },
+  { icon: "🏨", title: "Hospitality & Tourism", body: "Hospitality management, luxury tourism, events, and food & beverage operations — with live industry exposure." },
+  { icon: "🏥", title: "Health & Social Care", body: "Healthcare management, social care, and support work programmes aligned to European professional standards." },
+  { icon: "🚢", title: "Logistics & Supply Chain", body: "Global logistics, maritime trade, supply chain operations, and procurement management." },
+  { icon: "💉", title: "Nursing Studies", body: "Pre-nursing foundation and nursing pathway programmes with European academic and clinical frameworks." },
+  { icon: "📱", title: "Digital Business", body: "E-commerce, digital marketing, data strategy, social media, and online business management." },
+  { icon: "🚀", title: "Entrepreneurship", body: "Startup strategy, venture creation, business modelling, and innovation management for aspiring founders." },
 ];
 
-const faqs = [
-  { q: "Is IELTS mandatory to study in South Korea?", a: "For English-taught programs, an IELTS score of 5.5 or TOEFL iBT 51 is the typical minimum requirement. For Korean-medium programs, TOPIK Level 3 or above is generally required. Students from countries where English is the official medium of education may qualify for exemptions — this varies by institution. Our advisors will confirm the exact requirement for your chosen program." },
-  { q: "Can I work part-time while studying in South Korea?", a: "Yes. International students on a valid D-2 student visa are permitted to work part-time in South Korea. Bachelor's students may work up to 20 hours per week during academic sessions. Master's students may work up to 30 hours per week during academic sessions. During official university vacation periods, full-time work may be permitted. University and immigration authority approval is required." },
-  { q: "What is the student visa process for South Korea?", a: "After receiving your official Certificate of Admission, you apply for a D-2 student visa at the Korean Embassy or Visa Application Centre in your home country. You'll need your admission letter, valid passport, financial proof — Bank Balance Certificate showing approximately KRW 16,000,000 – KRW 25,000,000 (Approx. INR 9.5 Lakhs – INR 15 Lakhs) — academic certificates, and family/birth documents. Langma International provides step-by-step guidance through this process." },
-  { q: "Is South Korea affordable for Indian students?", a: "South Korea is considered one of the more accessible developed-country study destinations. Tuition fees typically range from approximately KRW 3,700,000 to 5,500,000 per semester (Approx. INR 2.25 Lakhs – INR 3.35 Lakhs) depending on your field of study. Monthly living expenses generally range from KRW 600,000 to 1,000,000 (Approx. INR 36,000 – INR 60,500). Merit-based tuition benefits linked to TOPIK or IELTS scores can reduce costs further." },
-  { q: "Are English-taught programs available in South Korea?", a: "Yes. Many Korean universities have dedicated English-medium degree tracks, particularly in business, AI, computer engineering, media, design, and global studies. These programs do not require Korean language proficiency for admission. IELTS 5.5 or TOEFL iBT 51 is the typical minimum requirement for English-track programs." },
-  { q: "What are the popular intakes in South Korea?", a: "South Korean universities offer two main intakes: the Spring semester (starting March) and the Fall semester (starting September). The Fall intake is the most popular for international students and typically has the widest program availability. Some institutions run multiple admission rounds within each intake." },
-  { q: "What is TOPIK and why does it matter?", a: "TOPIK (Test of Proficiency in Korean) is the standard Korean language proficiency test for non-native speakers. It is required for admission to Korean-medium programs and is also the primary criterion for merit-based tuition benefits — higher TOPIK levels can qualify students for significant tuition reductions, in some cases covering up to 100% of tuition for multiple semesters." },
+const admissionDocs = [
+  "Valid passport — clear copy, front and back",
+  "Most recent academic transcripts and mark sheets",
+  "Degree certificate or school leaving qualification",
+  "English proficiency test result — IELTS / TOEFL / PTE / Cambridge",
+  "Professional Resume / CV",
+  "Statement of Purpose (SOP) — outlining your goals and motivation",
+  "Passport-size photograph (white background)",
+  "Proof of financial means — approx. €20–€30/day (€750–€1,000/month) if accommodation isn't fully prepaid",
+  "Dedicated email address for institution correspondence",
 ];
 
-const support = [
-  { icon: "🎯", title: "Profile-Matched Admissions Guidance", body: "We analyse your academic history, language scores, and goals to recommend only the most suitable and realistic options — no false promises." },
-  { icon: "📑", title: "Complete Document Assistance", body: "From Apostille guidance to SOP writing, bank certificate advice, and transcript preparation — we ensure your documentation is correct and professionally presented." },
-  { icon: "🛂", title: "Visa Application Support", body: "We walk you through the D-2 visa documentation checklist, common pitfalls, and consulate-specific requirements — with genuine expertise, not guarantees." },
-  { icon: "🗣️", title: "TOPIK & Language Strategy", body: "For students targeting Korean-medium programs or merit scholarships linked to TOPIK scores, we help you understand the timeline and preparation pathway." },
-  { icon: "✈️", title: "Pre-Departure Readiness", body: "Banking setup, SIM cards, accommodation options, campus registration — we give you a practical, honest pre-departure briefing so you arrive prepared." },
-  { icon: "💬", title: "Post-Arrival Check-In", body: "Our commitment doesn't end at departure. We follow up with enrolled students to support their initial settlement — because we care about outcomes, not just applications." },
-];
-
-const outlooks = [
-  { icon: "🕒", tag: "During Studies", title: "Part-Time Work Rights", body: "Bachelor's students may work up to 20 hours/week during academic sessions; Master's students up to 30 hours/week. Full-time work is possible during approved vacation periods, subject to immigration and university approval." },
-  { icon: "🏭", tag: "Internships", title: "Industry Internship Ecosystem", body: "South Korea's internship culture is strong, particularly in technology, media, design, and business, with many universities maintaining formal industry partnerships." },
-  { icon: "🏢", tag: "Global Employers", title: "Korea's World-Class Companies", body: "Samsung, Hyundai, LG, SK Group, Kakao, Naver, Lotte, and hundreds of global MNCs operate out of South Korea — strong demand for graduates with local degrees." },
-  { icon: "🚀", tag: "Post-Study", title: "Post-Graduation Pathways", body: "Graduates can explore post-study visa options including the D-10 Job Seeker visa, allowing time to secure employment in South Korea, subject to prevailing immigration regulations." },
-];
-
-const careerTags = [
-  "Semiconductor Technology", "Artificial Intelligence & ML", "Electric Vehicle Engineering", "Gaming & Esports",
-  "K-Content & Media", "K-Beauty & Fashion", "Biotechnology & Pharma", "Smart Manufacturing",
-  "Fintech & Digital Banking", "E-Commerce & Logistics", "Tourism & Hospitality", "Global Supply Chain",
-  "Architecture & Interior Design", "Healthcare & Rehabilitation",
+const academicQuals = [
+  "Class 12th — Indian Standard Boards (CBSE, ISC, State)",
+  "International Baccalaureate (IB) — Diploma & Career Programme",
+  "British A-Levels & (I)GCSE qualifications",
+  "BTEC Level 3 (Extended Diploma)",
+  "European Baccalaureate (EB)",
+  "American High School Diploma (college preparatory)",
+  "Foundation or Access to Higher Education qualifications",
+  "Bachelor's degree for postgraduate programme entry",
 ];
 
 const visaDocs = [
-  "Valid international passport (min. 6 months validity beyond study period)",
-  "Official Certificate of Admission from the Korean institution",
-  "Bank Balance Certificate — approx. KRW 16,000,000–25,000,000 (approx. INR 9.5L–15L) in applicant's or parent's name, issued within 30 days",
-  "High school graduation certificate (Apostilled or consulate-verified)",
-  "Academic transcripts (covering all grades)",
-  "Birth certificate or family relationship document (with certified translation)",
-  "Copy of parent's passport or government-issued ID",
-  "Completed visa application form and passport-size photographs",
-  "Language proficiency certificate (IELTS, TOEFL iBT, or TOPIK as applicable)",
-  "Certified Korean or English translation for documents in other languages",
+  "Valid passport with minimum 18 months validity",
+  "Unconditional offer letter from the institution",
+  "Academic transcripts and degree certificates",
+  "English proficiency test result — IELTS / TOEFL / PTE",
+  "Passport-size photograph (white background)",
+  "Statement of Purpose (SOP)",
+  "Proof of financial means — approx. €20–€30/day (€750–€1,000/month) for course duration if accommodation not prepaid",
+  "Proof of accommodation in Malta",
+  "Travel and health insurance documentation",
+  "Completed visa application form",
+  "Tuition fee payment receipt confirming required payment to the institution",
+];
+
+const lifeCards = [
+  { icon: "☀️", tag: "Lifestyle", title: "Mediterranean Living at Its Finest", body: "With 300+ days of sunshine, crystal-clear waters, and a compact, walkable capital city, Malta offers a quality of life that few study destinations can match." },
+  { icon: "🛡️", tag: "Safety", title: "One of Europe's Safest Countries", body: "Malta consistently ranks among the safest countries in Europe. Low crime rates and a strong international student community make it a reassuring choice." },
+  { icon: "🌍", tag: "Community", title: "80+ Nationalities in One Place", body: "Malta's student population is genuinely multicultural. Classrooms bring together students from across Asia, Europe, Africa, and the Middle East." },
+  { icon: "✈️", tag: "Travel", title: "Europe Within Reach", body: "Malta Airport connects directly to major European cities — Rome, London, Frankfurt, Barcelona. Weekend travel across Europe is a real part of student life." },
+  { icon: "🏛️", tag: "Culture", title: "History, Heritage & Modern Energy", body: "Valletta — a UNESCO World Heritage capital — sits alongside modern cafe culture, vibrant nightlife, and a thriving arts and creative scene." },
+  { icon: "💶", tag: "Cost", title: "Affordable European Living", body: "Compared to destinations like the UK, Germany, or the Netherlands, Malta offers a significantly lower cost of living without lifestyle compromise." },
+];
+
+const processSteps = [
+  { title: "Profile Evaluation", body: "Free assessment of your academic background, English level, and programme suitability" },
+  { title: "Document Submission", body: "We prepare and submit your complete application package accurately and on time" },
+  { title: "Application Review", body: "Institution reviews your application — we liaise directly to track progress" },
+  { title: "Offer Letter", body: "Receive your unconditional offer letter confirming your place in your chosen programme" },
+  { title: "Visa Process", body: "Full visa document preparation, submission support, and biometric appointment guidance" },
+  { title: "Travel Preparation", body: "Pre-departure briefing, accommodation confirmation, and arrival day planning" },
+  { title: "Begin Your Journey", body: "Land in Malta ready to study. Your international education journey officially begins" },
+];
+
+const support = [
+  { icon: "🔍", title: "Free Profile Evaluation", body: "We honestly assess your academic and English proficiency profile and identify which Malta programmes you genuinely qualify for — before you spend a rupee." },
+  { icon: "🎯", title: "Programme Matching", body: "We match you to the right programme level, intake, and field of study based on your career goals, academic history, and long-term ambitions." },
+  { icon: "📝", title: "SOP & Application Support", body: "Our team guides you through a compelling Statement of Purpose and prepares your complete application file to the highest standard." },
+  { icon: "📋", title: "Document Preparation", body: "We review, organise, and prepare all your academic and personal documents — ensuring nothing is missing or likely to delay your application." },
+  { icon: "🛂", title: "Visa Documentation Support", body: "Full guidance on your Malta student visa application — financial document structure, checklist preparation, and biometric appointment support." },
+  { icon: "🏠", title: "Accommodation Guidance", body: "We assist with student accommodation options in Malta — so you arrive knowing exactly where you'll live, with no last-minute uncertainty." },
+  { icon: "✈️", title: "Pre-Departure Briefing", body: "A thorough pre-departure session covering what to pack, what to expect, key contacts, and how to navigate your first days in Malta." },
+  { icon: "💬", title: "One Dedicated Advisor", body: "One real person, fully available throughout your journey. No automated responses, no queues — just expert, personalised guidance." },
+];
+
+const careerTags = [
+  "Hospitality Management", "Digital Marketing", "Fintech & Finance", "AI & Data Analytics",
+  "Healthcare Administration", "Tourism Operations", "Business Consulting", "Logistics & Supply Chain",
+  "Entrepreneurship", "IT & Cybersecurity", "Nursing & Healthcare", "Accounting & Audit",
+  "Event Management", "EU Career Pathways",
+];
+
+const faqs = [
+  { q: "Is Malta a good destination for international students?", a: "Malta is an excellent study destination for international students seeking affordable, internationally recognised, English-taught qualifications within the European Union. It combines EU academic recognition, a fully English-speaking environment, a safe culture, and a Mediterranean lifestyle — at a significantly lower cost than Western European destinations." },
+  { q: "Is English the language of instruction in Malta?", a: "Yes. English is an official language of Malta and the primary language of instruction across all higher education programmes. Students do not need to learn Maltese or any other language to study or live comfortably in Malta." },
+  { q: "Can I study in Malta without IELTS?", a: "IELTS is the most widely accepted test, but TOEFL iBT, PTE Academic, and Cambridge English qualifications are also accepted by most programmes. Foundation programmes require lower scores (IELTS 4.5–5.5), Bachelor's require 5.5–6.0, and postgraduate require 6.0–6.5 or equivalent." },
+  { q: "How much does it cost to live in Malta as a student?", a: "The average monthly cost of living ranges between €700 and €1,100, covering accommodation, food, transportation, and personal expenses. Tuition fees typically range from €6,000 to €14,000 per year depending on the level and programme." },
+  { q: "Can international students work part-time in Malta?", a: "Yes, up to 20 hours per week during term time — but this right becomes available only after the first 90 days in Malta. Students must first receive their e-Residence card and a Jobsplus employment licence before legally commencing any part-time work." },
+  { q: "Are Malta qualifications recognised internationally?", a: "Yes. All qualifications in Malta are structured under the Malta Qualifications Framework (MQF), directly aligned to the European Qualifications Framework (EQF) — formally recognised across all 27 EU member states and respected globally." },
+  { q: "What are the popular courses to study in Malta?", a: "The most in-demand areas include Business & Management, Hospitality & Tourism Management, AI & Cloud Computing, Information Technology, Accounting & Finance, Digital Business, Health & Social Care, Nursing Studies, Logistics & Supply Chain, and Entrepreneurship." },
+  { q: "What are the visa requirements for studying in Malta?", a: "Key documents typically include a valid passport, unconditional offer letter, academic transcripts, English proficiency results, proof of financial means, accommodation confirmation, health insurance, and a completed visa application form." },
+  { q: "Are study gaps accepted for admission to Malta?", a: "Generally, yes. Most programmes consider applications on overall academic merit and English proficiency rather than penalising students for study gaps. Mature students and working professionals are welcome." },
+  { q: "Is Malta safe for international students?", a: "Malta is consistently ranked among the safest countries in Europe, with very low crime rates, a stable political environment, and a well-established international student community." },
 ];
 
 /* ===================================================================
  *  MAIN
  * ================================================================ */
-export default function StudySouthKoreaPage() {
+export default function StudyMaltaPage() {
   const [openFAQ, setOpenFAQ] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -1047,17 +1182,13 @@ export default function StudySouthKoreaPage() {
           0%, 100% { transform: translateY(0); }
           50%      { transform: translateY(-14px); }
         }
-        @keyframes lm-pulse {
-          0%, 100% { transform: scale(1);   opacity: 0.7; }
-          50%      { transform: scale(1.4); opacity: 0; }
+        @keyframes lm-bg-shift {
+          0%, 100% { background-position: 0% 50%; }
+          50%      { background-position: 100% 50%; }
         }
         @keyframes lm-shimmer {
           0%   { background-position: -200% 0; }
           100% { background-position:  200% 0; }
-        }
-        @keyframes lm-bg-shift {
-          0%, 100% { background-position: 0% 50%; }
-          50%      { background-position: 100% 50%; }
         }
 
         .lm-grad-text {
@@ -1088,29 +1219,28 @@ export default function StudySouthKoreaPage() {
                   letterSpacing: "-0.6px",
                 }}
               >
-                Study In <span className="text-[#1ab7ac]">South Korea</span>
+                Study In <span className="text-[#1ab7ac]">Malta</span>
                 <br />
-                Asia's Innovation Hub
+                Practical Education.
                 <br />
-                For Your Future.
+                Global Opportunities.
               </h1>
 
               <p className="mt-6 text-gray-600 text-lg leading-relaxed max-w-xl">
-                World-Ranked Universities. English-Taught Programs. A career
-                gateway to Asia's most dynamic economy. South Korea leads the
-                world in technology, innovation, and academic excellence —
-                from AI and semiconductors to design and K-culture, your
-                future starts here.
+                English-taught qualifications. MQF-recognised degrees.
+                Affordable European living. Malta offers internationally
+                recognised qualifications, a fully English-speaking academic
+                environment, and the lifestyle of the Mediterranean — all at
+                a fraction of the cost of traditional European destinations.
               </p>
 
               {/* Tags */}
               <div className="flex flex-wrap gap-3 mt-8">
                 {[
-                  "✓170K+ International Students",
-                  "✓English-Taught Programs",
-                  "✓Part-Time Work Rights",
-                  "✓D-2 Student Visa",
-                  "✓Spring & Fall Intakes",
+                  "✓100% English-Speaking Country",
+                  "✓MQF / EQF Recognised Degrees",
+                  "✓Career-First Education Model",
+                  "✓EU Member — Schengen Zone",
                 ].map((item, index) => (
                   <span
                     key={index}
@@ -1127,13 +1257,13 @@ export default function StudySouthKoreaPage() {
                   onClick={() => setOpen(true)}
                   className="bg-[#006C70] hover:bg-[#00575a] transition-all text-white px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
                 >
-                  Apply for 2026 Intake →
+                  Apply Now →
                 </button>
                 <button
                   onClick={() => setOpen(true)}
                   className="border border-[#006C70] text-[#006C70] hover:bg-[#006C70] hover:text-white transition-all px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
                 >
-                  Check Eligibility
+                  Check My Eligibility
                 </button>
               </div>
             </div>
@@ -1155,8 +1285,8 @@ export default function StudySouthKoreaPage() {
               <div className="relative z-10">
                 <div className="w-[320px] h-[320px] md:w-[420px] md:h-[420px] lg:w-[520px] lg:h-[520px] rounded-full overflow-hidden">
                   <img
-                    src="images/skv.jpeg"
-                    alt="Study in South Korea"
+                    src="images/malta.jpeg"
+                    alt="Study in Malta"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -1178,10 +1308,10 @@ export default function StudySouthKoreaPage() {
                 marginTop: 56,
               }}
             >
-              <BoardingStat value={170} suffix="K+" label="International Students" sub="Studying in Korea" delay={100} />
-              <BoardingStat prefix="₩" value={3700000} label="From / Semester" sub="Tuition fee (KRW)" delay={250} />
-              <BoardingStat value={20} suffix="hrs" label="Part-Time Work / Week" sub="Bachelor's students" delay={400} />
-              <BoardingStat value={2} label="Intakes / Year" sub="March & September" delay={550} />
+              <BoardingStat value={100} suffix="%" label="English-Taught" sub="No language barrier" delay={100} />
+              <BoardingStat value={27} suffix="" label="EU Member State" sub="Schengen Zone access" delay={250} />
+              <BoardingStat value={300} suffix="+" label="Days of Sunshine" sub="Mediterranean climate" delay={400} />
+              <BoardingStat value={80} suffix="+" label="Nationalities" sub="On campus" delay={550} />
             </div>
           </Reveal>
         </div>
@@ -1190,19 +1320,19 @@ export default function StudySouthKoreaPage() {
       {/* ---------------- MARQUEE ---------------- */}
       <Marquee />
 
-      {/* ---------------- WHY SOUTH KOREA ---------------- */}
+      {/* ---------------- WHY MALTA ---------------- */}
       <section style={{ background: C.cream, padding: "100px 48px", position: "relative" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Why South Korea</span>}
+            tag={<span style={{ color: "#429198" }}>Why Malta</span>}
             title={
               <span style={{ color: "#4197a2" }}>
-                8 Reasons South Korea Is the Smartest Study Choice of 2026
+                An English-Speaking European Country That Puts Careers First
               </span>
             }
             sub={
               <span style={{ color: "#429198" }}>
-                A country that invented the future — and invites the world to study in it. Here's why thousands of international students are choosing South Korea every year.
+                Malta is one of Europe's most underrated study destinations. As a full EU member state where English is an official language, Malta removes the barriers that hold students back elsewhere — no language learning requirement, no translation friction, no cultural distance from global business.
               </span>
             }
           />
@@ -1251,7 +1381,7 @@ export default function StudySouthKoreaPage() {
           }}
         />
         <p style={{ color: C.white, fontSize: 15.5, fontWeight: 600, margin: 0, position: "relative", zIndex: 2 }}>
-          ✨ Not sure if South Korea is right for you? Let our Korea specialists assess your profile — free, no obligation.
+          ✨ Malta 2026 intake is open. Our advisors can assess your profile today — free, no commitment required.
         </p>
         <button
           style={{
@@ -1280,7 +1410,7 @@ export default function StudySouthKoreaPage() {
           }}
           onClick={() => setOpen(true)}
         >
-          Get Free Profile Evaluation →
+          Get Free Eligibility Check →
         </button>
       </div>
 
@@ -1308,8 +1438,8 @@ export default function StudySouthKoreaPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead
             tag="At a Glance"
-            title="South Korea — Key Facts for International Students"
-            sub="The essential information you need before you begin your application journey."
+            title="Malta — Quick Facts for International Students"
+            sub="Everything you need to know before planning your study journey to Malta."
             light
           />
           <Reveal>
@@ -1328,12 +1458,13 @@ export default function StudySouthKoreaPage() {
                   overflow: "hidden",
                 }}
               >
-                <FactRow label="Capital City" value="Seoul" />
-                <FactRow label="Currency" value="South Korean Won (KRW) · ₩1,000 ≈ ₹62 approx." />
-                <FactRow label="Official Language" value="Korean · English-medium tracks widely available" />
-                <FactRow label="Top Student Cities" value="Seoul · Busan · Daegu · Incheon · Daejeon · Gwangju" />
-                <FactRow label="Intakes" value="Spring (March) · Fall (September)" />
-                <FactRow label="English Requirement" value="IELTS 5.5 / TOEFL iBT 51 · TOPIK Level 3+ (Korean track)" />
+                <FactRow label="Location" value="Southern Europe · Central Mediterranean · EU Schengen Zone" />
+                <FactRow label="Capital" value="Valletta — UNESCO World Heritage City" />
+                <FactRow label="Official Languages" value="English & Maltese — all instruction in English" />
+                <FactRow label="Currency" value="Euro (€)" />
+                <FactRow label="Climate" value="Mediterranean · 300+ sunny days per year" />
+                <FactRow label="Qualification Framework" value="MQF / EQF — EU & internationally recognised" />
+                <FactRow label="Study Levels Available" value="Foundation · Certificate · Diploma · Bachelor's · Master's" />
               </div>
               <div
                 style={{
@@ -1343,60 +1474,62 @@ export default function StudySouthKoreaPage() {
                   overflow: "hidden",
                 }}
               >
-                <FactRow label="Tuition (Per Semester)" value="₩3.7M – ₩5.5M (≈ INR 2.25L – 3.35L)" />
-                <FactRow label="Average Living Costs" value="₩600K – ₩1M / month (≈ INR 36K – 60.5K)" />
-                <FactRow label="On-Campus Dormitory" value="₩793K – ₩915K / semester · twin room" />
-                <FactRow label="Part-Time Work Rights" value="Bachelor's: 20 hrs/wk · Master's: 30 hrs/wk" />
-                <FactRow label="Student Visa Type" value="D-2 Student Visa" />
-                <FactRow label="Financial Proof Required" value="₩16M – ₩25M (≈ INR 9.5L – 15L)" />
+                <FactRow label="Average Tuition Fees" value="€6,000 – €14,000 / year (programme-dependent)" />
+                <FactRow label="Average Living Cost" value="€700 – €1,100 / month" />
+                <FactRow label="Intakes" value="October · February · May (varies by programme)" />
+                <FactRow label="Part-Time Work Rights" value="Up to 20 hrs/week — after 90 days, with e-Residence card & Jobsplus licence" />
+                <FactRow label="International Community" value="Students from 80+ countries" />
+                <FactRow label="Key Industries" value="Tourism · Fintech · iGaming · Healthcare · Digital Business" />
+                <FactRow label="English Requirement" value="IELTS / TOEFL / PTE / Cambridge — varies by level" />
               </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* ---------------- COSTS ---------------- */}
-      <section style={{ background: C.cream, padding: "100px 48px" }}>
+      {/* ---------------- WHAT MAKES MALTA DIFFERENT ---------------- */}
+      <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Cost of Study</span>}
-            title={<span style={{ color: "#4197a2" }}>Estimated Study Costs in South Korea</span>}
+            tag={<span style={{ color: "#429198" }}>What Sets It Apart</span>}
+            title={
+              <span style={{ color: "#4197a2" }}>
+                What Makes Malta Different from Every Other European Destination
+              </span>
+            }
             sub={
               <span style={{ color: "#429198" }}>
-                South Korea offers excellent academic value. These are approximate ranges to help you plan your budget — actual costs vary by city, institution, and lifestyle.
+                Malta doesn't ask you to adapt to it. It was built for international students — English-first, career-focused, and connected to global industry from day one.
               </span>
             }
           />
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
               gap: 18,
             }}
           >
-            <CostCard label="Tuition / Semester" amount="₩3.7M–5.5M" note="≈ INR 2.25L–3.35L · Humanities to Engineering & Arts" delay={0} />
-            <CostCard label="Accommodation / Month" amount="₩200K–500K" note="≈ INR 12,000–30,000/mo · Dormitory to private room" highlight delay={80} />
-            <CostCard label="Food / Month" amount="₩200K–400K" note="≈ INR 12,000–24,000/mo · Canteen to budget restaurants" delay={160} />
-            <CostCard label="Transport / Month" amount="₩50K–100K" note="≈ INR 3,000–6,000/mo · Metro, bus & intercity travel" delay={240} />
-            <CostCard label="Miscellaneous / Month" amount="₩100K–200K" note="≈ INR 6,000–12,000/mo · Data, supplies, personal expenses" delay={320} />
-            <CostCard label="Health Insurance" amount="₩70K–120K" note="≈ INR 4,200–7,300/mo · Mandatory for visa holders" delay={400} />
+            {differentiators.map((d, i) => (
+              <ReasonCard key={d.title} title={d.title} body={d.body} icon={d.icon} delay={i * 80} />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ---------------- COURSES ---------------- */}
-      <section style={{ background: C.white, padding: "100px 48px" }}>
+      {/* ---------------- POPULAR STUDY AREAS ---------------- */}
+      <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Programs Available</span>}
+            tag={<span style={{ color: "#429198" }}>Popular Study Areas</span>}
             title={
               <span style={{ color: "#4197a2" }}>
-                Top Course Categories for International Students
+                In-Demand Programmes for International Students
               </span>
             }
             sub={
               <span style={{ color: "#429198" }}>
-                South Korea offers internationally competitive programs across an impressive range of disciplines — from deep-tech to creative arts.
+                Career-aligned, English-taught, and structured under the MQF framework. From Foundation to Master's — choose the path that fits your ambition.
               </span>
             }
           />
@@ -1445,358 +1578,248 @@ export default function StudySouthKoreaPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead
             style={{ paddingLeft: "24px", paddingRight: "24px" }}
-            tag="Language Requirements"
-            title="English & Korean Language Pathways"
-            sub="South Korea welcomes international students through both English-taught and Korean-medium programs. Here's what you need to know."
+            tag="English Requirements"
+            title="IELTS, TOEFL, PTE & Cambridge — What You Need"
+            sub="English proficiency requirements vary by programme level. Foundation entry provides a stepping stone for students who need to build their English before beginning a degree."
             light
           />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 24 }}>
-            <Reveal>
-              <div
-                style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(240,192,64,0.18)",
-                  padding: 36,
-                  borderRadius: 20,
-                  backdropFilter: "blur(8px)",
-                }}
-              >
-                <h3
-                  style={{
-                    fontSize: 20,
-                    fontWeight: 600,
-                    color: C.white,
-                    marginBottom: 22,
-                    paddingBottom: 16,
-                    borderBottom: `2px solid ${C.gold}`,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                  }}
-                >
-                  <span>🌐</span> English-Medium Programs
-                </h3>
-                {[
-                  ["IELTS Academic", "5.5 or above · Minimum"],
-                  ["TOEFL iBT", "51 or above"],
-                ].map(([t, s], idx, arr) => (
-                  <div
-                    key={t}
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      padding: "13px 0",
-                      borderBottom: idx === arr.length - 1 ? "none" : "1px solid rgba(255,255,255,0.06)",
-                    }}
-                  >
-                    <span style={{ fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.82)" }}>{t}</span>
-                    <span
-                      style={{
-                        fontSize: 13,
-                        fontWeight: 700,
-                        color: "#FFFFFF",
-                        padding: "4px 12px",
-                        background: "rgba(240,192,64,0.12)",
-                        borderRadius: 999,
-                      }}
-                    >
-                      {s}
-                    </span>
-                  </div>
-                ))}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
+            {[
+              {
+                title: "Foundation / Certificate",
+                icon: "🎓",
+                rows: [
+                  ["IELTS Academic", "4.5 – 5.5 overall"],
+                  ["TOEFL iBT", "35 – 55 points"],
+                  ["PTE Academic", "36 – 46 points"],
+                  ["Cambridge English", "B1 level minimum"],
+                ],
+                note: "💡 Foundation programmes prepare students for direct Bachelor's progression, typically without additional English testing.",
+                noteBg: "rgba(240,192,64,0.08)",
+                noteBorder: "rgba(240,192,64,0.2)",
+              },
+              {
+                title: "Bachelor's / Diploma",
+                icon: "📘",
+                rows: [
+                  ["IELTS Academic", "5.5 – 6.0 overall"],
+                  ["TOEFL iBT", "60 – 80 points"],
+                  ["PTE Academic", "46 – 61 points"],
+                  ["Cambridge English", "B2 level · FCE minimum"],
+                ],
+                note: "⚠️ Minimum academic requirement: equivalent of Class 12th, A-Levels, IB Diploma, BTEC Level 3, or equivalent.",
+                noteBg: "rgba(46,125,90,0.08)",
+                noteBorder: "rgba(46,125,90,0.25)",
+              },
+              {
+                title: "Master's / Postgraduate",
+                icon: "📚",
+                rows: [
+                  ["IELTS Academic", "6.0 – 6.5 overall"],
+                  ["TOEFL iBT", "80 – 90 points"],
+                  ["PTE Academic", "58 – 64 points"],
+                  ["Cambridge English", "C1 level minimum"],
+                ],
+                note: "⚠️ A recognised Bachelor's degree is required for postgraduate entry. Requirements vary by programme and discipline.",
+                noteBg: "rgba(240,192,64,0.08)",
+                noteBorder: "rgba(240,192,64,0.2)",
+              },
+            ].map((card, ci) => (
+              <Reveal key={card.title} delay={ci * 120}>
                 <div
                   style={{
-                    background: "rgba(240,192,64,0.08)",
-                    border: "1px solid rgba(240,192,64,0.2)",
-                    padding: "16px 18px",
-                    marginTop: 22,
-                    fontSize: 12.5,
-                    color: "rgba(255,255,255,0.65)",
-                    lineHeight: 1.7,
-                    borderRadius: 12,
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(240,192,64,0.18)",
+                    padding: 32,
+                    borderRadius: 20,
+                    backdropFilter: "blur(8px)",
+                    height: "100%",
                   }}
                 >
-                  📌 Higher IELTS/TOEFL scores may qualify you for merit-based fee reductions. IELTS 7.0+ and TOEFL iBT 91+ can unlock significant first-semester tuition benefits at select institutions.
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={120}>
-              <div
-                style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(240,192,64,0.18)",
-                  padding: 36,
-                  borderRadius: 20,
-                  backdropFilter: "blur(8px)",
-                }}
-              >
-                <h3
-                  style={{
-                    fontSize: 20,
-                    fontWeight: 600,
-                    color: C.white,
-                    marginBottom: 22,
-                    paddingBottom: 16,
-                    borderBottom: `2px solid ${C.gold}`,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                  }}
-                >
-                  <span>🗣️</span> Korean-Medium Programs
-                </h3>
-                {[
-                  ["TOPIK (General)", "Level 3 or above · Standard"],
-                  ["Arts & Physical Education Majors", "TOPIK Level 2 accepted"],
-                ].map(([t, s], idx, arr) => (
-                  <div
-                    key={t}
+                  <h3
                     style={{
+                      fontSize: 18,
+                      fontWeight: 600,
+                      color: C.white,
+                      marginBottom: 20,
+                      paddingBottom: 14,
+                      borderBottom: `2px solid ${C.gold}`,
                       display: "flex",
-                      justifyContent: "space-between",
                       alignItems: "center",
-                      padding: "13px 0",
-                      borderBottom: idx === arr.length - 1 ? "none" : "1px solid rgba(255,255,255,0.06)",
+                      gap: 10,
                     }}
                   >
-                    <span style={{ fontSize: 14, fontWeight: 600, color: "rgba(255,255,255,0.82)" }}>{t}</span>
-                    <span
+                    <span>{card.icon}</span> {card.title}
+                  </h3>
+                  {card.rows.map(([t, s], idx, arr) => (
+                    <div
+                      key={t}
                       style={{
-                        fontSize: 13,
-                        fontWeight: 700,
-                        color: "#FFFFFF",
-                        padding: "4px 12px",
-                        background: "rgba(240,192,64,0.12)",
-                        borderRadius: 999,
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        padding: "12px 0",
+                        borderBottom: idx === arr.length - 1 ? "none" : "1px solid rgba(255,255,255,0.06)",
                       }}
                     >
-                      {s}
-                    </span>
+                      <span style={{ fontSize: 13.5, fontWeight: 600, color: "rgba(255,255,255,0.82)" }}>{t}</span>
+                      <span
+                        style={{
+                          fontSize: 12.5,
+                          fontWeight: 700,
+                          color: "#FFFFFF",
+                          padding: "4px 12px",
+                          background: "rgba(240,192,64,0.12)",
+                          borderRadius: 999,
+                        }}
+                      >
+                        {s}
+                      </span>
+                    </div>
+                  ))}
+                  <div
+                    style={{
+                      background: card.noteBg,
+                      border: `1px solid ${card.noteBorder}`,
+                      padding: "14px 16px",
+                      marginTop: 20,
+                      fontSize: 12, 
+                      color: "rgba(255,255,255,0.65)",
+                      lineHeight: 1.7,
+                      borderRadius: 12,
+                    }}
+                  >
+                    {card.note}
                   </div>
-                ))}
-                <div
-                  style={{
-                    background: "rgba(46,125,90,0.08)",
-                    border: "1px solid rgba(46,125,90,0.25)",
-                    padding: "16px 18px",
-                    marginTop: 22,
-                    fontSize: 12.5,
-                    color: "rgba(255,255,255,0.65)",
-                    lineHeight: 1.7,
-                    borderRadius: 12,
-                  }}
-                >
-                  📌 TOPIK scores are also the primary criterion for merit scholarships — higher levels can secure up to 100% tuition waivers for multiple semesters. We help students plan their TOPIK preparation strategy.
                 </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ---------------- VISA GUIDE ---------------- */}
+      {/* ---------------- ADMISSION REQUIREMENTS ---------------- */}
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Visa Process</span>}
-            title={
-              <span style={{ color: "#4197a2" }}>
-                South Korea D-2 Student Visa — Step-by-Step Guide
-              </span>
-            }
+            tag={<span style={{ color: "#429198" }}>Admission Requirements</span>}
+            title={<span style={{ color: "#4197a2" }}>What You Need to Apply for Malta</span>}
             sub={
               <span style={{ color: "#429198" }}>
-                A clear, accurate overview of the South Korea student visa process. Our advisors guide you through every stage. Visa issuance is at the sole discretion of Korean immigration authorities.
+                A clear, straightforward process. Prepare these documents and our team will manage the rest.
               </span>
             }
           />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }} className="lm-visa-wrap">
-            <div>
-              <VisaStep n={1} title="Receive Your Official Admission Letter" body="After completing your application and document submission, you receive your Certificate of Admission from the institution — the foundational document for your visa application." delay={0} />
-              <VisaStep n={2} title="Prepare Your Visa Application Documents" body="Gather all required documents including your valid passport, financial proof certificate, academic certificates, family relationship documents, and admission letter." delay={100} />
-              <VisaStep n={3} title="Apply at the Korean Embassy / Consulate" body="Submit your complete D-2 visa application at the Korean Embassy or authorised Visa Application Centre in your home country. Apply well in advance of your semester start date." delay={200} />
-              <VisaStep n={4} title="Visa Interview (If Required)" body="Some applicants may be called for a visa interview. Our team provides structured interview preparation, helping you demonstrate your genuine intent and preparation to the visa officer." delay={300} />
-              <VisaStep n={5} title="Travel & Register on Arrival" body="On arrival in South Korea, register with the immigration office and obtain your Alien Registration Card (ARC) — your official ID and the document that enables part-time work." isLast delay={400} />
-            </div>
-            <Reveal delay={200}>
-              <div
-                style={{
-                  background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
-                  padding: 40,
-                  borderRadius: 22,
-                  position: "sticky",
-                  top: 100,
-                  overflow: "hidden",
-                }}
-              >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: -50,
-                    right: -50,
-                    width: 200,
-                    height: 200,
-                    background: `radial-gradient(circle, ${C.gold} 0%, transparent 70%)`,
-                    opacity: 0.1,
-                  }}
-                />
-                <h3
-                  style={{
-                    fontSize: 22,
-                    fontWeight: 600,
-                    color: C.white,
-                    marginBottom: 24,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 12,
-                    position: "relative",
-                  }}
-                >
-                  <span
-                    style={{
-                      width: 38,
-                      height: 38,
-                      background: C.gold,
-                      color: C.navyD,
-                      borderRadius: 10,
-                      display: "inline-flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: 18,
-                    }}
-                  >
-                    📋
-                  </span>
-                  Key Documents for the D-2 Visa
-                </h3>
-                {visaDocs.map((d) => (
+            <Reveal>
+              <div>
+                {admissionDocs.map((d, idx, arr) => (
                   <div
                     key={d}
                     style={{
                       display: "flex",
                       gap: 12,
-                      marginBottom: 12,
-                      fontSize: 13,
-                      color: "rgba(255,255,255,0.75)",
                       alignItems: "flex-start",
-                      lineHeight: 1.6,
-                      position: "relative",
+                      padding: "13px 0",
+                      borderBottom: idx === arr.length - 1 ? "none" : `1px solid ${C.border}`,
+                      fontSize: 14,
+                      color: C.slate,
                     }}
                   >
-                    <span
-                      style={{
-                        width: 20,
-                        height: 20,
-                        background: "rgba(240,192,64,0.15)",
-                        color: "#FFFFFF",
-                        borderRadius: "50%",
-                        display: "inline-flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: 11,
-                        flexShrink: 0,
-                        fontWeight: 700,
-                      }}
-                    >
-                      ✓
-                    </span>
+                    <span style={{ color: C.navy, fontWeight: 700, flexShrink: 0 }}>✓</span>
                     {d}
                   </div>
                 ))}
                 <div
                   style={{
-                    background: "rgba(240,192,64,0.1)",
-                    borderLeft: `3px solid ${C.gold}`,
+                    background: C.goldTint,
+                    border: `1px solid ${C.goldSoft}`,
+                    borderLeft: `3px solid ${C.navy}`,
                     padding: "16px 18px",
-                    marginTop: 22,
-                    fontSize: 12.5,
-                    color: "rgba(255,255,255,0.7)",
-                    lineHeight: 1.75,
-                    borderRadius: 8,
+                    marginTop: 18,
+                    fontSize: 13,
+                    color: "#8a3810",
+                    lineHeight: 1.7,
                   }}
                 >
-                  <strong style={{ color: "#FFFFFF" }}>Financial Proof:</strong> ₩16M–₩25M (≈ INR 9.5L–15L)
-                  <br />
-                  <strong style={{ color: "#FFFFFF" }}>Application Fee:</strong> ₩100,000 (≈ INR 6,100)
-                  <br />
-                  <strong style={{ color: "#FFFFFF" }}>Visa Type:</strong> D-2 Student Visa
+                  ℹ️ Requirements may vary depending on the programme level and your individual academic background. Contact Langma International for a personalised eligibility review before applying.
                 </div>
               </div>
             </Reveal>
+            <DocsBox title="Academic Qualifications Accepted" items={academicQuals} />
           </div>
         </div>
       </section>
 
-      {/* ---------------- WORK & CAREER OUTLOOK ---------------- */}
+      {/* ---------------- VISA GUIDE ---------------- */}
       <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Work & Career</span>}
-            title={
-              <span style={{ color: "#4197a2" }}>
-                Work, Intern & Build Your Career in South Korea
-              </span>
-            }
+            tag={<span style={{ color: "#429198" }}>Student Visa</span>}
+            title={<span style={{ color: "#4197a2" }}>Malta Student Visa — Step by Step</span>}
             sub={
               <span style={{ color: "#429198" }}>
-                South Korea's thriving economy and student-friendly work policies make it one of the most career-friendly study destinations in Asia.
+                Securing a Malta student visa is a structured, manageable process. Here's exactly how it works — and how Langma International supports you through every stage.
               </span>
             }
           />
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22 }}>
-            {outlooks.map((o, i) => (
-              <OutlookCard key={o.title} {...o} delay={i * 100} />
-            ))}
-          </div>
-          <Reveal delay={200}>
-            <div
-              style={{
-                marginTop: 28,
-                background: "#fff8e6",
-                border: `1.5px solid ${C.gold}`,
-                borderLeft: `5px solid ${C.gold}`,
-                borderRadius: 12,
-                padding: "18px 24px",
-                display: "flex",
-                alignItems: "flex-start",
-                gap: 12,
-              }}
-            >
-              <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>⚠️</span>
-              <p style={{ margin: 0, fontSize: 13.5, color: "#5a4000", lineHeight: 1.75 }}>
-                <strong style={{ color: "#3d2c00" }}>Important Note:</strong> International students in South Korea are generally permitted to engage in part-time employment after completing six months of study, subject to immigration regulations, university policies, academic performance requirements, and obtaining the necessary approvals from both the university and immigration authorities.
-              </p>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }} className="lm-visa-wrap">
+            <div>
+              <VisaStep n={1} title="Choose Your Programme & Apply" body="Select your programme level and intake. Submit your initial application with basic supporting documents through your Langma International advisor." delay={0} />
+              <VisaStep n={2} title="Receive Conditional Offer Letter" body="Your application is assessed by the admissions team. A conditional offer letter is issued pending verification of full documentation." delay={80} />
+              <VisaStep n={3} title="Submit Full Document Package" body="Complete your full application with all required academic, personal, and financial documents. Our team reviews and prepares your file for submission." delay={160} />
+              <VisaStep n={4} title="Receive Unconditional Offer Letter" body="Upon approval of your complete application, an unconditional offer letter confirms your place. This is a critical document for your visa application." delay={240} />
+              <VisaStep n={5} title="Tuition Fee Payment" body="Institutions typically require payment of a substantial portion or the full first-year tuition fee before issuing the unconditional offer letter required for visa applications." delay={320} />
+              <VisaStep n={6} title="Apply for Malta Student Visa" body="Your visa application is submitted to the Malta High Commission or nearest VFS centre. Our team prepares your full visa document package." delay={400} />
+              <VisaStep n={7} title="Biometric Appointment & Visa Collection" body="Attend your biometric appointment. Receive your visa approval and collect your stamped passport. Prepare for travel to Malta." delay={480} />
+              <VisaStep n={8} title="Arrive in Malta & Begin Studies" body="Travel to Malta with your documents, accommodation confirmation, and pre-departure briefing from Langma International. Your journey begins." isLast delay={560} />
             </div>
-          </Reveal>
+            <div style={{ position: "sticky", top: 100 }}>
+              <DocsBox
+                title="Visa Documents Checklist"
+                items={visaDocs}
+                note={
+                  <>
+                    ⚠️ Visa policies and documentation requirements may change in line with current Maltese and EU immigration regulations. Always confirm current requirements with your Langma International advisor.
+                    <br />
+                    <br />
+                    ✅ Study gaps are generally accepted. All ages considered. Contact us for a free personalised eligibility review.
+                  </>
+                }
+              />
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* ---------------- INDUSTRY LANDSCAPE ---------------- */}
-      <section style={{ background: C.cream, padding: "70px 48px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      {/* ---------------- CAREER & FUTURE OPPORTUNITIES ---------------- */}
+      <section
+        style={{
+          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
+          padding: "90px 48px",
+          textAlign: "center",
+        }}
+      >
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Industry Landscape</span>}
-            title={<span style={{ color: "#4197a2" }}>Industries Where Korean Graduates Excel</span>}
-            sub={
-              <span style={{ color: "#429198" }}>
-                South Korea is home to some of the world's most competitive industries. Your degree positions you at the intersection of technology, culture, and commerce in the world's 13th largest economy.
-              </span>
-            }
+            tag="Career & Future Opportunities"
+            title="Where a Malta Education Takes You"
+            center
+            light
+            sub="A Malta qualification opens far more doors than the island itself. With MQF/EQF recognition across the European Union, graduates are positioned for careers across 27 EU member states — and beyond. Malta's fast-growing sectors in fintech, digital business, hospitality, and healthcare provide hands-on industry exposure during your studies."
           />
           <Reveal>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 12, justifyContent: "center" }}>
               {careerTags.map((tag) => (
                 <span
                   key={tag}
                   style={{
-                    background: C.white,
-                    border: `1px solid ${C.border}`,
-                    color: C.navy,
+                    background: "rgba(255,255,255,0.07)",
+                    border: "1px solid rgba(255,255,255,0.14)",
+                    color: "rgba(255,255,255,0.85)",
                     fontSize: 13,
-                    fontWeight: 600,
-                    padding: "10px 18px",
+                    fontWeight: 500,
+                    padding: "9px 20px",
                     borderRadius: 999,
                   }}
                 >
@@ -1808,33 +1831,67 @@ export default function StudySouthKoreaPage() {
         </div>
       </section>
 
-      {/* ---------------- WHY LANGMA ---------------- */}
+      {/* ---------------- STUDENT LIFE ---------------- */}
+      <section style={{ background: C.cream, padding: "100px 48px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <SectionHead
+            tag={<span style={{ color: "#429198" }}>Student Life</span>}
+            title={<span style={{ color: "#4197a2" }}>Life in Malta — Sun, Culture & Global Community</span>}
+            sub={
+              <span style={{ color: "#429198" }}>
+                Malta isn't just a place to study — it's a place to thrive. Here's what daily life actually looks like as an international student in Malta.
+              </span>
+            }
+          />
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22 }}>
+            {lifeCards.map((l, i) => (
+              <OutlookCard key={l.title} {...l} delay={i * 100} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- APPLICATION PROCESS ---------------- */}
       <section
         style={{
           background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
-          padding: "100px 48px",
-          position: "relative",
-          overflow: "hidden",
+          padding: "90px 48px",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            bottom: "-10%",
-            left: "-5%",
-            width: 400,
-            height: 400,
-            background: `radial-gradient(circle, ${C.gold} 0%, transparent 70%)`,
-            opacity: 0.06,
-            filter: "blur(20px)",
-          }}
-        />
-        <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag="Your Partner in this Journey"
-            title="Why Students Trust Langma International"
-            sub="At Langma International, we are not just an admissions agent — we are your strategic partner for global education and career mobility, from your decision to study abroad to your first job."
+            tag="Application Process"
+            title="7 Steps to Studying in Malta"
+            sub="A clear, guided process — from your first enquiry to your first day of class. Langma International is with you at every stage."
             light
+          />
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
+              background: "rgba(255,255,255,0.04)",
+              borderRadius: 18,
+              overflow: "hidden",
+            }}
+          >
+            {processSteps.map((s, i) => (
+              <ProcessStep key={s.title} n={i + 1} title={s.title} body={s.body} delay={i * 70} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- WHY LANGMA ---------------- */}
+      <section style={{ background: C.white, padding: "100px 48px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <SectionHead
+            tag={<span style={{ color: "#429198" }}>Why Langma International</span>}
+            title={<span style={{ color: "#4197a2" }}>Your Trusted Partner — From Enquiry to Enrolment</span>}
+            sub={
+              <span style={{ color: "#429198" }}>
+                We don't just submit applications. We invest in your success — with expert guidance, personalised support, and complete transparency at every stage.
+              </span>
+            }
           />
           <div
             style={{
@@ -1849,40 +1906,6 @@ export default function StudySouthKoreaPage() {
           </div>
         </div>
       </section>
-
-      {/* ---------------- CTA STRIP 2 ---------------- */}
-      <div
-        style={{
-          background: `linear-gradient(90deg, ${C.navy}, ${C.navyL})`,
-          padding: "26px 48px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: 20,
-          flexWrap: "wrap",
-        }}
-      >
-        <p style={{ color: C.white, fontSize: 15.5, fontWeight: 600, margin: 0 }}>
-          ✨ 2026 Fall intake applications are now open. Seats fill quickly — speak to our Korea team today.
-        </p>
-        <button
-          style={{
-            background: C.white,
-            color: C.navy,
-            border: "none",
-            padding: "12px 28px",
-            fontSize: 13,
-            fontWeight: 700,
-            letterSpacing: "0.5px",
-            cursor: "pointer",
-            whiteSpace: "nowrap",
-            borderRadius: 999,
-          }}
-          onClick={() => setOpen(true)}
-        >
-          Start My Application →
-        </button>
-      </div>
 
       {/* ---------------- FAQ ---------------- */}
       <FAQ />
@@ -1955,10 +1978,10 @@ export default function StudySouthKoreaPage() {
                 lineHeight: 1.1,
               }}
             >
-              Your Korean Academic Journey
+              Start Your Malta Study Journey
               <br />
               <em className="lm-grd-text" style={{ fontStyle: "italic" }}>
-                Starts With One Conversation.
+                With Langma International.
               </em>
             </h2>
           </Reveal>
@@ -1974,25 +1997,16 @@ export default function StudySouthKoreaPage() {
                 lineHeight: 1.8,
               }}
             >
-              Book a free, no-obligation counselling session with our South Korea specialists. We'll evaluate your profile, recommend programs, and map out your complete application roadmap — honestly and accurately.
+              Europe's most accessible English-speaking destination is open for 2026. MQF-recognised qualifications. Affordable living. A global career network. One conversation could change everything.
             </p>
           </Reveal>
           <Reveal delay={300}>
-            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", marginBottom: 40 }}>
+            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
               <NavyButton onClick={() => setOpen(true)} style={{ background: C.forest, padding: "16px 36px" }}>
-                Book Free Counselling →
+                Apply Now →
               </NavyButton>
-              <GhostButton onClick={() => setOpen(true)}>Apply Now</GhostButton>
-              <GhostButton onClick={() => setOpen(true)}>Talk to an Expert</GhostButton>
-            </div>
-          </Reveal>
-          <Reveal delay={400}>
-            <div style={{ display: "flex", gap: 22, justifyContent: "center", flexWrap: "wrap" }}>
-              {["✓ Free Profile Evaluation", "✓ No Hidden Fees", "✓ Expert Korea Advisors", "✓ End-to-End Support"].map((t) => (
-                <span key={t} style={{ color: "rgba(255,255,255,0.8)", fontSize: 13, fontWeight: 600 }}>
-                  {t}
-                </span>
-              ))}
+              <GhostButton onClick={() => setOpen(true)}>Book Free Counselling</GhostButton>
+              <GhostButton onClick={() => setOpen(true)}>Get Free Assessment</GhostButton>
             </div>
           </Reveal>
         </div>

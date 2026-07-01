@@ -3,8 +3,8 @@ import PopupForm from "./PopupForm";
 import FAQ from "./FAQ";
 
 /**
- * Study in South Korea — Langma International
- * Palette matches the Study in Poland page (teal brand accent over navy panels)
+ * Study in Dubai (MIBD) — Langma International
+ * Palette matches the Study in Poland / South Korea / Malta pages (teal brand accent over navy panels)
  */
 
 const C = {
@@ -87,9 +87,9 @@ function Reveal({ children, delay = 0, y = 24, as: Tag = "div", style }) {
 /* ===================================================================
  *  Animated counter stat
  * ================================================================ */
-function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay }) {
+function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay, text }) {
   const [ref, visible] = useReveal();
-  const animated = useCountUp(value, 1500, visible);
+  const animated = useCountUp(value ?? 0, 1500, visible);
   return (
     <div
       ref={ref}
@@ -117,9 +117,15 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay }) {
           gap: 2,
         }}
       >
-        <span style={{ color: C.goldL, fontSize: "0.7em" }}>{prefix}</span>
-        {animated}
-        <span style={{ color: C.goldL, fontSize: "0.7em" }}>{suffix}</span>
+        {text ? (
+          text
+        ) : (
+          <>
+            <span style={{ color: C.goldL, fontSize: "0.7em" }}>{prefix}</span>
+            {animated}
+            <span style={{ color: C.goldL, fontSize: "0.7em" }}>{suffix}</span>
+          </>
+        )}
       </div>
       <div
         style={{
@@ -152,6 +158,7 @@ function SectionHead({ style, tag, title, sub, light, center }) {
           maxWidth: 760,
           margin: center ? "0 auto 52px" : "0 0 52px 0",
           textAlign: center ? "center" : "left",
+          ...style,
         }}
       >
         <div
@@ -487,7 +494,7 @@ function CostCard({ label, amount, note, highlight, delay }) {
         </span>
         <div
           style={{
-            fontSize: 30,
+            fontSize: 26,
             fontWeight: 600,
             color: highlight ? C.white : C.ink,
             lineHeight: 1,
@@ -513,7 +520,7 @@ function CostCard({ label, amount, note, highlight, delay }) {
 /* ===================================================================
  *  Course card
  * ================================================================ */
-function CourseCard({ num, title, body, icon, delay }) {
+function CourseCard({ num, title, body, delay }) {
   const [h, setH] = useState(false);
   return (
     <Reveal delay={delay}>
@@ -542,14 +549,14 @@ function CourseCard({ num, title, body, icon, delay }) {
             height: 36,
             background: h ? "rgba(255,255,255,0.15)" : C.goldTint,
             color: h ? "#FFFFFF" : "#429198",
-            fontSize: 15,
+            fontSize: 13,
             fontWeight: 700,
             borderRadius: 10,
             marginBottom: 14,
             transition: "all 0.3s ease",
           }}
         >
-          {icon || num}
+          {num}
         </div>
         <div
           style={{
@@ -660,7 +667,97 @@ function VisaStep({ n, title, body, isLast, delay }) {
 }
 
 /* ===================================================================
- *  Outlook card (used for Work & Career opportunities)
+ *  Salary card (with animated bar)
+ * ================================================================ */
+function SalaryCard({ sector, monthly, yearly, pct, delay }) {
+  const [ref, visible] = useReveal();
+  const [h, setH] = useState(false);
+  return (
+    <div
+      ref={ref}
+      onMouseEnter={() => setH(true)}
+      onMouseLeave={() => setH(false)}
+      style={{
+        background: h ? C.goldTint : C.white,
+        border: `1px solid ${h ? C.navy : C.border}`,
+        padding: "26px 22px",
+        borderRadius: 14,
+        transition: "all 0.3s ease",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(16px)",
+        transitionDelay: `${delay}ms`,
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginBottom: 14,
+        }}
+      >
+        <span
+          style={{
+            fontSize: 11.5,
+            fontWeight: 700,
+            textTransform: "uppercase",
+            letterSpacing: "1px",
+            color: C.slate,
+          }}
+        >
+          {sector}
+        </span>
+        <span
+          style={{
+            background: C.goldSoft,
+            color: C.navy,
+            fontSize: 10,
+            fontWeight: 700,
+            padding: "3px 8px",
+            borderRadius: 999,
+          }}
+        >
+          Tax-Free
+        </span>
+      </div>
+      <div
+        style={{
+          fontSize: 24,
+          fontWeight: 600,
+          color: C.ink,
+          lineHeight: 1,
+          marginBottom: 4,
+        }}
+      >
+        {monthly}
+      </div>
+      <div style={{ fontSize: 11.5, color: C.slate, marginBottom: 14 }}>
+        per month · {yearly}/yr
+      </div>
+      <div
+        style={{
+          height: 6,
+          background: C.goldTint,
+          borderRadius: 999,
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            height: "100%",
+            width: visible ? `${pct}%` : "0%",
+            background: `linear-gradient(90deg, ${C.navy}, ${C.gold})`,
+            borderRadius: 999,
+            transition: `width 1.4s cubic-bezier(.2,.7,.2,1) ${delay + 200}ms`,
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ===================================================================
+ *  Outlook card
  * ================================================================ */
 function OutlookCard({ tag, title, body, icon, delay }) {
   return (
@@ -796,6 +893,116 @@ function SupportCard({ icon, title, body, delay }) {
 }
 
 /* ===================================================================
+ *  Docs / checklist box
+ * ================================================================ */
+function DocsBox({ title, items, note }) {
+  return (
+    <Reveal delay={150}>
+      <div
+        style={{
+          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
+          padding: 34,
+          borderRadius: 22,
+          overflow: "hidden",
+          position: "relative",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            top: -50,
+            right: -50,
+            width: 200,
+            height: 200,
+            background: `radial-gradient(circle, ${C.gold} 0%, transparent 70%)`,
+            opacity: 0.1,
+          }}
+        />
+        <h3
+          style={{
+            fontSize: 20,
+            fontWeight: 600,
+            color: C.white,
+            marginBottom: 20,
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+            position: "relative",
+          }}
+        >
+          <span
+            style={{
+              width: 36,
+              height: 36,
+              background: C.gold,
+              color: C.navyD,
+              borderRadius: 10,
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 16,
+            }}
+          >
+            📋
+          </span>
+          {title}
+        </h3>
+        {items.map((d) => (
+          <div
+            key={d}
+            style={{
+              display: "flex",
+              gap: 12,
+              marginBottom: 12,
+              fontSize: 13,
+              color: "rgba(255,255,255,0.75)",
+              alignItems: "flex-start",
+              lineHeight: 1.6,
+              position: "relative",
+            }}
+          >
+            <span
+              style={{
+                width: 20,
+                height: 20,
+                background: "rgba(240,192,64,0.15)",
+                color: "#FFFFFF",
+                borderRadius: "50%",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 11,
+                flexShrink: 0,
+                fontWeight: 700,
+              }}
+            >
+              ✓
+            </span>
+            {d}
+          </div>
+        ))}
+        {note && (
+          <div
+            style={{
+              background: "rgba(240,192,64,0.1)",
+              borderLeft: `3px solid ${C.gold}`,
+              padding: "16px 18px",
+              marginTop: 20,
+              fontSize: 12.5,
+              color: "rgba(255,255,255,0.7)",
+              lineHeight: 1.75,
+              borderRadius: 8,
+            }}
+          >
+            {note}
+          </div>
+        )}
+      </div>
+    </Reveal>
+  );
+}
+
+/* ===================================================================
  *  FAQ accordion
  * ================================================================ */
 function FAQItem({ q, a, isOpen, onClick }) {
@@ -870,14 +1077,14 @@ function FAQItem({ q, a, isOpen, onClick }) {
  * ================================================================ */
 function Marquee() {
   const items = [
-    "🇰🇷 South Korea 2026 Intake Open",
-    "✦ 170K+ International Students",
-    "✦ Tuition from ₩3.7M/Semester",
-    "✦ English-Taught Programs",
-    "✦ Part-Time Work Rights",
-    "✦ D-2 Student Visa",
-    "✦ Asia's Innovation Capital",
-    "✦ Spring & Fall Intakes",
+    "🇦🇪 Dubai 2026 Intake Open",
+    "✦ No IELTS Required",
+    "✦ No Show Money",
+    "✦ UK-Accredited OTHM Diplomas",
+    "✦ 0% Income Tax",
+    "✦ Visa in 7 Working Days",
+    "✦ Age & Gap Accepted",
+    "✦ Pathway to UK & Australia",
   ];
   const loop = [...items, ...items];
   return (
@@ -942,84 +1149,86 @@ function ScrollProgress() {
 }
 
 /* ===================================================================
- *  DATA — South Korea content
+ *  DATA — Dubai (MIBD) content
  * ================================================================ */
 const reasons = [
-  { icon: "🤖", title: "World-Leading Technology Ecosystem", body: "Home to Samsung, LG, Hyundai, SK Hynix, and Kakao — South Korea ranks in the world's top tier for R&D investment as a share of GDP. Study where the technology shaping your future is actually being built." },
-  { icon: "🎓", title: "Globally Respected Academic Institutions", body: "South Korean universities consistently appear in QS and THE world rankings. Programs in engineering, computer science, business, and design are internationally recognised and sought-after by global employers." },
-  { icon: "💰", title: "Affordable Tuition vs Western Alternatives", body: "Tuition fees are significantly lower than universities in the US, UK, or Australia, making South Korea one of the most financially accessible developed-world study destinations available to international students." },
-  { icon: "🛡️", title: "Exceptionally Safe Country", body: "South Korea consistently ranks among the safest nations in the world. Low crime rates, excellent healthcare infrastructure, and a high standard of public safety make it an ideal environment for international students." },
-  { icon: "🌏", title: "Gateway to the Asian Career Market", body: "South Korea sits at the heart of Northeast Asia. A degree here opens pathways not just in Korea, but across Japan, China, Singapore, and the broader ASEAN region — the world's fastest-growing economic zone." },
-  { icon: "🌐", title: "Growing English-Taught Program Portfolio", body: "Many leading Korean universities now offer fully English-medium degree tracks across disciplines — from AI and engineering to global business and design arts — specifically designed for international students." },
-  { icon: "🎵", title: "Korean Culture Is a Global Phenomenon", body: "K-pop, K-drama, K-beauty, Korean cuisine — South Korea's cultural influence is unprecedented. Studying here means immersing yourself in a culture the world is actively watching, and building a truly unique personal brand." },
-  { icon: "📶", title: "World's Fastest Internet & Smart Infrastructure", body: "South Korea leads global rankings for internet speed and digital infrastructure. Studying here means access to a hyper-connected academic and social environment that matches your generation's pace." },
+  { icon: "🗣️", title: "No IELTS or English Test Required", body: "English proficiency is assessed through a simple admission interview — no IELTS, TOEFL, or PTE scores needed. Saves you months of preparation and thousands in test fees." },
+  { icon: "🎓", title: "UK-Accredited, Globally Recognised Diplomas", body: "Earn OTHM-accredited qualifications (Levels 3–5) regulated by Ofqual (UK), recognised by KHDA (Dubai), and accepted by WES for international equivalency." },
+  { icon: "💰", title: "Tax-Free Professional Environment", body: "The UAE levies zero personal income tax. Every dirham you earn stays with you — a major financial advantage compared to Western study destinations." },
+  { icon: "🛂", title: "Streamlined Student Visa Process", body: "Dubai's student visa is processed efficiently with professional guidance at every step. No show money required. Age gaps and study gaps are fully accepted." },
+  { icon: "🌍", title: "Gateway to Global Academic Pathways", body: "Your Dubai diploma is your passport to top-up degrees in the UK, Australia, and Canada. MIBD's OTHM Level 4/5 qualifications provide direct entry to Year 2 or Year 3." },
+  { icon: "🛡️", title: "Ranked 3rd Safest City in the World", body: "Dubai's world-class infrastructure, low crime rates, and welcoming multicultural environment make it one of the most secure destinations for international students." },
+  { icon: "📈", title: "Booming Economy with Real Opportunity", body: "Dubai's GDP grew 4.4% in the first half of 2025 alone, driven by the D33 Agenda targeting a doubling of the economy by 2030 — needing ~1 million new skilled workers." },
+  { icon: "💼", title: "Paid Internship & Industry Exposure", body: "Access paid internships and industry placements across Dubai's finance, technology, hospitality, and logistics sectors — building real-world experience while you study." },
 ];
 
 const courses = [
-  { icon: "🤖", title: "Artificial Intelligence", body: "Machine learning, deep learning, AI systems — taught at institutions leading Asia's AI research frontier." },
-  { icon: "💻", title: "Computer Science & Engineering", body: "Software engineering, cybersecurity, computer engineering and information systems." },
-  { icon: "⚙️", title: "Mechanical & Electrical Engineering", body: "Semiconductor engineering, automotive, eco-energy, and electrical ICT engineering." },
-  { icon: "🎮", title: "Animation, Gaming & Webtoon", body: "South Korea is a global leader in gaming and webtoon culture — study in the industry's home market." },
-  { icon: "📊", title: "Business & Global Management", body: "International business, accounting, economics, finance, and trade — English-medium tracks available." },
-  { icon: "📺", title: "Media & Communication", body: "Visual content, advertising, PR, and media studies — in the heart of Hallyu's creative economy." },
-  { icon: "🗣️", title: "Korean Language Studies", body: "Korean language education, interpretation, and translation programs — an invaluable career differentiator." },
-  { icon: "💄", title: "Fashion, Beauty & Aesthetics", body: "Fashion design, hair design, makeup, skin care — study in one of the world's leading beauty industries." },
-  { icon: "🏨", title: "Hospitality & Tourism Management", body: "Tourism, airline management, hotel operations, and food service management." },
-  { icon: "📡", title: "Data Science & Analytics", body: "Applied data science, information engineering, and smart systems in a data-first economy." },
-  { icon: "🦾", title: "Robotics & Smart Systems", body: "Advanced robotics, automation, and smart manufacturing — Korea is a world leader in industrial robotics." },
-  { icon: "🔬", title: "Biotechnology & Health Sciences", body: "Health sciences, biotech, food science, animal resources, and companion animal industries." },
+  { title: "Business Studies & Management", body: "Build leadership and strategic management skills for careers in consulting, operations, and corporate roles across the UAE and internationally." },
+  { title: "Information Technology", body: "Develop in-demand technical skills for Dubai's rapidly growing digital economy — from cybersecurity and AI to network infrastructure and software." },
+  { title: "Tourism & Hospitality", body: "Dubai's 17M+ annual visitors fuel year-round demand for hospitality professionals across hotels, events, and tourism management." },
+  { title: "Logistics & Supply Chain", body: "The UAE's position as a global trade hub makes logistics expertise one of the most sought-after skills in the region's workforce." },
+  { title: "Health & Social Care", body: "A critical, high-growth sector with globally portable qualifications and strong career prospects across both the UAE and international markets." },
+  { title: "Accounting & Business", body: "Dubai's DIFC is a tier-one global financial centre — finance and accounting graduates are consistently among the UAE's most in-demand professionals." },
+  { title: "Project Management", body: "An essential qualification across every sector — from real estate mega-projects to government transformation programmes across the UAE." },
+  { title: "Education & Training Management", body: "Dubai's expanding education sector creates growing demand for trained education managers, trainers, and programme coordinators at all levels." },
 ];
 
-const faqs = [
-  { q: "Is IELTS mandatory to study in South Korea?", a: "For English-taught programs, an IELTS score of 5.5 or TOEFL iBT 51 is the typical minimum requirement. For Korean-medium programs, TOPIK Level 3 or above is generally required. Students from countries where English is the official medium of education may qualify for exemptions — this varies by institution. Our advisors will confirm the exact requirement for your chosen program." },
-  { q: "Can I work part-time while studying in South Korea?", a: "Yes. International students on a valid D-2 student visa are permitted to work part-time in South Korea. Bachelor's students may work up to 20 hours per week during academic sessions. Master's students may work up to 30 hours per week during academic sessions. During official university vacation periods, full-time work may be permitted. University and immigration authority approval is required." },
-  { q: "What is the student visa process for South Korea?", a: "After receiving your official Certificate of Admission, you apply for a D-2 student visa at the Korean Embassy or Visa Application Centre in your home country. You'll need your admission letter, valid passport, financial proof — Bank Balance Certificate showing approximately KRW 16,000,000 – KRW 25,000,000 (Approx. INR 9.5 Lakhs – INR 15 Lakhs) — academic certificates, and family/birth documents. Langma International provides step-by-step guidance through this process." },
-  { q: "Is South Korea affordable for Indian students?", a: "South Korea is considered one of the more accessible developed-country study destinations. Tuition fees typically range from approximately KRW 3,700,000 to 5,500,000 per semester (Approx. INR 2.25 Lakhs – INR 3.35 Lakhs) depending on your field of study. Monthly living expenses generally range from KRW 600,000 to 1,000,000 (Approx. INR 36,000 – INR 60,500). Merit-based tuition benefits linked to TOPIK or IELTS scores can reduce costs further." },
-  { q: "Are English-taught programs available in South Korea?", a: "Yes. Many Korean universities have dedicated English-medium degree tracks, particularly in business, AI, computer engineering, media, design, and global studies. These programs do not require Korean language proficiency for admission. IELTS 5.5 or TOEFL iBT 51 is the typical minimum requirement for English-track programs." },
-  { q: "What are the popular intakes in South Korea?", a: "South Korean universities offer two main intakes: the Spring semester (starting March) and the Fall semester (starting September). The Fall intake is the most popular for international students and typically has the widest program availability. Some institutions run multiple admission rounds within each intake." },
-  { q: "What is TOPIK and why does it matter?", a: "TOPIK (Test of Proficiency in Korean) is the standard Korean language proficiency test for non-native speakers. It is required for admission to Korean-medium programs and is also the primary criterion for merit-based tuition benefits — higher TOPIK levels can qualify students for significant tuition reductions, in some cases covering up to 100% of tuition for multiple semesters." },
-];
-
-const support = [
-  { icon: "🎯", title: "Profile-Matched Admissions Guidance", body: "We analyse your academic history, language scores, and goals to recommend only the most suitable and realistic options — no false promises." },
-  { icon: "📑", title: "Complete Document Assistance", body: "From Apostille guidance to SOP writing, bank certificate advice, and transcript preparation — we ensure your documentation is correct and professionally presented." },
-  { icon: "🛂", title: "Visa Application Support", body: "We walk you through the D-2 visa documentation checklist, common pitfalls, and consulate-specific requirements — with genuine expertise, not guarantees." },
-  { icon: "🗣️", title: "TOPIK & Language Strategy", body: "For students targeting Korean-medium programs or merit scholarships linked to TOPIK scores, we help you understand the timeline and preparation pathway." },
-  { icon: "✈️", title: "Pre-Departure Readiness", body: "Banking setup, SIM cards, accommodation options, campus registration — we give you a practical, honest pre-departure briefing so you arrive prepared." },
-  { icon: "💬", title: "Post-Arrival Check-In", body: "Our commitment doesn't end at departure. We follow up with enrolled students to support their initial settlement — because we care about outcomes, not just applications." },
+const salaries = [
+  { sector: "Banking & Finance", monthly: "AED 26,000", yearly: "AED 312,000", pct: 100 },
+  { sector: "IT & Technology", monthly: "AED 23,000", yearly: "AED 276,000", pct: 88 },
+  { sector: "Real Estate", monthly: "AED 22,000", yearly: "AED 264,000", pct: 85 },
+  { sector: "Engineering", monthly: "AED 20,000", yearly: "AED 240,000", pct: 77 },
+  { sector: "Healthcare", monthly: "AED 19,000", yearly: "AED 228,000", pct: 73 },
+  { sector: "Logistics", monthly: "AED 15,000", yearly: "AED 180,000", pct: 58 },
+  { sector: "Education", monthly: "AED 14,500", yearly: "AED 174,000", pct: 56 },
+  { sector: "Hospitality", monthly: "AED 13,000", yearly: "AED 156,000", pct: 50 },
 ];
 
 const outlooks = [
-  { icon: "🕒", tag: "During Studies", title: "Part-Time Work Rights", body: "Bachelor's students may work up to 20 hours/week during academic sessions; Master's students up to 30 hours/week. Full-time work is possible during approved vacation periods, subject to immigration and university approval." },
-  { icon: "🏭", tag: "Internships", title: "Industry Internship Ecosystem", body: "South Korea's internship culture is strong, particularly in technology, media, design, and business, with many universities maintaining formal industry partnerships." },
-  { icon: "🏢", tag: "Global Employers", title: "Korea's World-Class Companies", body: "Samsung, Hyundai, LG, SK Group, Kakao, Naver, Lotte, and hundreds of global MNCs operate out of South Korea — strong demand for graduates with local degrees." },
-  { icon: "🚀", tag: "Post-Study", title: "Post-Graduation Pathways", body: "Graduates can explore post-study visa options including the D-10 Job Seeker visa, allowing time to secure employment in South Korea, subject to prevailing immigration regulations." },
+  { icon: "🚀", tag: "Future Demand", title: "~1 Million New Jobs Projected by 2030", body: "The UAE's Dubai Economic Agenda (D33) is targeting a doubling of the economy by 2030, requiring approximately 1 million new skilled professionals across technology, healthcare, education, and manufacturing." },
+  { icon: "💼", tag: "During Studies", title: "Paid Internships & Industry Placements", body: "MIBD connects students with paid internship opportunities and job fair access across Dubai's leading companies in finance, hospitality, technology, and logistics." },
+  { icon: "💰", tag: "Post-Study", title: "Tax-Free Employment in a Global Hub", body: "The UAE's zero personal income tax policy means your full salary is your take-home pay. Combined with competitive AED packages, Dubai offers outstanding value." },
+  { icon: "🌍", tag: "Global Pathway", title: "Springboard to the UK, Australia & More", body: "Your OTHM Level 4/5 diploma is designed as a progression pathway to top-up bachelor's degrees at universities in the UK, Australia, and Canada." },
 ];
 
-const careerTags = [
-  "Semiconductor Technology", "Artificial Intelligence & ML", "Electric Vehicle Engineering", "Gaming & Esports",
-  "K-Content & Media", "K-Beauty & Fashion", "Biotechnology & Pharma", "Smart Manufacturing",
-  "Fintech & Digital Banking", "E-Commerce & Logistics", "Tourism & Hospitality", "Global Supply Chain",
-  "Architecture & Interior Design", "Healthcare & Rehabilitation",
+const support = [
+  { icon: "🔍", title: "Free Eligibility Assessment", body: "We review your academic profile, career goals, and budget — giving you a clear, honest picture of your options before you commit to anything." },
+  { icon: "📝", title: "Application Support", body: "We prepare and review your complete application — documents, forms, and photographs — ensuring everything is accurate and ready before submission." },
+  { icon: "🏆", title: "Scholarship Guidance", body: "We help you access the 35% tuition scholarship and advise on any additional financial support opportunities you may qualify for." },
+  { icon: "🛂", title: "Visa Documentation Support", body: "Complete professional guidance on your Dubai student visa documentation — from checklist preparation to correct submission format — at every stage." },
+  { icon: "✈️", title: "Pre-Departure Briefing", body: "Know what to pack, what to expect on arrival, and how to settle in — before you board the flight. No surprises, no anxiety." },
+  { icon: "🏠", title: "Accommodation Guidance", body: "Professional advice on student accommodation and transport options in Dubai — so your transition from home to campus is smooth and stress-free." },
+  { icon: "💼", title: "Career & Internship Connections", body: "Access job fair recommendations, career guidance sessions, and internship pathways through our network of institutional and industry partners in Dubai." },
+  { icon: "💬", title: "Dedicated Student Advisor", body: "One real counsellor, available throughout your entire journey. No call centres, no chatbots — just experienced, honest guidance when you need it most." },
 ];
 
 const visaDocs = [
-  "Valid international passport (min. 6 months validity beyond study period)",
-  "Official Certificate of Admission from the Korean institution",
-  "Bank Balance Certificate — approx. KRW 16,000,000–25,000,000 (approx. INR 9.5L–15L) in applicant's or parent's name, issued within 30 days",
-  "High school graduation certificate (Apostilled or consulate-verified)",
-  "Academic transcripts (covering all grades)",
-  "Birth certificate or family relationship document (with certified translation)",
-  "Copy of parent's passport or government-issued ID",
-  "Completed visa application form and passport-size photographs",
-  "Language proficiency certificate (IELTS, TOEFL iBT, or TOPIK as applicable)",
-  "Certified Korean or English translation for documents in other languages",
+  "Valid passport copy (personal data pages)",
+  "All educational certificates (Grade 10 / 12 / degree)",
+  "Academic transcripts or mark sheets",
+  "Passport-size photograph (digital, white background)",
+  "Official Offer Letter from MIBD",
+  "Proof of fee payment / receipt",
+  "Visa application details (as specified by the institution)",
+];
+
+const faqs = [
+  { q: "Is IELTS required to study in Dubai?", a: "No — IELTS is not required to study in Dubai at MIBD. English proficiency is assessed through a straightforward admission interview conducted by the institution. No TOEFL, PTE, or any other standardised English test score is required." },
+  { q: "How much does it cost to study in Dubai at MIBD?", a: "The full programme tuition fee is USD 7,500. After a 35% merit scholarship is applied, the tuition reduces to USD 5,000. The all-inclusive student visa package costs USD 1,500. Monthly living costs typically range from AED 2,500 to AED 4,500." },
+  { q: "How long does the Dubai student visa process take?", a: "The Dubai student visa is typically processed within 7 working days from the point of submission, covering Entry Permit, Medical Check, Biometrics, Emirates ID, and Medical Insurance — all managed as a single coordinated package." },
+  { q: "Are study gaps and age restrictions an issue for Dubai admission?", a: "No — study gaps and age are fully accepted at MIBD Dubai. There is no upper age restriction, making Dubai a welcoming and practical option for mature students, career changers, and those returning to education after a break." },
+  { q: "What qualifications will I earn by studying in Dubai?", a: "Students at MIBD earn OTHM-accredited diplomas at Levels 3, 4, and 5, regulated by Ofqual (UK), recognised by KHDA (Dubai), and accepted by WES for global academic equivalency. They're widely accepted for top-up bachelor's degrees abroad." },
+  { q: "Can I work or intern during my studies in Dubai?", a: "MIBD supports students in accessing paid internship opportunities and job fair connections through its industry network. Post-graduation, professionals in the UAE earn in a fully tax-free environment." },
+  { q: "What does \"assignment-based assessment\" mean — are there no exams?", a: "All OTHM diploma programmes at MIBD are assessed entirely through coursework and practical assignments — there are no written end-of-year examinations. Students are evaluated on applied, work-ready skills." },
+  { q: "Can a Dubai diploma lead to a UK or Australian university degree?", a: "Yes. MIBD's OTHM Level 4/5 diplomas are specifically designed as academic progression pathways to top-up bachelor's degrees in the UK, Australia, and Canada, with entry directly into Year 2 or Year 3." },
+  { q: "What does \"No Show Money\" mean for the Dubai visa?", a: "Unlike student visas for the UK, USA, Canada, or Australia, the Dubai student visa does not require you to demonstrate large sums of money in your bank account as proof of financial capability." },
+  { q: "When can I apply — what are the 2026 intake dates?", a: "MIBD operates on a rolling intake basis — applications are accepted throughout the year with no single fixed deadline. We recommend applying at least 2 months before your intended start date." },
 ];
 
 /* ===================================================================
  *  MAIN
  * ================================================================ */
-export default function StudySouthKoreaPage() {
+export default function StudyDubaiPage() {
   const [openFAQ, setOpenFAQ] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -1047,17 +1256,13 @@ export default function StudySouthKoreaPage() {
           0%, 100% { transform: translateY(0); }
           50%      { transform: translateY(-14px); }
         }
-        @keyframes lm-pulse {
-          0%, 100% { transform: scale(1);   opacity: 0.7; }
-          50%      { transform: scale(1.4); opacity: 0; }
+        @keyframes lm-bg-shift {
+          0%, 100% { background-position: 0% 50%; }
+          50%      { background-position: 100% 50%; }
         }
         @keyframes lm-shimmer {
           0%   { background-position: -200% 0; }
           100% { background-position:  200% 0; }
-        }
-        @keyframes lm-bg-shift {
-          0%, 100% { background-position: 0% 50%; }
-          50%      { background-position: 100% 50%; }
         }
 
         .lm-grad-text {
@@ -1088,29 +1293,27 @@ export default function StudySouthKoreaPage() {
                   letterSpacing: "-0.6px",
                 }}
               >
-                Study In <span className="text-[#1ab7ac]">South Korea</span>
+                Study In <span className="text-[#1ab7ac]">Dubai</span>
                 <br />
-                Asia's Innovation Hub
+                Where Global Careers
                 <br />
-                For Your Future.
+                Begin.
               </h1>
 
               <p className="mt-6 text-gray-600 text-lg leading-relaxed max-w-xl">
-                World-Ranked Universities. English-Taught Programs. A career
-                gateway to Asia's most dynamic economy. South Korea leads the
-                world in technology, innovation, and academic excellence —
-                from AI and semiconductors to design and K-culture, your
-                future starts here.
+                Ranked among the world's top student cities. UK-accredited
+                diplomas. Tax-free professional environment. No IELTS needed
+                — just your ambition and a passport.
               </p>
 
               {/* Tags */}
               <div className="flex flex-wrap gap-3 mt-8">
                 {[
-                  "✓170K+ International Students",
-                  "✓English-Taught Programs",
-                  "✓Part-Time Work Rights",
-                  "✓D-2 Student Visa",
-                  "✓Spring & Fall Intakes",
+                  "✓No IELTS Required",
+                  "✓No Show Money",
+                  "✓Age & Gap Accepted",
+                  "✓Streamlined Visa Process",
+                  "✓Pathway to UK & Australia",
                 ].map((item, index) => (
                   <span
                     key={index}
@@ -1127,13 +1330,13 @@ export default function StudySouthKoreaPage() {
                   onClick={() => setOpen(true)}
                   className="bg-[#006C70] hover:bg-[#00575a] transition-all text-white px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
                 >
-                  Apply for 2026 Intake →
+                  Book Free Counselling →
                 </button>
                 <button
                   onClick={() => setOpen(true)}
                   className="border border-[#006C70] text-[#006C70] hover:bg-[#006C70] hover:text-white transition-all px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
                 >
-                  Check Eligibility
+                  Check My Eligibility
                 </button>
               </div>
             </div>
@@ -1155,8 +1358,8 @@ export default function StudySouthKoreaPage() {
               <div className="relative z-10">
                 <div className="w-[320px] h-[320px] md:w-[420px] md:h-[420px] lg:w-[520px] lg:h-[520px] rounded-full overflow-hidden">
                   <img
-                    src="images/skv.jpeg"
-                    alt="Study in South Korea"
+                    src="images/wd.png"
+                    alt="Study in Dubai"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -1178,10 +1381,10 @@ export default function StudySouthKoreaPage() {
                 marginTop: 56,
               }}
             >
-              <BoardingStat value={170} suffix="K+" label="International Students" sub="Studying in Korea" delay={100} />
-              <BoardingStat prefix="₩" value={3700000} label="From / Semester" sub="Tuition fee (KRW)" delay={250} />
-              <BoardingStat value={20} suffix="hrs" label="Part-Time Work / Week" sub="Bachelor's students" delay={400} />
-              <BoardingStat value={2} label="Intakes / Year" sub="March & September" delay={550} />
+              <BoardingStat text="#7" label="Global Student City 2025" sub="Education.com ranking" delay={100} />
+              <BoardingStat text="#3" label="Safest City Globally" sub="World safety ranking" delay={250} />
+              <BoardingStat value={37} suffix="+" label="International Campuses" sub="Across the UAE" delay={400} />
+              <BoardingStat text="0%" label="Income Tax in UAE" sub="Fully tax-free environment" delay={550} />
             </div>
           </Reveal>
         </div>
@@ -1190,19 +1393,19 @@ export default function StudySouthKoreaPage() {
       {/* ---------------- MARQUEE ---------------- */}
       <Marquee />
 
-      {/* ---------------- WHY SOUTH KOREA ---------------- */}
+      {/* ---------------- WHY DUBAI ---------------- */}
       <section style={{ background: C.cream, padding: "100px 48px", position: "relative" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Why South Korea</span>}
+            tag={<span style={{ color: "#429198" }}>Why Dubai</span>}
             title={
               <span style={{ color: "#4197a2" }}>
-                8 Reasons South Korea Is the Smartest Study Choice of 2026
+                8 Reasons Dubai Is South Asia's Smartest Study Destination in 2026
               </span>
             }
             sub={
               <span style={{ color: "#429198" }}>
-                A country that invented the future — and invites the world to study in it. Here's why thousands of international students are choosing South Korea every year.
+                Just a 3-hour flight from India. Decades ahead in opportunity. Dubai delivers internationally recognised education inside one of the world's fastest-growing economies.
               </span>
             }
           />
@@ -1251,7 +1454,7 @@ export default function StudySouthKoreaPage() {
           }}
         />
         <p style={{ color: C.white, fontSize: 15.5, fontWeight: 600, margin: 0, position: "relative", zIndex: 2 }}>
-          ✨ Not sure if South Korea is right for you? Let our Korea specialists assess your profile — free, no obligation.
+          ✨ Whether you completed Grade 10, 12, or hold a degree — Dubai welcomes you. Check your eligibility for free today.
         </p>
         <button
           style={{
@@ -1280,7 +1483,7 @@ export default function StudySouthKoreaPage() {
           }}
           onClick={() => setOpen(true)}
         >
-          Get Free Profile Evaluation →
+          Get Free Eligibility Check →
         </button>
       </div>
 
@@ -1308,8 +1511,8 @@ export default function StudySouthKoreaPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead
             tag="At a Glance"
-            title="South Korea — Key Facts for International Students"
-            sub="The essential information you need before you begin your application journey."
+            title="Dubai — Essential Facts for International Students"
+            sub="Key information to help you plan your study abroad journey with clarity and confidence."
             light
           />
           <Reveal>
@@ -1328,12 +1531,12 @@ export default function StudySouthKoreaPage() {
                   overflow: "hidden",
                 }}
               >
-                <FactRow label="Capital City" value="Seoul" />
-                <FactRow label="Currency" value="South Korean Won (KRW) · ₩1,000 ≈ ₹62 approx." />
-                <FactRow label="Official Language" value="Korean · English-medium tracks widely available" />
-                <FactRow label="Top Student Cities" value="Seoul · Busan · Daegu · Incheon · Daejeon · Gwangju" />
-                <FactRow label="Intakes" value="Spring (March) · Fall (September)" />
-                <FactRow label="English Requirement" value="IELTS 5.5 / TOEFL iBT 51 · TOPIK Level 3+ (Korean track)" />
+                <FactRow label="Country" value="United Arab Emirates (UAE)" />
+                <FactRow label="Currency" value="UAE Dirham (AED) · 1 USD ≈ 3.67 AED" />
+                <FactRow label="Language" value="Arabic (official) · English (education & business)" />
+                <FactRow label="Global Student City Rank" value="#7 Worldwide — Education.com 2025" />
+                <FactRow label="Safety Ranking" value="#3 Safest City Globally" />
+                <FactRow label="International Campuses" value="37+ Branch Campuses in the UAE" />
               </div>
               <div
                 style={{
@@ -1343,12 +1546,12 @@ export default function StudySouthKoreaPage() {
                   overflow: "hidden",
                 }}
               >
-                <FactRow label="Tuition (Per Semester)" value="₩3.7M – ₩5.5M (≈ INR 2.25L – 3.35L)" />
-                <FactRow label="Average Living Costs" value="₩600K – ₩1M / month (≈ INR 36K – 60.5K)" />
-                <FactRow label="On-Campus Dormitory" value="₩793K – ₩915K / semester · twin room" />
-                <FactRow label="Part-Time Work Rights" value="Bachelor's: 20 hrs/wk · Master's: 30 hrs/wk" />
-                <FactRow label="Student Visa Type" value="D-2 Student Visa" />
-                <FactRow label="Financial Proof Required" value="₩16M – ₩25M (≈ INR 9.5L – 15L)" />
+                <FactRow label="Tuition Fees" value="USD 5,000 (after 35% merit scholarship)" />
+                <FactRow label="Visa Fee" value="USD 1,500 (comprehensive all-in package)" />
+                <FactRow label="Visa Processing Time" value="Typically within 7 working days" />
+                <FactRow label="Intakes" value="Rolling intakes — apply year-round" />
+                <FactRow label="English Requirement" value="Interview-based — no IELTS or TOEFL needed" />
+                <FactRow label="Income Tax" value="0% — fully tax-free environment" />
               </div>
             </div>
           </Reveal>
@@ -1359,11 +1562,11 @@ export default function StudySouthKoreaPage() {
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Cost of Study</span>}
-            title={<span style={{ color: "#4197a2" }}>Estimated Study Costs in South Korea</span>}
+            tag={<span style={{ color: "#429198" }}>Cost of Studying in Dubai</span>}
+            title={<span style={{ color: "#4197a2" }}>Transparent Fee Structure for 2026 Intake</span>}
             sub={
               <span style={{ color: "#429198" }}>
-                South Korea offers excellent academic value. These are approximate ranges to help you plan your budget — actual costs vary by city, institution, and lifestyle.
+                Dubai provides internationally recognised education at a significantly more accessible cost than the UK, USA, or Australia — especially with scholarship support applied.
               </span>
             }
           />
@@ -1374,29 +1577,29 @@ export default function StudySouthKoreaPage() {
               gap: 18,
             }}
           >
-            <CostCard label="Tuition / Semester" amount="₩3.7M–5.5M" note="≈ INR 2.25L–3.35L · Humanities to Engineering & Arts" delay={0} />
-            <CostCard label="Accommodation / Month" amount="₩200K–500K" note="≈ INR 12,000–30,000/mo · Dormitory to private room" highlight delay={80} />
-            <CostCard label="Food / Month" amount="₩200K–400K" note="≈ INR 12,000–24,000/mo · Canteen to budget restaurants" delay={160} />
-            <CostCard label="Transport / Month" amount="₩50K–100K" note="≈ INR 3,000–6,000/mo · Metro, bus & intercity travel" delay={240} />
-            <CostCard label="Miscellaneous / Month" amount="₩100K–200K" note="≈ INR 6,000–12,000/mo · Data, supplies, personal expenses" delay={320} />
-            <CostCard label="Health Insurance" amount="₩70K–120K" note="≈ INR 4,200–7,300/mo · Mandatory for visa holders" delay={400} />
+            <CostCard label="Tuition Fee (Original)" amount="USD 7,500" note="Full programme fee before scholarship" delay={0} />
+            <CostCard label="After 35% Merit Scholarship" amount="USD 5,000" note="You save USD 2,500 — apply for details" highlight delay={80} />
+            <CostCard label="Student Visa Package" amount="USD 1,500" note="Entry permit, medical, Emirates ID & insurance" delay={160} />
+            <CostCard label="Accommodation" amount="AED 1,500–3,500" note="Per month · shared or private options" delay={240} />
+            <CostCard label="Monthly Living Costs" amount="AED 2,500–4,500" note="Food, transport & daily essentials" delay={320} />
+            <CostCard label="Health Insurance" amount="Included" note="Fully covered within the visa package" delay={400} />
           </div>
         </div>
       </section>
 
-      {/* ---------------- COURSES ---------------- */}
+      {/* ---------------- PROGRAMMES ---------------- */}
       <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Programs Available</span>}
+            tag={<span style={{ color: "#429198" }}>MIBD Programmes — Study in Dubai</span>}
             title={
               <span style={{ color: "#4197a2" }}>
-                Top Course Categories for International Students
+                UK-Accredited Diplomas Designed for Dubai's Job Market
               </span>
             }
             sub={
               <span style={{ color: "#429198" }}>
-                South Korea offers internationally competitive programs across an impressive range of disciplines — from deep-tech to creative arts.
+                Each programme is OTHM-accredited (UK), KHDA-recognised in Dubai, and accepted globally via WES. All assessed through practical assignments — no final exams.
               </span>
             }
           />
@@ -1413,7 +1616,6 @@ export default function StudySouthKoreaPage() {
                 num={String(i + 1).padStart(2, "0")}
                 title={c.title}
                 body={c.body}
-                icon={c.icon}
                 delay={i * 70}
               />
             ))}
@@ -1421,7 +1623,7 @@ export default function StudySouthKoreaPage() {
         </div>
       </section>
 
-      {/* ---------------- LANGUAGE REQUIREMENTS ---------------- */}
+      {/* ---------------- LANGUAGE / ELIGIBILITY REQUIREMENTS ---------------- */}
       <section
         style={{
           background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD} 60%, ${C.navy})`,
@@ -1445,9 +1647,9 @@ export default function StudySouthKoreaPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead
             style={{ paddingLeft: "24px", paddingRight: "24px" }}
-            tag="Language Requirements"
-            title="English & Korean Language Pathways"
-            sub="South Korea welcomes international students through both English-taught and Korean-medium programs. Here's what you need to know."
+            tag="English Requirements for Dubai"
+            title="No IELTS Required to Study in Dubai"
+            sub="Unlike most Western destinations, Dubai does not require IELTS, TOEFL, or any standardised English test. Here is exactly what the admission process looks like for international students."
             light
           />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 24 }}>
@@ -1474,11 +1676,14 @@ export default function StudySouthKoreaPage() {
                     gap: 10,
                   }}
                 >
-                  <span>🌐</span> English-Medium Programs
+                  <span>🗣️</span> Standard Admission (All Levels)
                 </h3>
                 {[
-                  ["IELTS Academic", "5.5 or above · Minimum"],
-                  ["TOEFL iBT", "51 or above"],
+                  ["IELTS", "Not Required"],
+                  ["TOEFL", "Not Required"],
+                  ["PTE", "Not Required"],
+                  ["English Interview", "Accepted ✓"],
+                  ["Medium of Instruction Certificate", "Accepted ✓"],
                 ].map(([t, s], idx, arr) => (
                   <div
                     key={t}
@@ -1517,7 +1722,7 @@ export default function StudySouthKoreaPage() {
                     borderRadius: 12,
                   }}
                 >
-                  📌 Higher IELTS/TOEFL scores may qualify you for merit-based fee reductions. IELTS 7.0+ and TOEFL iBT 91+ can unlock significant first-semester tuition benefits at select institutions.
+                  💡 English proficiency is confirmed through a straightforward institutional interview — no external test bookings, score submissions, or additional preparation required.
                 </div>
               </div>
             </Reveal>
@@ -1545,11 +1750,14 @@ export default function StudySouthKoreaPage() {
                     gap: 10,
                   }}
                 >
-                  <span>🗣️</span> Korean-Medium Programs
+                  <span>✅</span> Who Is Eligible to Apply?
                 </h3>
                 {[
-                  ["TOPIK (General)", "Level 3 or above · Standard"],
-                  ["Arts & Physical Education Majors", "TOPIK Level 2 accepted"],
+                  ["Grade 10 Completed", "Eligible ✓"],
+                  ["Grade 12 Completed", "Eligible ✓"],
+                  ["Graduate Applicants", "Eligible ✓"],
+                  ["Study Gap Applicants", "Accepted ✓"],
+                  ["Age Restrictions", "None — All Ages Welcome ✓"],
                 ].map(([t, s], idx, arr) => (
                   <div
                     key={t}
@@ -1588,7 +1796,7 @@ export default function StudySouthKoreaPage() {
                     borderRadius: 12,
                   }}
                 >
-                  📌 TOPIK scores are also the primary criterion for merit scholarships — higher levels can secure up to 100% tuition waivers for multiple semesters. We help students plan their TOPIK preparation strategy.
+                  ⚠️ Specific entry requirements may vary slightly between Level 3 and Level 4/5 programmes. Your Langma International advisor will confirm exact criteria before you apply.
                 </div>
               </div>
             </Reveal>
@@ -1600,148 +1808,87 @@ export default function StudySouthKoreaPage() {
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Visa Process</span>}
+            tag={<span style={{ color: "#429198" }}>Dubai Student Visa Guide</span>}
             title={
               <span style={{ color: "#4197a2" }}>
-                South Korea D-2 Student Visa — Step-by-Step Guide
+                Dubai Student Visa — Straightforward, Efficient, Guided
               </span>
             }
             sub={
               <span style={{ color: "#429198" }}>
-                A clear, accurate overview of the South Korea student visa process. Our advisors guide you through every stage. Visa issuance is at the sole discretion of Korean immigration authorities.
+                Dubai's student visa process is among the most accessible in the world for international applicants. Langma International provides professional guidance through every stage.
               </span>
             }
           />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }} className="lm-visa-wrap">
             <div>
-              <VisaStep n={1} title="Receive Your Official Admission Letter" body="After completing your application and document submission, you receive your Certificate of Admission from the institution — the foundational document for your visa application." delay={0} />
-              <VisaStep n={2} title="Prepare Your Visa Application Documents" body="Gather all required documents including your valid passport, financial proof certificate, academic certificates, family relationship documents, and admission letter." delay={100} />
-              <VisaStep n={3} title="Apply at the Korean Embassy / Consulate" body="Submit your complete D-2 visa application at the Korean Embassy or authorised Visa Application Centre in your home country. Apply well in advance of your semester start date." delay={200} />
-              <VisaStep n={4} title="Visa Interview (If Required)" body="Some applicants may be called for a visa interview. Our team provides structured interview preparation, helping you demonstrate your genuine intent and preparation to the visa officer." delay={300} />
-              <VisaStep n={5} title="Travel & Register on Arrival" body="On arrival in South Korea, register with the immigration office and obtain your Alien Registration Card (ARC) — your official ID and the document that enables part-time work." isLast delay={400} />
+              <VisaStep n={1} title="Submit Your Application Online" body="Create your student profile and upload your passport copy and academic certificates. The process takes under 20 minutes and can be completed from anywhere." delay={0} />
+              <VisaStep n={2} title="Receive Your Offer Letter" body="MIBD's admissions team reviews your application within 2–3 working days. Upon approval, your official Offer Letter is issued with full programme and next-step details." delay={100} />
+              <VisaStep n={3} title="Confirm Your Place & Pay Fees" body="Secure your admission by paying the programme fees as outlined in your Offer Letter. A full payment invoice and receipt are issued immediately upon confirmation." delay={200} />
+              <VisaStep n={4} title="Visa Processing — Typically Within 7 Days" body="Your comprehensive visa package (USD 1,500) covers Entry Permit, Medical Check, Biometrics, Medical Insurance, Visa Stamping, and Emirates ID — all coordinated by our team." delay={300} />
+              <VisaStep n={5} title="Arrive & Begin Your Dubai Journey" body="Receive your orientation schedule, welcome pack, and accommodation guidance before departure. Langma International supports your complete pre-arrival and on-ground transition." isLast delay={400} />
             </div>
-            <Reveal delay={200}>
-              <div
-                style={{
-                  background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
-                  padding: 40,
-                  borderRadius: 22,
-                  position: "sticky",
-                  top: 100,
-                  overflow: "hidden",
-                }}
-              >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: -50,
-                    right: -50,
-                    width: 200,
-                    height: 200,
-                    background: `radial-gradient(circle, ${C.gold} 0%, transparent 70%)`,
-                    opacity: 0.1,
-                  }}
-                />
-                <h3
-                  style={{
-                    fontSize: 22,
-                    fontWeight: 600,
-                    color: C.white,
-                    marginBottom: 24,
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 12,
-                    position: "relative",
-                  }}
-                >
-                  <span
-                    style={{
-                      width: 38,
-                      height: 38,
-                      background: C.gold,
-                      color: C.navyD,
-                      borderRadius: 10,
-                      display: "inline-flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: 18,
-                    }}
-                  >
-                    📋
-                  </span>
-                  Key Documents for the D-2 Visa
-                </h3>
-                {visaDocs.map((d) => (
-                  <div
-                    key={d}
-                    style={{
-                      display: "flex",
-                      gap: 12,
-                      marginBottom: 12,
-                      fontSize: 13,
-                      color: "rgba(255,255,255,0.75)",
-                      alignItems: "flex-start",
-                      lineHeight: 1.6,
-                      position: "relative",
-                    }}
-                  >
-                    <span
-                      style={{
-                        width: 20,
-                        height: 20,
-                        background: "rgba(240,192,64,0.15)",
-                        color: "#FFFFFF",
-                        borderRadius: "50%",
-                        display: "inline-flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: 11,
-                        flexShrink: 0,
-                        fontWeight: 700,
-                      }}
-                    >
-                      ✓
-                    </span>
-                    {d}
-                  </div>
-                ))}
-                <div
-                  style={{
-                    background: "rgba(240,192,64,0.1)",
-                    borderLeft: `3px solid ${C.gold}`,
-                    padding: "16px 18px",
-                    marginTop: 22,
-                    fontSize: 12.5,
-                    color: "rgba(255,255,255,0.7)",
-                    lineHeight: 1.75,
-                    borderRadius: 8,
-                  }}
-                >
-                  <strong style={{ color: "#FFFFFF" }}>Financial Proof:</strong> ₩16M–₩25M (≈ INR 9.5L–15L)
-                  <br />
-                  <strong style={{ color: "#FFFFFF" }}>Application Fee:</strong> ₩100,000 (≈ INR 6,100)
-                  <br />
-                  <strong style={{ color: "#FFFFFF" }}>Visa Type:</strong> D-2 Student Visa
-                </div>
-              </div>
-            </Reveal>
+            <div style={{ position: "sticky", top: 100 }}>
+              <DocsBox
+                title="Required Documents"
+                items={visaDocs}
+                note={
+                  <>
+                    <strong style={{ color: "#FFFFFF" }}>Visa Fee:</strong> USD 1,500 (comprehensive all-inclusive package)
+                    <br />
+                    <strong style={{ color: "#FFFFFF" }}>Covers:</strong> Entry Permit · Medical Check · Biometrics · Medical Insurance · Visa Stamping · Emirates ID
+                    <br />
+                    <strong style={{ color: "#FFFFFF" }}>Processing Time:</strong> Typically 7 working days
+                  </>
+                }
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ---------------- WORK & CAREER OUTLOOK ---------------- */}
+      {/* ---------------- SALARY OUTLOOK ---------------- */}
       <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Work & Career</span>}
+            tag={<span style={{ color: "#429198" }}>Tax-Free Salary Outlook — Dubai 2026</span>}
+            title={<span style={{ color: "#4197a2" }}>Career Earnings Across Key Dubai Sectors</span>}
+            sub={
+              <span style={{ color: "#429198" }}>
+                In the UAE, personal income tax is zero — meaning these figures reflect what professionals take home. Data sourced from Dubai 2026 salary benchmarks for reference purposes.
+              </span>
+            }
+          />
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: 18,
+            }}
+          >
+            {salaries.map((s, i) => (
+              <SalaryCard key={s.sector} {...s} delay={i * 70} />
+            ))}
+          </div>
+          <p style={{ fontSize: 12, color: C.muted, marginTop: 22, fontStyle: "italic" }}>
+            Source: inedjobs.com Dubai salary benchmarks 2026. Figures are indicative averages. Individual salaries vary by employer, experience, and role. All UAE earnings are tax-free.
+          </p>
+        </div>
+      </section>
+
+      {/* ---------------- CAREER OUTLOOK ---------------- */}
+      <section style={{ background: C.cream, padding: "100px 48px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <SectionHead
+            tag={<span style={{ color: "#429198" }}>Career Outlook — UAE 2026 & Beyond</span>}
             title={
               <span style={{ color: "#4197a2" }}>
-                Work, Intern & Build Your Career in South Korea
+                Dubai: A City Actively Building Its Workforce
               </span>
             }
             sub={
               <span style={{ color: "#429198" }}>
-                South Korea's thriving economy and student-friendly work policies make it one of the most career-friendly study destinations in Asia.
+                Dubai is not just a place to study — it is a city in deliberate expansion mode. The UAE's economic agenda is creating large-scale professional opportunities across every major industry.
               </span>
             }
           />
@@ -1750,61 +1897,6 @@ export default function StudySouthKoreaPage() {
               <OutlookCard key={o.title} {...o} delay={i * 100} />
             ))}
           </div>
-          <Reveal delay={200}>
-            <div
-              style={{
-                marginTop: 28,
-                background: "#fff8e6",
-                border: `1.5px solid ${C.gold}`,
-                borderLeft: `5px solid ${C.gold}`,
-                borderRadius: 12,
-                padding: "18px 24px",
-                display: "flex",
-                alignItems: "flex-start",
-                gap: 12,
-              }}
-            >
-              <span style={{ fontSize: 18, flexShrink: 0, marginTop: 1 }}>⚠️</span>
-              <p style={{ margin: 0, fontSize: 13.5, color: "#5a4000", lineHeight: 1.75 }}>
-                <strong style={{ color: "#3d2c00" }}>Important Note:</strong> International students in South Korea are generally permitted to engage in part-time employment after completing six months of study, subject to immigration regulations, university policies, academic performance requirements, and obtaining the necessary approvals from both the university and immigration authorities.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---------------- INDUSTRY LANDSCAPE ---------------- */}
-      <section style={{ background: C.cream, padding: "70px 48px" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead
-            tag={<span style={{ color: "#429198" }}>Industry Landscape</span>}
-            title={<span style={{ color: "#4197a2" }}>Industries Where Korean Graduates Excel</span>}
-            sub={
-              <span style={{ color: "#429198" }}>
-                South Korea is home to some of the world's most competitive industries. Your degree positions you at the intersection of technology, culture, and commerce in the world's 13th largest economy.
-              </span>
-            }
-          />
-          <Reveal>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-              {careerTags.map((tag) => (
-                <span
-                  key={tag}
-                  style={{
-                    background: C.white,
-                    border: `1px solid ${C.border}`,
-                    color: C.navy,
-                    fontSize: 13,
-                    fontWeight: 600,
-                    padding: "10px 18px",
-                    borderRadius: 999,
-                  }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -1831,9 +1923,9 @@ export default function StudySouthKoreaPage() {
         />
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead
-            tag="Your Partner in this Journey"
-            title="Why Students Trust Langma International"
-            sub="At Langma International, we are not just an admissions agent — we are your strategic partner for global education and career mobility, from your decision to study abroad to your first job."
+            tag="Why Choose Langma International"
+            title="Your End-to-End Study Abroad Partner for Dubai"
+            sub="We go far beyond an application form. From your first enquiry to your first week on campus, Langma International is with you — professionally, personally, and practically."
             light
           />
           <div
@@ -1850,45 +1942,11 @@ export default function StudySouthKoreaPage() {
         </div>
       </section>
 
-      {/* ---------------- CTA STRIP 2 ---------------- */}
-      <div
-        style={{
-          background: `linear-gradient(90deg, ${C.navy}, ${C.navyL})`,
-          padding: "26px 48px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: 20,
-          flexWrap: "wrap",
-        }}
-      >
-        <p style={{ color: C.white, fontSize: 15.5, fontWeight: 600, margin: 0 }}>
-          ✨ 2026 Fall intake applications are now open. Seats fill quickly — speak to our Korea team today.
-        </p>
-        <button
-          style={{
-            background: C.white,
-            color: C.navy,
-            border: "none",
-            padding: "12px 28px",
-            fontSize: 13,
-            fontWeight: 700,
-            letterSpacing: "0.5px",
-            cursor: "pointer",
-            whiteSpace: "nowrap",
-            borderRadius: 999,
-          }}
-          onClick={() => setOpen(true)}
-        >
-          Start My Application →
-        </button>
-      </div>
-
       {/* ---------------- FAQ ---------------- */}
       <FAQ />
       {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead tag={<span style={{ color: "#429198" }}>FAQs</span>} title="Frequently Asked Questions" center />
+          <SectionHead tag={<span style={{ color: "#429198" }}>FAQs</span>} title="Common Questions About Studying in Dubai" center />
           <Reveal>
             <div style={{ maxWidth: 860, margin: "0 auto" }}>
               {faqs.map((f, i) => (
@@ -1955,10 +2013,10 @@ export default function StudySouthKoreaPage() {
                 lineHeight: 1.1,
               }}
             >
-              Your Korean Academic Journey
+              Dubai Is Ready.
               <br />
               <em className="lm-grd-text" style={{ fontStyle: "italic" }}>
-                Starts With One Conversation.
+                Is This Your Year?
               </em>
             </h2>
           </Reveal>
@@ -1974,25 +2032,16 @@ export default function StudySouthKoreaPage() {
                 lineHeight: 1.8,
               }}
             >
-              Book a free, no-obligation counselling session with our South Korea specialists. We'll evaluate your profile, recommend programs, and map out your complete application roadmap — honestly and accurately.
+              No IELTS. No show money. UK-accredited qualification. Tax-free professional environment waiting on the other side. Your 2026 Dubai journey begins with one free conversation.
             </p>
           </Reveal>
           <Reveal delay={300}>
-            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", marginBottom: 40 }}>
+            <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
               <NavyButton onClick={() => setOpen(true)} style={{ background: C.forest, padding: "16px 36px" }}>
                 Book Free Counselling →
               </NavyButton>
-              <GhostButton onClick={() => setOpen(true)}>Apply Now</GhostButton>
-              <GhostButton onClick={() => setOpen(true)}>Talk to an Expert</GhostButton>
-            </div>
-          </Reveal>
-          <Reveal delay={400}>
-            <div style={{ display: "flex", gap: 22, justifyContent: "center", flexWrap: "wrap" }}>
-              {["✓ Free Profile Evaluation", "✓ No Hidden Fees", "✓ Expert Korea Advisors", "✓ End-to-End Support"].map((t) => (
-                <span key={t} style={{ color: "rgba(255,255,255,0.8)", fontSize: 13, fontWeight: 600 }}>
-                  {t}
-                </span>
-              ))}
+              <GhostButton onClick={() => setOpen(true)}>Check My Eligibility</GhostButton>
+              <GhostButton onClick={() => setOpen(true)}>Talk to an Advisor</GhostButton>
             </div>
           </Reveal>
         </div>

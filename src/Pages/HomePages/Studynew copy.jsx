@@ -1,30 +1,36 @@
 import React, { useState, useEffect, useRef } from "react";
-import PopupForm from "./PopupForm";
-import FAQ from "./FAQ";
 
 /**
- * Study in Dubai (MIBD) — Langma International
- * Palette matches the Study in Poland / South Korea / Malta pages (teal brand accent over navy panels)
+ * Study in Dubai — Langma International
+ * Palette referenced from the live site (langmainternational.com):
+ *   teal       #1A4F51  (deep brand teal — from site spinner / dark accents)
+ *   teal-d     #0F3A3C  (deepest panels)
+ *   teal-l     #2A8C8C  (hover / accent)
+ *   mint       #76CCD0  (light brand teal — from site spinner highlight)
+ *   mint-soft  #C8E8E4  (chip / hover tint)
+ *   cream      #F0F8F6  (warm light section bg)
+ *   coral      #E08877  (secondary accent / "Dubai" word)
+ *   ink        #0E2424  (near-black text)
+ *   slate      #5A7474  (muted text)
  */
 
 const C = {
-  navy: "#1AB7AC",
-  navyD: "#1AB7AC",
-  navyDark: "#1AB7AC",
-  navyL: "#2E6466",
-  gold: "#1AB7AC",
-  goldL: "#1AB7AC",
-  goldSoft: "#FDF3C8",
-  goldTint: "#FFFAE8",
-  cream: "#F5F7FA",
-  cream2: "#E8EDF5",
-  forest: "#2E7D5A",
-  forestL: "#4CAF80",
+  teal: "#1A4F51",
+  tealD: "#0F3A3C",
+  tealDark: "#0E2424",
+  tealL: "#2A8C8C",
+  mint: "#76CCD0",
+  mintSoft: "#C8E8E4",
+  mintTint: "#E6F4F1",
+  cream: "#F0F8F6",
+  cream2: "#E1EEEB",
+  coral: "#E08877",
+  coralL: "#F2B5A8",
   white: "#FFFFFF",
-  ink: "#1ab7ac",
-  slate: "#5A6A7A",
-  border: "#D8E0EC",
-  muted: "#7A8A9A",
+  ink: "#0E2424",
+  slate: "#5A7474",
+  border: "#D8E6E2",
+  muted: "#7A8E8E",
 };
 
 /* ===================================================================
@@ -65,7 +71,7 @@ function useCountUp(target, duration = 1600, start = false) {
 }
 
 /* ===================================================================
- *  Reveal wrapper
+ *  Reveal wrapper (fade + slide up on scroll)
  * ================================================================ */
 function Reveal({ children, delay = 0, y = 24, as: Tag = "div", style }) {
   const [ref, visible] = useReveal();
@@ -85,11 +91,11 @@ function Reveal({ children, delay = 0, y = 24, as: Tag = "div", style }) {
 }
 
 /* ===================================================================
- *  Animated counter stat
+ *  Animated counter stat (used in hero "boarding strip")
  * ================================================================ */
-function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay, text }) {
+function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay }) {
   const [ref, visible] = useReveal();
-  const animated = useCountUp(value ?? 0, 1500, visible);
+  const animated = useCountUp(value, 1500, visible);
   return (
     <div
       ref={ref}
@@ -107,9 +113,10 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay, text
     >
       <div
         style={{
+        //   fontFamily: "'Fraunces', Georgia, serif",
           fontSize: "clamp(30px, 3.2vw, 42px)",
           fontWeight: 600,
-          color: C.gold,
+          color: C.mint,
           lineHeight: 1,
           letterSpacing: "-0.5px",
           display: "flex",
@@ -117,15 +124,9 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay, text
           gap: 2,
         }}
       >
-        {text ? (
-          text
-        ) : (
-          <>
-            <span style={{ color: C.goldL, fontSize: "0.7em" }}>{prefix}</span>
-            {animated}
-            <span style={{ color: C.goldL, fontSize: "0.7em" }}>{suffix}</span>
-          </>
-        )}
+        <span style={{ color: C.coralL, fontSize: "0.7em" }}>{prefix}</span>
+        {animated}
+        <span style={{ color: C.coralL, fontSize: "0.7em" }}>{suffix}</span>
       </div>
       <div
         style={{
@@ -149,7 +150,7 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay, text
 /* ===================================================================
  *  Section header
  * ================================================================ */
-function SectionHead({ style, tag, title, sub, light, center }) {
+function SectionHead({ tag, title, sub, light, center }) {
   return (
     <Reveal>
       <div
@@ -158,7 +159,6 @@ function SectionHead({ style, tag, title, sub, light, center }) {
           maxWidth: 760,
           margin: center ? "0 auto 52px" : "0 0 52px 0",
           textAlign: center ? "center" : "left",
-          ...style,
         }}
       >
         <div
@@ -168,8 +168,8 @@ function SectionHead({ style, tag, title, sub, light, center }) {
             gap: 10,
             marginBottom: 16,
             padding: "6px 14px 6px 8px",
-            background: light ? "rgba(240,192,64,0.12)" : C.goldTint,
-            border: `1px solid ${light ? "rgba(240,192,64,0.25)" : C.goldSoft}`,
+            background: light ? "rgba(120,192,192,0.12)" : C.mintTint,
+            border: `1px solid ${light ? "rgba(120,192,192,0.25)" : C.mintSoft}`,
             borderRadius: 999,
           }}
         >
@@ -178,9 +178,9 @@ function SectionHead({ style, tag, title, sub, light, center }) {
               display: "inline-block",
               width: 6,
               height: 6,
-              background: C.navy,
+              background: C.teal,
               borderRadius: "50%",
-              boxShadow: `0 0 0 4px ${light ? "rgba(240,192,64,0.18)" : "rgba(26,46,90,0.12)"}`,
+              boxShadow: `0 0 0 4px ${light ? "rgba(120,192,192,0.18)" : "rgba(0,96,96,0.12)"}`,
             }}
           />
           <span
@@ -189,7 +189,7 @@ function SectionHead({ style, tag, title, sub, light, center }) {
               fontWeight: 700,
               letterSpacing: "2.5px",
               textTransform: "uppercase",
-              color: "#FFFFFF",
+              color: light ? C.mint : C.teal,
             }}
           >
             {tag}
@@ -197,6 +197,7 @@ function SectionHead({ style, tag, title, sub, light, center }) {
         </div>
         <h2
           style={{
+            // fontFamily: "'Fraunces', Georgia, serif",
             fontSize: "clamp(28px, 3.6vw, 46px)",
             fontWeight: 600,
             lineHeight: 1.12,
@@ -213,7 +214,7 @@ function SectionHead({ style, tag, title, sub, light, center }) {
             style={{
               fontSize: 16,
               lineHeight: 1.75,
-              color: "#FFFFFF",
+              color: light ? "rgba(255,255,255,0.62)" : C.slate,
               margin: 0,
               maxWidth: 640,
               marginLeft: center ? "auto" : 0,
@@ -231,16 +232,15 @@ function SectionHead({ style, tag, title, sub, light, center }) {
 /* ===================================================================
  *  Buttons
  * ================================================================ */
-function NavyButton({ children, style, onClick }) {
+function TealButton({ children, style }) {
   const [h, setH] = useState(false);
   return (
     <button
       onMouseEnter={() => setH(true)}
       onMouseLeave={() => setH(false)}
-      onClick={onClick}
       style={{
         position: "relative",
-        background: h ? C.navyL : C.navy,
+        background: h ? C.tealL : C.teal,
         color: C.white,
         border: "none",
         padding: "15px 32px",
@@ -252,8 +252,8 @@ function NavyButton({ children, style, onClick }) {
         transition: "all 0.25s cubic-bezier(.2,.7,.2,1)",
         borderRadius: 999,
         boxShadow: h
-          ? `0 14px 30px -10px rgba(26,46,90,0.45)`
-          : `0 6px 18px -8px rgba(26,46,90,0.3)`,
+          ? `0 14px 30px -10px rgba(0,96,96,0.45)`
+          : `0 6px 18px -8px rgba(0,96,96,0.3)`,
         overflow: "hidden",
         ...style,
       }}
@@ -272,16 +272,18 @@ function NavyButton({ children, style, onClick }) {
   );
 }
 
-function GhostButton({ children, dark, style, onClick }) {
+function GhostButton({ children, dark, style }) {
   const [h, setH] = useState(false);
   return (
     <button
       onMouseEnter={() => setH(true)}
       onMouseLeave={() => setH(false)}
-      onClick={onClick}
       style={{
-        background: dark ? C.goldTint : "rgba(240,192,64,0.1)",
-        border: `1px solid ${dark ? "rgba(14,26,46,0.2)" : "rgba(255,255,255,0.25)"}`,
+        background: h ? (dark ? C.mintTint : "rgba(120,192,192,0.1)") : "transparent",
+        color: h ? (dark ? C.teal : C.mint) : dark ? C.ink : C.white,
+        border: `1px solid ${
+          h ? (dark ? C.teal : C.mint) : dark ? "rgba(14,36,36,0.2)" : "rgba(255,255,255,0.25)"
+        }`,
         padding: "14px 28px",
         fontSize: 14.5,
         fontWeight: 600,
@@ -289,7 +291,6 @@ function GhostButton({ children, dark, style, onClick }) {
         cursor: "pointer",
         transition: "all 0.25s ease",
         borderRadius: 999,
-        color: "#ffffff",
         ...style,
       }}
     >
@@ -299,7 +300,7 @@ function GhostButton({ children, dark, style, onClick }) {
 }
 
 /* ===================================================================
- *  Reason card
+ *  Reason card (Why Dubai grid)
  * ================================================================ */
 function ReasonCard({ num, title, body, icon, delay }) {
   const [h, setH] = useState(false);
@@ -313,15 +314,16 @@ function ReasonCard({ num, title, body, icon, delay }) {
           background: C.white,
           padding: "32px 28px",
           transition: "all 0.35s cubic-bezier(.2,.7,.2,1)",
-          border: `1px solid ${h ? C.navy : C.border}`,
+          border: `1px solid ${h ? C.teal : C.border}`,
           borderRadius: 18,
           transform: h ? "translateY(-6px)" : "translateY(0)",
           boxShadow: h
-            ? `0 22px 40px -22px rgba(26,46,90,0.35)`
+            ? `0 22px 40px -22px rgba(0,96,96,0.35)`
             : `0 1px 0 rgba(0,0,0,0.02)`,
           overflow: "hidden",
         }}
       >
+        {/* corner badge */}
         <div
           style={{
             position: "absolute",
@@ -329,7 +331,7 @@ function ReasonCard({ num, title, body, icon, delay }) {
             right: 0,
             width: 80,
             height: 80,
-            background: `radial-gradient(circle at top right, ${C.goldSoft}, transparent 70%)`,
+            background: `radial-gradient(circle at top right, ${C.mintSoft}, transparent 70%)`,
             opacity: h ? 1 : 0.5,
             transition: "opacity 0.3s ease",
           }}
@@ -346,8 +348,8 @@ function ReasonCard({ num, title, body, icon, delay }) {
             style={{
               width: 44,
               height: 44,
-              background: h ? C.navy : C.goldTint,
-              color: h ? C.white : C.navy,
+              background: h ? C.teal : C.mintTint,
+              color: h ? C.white : C.teal,
               borderRadius: 12,
               display: "flex",
               alignItems: "center",
@@ -361,9 +363,10 @@ function ReasonCard({ num, title, body, icon, delay }) {
           </div>
           <span
             style={{
+            //   fontFamily: "'Fraunces', Georgia, serif",
               fontSize: 34,
               fontWeight: 600,
-              color: h ? C.gold : C.goldSoft,
+              color: h ? C.coral : C.mintSoft,
               lineHeight: 1,
               transition: "color 0.3s ease",
             }}
@@ -391,7 +394,7 @@ function ReasonCard({ num, title, body, icon, delay }) {
 }
 
 /* ===================================================================
- *  Fact row
+ *  Fact row (At a glance)
  * ================================================================ */
 function FactRow({ label, value }) {
   const [h, setH] = useState(false);
@@ -400,7 +403,7 @@ function FactRow({ label, value }) {
       onMouseEnter={() => setH(true)}
       onMouseLeave={() => setH(false)}
       style={{
-        background: h ? "rgba(240,192,64,0.08)" : "transparent",
+        background: h ? "rgba(120,192,192,0.08)" : "transparent",
         padding: "18px 24px",
         display: "flex",
         justifyContent: "space-between",
@@ -416,7 +419,7 @@ function FactRow({ label, value }) {
           fontWeight: 600,
           textTransform: "uppercase",
           letterSpacing: "1px",
-          color: "rgb(255, 255, 255)",
+          color: "rgba(255,255,255,0.42)",
           whiteSpace: "nowrap",
         }}
       >
@@ -426,7 +429,7 @@ function FactRow({ label, value }) {
         style={{
           fontSize: 13.5,
           fontWeight: 600,
-          color: "white",
+          color: h ? C.mint : C.white,
           textAlign: "right",
           transition: "color 0.2s ease",
         }}
@@ -448,15 +451,15 @@ function CostCard({ label, amount, note, highlight, delay }) {
         onMouseEnter={() => setH(true)}
         onMouseLeave={() => setH(false)}
         style={{
-          background: highlight ? C.navy : h ? C.goldTint : C.white,
+          background: highlight ? C.teal : h ? C.mintTint : C.white,
           padding: "32px 22px",
           textAlign: "center",
           transition: "all 0.3s cubic-bezier(.2,.7,.2,1)",
           position: "relative",
-          border: `1px solid ${highlight ? C.navy : C.border}`,
+          border: `1px solid ${highlight ? C.teal : C.border}`,
           borderRadius: 16,
           transform: h ? "translateY(-4px)" : "translateY(0)",
-          boxShadow: h ? `0 16px 32px -16px rgba(26,46,90,0.3)` : "none",
+          boxShadow: h ? `0 16px 32px -16px rgba(0,96,96,0.3)` : "none",
         }}
       >
         {highlight && (
@@ -466,7 +469,7 @@ function CostCard({ label, amount, note, highlight, delay }) {
               top: -10,
               left: "50%",
               transform: "translateX(-50%)",
-              background: C.forest,
+              background: C.coral,
               color: C.white,
               fontSize: 10,
               fontWeight: 700,
@@ -494,7 +497,8 @@ function CostCard({ label, amount, note, highlight, delay }) {
         </span>
         <div
           style={{
-            fontSize: 26,
+            // fontFamily: "'Fraunces', Georgia, serif",
+            fontSize: 30,
             fontWeight: 600,
             color: highlight ? C.white : C.ink,
             lineHeight: 1,
@@ -529,13 +533,13 @@ function CourseCard({ num, title, body, delay }) {
         onMouseLeave={() => setH(false)}
         style={{
           position: "relative",
-          background: h ? C.navy : C.white,
-          border: `1px solid ${h ? C.navy : C.border}`,
+          background: h ? C.teal : C.white,
+          border: `1px solid ${h ? C.teal : C.border}`,
           padding: "28px 24px",
           borderRadius: 16,
           transition: "all 0.35s cubic-bezier(.2,.7,.2,1)",
           transform: h ? "translateY(-6px)" : "translateY(0)",
-          boxShadow: h ? `0 22px 40px -20px rgba(26,46,90,0.4)` : "none",
+          boxShadow: h ? `0 22px 40px -20px rgba(0,96,96,0.4)` : "none",
           overflow: "hidden",
           cursor: "pointer",
         }}
@@ -547,8 +551,8 @@ function CourseCard({ num, title, body, delay }) {
             justifyContent: "center",
             width: 36,
             height: 36,
-            background: h ? "rgba(255,255,255,0.15)" : C.goldTint,
-            color: h ? "#FFFFFF" : "#429198",
+            background: h ? "rgba(255,255,255,0.15)" : C.mintTint,
+            color: h ? C.mint : C.teal,
             fontSize: 13,
             fontWeight: 700,
             borderRadius: 10,
@@ -585,7 +589,7 @@ function CourseCard({ num, title, body, delay }) {
             position: "absolute",
             bottom: 18,
             right: 22,
-            color: h ? C.gold : "transparent",
+            color: h ? C.mint : "transparent",
             fontSize: 18,
             transition: "all 0.3s ease",
             transform: h ? "translateX(0)" : "translateX(-8px)",
@@ -620,7 +624,7 @@ function VisaStep({ n, title, body, isLast, delay }) {
           style={{
             width: 44,
             height: 44,
-            background: `linear-gradient(135deg, ${C.navy}, ${C.navyL})`,
+            background: `linear-gradient(135deg, ${C.teal}, ${C.tealL})`,
             color: C.white,
             display: "flex",
             alignItems: "center",
@@ -629,7 +633,7 @@ function VisaStep({ n, title, body, isLast, delay }) {
             fontWeight: 700,
             flexShrink: 0,
             borderRadius: "50%",
-            boxShadow: `0 6px 14px -4px rgba(26,46,90,0.4)`,
+            boxShadow: `0 6px 14px -4px rgba(0,96,96,0.4)`,
           }}
         >
           {n}
@@ -639,7 +643,7 @@ function VisaStep({ n, title, body, isLast, delay }) {
             style={{
               width: 2,
               flex: 1,
-              background: `linear-gradient(180deg, ${C.gold}, transparent)`,
+              background: `linear-gradient(180deg, ${C.mint}, transparent)`,
               marginTop: 6,
               marginBottom: 6,
             }}
@@ -678,8 +682,8 @@ function SalaryCard({ sector, monthly, yearly, pct, delay }) {
       onMouseEnter={() => setH(true)}
       onMouseLeave={() => setH(false)}
       style={{
-        background: h ? C.goldTint : C.white,
-        border: `1px solid ${h ? C.navy : C.border}`,
+        background: h ? C.mintTint : C.white,
+        border: `1px solid ${h ? C.teal : C.border}`,
         padding: "26px 22px",
         borderRadius: 14,
         transition: "all 0.3s ease",
@@ -709,19 +713,20 @@ function SalaryCard({ sector, monthly, yearly, pct, delay }) {
         </span>
         <span
           style={{
-            background: C.goldSoft,
-            color: C.navy,
+            background: C.mintSoft,
+            color: C.teal,
             fontSize: 10,
             fontWeight: 700,
             padding: "3px 8px",
             borderRadius: 999,
           }}
         >
-          Tax-Free
+          0% Tax
         </span>
       </div>
       <div
         style={{
+        //   fontFamily: "'Fraunces', Georgia, serif",
           fontSize: 24,
           fontWeight: 600,
           color: C.ink,
@@ -737,7 +742,7 @@ function SalaryCard({ sector, monthly, yearly, pct, delay }) {
       <div
         style={{
           height: 6,
-          background: C.goldTint,
+          background: C.mintTint,
           borderRadius: 999,
           overflow: "hidden",
         }}
@@ -746,7 +751,7 @@ function SalaryCard({ sector, monthly, yearly, pct, delay }) {
           style={{
             height: "100%",
             width: visible ? `${pct}%` : "0%",
-            background: `linear-gradient(90deg, ${C.navy}, ${C.gold})`,
+            background: `linear-gradient(90deg, ${C.teal}, ${C.mint})`,
             borderRadius: 999,
             transition: `width 1.4s cubic-bezier(.2,.7,.2,1) ${delay + 200}ms`,
           }}
@@ -757,7 +762,7 @@ function SalaryCard({ sector, monthly, yearly, pct, delay }) {
 }
 
 /* ===================================================================
- *  Outlook card
+ *  Outlook card (career)
  * ================================================================ */
 function OutlookCard({ tag, title, body, icon, delay }) {
   return (
@@ -780,7 +785,7 @@ function OutlookCard({ tag, title, body, icon, delay }) {
             right: -30,
             width: 110,
             height: 110,
-            background: `radial-gradient(circle, ${C.goldSoft} 0%, transparent 70%)`,
+            background: `radial-gradient(circle, ${C.mintSoft} 0%, transparent 70%)`,
             opacity: 0.6,
           }}
         />
@@ -789,8 +794,8 @@ function OutlookCard({ tag, title, body, icon, delay }) {
             width: 48,
             height: 48,
             borderRadius: 12,
-            background: C.goldTint,
-            color: C.navy,
+            background: C.mintTint,
+            color: C.teal,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -805,7 +810,7 @@ function OutlookCard({ tag, title, body, icon, delay }) {
           style={{
             display: "inline-block",
             background: C.cream,
-            color: C.navy,
+            color: C.teal,
             fontSize: 10.5,
             fontWeight: 700,
             padding: "4px 12px",
@@ -813,7 +818,7 @@ function OutlookCard({ tag, title, body, icon, delay }) {
             marginBottom: 14,
             textTransform: "uppercase",
             borderRadius: 999,
-            border: `1px solid ${C.goldSoft}`,
+            border: `1px solid ${C.mintSoft}`,
           }}
         >
           {tag}
@@ -838,7 +843,7 @@ function OutlookCard({ tag, title, body, icon, delay }) {
 }
 
 /* ===================================================================
- *  Support card
+ *  Support card (Langma)
  * ================================================================ */
 function SupportCard({ icon, title, body, delay }) {
   const [h, setH] = useState(false);
@@ -848,9 +853,9 @@ function SupportCard({ icon, title, body, delay }) {
         onMouseEnter={() => setH(true)}
         onMouseLeave={() => setH(false)}
         style={{
-          background: h ? "rgba(240,192,64,0.1)" : "rgba(255,255,255,0.03)",
+          background: h ? "rgba(120,192,192,0.1)" : "rgba(255,255,255,0.03)",
           padding: "32px 28px",
-          border: `1px solid ${h ? "rgba(240,192,64,0.35)" : "rgba(255,255,255,0.06)"}`,
+          border: `1px solid ${h ? "rgba(120,192,192,0.35)" : "rgba(255,255,255,0.06)"}`,
           borderRadius: 18,
           transition: "all 0.3s ease",
           height: "100%",
@@ -861,8 +866,8 @@ function SupportCard({ icon, title, body, delay }) {
             width: 48,
             height: 48,
             borderRadius: 12,
-            background: h ? C.gold : "rgba(240,192,64,0.15)",
-            color: h ? C.navyD : C.gold,
+            background: h ? C.mint : "rgba(120,192,192,0.15)",
+            color: h ? C.tealD : C.mint,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -887,116 +892,6 @@ function SupportCard({ icon, title, body, delay }) {
         >
           {body}
         </p>
-      </div>
-    </Reveal>
-  );
-}
-
-/* ===================================================================
- *  Docs / checklist box
- * ================================================================ */
-function DocsBox({ title, items, note }) {
-  return (
-    <Reveal delay={150}>
-      <div
-        style={{
-          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
-          padding: 34,
-          borderRadius: 22,
-          overflow: "hidden",
-          position: "relative",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            top: -50,
-            right: -50,
-            width: 200,
-            height: 200,
-            background: `radial-gradient(circle, ${C.gold} 0%, transparent 70%)`,
-            opacity: 0.1,
-          }}
-        />
-        <h3
-          style={{
-            fontSize: 20,
-            fontWeight: 600,
-            color: C.white,
-            marginBottom: 20,
-            display: "flex",
-            alignItems: "center",
-            gap: 12,
-            position: "relative",
-          }}
-        >
-          <span
-            style={{
-              width: 36,
-              height: 36,
-              background: C.gold,
-              color: C.navyD,
-              borderRadius: 10,
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 16,
-            }}
-          >
-            📋
-          </span>
-          {title}
-        </h3>
-        {items.map((d) => (
-          <div
-            key={d}
-            style={{
-              display: "flex",
-              gap: 12,
-              marginBottom: 12,
-              fontSize: 13,
-              color: "rgba(255,255,255,0.75)",
-              alignItems: "flex-start",
-              lineHeight: 1.6,
-              position: "relative",
-            }}
-          >
-            <span
-              style={{
-                width: 20,
-                height: 20,
-                background: "rgba(240,192,64,0.15)",
-                color: "#FFFFFF",
-                borderRadius: "50%",
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 11,
-                flexShrink: 0,
-                fontWeight: 700,
-              }}
-            >
-              ✓
-            </span>
-            {d}
-          </div>
-        ))}
-        {note && (
-          <div
-            style={{
-              background: "rgba(240,192,64,0.1)",
-              borderLeft: `3px solid ${C.gold}`,
-              padding: "16px 18px",
-              marginTop: 20,
-              fontSize: 12.5,
-              color: "rgba(255,255,255,0.7)",
-              lineHeight: 1.75,
-              borderRadius: 8,
-            }}
-          >
-            {note}
-          </div>
-        )}
       </div>
     </Reveal>
   );
@@ -1033,7 +928,7 @@ function FAQItem({ q, a, isOpen, onClick }) {
           gap: 16,
           fontSize: 15,
           fontWeight: 600,
-          color: isOpen ? C.navy : C.ink,
+          color: isOpen ? C.teal : C.ink,
           transition: "color 0.2s ease",
         }}
       >
@@ -1042,8 +937,8 @@ function FAQItem({ q, a, isOpen, onClick }) {
           style={{
             width: 30,
             height: 30,
-            background: isOpen ? C.navy : C.goldTint,
-            color: isOpen ? C.white : C.navy,
+            background: isOpen ? C.teal : C.mintTint,
+            color: isOpen ? C.white : C.teal,
             borderRadius: "50%",
             display: "flex",
             alignItems: "center",
@@ -1073,30 +968,134 @@ function FAQItem({ q, a, isOpen, onClick }) {
 }
 
 /* ===================================================================
- *  Marquee strip
+ *  Hero motif — Dubai-inspired skyline + flight path
+ * ================================================================ */
+function HeroMotif() {
+  return (
+    <svg
+      viewBox="0 0 800 900"
+      preserveAspectRatio="xMidYMid slice"
+      style={{
+        position: "absolute",
+        top: 0,
+        right: 0,
+        width: "58%",
+        height: "100%",
+        opacity: 0.85,
+        pointerEvents: "none",
+      }}
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="mintFade" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor={C.mint} stopOpacity="0" />
+          <stop offset="100%" stopColor={C.mint} stopOpacity="0.18" />
+        </linearGradient>
+        <radialGradient id="sun" cx="0.7" cy="0.25" r="0.4">
+          <stop offset="0%" stopColor={C.coralL} stopOpacity="0.35" />
+          <stop offset="100%" stopColor={C.coralL} stopOpacity="0" />
+        </radialGradient>
+        <pattern id="dotpat" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1.2" fill={C.mint} opacity="0.35" />
+        </pattern>
+      </defs>
+
+      {/* warm sun glow */}
+      <rect x="0" y="0" width="800" height="900" fill="url(#sun)" />
+      <rect x="0" y="0" width="800" height="900" fill="url(#mintFade)" />
+
+      {/* dot pattern panel */}
+      <rect x="430" y="60" width="120" height="200" fill="url(#dotpat)" />
+
+      {/* Burj Khalifa-esque tower silhouette */}
+      <g opacity="0.85">
+        <polygon
+          points="600,820 605,300 614,170 618,80 622,170 631,300 636,820"
+          fill={C.mint}
+          opacity="0.18"
+        />
+        <polygon
+          points="600,820 605,300 614,170 618,80 622,170 631,300 636,820"
+          fill="none"
+          stroke={C.mint}
+          strokeWidth="1"
+          opacity="0.55"
+        />
+        {/* tower windows */}
+        {Array.from({ length: 22 }).map((_, i) => (
+          <line
+            key={i}
+            x1="608"
+            y1={350 + i * 22}
+            x2="628"
+            y2={350 + i * 22}
+            stroke={C.mint}
+            strokeWidth="0.6"
+            opacity="0.4"
+          />
+        ))}
+      </g>
+
+      {/* neighbour towers */}
+      <rect x="525" y="380" width="42" height="440" fill={C.mint} opacity="0.1" />
+      <rect x="525" y="380" width="42" height="440" fill="none" stroke={C.mint} strokeWidth="0.75" opacity="0.35" />
+      <rect x="660" y="450" width="38" height="370" fill={C.mint} opacity="0.1" />
+      <rect x="660" y="450" width="38" height="370" fill="none" stroke={C.mint} strokeWidth="0.75" opacity="0.35" />
+      <rect x="710" y="320" width="50" height="500" fill={C.mint} opacity="0.1" />
+      <rect x="710" y="320" width="50" height="500" fill="none" stroke={C.mint} strokeWidth="0.75" opacity="0.35" />
+
+      {/* compass / wayfinding ring */}
+      <circle cx="240" cy="180" r="62" fill="none" stroke={C.mint} strokeWidth="0.75" opacity="0.45" />
+      <circle cx="240" cy="180" r="42" fill="none" stroke={C.mint} strokeWidth="0.5" opacity="0.3" />
+      <circle cx="240" cy="180" r="3" fill={C.coral} opacity="0.8" />
+
+      {/* dashed flight path */}
+      <path
+        d="M 60 700 Q 350 350 700 200"
+        stroke={C.coralL}
+        strokeWidth="1.5"
+        strokeDasharray="6 6"
+        fill="none"
+        opacity="0.6"
+      >
+        <animate attributeName="stroke-dashoffset" from="0" to="-120" dur="6s" repeatCount="indefinite" />
+      </path>
+      {/* plane icon */}
+      <g transform="translate(680,210) rotate(-22)" opacity="0.85">
+        <path
+          d="M0 0 L 20 -4 L 30 -2 L 30 2 L 20 4 L 0 0 Z M 12 -8 L 18 -4 M 12 8 L 18 4"
+          fill={C.coral}
+        />
+      </g>
+    </svg>
+  );
+}
+
+/* ===================================================================
+ *  Marquee strip (USPs floating across)
  * ================================================================ */
 function Marquee() {
   const items = [
     "🇦🇪 Dubai 2026 Intake Open",
     "✦ No IELTS Required",
     "✦ No Show Money",
-    "✦ UK-Accredited OTHM Diplomas",
-    "✦ 0% Income Tax",
-    "✦ Visa in 7 Working Days",
     "✦ Age & Gap Accepted",
+    "✦ UK-Accredited Diplomas",
+    "✦ 0% Income Tax",
+    "✦ Visa in 7 Days",
     "✦ Pathway to UK & Australia",
   ];
   const loop = [...items, ...items];
   return (
     <div
       style={{
-        background: C.navyDark,
-        color: "#FFFFFF",
+        background: C.tealDark,
+        color: C.mint,
         padding: "14px 0",
         overflow: "hidden",
         position: "relative",
-        borderTop: `1px solid rgba(240,192,64,0.15)`,
-        borderBottom: `1px solid rgba(240,192,64,0.15)`,
+        borderTop: `1px solid rgba(120,192,192,0.15)`,
+        borderBottom: `1px solid rgba(120,192,192,0.15)`,
       }}
     >
       <div
@@ -1140,7 +1139,7 @@ function ScrollProgress() {
         left: 0,
         height: 3,
         width: `${p}%`,
-        background: `linear-gradient(90deg, ${C.navy}, ${C.gold}, ${C.forest})`,
+        background: `linear-gradient(90deg, ${C.teal}, ${C.mint}, ${C.coral})`,
         zIndex: 200,
         transition: "width 0.1s linear",
       }}
@@ -1149,16 +1148,16 @@ function ScrollProgress() {
 }
 
 /* ===================================================================
- *  DATA — Dubai (MIBD) content
+ *  DATA
  * ================================================================ */
 const reasons = [
-  { icon: "🗣️", title: "No IELTS or English Test Required", body: "English proficiency is assessed through a simple admission interview — no IELTS, TOEFL, or PTE scores needed. Saves you months of preparation and thousands in test fees." },
+  { icon: "🎯", title: "No IELTS or English Test Required", body: "English proficiency is assessed through a simple admission interview — no IELTS, TOEFL, or PTE scores needed. Saves you months of preparation and thousands in test fees." },
   { icon: "🎓", title: "UK-Accredited, Globally Recognised Diplomas", body: "Earn OTHM-accredited qualifications (Levels 3–5) regulated by Ofqual (UK), recognised by KHDA (Dubai), and accepted by WES for international equivalency." },
   { icon: "💰", title: "Tax-Free Professional Environment", body: "The UAE levies zero personal income tax. Every dirham you earn stays with you — a major financial advantage compared to Western study destinations." },
   { icon: "🛂", title: "Streamlined Student Visa Process", body: "Dubai's student visa is processed efficiently with professional guidance at every step. No show money required. Age gaps and study gaps are fully accepted." },
-  { icon: "🌍", title: "Gateway to Global Academic Pathways", body: "Your Dubai diploma is your passport to top-up degrees in the UK, Australia, and Canada. MIBD's OTHM Level 4/5 qualifications provide direct entry to Year 2 or Year 3." },
-  { icon: "🛡️", title: "Ranked 3rd Safest City in the World", body: "Dubai's world-class infrastructure, low crime rates, and welcoming multicultural environment make it one of the most secure destinations for international students." },
-  { icon: "📈", title: "Booming Economy with Real Opportunity", body: "Dubai's GDP grew 4.4% in the first half of 2025 alone, driven by the D33 Agenda targeting a doubling of the economy by 2030 — needing ~1 million new skilled workers." },
+  { icon: "🌍", title: "Gateway to Global Academic Pathways", body: "Your Dubai diploma is your passport to top-up degrees in the UK, Australia, and Canada. MIBD's OTHM Level 4/5 qualifications provide direct entry to Year 2 or Year 3 at partner universities." },
+  { icon: "🛡️", title: "Ranked 3rd Safest City in the World", body: "Dubai's world-class infrastructure, low crime rates, and welcoming multicultural environment make it one of the most secure destinations for international students and their families." },
+  { icon: "📈", title: "Booming Economy with Real Opportunity", body: "Dubai's GDP grew 4.4% in the first half of 2025 alone, driven by the D33 Agenda targeting a doubling of the economy by 2030. The UAE is projected to need approximately 1 million new skilled workers." },
   { icon: "💼", title: "Paid Internship & Industry Exposure", body: "Access paid internships and industry placements across Dubai's finance, technology, hospitality, and logistics sectors — building real-world experience while you study." },
 ];
 
@@ -1184,11 +1183,17 @@ const salaries = [
   { sector: "Hospitality", monthly: "AED 13,000", yearly: "AED 156,000", pct: 50 },
 ];
 
-const outlooks = [
-  { icon: "🚀", tag: "Future Demand", title: "~1 Million New Jobs Projected by 2030", body: "The UAE's Dubai Economic Agenda (D33) is targeting a doubling of the economy by 2030, requiring approximately 1 million new skilled professionals across technology, healthcare, education, and manufacturing." },
-  { icon: "💼", tag: "During Studies", title: "Paid Internships & Industry Placements", body: "MIBD connects students with paid internship opportunities and job fair access across Dubai's leading companies in finance, hospitality, technology, and logistics." },
-  { icon: "💰", tag: "Post-Study", title: "Tax-Free Employment in a Global Hub", body: "The UAE's zero personal income tax policy means your full salary is your take-home pay. Combined with competitive AED packages, Dubai offers outstanding value." },
-  { icon: "🌍", tag: "Global Pathway", title: "Springboard to the UK, Australia & More", body: "Your OTHM Level 4/5 diploma is designed as a progression pathway to top-up bachelor's degrees at universities in the UK, Australia, and Canada." },
+const faqs = [
+  { q: "Is IELTS required to study in Dubai?", a: "No — IELTS is not required to study in Dubai at MIBD. English proficiency is assessed through a straightforward admission interview conducted by the institution. No TOEFL, PTE, or any other standardised English test score is required. This makes Dubai one of the most accessible international study destinations for Indian, Nepali, Sri Lankan, and South Asian students." },
+  { q: "How much does it cost to study in Dubai at MIBD?", a: "The full programme tuition fee is USD 7,500. After a 35% merit scholarship is applied, the tuition reduces to USD 5,000. The all-inclusive student visa package costs USD 1,500 and covers your Entry Permit, Medical Check, Biometrics, Medical Insurance, Visa Stamping, and Emirates ID. Monthly living costs in Dubai typically range from AED 2,500 to AED 4,500 depending on your lifestyle and accommodation choices." },
+  { q: "How long does the Dubai student visa process take?", a: "The Dubai student visa is typically processed within 7 working days from the point of submission. The process is comprehensive yet efficient — covering Entry Permit, Medical Check, Biometrics, Emirates ID, and Medical Insurance — all managed as a single coordinated package. Langma International provides professional guidance throughout the entire process. We recommend applying at least 2 months before your intended start date to allow comfortable preparation time." },
+  { q: "Are study gaps and age restrictions an issue for Dubai admission?", a: "No — study gaps and age are fully accepted at MIBD Dubai. Unlike many Western destinations that penalise applicants for career breaks or extended gaps between studies, Dubai's admission process assesses your current profile, qualifications, and motivation. There is no upper age restriction. This makes Dubai a welcoming and practical option for mature students, career changers, and those returning to education after a break." },
+  { q: "What qualifications will I earn by studying in Dubai?", a: "Students at MIBD earn OTHM-accredited diplomas at Levels 3, 4, and 5. These are regulated by Ofqual (UK), recognised by KHDA (Dubai), and accepted by WES for global academic equivalency. Level 4 and Level 5 are 2-year programmes. The qualifications are widely accepted for top-up bachelor's degrees at universities in the UK, Australia, Canada, and other major destinations." },
+  { q: "Can I work or intern during my studies in Dubai?", a: "MIBD supports students in accessing paid internship opportunities and job fair connections through its industry network. Dubai's job market — particularly in finance, hospitality, technology, and logistics — actively recruits from the international student community. Post-graduation, professionals in the UAE earn in a fully tax-free environment, which significantly improves take-home income compared to most Western countries." },
+  { q: 'What does "assignment-based assessment" mean — are there no exams?', a: "All OTHM diploma programmes at MIBD are assessed entirely through coursework and practical assignments — there are no written end-of-year examinations. This assessment model mirrors real professional environments and helps develop applied, work-ready skills. Students are evaluated on their ability to analyse, apply, and present knowledge — not on memorisation under exam conditions." },
+  { q: "Can a Dubai diploma lead to a UK or Australian university degree?", a: "Yes. MIBD's OTHM Level 4/5 diplomas are specifically designed as academic progression pathways to top-up bachelor's degrees at universities in the UK, Australia, and Canada. Depending on the institution, graduates may enter directly into Year 2 or Year 3 of an undergraduate programme. Langma International provides detailed guidance on which partner universities accept these qualifications and how to apply." },
+  { q: 'What does "No Show Money" mean for the Dubai visa?', a: 'Unlike student visas for the UK, USA, Canada, or Australia, the Dubai student visa does not require you to demonstrate large sums of money in your bank account as proof of financial capability — commonly known as "show money" or "bank balance requirement." This removes one of the most significant and stressful barriers for Indian and South Asian students and families applying to study abroad.' },
+  { q: "When can I apply — what are the 2026 intake dates?", a: "MIBD operates on a rolling intake basis — meaning applications are accepted throughout the year with no single fixed deadline. However, seats are limited and we strongly recommend applying at least 2 months before your intended start date to allow sufficient time for admission processing, visa coordination, and pre-departure preparation. Contact Langma International today to understand the next available intake closest to your schedule." },
 ];
 
 const support = [
@@ -1202,27 +1207,11 @@ const support = [
   { icon: "💬", title: "Dedicated Student Advisor", body: "One real counsellor, available throughout your entire journey. No call centres, no chatbots — just experienced, honest guidance when you need it most." },
 ];
 
-const visaDocs = [
-  "Valid passport copy (personal data pages)",
-  "All educational certificates (Grade 10 / 12 / degree)",
-  "Academic transcripts or mark sheets",
-  "Passport-size photograph (digital, white background)",
-  "Official Offer Letter from MIBD",
-  "Proof of fee payment / receipt",
-  "Visa application details (as specified by the institution)",
-];
-
-const faqs = [
-  { q: "Is IELTS required to study in Dubai?", a: "No — IELTS is not required to study in Dubai at MIBD. English proficiency is assessed through a straightforward admission interview conducted by the institution. No TOEFL, PTE, or any other standardised English test score is required." },
-  { q: "How much does it cost to study in Dubai at MIBD?", a: "The full programme tuition fee is USD 7,500. After a 35% merit scholarship is applied, the tuition reduces to USD 5,000. The all-inclusive student visa package costs USD 1,500. Monthly living costs typically range from AED 2,500 to AED 4,500." },
-  { q: "How long does the Dubai student visa process take?", a: "The Dubai student visa is typically processed within 7 working days from the point of submission, covering Entry Permit, Medical Check, Biometrics, Emirates ID, and Medical Insurance — all managed as a single coordinated package." },
-  { q: "Are study gaps and age restrictions an issue for Dubai admission?", a: "No — study gaps and age are fully accepted at MIBD Dubai. There is no upper age restriction, making Dubai a welcoming and practical option for mature students, career changers, and those returning to education after a break." },
-  { q: "What qualifications will I earn by studying in Dubai?", a: "Students at MIBD earn OTHM-accredited diplomas at Levels 3, 4, and 5, regulated by Ofqual (UK), recognised by KHDA (Dubai), and accepted by WES for global academic equivalency. They're widely accepted for top-up bachelor's degrees abroad." },
-  { q: "Can I work or intern during my studies in Dubai?", a: "MIBD supports students in accessing paid internship opportunities and job fair connections through its industry network. Post-graduation, professionals in the UAE earn in a fully tax-free environment." },
-  { q: "What does \"assignment-based assessment\" mean — are there no exams?", a: "All OTHM diploma programmes at MIBD are assessed entirely through coursework and practical assignments — there are no written end-of-year examinations. Students are evaluated on applied, work-ready skills." },
-  { q: "Can a Dubai diploma lead to a UK or Australian university degree?", a: "Yes. MIBD's OTHM Level 4/5 diplomas are specifically designed as academic progression pathways to top-up bachelor's degrees in the UK, Australia, and Canada, with entry directly into Year 2 or Year 3." },
-  { q: "What does \"No Show Money\" mean for the Dubai visa?", a: "Unlike student visas for the UK, USA, Canada, or Australia, the Dubai student visa does not require you to demonstrate large sums of money in your bank account as proof of financial capability." },
-  { q: "When can I apply — what are the 2026 intake dates?", a: "MIBD operates on a rolling intake basis — applications are accepted throughout the year with no single fixed deadline. We recommend applying at least 2 months before your intended start date." },
+const outlooks = [
+  { icon: "🚀", tag: "Future Demand", title: "~1 Million New Jobs Projected by 2030", body: "The UAE's Dubai Economic Agenda (D33) is targeting a doubling of the economy by 2030, requiring approximately 1 million new skilled professionals across technology, healthcare, education, and manufacturing." },
+  { icon: "💼", tag: "During Studies", title: "Paid Internships & Industry Placements", body: "MIBD connects students with paid internship opportunities and job fair access across Dubai's leading companies in finance, hospitality, technology, and logistics — building your CV while you study." },
+  { icon: "🌴", tag: "Post-Study", title: "Tax-Free Employment in a Global Hub", body: "The UAE's zero personal income tax policy means your full salary is your take-home pay. Combined with competitive AED packages, Dubai offers outstanding value for internationally qualified graduates." },
+  { icon: "🌏", tag: "Global Pathway", title: "Springboard to the UK, Australia & More", body: "Your OTHM Level 4/5 diploma is designed as a progression pathway to top-up bachelor's degrees at universities in the UK, Australia, and Canada — opening doors well beyond the UAE." },
 ];
 
 /* ===================================================================
@@ -1230,7 +1219,6 @@ const faqs = [
  * ================================================================ */
 export default function StudyDubaiPage() {
   const [openFAQ, setOpenFAQ] = useState(0);
-  const [open, setOpen] = useState(false);
 
   return (
     <div
@@ -1243,10 +1231,11 @@ export default function StudyDubaiPage() {
       }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+        // * { margin: 0; padding: 0; box-sizing: border-box; }
         a { text-decoration: none; }
         html { scroll-behavior: smooth; }
-        ::selection { background: ${C.navy}; color: ${C.white}; }
+        ::selection { background: ${C.teal}; color: ${C.white}; }
 
         @keyframes lm-marquee {
           0%   { transform: translateX(0); }
@@ -1256,17 +1245,36 @@ export default function StudyDubaiPage() {
           0%, 100% { transform: translateY(0); }
           50%      { transform: translateY(-14px); }
         }
-        @keyframes lm-bg-shift {
-          0%, 100% { background-position: 0% 50%; }
-          50%      { background-position: 100% 50%; }
+        @keyframes lm-pulse {
+          0%, 100% { transform: scale(1);   opacity: 0.7; }
+          50%      { transform: scale(1.4); opacity: 0; }
         }
         @keyframes lm-shimmer {
           0%   { background-position: -200% 0; }
           100% { background-position:  200% 0; }
         }
+        @keyframes lm-bg-shift {
+          0%, 100% { background-position: 0% 50%; }
+          50%      { background-position: 100% 50%; }
+        }
+        @keyframes lm-bob {
+          0%, 100% { transform: translateY(0) rotate(-22deg); }
+          50%      { transform: translateY(-10px) rotate(-18deg); }
+        }
+
+        .lm-link { position: relative; }
+        .lm-link::after {
+          content: '';
+          position: absolute;
+          left: 0; bottom: -6px;
+          width: 0; height: 2px;
+          background: ${C.mint};
+          transition: width 0.3s ease;
+        }
+        .lm-link:hover::after { width: 100%; }
 
         .lm-grad-text {
-          background: linear-gradient(120deg, ${C.goldL}, ${C.gold}, ${C.goldL});
+          background: linear-gradient(120deg, ${C.coralL}, ${C.coral}, ${C.coralL});
           background-size: 200% 100%;
           -webkit-background-clip: text;
           background-clip: text;
@@ -1278,113 +1286,194 @@ export default function StudyDubaiPage() {
       <ScrollProgress />
 
       {/* ---------------- HERO ---------------- */}
-      <section className="bg-[#f5f5f5] overflow-hidden">
-        <div className="max-w-8xl mx-auto px-6 lg:px-12 py-16 lg:py-20">
-          <div className="grid lg:grid-cols-2 items-center gap-12">
+      <section
+        style={{
+          background: `linear-gradient(135deg, ${C.tealDark} 0%, ${C.tealD} 50%, ${C.teal} 100%)`,
+          backgroundSize: "200% 200%",
+          animation: "lm-bg-shift 18s ease infinite",
+          minHeight: "92vh",
+          display: "flex",
+          alignItems: "center",
+          position: "relative",
+          overflow: "hidden",
+          padding: "70px 48px",
+        }}
+      >
+        <HeroMotif />
 
-            {/* Left Content */}
-            <div className="z-10">
-              <h1
-                className="text-[#15224C]"
+        {/* ambient blur blobs */}
+        <div
+          style={{
+            position: "absolute",
+            top: "-10%",
+            left: "-5%",
+            width: 380,
+            height: 380,
+            background: `radial-gradient(circle, ${C.mint} 0%, transparent 70%)`,
+            opacity: 0.18,
+            filter: "blur(20px)",
+            animation: "lm-float 10s ease-in-out infinite",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            bottom: "-10%",
+            left: "30%",
+            width: 320,
+            height: 320,
+            background: `radial-gradient(circle, ${C.coral} 0%, transparent 70%)`,
+            opacity: 0.12,
+            filter: "blur(30px)",
+            animation: "lm-float 13s ease-in-out infinite reverse",
+          }}
+        />
+
+        <div style={{ maxWidth: 700, position: "relative", zIndex: 2 }}>
+          <Reveal>
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 12,
+                marginBottom: 28,
+                padding: "6px 18px 6px 8px",
+                background: "rgba(120,192,192,0.1)",
+                border: "1px solid rgba(120,192,192,0.3)",
+                borderRadius: 999,
+              }}
+            >
+              <span style={{ fontSize: 18 }}>🇦🇪</span>
+              <span
                 style={{
-                  fontSize: "clamp(28px, 3.6vw, 46px)",
-                  fontWeight: 600,
-                  lineHeight: 1.12,
-                  letterSpacing: "-0.6px",
+                  position: "relative",
+                  display: "inline-flex",
+                  width: 8,
+                  height: 8,
                 }}
               >
-                Study In <span className="text-[#1ab7ac]">Dubai</span>
-                <br />
-                Where Global Careers
-                <br />
-                Begin.
-              </h1>
+                <span
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: C.coral,
+                    borderRadius: "50%",
+                    animation: "lm-pulse 2s ease-out infinite",
+                  }}
+                />
+                <span
+                  style={{
+                    position: "relative",
+                    width: 8,
+                    height: 8,
+                    background: C.coral,
+                    borderRadius: "50%",
+                  }}
+                />
+              </span>
+              <span
+                style={{
+                  color: C.mint,
+                  fontSize: 11,
+                  fontWeight: 700,
+                  letterSpacing: "2px",
+                  textTransform: "uppercase",
+                }}
+              >
+                2026 Intake Open · Limited Seats
+              </span>
+            </div>
+          </Reveal>
 
-              <p className="mt-6 text-gray-600 text-lg leading-relaxed max-w-xl">
-                Ranked among the world's top student cities. UK-accredited
-                diplomas. Tax-free professional environment. No IELTS needed
-                — just your ambition and a passport.
-              </p>
+          <Reveal delay={150}>
+            <h1
+              style={{
+                // fontFamily: "'Fraunces', Georgia, serif",
+                color: C.white,
+                fontSize: "clamp(42px, 5.8vw, 76px)",
+                lineHeight: 1.05,
+                marginBottom: 24,
+                fontWeight: 600,
+                letterSpacing: "-1.2px",
+              }}
+            >
+              Study in{" "}
+              <em className="lm-grad-text" style={{ fontStyle: "italic", display: "inline-block" }}>
+                Dubai
+              </em>
+              <br />
+              Where Global
+              <br />
+              Careers Begin.
+            </h1>
+          </Reveal>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-3 mt-8">
-                {[
-                  "✓No IELTS Required",
-                  "✓No Show Money",
-                  "✓Age & Gap Accepted",
-                  "✓Streamlined Visa Process",
-                  "✓Pathway to UK & Australia",
-                ].map((item, index) => (
+          <Reveal delay={300}>
+            <p
+              style={{
+                color: "rgba(255,255,255,0.7)",
+                fontSize: 17,
+                fontWeight: 300,
+                lineHeight: 1.8,
+                marginBottom: 36,
+                maxWidth: 520,
+              }}
+            >
+              Ranked among the world's top student cities. UK-accredited diplomas. Tax-free
+              professional environment. <strong style={{ color: C.mint, fontWeight: 500 }}>No IELTS needed</strong> —
+              just your ambition and a passport.
+            </p>
+          </Reveal>
+
+          <Reveal delay={420}>
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginBottom: 38 }}>
+              {["No IELTS Required", "No Show Money", "Age & Gap Accepted", "Visa in 7 Days", "UK & Australia Pathway"].map(
+                (p, i) => (
                   <span
-                    key={index}
-                    className="bg-[#1ab7ac] text-white px-4 py-2 rounded-full text-sm md:text-base"
+                    key={p}
+                    style={{
+                      background: "rgba(255,255,255,0.06)",
+                      border: "1px solid rgba(120,192,192,0.18)",
+                      color: "rgba(255,255,255,0.85)",
+                      fontSize: 12,
+                      fontWeight: 500,
+                      padding: "7px 16px",
+                      letterSpacing: "0.3px",
+                      borderRadius: 999,
+                      animation: `lm-float ${6 + i * 0.5}s ease-in-out infinite`,
+                    }}
                   >
-                    {item}
+                    ✓ {p}
                   </span>
-                ))}
-              </div>
-
-              {/* Buttons */}
-              <div className="flex flex-wrap gap-4 mt-10">
-                <button
-                  onClick={() => setOpen(true)}
-                  className="bg-[#006C70] hover:bg-[#00575a] transition-all text-white px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
-                >
-                  Book Free Counselling →
-                </button>
-                <button
-                  onClick={() => setOpen(true)}
-                  className="border border-[#006C70] text-[#006C70] hover:bg-[#006C70] hover:text-white transition-all px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
-                >
-                  Check My Eligibility
-                </button>
-              </div>
+                )
+              )}
             </div>
+          </Reveal>
 
-            {/* Right Image */}
-            <div className="relative flex justify-center lg:justify-end">
-
-              {/* Decorative Rectangle */}
-              <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-50 h-[490px] bg-[#2C6D73] rounded-[24px]"></div>
-
-              {/* Dots */}
-              <div className="hidden lg:grid absolute left-12 top-1/2 -translate-y-1/2 grid-cols-12 gap-4 z-0">
-                {[...Array(180)].map((_, i) => (
-                  <span key={i} className="w-2 h-2 rounded-full bg-[#C7E8E5]"></span>
-                ))}
-              </div>
-
-              {/* Circle Image */}
-              <div className="relative z-10">
-                <div className="w-[320px] h-[320px] md:w-[420px] md:h-[420px] lg:w-[520px] lg:h-[520px] rounded-full overflow-hidden">
-                  <img
-                    src="images/duba.jpeg"
-                    alt="Study in Dubai"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-
+          <Reveal delay={540}>
+            <div style={{ display: "flex", gap: 14, flexWrap: "wrap", marginBottom: 56 }}>
+              <TealButton style={{ background: C.coral }}>Book Free Counselling →</TealButton>
+              <GhostButton>Check My Eligibility</GhostButton>
             </div>
-          </div>
+          </Reveal>
 
-          {/* Hero stats strip */}
-          <Reveal delay={200}>
+          <Reveal delay={680}>
             <div
               style={{
                 display: "flex",
                 flexWrap: "wrap",
-                background: C.navyDark,
-                border: "1px solid rgba(240,192,64,0.18)",
+                background: "rgba(14,36,36,0.45)",
+                border: "1px solid rgba(120,192,192,0.18)",
                 borderRadius: 18,
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
                 overflow: "hidden",
-                marginTop: 56,
               }}
             >
-              <BoardingStat text="#7" label="Global Student City 2025" sub="Education.com ranking" delay={100} />
-              <BoardingStat text="#3" label="Safest City Globally" sub="World safety ranking" delay={250} />
-              <BoardingStat value={37} suffix="+" label="International Campuses" sub="Across the UAE" delay={400} />
-              <BoardingStat text="0%" label="Income Tax in UAE" sub="Fully tax-free environment" delay={550} />
+              <BoardingStat prefix="#" value={7} label="Student City" sub="Global rank · 2025" delay={100} />
+              <BoardingStat prefix="#" value={3} label="Safest City" sub="Worldwide" delay={250} />
+              <BoardingStat value={37} suffix="+" label="Campuses" sub="International, in UAE" delay={400} />
+              <BoardingStat value={0} suffix="%" label="Income Tax" sub="Across the UAE" delay={550} />
             </div>
           </Reveal>
         </div>
@@ -1397,17 +1486,9 @@ export default function StudyDubaiPage() {
       <section style={{ background: C.cream, padding: "100px 48px", position: "relative" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Why Dubai</span>}
-            title={
-              <span style={{ color: "#4197a2" }}>
-                8 Reasons Dubai Is South Asia's Smartest Study Destination in 2026
-              </span>
-            }
-            sub={
-              <span style={{ color: "#429198" }}>
-                Just a 3-hour flight from India. Decades ahead in opportunity. Dubai delivers internationally recognised education inside one of the world's fastest-growing economies.
-              </span>
-            }
+            tag="Why Dubai"
+            title="8 Reasons Dubai Is South Asia's Smartest Study Destination in 2026"
+            sub="Just a 3-hour flight from India. Decades ahead in opportunity. Dubai delivers internationally recognised education inside one of the world's fastest-growing economies."
           />
           <div
             style={{
@@ -1433,7 +1514,7 @@ export default function StudyDubaiPage() {
       {/* ---------------- STRIP CTA ---------------- */}
       <div
         style={{
-          background: `linear-gradient(90deg, ${C.navy}, ${C.navyL})`,
+          background: `linear-gradient(90deg, ${C.teal}, ${C.tealL})`,
           padding: "26px 48px",
           display: "flex",
           justifyContent: "space-between",
@@ -1459,7 +1540,7 @@ export default function StudyDubaiPage() {
         <button
           style={{
             background: C.white,
-            color: C.navy,
+            color: C.teal,
             border: "none",
             padding: "12px 28px",
             fontSize: 13,
@@ -1473,15 +1554,15 @@ export default function StudyDubaiPage() {
             zIndex: 2,
           }}
           onMouseEnter={(e) => {
-            e.target.style.color = C.navy;
+            e.target.style.background = C.coral;
+            e.target.style.color = C.white;
             e.target.style.transform = "translateY(-2px)";
           }}
           onMouseLeave={(e) => {
             e.target.style.background = C.white;
-            e.target.style.color = C.navy;
+            e.target.style.color = C.teal;
             e.target.style.transform = "translateY(0)";
           }}
-          onClick={() => setOpen(true)}
         >
           Get Free Eligibility Check →
         </button>
@@ -1490,7 +1571,7 @@ export default function StudyDubaiPage() {
       {/* ---------------- AT A GLANCE FACTS ---------------- */}
       <section
         style={{
-          background: `linear-gradient(135deg, ${C.navyDark}, ${C.navyD})`,
+          background: `linear-gradient(135deg, ${C.tealDark}, ${C.tealD})`,
           padding: "100px 48px",
           position: "relative",
           overflow: "hidden",
@@ -1503,8 +1584,8 @@ export default function StudyDubaiPage() {
             right: "5%",
             width: 400,
             height: 400,
-            background: `radial-gradient(circle, ${C.gold} 0%, transparent 70%)`,
-            opacity: 0.06,
+            background: `radial-gradient(circle, ${C.mint} 0%, transparent 70%)`,
+            opacity: 0.08,
             filter: "blur(20px)",
           }}
         />
@@ -1526,32 +1607,32 @@ export default function StudyDubaiPage() {
               <div
                 style={{
                   background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(240,192,64,0.15)",
+                  border: "1px solid rgba(120,192,192,0.15)",
                   borderRadius: 18,
                   overflow: "hidden",
                 }}
               >
                 <FactRow label="Country" value="United Arab Emirates (UAE)" />
-                <FactRow label="Currency" value="UAE Dirham (AED) · 1 USD ≈ 3.67 AED" />
-                <FactRow label="Language" value="Arabic (official) · English (education & business)" />
-                <FactRow label="Global Student City Rank" value="#7 Worldwide — Education.com 2025" />
-                <FactRow label="Safety Ranking" value="#3 Safest City Globally" />
-                <FactRow label="International Campuses" value="37+ Branch Campuses in the UAE" />
+                <FactRow label="Currency" value="AED · 1 USD ≈ 3.67 AED" />
+                <FactRow label="Language" value="Arabic · English (education)" />
+                <FactRow label="Student City Rank" value="#7 Worldwide" />
+                <FactRow label="Safety Ranking" value="#3 Safest Globally" />
+                <FactRow label="Campuses" value="37+ international, UAE" />
               </div>
               <div
                 style={{
                   background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(240,192,64,0.15)",
+                  border: "1px solid rgba(120,192,192,0.15)",
                   borderRadius: 18,
                   overflow: "hidden",
                 }}
               >
-                <FactRow label="Tuition Fees" value="USD 5,000 (after 35% merit scholarship)" />
-                <FactRow label="Visa Fee" value="USD 1,500 (comprehensive all-in package)" />
-                <FactRow label="Visa Processing Time" value="Typically within 7 working days" />
-                <FactRow label="Intakes" value="Rolling intakes — apply year-round" />
-                <FactRow label="English Requirement" value="Interview-based — no IELTS or TOEFL needed" />
-                <FactRow label="Income Tax" value="0% — fully tax-free environment" />
+                <FactRow label="Tuition (post-scholarship)" value="USD 5,000" />
+                <FactRow label="Visa Fee (all-in)" value="USD 1,500" />
+                <FactRow label="Visa Processing" value="~ 7 working days" />
+                <FactRow label="Intakes" value="Rolling — year-round" />
+                <FactRow label="English Requirement" value="Interview-based" />
+                <FactRow label="Income Tax" value="0% — fully tax-free" />
               </div>
             </div>
           </Reveal>
@@ -1562,13 +1643,9 @@ export default function StudyDubaiPage() {
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Cost of Studying in Dubai</span>}
-            title={<span style={{ color: "#4197a2" }}>Transparent Fee Structure for 2026 Intake</span>}
-            sub={
-              <span style={{ color: "#429198" }}>
-                Dubai provides internationally recognised education at a significantly more accessible cost than the UK, USA, or Australia — especially with scholarship support applied.
-              </span>
-            }
+            tag="Cost of Studying in Dubai"
+            title="Transparent Fee Structure for 2026 Intake"
+            sub="Dubai provides internationally recognised education at a significantly more accessible cost than the UK, USA, or Australia — especially with scholarship support applied."
           />
           <div
             style={{
@@ -1577,31 +1654,23 @@ export default function StudyDubaiPage() {
               gap: 18,
             }}
           >
-            <CostCard label="Tuition Fee (Original)" amount="USD 7,500" note="Full programme fee before scholarship" delay={0} />
-            <CostCard label="After 35% Merit Scholarship" amount="USD 5,000" note="You save USD 2,500 — apply for details" highlight delay={80} />
+            <CostCard label="Tuition (Original)" amount="USD 7,500" note="Full programme fee before scholarship" delay={0} />
+            <CostCard label="After 35% Scholarship" amount="USD 5,000" note="You save USD 2,500" highlight delay={80} />
             <CostCard label="Student Visa Package" amount="USD 1,500" note="Entry permit, medical, Emirates ID & insurance" delay={160} />
-            <CostCard label="Accommodation" amount="AED 1,500–3,500" note="Per month · shared or private options" delay={240} />
-            <CostCard label="Monthly Living Costs" amount="AED 2,500–4,500" note="Food, transport & daily essentials" delay={320} />
-            <CostCard label="Health Insurance" amount="Included" note="Fully covered within the visa package" delay={400} />
+            <CostCard label="Accommodation" amount="AED 1.5K–3.5K" note="Per month · shared or private" delay={240} />
+            <CostCard label="Monthly Living" amount="AED 2.5K–4.5K" note="Food, transport & daily essentials" delay={320} />
+            <CostCard label="Health Insurance" amount="Included" note="Fully covered within visa" delay={400} />
           </div>
         </div>
       </section>
 
-      {/* ---------------- PROGRAMMES ---------------- */}
+      {/* ---------------- COURSES ---------------- */}
       <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>MIBD Programmes — Study in Dubai</span>}
-            title={
-              <span style={{ color: "#4197a2" }}>
-                UK-Accredited Diplomas Designed for Dubai's Job Market
-              </span>
-            }
-            sub={
-              <span style={{ color: "#429198" }}>
-                Each programme is OTHM-accredited (UK), KHDA-recognised in Dubai, and accepted globally via WES. All assessed through practical assignments — no final exams.
-              </span>
-            }
+            tag="MIBD Programmes"
+            title="UK-Accredited Diplomas Designed for Dubai's Job Market"
+            sub="Each programme is OTHM-accredited (UK), KHDA-recognised in Dubai, and accepted globally via WES. All assessed through practical assignments — no final exams."
           />
           <div
             style={{
@@ -1623,11 +1692,11 @@ export default function StudyDubaiPage() {
         </div>
       </section>
 
-      {/* ---------------- LANGUAGE / ELIGIBILITY REQUIREMENTS ---------------- */}
+      {/* ---------------- LANGUAGE REQUIREMENTS ---------------- */}
       <section
         style={{
-          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD} 60%, ${C.navy})`,
-          padding: "50px 8px",
+          background: `linear-gradient(160deg, ${C.tealDark}, ${C.tealD} 60%, ${C.teal})`,
+          padding: "100px 48px",
           position: "relative",
           overflow: "hidden",
         }}
@@ -1639,15 +1708,14 @@ export default function StudyDubaiPage() {
             right: -100,
             width: 360,
             height: 360,
-            background: `radial-gradient(circle, ${C.gold} 0%, transparent 70%)`,
-            opacity: 0.08,
+            background: `radial-gradient(circle, ${C.coral} 0%, transparent 70%)`,
+            opacity: 0.1,
             filter: "blur(30px)",
           }}
         />
         <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 2 }}>
           <SectionHead
-            style={{ paddingLeft: "24px", paddingRight: "24px" }}
-            tag="English Requirements for Dubai"
+            tag="English Requirements"
             title="No IELTS Required to Study in Dubai"
             sub="Unlike most Western destinations, Dubai does not require IELTS, TOEFL, or any standardised English test. Here is exactly what the admission process looks like for international students."
             light
@@ -1657,7 +1725,7 @@ export default function StudyDubaiPage() {
               <div
                 style={{
                   background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(240,192,64,0.18)",
+                  border: "1px solid rgba(120,192,192,0.18)",
                   padding: 36,
                   borderRadius: 20,
                   backdropFilter: "blur(8px)",
@@ -1665,26 +1733,27 @@ export default function StudyDubaiPage() {
               >
                 <h3
                   style={{
+                    // fontFamily: "'Fraunces', Georgia, serif",
                     fontSize: 20,
                     fontWeight: 600,
                     color: C.white,
                     marginBottom: 22,
                     paddingBottom: 16,
-                    borderBottom: `2px solid ${C.gold}`,
+                    borderBottom: `2px solid ${C.mint}`,
                     display: "flex",
                     alignItems: "center",
                     gap: 10,
                   }}
                 >
-                  <span>🗣️</span> Standard Admission (All Levels)
+                  <span>📝</span> Standard Admission (All Levels)
                 </h3>
                 {[
-                  ["IELTS", "Not Required"],
-                  ["TOEFL", "Not Required"],
-                  ["PTE", "Not Required"],
-                  ["English Interview", "Accepted ✓"],
-                  ["Medium of Instruction Certificate", "Accepted ✓"],
-                ].map(([t, s], idx, arr) => (
+                  ["IELTS", "Not Required", false],
+                  ["TOEFL", "Not Required", false],
+                  ["PTE", "Not Required", false],
+                  ["English Interview", "Accepted ✓", true],
+                  ["Medium of Instruction Certificate", "Accepted ✓", true],
+                ].map(([t, s, ok], idx, arr) => (
                   <div
                     key={t}
                     style={{
@@ -1700,9 +1769,9 @@ export default function StudyDubaiPage() {
                       style={{
                         fontSize: 13,
                         fontWeight: 700,
-                        color: "#FFFFFF",
+                        color: ok ? C.mint : C.coralL,
                         padding: "4px 12px",
-                        background: "rgba(240,192,64,0.12)",
+                        background: ok ? "rgba(120,192,192,0.12)" : "rgba(224,136,119,0.12)",
                         borderRadius: 999,
                       }}
                     >
@@ -1712,8 +1781,8 @@ export default function StudyDubaiPage() {
                 ))}
                 <div
                   style={{
-                    background: "rgba(240,192,64,0.08)",
-                    border: "1px solid rgba(240,192,64,0.2)",
+                    background: "rgba(120,192,192,0.08)",
+                    border: "1px solid rgba(120,192,192,0.2)",
                     padding: "16px 18px",
                     marginTop: 22,
                     fontSize: 12.5,
@@ -1731,7 +1800,7 @@ export default function StudyDubaiPage() {
               <div
                 style={{
                   background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(240,192,64,0.18)",
+                  border: "1px solid rgba(120,192,192,0.18)",
                   padding: 36,
                   borderRadius: 20,
                   backdropFilter: "blur(8px)",
@@ -1739,25 +1808,26 @@ export default function StudyDubaiPage() {
               >
                 <h3
                   style={{
+                    // fontFamily: "'Fraunces', Georgia, serif",
                     fontSize: 20,
                     fontWeight: 600,
                     color: C.white,
                     marginBottom: 22,
                     paddingBottom: 16,
-                    borderBottom: `2px solid ${C.gold}`,
+                    borderBottom: `2px solid ${C.mint}`,
                     display: "flex",
                     alignItems: "center",
                     gap: 10,
                   }}
                 >
-                  <span>✅</span> Who Is Eligible to Apply?
+                  <span>🎓</span> Who Is Eligible to Apply?
                 </h3>
                 {[
                   ["Grade 10 Completed", "Eligible ✓"],
                   ["Grade 12 Completed", "Eligible ✓"],
                   ["Graduate Applicants", "Eligible ✓"],
                   ["Study Gap Applicants", "Accepted ✓"],
-                  ["Age Restrictions", "None — All Ages Welcome ✓"],
+                  ["Age Restrictions", "None ✓"],
                 ].map(([t, s], idx, arr) => (
                   <div
                     key={t}
@@ -1774,9 +1844,9 @@ export default function StudyDubaiPage() {
                       style={{
                         fontSize: 13,
                         fontWeight: 700,
-                        color: "#FFFFFF",
+                        color: C.mint,
                         padding: "4px 12px",
-                        background: "rgba(240,192,64,0.12)",
+                        background: "rgba(120,192,192,0.12)",
                         borderRadius: 999,
                       }}
                     >
@@ -1786,8 +1856,8 @@ export default function StudyDubaiPage() {
                 ))}
                 <div
                   style={{
-                    background: "rgba(46,125,90,0.08)",
-                    border: "1px solid rgba(46,125,90,0.25)",
+                    background: "rgba(224,136,119,0.08)",
+                    border: "1px solid rgba(224,136,119,0.2)",
                     padding: "16px 18px",
                     marginTop: 22,
                     fontSize: 12.5,
@@ -1796,7 +1866,7 @@ export default function StudyDubaiPage() {
                     borderRadius: 12,
                   }}
                 >
-                  ⚠️ Specific entry requirements may vary slightly between Level 3 and Level 4/5 programmes. Your Langma International advisor will confirm exact criteria before you apply.
+                  ⚠️ Specific entry requirements may vary slightly between Level 3 and Level 4/5. Your dedicated advisor will confirm exact criteria for your chosen diploma.
                 </div>
               </div>
             </Reveal>
@@ -1808,41 +1878,132 @@ export default function StudyDubaiPage() {
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Dubai Student Visa Guide</span>}
-            title={
-              <span style={{ color: "#4197a2" }}>
-                Dubai Student Visa — Straightforward, Efficient, Guided
-              </span>
-            }
-            sub={
-              <span style={{ color: "#429198" }}>
-                Dubai's student visa process is among the most accessible in the world for international applicants. Langma International provides professional guidance through every stage.
-              </span>
-            }
+            tag="Dubai Student Visa Guide"
+            title="Straightforward, Efficient & Fully Guided"
+            sub="Dubai's student visa process is among the most accessible in the world for international applicants. Langma International provides professional guidance through every stage."
           />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48 }} className="lm-visa-wrap">
             <div>
               <VisaStep n={1} title="Submit Your Application Online" body="Create your student profile and upload your passport copy and academic certificates. The process takes under 20 minutes and can be completed from anywhere." delay={0} />
               <VisaStep n={2} title="Receive Your Offer Letter" body="MIBD's admissions team reviews your application within 2–3 working days. Upon approval, your official Offer Letter is issued with full programme and next-step details." delay={100} />
               <VisaStep n={3} title="Confirm Your Place & Pay Fees" body="Secure your admission by paying the programme fees as outlined in your Offer Letter. A full payment invoice and receipt are issued immediately upon confirmation." delay={200} />
-              <VisaStep n={4} title="Visa Processing — Typically Within 7 Days" body="Your comprehensive visa package (USD 1,500) covers Entry Permit, Medical Check, Biometrics, Medical Insurance, Visa Stamping, and Emirates ID — all coordinated by our team." delay={300} />
+              <VisaStep n={4} title="Visa Processing — Within 7 Days" body="Your comprehensive visa package (USD 1,500) covers Entry Permit, Medical Check, Biometrics, Medical Insurance, Visa Stamping, and Emirates ID — all coordinated by our team." delay={300} />
               <VisaStep n={5} title="Arrive & Begin Your Dubai Journey" body="Receive your orientation schedule, welcome pack, and accommodation guidance before departure. Langma International supports your complete pre-arrival and on-ground transition." isLast delay={400} />
             </div>
-            <div style={{ position: "sticky", top: 100 }}>
-              <DocsBox
-                title="Required Documents"
-                items={visaDocs}
-                note={
-                  <>
-                    <strong style={{ color: "#FFFFFF" }}>Visa Fee:</strong> USD 1,500 (comprehensive all-inclusive package)
-                    <br />
-                    <strong style={{ color: "#FFFFFF" }}>Covers:</strong> Entry Permit · Medical Check · Biometrics · Medical Insurance · Visa Stamping · Emirates ID
-                    <br />
-                    <strong style={{ color: "#FFFFFF" }}>Processing Time:</strong> Typically 7 working days
-                  </>
-                }
-              />
-            </div>
+            <Reveal delay={200}>
+              <div
+                style={{
+                  background: `linear-gradient(160deg, ${C.tealDark}, ${C.tealD})`,
+                  padding: 40,
+                  borderRadius: 22,
+                  position: "sticky",
+                  top: 100,
+                  overflow: "hidden",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    top: -50,
+                    right: -50,
+                    width: 200,
+                    height: 200,
+                    background: `radial-gradient(circle, ${C.mint} 0%, transparent 70%)`,
+                    opacity: 0.15,
+                  }}
+                />
+                <h3
+                  style={{
+                    // fontFamily: "'Fraunces', Georgia, serif",
+                    fontSize: 22,
+                    fontWeight: 600,
+                    color: C.white,
+                    marginBottom: 24,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 12,
+                    position: "relative",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: 38,
+                      height: 38,
+                      background: C.mint,
+                      color: C.tealD,
+                      borderRadius: 10,
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: 18,
+                    }}
+                  >
+                    📋
+                  </span>
+                  Required Documents
+                </h3>
+                {[
+                  "Valid passport copy (personal data pages)",
+                  "All educational certificates (Grade 10 / 12 / degree)",
+                  "Academic transcripts or mark sheets",
+                  "Passport-size photograph (digital, white background)",
+                  "Official Offer Letter from MIBD",
+                  "Proof of fee payment / receipt",
+                  "Visa application details (as specified)",
+                ].map((d, i) => (
+                  <div
+                    key={d}
+                    style={{
+                      display: "flex",
+                      gap: 12,
+                      marginBottom: 14,
+                      fontSize: 13.5,
+                      color: "rgba(255,255,255,0.78)",
+                      alignItems: "flex-start",
+                      lineHeight: 1.6,
+                      position: "relative",
+                    }}
+                  >
+                    <span
+                      style={{
+                        width: 20,
+                        height: 20,
+                        background: "rgba(120,192,192,0.15)",
+                        color: C.mint,
+                        borderRadius: "50%",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: 11,
+                        flexShrink: 0,
+                        fontWeight: 700,
+                      }}
+                    >
+                      ✓
+                    </span>
+                    {d}
+                  </div>
+                ))}
+                <div
+                  style={{
+                    background: "rgba(120,192,192,0.1)",
+                    borderLeft: `3px solid ${C.mint}`,
+                    padding: "16px 18px",
+                    marginTop: 22,
+                    fontSize: 12.5,
+                    color: "rgba(255,255,255,0.7)",
+                    lineHeight: 1.75,
+                    borderRadius: 8,
+                  }}
+                >
+                  <strong style={{ color: C.mint }}>Visa Fee:</strong> USD 1,500 (all-inclusive)
+                  <br />
+                  <strong style={{ color: C.mint }}>Covers:</strong> Entry Permit · Medical · Biometrics · Insurance · Stamping · Emirates ID
+                  <br />
+                  <strong style={{ color: C.mint }}>Processing:</strong> ~ 7 working days
+                </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -1851,13 +2012,9 @@ export default function StudyDubaiPage() {
       <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Tax-Free Salary Outlook — Dubai 2026</span>}
-            title={<span style={{ color: "#4197a2" }}>Career Earnings Across Key Dubai Sectors</span>}
-            sub={
-              <span style={{ color: "#429198" }}>
-                In the UAE, personal income tax is zero — meaning these figures reflect what professionals take home. Data sourced from Dubai 2026 salary benchmarks for reference purposes.
-              </span>
-            }
+            tag="Tax-Free Salary Outlook · Dubai 2026"
+            title="Career Earnings Across Key Dubai Sectors"
+            sub="In the UAE, personal income tax is zero — meaning these figures reflect what professionals take home. Data sourced from Dubai 2026 salary benchmarks for reference purposes."
           />
           <div
             style={{
@@ -1880,17 +2037,9 @@ export default function StudyDubaiPage() {
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Career Outlook — UAE 2026 & Beyond</span>}
-            title={
-              <span style={{ color: "#4197a2" }}>
-                Dubai: A City Actively Building Its Workforce
-              </span>
-            }
-            sub={
-              <span style={{ color: "#429198" }}>
-                Dubai is not just a place to study — it is a city in deliberate expansion mode. The UAE's economic agenda is creating large-scale professional opportunities across every major industry.
-              </span>
-            }
+            tag="Career Outlook · UAE 2026 & Beyond"
+            title="Dubai: A City Actively Building Its Workforce"
+            sub="Dubai is not just a place to study — it is a city in deliberate expansion mode. The UAE's economic agenda is creating large-scale professional opportunities across every major industry."
           />
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 22 }}>
             {outlooks.map((o, i) => (
@@ -1903,7 +2052,7 @@ export default function StudyDubaiPage() {
       {/* ---------------- WHY LANGMA ---------------- */}
       <section
         style={{
-          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
+          background: `linear-gradient(160deg, ${C.tealDark}, ${C.tealD})`,
           padding: "100px 48px",
           position: "relative",
           overflow: "hidden",
@@ -1916,8 +2065,8 @@ export default function StudyDubaiPage() {
             left: "-5%",
             width: 400,
             height: 400,
-            background: `radial-gradient(circle, ${C.gold} 0%, transparent 70%)`,
-            opacity: 0.06,
+            background: `radial-gradient(circle, ${C.mint} 0%, transparent 70%)`,
+            opacity: 0.08,
             filter: "blur(20px)",
           }}
         />
@@ -1943,10 +2092,9 @@ export default function StudyDubaiPage() {
       </section>
 
       {/* ---------------- FAQ ---------------- */}
-      <FAQ />
-      {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
+      <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead tag={<span style={{ color: "#429198" }}>FAQs</span>} title="Common Questions About Studying in Dubai" center />
+          <SectionHead tag="FAQs" title="Common Questions About Studying in Dubai" center />
           <Reveal>
             <div style={{ maxWidth: 860, margin: "0 auto" }}>
               {faqs.map((f, i) => (
@@ -1961,13 +2109,12 @@ export default function StudyDubaiPage() {
             </div>
           </Reveal>
         </div>
-      </section> */}
+      </section>
 
       {/* ---------------- FINAL CTA ---------------- */}
       <section
-        className="mb-[-40px]"
         style={{
-          background: `linear-gradient(135deg, ${C.navyDark} 0%, ${C.navy} 60%, ${C.navyL} 100%)`,
+          background: `linear-gradient(135deg, ${C.tealDark} 0%, ${C.teal} 60%, ${C.tealL} 100%)`,
           backgroundSize: "200% 200%",
           animation: "lm-bg-shift 14s ease infinite",
           padding: "120px 48px",
@@ -1983,8 +2130,8 @@ export default function StudyDubaiPage() {
             left: "20%",
             width: 500,
             height: 500,
-            background: `radial-gradient(circle, ${C.gold} 0%, transparent 70%)`,
-            opacity: 0.1,
+            background: `radial-gradient(circle, ${C.coral} 0%, transparent 70%)`,
+            opacity: 0.15,
             filter: "blur(40px)",
             animation: "lm-float 10s ease-in-out infinite",
           }}
@@ -1996,8 +2143,8 @@ export default function StudyDubaiPage() {
             right: "10%",
             width: 500,
             height: 500,
-            background: `radial-gradient(circle, ${C.forest} 0%, transparent 70%)`,
-            opacity: 0.12,
+            background: `radial-gradient(circle, ${C.mint} 0%, transparent 70%)`,
+            opacity: 0.18,
             filter: "blur(40px)",
             animation: "lm-float 13s ease-in-out infinite reverse",
           }}
@@ -2006,6 +2153,7 @@ export default function StudyDubaiPage() {
           <Reveal>
             <h2
               style={{
+                // fontFamily: "'Fraunces', Georgia, serif",
                 color: C.white,
                 fontSize: "clamp(32px, 4.5vw, 56px)",
                 marginBottom: 20,
@@ -2015,7 +2163,7 @@ export default function StudyDubaiPage() {
             >
               Dubai Is Ready.
               <br />
-              <em className="lm-grd-text" style={{ fontStyle: "italic" }}>
+              <em className="lm-grad-text" style={{ fontStyle: "italic" }}>
                 Is This Your Year?
               </em>
             </h2>
@@ -2037,56 +2185,15 @@ export default function StudyDubaiPage() {
           </Reveal>
           <Reveal delay={300}>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <NavyButton onClick={() => setOpen(true)} style={{ background: C.forest, padding: "16px 36px" }}>
+              <TealButton style={{ background: C.coral, padding: "16px 36px" }}>
                 Book Free Counselling →
-              </NavyButton>
-              <GhostButton onClick={() => setOpen(true)}>Check My Eligibility</GhostButton>
-              <GhostButton onClick={() => setOpen(true)}>Talk to an Advisor</GhostButton>
+              </TealButton>
+              <GhostButton>Check My Eligibility</GhostButton>
+              <GhostButton>Talk to an Advisor</GhostButton>
             </div>
           </Reveal>
         </div>
       </section>
-
-      {/* ---------------- FOOTER INFO ---------------- */}
-      <div
-        className="-mb-[40px]"
-        style={{
-          background: C.navyDark,
-          padding: "24px 48px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: 32,
-          flexWrap: "wrap",
-          borderTop: `1px solid rgba(240,192,64,0.1)`,
-        }}
-      >
-        <span style={{ fontSize: 13, color: "#4197a2", display: "block" }}>
-          📍{" "}
-          <a
-            href="https://www.google.com/maps/place/Langma+International/@28.5700637,77.2214716,765m/data=!3m1!1e3!4m15!1m8!3m7!1s0x390ce25c4343e17b:0x9f40fbe93cafcba5!2s73,+South+Extension+I,+Block+H,+New+Delhi,+Delhi+110049!3b1!8m2!3d28.5700637!4d77.2214716!16s%2Fg%2F11hfk14hwt!3m5!1s0x390ce25dba89c087:0x6b74c7356d18b11a!8m2!3d28.5700396!4d77.2209663!16s%2Fg%2F1jglvgls2?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: "#ffffff", textDecoration: "none" }}
-          >
-            E 73, South Extension Part-1, New Delhi — 110049
-          </a>
-        </span>
-
-        <span style={{ fontSize: 13, color: "#ffffff", display: "block" }}>
-          📞{" "}
-          <a href="tel:+919810117094" style={{ color: "#ffffff", textDecoration: "none" }}>
-            +91-9810117094
-          </a>
-        </span>
-
-        <span style={{ fontSize: 13, color: "#ffffff", display: "block" }}>
-          ✉️{" "}
-          <a href="mailto:info@langmainternational.com" style={{ color: "#ffffff", textDecoration: "none" }}>
-            info@langmainternational.com
-          </a>
-        </span>
-      </div>
 
       {/* ---------------- RESPONSIVE ---------------- */}
       <style>{`
@@ -2094,8 +2201,6 @@ export default function StudyDubaiPage() {
           .lm-visa-wrap { grid-template-columns: 1fr !important; }
         }
       `}</style>
-
-      <PopupForm open={open} onClose={() => setOpen(false)} />
     </div>
   );
 }

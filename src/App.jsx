@@ -59,6 +59,7 @@ import Payment from "./Pages/HomePages/Payment";
 import Event from "./Pages/HomePages/Event";
 import StudyNetherlandsPage from "./Pages/HomePages/StudyInNetherlands";
 import StudyInSouthKorea from "./Pages/HomePages/StudyInSouthKorea";
+import StudyMaltaPage from "./Pages/HomePages/StudyInMalta";
 import Transcription from "./Pages/HomePages/Transcription";
 import Translational from "./Pages/HomePages/Translational";
 import Localization from "./Pages/HomePages/Localization";
@@ -82,6 +83,8 @@ import StudyAbrotHeroSection1 from "./Pages/HomePages/StudyAbrotHeroSection1";
 import GoldenVisaPage from "./Pages/HomePages/GoldenVisa";
 import LangmaStudyAbroadAssessment from "./Pages/HomePages/LangmaStudyAbroadAssessment";
 import InternationalHeroSection from "./Pages/HomePages/InternationalHeroSection";
+import StudyMauritiusPage from "./Pages/HomePages/StudyInMauritius";
+import StudySingaporePage from "./Pages/HomePages/StudyInSingapore";
 
 
 
@@ -176,7 +179,7 @@ function App() {
           <Route path="/certificate" element={<Certificate />} />
           <Route path="/terms-and-conditions" element={<Termscondition />} />
           <Route path="/tt" element={<Test1 />} />
-          <Route path="/tyt" element={<StudyDubaiPage />} />
+          <Route path="/dubai" element={<StudyDubaiPage />} />
           <Route path="/poland" element={<StudyPolandPage />} />
           <Route path="/pr-by-investment" element={<Investment1/>} />
           <Route path="/assessment" element={<PRAssessment />} />
@@ -185,6 +188,10 @@ function App() {
           <Route path="/languages" element={<InternationalHeroSection />} />
           <Route path="/netherland" element={<StudyNetherlandsPage />} />
           <Route path="/south-korea" element={<StudyInSouthKorea />} />
+          <Route path="/malta" element={<StudyMaltaPage />} />
+          <Route path="/study-in-mauritius" element={<StudyMauritiusPage />} />
+          <Route path="/study-in-singapore" element={<StudySingaporePage/>} />
+          {/* <Route path="/dubai" element={<StudyDubaiPage />} /> */}
         </Routes>
       )}
 

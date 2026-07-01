@@ -134,9 +134,11 @@ export default function Certificate() {
     setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-  // ── Handle form submit → POST to /api/certificate ────────────────────────
+  // ── Handle form submit → POST to /api/contact-lead (same as other forms) ──
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (loading) return;
 
     // Client-side validation
     const errs = {};
@@ -174,29 +176,16 @@ export default function Certificate() {
       setLoading(true);
       setResponseMsg("");
 
-      /*
-       * POST https://langmainternational.com/api/certificate
-       *
-       * Payload fields sent to the server:
-       *   name             – applicant full name
-       *   email            – applicant email
-       *   mobile           – applicant phone number
-       *   language         – selected language
-       *   certificate_type – selected certificate type
-       *   message          – applicant message / query
-       *   type             – fixed label so backend can categorise the lead
-       */
       const payload = {
-        name:             formData.name.trim(),
-        email:            formData.email.trim(),
-        mobile:           formData.phone,
-        language:         formData.language,
-        certificate_type: formData.certificate_type,
-        message:          formData.message.trim(),
-        type:             "Certificate Application",
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        mobile: formData.phone,
+        message: `Language: ${formData.language}. Certificate Type: ${formData.certificate_type}. ${formData.message.trim()}`,
+        type: "Certificate Application",
+        service: `Certificate Application - ${formData.language}`,
       };
 
-      const response = await fetch(`${API_BASE}/api/certificate`, {
+      const response = await fetch(`${API_BASE}/api/contact-lead`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -207,10 +196,7 @@ export default function Certificate() {
       if (response.ok) {
         // ── Success ──
         setIsSuccess(true);
-        setResponseMsg(
-          data?.message ||
-          "Your certificate application has been submitted successfully! Our team will contact you shortly."
-        );
+        setResponseMsg("Form Submitted Successfully");
         // Reset form
         setFormData({
           name: "",
