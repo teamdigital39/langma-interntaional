@@ -87,9 +87,25 @@ import LangmaStudyAbroadAssessment from "./Pages/HomePages/LangmaStudyAbroadAsse
 import InternationalHeroSection from "./Pages/HomePages/InternationalHeroSection";
 import StudyMauritiusPage from "./Pages/HomePages/StudyInMauritius";
 import StudySingaporePage from "./Pages/HomePages/StudyInSingapore";
-
-
-
+import LangmaMaltaGlobalResidenceProgrammePage from "./Pages/HomePages/MaltaGlobalResidenceProgrammePage";
+import LangmaMaltaPermanentResidenceProgrammePage from "./Pages/HomePages/MaltaResidencyProgram";
+import AndorraPRPage from "./Pages/HomePages/AndorraPR";
+import AustriaResidencePage from "./Pages/HomePages/AustriaPR";
+import CyprusPRPage from "./Pages/HomePages/CyprusPRPage";
+import LangmaEB5USAPage from "./Pages/HomePages/EB5USA";
+import HungaryBusinessResidencyPage from "./Pages/HomePages/HungaryBusiness";
+import HungaryWhiteCardPage from "./Pages/HomePages/HungaryWhiteCard";
+import LangmaIndonesiaSecondHomeVisaPage from "./Pages/HomePages/IndonesiaSecondHomeVisa";
+import ItalyDNVPage from "./Pages/HomePages/ItalyDNV";
+import LangmaMaltaNomadPage from "./Pages/HomePages/MaltaNomad";
+import PortugalGlobalTalentPage from "./Pages/HomePages/PortugalGlobalTalent";
+import LangmaPortugalStartupVisaPage from "./Pages/HomePages/PortugalStartup";
+import PortugalD7VisaPage from "./Pages/HomePages/Portugal_D7";
+import PortugalD8Page from "./Pages/HomePages/Portugal_D8";
+import SpainDNVPage from "./Pages/HomePages/SpainDNV";
+import SpainNLVPage from "./Pages/HomePages/SpainNLVPage";
+import SwitzerlandPRPage from "./Pages/HomePages/SwitzerlandPR";
+import LangmaThailandEliteVisaPage from "./Pages/HomePages/ThilandEliteVisa";
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -138,7 +154,6 @@ function App() {
           <Route path="/australia" element={<Australia/>} />
           <Route path="/unitedarab" element={<UnitedArabEmirates/>} />
           <Route path="/mauritius" element={<Mauritius/>} />
-          <Route path="/:slug" element={<Arabic/>} />
           <Route path="/balkan-language" element={<BalkanLanguage/>} />
           <Route path="/chinese" element={<Chinese/>} />
           <Route path="/frame" element={<Frame/>} />
@@ -196,6 +211,26 @@ function App() {
           {/* <Route path="/dubai" element={<StudyDubaiPage />} /> */}
           <Route path="/georgia" element={<StudyGeorgiaPage />} />
           <Route path="/study-in-cyprus" element={<StudyCyprusPage />} />
+          <Route path="/malta-global" element={<LangmaMaltaGlobalResidenceProgrammePage />} />
+          <Route path="/malta-residency" element={<LangmaMaltaPermanentResidenceProgrammePage />} />
+          <Route path="/malta-nomad" element={<LangmaMaltaNomadPage />} />
+          <Route path="/cyprus-pr" element={<CyprusPRPage />} />
+          <Route path="/andorra-residency" element={<AndorraPRPage />} />
+          <Route path="/portugal-d7" element={<PortugalD7VisaPage />} />
+          <Route path="/portugal-d8" element={<PortugalD8Page />} />
+          <Route path="/portugal-startup-visa" element={<LangmaPortugalStartupVisaPage />} />
+          <Route path="/portugal-global-talent" element={<PortugalGlobalTalentPage />} />
+          <Route path="/spain-nlv" element={<SpainNLVPage />} />
+          <Route path="/spain-digital-nomad" element={<SpainDNVPage />} />
+          <Route path="/italy-digital-nomad" element={<ItalyDNVPage />} />
+          <Route path="/austria-residency" element={<AustriaResidencePage />} />
+          <Route path="/switzerland-residency" element={<SwitzerlandPRPage />} />
+          <Route path="/hungary-white-card" element={<HungaryWhiteCardPage />} />
+          <Route path="/hungary-business-residency" element={<HungaryBusinessResidencyPage />} />
+          <Route path="/eb5-usa" element={<LangmaEB5USAPage />} />
+          <Route path="/indonesia-second-home-visa" element={<LangmaIndonesiaSecondHomeVisaPage />} />
+          <Route path="/thailand-elite-visa" element={<LangmaThailandEliteVisaPage />} />
+          <Route path="/:slug" element={<Arabic/>} />
         </Routes>
       )}
 

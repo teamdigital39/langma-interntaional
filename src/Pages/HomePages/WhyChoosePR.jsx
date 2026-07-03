@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const otherOptions = [
   {
     name: "Portugal Global Talent Programme",
+    slug: "/portugal-global-talent",
     category: "Specialist Residence Pathway",
     badge: "Profile-Specific",
     benefits: [
@@ -17,6 +18,7 @@ const otherOptions = [
   },
   {
     name: "Malta Global Residence Programme",
+    slug: "/malta-global",
     category: "Specialist Residence Pathway",
     badge: "EU-Linked",
     benefits: [
@@ -29,6 +31,7 @@ const otherOptions = [
   },
   {
     name: "Thailand Privilege Visa",
+    slug: "/thailand-elite-visa",
     category: "Long-Term Stay Programme",
     badge: "Lifestyle Route",
     benefits: [
@@ -41,6 +44,7 @@ const otherOptions = [
   },
   {
     name: "Indonesia Second Home Visa",
+    slug: "/indonesia-second-home-visa",
     category: "Long-Term Residence Pathway",
     badge: "Emerging Route",
     benefits: [
@@ -203,7 +207,15 @@ const WhyChoosePR = () => {
                     </div>
                   )}
                 </div>
-                <div className="px-5 pb-5">
+                <div className="px-5 pb-5 flex flex-col gap-2">
+                  {opt.slug && (
+                    <Link
+                      to={opt.slug}
+                      className="block text-center bg-[#296166] text-white hover:bg-[#1f4f53] py-2 rounded-lg text-[13px] font-semibold transition-colors"
+                    >
+                      View Programme Details
+                    </Link>
+                  )}
                   <a href="#meeting" className="block text-center border-2 border-[#296166] text-[#296166] hover:bg-[#296166] hover:text-white py-2 rounded-lg text-[13px] font-semibold transition-colors">
                     Discuss This Pathway
                   </a>

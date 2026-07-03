@@ -7,7 +7,7 @@ const NOTE = ({ children }) => (
   </div>
 );
 
-const ProgramCard = ({ name, category, badge, from, fromLabel, timeline, benefits, note, ctaLabel = "Discuss This Pathway" }) => (
+const ProgramCard = ({ name, category, badge, from, fromLabel, timeline, benefits, note, slug, ctaLabel = "Discuss This Pathway" }) => (
   <div className="bg-white rounded-xl border border-gray-100 overflow-hidden flex flex-col shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-250 group">
     {/* Header */}
     <div className="bg-[#0C5F5F] px-6 py-5 flex items-start justify-between gap-3">
@@ -52,7 +52,15 @@ const ProgramCard = ({ name, category, badge, from, fromLabel, timeline, benefit
     </div>
 
     {/* Footer */}
-    <div className="px-6 pb-5">
+    <div className="px-6 pb-5 flex flex-col gap-2">
+      {slug && (
+        <Link
+          to={slug}
+          className="block text-center bg-[#296166] text-white hover:bg-[#1f4f53] py-2.5 rounded-lg text-[14px] font-semibold transition-colors"
+        >
+          View Programme Details
+        </Link>
+      )}
       <a
         href="#meeting"
         className="block text-center border-2 border-[#296166] text-[#296166] hover:bg-[#296166] hover:text-white py-2.5 rounded-lg text-[14px] font-semibold transition-colors"
@@ -74,6 +82,7 @@ const PROGRAMS = {
   investors: [
     {
       name: "Malta Permanent Residence Programme",
+      slug: "/malta-residency",
       category: "Permanent Residency by Investment",
       badge: "EU Residence",
       from: "€169,000+",
@@ -89,6 +98,7 @@ const PROGRAMS = {
     },
     {
       name: "Cyprus Permanent Residency (Category 6.2)",
+      slug: "/cyprus-pr",
       category: "Permanent Residency by Investment",
       badge: "EU Residence",
       from: "€300,000",
@@ -103,6 +113,7 @@ const PROGRAMS = {
     },
     {
       name: "Andorra Passive Residence Permit",
+      slug: "/andorra-residency",
       category: "Residence Permit",
       badge: "European Residence",
       from: "€600,000",
@@ -120,6 +131,7 @@ const PROGRAMS = {
   fii: [
     {
       name: "Portugal D7 Visa & Residence Permit",
+      slug: "/portugal-d7",
       category: "Passive Income Residency",
       badge: "Active",
       fromLabel: "Income Benchmark",
@@ -136,6 +148,7 @@ const PROGRAMS = {
     },
     {
       name: "Spain Non-Lucrative Visa",
+      slug: "/spain-nlv",
       category: "Passive Income Residency",
       badge: "Active",
       fromLabel: "Income",
@@ -152,6 +165,7 @@ const PROGRAMS = {
     },
     {
       name: "Austria Residence Permit (Settlement Permit – Exceptionally Qualified)",
+      slug: "/austria-residency",
       category: "Financially Self-Sufficient Residence",
       badge: "Quota-Based",
       fromLabel: "Profile",
@@ -167,6 +181,7 @@ const PROGRAMS = {
     },
     {
       name: "Switzerland Residence Permit (Lump-Sum Taxation)",
+      slug: "/switzerland-residency",
       category: "Residence by Fiscal Arrangement",
       badge: "Discreet",
       fromLabel: "Profile",
@@ -186,6 +201,7 @@ const PROGRAMS = {
   nomads: [
     {
       name: "Portugal Digital Nomad Visa (D8)",
+      slug: "/portugal-d8",
       category: "Remote Work Residence",
       badge: "Active",
       fromLabel: "Income from",
@@ -201,6 +217,7 @@ const PROGRAMS = {
     },
     {
       name: "Hungary White Card",
+      slug: "/hungary-white-card",
       category: "Digital Nomad Residence Permit",
       badge: "EU Residence",
       fromLabel: "Income from",
@@ -217,6 +234,7 @@ const PROGRAMS = {
     },
     {
       name: "Malta Nomad Residence Permit",
+      slug: "/malta-nomad",
       category: "Digital Nomad Residence Permit",
       badge: "English Speaking",
       fromLabel: "Income from",
@@ -233,6 +251,7 @@ const PROGRAMS = {
     },
     {
       name: "Spain Digital Nomad Visa",
+      slug: "/spain-digital-nomad",
       category: "Remote Work Residence",
       badge: "Active",
       fromLabel: "Income from",
@@ -248,6 +267,7 @@ const PROGRAMS = {
     },
     {
       name: "Italy Digital Nomad & Remote Worker Visa",
+      slug: "/italy-digital-nomad",
       category: "Remote Work Residence",
       badge: "Active",
       fromLabel: "Income from",
@@ -266,6 +286,7 @@ const PROGRAMS = {
   business: [
     {
       name: "Hungary Business Residency",
+      slug: "/hungary-business-residency",
       category: "Entrepreneur Residence Permit",
       badge: "EU Residence",
       fromLabel: "Type",
@@ -281,6 +302,7 @@ const PROGRAMS = {
     },
     {
       name: "Portugal Startup Visa (D2)",
+      slug: "/portugal-startup-visa",
       category: "Entrepreneur Residency",
       badge: "Innovation Route",
       fromLabel: "Type",
@@ -296,6 +318,7 @@ const PROGRAMS = {
     },
     {
       name: "USA EB-5 Immigrant Investor Pathway",
+      slug: "/eb5-usa",
       category: "Green Card by Investment",
       badge: "Green Card",
       from: "USD 800,000",
