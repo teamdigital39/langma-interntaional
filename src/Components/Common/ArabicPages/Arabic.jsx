@@ -15,41 +15,8 @@ import ArabicCoursesSlider from "./ArabicCoursesSlider";
 import PopularCourses from "../../../Pages/HomePages/PopularCourses";
 import PopupForm from "../../PopupForm";
 import { Helmet } from "react-helmet-async";
-
-const MANN_KI_BAAT_SLUGS = ["online-japanese-language-course", "online-german-language-course", "online-spanish-language-courses"];
-
-const ONGC_VIDESH_SLUGS = ["online-spanish-language-courses", "online-russian-language-course"];
-
-const COAST_GUARD_SLUGS = [
-  "online-japanese-language-course",
-  "arabic-language-online-course",
-  "online-korean-language-courses",
-  "vietnamese-language-courses",
-];
-
-const MANN_KI_BAAT_IMAGES = {
-  "online-japanese-language-course": {
-    primary: {
-      src: "/images/german/recognition-prasar-bharati-mann-ki-baat.png",
-      alt: "Letter of appreciation from Prasar Bharati All India Radio for Langma Mann Ki Baat translations into Japanese, German, and Spanish",
-    },
-    secondary: [],
-  },
-  "online-german-language-course": {
-    primary: {
-      src: "/images/german/recognition-prasar-bharati-mann-ki-baat.png",
-      alt: "Letter of appreciation from Prasar Bharati All India Radio for Langma Mann Ki Baat translations into Japanese, German, and Spanish",
-    },
-    secondary: [],
-  },
-  "online-spanish-language-courses": {
-    primary: {
-      src: "/images/german/recognition-prasar-bharati-mann-ki-baat.png",
-      alt: "Letter of appreciation from Prasar Bharati All India Radio for Langma Mann Ki Baat translations into Japanese, German, and Spanish",
-    },
-    secondary: [],
-  },
-};
+import RecognitionSlider from "./RecognitionSlider";
+import { getRecognitionSlides } from "./recognitionSlidesData";
 
 const Arabic = () => {
    const [open, setOpen] = useState(false);
@@ -152,11 +119,6 @@ useEffect(() => {
   // const shortContent = textContent.slice(0, LIMIT);
 
   const contentHtml = languageData?.content || "";
-  
-
- 
-
- 
 
   return (
     <>
@@ -235,8 +197,6 @@ useEffect(() => {
         ></div> */}
 
       </section>
-
-      
 
       <section className="w-full bg-[#f4fbfb] py-10 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
@@ -334,7 +294,6 @@ useEffect(() => {
       {/* <PopularCourses data={apiData?.languages} /> */}
      {/* <div className="max-w-7xl mx-auto my-8 px-4 relative">
 
-  
   <button
     ref={prevRef}
     className="
@@ -357,7 +316,6 @@ useEffect(() => {
     <ChevronLeft size={22} />
   </button>
 
- 
   <button
     ref={nextRef}
     className="
@@ -380,7 +338,6 @@ useEffect(() => {
     <ChevronRight size={22} />
   </button>
 
-  
   <Swiper
     slidesPerView={1}
     spaceBetween={28}
@@ -407,7 +364,6 @@ useEffect(() => {
     {languages.map((item, index) => (
       <SwiperSlide key={index} className="py-4">
 
-       
         <div
           className="
             bg-white
@@ -428,7 +384,6 @@ useEffect(() => {
           "
         >
 
-        
           <div className="overflow-hidden relative">
             <img
               src={item.image || "/placeholder.png"}
@@ -443,7 +398,6 @@ useEffect(() => {
               "
             />
 
-        
             <div
               className="
                 absolute inset-0
@@ -456,7 +410,6 @@ useEffect(() => {
 
           <div className="p-6 flex flex-col items-start">
 
-            
             <h3
               className="
                 text-xl
@@ -469,7 +422,6 @@ useEffect(() => {
               {item.title}
             </h3>
 
-            
             <Link
               to={`/${item.url}`}
               className="
@@ -697,163 +649,6 @@ useEffect(() => {
               </div>
             </div>
           </section>
-
-          <section className="w-full py-12 lg:py-16 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-                <div className="text-center lg:text-left">
-                  <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                    Langma International:{" "}
-                    <span className="text-[#296166]">
-                      Delivering English Language Training for the British High Commission
-                    </span>
-                  </h2>
-                  <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                    Langma International was entrusted with conducting an English language training programme
-                    for members of the junior staff at the British High Commission, New Delhi. Delivered over
-                    a six-month period, the programme supported the development of essential communication
-                    skills and received positive recognition for its relevance, effectiveness, and learner-focused
-                    delivery.
-                  </p>
-                </div>
-
-                <div className="flex justify-center lg:justify-end">
-                  <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                    <img
-                      src="/images/english/testimonial-british-high-commission-english.png"
-                      alt="Certification from British High Commission New Delhi for Langma Basic English Language Course"
-                      className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-                <div className="flex justify-center lg:justify-start order-2 lg:order-1">
-                  <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                    <img
-                      src="/images/english/testimonial-embassy-benin-english.png"
-                      alt="Testimonial from Embassy of the Republic of Benin, New Delhi, for Langma English language training"
-                      className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                    />
-                  </div>
-                </div>
-
-                <div className="text-center lg:text-left order-1 lg:order-2">
-                  <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                    Langma International:{" "}
-                    <span className="text-[#296166]">
-                      Advancing English Language Learning at the Embassy of the Republic of Benin
-                    </span>
-                  </h2>
-                  <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                    The Embassy of the Republic of Benin, New Delhi, acknowledged Langma International for its
-                    contribution to English language learning and capacity development. This recognition highlights
-                    the effectiveness of our instructional methodology, the dedication of our faculty, and our
-                    commitment to delivering meaningful educational outcomes.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="w-full py-12 lg:py-16 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-                <div className="text-center lg:text-left">
-                  <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                    Langma International:{" "}
-                    <span className="text-[#296166]">
-                      English Language Excellence Acknowledged by the Embassy of the Republic of Iraq
-                    </span>
-                  </h2>
-                  <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                    The Embassy of the Republic of Iraq, New Delhi, expressed its appreciation for Langma
-                    International&apos;s contribution to English language development. The testimonial reflects
-                    the professionalism of our faculty, the strength of our instructional approach, and our
-                    commitment to delivering a rewarding learning experience for diplomatic personnel.
-                  </p>
-                </div>
-
-                <div className="flex justify-center lg:justify-end">
-                  <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                    <img
-                      src="/images/english/testimonial-embassy-iraq-english.png"
-                      alt="Testimonial from Embassy of the Republic of Iraq, New Delhi, for Langma English language training"
-                      className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-                <div className="flex justify-center lg:justify-start order-2 lg:order-1">
-                  <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                    <img
-                      src="/images/english/testimonial-embassy-congo-english.png"
-                      alt="Testimonial from Embassy of the Republic of Congo, New Delhi, for Langma English language training"
-                      className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                    />
-                  </div>
-                </div>
-
-                <div className="text-center lg:text-left order-1 lg:order-2">
-                  <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                    Langma International:{" "}
-                    <span className="text-[#296166]">
-                      Advancing English Language Proficiency within the Embassy of the Republic of Congo
-                    </span>
-                  </h2>
-                  <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                    The Embassy of the Republic of Congo, New Delhi, acknowledged Langma International for its
-                    contribution to English language learning through structured instruction, personalized guidance,
-                    and an engaging classroom experience. The testimonial reflects the value placed on our commitment
-                    to academic quality and learner success.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="w-full py-12 lg:py-16 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-                <div className="text-center lg:text-left">
-                  <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                    Langma International:{" "}
-                    <span className="text-[#296166]">
-                      Elevating English Language Proficiency at Kusum Healthcare Pvt. Ltd.
-                    </span>
-                  </h2>
-                  <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                    Entrusted with delivering an English Language Programme for Kusum Healthcare Pvt. Ltd.,
-                    Langma International conducted a professionally structured training programme recognised
-                    for its quality of instruction, experienced faculty, and dedicated learner support. The
-                    appreciation reflects our expertise in delivering impactful corporate language training
-                    tailored to organisational learning and communication goals.
-                  </p>
-                </div>
-
-                <div className="flex justify-center lg:justify-end">
-                  <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                    <img
-                      src="/images/english/testimonial-kusum-healthcare-english.png"
-                      alt="Letter of appreciation from Kusum Healthcare Pvt. Ltd. for Langma English language programme"
-                      className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
         </>
       )}
 
@@ -885,70 +680,6 @@ useEffect(() => {
                   learning and placement. Aligned with ACTFL and AERO standards, ALPT supports
                   accurate proficiency evaluation while reflecting our commitment to globally
                   benchmarked language education and student success.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="w-full py-12 lg:py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Arabic Language Training for the Defence Wing, Embassy of India, Abu Dhabi
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Selected to deliver Arabic language training for personnel of the Defence Wing,
-                  Embassy of India, Abu Dhabi, Langma International conducted a programme designed to
-                  strengthen practical communication skills and cultural understanding. The engagement
-                  was formally acknowledged for the dedication of the trainer, the effectiveness of the
-                  learning experience, and the value it delivered to participants.
-                </p>
-              </div>
-
-              <div className="flex justify-center lg:justify-end">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/arabic/testimonial-embassy-india-abu-dhabi-arabic.png"
-                    alt="Letter of appreciation from Defence Wing, Embassy of India Abu Dhabi, for Langma Arabic language training"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="flex justify-center lg:justify-start order-2 lg:order-1">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/arabic/testimonial-czech-embassy-arabic.png"
-                    alt="Testimonial from Embassy of the Czech Republic, New Delhi, for Langma Arabic language courses"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-
-              <div className="text-center lg:text-left order-1 lg:order-2">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Arabic Language Instruction for Czech Diplomatic Personnel
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Chosen by a senior representative of the Embassy of the Czech Republic, New Delhi, Langma
-                  International provided specialized Arabic language instruction designed to refresh and strengthen
-                  existing language capabilities. The experience was appreciated for the instructor&apos;s
-                  professionalism, enthusiasm, and ability to foster meaningful progress through personalized
-                  guidance.
                 </p>
               </div>
             </div>
@@ -987,37 +718,6 @@ useEffect(() => {
                   recognized certification for academic, professional, and immigration-related purposes
                   while upholding the highest standards of language assessment and educational excellence.
                 </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="w-full py-12 lg:py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Personalized Chinese Language Learning for the International Labour Organization
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  As part of its specialized language education initiatives, Langma International delivered a
-                  customized Chinese language programme associated with the International Labour Organization
-                  (ILO). The engagement was recognized for its attentive guidance, learner-focused methodology,
-                  and the high standard of instruction maintained throughout the programme.
-                </p>
-              </div>
-
-              <div className="flex justify-center lg:justify-end">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/chinese/testimonial-ilo-chinese-language.png"
-                    alt="Testimonial from International Labour Organization for Langma Chinese language classes"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
               </div>
             </div>
           </div>
@@ -1160,38 +860,6 @@ useEffect(() => {
               </div>
             </div>
           </section>
-
-          <section className="w-full py-12 lg:py-16 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-                <div className="text-center lg:text-left">
-                  <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                    Langma International:{" "}
-                    <span className="text-[#296166]">
-                      Spanish Language Learning Solutions for Yamaha Motor Solutions India
-                    </span>
-                  </h2>
-                  <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                    Langma International delivered a specialized Spanish language learning programme for
-                    professionals at Yamaha Motor Solutions India. The engagement was recognized for its
-                    well-designed curriculum, interactive learning environment, and the dedication of our faculty
-                    in helping participants develop confidence and competence in Spanish for professional
-                    communication.
-                  </p>
-                </div>
-
-                <div className="flex justify-center lg:justify-end">
-                  <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                    <img
-                      src="/images/spanish/testimonial-yamaha-spanish-training.png"
-                      alt="Testimonial from Yamaha Motor Solutions India for Langma Spanish language training programme"
-                      className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
         </>
       )}
 
@@ -1300,695 +968,11 @@ useEffect(() => {
             </div>
           </div>
         </section>
-
-        <section className="w-full py-12 lg:py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Delivering French &amp; Dutch Translation Excellence for the Central Bureau of Investigation
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Langma International was recognised by the Central Bureau of Investigation (CBI), Mumbai for
-                  successfully delivering large-scale translation services in French and Dutch. The assignment
-                  involved translating more than 1,50,000 words for a sensitive investigation, completed within a
-                  demanding timeline while maintaining exceptional accuracy and professionalism. This appreciation
-                  reflects our capability to handle complex, high-volume multilingual projects with precision,
-                  confidentiality, and dependable execution.
-                </p>
-              </div>
-
-              <div className="flex justify-center lg:justify-end">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/shared/recognition-cbi-french-dutch-translation.png"
-                    alt="Certificate of appreciation from CBI Bank Securities Fraud Branch Mumbai for Langma French and Dutch translation services"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
         </>
       )}
 
-      {slug === "online-french-language-course" && (
-        <>
-        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Delivering French &amp; Dutch Translation Excellence for the Central Bureau of Investigation
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Langma International was recognised by the Central Bureau of Investigation (CBI), Mumbai for
-                  successfully delivering large-scale translation services in French and Dutch. The assignment
-                  involved translating more than 1,50,000 words for a sensitive investigation, completed within a
-                  demanding timeline while maintaining exceptional accuracy and professionalism. This appreciation
-                  reflects our capability to handle complex, high-volume multilingual projects with precision,
-                  confidentiality, and dependable execution.
-                </p>
-              </div>
+      <RecognitionSlider slides={getRecognitionSlides(slug)} />
 
-              <div className="flex justify-center lg:justify-end">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/shared/recognition-cbi-french-dutch-translation.png"
-                    alt="Certificate of appreciation from CBI Bank Securities Fraud Branch Mumbai for Langma French and Dutch translation services"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="w-full py-12 lg:py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="flex justify-center lg:justify-start order-2 lg:order-1">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/french/testimonial-hemant-godse-mp-french.png"
-                    alt="Letter of appreciation from Hemant Tukaram Godse, Member of Parliament, for Langma French language training"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-
-              <div className="text-center lg:text-left order-1 lg:order-2">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Executive French Language Training for Parliamentary Leadership
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  As part of its bespoke language training initiatives, Langma International delivered a tailored
-                  French language programme for Shri Hemant Tukaram Godse, Member of Parliament (Lok Sabha). The
-                  engagement was recognized through a formal Letter of Appreciation, underscoring the value of a
-                  results-oriented learning experience and the lasting impact of personalized language instruction.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        </>
-      )}
-
-      {slug === "online-japanese-language-course" && (
-        <>
-        <section className="w-full py-12 lg:py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="flex justify-center lg:justify-start order-2 lg:order-1">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/japanese/recognition-aryabhatta-japanese-programme.png"
-                    alt="Letter of appreciation from Aryabhatta College, University of Delhi, for Langma 80-hour Japanese Language Programme"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-
-              <div className="text-center lg:text-left order-1 lg:order-2">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Advancing Japanese Language Education at Aryabhatta College, University of Delhi
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Recognised by Aryabhatta College, University of Delhi, Langma International successfully
-                  delivered an 80-hour Japanese Language Programme under the college&apos;s Add-On Courses
-                  Curriculum. Designed to enhance linguistic proficiency, cultural understanding, and global
-                  employability, the programme reflects our expertise in delivering transformative language
-                  education through trusted academic partnerships and excellence-driven instruction.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Advancing Japanese Language Proficiency for Army War College, Mhow
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Langma International was entrusted with delivering specialized Japanese language training for
-                  an officer of the Army War College, Mhow. The programme was recognized through a Certificate
-                  of Appreciation, highlighting the dedication of our instructor, the depth of linguistic
-                  instruction, and the academic rigor that characterized the learning experience.
-                </p>
-              </div>
-
-              <div className="flex justify-center lg:justify-end">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/japanese/testimonial-army-war-college-mhow.png"
-                    alt="Certificate of appreciation from Army War College, Mhow, for Langma Japanese language training"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="w-full py-12 lg:py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="flex justify-center lg:justify-start order-2 lg:order-1">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/japanese/testimonial-uae-embassy-japanese.png"
-                    alt="Testimonial from Embassy of the United Arab Emirates, New Delhi, for Langma Japanese language training"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-
-              <div className="text-center lg:text-left order-1 lg:order-2">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Japanese Language Training for UAE Diplomatic Personnel
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Langma International delivered a customized Japanese language programme for a diplomat from
-                  the Embassy of the United Arab Emirates, New Delhi. The engagement was recognized for its
-                  quality of instruction, effective teaching methodology, and the personalized support provided
-                  throughout the learning experience.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        </>
-      )}
-
-      {slug === "vietnamese-language-courses" && (
-        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Vietnamese Language Solutions for Boyd Precision Engineering &amp; Manufacturing India Pvt. Ltd.
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Selected to provide Vietnamese interpretation and translation services, Langma International
-                  supported Boyd Precision Engineering &amp; Manufacturing India Pvt. Ltd. with professional language
-                  solutions tailored to its operational requirements. Recognised for the quality of our services and
-                  responsive support, the engagement reflects our expertise in enabling effective multilingual
-                  communication for global enterprises.
-                </p>
-              </div>
-
-              <div className="flex justify-center lg:justify-end">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/vietnamese/testimonial-boyd-precision-vietnamese.png"
-                    alt="Testimonial from Boyd Precision Engineering and Manufacturing India for Langma Vietnamese interpretation services"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {slug === "hindi-language-classes" && (
-        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Corporate Hindi Language Training for Samsung Electronics
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Entrusted by Samsung Electronics to deliver Hindi language training, Langma International
-                  provided a structured learning experience tailored to the needs of international professionals.
-                  The engagement earned appreciation for its supportive faculty, effective instruction, and the
-                  measurable progress achieved throughout the programme.
-                </p>
-              </div>
-
-              <div className="flex justify-center lg:justify-end">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/hindi/testimonial-samsung-hindi-training.png"
-                    alt="Testimonial from Samsung Electronics for Langma Hindi language training programme"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {slug === "online-portuguese-classes" && (
-        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Portuguese Language Solutions for Andrade Gutierrez
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Langma International was entrusted with delivering Portuguese language training for professionals
-                  at Andrade Gutierrez. Through a focused and results-driven learning experience, the programme
-                  enabled participants to refine their communication skills while building greater confidence in
-                  the language. The engagement earned appreciation for the quality of instruction, academic rigour,
-                  and the professionalism of our training team.
-                </p>
-              </div>
-
-              <div className="flex justify-center lg:justify-end">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/portuguese/testimonial-andrade-gutierrez-portuguese.png"
-                    alt="Testimonial from Construtora Andrade Gutierrez for Langma Portuguese corporate training programme"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {slug === "indonesian-language-course" && (
-        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Endorsed by the Embassy of the Republic of Indonesia
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Acknowledged by the Embassy of the Republic of Indonesia, New Delhi, Langma International
-                  was recognized for advancing Indonesian language education through innovative pedagogy and
-                  meaningful learner outcomes. The appreciation underscores our commitment to empowering
-                  individuals with the linguistic and cultural competencies needed to thrive in an increasingly
-                  interconnected world.
-                </p>
-              </div>
-
-              <div className="flex justify-center lg:justify-end">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/indonesian/testimonial-embassy-indonesia.png"
-                    alt="Letter of appreciation from Embassy of the Republic of Indonesia, New Delhi, for Langma Indonesian language education"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {slug === "thai-language-courses" && (
-        <>
-        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Indian Navy Appreciation for Thai Language Training Excellence
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  As part of its specialized language training initiatives, Langma International successfully
-                  delivered a Thai Language Training Programme for personnel of the Headquarters, Ministry of
-                  Defence (Navy). The engagement was acknowledged through a Letter of Appreciation, highlighting
-                  the expertise of our trainers, the professionalism of our team, and the exceptional learning
-                  experience delivered throughout the programme.
-                </p>
-              </div>
-
-              <div className="flex justify-center lg:justify-end">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/thai/testimonial-indian-navy-thai-training.png"
-                    alt="Letter of appreciation from Indian Navy for Langma Thai language training programme"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="w-full py-12 lg:py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="flex justify-center lg:justify-start order-2 lg:order-1">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/thai/testimonial-indian-army-northern-command-thai.png"
-                    alt="Letter of appreciation from Headquarters Northern Command, Indian Army, for Langma Thai language training"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-
-              <div className="text-center lg:text-left order-1 lg:order-2">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Delivering Thai Language Training for the Indian Army
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Entrusted with conducting a Thai language programme for officers of the Headquarters Northern
-                  Command, Indian Army, Langma International delivered a structured and outcome-driven learning
-                  experience. The engagement was recognised through a formal letter of appreciation, underscoring
-                  the professionalism, dedication, and instructional quality that defined the programme.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Thai Language Solutions for International Tractors Limited (Sonalika)
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  To support its international business engagement initiatives, International Tractors Limited
-                  (Sonalika) entrusted Langma International with the delivery of Thai language instruction. The
-                  engagement was distinguished by the professionalism of our trainers, the dedication of our
-                  academic team, and a learning experience that earned the organization&apos;s appreciation and
-                  recommendation.
-                </p>
-              </div>
-
-              <div className="flex justify-center lg:justify-end">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/thai/testimonial-sonalika-thai-training.png"
-                    alt="Testimonial from International Tractors Limited Sonalika for Langma Thai language course"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="w-full py-12 lg:py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="flex justify-center lg:justify-start order-2 lg:order-1">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/thai/recognition-cbse-thai-evaluation.png"
-                    alt="Appreciation certificate from CBSE Regional Office Dehradun for Langma Thai language board examination evaluation"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-
-              <div className="text-center lg:text-left order-1 lg:order-2">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    CBSE Recognition for Thai Language Evaluation
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Langma International was recognised by the Central Board of Secondary Education (CBSE), Regional
-                  Office, Dehradun, for its contribution to the evaluation of Thai language board examination answer
-                  scripts. The recognition highlights our academic capability, linguistic expertise, and role in
-                  supporting quality assurance within India&apos;s national education framework.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        </>
-      )}
-
-      {slug === "online-burmese-language-course" && (
-        <>
-        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Professional Burmese Interpretation for NCGG&apos;s International Training Programmes
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Langma International was entrusted with providing Burmese interpretation services for the
-                  National Centre for Good Governance (NCGG) during its Mid-Career Training Programmes for
-                  Township and District Administrators from Myanmar. Appreciated for the quality of interpretation
-                  by programme participants, this engagement reflects our expertise in facilitating seamless
-                  multilingual communication for high-level government initiatives.
-                </p>
-              </div>
-
-              <div className="flex justify-center lg:justify-end">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/burmese/recognition-ncgg-burmese-interpreter.png"
-                    alt="Certificate of appreciation from National Centre for Good Governance for Langma Burmese interpretation services"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="w-full py-12 lg:py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="flex justify-center lg:justify-start order-2 lg:order-1">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/burmese/testimonial-indian-army-burmese-training.png"
-                    alt="Certificate of appreciation from Indian Army Headquarters for Langma Burmese language training"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-
-              <div className="text-center lg:text-left order-1 lg:order-2">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Burmese Language Training Recognized by Indian Army Headquarters
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  As part of its commitment to delivering specialized language solutions, Langma International
-                  provided Burmese language training to representatives of the Headquarters of the Ministry of
-                  Defence (Army). The programme earned a Certificate of Appreciation, recognizing the
-                  professionalism of our faculty, their deep command of the Burmese language and script, and
-                  their contribution to creating an enriching learning experience.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        </>
-      )}
-
-      {COAST_GUARD_SLUGS.includes(slug) && (
-        <section className="w-full py-12 lg:py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Foreign Language Training for Indian Coast Guard Personnel
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Selected to deliver Arabic, Japanese, Korean, and Vietnamese language training, Langma
-                  International collaborated with the Directorate of Training, Indian Coast Guard Headquarters
-                  to conduct a specialised programme for its personnel. The appreciation recognises the expertise
-                  of our faculty, innovative teaching methodology, and the depth of linguistic knowledge
-                  demonstrated throughout the programme.
-                </p>
-              </div>
-
-              <div className="flex justify-center lg:justify-end">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/shared/testimonial-indian-coast-guard-languages.png"
-                    alt="Certificate of appreciation from Indian Coast Guard for Langma Arabic, Japanese, Korean, and Vietnamese language training"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {ONGC_VIDESH_SLUGS.includes(slug) && (
-        <section className="w-full py-12 lg:py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Advancing Corporate Language Learning at ONGC Videsh Limited
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Through its collaboration with ONGC Videsh Limited, Langma International conducted
-                  specialised Spanish and Russian language training for its employees. The programme was
-                  recognised for its professional delivery, knowledgeable instructors, and innovative
-                  teaching methodology, reflecting our commitment to excellence in corporate language
-                  education.
-                </p>
-              </div>
-
-              <div className="flex justify-center lg:justify-end">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/shared/testimonial-ongc-videsh-spanish-russian.png"
-                    alt="Certificate of appreciation from ONGC Videsh Limited for Langma Spanish and Russian language training"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {slug === "online-german-language-course" && (
-        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Academic Partnership in German Language Education with Shaheed Rajguru College, University of Delhi
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Langma International delivered a Basic German Language Certification Programme for Shaheed Rajguru
-                  College of Applied Sciences for Women, University of Delhi, as part of the institution&apos;s academic
-                  enrichment curriculum. Designed to complement technical education with globally relevant language skills,
-                  the programme enhanced students&apos; career readiness through structured learning, interactive instruction,
-                  and practical German language proficiency. The college recognised Langma International for delivering an
-                  academically enriching programme that contributed to students&apos; professional growth and international
-                  outlook.
-                </p>
-              </div>
-
-              <div className="flex justify-center lg:justify-end">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src="/images/german/recognition-rajguru-college-german-programme.png"
-                    alt="Letter of appreciation from Shaheed Rajguru College of Applied Sciences for Women for Langma Basic German Language Certification Programme"
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {MANN_KI_BAAT_SLUGS.includes(slug) && (() => {
-        const recognitionImages = MANN_KI_BAAT_IMAGES[slug];
-        return (
-        <section className="w-full py-12 lg:py-16 bg-[#F7FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-              <div className="text-center lg:text-left">
-                <h2 className="text-[24px] lg:text-[32px] font-bold text-gray-900 leading-snug mb-5">
-                  Langma International:{" "}
-                  <span className="text-[#296166]">
-                    Officially Recognised for Translating Prime Minister&apos;s Mann Ki Baat
-                  </span>
-                </h2>
-                <p className="text-gray-600 text-[16px] lg:text-[18px] leading-relaxed">
-                  Official recognition from Prasar Bharati – External Services Division, All India Radio celebrates
-                  Langma International&apos;s successful translation of Prime Minister Shri Narendra Modi&apos;s Mann Ki Baat
-                  into Japanese, German, and Spanish. Delivered under strict broadcast timelines with exceptional
-                  linguistic precision, this achievement underscores our expertise in handling high-profile government
-                  communication where accuracy, consistency, and excellence are paramount.
-                </p>
-              </div>
-
-              <div className="flex justify-center lg:justify-end">
-                <div className="group relative w-full max-w-[420px] p-3 cursor-pointer">
-                  <img
-                    src={recognitionImages.primary.src}
-                    alt={recognitionImages.primary.alt}
-                    className="w-full h-auto rounded-xl shadow-lg border border-gray-200 bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {recognitionImages.secondary.length > 0 && (
-            <div className={`mt-12 gap-8 max-w-4xl mx-auto ${recognitionImages.secondary.length > 1 ? "grid grid-cols-1 sm:grid-cols-2" : "flex justify-center"}`}>
-              {recognitionImages.secondary.map((img) => (
-                <div key={img.src} className="group relative p-3 cursor-pointer">
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="w-full rounded-xl border border-gray-200 shadow-md object-contain bg-white transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:z-20 relative"
-                  />
-                </div>
-              ))}
-            </div>
-            )}
-          </div>
-        </section>
-        );
-      })()}
 {/*
       <CTASection
         title={` ${languageData.title} journey with Langma today!`}
