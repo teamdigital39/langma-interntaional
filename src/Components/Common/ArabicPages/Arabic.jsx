@@ -175,7 +175,7 @@ useEffect(() => {
 
               <div className="absolute bottom-10 left-34 rounded-xl   ">
                
-                <img src="/images/lpl.png" alt="" />
+                {/* <img src="/images/lpl.png" alt="" /> */}
 
               </div>
 
