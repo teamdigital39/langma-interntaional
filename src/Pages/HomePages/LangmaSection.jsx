@@ -1,26 +1,34 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import PopupForm from "../../Components/PopupForm";
- 
+
+
+const headings = [
+  "Communicate with the World",
+  "Celebrating Multilingualism",
+  "Celebrating Cultural Diversity",
+];
+
 const cards = [
-  { id: 1, image: "/images/01.png", title: "Mr. Sanjeev Rawat", desc: " Mr. Sanjeev Rawat and Ms. Persy Jain alongside Ms. Kerstin Peckl, Commercial Attaché of Austria to India. " },
+  { id: 1, image: "/images/41.jpg", title: "Mr. Sanjeev Rawat", desc: "The grace of Buchaechum (Korean Fan Dance) took centre stage as Langma International students celebrated Seollal, bringing one of Korea's most iconic performing arts to life." },
   // { id: 2, image: "/images/02.png", title: "Mr. Sanjeev Rawat", desc: "and the Langma Team welcoming H.E Oleksandr Polishchuk, Ambassador of Ukraine to India." },
-  { id: 3, image: "/images/04.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat with the Indian delegation at the Great Wall of China during a cultural visit." },
-  { id: 4, image: "/images/05.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat with the Indian delegation at the World Chinese Language Conference, fostering international language and cultural exchange." },
-  { id: 5, image: "/images/06.png", title: "Mr. Sanjeev Rawat", desc: "Langma International Team with Mr. Hee Chun Lee, Director of International Affairs Office, Graduate School of Culture and Arts, Korea, alongside Mr. Manit Acharya from Global Education Services Co., Ltd." },
-  { id: 6, image: "/images/07.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat, Founder of Langma International, with the Indian delegation at the World Chinese Language Conference, China." },
-  { id: 7, image: "/images/08.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat with Mr. Rysusuke Hagiwara, First Secretary of Japan, during an international cultural and educational engagement." },
-  { id: 8, image: "/images/09.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat and Mr. Gopal Kumar Kar with H.E. Xu Feihong, Ambassador of China to India." },
-  { id: 9, image: "/images/10.png", title: "Mr. Sanjeev Rawat", desc: "Langma International Team experiencing Vietnamese culture and strengthening global cultural understanding." },
-  { id: 10, image: "/images/11.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat during an official interaction with Mr. and Mrs. Wang Zhen, Minister Counsellor of the People’s Republic of China in India." },
-  { id: 11, image: "/images/12.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat and Ms. Persy Jain honouring the German delegation ." },
-  { id: 12, image: "/images/13.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat with H.E. Oleksandr Polishchuk, Ambassador of Ukraine to India, during a diplomatic engagement at Langma International." },
-  { id: 13, image: "/images/14.png", title: "Mr. Sanjeev Rawat", desc: "Mr Sanjeev Rawat and the Langma Team welcoming H.E Oleksandr Polishchuk, Ambassador of Ukraine to India at Langma International." },
-  { id: 14, image: "/images/15.png", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat with Ms. Ekaterina Dynyak, Head of the Russian Language Educational Centre, Russian Centre of Science and Culture, New Delhi, during an engagement fostering international educational collaboration." },
+  { id: 3, image: "/images/43.jpg", title: "Mr. Sanjeev Rawat", desc: "Students joyfully experienced Korean culture through traditional hanbok, Seollal festivities, and interactive experiences that fostered meaningful cultural connection and appreciation." },
+  { id: 4, image: "/images/44.jpg", title: "Mr. Sanjeev Rawat", desc: "Seollal, the Korean Lunar New Year, offered a meaningful glimpse into Korea's cherished customs, festive traditions, and the cultural values passed down through generations." },
+  { id: 5, image: "/images/45.jpg", title: "Mr. Sanjeev Rawat", desc: "Traditional Japanese attire and captivating performances brought the spirit of Kodomo no Hi (Japanese Children's Day) to life as Langma International students celebrated one of Japan's most cherished festivals." },
+  { id: 6, image: "/images/46.jpg", title: "Mr. Sanjeev Rawat", desc: "Bringing Japanese characters to life, students proudly showcased their kanji creations while exploring a tradition deeply rooted in Japan's cultural identity." },
+  { id: 7, image: "/images/47.jpg", title: "Mr. Sanjeev Rawat", desc: "Marking Kodomo no Hi (Japanese Children's Day), celebrated annually on 5 May, Langma International students embraced Japanese traditions through vibrant Yukata, artistic performances, and joyful cultural celebrations." },
+  { id: 8, image: "/images/48.jpg", title: "Mr. Sanjeev Rawat", desc: "Immersed in Kodomo no Hi (Japanese Children's Day), Langma International Students experienced the richness of Japanese culture through joyful traditions, captured in the spirit of \"Shashin o torimashou!\"" },
+  { id: 9, image: "/images/49.jpg", title: "Mr. Sanjeev Rawat", desc: "Representing Langma International at the Chinese Embassy, students marked Chinese Language Day with performances reflecting the elegance and artistic legacy of Shūfǎ (Chinese calligraphy)." },
+  { id: 10, image: "/images/50.jpg", title: "Mr. Sanjeev Rawat", desc: "Sanjeev Rawat, Founder of Langma International, alongside delegates from the Embassy of China and Mandarin language students during a memorable exchange celebrating language, culture, and meaningful cross-cultural connections." },
+  { id: 11, image: "/images/51.jpg", title: "Mr. Sanjeev Rawat", desc: "Inspired by Kintsugi (金継ぎ), the Japanese art of repairing broken pottery with gold, students discovered how imperfections can become symbols of resilience, beauty, and renewal." },
+  { id: 12, image: "/images/52.jpg", title: "Mr. Sanjeev Rawat", desc: "Mr. Sanjeev Rawat, Founder of Langma International, together with Japanese language trainers and students, celebrated the timeless philosophy of Kintsugi, where every restored piece reflects resilience, craftsmanship, and renewal." },
+  { id: 13, image: "/images/53.jpg", title: "Mr. Sanjeev Rawat", desc: "Oktoberfest, the world's largest folk festival, transformed Langma International into a vibrant celebration where Bavarian festivities, creativity, and student participation came together." },
+  { id: 14, image: "/images/54.jpg", title: "Mr. Sanjeev Rawat", desc: "With a cheerful \"Prost!\", Langma International's German language students celebrated Oktoberfest, experiencing the traditions and festive spirit that have made Bavaria's iconic festival renowned around the world." },
   // { id: 5, image: "/images/16.webp", title: "Mr. Sanjeev Rawat", desc: "and the Langma Team welcoming H.E Oleksandr Polishchuk, Ambassador of Ukraine to India." },
 ];
 
@@ -36,14 +44,37 @@ const LangmaSection = () => {
   const [leftImage, setLeftImage] = useState(cards[0].image);
   const examPrevRef = useRef(null);
   const examNextRef = useRef(null);
+
+   const [index, setIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false); // start fade out
+      setTimeout(() => {
+        setIndex((prev) => (prev + 1) % headings.length);
+        setFade(true); // fade in next heading
+      }, 400); // matches transition duration
+    }, 2500); // time each heading stays visible
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="bg-white pt-20 md:pt-28 lg:pt-32 overflow-hidden">
       <div className="max-w-[1400px] mx-auto relative px-4">
 
         <div className="text-center mb-3 lg:mb-7  ml-0 md:ml-[25%] lg:ml-[25%]">
-          <h2 className="text-[28px] md:text-[34px] font-bold mb-2">
+          {/* <h2 className="text-[28px] md:text-[34px] font-bold mb-2">
            Langma International<span className="text-[#296166]"> Expands Horizons </span>
-          </h2>
+          </h2> */}
+         <h2
+      className={`text-[28px] md:text-[34px] font-bold mb-2 transition-opacity duration-400 ease-in-out ${
+        fade ? "opacity-100" : "opacity-0"
+      }`}
+    >
+      {headings[index]}
+    </h2>
           <p className="text-[16px] md:text-[18px] text-gray-700">
             Supporting individuals and organizations in achieving their international aspirations.
           </p>
@@ -96,17 +127,17 @@ const LangmaSection = () => {
           {cards.map((card) => (
             <SwiperSlide key={card.id} className="h-auto">
 
-  <div className="h-[300px] bg-white rounded-2xl shadow-xl border border-gray-100 max-w-[300px] mx-auto mb-4 flex flex-col">
+              <div className="h-auto bg-white rounded-2xl shadow-xl border border-gray-100 max-w-[300px] mx-auto mb-4 flex flex-col overflow-hidden">
 
                 <img
                   src={card.image}
                   alt={card.title}
-                  className="w-full h-44 object-cover rounded-t-2xl"
+                  className="w-full h-44 shrink-0 object-cover rounded-t-2xl"
                 />
 
-                <div className="p-5 text-center md:text-left">
+                <div className="p-3 text-center md:text-left flex-1 overflow-hidden">
 
-                  <p className="text-gray-700 text-sm">
+                  <p className="text-gray-700 text-sm leading-snug ">
                     {card.desc}
                   </p>
 
@@ -235,4 +266,3 @@ const LangmaSection = () => {
 
 
 export default LangmaSection;
-
