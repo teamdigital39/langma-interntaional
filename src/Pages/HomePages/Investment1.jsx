@@ -132,7 +132,7 @@ const Investment1 = () => {
       {/* ── PAGE SECTIONS ── */}
       <PRByInvestment />
       <WhyChoosePR />
-      <PRInvestmentServices />
+      {/* <PRInvestmentServices /> */}
       <WhoCanApply />
       <InvestmentOption />
 

@@ -83,6 +83,13 @@ import Investment1 from "./Pages/HomePages/Investment1";
 import PRAssessment from "./Pages/HomePages/PRAssessment";
 import StudyAbrotHeroSection1 from "./Pages/HomePages/StudyAbrotHeroSection1";
 import GoldenVisaPage from "./Pages/HomePages/GoldenVisa";
+import PortugalGoldenVisaPage from "./Pages/HomePages/PortugalGoldenVis";
+import GreeceGoldenVisaPage from "./Pages/HomePages/GreeceGoldenVisa";
+import ItalyGoldenVisaPage from "./Pages/HomePages/ItalyGoldenVisa";
+import HungaryGoldenVisaPage from "./Pages/HomePages/HungaryGoldenVisa";
+import UaeGoldenVisaPage from "./Pages/HomePages/UAEGoldenVisa";
+import PanamaGoldenVisaPage from "./Pages/HomePages/PanamaGoldenVisa";
+import LatviaGoldenVisaPage from "./Pages/HomePages/LatviaGoldenVisa";
 import LangmaStudyAbroadAssessment from "./Pages/HomePages/LangmaStudyAbroadAssessment";
 import InternationalHeroSection from "./Pages/HomePages/InternationalHeroSection";
 import StudyMauritiusPage from "./Pages/HomePages/StudyInMauritius";
@@ -135,6 +142,13 @@ function App() {
           {/* <Route path="/languages" element={<InternationalHeroSection />} /> */}
           <Route path="/global-assist" element={<GlobleHeroSection />} />
           <Route path="/golden-visa" element={<GoldenVisaPage />} />
+          <Route path="/portugal-golden-visa" element={<PortugalGoldenVisaPage />} />
+          <Route path="/greece-golden-visa" element={<GreeceGoldenVisaPage />} />
+          <Route path="/italy-golden-visa" element={<ItalyGoldenVisaPage />} />
+          <Route path="/hungary-golden-visa" element={<HungaryGoldenVisaPage />} />
+          <Route path="/uae-golden-visa" element={<UaeGoldenVisaPage />} />
+          <Route path="/panama-golden-visa" element={<PanamaGoldenVisaPage />} />
+          <Route path="/latvia-golden-visa" element={<LatviaGoldenVisaPage />} />
           <Route path="/investment" element={<Investment />} />
           <Route path="/programs" element={<Cultural_Programs />} />
           <Route path="/holidays" element={<CulturalHolidays />} />

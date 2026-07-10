@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
+import { Link } from "react-router-dom";
 import GoldenVisaForm from "./GoldenVisaform";
 import Goldenvisaform2 from "./Goldenvisaform2";
 
@@ -342,43 +343,43 @@ const WHY = [
 ];
 
 const COUNTRIES = [
-  { name: "Portugal", badge: "EU · Schengen",
+  { name: "Portugal", link: "/portugal-golden-visa", badge: "EU · Schengen",
     overview: "One of Europe's most enduring residency-by-investment frameworks, granting EU residency through qualifying fund investments with minimal physical presence requirements — just seven days per year.",
     specs: [["Investment from","€500,000 (qualifying fund)"],["Processing","12–36 months"],["Validity","2 years (renewable)"],["Family Inclusion","Spouse, children to 26 & parents"]],
     benefits: ["Citizenship eligibility after 7–10 years of legal residency (subject to 2026 nationality law)","Only 7 days physical presence per year required","Access to Portuguese public healthcare and schools","CMVM-regulated qualifying funds","Portuguese passport: visa-free access to 190+ destinations"],
     ideal: "Long-term EU planning, family education, passport diversification",
     note: "⚠ Real estate is no longer a qualifying route. Investment fund minimum is €500,000. Cultural donation route from €250,000 also available." },
-  { name: "Greece", badge: "EU · Schengen",
+  { name: "Greece", link: "/greece-golden-visa", badge: "EU · Schengen",
     overview: "One of Europe's most established real-estate-backed residency pathways. The 5-year permit carries full Schengen residency privileges and imposes no minimum stay obligation. Investment thresholds are tiered by geographic zone.",
     specs: [["Investment from","€400,000–€800,000 (RE, zone-dependent)"],["Processing","Approx. 4–8 months"],["Validity","5 years (renewable)"],["Family Inclusion","Spouse, children <21 & parents"]],
     benefits: ["No minimum stay requirement to keep the residence permit valid","Direct real estate ownership — a tangible, titled asset","Schengen travel rights: 90 days per 180-day period across 29 countries","Path to citizenship after 7 years of genuine sustained residence","€250,000 threshold available only for commercial-to-residential conversions or heritage restorations"],
     ideal: "Real estate investors, lifestyle seekers, second-home buyers",
     note: "⚠ €800,000 in Attica, Thessaloniki, Mykonos, Santorini & islands >3,100 pop.; €400,000 in all other regions. Property must be a single unit ≥120 sqm." },
-  { name: "Italy", badge: "EU · Schengen",
+  { name: "Italy", link: "/italy-golden-visa", badge: "EU · Schengen",
     overview: "Italy's Investor Visa grants EU residency through a qualifying investment in an innovative Italian startup or established company — without requiring real estate. A distinctive pre-approval process means government assesses your application before you commit capital.",
     specs: [["Investment from","€250,000 (innovative startup)"],["Processing","3–6 months"],["Validity","2 years (renewable; PR at 5 yrs)"],["Family Inclusion","Spouse; children & parents (conditions)"]],
     benefits: ["Two confirmed routes: innovative startup (€250K+) or established Italian company (€500K+)","Government approval issued before investment is made","€300,000 flat tax on foreign income for qualifying new tax residents","Permanent residency eligibility after 5 years","Citizenship eligibility after 10 years of qualifying residence"],
     ideal: "Business operators, HNW families seeking a European lifestyle base",
     note: "⚠ Combining investment routes is not permitted. Family inclusion for adult children and parents is subject to strict dependency conditions." },
-  { name: "Hungary", badge: "EU · Schengen",
+  { name: "Hungary", link: "/hungary-golden-visa", badge: "EU · Schengen",
     overview: "Launched in July 2024, Hungary's Guest Investor Programme offers a 10-year EU residence permit through defined investment routes. With no minimum stay and a structured pre-approval visa, it suits investors seeking long-term EU residency with minimal administrative burden.",
     specs: [["Investment from","€250,000 (RE investment fund)"],["Processing","Approx. 5+ months"],["Validity","10 years (one further renewal)"],["Family Inclusion","Spouse, children <18 & dependent parents"]],
     benefits: ["Two routes: €250,000 in approved RE investment fund (5-yr hold) or €1,000,000 donation to public trust","Guest Investor Visa issued first — investment completed after entry","10-year permit: among the longest in EU residency-by-investment","Schengen travel rights across member states","PR eligibility after 3 years of continuous residence; citizenship after 11 years total"],
     ideal: "Investors prioritising long-term EU stability with minimal renewal obligations",
     note: "⚠ Direct residential property purchase is not a qualifying route. Only approved fund certificates and public trust donations qualify." },
-  { name: "UAE", badge: "Tax-Efficient · 10-Year Residency",
+  { name: "UAE", link: "/uae-golden-visa", badge: "Tax-Efficient · 10-Year Residency",
     overview: "The UAE Golden Visa is a long-term renewable residency programme granting up to 10 years of residency with zero personal income tax, world-class infrastructure, and a global gateway connecting East and West.",
     specs: [["Investment from","AED 750,000 (2-yr) or AED 2M (10-yr)"],["Processing","Approx. 2–3 months"],["Validity","2 or 10 years (renewable)"],["Family Inclusion","Spouse + unmarried children"]],
     benefits: ["Zero personal income tax — internationally recognised benefit","Mortgaged and off-plan properties qualify based on DLD-certified total value","Sponsor domestic household staff under your residency","World-class international schools, hospitals, and business infrastructure","Under 3-hour flight from all major Indian cities"],
     ideal: "Business owners, HNW individuals, and families seeking tax efficiency close to India",
     note: "⚠ UAE Golden Visa is renewable long-term residency — not permanent residency or citizenship. Periodic re-entry required to maintain status." },
-  { name: "Panama", badge: "Americas · Permanent Residency",
+  { name: "Panama", link: "/panama-golden-visa", badge: "Americas · Permanent Residency",
     overview: "Panama's Qualified Investor Programme grants immediate permanent residency through investment in real estate, Panamanian securities, or fixed-term bank deposits. Valued for its territorial tax system, swift processing, and Panama City's standing as a regional financial hub.",
     specs: [["Investment from","USD 300,000 (real estate)"],["Processing","30–90 days"],["Validity","Permanent Residency"],["Family Inclusion","Spouse, children & dependent parents"]],
     benefits: ["Territorial tax system — Panama does not tax foreign-sourced income","Immediate permanent residency upon approval — no temporary phase","Citizenship eligibility after 5 years, subject to legal requirements","Dollarised economy — financial stability and straightforward banking","Strategic gateway to North and South American markets"],
     ideal: "Business owners seeking an Americas base, tax-conscious investors",
     note: "⚠ Securities route: USD 500,000. Fixed-term bank deposit: USD 750,000. Investment thresholds set by executive decree and may be revised." },
-  { name: "Latvia", badge: "EU · Schengen",
+  { name: "Latvia", link: "/latvia-golden-visa", badge: "EU · Schengen",
     overview: "Latvia's Residence by Investment programme offers a structured pathway to EU Schengen residency through business investment, real estate, or bank capital — with a clear pathway to permanent residency and eventual citizenship eligibility.",
     specs: [["Investment from","€50,000 (business) or €250,000 (RE)"],["Processing","2–3 months"],["Validity","5 years (card renewed annually)"],["Family Inclusion","Spouse + children under 18"]],
     benefits: ["Multiple qualifying routes: company investment, real estate, or bank subordinated bonds","No corporate income tax on reinvested profits","Schengen travel rights across 29 member states","PR eligibility after 5 years; citizenship after 10 years total","Business investment route requires meeting Latvian entity criteria"],
@@ -603,7 +604,7 @@ export default function GoldenVisaPage() {
                 <div className="cc__footer">
                   <p className="cc__ideal"><em>Ideal for:</em> {c.ideal}</p>
                   <p className="cc__note">{c.note}</p>
-                  <a href="#schedule" className="cc__cta">Learn More →</a>
+                  <Link to={c.link} className="cc__cta">Learn More →</Link>
                 </div>
               </article>
             ))}

@@ -17,6 +17,7 @@ import PopupForm from "../../PopupForm";
 import { Helmet } from "react-helmet-async";
 import RecognitionSlider from "./RecognitionSlider";
 import { getRecognitionSlides } from "./recognitionSlidesData";
+import AdaptiveBannerMedia from "../AdaptiveBannerMedia";
 
 const Arabic = () => {
    const [open, setOpen] = useState(false);
@@ -130,7 +131,7 @@ useEffect(() => {
         <meta name="keywords" content={languageData?.seo_keyword} />
       </Helmet>
       {/* ================= BANNER ================= */}
-      <section className="relative w-full min-h-[500px] overflow-hidden flex items-center py-12 px-6 lg:px-20">
+      <section className="relative w-full min-h-0 lg:min-h-[500px] overflow-hidden flex items-center py-10 sm:py-12 px-4 sm:px-6 lg:px-20">
 
         <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
 
@@ -163,24 +164,13 @@ useEffect(() => {
           </div>
 
           <div className="w-full lg:w-1/2 relative">
-            <div className="relative flex justify-end items-center">
-
-              <div className="relative  overflow-hidden w-full max-w-[500px] h-[400px] md:h-[500px]">
-                <img
-                  src={languageData?.banner}
-                  alt="Students learning"
-                  className="w-full h-full rounded-[10px]  lg:rounded-l-[220px] lg:rounded-br-[244px]  object-cover"
-                />
-              </div>
-
-              <div className="absolute bottom-10 left-34 rounded-xl   ">
-               
-                {/* <img src="/images/lpl.png" alt="" /> */}
-
-              </div>
-
-              {/* <div className="absolute right-0 top-0 h-full w-12 md:w-20 bg-[#134E4A] rounded-l-3xl -z-10 translate-x-1/2"></div> */}
-
+            <div className="relative flex justify-center lg:justify-end items-center w-full">
+              <AdaptiveBannerMedia
+                src={languageData?.banner}
+                alt="Students learning"
+                fit="contain"
+                className="w-full max-w-[min(100%,500px)] lg:max-w-[580px] rounded-[10px] lg:rounded-l-[56px] lg:rounded-br-[72px]"
+              />
             </div>
           </div>
 
@@ -219,11 +209,11 @@ useEffect(() => {
             />
           </div>
 
-          <div className="absolute z-20 w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] md:w-[180px] md:h-[180px] lg:w-[200px] lg:h-[200px] bottom-[-10px] sm:bottom-[-20px] md:bottom-[-30px] lg:bottom-[-40px] left-[10px] sm:left-[40px] md:left-[80px] lg:left-[120px] rounded-full">
-            <img
+          <div className="absolute z-20 w-[28vw] max-w-[200px] min-w-[120px] aspect-square bottom-[-10px] sm:bottom-[-20px] md:bottom-[-30px] lg:bottom-[-40px] left-[10px] sm:left-[40px] md:left-[80px] lg:left-[120px] rounded-full overflow-hidden">
+            <AdaptiveBannerMedia
               src={languageData?.banner}
               alt="Arabic Study"
-              className="w-full h-full object-cover rounded-full"
+              className="w-full h-full object-cover"
             />
           </div>
 
