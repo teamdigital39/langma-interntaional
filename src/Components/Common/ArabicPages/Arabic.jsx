@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Link } from "react-router-dom";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Calendar, Check } from "lucide-react";
 import "swiper/css";
 import CTASection from "../CTASection";
 import FAQ from "../../../Pages/HomePages/FAQ";
@@ -18,6 +18,7 @@ import { Helmet } from "react-helmet-async";
 import RecognitionSlider from "./RecognitionSlider";
 import { getRecognitionSlides } from "./recognitionSlidesData";
 import AdaptiveBannerMedia from "../AdaptiveBannerMedia";
+import { getLanguageHeroContent, getHeroDescription } from "./languageHeroContent";
 
 const Arabic = () => {
    const [open, setOpen] = useState(false);
@@ -120,6 +121,7 @@ useEffect(() => {
   // const shortContent = textContent.slice(0, LIMIT);
 
   const contentHtml = languageData?.content || "";
+  const heroContent = getLanguageHeroContent(languageData?.title, slug);
 
   return (
     <>
@@ -136,31 +138,69 @@ useEffect(() => {
         <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
 
           <div className="w-full lg:w-1/2 space-y-6 z-10">
-            <h1 className="text-[28px] lg:text-[60px] font-bold text-[#1D1B4B] leading-tight">
-              Learn <span> {languageData?.title} </span> <br /> With Langma
-            </h1>
+            {heroContent ? (
+              <>
+                <span className="inline-flex items-center gap-2 rounded-full bg-[#EEF6F6] px-4 py-2 text-[12px] font-semibold uppercase tracking-wide text-[#1D1B4B]">
+                  <span className="text-[#134E4A]">★</span>
+                  {heroContent.badge}
+                </span>
 
-            <p className="text-[17px] text-[#4A4A4A] font-medium">
-              All Levels • Live Classes • Expert
-            </p>
+                <h1 className="text-[28px] lg:text-[60px] font-bold text-[#1D1B4B] leading-tight">
+                  {heroContent.titlePrefix} <span>{languageData?.title}</span>{heroContent.titleSuffix}
+                  <br />
+                  {heroContent.titleLine2}
+                </h1>
 
-            <button onClick={() => setOpen(!open)} className="cursor-pointer flex items-center gap-2 bg-[#134E4A] text-white px-8 py-3 rounded-full hover:bg-[#0F3F3C] transition-all font-semibold">
-              Join the Hub
+                <p className="text-[17px] text-[#4A4A4A] font-medium leading-relaxed max-w-xl">
+                  {getHeroDescription(heroContent, languageData?.title)}
+                </p>
 
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M5 12h14m-7-7 7 7-7 7" />
-              </svg>
-            </button>
+                <button
+                  onClick={() => setOpen(!open)}
+                  className="cursor-pointer inline-flex items-center gap-2 bg-[#134E4A] text-white px-8 py-3 rounded-full hover:bg-[#0F3F3C] transition-all font-semibold"
+                >
+                  <Calendar size={18} />
+                  {heroContent.cta}
+                </button>
+
+                <ul className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-6 pt-2">
+                  {heroContent.trustPoints.map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-[15px] text-[#4A4A4A] font-medium">
+                      <Check size={16} className="text-[#134E4A] shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            ) : (
+              <>
+                <h1 className="text-[28px] lg:text-[60px] font-bold text-[#1D1B4B] leading-tight">
+                  Learn <span> {languageData?.title} </span> <br /> With Langma
+                </h1>
+
+                <p className="text-[17px] text-[#4A4A4A] font-medium">
+                  All Levels • Live Classes • Expert
+                </p>
+
+                <button onClick={() => setOpen(!open)} className="cursor-pointer flex items-center gap-2 bg-[#134E4A] text-white px-8 py-3 rounded-full hover:bg-[#0F3F3C] transition-all font-semibold">
+                  Join the Hub
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14m-7-7 7 7-7 7" />
+                  </svg>
+                </button>
+              </>
+            )}
           </div>
 
           <div className="w-full lg:w-1/2 relative">
