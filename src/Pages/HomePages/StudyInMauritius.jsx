@@ -69,8 +69,8 @@ function SectionHead({ style, tag, title, sub, light, center }) {
             gap: 10,
             marginBottom: 16,
             padding: "6px 14px 6px 8px",
-            background: light ? "rgba(240,192,64,0.12)" : C.goldTint,
-            border: `1px solid ${light ? "rgba(240,192,64,0.25)" : C.goldSoft}`,
+            background: C.goldSoft,
+            border: "1px solid rgba(47,199,161,0.22)",
             borderRadius: 999,
           }}
         >
@@ -81,7 +81,7 @@ function SectionHead({ style, tag, title, sub, light, center }) {
               height: 6,
               background: C.navy,
               borderRadius: "50%",
-              boxShadow: `0 0 0 4px ${light ? "rgba(240,192,64,0.18)" : "rgba(26,46,90,0.12)"}`,
+              boxShadow: "0 0 0 4px rgba(47,199,161,0.15)",
             }}
           />
           <span
@@ -90,7 +90,7 @@ function SectionHead({ style, tag, title, sub, light, center }) {
               fontWeight: 700,
               letterSpacing: "2.5px",
               textTransform: "uppercase",
-              color: "#FFFFFF",
+              color: C.navy,
             }}
           >
             {tag}
@@ -102,7 +102,7 @@ function SectionHead({ style, tag, title, sub, light, center }) {
             fontWeight: 600,
             lineHeight: 1.12,
             letterSpacing: "-0.6px",
-            color: light ? C.white : C.ink,
+            color: C.ink,
             margin: 0,
             marginBottom: sub ? 16 : 0,
           }}
@@ -114,7 +114,7 @@ function SectionHead({ style, tag, title, sub, light, center }) {
             style={{
               fontSize: 16,
               lineHeight: 1.75,
-              color: "#FFFFFF",
+              color: C.slate,
               margin: 0,
               maxWidth: 640,
               marginLeft: center ? "auto" : 0,
@@ -141,7 +141,7 @@ function NavyButton({ children, style, onClick }) {
       onClick={onClick}
       style={{
         position: "relative",
-        background: h ? C.navyL : C.navy,
+        background: h ? C.dark : C.navy,
         color: C.white,
         border: "none",
         padding: "15px 32px",
@@ -181,8 +181,6 @@ function GhostButton({ children, dark, style, onClick }) {
       onMouseLeave={() => setH(false)}
       onClick={onClick}
       style={{
-        background: dark ? C.goldTint : "rgba(240,192,64,0.1)",
-        border: `1px solid ${dark ? "rgba(14,26,46,0.2)" : "rgba(255,255,255,0.25)"}`,
         padding: "14px 28px",
         fontSize: 14.5,
         fontWeight: 600,
@@ -190,7 +188,9 @@ function GhostButton({ children, dark, style, onClick }) {
         cursor: "pointer",
         transition: "all 0.25s ease",
         borderRadius: 999,
-        color: "#ffffff",
+        color: dark ? C.ink : "#ffffff",
+        border: dark ? `2px solid ${C.gold}` : `1px solid rgba(255,255,255,0.25)`,
+        background: dark ? (h ? C.goldSoft : C.white) : "rgba(240,192,64,0.1)",
         ...style,
       }}
     >
@@ -303,13 +303,13 @@ function FactRow({ label, value }) {
       onMouseEnter={() => setH(true)}
       onMouseLeave={() => setH(false)}
       style={{
-        background: h ? "rgba(240,192,64,0.08)" : "transparent",
+        background: h ? C.goldSoft : "transparent",
         padding: "18px 24px",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
         gap: 16,
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        borderBottom: `1px solid ${C.border}`,
         transition: "background 0.2s ease",
       }}
     >
@@ -319,7 +319,7 @@ function FactRow({ label, value }) {
           fontWeight: 600,
           textTransform: "uppercase",
           letterSpacing: "1px",
-          color: "rgb(255, 255, 255)",
+          color: C.slate,
           whiteSpace: "nowrap",
         }}
       >
@@ -351,12 +351,12 @@ function CostCard({ label, amount, note, highlight, delay }) {
         onMouseEnter={() => setH(true)}
         onMouseLeave={() => setH(false)}
         style={{
-          background: highlight ? C.navy : h ? C.goldTint : C.white,
+          background: highlight ? C.goldSoft : h ? C.goldSoft : C.white,
           padding: "32px 22px",
           textAlign: "center",
           transition: "all 0.3s cubic-bezier(.2,.7,.2,1)",
           position: "relative",
-          border: `1px solid ${highlight ? C.navy : C.border}`,
+          border: `1px solid ${highlight ? C.gold : C.border}`,
           borderRadius: 16,
           transform: h ? "translateY(-4px)" : "translateY(0)",
           boxShadow: h ? `0 16px 32px -16px rgba(26,46,90,0.3)` : "none",
@@ -388,7 +388,7 @@ function CostCard({ label, amount, note, highlight, delay }) {
             fontWeight: 700,
             textTransform: "uppercase",
             letterSpacing: "1.5px",
-            color: highlight ? "rgba(255,255,255,0.7)" : C.slate,
+            color: C.slate,
             marginBottom: 14,
             display: "block",
           }}
@@ -399,7 +399,7 @@ function CostCard({ label, amount, note, highlight, delay }) {
           style={{
             fontSize: 22,
             fontWeight: 600,
-            color: highlight ? C.white : C.ink,
+            color: C.ink,
             lineHeight: 1,
             marginBottom: 8,
           }}
@@ -409,7 +409,7 @@ function CostCard({ label, amount, note, highlight, delay }) {
         <div
           style={{
             fontSize: 12,
-            color: highlight ? "rgba(255,255,255,0.7)" : C.slate,
+            color: C.slate,
             lineHeight: 1.5,
           }}
         >
@@ -442,7 +442,7 @@ function VisaStep({ n, title, body, isLast, delay }) {
           style={{
             width: 44,
             height: 44,
-            background: `linear-gradient(135deg, ${C.navy}, ${C.navyL})`,
+            background: C.dark,
             color: C.white,
             display: "flex",
             alignItems: "center",
@@ -582,9 +582,9 @@ function SupportCard({ icon, title, body, delay }) {
         onMouseEnter={() => setH(true)}
         onMouseLeave={() => setH(false)}
         style={{
-          background: h ? "rgba(240,192,64,0.1)" : "rgba(255,255,255,0.03)",
+          background: h ? C.goldSoft : C.white,
           padding: "32px 28px",
-          border: `1px solid ${h ? "rgba(240,192,64,0.35)" : "rgba(255,255,255,0.06)"}`,
+          border: `1px solid ${h ? C.gold : C.border}`,
           borderRadius: 18,
           transition: "all 0.3s ease",
           height: "100%",
@@ -608,13 +608,13 @@ function SupportCard({ icon, title, body, delay }) {
         >
           {icon}
         </div>
-        <h4 style={{ fontSize: 15, fontWeight: 700, color: C.white, marginBottom: 8 }}>
+        <h4 style={{ fontSize: 15, fontWeight: 700, color: C.ink, marginBottom: 8 }}>
           {title}
         </h4>
         <p
           style={{
             fontSize: 13,
-            color: "rgba(255,255,255,0.55)",
+            color: C.slate,
             lineHeight: 1.75,
             margin: 0,
           }}
@@ -634,7 +634,7 @@ function DocsBox({ title, items, note }) {
     <Reveal delay={150}>
       <div
         style={{
-          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
+          background: C.cream2,
           padding: 34,
           borderRadius: 22,
           overflow: "hidden",
@@ -689,7 +689,7 @@ function DocsBox({ title, items, note }) {
               gap: 12,
               marginBottom: 12,
               fontSize: 13,
-              color: "rgba(255,255,255,0.75)",
+              color: C.slate,
               alignItems: "flex-start",
               lineHeight: 1.6,
               position: "relative",
@@ -700,7 +700,7 @@ function DocsBox({ title, items, note }) {
                 width: 20,
                 height: 20,
                 background: "rgba(240,192,64,0.15)",
-                color: "#FFFFFF",
+                color: C.navy,
                 borderRadius: "50%",
                 display: "inline-flex",
                 alignItems: "center",
@@ -723,7 +723,7 @@ function DocsBox({ title, items, note }) {
               padding: "16px 18px",
               marginTop: 20,
               fontSize: 12.5,
-              color: "rgba(255,255,255,0.7)",
+              color: C.slate,
               lineHeight: 1.75,
               borderRadius: 8,
             }}
@@ -824,8 +824,8 @@ function Marquee() {
   return (
     <div
       style={{
-        background: C.navyDark,
-        color: "#FFFFFF",
+        background: C.white,
+        color: C.navy,
         padding: "14px 0",
         overflow: "hidden",
         position: "relative",
@@ -1216,7 +1216,7 @@ export default function StudyMauritiusPage() {
       {/* ---------------- AT A GLANCE FACTS ---------------- */}
       <section
         style={{
-          background: `linear-gradient(135deg, ${C.navyDark}, ${C.navyD})`,
+          background: C.cream2,
           padding: "100px 48px",
           position: "relative",
           overflow: "hidden",
@@ -1252,8 +1252,8 @@ export default function StudyMauritiusPage() {
               <Reveal key={f.label} delay={i * 60}>
                 <div
                   style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(240,192,64,0.15)",
+                    background: C.white,
+                    border: `1px solid ${C.border}`,
                     borderRadius: 16,
                     padding: "24px 20px",
                     textAlign: "center",
@@ -1314,7 +1314,7 @@ export default function StudyMauritiusPage() {
       {/* ---------------- STRIP CTA ---------------- */}
       <div
         style={{
-          background: `linear-gradient(90deg, ${C.navy}, ${C.navyL})`,
+          background: C.goldSoft,
           padding: "26px 48px",
           display: "flex",
           justifyContent: "space-between",
@@ -1334,7 +1334,7 @@ export default function StudyMauritiusPage() {
             animation: "lm-shimmer 6s linear infinite",
           }}
         />
-        <p style={{ color: C.white, fontSize: 15.5, fontWeight: 600, margin: 0, position: "relative", zIndex: 2 }}>
+        <p style={{ color: C.ink, fontSize: 15.5, fontWeight: 600, margin: 0, position: "relative", zIndex: 2 }}>
           ✨ Class 12 pass, diploma holder, or working professional? Mauritius has a pathway for you.
         </p>
         <button
@@ -1440,7 +1440,7 @@ export default function StudyMauritiusPage() {
       {/* ---------------- COST OF STUDYING ---------------- */}
       <section
         style={{
-          background: `linear-gradient(135deg, ${C.navyDark}, ${C.navyD})`,
+          background: C.cream2,
           padding: "100px 48px",
         }}
       >
@@ -1462,7 +1462,7 @@ export default function StudyMauritiusPage() {
               <CostCard key={c.label} {...c} delay={i * 70} />
             ))}
           </div>
-          <p style={{ textAlign: "center", marginTop: 32, color: "rgba(255,255,255,0.55)", fontSize: 12.5 }}>
+          <p style={{ textAlign: "center", marginTop: 32, color: C.slate, fontSize: 12.5 }}>
             Exact programme fees vary by course and level of study. Our counsellors will provide accurate, up-to-date cost breakdowns during your free consultation.
           </p>
         </div>
@@ -1553,7 +1553,7 @@ export default function StudyMauritiusPage() {
       {/* ---------------- ENGLISH LANGUAGE REQUIREMENTS ---------------- */}
       <section
         style={{
-          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD} 60%, ${C.navy})`,
+          background: C.white,
           padding: "90px 48px",
         }}
       >
@@ -1568,8 +1568,8 @@ export default function StudyMauritiusPage() {
             <Reveal>
               <div
                 style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(240,192,64,0.18)",
+                  background: C.white,
+                  border: `1px solid ${C.border}`,
                   padding: 32,
                   borderRadius: 20,
                 }}
@@ -1577,7 +1577,7 @@ export default function StudyMauritiusPage() {
                 <h3 style={{ fontSize: 17, fontWeight: 700, color: C.white, marginBottom: 14 }}>
                   When IELTS or TOEFL May Be Required
                 </h3>
-                <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.7)", lineHeight: 1.8, marginBottom: 16 }}>
+                <p style={{ fontSize: 13.5, color: C.slate, lineHeight: 1.8, marginBottom: 16 }}>
                   Some postgraduate programmes, or those with formal accreditation ties to international bodies, may request proof of English proficiency through IELTS or TOEFL. Requirements vary widely — many programmes welcome students from English-medium schools without a separate test.
                 </p>
                 <h3 style={{ fontSize: 17, fontWeight: 700, color: C.white, marginBottom: 14 }}>
@@ -1591,7 +1591,7 @@ export default function StudyMauritiusPage() {
                 ].map((item) => (
                   <div key={item} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 10 }}>
                     <span style={{ color: C.goldL, fontWeight: 700, flexShrink: 0 }}>✓</span>
-                    <span style={{ fontSize: 13.5, color: "rgba(255,255,255,0.75)", lineHeight: 1.7 }}>{item}</span>
+                    <span style={{ fontSize: 13.5, color: C.slate, lineHeight: 1.7 }}>{item}</span>
                   </div>
                 ))}
               </div>
@@ -1599,8 +1599,8 @@ export default function StudyMauritiusPage() {
             <Reveal delay={120}>
               <div
                 style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(240,192,64,0.18)",
+                  background: C.white,
+                  border: `1px solid ${C.border}`,
                   padding: 32,
                   borderRadius: 20,
                 }}
@@ -1608,7 +1608,7 @@ export default function StudyMauritiusPage() {
                 <h3 style={{ fontSize: 17, fontWeight: 700, color: C.white, marginBottom: 14 }}>
                   Why You Should Verify Requirements Early
                 </h3>
-                <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.7)", lineHeight: 1.8, marginBottom: 20 }}>
+                <p style={{ fontSize: 13.5, color: C.slate, lineHeight: 1.8, marginBottom: 20 }}>
                   Language requirements can change and vary by intake. The safest approach is to confirm the exact requirements for your chosen programme as early as possible in the planning stage.
                 </p>
                 <div
@@ -1621,7 +1621,7 @@ export default function StudyMauritiusPage() {
                   <p style={{ color: "#FFFFFF", marginBottom: 10, fontWeight: 600, fontSize: 13.5 }}>
                     💬 Langma International's Guidance
                   </p>
-                  <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 13, lineHeight: 1.75, margin: 0 }}>
+                  <p style={{ color: C.slate, fontSize: 13, lineHeight: 1.75, margin: 0 }}>
                     Our experienced counsellors review your academic background and help you determine whether a language test is required, recommend preparation if needed, and ensure your application meets all proficiency criteria before submission.
                   </p>
                 </div>
@@ -1662,7 +1662,7 @@ export default function StudyMauritiusPage() {
                     ⚠️ Always verify the latest visa requirements with Langma International before initiating any application process, as immigration policies may be updated.
                     <br />
                     <br />
-                    <strong style={{ color: "#FFFFFF" }}>Mandatory medical screening:</strong> HIV testing, Hepatitis B, and Chest X-ray required within the first few days of arrival.
+                    <strong style={{ color: C.navy }}>Mandatory medical screening:</strong> HIV testing, Hepatitis B, and Chest X-ray required within the first few days of arrival.
                   </>
                 }
               />
@@ -1695,7 +1695,7 @@ export default function StudyMauritiusPage() {
       {/* ---------------- WHY LANGMA ---------------- */}
       <section
         style={{
-          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
+          background: C.cream2,
           padding: "100px 48px",
           position: "relative",
           overflow: "hidden",
@@ -1759,9 +1759,8 @@ export default function StudyMauritiusPage() {
       <section
         className="mb-[-40px]"
         style={{
-          background: `linear-gradient(135deg, ${C.navyDark} 0%, ${C.navy} 60%, ${C.navyL} 100%)`,
-          backgroundSize: "200% 200%",
-          animation: "lm-bg-shift 14s ease infinite",
+          background: C.cream,
+          borderTop: `1px solid ${C.border}`,
           padding: "120px 48px",
           textAlign: "center",
           position: "relative",
@@ -1798,7 +1797,7 @@ export default function StudyMauritiusPage() {
           <Reveal>
             <h2
               style={{
-                color: C.white,
+                color: C.ink,
                 fontSize: "clamp(32px, 4.5vw, 56px)",
                 marginBottom: 20,
                 fontWeight: 600,
@@ -1815,7 +1814,7 @@ export default function StudyMauritiusPage() {
           <Reveal delay={150}>
             <p
               style={{
-                color: "rgba(255,255,255,0.78)",
+                color: C.slate,
                 fontSize: 17,
                 marginBottom: 48,
                 maxWidth: 580,
@@ -1829,11 +1828,11 @@ export default function StudyMauritiusPage() {
           </Reveal>
           <Reveal delay={300}>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <NavyButton onClick={() => setOpen(true)} style={{ background: C.forest, padding: "16px 36px" }}>
+              <NavyButton onClick={() => setOpen(true)} style={{ background: C.dark, padding: "16px 36px" }}>
                 📞 Book a Free Call
               </NavyButton>
-              <GhostButton onClick={() => setOpen(true)}>✉️ Email Our Team</GhostButton>
-              <GhostButton onClick={() => setOpen(true)}>💬 WhatsApp Us Now</GhostButton>
+              <GhostButton dark onClick={() => setOpen(true)}>✉️ Email Our Team</GhostButton>
+              <GhostButton dark onClick={() => setOpen(true)}>💬 WhatsApp Us Now</GhostButton>
             </div>
           </Reveal>
         </div>
@@ -1843,14 +1842,14 @@ export default function StudyMauritiusPage() {
       <div
         className="-mb-[70px]"
         style={{
-          background: C.navyDark,
+          background: C.cream2,
           padding: "24px 48px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           gap: 32,
           flexWrap: "wrap",
-          borderTop: `1px solid rgba(240,192,64,0.1)`,
+          borderTop: `1px solid ${C.border}`,
         }}
       >
         <span style={{ fontSize: 13, color: "#296166", display: "block" }}>
@@ -1859,22 +1858,22 @@ export default function StudyMauritiusPage() {
             href="https://www.google.com/maps/place/Langma+International/@28.5700637,77.2214716,765m/data=!3m1!1e3!4m15!1m8!3m7!1s0x390ce25c4343e17b:0x9f40fbe93cafcba5!2s73,+South+Extension+I,+Block+H,+New+Delhi,+Delhi+110049!3b1!8m2!3d28.5700637!4d77.2214716!16s%2Fg%2F11hfk14hwt!3m5!1s0x390ce25dba89c087:0x6b74c7356d18b11a!8m2!3d28.5700396!4d77.2209663!16s%2Fg%2F1jglvgls2?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: "#ffffff", textDecoration: "none" }}
+            style={{ color: C.navy, textDecoration: "none" }}
           >
             E 73, South Extension Part-1, New Delhi — 110049
           </a>
         </span>
 
-        <span style={{ fontSize: 13, color: "#ffffff", display: "block" }}>
+        <span style={{ fontSize: 13, color: C.slate, display: "block" }}>
           📞{" "}
-          <a href="tel:+919810117094" style={{ color: "#ffffff", textDecoration: "none" }}>
+          <a href="tel:+919810117094" style={{ color: C.navy, textDecoration: "none" }}>
             +91-9810117094
           </a>
         </span>
 
-        <span style={{ fontSize: 13, color: "#ffffff", display: "block" }}>
+        <span style={{ fontSize: 13, color: C.slate, display: "block" }}>
           ✉️{" "}
-          <a href="mailto:info@langmainternational.com" style={{ color: "#ffffff", textDecoration: "none" }}>
+          <a href="mailto:info@langmainternational.com" style={{ color: C.navy, textDecoration: "none" }}>
             info@langmainternational.com
           </a>
         </span>

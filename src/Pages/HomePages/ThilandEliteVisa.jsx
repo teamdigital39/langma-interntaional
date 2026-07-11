@@ -157,7 +157,7 @@ const LangmaThailandEliteVisaPage = () => {
   }
   .lg-page .btn-gold {background:var(--gold);color:var(--navy-deep);}
   .lg-page .btn-gold:hover {background:var(--gold-soft);transform:translateY(-2px);box-shadow:0 14px 30px rgba(47,199,161,.32);}
-  .lg-page .btn-ghost {background:transparent;color:var(--ivory);border:1px solid rgba(247,250,252,.45);}
+  .lg-page .btn-ghost {background:transparent;color:#1A2540;border:2px solid #2FC7A1;}
   .lg-page .btn-ghost:hover {border-color:var(--gold);color:var(--gold-soft);}
   .lg-page .btn-navy {background:var(--navy);color:var(--ivory);}
   .lg-page .btn-navy:hover {background:var(--navy-mid);transform:translateY(-2px);}

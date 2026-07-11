@@ -184,7 +184,7 @@ const PortugalGlobalTalentPage = () => {
 .pt-page .btn:hover .arr{transform:translateX(4px)}
 .pt-page .btn-gold{background:var(--gold);color:var(--navy-deep);box-shadow:0 14px 30px -14px rgba(47,199,161,.35)}
 .pt-page .btn-gold:hover{transform:translateY(-2px);background:var(--gold-bright);box-shadow:0 20px 40px -14px rgba(47,199,161,.45)}
-.pt-page .btn-ghost{background:transparent;color:var(--warm-white);border-color:rgba(78,199,184,.42)}
+.pt-page .btn-ghost{background:transparent;color:#1A2540;border:2px solid #2FC7A1}
 .pt-page .btn-ghost:hover{border-color:var(--gold);background:rgba(47,199,161,.12)}
 .pt-page .btn-navy{background:var(--navy);color:var(--warm-white)}
 .pt-page .btn-navy:hover{transform:translateY(-2px);background:var(--navy-deep);box-shadow:var(--shadow-md)}

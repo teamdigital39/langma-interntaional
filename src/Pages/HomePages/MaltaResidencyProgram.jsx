@@ -302,12 +302,12 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
   }
   .lg-page .btn-outline {
     background:transparent;
-    color:var(--white);
-    border:1px solid rgba(255,255,255,0.5);
+    color:#1A2540;
+    border:2px solid #2FC7A1;
   }
   .lg-page .btn-outline:hover {
-    background:rgba(255,255,255,0.1);
-    border-color:var(--white);
+    background:#E6F8F3;
+    border-color:#2FC7A1;
     transform:translateY(-3px);
   }
   .lg-page .hero-scroll-indicator {
@@ -315,7 +315,7 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
     bottom:38px; left:50%;
     transform:translateX(-50%);
     z-index:1;
-    color:rgba(255,255,255,0.55);
+    color:#7E8C88;
     font-size:12px;
     font-family:'Helvetica Neue', Arial, sans-serif;
     letter-spacing:2px;
@@ -327,7 +327,7 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
   }
   .lg-page .scroll-line {
     width:1px; height:40px;
-    background:linear-gradient(180deg, rgba(255,255,255,0.6), transparent);
+    background:linear-gradient(180deg, rgba(41,97,102,0.35), transparent);
     animation:scrollPulse 2s infinite;
   }
   @keyframes scrollPulse{

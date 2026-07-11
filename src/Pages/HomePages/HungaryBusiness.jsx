@@ -58,7 +58,7 @@ const HungaryBusinessResidencyPage = () => {
         .hu-page .btn { display:inline-flex; align-items:center; gap:10px; font-family:'Inter',sans-serif; font-size:14px; font-weight:600; letter-spacing:0.4px; padding:16px 32px; border-radius:var(--radius); cursor:pointer; border:1px solid transparent; transition:all .35s var(--ease); }
         .hu-page .btn-gold { background:var(--gold); color:var(--navy-deep); }
         .hu-page .btn-gold:hover { background:var(--gold-soft); transform:translateY(-2px); box-shadow:0 14px 30px rgba(47,199,161,.32); }
-        .hu-page .btn-ghost { background:transparent; color:var(--ivory); border:1px solid rgba(247,250,252,.45); }
+        .hu-page .btn-ghost { background:transparent;color:#1A2540;border:2px solid #2FC7A1; }
         .hu-page .btn-ghost:hover { border-color:var(--gold); color:var(--gold-soft); }
         .hu-page .btn-forest { background:var(--navy); color:var(--ivory); }
         .hu-page .btn-forest:hover { background:var(--navy-mid); transform:translateY(-2px); }

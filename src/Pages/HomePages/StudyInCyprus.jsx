@@ -78,7 +78,7 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay, text
         flex: "1 1 0",
         minWidth: 150,
         padding: "26px 22px",
-        borderRight: `1px solid rgba(255,255,255,0.08)`,
+        borderRight: `1px solid ${C.border}`,
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(14px)",
         transition: `opacity 0.7s ease ${delay}ms, transform 0.7s ease ${delay}ms`,
@@ -115,12 +115,12 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay, text
           fontWeight: 700,
           letterSpacing: "1.8px",
           textTransform: "uppercase",
-          color: "rgba(255,255,255,0.85)",
+          color: C.slate,
         }}
       >
         {label}
       </div>
-      <div style={{ marginTop: 4, fontSize: 11.5, color: "rgba(255,255,255,0.45)" }}>
+      <div style={{ marginTop: 4, fontSize: 11.5, color: C.muted }}>
         {sub}
       </div>
     </div>
@@ -149,8 +149,8 @@ function SectionHead({ style, tag, title, sub, light, center }) {
             gap: 10,
             marginBottom: 16,
             padding: "6px 14px 6px 8px",
-            background: light ? "rgba(240,192,64,0.12)" : C.goldTint,
-            border: `1px solid ${light ? "rgba(240,192,64,0.25)" : C.goldSoft}`,
+            background: C.goldSoft,
+            border: "1px solid rgba(47,199,161,0.22)",
             borderRadius: 999,
           }}
         >
@@ -161,7 +161,7 @@ function SectionHead({ style, tag, title, sub, light, center }) {
               height: 6,
               background: C.navy,
               borderRadius: "50%",
-              boxShadow: `0 0 0 4px ${light ? "rgba(240,192,64,0.18)" : "rgba(26,46,90,0.12)"}`,
+              boxShadow: "0 0 0 4px rgba(47,199,161,0.15)",
             }}
           />
           <span
@@ -170,7 +170,7 @@ function SectionHead({ style, tag, title, sub, light, center }) {
               fontWeight: 700,
               letterSpacing: "2.5px",
               textTransform: "uppercase",
-              color: "#FFFFFF",
+              color: C.navy,
             }}
           >
             {tag}
@@ -182,7 +182,7 @@ function SectionHead({ style, tag, title, sub, light, center }) {
             fontWeight: 600,
             lineHeight: 1.12,
             letterSpacing: "-0.6px",
-            color: light ? C.white : C.ink,
+            color: C.ink,
             margin: 0,
             marginBottom: sub ? 16 : 0,
           }}
@@ -194,7 +194,7 @@ function SectionHead({ style, tag, title, sub, light, center }) {
             style={{
               fontSize: 16,
               lineHeight: 1.75,
-              color: "#FFFFFF",
+              color: C.slate,
               margin: 0,
               maxWidth: 640,
               marginLeft: center ? "auto" : 0,
@@ -221,7 +221,7 @@ function NavyButton({ children, style, onClick }) {
       onClick={onClick}
       style={{
         position: "relative",
-        background: h ? C.navyL : C.navy,
+        background: h ? C.dark : C.navy,
         color: C.white,
         border: "none",
         padding: "15px 32px",
@@ -261,8 +261,6 @@ function GhostButton({ children, dark, style, onClick }) {
       onMouseLeave={() => setH(false)}
       onClick={onClick}
       style={{
-        background: dark ? C.goldTint : "rgba(240,192,64,0.1)",
-        border: `1px solid ${dark ? "rgba(14,26,46,0.2)" : "rgba(255,255,255,0.25)"}`,
         padding: "14px 28px",
         fontSize: 14.5,
         fontWeight: 600,
@@ -270,7 +268,9 @@ function GhostButton({ children, dark, style, onClick }) {
         cursor: "pointer",
         transition: "all 0.25s ease",
         borderRadius: 999,
-        color: "#ffffff",
+        color: dark ? C.ink : "#ffffff",
+        border: dark ? `2px solid ${C.gold}` : `1px solid rgba(255,255,255,0.25)`,
+        background: dark ? (h ? C.goldSoft : C.white) : "rgba(240,192,64,0.1)",
         ...style,
       }}
     >
@@ -381,13 +381,13 @@ function FactRow({ label, value }) {
       onMouseEnter={() => setH(true)}
       onMouseLeave={() => setH(false)}
       style={{
-        background: h ? "rgba(240,192,64,0.08)" : "transparent",
+        background: h ? C.goldSoft : "transparent",
         padding: "18px 24px",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
         gap: 16,
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        borderBottom: `1px solid ${C.border}`,
         transition: "background 0.2s ease",
       }}
     >
@@ -397,7 +397,7 @@ function FactRow({ label, value }) {
           fontWeight: 600,
           textTransform: "uppercase",
           letterSpacing: "1px",
-          color: "rgb(255, 255, 255)",
+          color: C.slate,
           whiteSpace: "nowrap",
         }}
       >
@@ -429,12 +429,12 @@ function CostCard({ label, amount, note, highlight, delay }) {
         onMouseEnter={() => setH(true)}
         onMouseLeave={() => setH(false)}
         style={{
-          background: highlight ? C.navy : h ? C.goldTint : C.white,
+          background: highlight ? C.goldSoft : h ? C.goldSoft : C.white,
           padding: "32px 22px",
           textAlign: "center",
           transition: "all 0.3s cubic-bezier(.2,.7,.2,1)",
           position: "relative",
-          border: `1px solid ${highlight ? C.navy : C.border}`,
+          border: `1px solid ${highlight ? C.gold : C.border}`,
           borderRadius: 16,
           transform: h ? "translateY(-4px)" : "translateY(0)",
           boxShadow: h ? `0 16px 32px -16px rgba(26,46,90,0.3)` : "none",
@@ -466,7 +466,7 @@ function CostCard({ label, amount, note, highlight, delay }) {
             fontWeight: 700,
             textTransform: "uppercase",
             letterSpacing: "1.5px",
-            color: highlight ? "rgba(255,255,255,0.7)" : C.slate,
+            color: C.slate,
             marginBottom: 14,
             display: "block",
           }}
@@ -477,7 +477,7 @@ function CostCard({ label, amount, note, highlight, delay }) {
           style={{
             fontSize: 26,
             fontWeight: 600,
-            color: highlight ? C.white : C.ink,
+            color: C.ink,
             lineHeight: 1,
             marginBottom: 8,
           }}
@@ -487,7 +487,7 @@ function CostCard({ label, amount, note, highlight, delay }) {
         <div
           style={{
             fontSize: 12,
-            color: highlight ? "rgba(255,255,255,0.7)" : C.slate,
+            color: C.slate,
             lineHeight: 1.5,
           }}
         >
@@ -510,8 +510,8 @@ function CourseCard({ num, title, body, icon, delay }) {
         onMouseLeave={() => setH(false)}
         style={{
           position: "relative",
-          background: h ? C.navy : C.white,
-          border: `1px solid ${h ? C.navy : C.border}`,
+          background: h ? C.goldSoft : C.white,
+          border: `1px solid ${h ? C.gold : C.border}`,
           padding: "28px 24px",
           borderRadius: 16,
           transition: "all 0.35s cubic-bezier(.2,.7,.2,1)",
@@ -528,8 +528,8 @@ function CourseCard({ num, title, body, icon, delay }) {
             justifyContent: "center",
             width: 36,
             height: 36,
-            background: h ? "rgba(255,255,255,0.15)" : C.goldTint,
-            color: h ? "#FFFFFF" : "#296166",
+            background: h ? C.gold : C.goldTint,
+            color: h ? C.white : C.navy,
             fontSize: icon ? 17 : 13,
             fontWeight: 700,
             borderRadius: 10,
@@ -543,7 +543,7 @@ function CourseCard({ num, title, body, icon, delay }) {
           style={{
             fontSize: 14.5,
             fontWeight: 700,
-            color: h ? C.white : C.ink,
+            color: C.ink,
             marginBottom: 8,
             lineHeight: 1.35,
             transition: "color 0.3s ease",
@@ -554,7 +554,7 @@ function CourseCard({ num, title, body, icon, delay }) {
         <div
           style={{
             fontSize: 12.5,
-            color: h ? "rgba(255,255,255,0.75)" : C.slate,
+            color: C.slate,
             lineHeight: 1.7,
             transition: "color 0.3s ease",
           }}
@@ -601,7 +601,7 @@ function VisaStep({ n, title, body, isLast, delay }) {
           style={{
             width: 44,
             height: 44,
-            background: `linear-gradient(135deg, ${C.navy}, ${C.navyL})`,
+            background: C.dark,
             color: C.white,
             display: "flex",
             alignItems: "center",
@@ -739,9 +739,9 @@ function SupportCard({ icon, title, body, delay }) {
         onMouseEnter={() => setH(true)}
         onMouseLeave={() => setH(false)}
         style={{
-          background: h ? "rgba(240,192,64,0.1)" : "rgba(255,255,255,0.03)",
+          background: h ? C.goldSoft : C.white,
           padding: "32px 28px",
-          border: `1px solid ${h ? "rgba(240,192,64,0.35)" : "rgba(255,255,255,0.06)"}`,
+          border: `1px solid ${h ? C.gold : C.border}`,
           borderRadius: 18,
           transition: "all 0.3s ease",
           height: "100%",
@@ -765,13 +765,13 @@ function SupportCard({ icon, title, body, delay }) {
         >
           {icon}
         </div>
-        <h4 style={{ fontSize: 15, fontWeight: 700, color: C.white, marginBottom: 8 }}>
+        <h4 style={{ fontSize: 15, fontWeight: 700, color: C.ink, marginBottom: 8 }}>
           {title}
         </h4>
         <p
           style={{
             fontSize: 13,
-            color: "rgba(255,255,255,0.55)",
+            color: C.slate,
             lineHeight: 1.75,
             margin: 0,
           }}
@@ -791,7 +791,7 @@ function DocsBox({ title, items, note }) {
     <Reveal delay={150}>
       <div
         style={{
-          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
+          background: C.cream2,
           padding: 34,
           borderRadius: 22,
           overflow: "hidden",
@@ -846,7 +846,7 @@ function DocsBox({ title, items, note }) {
               gap: 12,
               marginBottom: 12,
               fontSize: 13,
-              color: "rgba(255,255,255,0.75)",
+              color: C.slate,
               alignItems: "flex-start",
               lineHeight: 1.6,
               position: "relative",
@@ -857,7 +857,7 @@ function DocsBox({ title, items, note }) {
                 width: 20,
                 height: 20,
                 background: "rgba(240,192,64,0.15)",
-                color: "#FFFFFF",
+                color: C.navy,
                 borderRadius: "50%",
                 display: "inline-flex",
                 alignItems: "center",
@@ -880,7 +880,7 @@ function DocsBox({ title, items, note }) {
               padding: "16px 18px",
               marginTop: 20,
               fontSize: 12.5,
-              color: "rgba(255,255,255,0.7)",
+              color: C.slate,
               lineHeight: 1.75,
               borderRadius: 8,
             }}
@@ -981,8 +981,8 @@ function Marquee() {
   return (
     <div
       style={{
-        background: C.navyDark,
-        color: "#FFFFFF",
+        background: C.white,
+        color: C.navy,
         padding: "14px 0",
         overflow: "hidden",
         position: "relative",
@@ -1267,8 +1267,8 @@ export default function StudyCyprusPage() {
               style={{
                 display: "flex",
                 flexWrap: "wrap",
-                background: C.navyDark,
-                border: "1px solid rgba(240,192,64,0.18)",
+                background: C.white,
+                border: `1px solid ${C.border}`,
                 borderRadius: 18,
                 overflow: "hidden",
                 marginTop: 56,
@@ -1326,7 +1326,7 @@ export default function StudyCyprusPage() {
       {/* ---------------- STRIP CTA ---------------- */}
       <div
         style={{
-          background: `linear-gradient(90deg, ${C.navy}, ${C.navyL})`,
+          background: C.goldSoft,
           padding: "26px 48px",
           display: "flex",
           justifyContent: "space-between",
@@ -1346,7 +1346,7 @@ export default function StudyCyprusPage() {
             animation: "lm-shimmer 6s linear infinite",
           }}
         />
-        <p style={{ color: C.white, fontSize: 15.5, fontWeight: 600, margin: 0, position: "relative", zIndex: 2 }}>
+        <p style={{ color: C.ink, fontSize: 15.5, fontWeight: 600, margin: 0, position: "relative", zIndex: 2 }}>
           ✨ Not sure if Cyprus is right for you? Let our experts assess your profile — free, no obligation.
         </p>
         <button
@@ -1383,7 +1383,7 @@ export default function StudyCyprusPage() {
       {/* ---------------- AT A GLANCE FACTS ---------------- */}
       <section
         style={{
-          background: `linear-gradient(135deg, ${C.navyDark}, ${C.navyD})`,
+          background: C.cream2,
           padding: "100px 48px",
           position: "relative",
           overflow: "hidden",
@@ -1418,8 +1418,8 @@ export default function StudyCyprusPage() {
             >
               <div
                 style={{
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(240,192,64,0.15)",
+                  background: C.white,
+                  border: `1px solid ${C.border}`,
                   borderRadius: 18,
                   overflow: "hidden",
                 }}
@@ -1435,8 +1435,8 @@ export default function StudyCyprusPage() {
               </div>
               <div
                 style={{
-                  background: "rgba(255,255,255,0.03)",
-                  border: "1px solid rgba(240,192,64,0.15)",
+                  background: C.white,
+                  border: `1px solid ${C.border}`,
                   borderRadius: 18,
                   overflow: "hidden",
                 }}
@@ -1523,7 +1523,7 @@ export default function StudyCyprusPage() {
       {/* ---------------- LANGUAGE REQUIREMENTS ---------------- */}
       <section
         style={{
-          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD} 60%, ${C.navy})`,
+          background: C.white,
           padding: "50px 8px",
           position: "relative",
           overflow: "hidden",
@@ -1570,8 +1570,8 @@ export default function StudyCyprusPage() {
               <Reveal key={card.title} delay={ci * 120}>
                 <div
                   style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(240,192,64,0.18)",
+                    background: C.white,
+                    border: `1px solid ${C.border}`,
                     padding: 32,
                     borderRadius: 20,
                     backdropFilter: "blur(8px)",
@@ -1582,7 +1582,7 @@ export default function StudyCyprusPage() {
                     style={{
                       fontSize: 18,
                       fontWeight: 600,
-                      color: C.white,
+                      color: C.ink,
                       marginBottom: 20,
                       paddingBottom: 14,
                       borderBottom: `2px solid ${C.gold}`,
@@ -1598,17 +1598,17 @@ export default function StudyCyprusPage() {
                         justifyContent: "space-between",
                         alignItems: "center",
                         padding: "12px 0",
-                        borderBottom: idx === arr.length - 1 ? "none" : "1px solid rgba(255,255,255,0.06)",
+                        borderBottom: idx === arr.length - 1 ? "none" : `1px solid ${C.border}`,
                       }}
                     >
-                      <span style={{ fontSize: 13.5, fontWeight: 600, color: "rgba(255,255,255,0.82)" }}>{t}</span>
+                      <span style={{ fontSize: 13.5, fontWeight: 600, color: C.ink }}>{t}</span>
                       <span
                         style={{
                           fontSize: 12.5,
                           fontWeight: 700,
-                          color: "#FFFFFF",
+                          color: C.navy,
                           padding: "4px 12px",
-                          background: "rgba(240,192,64,0.12)",
+                          background: C.goldSoft,
                           borderRadius: 999,
                         }}
                       >
@@ -1623,7 +1623,7 @@ export default function StudyCyprusPage() {
                       padding: "14px 16px",
                       marginTop: 20,
                       fontSize: 12,
-                      color: "rgba(255,255,255,0.65)",
+                      color: C.slate,
                       lineHeight: 1.7,
                       borderRadius: 12,
                     }}
@@ -1668,10 +1668,10 @@ export default function StudyCyprusPage() {
                 items={visaDocs}
                 note={
                   <>
-                    <strong style={{ color: "#FFFFFF" }}>Processing Time:</strong> ~90 working days · No visa interview required
+                    <strong style={{ color: C.navy }}>Processing Time:</strong> ~90 working days · No visa interview required
                     <br />
                     <br />
-                    <strong style={{ color: "#FFFFFF" }}>Note:</strong> All ages, study gaps, and most previously rejected cases are accepted. Contact our counsellors to confirm eligibility for your profile.
+                    <strong style={{ color: C.navy }}>Note:</strong> All ages, study gaps, and most previously rejected cases are accepted. Contact our counsellors to confirm eligibility for your profile.
                     <br />
                     <br />
                     Visa requirements may change according to immigration policies. Always confirm current requirements with your Langma counsellor.
@@ -1706,7 +1706,7 @@ export default function StudyCyprusPage() {
       {/* ---------------- CAREER OUTLOOK ---------------- */}
       <section
         style={{
-          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
+          background: C.cream2,
           padding: "90px 48px",
           textAlign: "center",
         }}
@@ -1725,9 +1725,9 @@ export default function StudyCyprusPage() {
                 <span
                   key={tag}
                   style={{
-                    background: "rgba(255,255,255,0.07)",
-                    border: "1px solid rgba(255,255,255,0.14)",
-                    color: "rgba(255,255,255,0.85)",
+                    background: C.white,
+                    border: `1px solid ${C.border}`,
+                    color: C.ink,
                     fontSize: 13,
                     fontWeight: 500,
                     padding: "9px 20px",
@@ -1745,7 +1745,7 @@ export default function StudyCyprusPage() {
       {/* ---------------- WHY LANGMA ---------------- */}
       <section
         style={{
-          background: `linear-gradient(160deg, ${C.navyDark}, ${C.navyD})`,
+          background: C.cream2,
           padding: "100px 48px",
           position: "relative",
           overflow: "hidden",
@@ -1809,9 +1809,8 @@ export default function StudyCyprusPage() {
       <section
         className="mb-[-40px]"
         style={{
-          background: `linear-gradient(135deg, ${C.navyDark} 0%, ${C.navy} 60%, ${C.navyL} 100%)`,
-          backgroundSize: "200% 200%",
-          animation: "lm-bg-shift 14s ease infinite",
+          background: C.cream,
+          borderTop: `1px solid ${C.border}`,
           padding: "120px 48px",
           textAlign: "center",
           position: "relative",
@@ -1848,7 +1847,7 @@ export default function StudyCyprusPage() {
           <Reveal>
             <h2
               style={{
-                color: C.white,
+                color: C.ink,
                 fontSize: "clamp(32px, 4.5vw, 56px)",
                 marginBottom: 20,
                 fontWeight: 600,
@@ -1865,7 +1864,7 @@ export default function StudyCyprusPage() {
           <Reveal delay={150}>
             <p
               style={{
-                color: "rgba(255,255,255,0.78)",
+                color: C.slate,
                 fontSize: 17,
                 marginBottom: 48,
                 maxWidth: 580,
@@ -1879,11 +1878,11 @@ export default function StudyCyprusPage() {
           </Reveal>
           <Reveal delay={300}>
             <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap" }}>
-              <NavyButton onClick={() => setOpen(true)} style={{ background: C.forest, padding: "16px 36px" }}>
+              <NavyButton onClick={() => setOpen(true)} style={{ background: C.dark, padding: "16px 36px" }}>
                 Book Free Counselling →
               </NavyButton>
-              <GhostButton onClick={() => setOpen(true)}>Apply Now</GhostButton>
-              <GhostButton onClick={() => setOpen(true)}>Talk to an Expert</GhostButton>
+              <GhostButton dark onClick={() => setOpen(true)}>Apply Now</GhostButton>
+              <GhostButton dark onClick={() => setOpen(true)}>Talk to an Expert</GhostButton>
             </div>
           </Reveal>
         </div>
@@ -1893,14 +1892,14 @@ export default function StudyCyprusPage() {
       <div
         className="-mb-[70px]"
         style={{
-          background: C.navyDark,
+          background: C.cream2,
           padding: "24px 48px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           gap: 32,
           flexWrap: "wrap",
-          borderTop: `1px solid rgba(240,192,64,0.1)`,
+          borderTop: `1px solid ${C.border}`,
         }}
       >
         <span style={{ fontSize: 13, color: "#296166", display: "block" }}>
@@ -1909,22 +1908,22 @@ export default function StudyCyprusPage() {
             href="https://www.google.com/maps/place/Langma+International/@28.5700637,77.2214716,765m/data=!3m1!1e3!4m15!1m8!3m7!1s0x390ce25c4343e17b:0x9f40fbe93cafcba5!2s73,+South+Extension+I,+Block+H,+New+Delhi,+Delhi+110049!3b1!8m2!3d28.5700637!4d77.2214716!16s%2Fg%2F11hfk14hwt!3m5!1s0x390ce25dba89c087:0x6b74c7356d18b11a!8m2!3d28.5700396!4d77.2209663!16s%2Fg%2F1jglvgls2?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: "#ffffff", textDecoration: "none" }}
+            style={{ color: C.navy, textDecoration: "none" }}
           >
             E 73, South Extension Part-1, New Delhi — 110049
           </a>
         </span>
 
-        <span style={{ fontSize: 13, color: "#ffffff", display: "block" }}>
+        <span style={{ fontSize: 13, color: C.slate, display: "block" }}>
           📞{" "}
-          <a href="tel:+919810117094" style={{ color: "#ffffff", textDecoration: "none" }}>
+          <a href="tel:+919810117094" style={{ color: C.navy, textDecoration: "none" }}>
             +91-9810117094
           </a>
         </span>
 
-        <span style={{ fontSize: 13, color: "#ffffff", display: "block" }}>
+        <span style={{ fontSize: 13, color: C.slate, display: "block" }}>
           ✉️{" "}
-          <a href="mailto:info@langmainternational.com" style={{ color: "#ffffff", textDecoration: "none" }}>
+          <a href="mailto:info@langmainternational.com" style={{ color: C.navy, textDecoration: "none" }}>
             info@langmainternational.com
           </a>
         </span>
