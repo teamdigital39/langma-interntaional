@@ -113,6 +113,7 @@ import SpainDNVPage from "./Pages/HomePages/SpainDNV";
 import SpainNLVPage from "./Pages/HomePages/SpainNLVPage";
 import SwitzerlandPRPage from "./Pages/HomePages/SwitzerlandPR";
 import LangmaThailandEliteVisaPage from "./Pages/HomePages/ThilandEliteVisa";
+import GoldenVisaAssessment from "./Pages/HomePages/GoldenVisaAssessment";
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -245,6 +246,7 @@ function App() {
           <Route path="/indonesia-second-home-visa" element={<LangmaIndonesiaSecondHomeVisaPage />} />
           <Route path="/thailand-elite-visa" element={<LangmaThailandEliteVisaPage />} />
           <Route path="/:slug" element={<Arabic/>} />
+          <Route path="/golden-visa-assessment" element={<GoldenVisaAssessment/>} />
         </Routes>
 
       <Footer />

@@ -613,12 +613,11 @@ export default function GoldenVisaPage() {
               <p className="emoji">🌍</p>
               <h3>Not Sure Where to Begin?</h3>
               <p className="desc">Every investor's circumstances are different. Our advisors match your profile to the most suitable program — no pressure, no rush.</p>
-              <a href="#schedule" className="btn btn-gold">Book a Free Assessment</a>
+              <Link to="/golden-visa-assessment" className="btn btn-gold">Book a Free Assessment</Link>
             </article>
           </div>
         </div>
       </section>
-
       {/* ── COMPARISON TABLE ── */}
       <section className="section section--white" id="compare">
         <div className="container">
