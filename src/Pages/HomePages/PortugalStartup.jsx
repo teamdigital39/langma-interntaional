@@ -89,22 +89,22 @@ const LangmaPortugalStartupVisaPage = () => {
 
       <style>{`
   .lg-page {
-    --navy:#0E1F3D;
-    --navy-deep:#0E1F3D;
-    --navy-mid:#0E1F3D;
+    --navy:#296166;
+    --navy-deep:#1A2540;
+    --navy-mid:#296166;
     --emerald:#0E4B3E;
     --emerald-soft:#3D7A68;
-    --gold:#4EC7B8;
-    --gold-soft:#4EC7B8;
-    --gold-deep:#006064;
-    --ivory:#F7FAFC;
-    --beige:#E8F4F2;
-    --charcoal:#0E1F3D;
-    --muted:#0E1F3D;
+    --gold:#6FE0C6;
+    --gold-soft:#6FE0C6;
+    --gold-deep:#296166;
+    --ivory:#F5F8F6;
+    --beige:#E9F1EE;
+    --charcoal:#296166;
+    --muted:#296166;
     --line:rgba(47,199,161,0.30);
     --radius:4px;
-    --shadow-soft:0 18px 50px rgba(14,31,61,0.10);
-    --shadow-strong:0 30px 70px rgba(14,31,61,0.22);
+    --shadow-soft:0 18px 50px rgba(26,37,64,0.10);
+    --shadow-strong:0 30px 70px rgba(26,37,64,0.22);
     --ease:cubic-bezier(.22,.61,.36,1);
   }
 
@@ -188,7 +188,7 @@ const LangmaPortugalStartupVisaPage = () => {
     padding:22px 0;transition:all .4s var(--ease);
   }
   .lg-page header.scrolled {
-    background:rgba(14,31,61,0.94);backdrop-filter:blur(10px);
+    background:rgba(26,37,64,0.94);backdrop-filter:blur(10px);
     padding:14px 0;box-shadow:0 6px 30px rgba(0,0,0,.25);
   }
   .lg-page .nav-wrap {display:flex;align-items:center;justify-content:space-between;}
@@ -206,12 +206,12 @@ const LangmaPortugalStartupVisaPage = () => {
   /* ===== HERO ===== */
   .lg-page .hero {
     position:relative;
-    min-height:100vh;
+    min-height:auto;
     display:flex;
     align-items:center;
-    color:var(--ivory);
+    color:#1B2B28;
     overflow:hidden;
-    background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 55%,var(--emerald) 135%);
+    background:#FFFFFF;padding:96px 0 70px;
   }
   .lg-page .hero::before {
     content:"";
@@ -233,13 +233,13 @@ const LangmaPortugalStartupVisaPage = () => {
     padding-bottom:70px;
   }
   .lg-page .hero-copy {display:flex;flex-direction:column;}
-  .lg-page .hero h1 {font-size:clamp(38px,5vw,66px);color:var(--ivory);margin-bottom:26px;font-weight:600;line-height:1.08;}
-  .lg-page .hero h1 em {font-style:italic;color:var(--gold-soft);font-weight:500;}
-  .lg-page .hero .lead {font-size:17.5px;color:rgba(247,250,252,.82);max-width:560px;margin-bottom:38px;font-weight:300;line-height:1.72;}
+  .lg-page .hero h1 {font-size:clamp(38px,5vw,66px);color:#1B2B28;margin-bottom:26px;font-weight:600;line-height:1.08;}
+  .lg-page .hero h1 em {font-style:italic;color:#4FA3D1;font-weight:500;}
+  .lg-page .hero .lead {font-size:17.5px;color:#4C5C58;max-width:560px;margin-bottom:38px;font-weight:300;line-height:1.72;}
   .lg-page .hero-cta {display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px;}
-  .lg-page .hero-badges {display:flex;gap:36px;flex-wrap:wrap;border-top:1px solid rgba(247,250,252,.18);padding-top:28px;}
-  .lg-page .hero-badge .num {font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--gold-soft);font-weight:600;line-height:1;}
-  .lg-page .hero-badge .lbl {font-size:11.5px;letter-spacing:.6px;color:rgba(247,250,252,.68);margin-top:6px;}
+  .lg-page .hero-badges {display:flex;gap:36px;flex-wrap:wrap;border-top:1px solid #D8E0EC;padding-top:28px;}
+  .lg-page .hero-badge .num {font-family:'Cormorant Garamond',serif;font-size:30px;color:#296166;font-weight:600;line-height:1;}
+  .lg-page .hero-badge .lbl {font-size:11.5px;letter-spacing:.6px;color:#7E8C88;margin-top:6px;}
 
   .lg-page .hero-visual {display:flex;align-items:center;justify-content:center;position:relative;}
   .lg-page .hero-img-frame {
@@ -257,7 +257,7 @@ const LangmaPortugalStartupVisaPage = () => {
   }
   .lg-page .hero-img-frame::before {
     content:"";position:absolute;inset:0;
-    background:linear-gradient(to top,rgba(14,31,61,.42) 0%,transparent 55%);
+    background:linear-gradient(to top,rgba(26,37,64,.42) 0%,transparent 55%);
     z-index:1;border-radius:12px;pointer-events:none;
   }
   .lg-page .hero-visual::before {
@@ -266,7 +266,7 @@ const LangmaPortugalStartupVisaPage = () => {
   }
   .lg-page .hero-img-badge {
     position:absolute;bottom:22px;left:22px;z-index:3;
-    background:rgba(14,31,61,.82);backdrop-filter:blur(8px);
+    background:rgba(26,37,64,.82);backdrop-filter:blur(8px);
     border:1px solid rgba(47,199,161,.30);border-radius:6px;padding:10px 16px;
     display:flex;align-items:center;gap:10px;
   }
@@ -409,7 +409,7 @@ const LangmaPortugalStartupVisaPage = () => {
   .lg-page .life-card {position:relative;height:420px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-soft);}
   .lg-page .life-card img {transition:transform .8s var(--ease);}
   .lg-page .life-card:hover img {transform:scale(1.06);}
-  .lg-page .life-card .ov {position:absolute;inset:0;background:linear-gradient(to top,rgba(14,31,61,.88) 0%,rgba(14,31,61,.18) 55%,transparent 100%);z-index:1;}
+  .lg-page .life-card .ov {position:absolute;inset:0;background:linear-gradient(to top,rgba(26,37,64,.88) 0%,rgba(26,37,64,.18) 55%,transparent 100%);z-index:1;}
   .lg-page .life-card .cap {position:absolute;left:0;right:0;bottom:0;z-index:2;padding:30px 28px;}
   .lg-page .life-card .cap h3 {color:var(--ivory);font-size:27px;margin-bottom:6px;}
   .lg-page .life-card .cap p {color:rgba(247,250,252,.82);font-size:14px;}

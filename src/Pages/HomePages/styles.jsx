@@ -35,26 +35,19 @@ export const useMediaQuery = (query) => {
 
 // ── Exact colors from the original JSX files ──
 export const C = {
-  // Primary teal palette (from original JSX)
-  teal:       "#006064",
-  tealHover:  "#17a398",
+  teal:       "#296166",
+  tealHover:  "#2FC7A1",
   tealLight:  "#2FC7A1",
-  tealBorder: "#4EC7B8",
+  tealBorder: "#6FE0C6",
   tealDark:   "#296166",
-  tealDeep:   "#2E7D7B",
-
-  // Dark navy (from original JSX)
-  navy:       "#0E2A46",
-  navyDark:   "#0E1F3D",
-
-  // Backgrounds (from original JSX)
-  bgLight:    "#F7FAFC",
-  bgMint:     "#E9F7F6",
+  tealDeep:   "#174C4A",
+  navy:       "#1A2540",
+  navyDark:   "#1A2540",
+  bgLight:    "#F5F8F6",
+  bgMint:     "#E6F8F3",
   bgWhite:    "#ffffff",
   bgSoft:     "#F4FEFF",
-
-  // Text
-  body:       "#0E2A46",
+  body:       "#1B2B28",
 };
 
 export const F = {

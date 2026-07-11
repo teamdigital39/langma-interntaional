@@ -1,107 +1,92 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { ArrowRight, Calendar } from "lucide-react";
 import PRByInvestment from "./PRByInvestment";
 import WhyChoosePR from "./WhyChoosePR";
-import PRInvestmentServices from "./PRInvestmentServices";
 import WhoCanApply from "./WhoCanApply";
 import InvestmentOption from "./InvestmentOption";
 import ResidencyFinder from "./Form";
-// import PopupForm from "../PopupForm";
 
 const Investment1 = () => {
-  const [open, setOpen] = useState(false);
-
   return (
     <>
-      {/* ── HERO ── */}
-      <section className="relative w-full min-h-[92vh] bg-[#0E2A46] flex items-center overflow-hidden">
-        {/* Grid overlay */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(79,189,186,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(79,189,186,0.06) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-        {/* Radial glow */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse at 70% 50%, rgba(12,96,100,0.22) 0%, transparent 60%)",
-          }}
-        />
+      <section className="w-full bg-white pt-12 pb-16 sm:py-14 relative overflow-x-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid gap-10 lg:grid-cols-[1fr_400px] items-center">
+          <div className="relative rounded-xl px-4 sm:px-8 py-6 md:py-10 overflow-hidden font-sans order-2 lg:order-1">
+            <div className="absolute left-0 top-16 bottom-16 w-[3px] rounded-full bg-gradient-to-b from-transparent via-[#2FC7A1] to-transparent" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-16 items-center">
-          {/* Left content */}
-          <div>
-            <div className="inline-flex items-center gap-2 bg-[#4FBDBA]/10 border border-[#4FBDBA]/30 px-4 py-1.5 rounded-full text-[12px] font-semibold tracking-widest text-[#4FBDBA] uppercase mb-6">
-              <svg width="10" height="10" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                <circle cx="6" cy="6" r="5" stroke="#4FBDBA" strokeWidth="1.5" />
-                <circle cx="6" cy="6" r="2" fill="#4FBDBA" />
-              </svg>
-              Independent Residency Advisory · New Delhi
+            <div className="inline-flex items-center gap-2 border border-[#2FC7A1]/40 rounded-full px-4 py-1.5 mb-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2FC7A1]" />
+              <span className="text-[11px] font-semibold tracking-widest uppercase text-[#2FC7A1]">
+                Residency &amp; Global Mobility
+              </span>
             </div>
 
-            <h1 className="text-[28px] lg:text-[42px] font-bold text-white leading-tight mb-6">
+            <div className="flex items-center gap-2 mb-5">
+              <span className="w-7 h-[1.5px] bg-[#296166]" />
+              <span className="text-[11px] tracking-[0.12em] uppercase text-[#296166] font-medium">
+                Langma International
+              </span>
+            </div>
+
+            <h1
+              className="text-gray-900 font-bold leading-[1.08] mb-2 max-w-[600px]"
+              style={{ fontSize: "clamp(30px, 4.5vw, 44px)" }}
+            >
               Considered Pathways to{" "}
-              <em className="not-italic text-[#4FBDBA]">International Residence.</em>
+              <span className="italic font-bold text-[#4FA3D1]">International Residence.</span>
             </h1>
 
-            <p className="text-white/70 text-[16px] leading-relaxed mb-10 max-w-lg">
-              A discreet, advisory-led approach to long-term residence and permanent residency
-              planning across carefully selected jurisdictions. We work with investors,
-              financially independent individuals, remote professionals and business owners
-              who require clear, accurate guidance — not a sales process.
+            <p className="text-[17px] leading-[1.7] text-gray-600 max-w-[520px] mt-5 mb-8">
+              A discreet, advisory-led approach to long-term residence and permanent residency planning
+              across carefully selected jurisdictions — for investors, financially independent individuals,
+              remote professionals and business owners who need clear guidance, not a sales process.
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-12">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 mb-10">
               <a
                 href="#programs"
-                className="inline-flex items-center gap-2 bg-[#2F6E73] hover:bg-[#296166] text-white px-7 py-3 rounded-lg font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                className="w-full sm:w-auto bg-[#1A2540] text-[#F5F2EC] rounded-full px-6 py-3 text-sm font-semibold inline-flex items-center justify-center gap-2 tracking-wide hover:bg-[#243160] transition-all duration-200"
               >
                 Explore Residency Programmes
+                <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
               </a>
               <Link
                 to="/assessment"
-                className="inline-flex items-center gap-2 bg-[#4FBDBA] hover:bg-[#3aa8a5] text-white px-7 py-3 rounded-lg font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                className="w-full sm:w-auto bg-white text-[#1A2540] border-2 border-[#2FC7A1] rounded-full px-6 py-3 text-sm font-semibold inline-flex items-center justify-center gap-2 tracking-wide hover:bg-[#E6F8F3] transition-all duration-200"
               >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
-                </svg>
+                <Calendar className="w-4 h-4 shrink-0 text-[#2FC7A1]" aria-hidden="true" />
                 Take Free Assessment
               </Link>
               <a
                 href="#meeting"
-                className="inline-flex items-center gap-2 border-2 border-white/40 hover:border-[#4FBDBA] text-white px-7 py-3 rounded-lg font-semibold text-[14px] transition-all"
+                className="w-full sm:w-auto bg-[#4FA3D1] text-white rounded-full px-6 py-3 text-sm font-semibold inline-flex items-center justify-center gap-2 tracking-wide hover:bg-[#3a8ab8] transition-colors duration-300"
               >
                 Book a Consultation
               </a>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 border-t border-[#D8E0EC] pt-8">
               {[
-                { num: "4", label: "Distinct client profiles — investors, financially independent, digital nomads, founders" },
-                { num: "15+", label: "Curated residence permit programmes across Europe and beyond" },
-                { num: "Delhi", label: "In-person advisory office, South Extension I, New Delhi" },
+                { num: "4", label: "Client profiles — investors, financially independent, nomads, founders" },
+                { num: "15+", label: "Curated residence programmes across Europe and beyond" },
+                { num: "Delhi", label: "In-person advisory office, South Extension I" },
               ].map((s, i) => (
-                <div key={i} className="border-l-2 border-[#4FBDBA]/40 pl-4">
-                  <div className="text-[28px] font-bold text-[#4FBDBA]">{s.num}</div>
-                  <div className="text-[12px] text-white/55 mt-1 leading-snug">{s.label}</div>
+                <div key={i} className="border-l-2 border-[#2FC7A1]/50 pl-4">
+                  <div className="text-[26px] font-bold text-[#296166]">{s.num}</div>
+                  <div className="text-[12px] text-gray-500 mt-1 leading-snug">{s.label}</div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right: Quick Assessment Card */}
-          <ResidencyFinder />
+          <div className="order-1 lg:order-2">
+            <ResidencyFinder />
+          </div>
         </div>
       </section>
 
-      {/* ── TRUST BAR ── */}
-      <div className="w-full bg-white border-b border-gray-100 py-5">
+      <div className="w-full bg-[#F5F8F6] border-y border-[#D8E0EC]/60 py-5">
         <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center gap-8 items-center">
           {[
             { icon: "🏛️", label: "Government-Regulated Programmes Only" },
@@ -110,8 +95,8 @@ const Investment1 = () => {
             { icon: "📋", label: "Client-Centric Residency Advisory" },
             { icon: "📍", label: "New Delhi Office · In-Person Consultations" },
           ].map((item, i) => (
-            <div key={i} className="flex items-center gap-2.5 text-[14px] font-semibold text-gray-500">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#2F6E73] to-[#4FBDBA] flex items-center justify-center text-[14px] flex-shrink-0">
+            <div key={i} className="flex items-center gap-2.5 text-[14px] font-semibold text-[#4C5C58]">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#296166] to-[#2FC7A1] flex items-center justify-center text-[14px] flex-shrink-0">
                 {item.icon}
               </div>
               {item.label}
@@ -119,24 +104,17 @@ const Investment1 = () => {
           ))}
           <Link
             to="/assessment"
-            className="inline-flex items-center gap-2 bg-[#4FBDBA]/10 hover:bg-[#4FBDBA]/20 border border-[#4FBDBA]/40 text-[#296166] px-5 py-2 rounded-full text-[13px] font-bold transition-all"
+            className="inline-flex items-center gap-2 bg-[#E6F8F3] hover:bg-[#2FC7A1]/20 border border-[#2FC7A1]/40 text-[#296166] px-5 py-2 rounded-full text-[13px] font-bold transition-all"
           >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
-            </svg>
             Free Assessment
           </Link>
         </div>
       </div>
 
-      {/* ── PAGE SECTIONS ── */}
       <PRByInvestment />
       <WhyChoosePR />
-      {/* <PRInvestmentServices /> */}
       <WhoCanApply />
       <InvestmentOption />
-
-      {/* <PopupForm open={open} onClose={() => setOpen(false)} /> */}
     </>
   );
 };

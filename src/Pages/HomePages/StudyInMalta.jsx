@@ -6,26 +6,7 @@ import FAQ from "./FAQ";
  * Study in Malta — Langma International
  * Palette matches the Study in Poland / South Korea pages (teal brand accent over navy panels)
  */
-
-const C = {
-  navy: "#1AB7AC",
-  navyD: "#1AB7AC",
-  navyDark: "#1AB7AC",
-  navyL: "#2E6466",
-  gold: "#1AB7AC",
-  goldL: "#1AB7AC",
-  goldSoft: "#FDF3C8",
-  goldTint: "#FFFAE8",
-  cream: "#F5F7FA",
-  cream2: "#E8EDF5",
-  forest: "#2E7D5A",
-  forestL: "#4CAF80",
-  white: "#FFFFFF",
-  ink: "#1ab7ac",
-  slate: "#5A6A7A",
-  border: "#D8E0EC",
-  muted: "#7A8A9A",
-};
+import { STUDY_ABROAD_COLORS as C, STUDY_ABROAD_FONTS_URL, STUDY_ABROAD_BODY_FONT } from "../../theme/brandTheme";
 
 /* ===================================================================
  *  Hooks
@@ -464,7 +445,7 @@ function CourseCard({ num, title, body, icon, delay }) {
             width: 36,
             height: 36,
             background: h ? "rgba(255,255,255,0.15)" : C.goldTint,
-            color: h ? "#FFFFFF" : "#429198",
+            color: h ? "#FFFFFF" : "#296166",
             fontSize: 15,
             fontWeight: 700,
             borderRadius: 10,
@@ -1161,7 +1142,7 @@ export default function StudyMaltaPage() {
   return (
     <div
       style={{
-        fontFamily: "'DM Sans', sans-serif",
+        fontFamily: STUDY_ABROAD_BODY_FONT,
         color: C.ink,
         background: C.cream,
         lineHeight: 1.6,
@@ -1169,7 +1150,7 @@ export default function StudyMaltaPage() {
       }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap');
+        @import url('${STUDY_ABROAD_FONTS_URL}');
         a { text-decoration: none; }
         html { scroll-behavior: smooth; }
         ::selection { background: ${C.navy}; color: ${C.white}; }
@@ -1204,14 +1185,14 @@ export default function StudyMaltaPage() {
       <ScrollProgress />
 
       {/* ---------------- HERO ---------------- */}
-      <section className="bg-[#f5f5f5] overflow-hidden">
+      <section className="bg-[#F5F8F6] overflow-hidden">
         <div className="max-w-8xl mx-auto px-6 lg:px-12 py-16 lg:py-20">
           <div className="grid lg:grid-cols-2 items-center gap-12">
 
             {/* Left Content */}
             <div className="z-10">
               <h1
-                className="text-[#15224C]"
+                className="text-[#1B2B28]"
                 style={{
                   fontSize: "clamp(28px, 3.6vw, 46px)",
                   fontWeight: 600,
@@ -1219,7 +1200,7 @@ export default function StudyMaltaPage() {
                   letterSpacing: "-0.6px",
                 }}
               >
-                Study In <span className="text-[#1ab7ac]">Malta</span>
+                Study In <span className="text-[#2FC7A1]">Malta</span>
                 <br />
                 Practical Education.
                 <br />
@@ -1244,7 +1225,7 @@ export default function StudyMaltaPage() {
                 ].map((item, index) => (
                   <span
                     key={index}
-                    className="bg-[#1ab7ac] text-white px-4 py-2 rounded-full text-sm md:text-base"
+                    className="bg-[#2FC7A1] text-white px-4 py-2 rounded-full text-sm md:text-base"
                   >
                     {item}
                   </span>
@@ -1255,13 +1236,13 @@ export default function StudyMaltaPage() {
               <div className="flex flex-wrap gap-4 mt-10">
                 <button
                   onClick={() => setOpen(true)}
-                  className="bg-[#006C70] hover:bg-[#00575a] transition-all text-white px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
+                  className="bg-[#1A2540] hover:bg-[#243160] transition-all text-white px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
                 >
                   Apply Now →
                 </button>
                 <button
                   onClick={() => setOpen(true)}
-                  className="border border-[#006C70] text-[#006C70] hover:bg-[#006C70] hover:text-white transition-all px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
+                  className="border border-[#1A2540] text-[#1A2540] hover:bg-[#1A2540] hover:text-white transition-all px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
                 >
                   Check My Eligibility
                 </button>
@@ -1272,12 +1253,12 @@ export default function StudyMaltaPage() {
             <div className="relative flex justify-center lg:justify-end">
 
               {/* Decorative Rectangle */}
-              <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-50 h-[490px] bg-[#2C6D73] rounded-[24px]"></div>
+              <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-50 h-[490px] bg-[#296166] rounded-[24px]"></div>
 
               {/* Dots */}
               <div className="hidden lg:grid absolute left-12 top-1/2 -translate-y-1/2 grid-cols-12 gap-4 z-0">
                 {[...Array(180)].map((_, i) => (
-                  <span key={i} className="w-2 h-2 rounded-full bg-[#C7E8E5]"></span>
+                  <span key={i} className="w-2 h-2 rounded-full bg-[#E6F8F3]"></span>
                 ))}
               </div>
 
@@ -1324,14 +1305,14 @@ export default function StudyMaltaPage() {
       <section style={{ background: C.cream, padding: "100px 48px", position: "relative" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Why Malta</span>}
+            tag={<span style={{ color: "#296166" }}>Why Malta</span>}
             title={
-              <span style={{ color: "#4197a2" }}>
+              <span style={{ color: "#296166" }}>
                 An English-Speaking European Country That Puts Careers First
               </span>
             }
             sub={
-              <span style={{ color: "#429198" }}>
+              <span style={{ color: "#296166" }}>
                 Malta is one of Europe's most underrated study destinations. As a full EU member state where English is an official language, Malta removes the barriers that hold students back elsewhere — no language learning requirement, no translation friction, no cultural distance from global business.
               </span>
             }
@@ -1491,14 +1472,14 @@ export default function StudyMaltaPage() {
       <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>What Sets It Apart</span>}
+            tag={<span style={{ color: "#296166" }}>What Sets It Apart</span>}
             title={
-              <span style={{ color: "#4197a2" }}>
+              <span style={{ color: "#296166" }}>
                 What Makes Malta Different from Every Other European Destination
               </span>
             }
             sub={
-              <span style={{ color: "#429198" }}>
+              <span style={{ color: "#296166" }}>
                 Malta doesn't ask you to adapt to it. It was built for international students — English-first, career-focused, and connected to global industry from day one.
               </span>
             }
@@ -1521,14 +1502,14 @@ export default function StudyMaltaPage() {
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Popular Study Areas</span>}
+            tag={<span style={{ color: "#296166" }}>Popular Study Areas</span>}
             title={
-              <span style={{ color: "#4197a2" }}>
+              <span style={{ color: "#296166" }}>
                 In-Demand Programmes for International Students
               </span>
             }
             sub={
-              <span style={{ color: "#429198" }}>
+              <span style={{ color: "#296166" }}>
                 Career-aligned, English-taught, and structured under the MQF framework. From Foundation to Master's — choose the path that fits your ambition.
               </span>
             }
@@ -1702,10 +1683,10 @@ export default function StudyMaltaPage() {
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Admission Requirements</span>}
-            title={<span style={{ color: "#4197a2" }}>What You Need to Apply for Malta</span>}
+            tag={<span style={{ color: "#296166" }}>Admission Requirements</span>}
+            title={<span style={{ color: "#296166" }}>What You Need to Apply for Malta</span>}
             sub={
-              <span style={{ color: "#429198" }}>
+              <span style={{ color: "#296166" }}>
                 A clear, straightforward process. Prepare these documents and our team will manage the rest.
               </span>
             }
@@ -1755,10 +1736,10 @@ export default function StudyMaltaPage() {
       <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Student Visa</span>}
-            title={<span style={{ color: "#4197a2" }}>Malta Student Visa — Step by Step</span>}
+            tag={<span style={{ color: "#296166" }}>Student Visa</span>}
+            title={<span style={{ color: "#296166" }}>Malta Student Visa — Step by Step</span>}
             sub={
-              <span style={{ color: "#429198" }}>
+              <span style={{ color: "#296166" }}>
                 Securing a Malta student visa is a structured, manageable process. Here's exactly how it works — and how Langma International supports you through every stage.
               </span>
             }
@@ -1835,10 +1816,10 @@ export default function StudyMaltaPage() {
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Student Life</span>}
-            title={<span style={{ color: "#4197a2" }}>Life in Malta — Sun, Culture & Global Community</span>}
+            tag={<span style={{ color: "#296166" }}>Student Life</span>}
+            title={<span style={{ color: "#296166" }}>Life in Malta — Sun, Culture & Global Community</span>}
             sub={
-              <span style={{ color: "#429198" }}>
+              <span style={{ color: "#296166" }}>
                 Malta isn't just a place to study — it's a place to thrive. Here's what daily life actually looks like as an international student in Malta.
               </span>
             }
@@ -1885,10 +1866,10 @@ export default function StudyMaltaPage() {
       <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Why Langma International</span>}
-            title={<span style={{ color: "#4197a2" }}>Your Trusted Partner — From Enquiry to Enrolment</span>}
+            tag={<span style={{ color: "#296166" }}>Why Langma International</span>}
+            title={<span style={{ color: "#296166" }}>Your Trusted Partner — From Enquiry to Enrolment</span>}
             sub={
-              <span style={{ color: "#429198" }}>
+              <span style={{ color: "#296166" }}>
                 We don't just submit applications. We invest in your success — with expert guidance, personalised support, and complete transparency at every stage.
               </span>
             }
@@ -1911,7 +1892,7 @@ export default function StudyMaltaPage() {
       <FAQ />
       {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead tag={<span style={{ color: "#429198" }}>FAQs</span>} title="Frequently Asked Questions" center />
+          <SectionHead tag={<span style={{ color: "#296166" }}>FAQs</span>} title="Frequently Asked Questions" center />
           <Reveal>
             <div style={{ maxWidth: 860, margin: "0 auto" }}>
               {faqs.map((f, i) => (
@@ -2014,7 +1995,7 @@ export default function StudyMaltaPage() {
 
       {/* ---------------- FOOTER INFO ---------------- */}
       <div
-        className="-mb-[40px]"
+        className="-mb-[70px]"
         style={{
           background: C.navyDark,
           padding: "24px 48px",
@@ -2026,7 +2007,7 @@ export default function StudyMaltaPage() {
           borderTop: `1px solid rgba(240,192,64,0.1)`,
         }}
       >
-        <span style={{ fontSize: 13, color: "#4197a2", display: "block" }}>
+        <span style={{ fontSize: 13, color: "#296166", display: "block" }}>
           📍{" "}
           <a
             href="https://www.google.com/maps/place/Langma+International/@28.5700637,77.2214716,765m/data=!3m1!1e3!4m15!1m8!3m7!1s0x390ce25c4343e17b:0x9f40fbe93cafcba5!2s73,+South+Extension+I,+Block+H,+New+Delhi,+Delhi+110049!3b1!8m2!3d28.5700637!4d77.2214716!16s%2Fg%2F11hfk14hwt!3m5!1s0x390ce25dba89c087:0x6b74c7356d18b11a!8m2!3d28.5700396!4d77.2209663!16s%2Fg%2F1jglvgls2?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D"

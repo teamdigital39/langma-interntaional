@@ -10,35 +10,14 @@ import FAQ from "./FAQ";
  *   navyL     #2A4A8C  (hover / accent)
  *   gold      #F0C040  (EU gold star accent)
  *   goldL     #F5D878  (light gold)
- *   goldSoft  #FDF3C8  (chip / hover tint)
- *   cream     #F5F7FA  (warm light section bg)
+ *   goldSoft  #E6F8F3  (chip / hover tint)
+ *   cream     #F5F8F6  (warm light section bg)
  *   forest    #2E7D5A  (green secondary accent)
  *   forestL   #4CAF80  (light green)
  *   ink       #0E1A2E  (near-black text)
  *   slate     #5A6A7A  (muted text)
  */
-
-const C = {
-  // navy: "#1A2E5A",
-  navy: "#1AB7AC",
-  navyD: "#1AB7AC",
-  // navyDark: "#0E1A2E",
-  navyDark: "#1AB7AC",
-  navyL: "#2E6466",
-  gold: "#1AB7AC",
-  goldL: "#1AB7AC",
-  goldSoft: "#FDF3C8",
-  goldTint: "#FFFAE8",
-  cream: "#F5F7FA",
-  cream2: "#E8EDF5",
-  forest: "#2E7D5A",
-  forestL: "#4CAF80",
-  white: "#FFFFFF",
-  ink: "#1ab7ac",
-  slate: "#5A6A7A",
-  border: "#D8E0EC",
-  muted: "#7A8A9A",
-};
+import { STUDY_ABROAD_COLORS as C, STUDY_ABROAD_FONTS_URL, STUDY_ABROAD_BODY_FONT } from "../../theme/brandTheme";
 
 /* ===================================================================
  *  Hooks
@@ -562,7 +541,7 @@ function CourseCard({ num, title, body, delay }) {
             width: 36,
             height: 36,
             background: h ? "rgba(255,255,255,0.15)" : C.goldTint,
-            color: h ? "#FFFFFF" : "#429198",
+            color: h ? "#FFFFFF" : "#296166",
             fontSize: 13,
             fontWeight: 700,
             borderRadius: 10,
@@ -1255,7 +1234,7 @@ export default function StudyPolandPage() {
   return (
     <div
       style={{
-        fontFamily: "'DM Sans', sans-serif",
+        fontFamily: STUDY_ABROAD_BODY_FONT,
         color: C.ink,
         background: C.cream,
         lineHeight: 1.6,
@@ -1263,7 +1242,7 @@ export default function StudyPolandPage() {
       }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap');
+        @import url('${STUDY_ABROAD_FONTS_URL}');
         a { text-decoration: none; }
         html { scroll-behavior: smooth; }
         ::selection { background: ${C.navy}; color: ${C.white}; }
@@ -1305,7 +1284,7 @@ export default function StudyPolandPage() {
       {/* <section
         style={{
           // background: `linear-gradient(135deg, ${C.navyDark} 0%, #3c4c8b 50%, ${C.navy} 100%)`,
-          background :"#1AB7AC",
+          background :"#296166",
           backgroundSize: "200% 200%",
           animation: "lm-bg-shift 18s ease infinite",
           minHeight: "92vh",
@@ -1507,14 +1486,14 @@ export default function StudyPolandPage() {
 />
         </div>
       </section> */}
-      <section className="bg-[#f5f5f5] overflow-hidden">
+      <section className="bg-[#F5F8F6] overflow-hidden">
       <div className="max-w-8xl mx-auto px-6 lg:px-12 py-16 lg:py-20">
         <div className="grid lg:grid-cols-2 items-center gap-12">
           
           {/* Left Content */}
           <div className="z-10">
             <h1
-  className="text-[#15224C]"
+  className="text-[#1B2B28]"
   style={{
     fontSize: "clamp(28px, 3.6vw, 46px)",
     fontWeight: 600,
@@ -1522,7 +1501,7 @@ export default function StudyPolandPage() {
     letterSpacing: "-0.6px",
   }}
 >
-              Study In <span className="text-[#1ab7ac]">Poland</span>
+              Study In <span className="text-[#2FC7A1]">Poland</span>
               <br />
               Europe At A
               <br />
@@ -1546,7 +1525,7 @@ export default function StudyPolandPage() {
               ].map((item, index) => (
                 <span
                   key={index}
-                  className="bg-[#1ab7ac] text-white px-4 py-2 rounded-full text-sm md:text-base"
+                  className="bg-[#2FC7A1] text-white px-4 py-2 rounded-full text-sm md:text-base"
                 >
                   {item}
                 </span>
@@ -1554,7 +1533,7 @@ export default function StudyPolandPage() {
             </div>
 
             {/* Button */}
-            <button onClick={() => setOpen(true)} className="mt-10 bg-[#006C70] hover:bg-[#00575a] transition-all text-white px-8 py-4 rounded-full font-semibold text-lg cursor-pointer">
+            <button onClick={() => setOpen(true)} className="mt-10 bg-[#1A2540] hover:bg-[#243160] transition-all text-white px-8 py-4 rounded-full font-semibold text-lg cursor-pointer">
               Book Free Counselling →
             </button>
           </div>
@@ -1563,14 +1542,14 @@ export default function StudyPolandPage() {
           <div className="relative flex justify-center lg:justify-end">
             
             {/* Decorative Rectangle */}
-            <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-50 h-[490px] bg-[#2C6D73] rounded-[24px]"></div>
+            <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-50 h-[490px] bg-[#296166] rounded-[24px]"></div>
 
             {/* Dots */}
             <div className="hidden lg:grid absolute left-12 top-1/2 -translate-y-1/2 grid-cols-12 gap-4 z-0">
               {[...Array(180)].map((_, i) => (
                 <span
                   key={i}
-                  className="w-2 h-2 rounded-full bg-[#C7E8E5]"
+                  className="w-2 h-2 rounded-full bg-[#E6F8F3]"
                 ></span>
               ))}
             </div>
@@ -1599,17 +1578,17 @@ export default function StudyPolandPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
          <SectionHead
   tag={
-    <span style={{ color: "#429198" }}>
+    <span style={{ color: "#296166" }}>
       Why Poland
     </span>
   }
 title={
-  <span style={{ color: "#4197a2" }}>
+  <span style={{ color: "#296166" }}>
     8 Reasons Students Are Choosing Poland in 2026
   </span>
 }
   sub={
-    <span style={{ color: "#429198" }}>
+    <span style={{ color: "#296166" }}>
       Affordable, safe, and strategically placed in the heart of Europe — Poland delivers world-class education with unbeatable value.
     </span>
   }
@@ -1769,17 +1748,17 @@ title={
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
          <SectionHead
   tag={
-    <span style={{ color: "#429198" }}>
+    <span style={{ color: "#296166" }}>
       Cost of Studying in Poland
     </span>
   }
   title={
-  <span style={{ color: "#4197a2" }}>
+  <span style={{ color: "#296166" }}>
     What Will It Actually Cost You?
   </span>
 }
   sub={
-    <span style={{ color: "#429198" }}>
+    <span style={{ color: "#296166" }}>
       Poland offers one of the most competitive price-to-quality ratios in Europe. Here are realistic cost ranges for 2026.
     </span>
   }
@@ -1806,17 +1785,17 @@ title={
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
   tag={
-    <span style={{ color: "#429198" }}>
+    <span style={{ color: "#296166" }}>
       Popular Programmes
     </span>
   }
  title={
-  <span style={{ color: "#4197a2" }}>
+  <span style={{ color: "#296166" }}>
     Industry-Aligned Degrees Built for European Careers
   </span>
 }
   sub={
-    <span style={{ color: "#429198" }}>
+    <span style={{ color: "#296166" }}>
       From tech to business to healthcare — accredited Polish higher education providers offer industry-aligned degrees with strong global employment outcomes.
     </span>
   }
@@ -2027,17 +2006,17 @@ title={
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
          <SectionHead
   tag={
-    <span style={{ color: "#429198" }}>
+    <span style={{ color: "#296166" }}>
       Poland Student Visa Guide
     </span>
   }
  title={
-  <span style={{ color: "#4197a2" }}>
+  <span style={{ color: "#296166" }}>
     Straightforward, Efficient & Fully Guided
   </span>
 }
   sub={
-    <span style={{ color: "#429198" }}>
+    <span style={{ color: "#296166" }}>
       Poland's student visa process is straightforward. Langma International guides you through every document and every step.
     </span>
   }
@@ -2177,17 +2156,17 @@ title={
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
          <SectionHead
   tag={
-    <span style={{ color: "#429198" }}>
+    <span style={{ color: "#296166" }}>
       Salary Outlook · Poland & EU 2026
     </span>
   }
   title={
-  <span style={{ color: "#4197a2" }}>
+  <span style={{ color: "#296166" }}>
     Career Earnings Across Key Polish & EU Sectors
   </span>
 }
   sub={
-    <span style={{ color: "#429198" }}>
+    <span style={{ color: "#296166" }}>
       Poland's growing economy and access to the EU labour market make it one of the most strategically valuable study destinations in Europe for international graduates.
     </span>
   }
@@ -2214,17 +2193,17 @@ title={
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
          <SectionHead
   tag={
-    <span style={{ color: "#429198" }}>
+    <span style={{ color: "#296166" }}>
       Career Outlook · Poland & EU 2026
     </span>
   }
 title={
-  <span style={{ color: "#4197a2" }}>
+  <span style={{ color: "#296166" }}>
     Why Polish Graduates Get Hired
   </span>
 }
   sub={
-    <span style={{ color: "#429198" }}>
+    <span style={{ color: "#296166" }}>
       Poland's graduates are employable because their degrees are built to match what the European economy actually needs — with access to an entire continent of opportunity.
     </span>
   }
@@ -2284,7 +2263,7 @@ title={
       {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead  tag={
-    <span style={{ color: "#429198" }}>
+    <span style={{ color: "#296166" }}>
       FAQs
     </span>
   } title="Frequently Asked Questions" center />
@@ -2389,7 +2368,7 @@ title={
 
       {/* ---------------- FOOTER INFO ---------------- */}
       <div 
-      className="-mb-[40px]"
+      className="-mb-[70px]"
         style={{
           background: C.navyDark,
           padding: "24px 48px",
@@ -2401,7 +2380,7 @@ title={
           borderTop: `1px solid rgba(240,192,64,0.1)`,
         }}
       >
-        <span style={{ fontSize: 13, color: "#4197a2", display: "block" }}>
+        <span style={{ fontSize: 13, color: "#296166", display: "block" }}>
   📍{" "}
   <a
     href="https://www.google.com/maps/place/Langma+International/@28.5700637,77.2214716,765m/data=!3m1!1e3!4m15!1m8!3m7!1s0x390ce25c4343e17b:0x9f40fbe93cafcba5!2s73,+South+Extension+I,+Block+H,+New+Delhi,+Delhi+110049!3b1!8m2!3d28.5700637!4d77.2214716!16s%2Fg%2F11hfk14hwt!3m5!1s0x390ce25dba89c087:0x6b74c7356d18b11a!8m2!3d28.5700396!4d77.2209663!16s%2Fg%2F1jglvgls2?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D"

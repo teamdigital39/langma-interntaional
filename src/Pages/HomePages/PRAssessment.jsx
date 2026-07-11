@@ -139,7 +139,7 @@ const QUESTIONS = [
 const DEST_CARDS = [
   {
     icon: (
-      <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-[#2F6E73]" fill="none" strokeWidth="1.5" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-[#296166]" fill="none" strokeWidth="1.5" aria-hidden="true">
         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/>
       </svg>
     ),
@@ -148,7 +148,7 @@ const DEST_CARDS = [
   },
   {
     icon: (
-      <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-[#2F6E73]" fill="none" strokeWidth="1.5" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-[#296166]" fill="none" strokeWidth="1.5" aria-hidden="true">
         <circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/>
       </svg>
     ),
@@ -157,7 +157,7 @@ const DEST_CARDS = [
   },
   {
     icon: (
-      <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-[#2F6E73]" fill="none" strokeWidth="1.5" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-[#296166]" fill="none" strokeWidth="1.5" aria-hidden="true">
         <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
       </svg>
     ),
@@ -166,7 +166,7 @@ const DEST_CARDS = [
   },
   {
     icon: (
-      <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-[#2F6E73]" fill="none" strokeWidth="1.5" aria-hidden="true">
+      <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-[#296166]" fill="none" strokeWidth="1.5" aria-hidden="true">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
         <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
       </svg>
@@ -203,18 +203,18 @@ const VALUE_CHECKS = [
 /* ── SUBCOMPONENTS ── */
 const CheckIcon = () => (
   <svg viewBox="0 0 12 10" className="w-[10px] h-[10px]" fill="none" aria-hidden="true">
-    <polyline points="1,5 4,9 11,1" stroke="#4FBDBA" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <polyline points="1,5 4,9 11,1" stroke="#2FC7A1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
 const PassportCard = () => (
   <div className="bg-white rounded-2xl shadow-2xl p-7 relative overflow-hidden border border-white/20">
     {/* top stripe */}
-    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0C5F5F] via-[#4FBDBA] to-[#4FBDBA]" />
+    <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#1A2540] via-[#2FC7A1] to-[#2FC7A1]" />
     <div className="flex justify-between items-center mb-5">
       <span className="font-mono text-[10px] tracking-widest uppercase text-gray-400">Residency Assessment</span>
-      <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#0C5F5F] to-[#296166] flex items-center justify-center">
-        <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="#4FBDBA" strokeWidth="1.5" aria-hidden="true">
+      <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#1A2540] to-[#296166] flex items-center justify-center">
+        <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="#2FC7A1" strokeWidth="1.5" aria-hidden="true">
           <circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/>
         </svg>
       </div>
@@ -222,20 +222,20 @@ const PassportCard = () => (
     <div className="flex items-center gap-3 mb-5">
       <div className="flex-1">
         <span className="block font-mono text-[10px] tracking-widest uppercase text-gray-400 mb-1">From</span>
-        <strong className="text-[20px] font-bold text-[#0C5F5F]">Your Goals</strong>
+        <strong className="text-[20px] font-bold text-[#1A2540]">Your Goals</strong>
       </div>
-      <span className="text-[#4FBDBA] text-[22px]">→</span>
+      <span className="text-[#2FC7A1] text-[22px]">→</span>
       <div className="flex-1">
         <span className="block font-mono text-[10px] tracking-widest uppercase text-gray-400 mb-1">To</span>
-        <strong className="text-[20px] font-bold text-[#0C5F5F]">Your Residency</strong>
+        <strong className="text-[20px] font-bold text-[#1A2540]">Your Residency</strong>
       </div>
     </div>
     <div className="flex flex-wrap gap-2 mb-5">
       {["Europe", "Investment", "Family", "Digital Nomad"].map((t, i) => (
         <span key={t} className={`font-mono text-[10px] tracking-wider px-2.5 py-1 rounded border ${
-          i === 1 ? "bg-[#4FBDBA]/10 text-[#0C5F5F] border-[#4FBDBA]/25" :
-          i === 2 ? "bg-[#4FBDBA]/10 text-[#2F6E73] border-[#4FBDBA]/25" :
-                    "bg-[#0C5F5F]/7 text-[#296166] border-[#0C5F5F]/12"
+          i === 1 ? "bg-[#2FC7A1]/10 text-[#1A2540] border-[#2FC7A1]/25" :
+          i === 2 ? "bg-[#2FC7A1]/10 text-[#296166] border-[#2FC7A1]/25" :
+                    "bg-[#1A2540]/7 text-[#296166] border-[#1A2540]/12"
         }`}>{t}</span>
       ))}
     </div>
@@ -247,7 +247,7 @@ const PassportCard = () => (
     <div className="flex items-center justify-between pt-4">
       <div>
         <span className="block font-mono text-[10px] tracking-widest uppercase text-gray-400 mb-1">Status</span>
-        <strong className="text-[14px] font-semibold text-[#0C5F5F]">Match In Progress</strong>
+        <strong className="text-[14px] font-semibold text-[#1A2540]">Match In Progress</strong>
       </div>
       {/* stamp */}
       <svg width="62" height="62" viewBox="0 0 100 100" className="opacity-85" style={{ transform: "rotate(-8deg)" }} aria-hidden="true">
@@ -285,7 +285,7 @@ const WizardProgress = ({ current }) => {
           return (
             <div key={s} className="flex-1 h-[5px] rounded-full bg-gray-200 overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-[#296166] to-[#4FBDBA] transition-all duration-300"
+                className="h-full bg-gradient-to-r from-[#296166] to-[#2FC7A1] transition-all duration-300"
                 style={{ width: `${fill}%` }}
               />
             </div>
@@ -343,22 +343,22 @@ const PRAssessment = () => {
 
 
       {/* ── HERO ── */}
-      <header className="relative overflow-hidden bg-gradient-to-br from-[#0C5F5F] via-[#4FBDBA] to-[#2F6E73] pt-20 pb-24" role="banner">
+      <header className="relative overflow-hidden bg-gradient-to-br from-[#1A2540] via-[#2FC7A1] to-[#296166] pt-20 pb-24" role="banner">
         {/* dot grid */}
         <div
           className="absolute inset-0 pointer-events-none opacity-50"
           style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1.4px)", backgroundSize: "22px 22px" }}
         />
         {/* radial glows */}
-        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 70% 50%, rgba(79,189,186,0.12) 0%, transparent 65%), radial-gradient(ellipse at 20% 80%, rgba(79,189,186,0.12) 0%, transparent 50%)" }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 70% 50%, rgba(47,199,161,0.12) 0%, transparent 65%), radial-gradient(ellipse at 20% 80%, rgba(47,199,161,0.12) 0%, transparent 50%)" }} />
 
         {/* animated route lines */}
         <svg className="absolute top-0 right-0 w-1/2 h-full pointer-events-none opacity-20" viewBox="0 0 600 500" aria-hidden="true" focusable="false">
-          <path d="M0,250 Q150,80 300,200 T600,180" stroke="#4FBDBA" strokeWidth="1" fill="none" strokeDasharray="180" style={{ animation: "routePulse 5s ease-in-out infinite" }}/>
-          <path d="M50,400 Q200,250 350,320 T600,300" stroke="#4FBDBA" strokeWidth="1" fill="none" strokeDasharray="180" style={{ animation: "routePulse 5s ease-in-out infinite", animationDelay: "-2s" }}/>
+          <path d="M0,250 Q150,80 300,200 T600,180" stroke="#2FC7A1" strokeWidth="1" fill="none" strokeDasharray="180" style={{ animation: "routePulse 5s ease-in-out infinite" }}/>
+          <path d="M50,400 Q200,250 350,320 T600,300" stroke="#2FC7A1" strokeWidth="1" fill="none" strokeDasharray="180" style={{ animation: "routePulse 5s ease-in-out infinite", animationDelay: "-2s" }}/>
           <path d="M0,100 Q250,300 450,150 T600,400" stroke="rgba(255,255,255,0.6)" strokeWidth="1" fill="none" strokeDasharray="180" style={{ animation: "routePulse 5s ease-in-out infinite", animationDelay: "-3.5s" }}/>
-          <circle cx="300" cy="200" r="5" fill="#4FBDBA" opacity="0.6"/>
-          <circle cx="450" cy="150" r="4" fill="#4FBDBA" opacity="0.6"/>
+          <circle cx="300" cy="200" r="5" fill="#2FC7A1" opacity="0.6"/>
+          <circle cx="450" cy="150" r="4" fill="#2FC7A1" opacity="0.6"/>
           <circle cx="200" cy="320" r="3.5" fill="rgba(255,255,255,0.5)" opacity="0.6"/>
         </svg>
         <style>{`@keyframes routePulse{0%,100%{stroke-dashoffset:200;}50%{stroke-dashoffset:0;}}`}</style>
@@ -366,8 +366,8 @@ const PRAssessment = () => {
         <div className="relative z-10 max-w-[1180px] mx-auto px-7 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-14 items-center">
           {/* Left */}
           <div>
-            <span className="inline-flex items-center gap-2.5 font-mono text-[12px] tracking-[0.14em] uppercase text-[#4FBDBA] mb-4">
-              <span className="w-[7px] h-[7px] rounded-full bg-[#4FBDBA] flex-shrink-0" />
+            <span className="inline-flex items-center gap-2.5 font-mono text-[12px] tracking-[0.14em] uppercase text-[#2FC7A1] mb-4">
+              <span className="w-[7px] h-[7px] rounded-full bg-[#2FC7A1] flex-shrink-0" />
               Langma Global Residency Assessment™
             </span>
             <h1 className="text-[28px] lg:text-[48px] font-bold text-white leading-[1.07] mb-5">
@@ -379,7 +379,7 @@ const PRAssessment = () => {
             <ul className="space-y-3 mb-8" aria-label="Assessment benefits">
               {VALUE_CHECKS.map((item) => (
                 <li key={item} className="flex items-start gap-2.5 text-[14px] text-white/88 leading-snug">
-                  <span className="flex-shrink-0 w-5 h-5 mt-0.5 rounded-full bg-[#4FBDBA]/20 border border-[#4FBDBA] flex items-center justify-center">
+                  <span className="flex-shrink-0 w-5 h-5 mt-0.5 rounded-full bg-[#2FC7A1]/20 border border-[#2FC7A1] flex items-center justify-center">
                     <CheckIcon />
                   </span>
                   {item}
@@ -387,10 +387,10 @@ const PRAssessment = () => {
               ))}
             </ul>
             <div className="flex flex-wrap gap-3 items-center">
-              <a href="#assessment" className="inline-flex items-center gap-2 bg-gradient-to-r from-[#4FBDBA] to-[#2F6E73] text-white px-7 py-3.5 rounded-full font-bold text-[15px] hover:-translate-y-0.5 transition-all shadow-lg hover:shadow-xl">
+              <a href="#assessment" className="inline-flex items-center gap-2 bg-gradient-to-r from-[#2FC7A1] to-[#296166] text-white px-7 py-3.5 rounded-full font-bold text-[15px] hover:-translate-y-0.5 transition-all shadow-lg hover:shadow-xl">
                 Start My Assessment
               </a>
-              <a href="#results" className="inline-flex items-center gap-2 border border-white/25 text-white/85 px-6 py-3.5 rounded-full font-semibold text-[14px] hover:border-[#4FBDBA] hover:text-[#4FBDBA] transition-all">
+              <a href="#results" className="inline-flex items-center gap-2 border border-white/25 text-white/85 px-6 py-3.5 rounded-full font-semibold text-[14px] hover:border-[#2FC7A1] hover:text-[#2FC7A1] transition-all">
                 Book A Free Consultation
               </a>
             </div>
@@ -404,13 +404,13 @@ const PRAssessment = () => {
       </header>
 
       {/* ── TRUST BAR ── */}
-      <div className="bg-[#0C5F5F] py-5 border-t border-white/5" role="complementary" aria-label="Trust indicators">
+      <div className="bg-[#1A2540] py-5 border-t border-white/5" role="complementary" aria-label="Trust indicators">
         <div className="max-w-[1180px] mx-auto px-7 flex items-center justify-center gap-12 flex-wrap">
           {[
-            { label: "Trusted Advisory", icon: <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" fill="none" stroke="#4FBDBA" strokeWidth="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> },
-            { label: "11+ Residency Programs", icon: <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" fill="none" stroke="#4FBDBA" strokeWidth="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/></svg> },
-            { label: "Family-Inclusive Planning", icon: <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" fill="none" stroke="#4FBDBA" strokeWidth="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> },
-            { label: "No Obligation Assessment", icon: <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" fill="none" stroke="#4FBDBA" strokeWidth="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 12l2 2 4-4"/></svg> },
+            { label: "Trusted Advisory", icon: <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" fill="none" stroke="#2FC7A1" strokeWidth="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> },
+            { label: "11+ Residency Programs", icon: <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" fill="none" stroke="#2FC7A1" strokeWidth="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/></svg> },
+            { label: "Family-Inclusive Planning", icon: <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" fill="none" stroke="#2FC7A1" strokeWidth="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg> },
+            { label: "No Obligation Assessment", icon: <svg viewBox="0 0 24 24" className="w-4 h-4 flex-shrink-0" fill="none" stroke="#2FC7A1" strokeWidth="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 12l2 2 4-4"/></svg> },
           ].map((item) => (
             <div key={item.label} className="flex items-center gap-2.5 font-mono text-[11px] tracking-wider uppercase text-white/60">
               {item.icon}
@@ -421,26 +421,26 @@ const PRAssessment = () => {
       </div>
 
       {/* ── DESTINATIONS ── */}
-      <section className="relative py-24 bg-gradient-to-b from-white to-[#EEF7F7] overflow-hidden" id="destinations">
+      <section className="relative py-24 bg-gradient-to-b from-white to-[#F5F8F6] overflow-hidden" id="destinations">
         <div className="absolute inset-0 pointer-events-none opacity-40" style={{ backgroundImage: "radial-gradient(circle, rgba(12,95,95,0.07) 1px, transparent 1.4px)", backgroundSize: "22px 22px" }} />
         <div className="relative z-10 max-w-[1180px] mx-auto px-7">
           <div className="text-center max-w-[680px] mx-auto mb-14">
             <span className="inline-flex items-center gap-2.5 font-mono text-[12px] tracking-[0.14em] uppercase text-[#296166] mb-4">
-              <span className="w-[7px] h-[7px] rounded-full bg-[#4FBDBA]" />Residency Pathways
+              <span className="w-[7px] h-[7px] rounded-full bg-[#2FC7A1]" />Residency Pathways
             </span>
-            <h2 className="text-[28px] lg:text-[36px] font-bold text-[#0C5F5F] mt-3 mb-4">Discover Your Residency Pathway</h2>
-            <p className="text-[16px] text-[#0E2A46]">From European permanent residency to entrepreneur pathways and digital nomad permits — our global residency ecosystem covers every profile, priority, and investment level.</p>
+            <h2 className="text-[28px] lg:text-[36px] font-bold text-[#1A2540] mt-3 mb-4">Discover Your Residency Pathway</h2>
+            <p className="text-[16px] text-[#1B2B28]">From European permanent residency to entrepreneur pathways and digital nomad permits — our global residency ecosystem covers every profile, priority, and investment level.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {DEST_CARDS.map((card) => (
-              <div key={card.num} className="group bg-white/60 backdrop-blur border border-white/80 rounded-2xl p-6 shadow-md hover:-translate-y-1.5 hover:shadow-xl hover:border-[#0C5F5F]/20 transition-all duration-200 relative overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#0C5F5F] to-[#4FBDBA] opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#0C5F5F]/7 to-[#4FBDBA]/10 border border-[#0C5F5F]/10 flex items-center justify-center mb-4">
+              <div key={card.num} className="group bg-white/60 backdrop-blur border border-white/80 rounded-2xl p-6 shadow-md hover:-translate-y-1.5 hover:shadow-xl hover:border-[#1A2540]/20 transition-all duration-200 relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#1A2540] to-[#2FC7A1] opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#1A2540]/7 to-[#2FC7A1]/10 border border-[#1A2540]/10 flex items-center justify-center mb-4">
                   {card.icon}
                 </div>
-                <span className="block font-mono text-[10px] text-[#4FBDBA] tracking-wider mb-2">{card.num}</span>
-                <h4 className="text-[15px] font-semibold text-[#0C5F5F] mb-2 leading-snug">{card.title}</h4>
-                <p className="text-[13px] text-[#0E2A46] leading-relaxed">{card.desc}</p>
+                <span className="block font-mono text-[10px] text-[#2FC7A1] tracking-wider mb-2">{card.num}</span>
+                <h4 className="text-[15px] font-semibold text-[#1A2540] mb-2 leading-snug">{card.title}</h4>
+                <p className="text-[13px] text-[#1B2B28] leading-relaxed">{card.desc}</p>
               </div>
             ))}
           </div>
@@ -452,23 +452,23 @@ const PRAssessment = () => {
         <div className="max-w-[1180px] mx-auto px-7 grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-16 items-start">
           <div>
             <span className="inline-flex items-center gap-2.5 font-mono text-[12px] tracking-[0.14em] uppercase text-[#296166] mb-4">
-              <span className="w-[7px] h-[7px] rounded-full bg-[#4FBDBA]" />The Strategy Behind The Decision
+              <span className="w-[7px] h-[7px] rounded-full bg-[#2FC7A1]" />The Strategy Behind The Decision
             </span>
-            <h2 className="text-[28px] lg:text-[34px] font-bold text-[#0C5F5F] mt-3 mb-5">Why Take the Residency Assessment?</h2>
-            <p className="text-[16px] text-[#0E2A46] leading-relaxed mb-4">Choosing a residency program is rarely a straightforward decision. It's shaped by your investment capacity, your family's needs, your business ambitions, and the life you want to build across borders.</p>
-            <p className="text-[16px] text-[#0E2A46] leading-relaxed mb-4">Most individuals approach this decision with fragmented information — generic program brochures, conflicting online advice, and no structured framework to evaluate their real suitability. This assessment changes that by evaluating all the factors that genuinely determine program success and long-term satisfaction.</p>
-            <p className="text-[16px] text-[#0E2A46] leading-relaxed mb-6"><strong className="text-[#0C5F5F]">Every recommendation that follows is grounded in your unique profile — not a generic ranking of popular programs.</strong> That's the difference between guessing your residency and planning it with an expert Langma advisor at your side.</p>
-            <a href="#assessment" className="inline-flex items-center gap-1.5 font-mono text-[13px] tracking-wider text-[#296166] border-b border-[#296166] pb-0.5 hover:text-[#4FBDBA] hover:border-[#4FBDBA] transition-colors">
+            <h2 className="text-[28px] lg:text-[34px] font-bold text-[#1A2540] mt-3 mb-5">Why Take the Residency Assessment?</h2>
+            <p className="text-[16px] text-[#1B2B28] leading-relaxed mb-4">Choosing a residency program is rarely a straightforward decision. It's shaped by your investment capacity, your family's needs, your business ambitions, and the life you want to build across borders.</p>
+            <p className="text-[16px] text-[#1B2B28] leading-relaxed mb-4">Most individuals approach this decision with fragmented information — generic program brochures, conflicting online advice, and no structured framework to evaluate their real suitability. This assessment changes that by evaluating all the factors that genuinely determine program success and long-term satisfaction.</p>
+            <p className="text-[16px] text-[#1B2B28] leading-relaxed mb-6"><strong className="text-[#1A2540]">Every recommendation that follows is grounded in your unique profile — not a generic ranking of popular programs.</strong> That's the difference between guessing your residency and planning it with an expert Langma advisor at your side.</p>
+            <a href="#assessment" className="inline-flex items-center gap-1.5 font-mono text-[13px] tracking-wider text-[#296166] border-b border-[#296166] pb-0.5 hover:text-[#2FC7A1] hover:border-[#2FC7A1] transition-colors">
               Begin Your Assessment →
             </a>
           </div>
           <div className="grid grid-cols-2 gap-3.5" aria-label="Assessment evaluation factors">
             {FACTOR_CARDS.map((f) => (
               <div key={f.label} className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm flex flex-col gap-3 hover:-translate-y-1 hover:shadow-md transition-all duration-200">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0C5F5F]/7 to-[#4FBDBA]/10 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#1A2540]/7 to-[#2FC7A1]/10 flex items-center justify-center">
                   {f.icon}
                 </div>
-                <span className="text-[13px] font-semibold text-[#0C5F5F]">{f.label}</span>
+                <span className="text-[13px] font-semibold text-[#1A2540]">{f.label}</span>
               </div>
             ))}
           </div>
@@ -476,13 +476,13 @@ const PRAssessment = () => {
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section className="py-24 bg-[#EEF7F7] relative" id="how">
+      <section className="py-24 bg-[#F5F8F6] relative" id="how">
         <div className="max-w-[1180px] mx-auto px-7">
           <div className="text-center max-w-[560px] mx-auto mb-16">
             <span className="inline-flex items-center gap-2.5 font-mono text-[12px] tracking-[0.14em] uppercase text-[#296166] mb-4">
-              <span className="w-[7px] h-[7px] rounded-full bg-[#4FBDBA]" />Your Path To Residency
+              <span className="w-[7px] h-[7px] rounded-full bg-[#2FC7A1]" />Your Path To Residency
             </span>
-            <h2 className="text-[28px] lg:text-[34px] font-bold text-[#0C5F5F] mt-3">How It Works</h2>
+            <h2 className="text-[28px] lg:text-[34px] font-bold text-[#1A2540] mt-3">How It Works</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 relative">
             {/* connector line */}
@@ -490,12 +490,12 @@ const PRAssessment = () => {
             {HOW_STEPS.map((step) => (
               <div key={step.num} className="relative z-10 bg-[#F7F9FC] border border-gray-100 rounded-2xl p-6 shadow-sm hover:-translate-y-1 transition-all duration-200">
                 <div className="w-[46px] h-[46px] rounded-full border-[1.6px] border-[#296166] flex items-center justify-center mb-5 bg-white relative">
-                  <div className="absolute inset-[5px] rounded-full border border-[#0C5F5F]/16" />
+                  <div className="absolute inset-[5px] rounded-full border border-[#1A2540]/16" />
                   <span className="font-mono font-medium text-[14px] text-[#296166]">{step.num}</span>
                 </div>
-                <h3 className="text-[16px] font-semibold text-[#0C5F5F] mb-2 leading-snug">{step.title}</h3>
-                <p className="text-[13px] text-[#0E2A46] leading-relaxed mb-3">{step.desc}</p>
-                <div className="font-mono text-[11px] text-[#2F6E73] bg-[#4FBDBA]/10 border border-[#4FBDBA]/15 px-3 py-2 rounded-lg leading-snug">
+                <h3 className="text-[16px] font-semibold text-[#1A2540] mb-2 leading-snug">{step.title}</h3>
+                <p className="text-[13px] text-[#1B2B28] leading-relaxed mb-3">{step.desc}</p>
+                <div className="font-mono text-[11px] text-[#296166] bg-[#2FC7A1]/10 border border-[#2FC7A1]/15 px-3 py-2 rounded-lg leading-snug">
                   {step.outcome}
                 </div>
               </div>
@@ -509,10 +509,10 @@ const PRAssessment = () => {
         <div className="max-w-[1180px] mx-auto px-7">
           <div className="text-center max-w-[620px] mx-auto mb-4">
             <span className="inline-flex items-center gap-2.5 font-mono text-[12px] tracking-[0.14em] uppercase text-[#296166] mb-4">
-              <span className="w-[7px] h-[7px] rounded-full bg-[#4FBDBA]" />Your Assessment
+              <span className="w-[7px] h-[7px] rounded-full bg-[#2FC7A1]" />Your Assessment
             </span>
-            <h2 className="text-[28px] lg:text-[34px] font-bold text-[#0C5F5F] mt-3 mb-3">10 Strategic Questions</h2>
-            <p className="text-[15px] text-[#0E2A46]">No right or wrong answers — just clarity. Each question helps us match you with the right residency pathway.</p>
+            <h2 className="text-[28px] lg:text-[34px] font-bold text-[#1A2540] mt-3 mb-3">10 Strategic Questions</h2>
+            <p className="text-[15px] text-[#1B2B28]">No right or wrong answers — just clarity. Each question helps us match you with the right residency pathway.</p>
           </div>
 
           {!done ? (
@@ -522,9 +522,9 @@ const PRAssessment = () => {
               <div className="max-w-[760px] mx-auto">
                 {/* Question card */}
                 <div className="bg-white border border-gray-100 rounded-2xl shadow-md p-8 mb-4">
-                  <div className="font-mono text-[10px] tracking-wider uppercase text-[#4FBDBA] mb-1.5">{q.label}</div>
-                  <span className="block font-mono text-[11px] text-[#4FBDBA] mb-4">Question {current + 1} of 10</span>
-                  <h3 className="text-[17px] font-semibold text-[#0C5F5F] mb-1.5 leading-snug">{q.q}</h3>
+                  <div className="font-mono text-[10px] tracking-wider uppercase text-[#2FC7A1] mb-1.5">{q.label}</div>
+                  <span className="block font-mono text-[11px] text-[#2FC7A1] mb-4">Question {current + 1} of 10</span>
+                  <h3 className="text-[17px] font-semibold text-[#1A2540] mb-1.5 leading-snug">{q.q}</h3>
                   <span className="block font-mono text-[10px] tracking-wider uppercase text-gray-400 mb-5">Select one option</span>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5" role="radiogroup" aria-label={q.q}>
@@ -535,8 +535,8 @@ const PRAssessment = () => {
                           key={opt.value}
                           className={`relative flex items-center gap-3 border rounded-[10px] px-4 py-3.5 cursor-pointer text-[13px] transition-all duration-150 ${
                             selected
-                              ? "border-[#296166] bg-[#0C5F5F]/7 text-[#0C5F5F]"
-                              : "border-gray-200 text-[#0E2A46] hover:border-[#0C5F5F]/30 hover:bg-[#0C5F5F]/3"
+                              ? "border-[#296166] bg-[#1A2540]/7 text-[#1A2540]"
+                              : "border-gray-200 text-[#1B2B28] hover:border-[#1A2540]/30 hover:bg-[#1A2540]/3"
                           }`}
                         >
                           <input
@@ -549,7 +549,7 @@ const PRAssessment = () => {
                           />
                           <span className={`w-[18px] h-[18px] rounded-full border flex-shrink-0 relative transition-all ${selected ? "border-[#296166]" : "border-gray-300"}`}>
                             {selected && (
-                              <span className="absolute inset-[3px] rounded-full bg-gradient-to-br from-[#296166] to-[#4FBDBA]" />
+                              <span className="absolute inset-[3px] rounded-full bg-gradient-to-br from-[#296166] to-[#2FC7A1]" />
                             )}
                           </span>
                           {opt.label}
@@ -563,7 +563,7 @@ const PRAssessment = () => {
                 <div className="flex items-center justify-between mt-7 px-0.5">
                   <button
                     onClick={handleBack}
-                    className={`flex items-center gap-2 px-7 py-3 rounded-full border border-gray-200 text-[#0E2A46] font-semibold text-[14px] hover:border-[#0C5F5F] hover:text-[#0C5F5F] transition-all ${current === 0 ? "invisible" : ""}`}
+                    className={`flex items-center gap-2 px-7 py-3 rounded-full border border-gray-200 text-[#1B2B28] font-semibold text-[14px] hover:border-[#1A2540] hover:text-[#1A2540] transition-all ${current === 0 ? "invisible" : ""}`}
                     aria-label="Go to previous question"
                   >
                     ← Previous
@@ -571,7 +571,7 @@ const PRAssessment = () => {
                   <span className="font-mono text-[11px] text-gray-400 tracking-wider">{current + 1} / {TOTAL}</span>
                   <button
                     onClick={handleNext}
-                    className="flex items-center gap-2 bg-gradient-to-br from-[#0C5F5F] to-[#296166] text-white px-7 py-3 rounded-full font-semibold text-[14px] hover:-translate-y-0.5 hover:shadow-lg transition-all min-w-[140px] justify-center"
+                    className="flex items-center gap-2 bg-gradient-to-br from-[#1A2540] to-[#296166] text-white px-7 py-3 rounded-full font-semibold text-[14px] hover:-translate-y-0.5 hover:shadow-lg transition-all min-w-[140px] justify-center"
                     aria-label={current === TOTAL - 1 ? "View results" : "Go to next question"}
                   >
                     {current === TOTAL - 1 ? "View My Results →" : "Next →"}
@@ -581,29 +581,29 @@ const PRAssessment = () => {
             </>
           ) : (
             <div className="max-w-[760px] mx-auto text-center py-8">
-              <div className="w-16 h-16 rounded-full bg-[#4FBDBA]/15 border-2 border-[#4FBDBA] flex items-center justify-center mx-auto mb-4">
-                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="none" stroke="#2F6E73" strokeWidth="2.5"><path d="M9 11l3 3L22 4"/></svg>
+              <div className="w-16 h-16 rounded-full bg-[#2FC7A1]/15 border-2 border-[#2FC7A1] flex items-center justify-center mx-auto mb-4">
+                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="none" stroke="#296166" strokeWidth="2.5"><path d="M9 11l3 3L22 4"/></svg>
               </div>
               <p className="text-[16px] text-[#296166] font-semibold mb-2">Assessment Complete</p>
-              <p className="text-[14px] text-[#0E2A46]">Scroll down to unlock your personalized residency report.</p>
+              <p className="text-[14px] text-[#1B2B28]">Scroll down to unlock your personalized residency report.</p>
             </div>
           )}
         </div>
       </section>
 
       {/* ── RESULTS & LEAD CAPTURE ── */}
-      <section className="py-24 bg-gradient-to-b from-[#EEF7F7] to-[#F7F9FC] relative" id="results-section">
+      <section className="py-24 bg-gradient-to-b from-[#F5F8F6] to-[#F7F9FC] relative" id="results-section">
         <div className="max-w-[1180px] mx-auto px-7">
           <div className="max-w-[580px] mx-auto bg-white rounded-2xl shadow-2xl border border-gray-100 p-10 relative">
             {/* badge */}
-            <div className="absolute -top-[18px] left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#0C5F5F] to-[#296166] text-white font-mono text-[11px] tracking-wider uppercase px-5 py-2 rounded-full shadow-lg whitespace-nowrap">
+            <div className="absolute -top-[18px] left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#1A2540] to-[#296166] text-white font-mono text-[11px] tracking-wider uppercase px-5 py-2 rounded-full shadow-lg whitespace-nowrap">
               Unlock Your Full Report
             </div>
 
             {!submitted ? (
               <>
-                <h2 className="text-[24px] lg:text-[28px] font-bold text-[#0C5F5F] mt-5 mb-3">Complete Your Personalized Residency Report</h2>
-                <p className="text-[14px] text-[#0E2A46] leading-relaxed mb-7">
+                <h2 className="text-[24px] lg:text-[28px] font-bold text-[#1A2540] mt-5 mb-3">Complete Your Personalized Residency Report</h2>
+                <p className="text-[14px] text-[#1B2B28] leading-relaxed mb-7">
                   Enter your details below to receive your full personalized assessment report and connect with a dedicated Langma International Residency Advisor.
                 </p>
 
@@ -612,37 +612,37 @@ const PRAssessment = () => {
                     <div>
                       <label className="block font-mono text-[11px] tracking-wider uppercase text-gray-500 mb-1.5">Full Name</label>
                       <input type="text" name="name" value={form.name} onChange={handleFormChange} placeholder="Enter your full name" required autoComplete="name"
-                        className="w-full border border-gray-200 rounded-[10px] px-3.5 py-3 text-[14px] text-[#0E2A46] bg-[#F7F9FC] focus:border-[#296166] focus:bg-white outline-none transition-colors" />
+                        className="w-full border border-gray-200 rounded-[10px] px-3.5 py-3 text-[14px] text-[#1B2B28] bg-[#F7F9FC] focus:border-[#296166] focus:bg-white outline-none transition-colors" />
                     </div>
                     <div>
                       <label className="block font-mono text-[11px] tracking-wider uppercase text-gray-500 mb-1.5">Email Address</label>
                       <input type="email" name="email" value={form.email} onChange={handleFormChange} placeholder="you@example.com" required autoComplete="email"
-                        className="w-full border border-gray-200 rounded-[10px] px-3.5 py-3 text-[14px] text-[#0E2A46] bg-[#F7F9FC] focus:border-[#296166] focus:bg-white outline-none transition-colors" />
+                        className="w-full border border-gray-200 rounded-[10px] px-3.5 py-3 text-[14px] text-[#1B2B28] bg-[#F7F9FC] focus:border-[#296166] focus:bg-white outline-none transition-colors" />
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className="block font-mono text-[11px] tracking-wider uppercase text-gray-500 mb-1.5">Phone Number</label>
                       <input type="tel" name="phone" value={form.phone} onChange={handleFormChange} placeholder="+91 98101 17094" required autoComplete="tel"
-                        className="w-full border border-gray-200 rounded-[10px] px-3.5 py-3 text-[14px] text-[#0E2A46] bg-[#F7F9FC] focus:border-[#296166] focus:bg-white outline-none transition-colors" />
+                        className="w-full border border-gray-200 rounded-[10px] px-3.5 py-3 text-[14px] text-[#1B2B28] bg-[#F7F9FC] focus:border-[#296166] focus:bg-white outline-none transition-colors" />
                     </div>
                     <div>
                       <label className="block font-mono text-[11px] tracking-wider uppercase text-gray-500 mb-1.5">Nationality</label>
                       <input type="text" name="nationality" value={form.nationality} onChange={handleFormChange} placeholder="e.g. Indian" required
-                        className="w-full border border-gray-200 rounded-[10px] px-3.5 py-3 text-[14px] text-[#0E2A46] bg-[#F7F9FC] focus:border-[#296166] focus:bg-white outline-none transition-colors" />
+                        className="w-full border border-gray-200 rounded-[10px] px-3.5 py-3 text-[14px] text-[#1B2B28] bg-[#F7F9FC] focus:border-[#296166] focus:bg-white outline-none transition-colors" />
                     </div>
                   </div>
                   <div>
                     <label className="block font-mono text-[11px] tracking-wider uppercase text-gray-500 mb-1.5">Current Country of Residence</label>
                     <input type="text" name="residence" value={form.residence} onChange={handleFormChange} placeholder="e.g. India" required autoComplete="country-name"
-                      className="w-full border border-gray-200 rounded-[10px] px-3.5 py-3 text-[14px] text-[#0E2A46] bg-[#F7F9FC] focus:border-[#296166] focus:bg-white outline-none transition-colors" />
+                      className="w-full border border-gray-200 rounded-[10px] px-3.5 py-3 text-[14px] text-[#1B2B28] bg-[#F7F9FC] focus:border-[#296166] focus:bg-white outline-none transition-colors" />
                   </div>
                   <div>
                     <label className="block font-mono text-[11px] tracking-wider uppercase text-gray-500 mb-1.5">
                       Preferred Residency Program <span className="normal-case italic text-[10px]">— optional</span>
                     </label>
                     <select name="program" value={form.program} onChange={handleFormChange}
-                      className="w-full border border-gray-200 rounded-[10px] px-3.5 py-3 text-[14px] text-[#0E2A46] bg-[#F7F9FC] focus:border-[#296166] focus:bg-white outline-none transition-colors appearance-none">
+                      className="w-full border border-gray-200 rounded-[10px] px-3.5 py-3 text-[14px] text-[#1B2B28] bg-[#F7F9FC] focus:border-[#296166] focus:bg-white outline-none transition-colors appearance-none">
                       <option value="">Select a program (if you have one in mind)</option>
                       <option>Malta Permanent Residence Programme</option>
                       <option>Cyprus Permanent Residency</option>
@@ -661,7 +661,7 @@ const PRAssessment = () => {
                   <div>
                     <label className="block font-mono text-[11px] tracking-wider uppercase text-gray-500 mb-1.5">Estimated Investment Budget</label>
                     <select name="budget" value={form.budget} onChange={handleFormChange} required
-                      className="w-full border border-gray-200 rounded-[10px] px-3.5 py-3 text-[14px] text-[#0E2A46] bg-[#F7F9FC] focus:border-[#296166] focus:bg-white outline-none transition-colors appearance-none">
+                      className="w-full border border-gray-200 rounded-[10px] px-3.5 py-3 text-[14px] text-[#1B2B28] bg-[#F7F9FC] focus:border-[#296166] focus:bg-white outline-none transition-colors appearance-none">
                       <option value="">Select your investment range</option>
                       <option>Below €150,000</option>
                       <option>€150,000 – €300,000</option>
@@ -672,13 +672,13 @@ const PRAssessment = () => {
                   </div>
 
                   <button type="submit"
-                    className="w-full bg-gradient-to-r from-[#4FBDBA] to-[#2F6E73] text-white py-4 rounded-full font-bold text-[15px] hover:-translate-y-0.5 hover:shadow-xl transition-all shadow-lg mt-2">
+                    className="w-full bg-gradient-to-r from-[#2FC7A1] to-[#296166] text-white py-4 rounded-full font-bold text-[15px] hover:-translate-y-0.5 hover:shadow-xl transition-all shadow-lg mt-2">
                     Unlock My Personalized Residency Report
                   </button>
                 </form>
 
                 <div className="flex items-start gap-2 mt-5">
-                  <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] flex-shrink-0 mt-0.5" fill="none" stroke="#4FBDBA" strokeWidth="1.6">
+                  <svg viewBox="0 0 24 24" className="w-[14px] h-[14px] flex-shrink-0 mt-0.5" fill="none" stroke="#2FC7A1" strokeWidth="1.6">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                   </svg>
                   <p className="font-mono text-[11px] text-gray-500 leading-relaxed">
@@ -688,13 +688,13 @@ const PRAssessment = () => {
               </>
             ) : (
               <div className="text-center py-8">
-                <div className="w-16 h-16 rounded-full bg-[#4FBDBA]/15 border-2 border-[#4FBDBA] flex items-center justify-center mx-auto mb-5">
-                  <svg viewBox="0 0 24 24" className="w-7 h-7" fill="none" stroke="#2F6E73" strokeWidth="2.5"><path d="M9 11l3 3L22 4"/></svg>
+                <div className="w-16 h-16 rounded-full bg-[#2FC7A1]/15 border-2 border-[#2FC7A1] flex items-center justify-center mx-auto mb-5">
+                  <svg viewBox="0 0 24 24" className="w-7 h-7" fill="none" stroke="#296166" strokeWidth="2.5"><path d="M9 11l3 3L22 4"/></svg>
                 </div>
-                <h3 className="text-[22px] font-bold text-[#0C5F5F] mb-3">Report Requested</h3>
-                <p className="text-[16px] text-[#0E2A46] leading-relaxed">✓ Our Advisor Will Contact You Shortly</p>
+                <h3 className="text-[22px] font-bold text-[#1A2540] mb-3">Report Requested</h3>
+                <p className="text-[16px] text-[#1B2B28] leading-relaxed">✓ Our Advisor Will Contact You Shortly</p>
                 <p className="text-[14px] text-gray-500 mt-3">A Langma International Residency Advisor will reach out within one business day.</p>
-                <Link to="/investment" className="inline-flex items-center gap-2 mt-7 bg-[#2F6E73] hover:bg-[#296166] text-white px-7 py-3 rounded-full font-semibold text-[14px] transition-all">
+                <Link to="/investment" className="inline-flex items-center gap-2 mt-7 bg-[#296166] hover:bg-[#296166] text-white px-7 py-3 rounded-full font-semibold text-[14px] transition-all">
                   ← Back to Residency Programmes
                 </Link>
               </div>

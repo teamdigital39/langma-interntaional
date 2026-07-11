@@ -32,7 +32,10 @@ const ConsultationForm = () => {
   };
 
   const inputError = (field) =>
-    errors[field] ? "border-red-400" : "border-white/14";
+    errors[field] ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "border-[#D8E0EC]";
+
+  const fieldClass = (field) =>
+    `w-full border rounded-xl px-4 py-2.5 text-gray-900 text-[14px] placeholder-gray-400 focus:border-[#2FC7A1] focus:ring-2 focus:ring-[#2FC7A1]/20 outline-none bg-white transition-colors ${inputError(field)}`;
 
   // SUBMIT
   const handleSubmit = async () => {
@@ -116,19 +119,19 @@ const ConsultationForm = () => {
   };
 
   return (
-    <div id="meeting-form" className="bg-white/5 border border-white/10 rounded-2xl p-8">
-      <h3 className="text-[22px] font-bold text-white mb-1">Schedule a Consultation</h3>
-      <p className="text-[14px] text-white/55 mb-7">
+    <div id="meeting-form" className="bg-white border border-[#D8E0EC] shadow-[0_20px_50px_-20px_rgba(41,97,102,0.2)] rounded-2xl p-8">
+      <h3 className="text-[22px] font-bold text-[#296166] mb-1">Schedule a Consultation</h3>
+      <p className="text-[14px] text-gray-500 mb-7">
         We respond within one business day. All enquiries are strictly confidential.
       </p>
 
       {/* RESPONSE BANNER */}
       {responseMsg && (
         <div
-          className={`flex items-center justify-between p-3 rounded-lg mb-4 text-sm ${
+          className={`flex items-center justify-between p-3 rounded-xl mb-4 text-sm ${
             isSuccess
-              ? "bg-green-900/40 border border-green-500/30 text-green-300"
-              : "bg-red-900/40 border border-red-500/30 text-red-300"
+              ? "bg-green-50 border border-green-200 text-green-800"
+              : "bg-red-50 border border-red-200 text-red-800"
           }`}
         >
           <div className="flex items-center gap-2">
@@ -144,7 +147,7 @@ const ConsultationForm = () => {
       {/* FIRST + LAST NAME */}
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
-          <label className="block text-[11px] font-semibold tracking-widest uppercase text-white/50 mb-1.5">
+          <label className="block text-[11px] font-semibold tracking-widest uppercase text-[#296166] mb-1.5">
             First Name
           </label>
           <input
@@ -153,14 +156,14 @@ const ConsultationForm = () => {
             value={formData.fname}
             onChange={handleChange}
             placeholder="Your first name"
-            className={`w-full border rounded-lg px-4 py-2.5 text-white text-[14px] placeholder-white/30 focus:border-[#4FBDBA] outline-none bg-[#0C5F5F] ${inputError("fname")}`}
+            className={fieldClass("fname")}
           />
           {errors.fname && (
-            <p className="text-red-400 text-[11px] mt-1">{errors.fname}</p>
+            <p className="text-red-500 text-[11px] mt-1">{errors.fname}</p>
           )}
         </div>
         <div>
-          <label className="block text-[11px] font-semibold tracking-widest uppercase text-white/50 mb-1.5">
+          <label className="block text-[11px] font-semibold tracking-widest uppercase text-[#296166] mb-1.5">
             Last Name
           </label>
           <input
@@ -169,17 +172,17 @@ const ConsultationForm = () => {
             value={formData.lname}
             onChange={handleChange}
             placeholder="Your last name"
-            className={`w-full border rounded-lg px-4 py-2.5 text-white text-[14px] placeholder-white/30 focus:border-[#4FBDBA] outline-none bg-[#0C5F5F] ${inputError("lname")}`}
+            className={fieldClass("lname")}
           />
           {errors.lname && (
-            <p className="text-red-400 text-[11px] mt-1">{errors.lname}</p>
+            <p className="text-red-500 text-[11px] mt-1">{errors.lname}</p>
           )}
         </div>
       </div>
 
       {/* EMAIL */}
       <div className="mb-4">
-        <label className="block text-[11px] font-semibold tracking-widest uppercase text-white/50 mb-1.5">
+        <label className="block text-[11px] font-semibold tracking-widest uppercase text-[#296166] mb-1.5">
           Email Address
         </label>
         <input
@@ -188,16 +191,16 @@ const ConsultationForm = () => {
           value={formData.email}
           onChange={handleChange}
           placeholder="your@email.com"
-          className={`w-full border rounded-lg px-4 py-2.5 text-white text-[14px] placeholder-white/30 focus:border-[#4FBDBA] outline-none bg-[#0C5F5F] ${inputError("email")}`}
+          className={fieldClass("email")}
         />
         {errors.email && (
-          <p className="text-red-400 text-[11px] mt-1">{errors.email}</p>
+          <p className="text-red-500 text-[11px] mt-1">{errors.email}</p>
         )}
       </div>
 
       {/* PHONE */}
       <div className="mb-4">
-        <label className="block text-[11px] font-semibold tracking-widest uppercase text-white/50 mb-1.5">
+        <label className="block text-[11px] font-semibold tracking-widest uppercase text-[#296166] mb-1.5">
           Phone / WhatsApp
         </label>
         <input
@@ -206,23 +209,23 @@ const ConsultationForm = () => {
           value={formData.phone}
           onChange={handleChange}
           placeholder="+91 XXXXX XXXXX"
-          className={`w-full border rounded-lg px-4 py-2.5 text-white text-[14px] placeholder-white/30 focus:border-[#4FBDBA] outline-none bg-[#0C5F5F] ${inputError("phone")}`}
+          className={fieldClass("phone")}
         />
         {errors.phone && (
-          <p className="text-red-400 text-[11px] mt-1">{errors.phone}</p>
+          <p className="text-red-500 text-[11px] mt-1">{errors.phone}</p>
         )}
       </div>
 
       {/* PATHWAY */}
       <div className="mb-4">
-        <label className="block text-[11px] font-semibold tracking-widest uppercase text-white/50 mb-1.5">
+        <label className="block text-[11px] font-semibold tracking-widest uppercase text-[#296166] mb-1.5">
           Pathway of Interest
         </label>
         <select
           name="progInterest"
           value={formData.progInterest}
           onChange={handleChange}
-          className="w-full border border-white/14 rounded-lg px-4 py-2.5 text-white text-[14px] focus:border-[#4FBDBA] outline-none bg-[#0C5F5F]"
+          className="w-full border border-[#D8E0EC] rounded-xl px-4 py-2.5 text-gray-900 text-[14px] focus:border-[#2FC7A1] focus:ring-2 focus:ring-[#2FC7A1]/20 outline-none bg-white"
         >
           <option value="">Not yet decided</option>
           <optgroup label="For Investors">
@@ -253,7 +256,7 @@ const ConsultationForm = () => {
 
       {/* MESSAGE */}
       <div className="mb-5">
-        <label className="block text-[11px] font-semibold tracking-widest uppercase text-white/50 mb-1.5">
+        <label className="block text-[11px] font-semibold tracking-widest uppercase text-[#296166] mb-1.5">
           How Can We Help?
         </label>
         <textarea
@@ -262,7 +265,7 @@ const ConsultationForm = () => {
           onChange={handleChange}
           rows={4}
           placeholder="Briefly outline your situation and objectives (optional)"
-          className="w-full border border-white/14 rounded-lg px-4 py-2.5 text-white text-[14px] placeholder-white/30 focus:border-[#4FBDBA] outline-none resize-y min-h-[80px] bg-[#0C5F5F]"
+          className="w-full border border-[#D8E0EC] rounded-xl px-4 py-2.5 text-gray-900 text-[14px] placeholder-gray-400 focus:border-[#2FC7A1] focus:ring-2 focus:ring-[#2FC7A1]/20 outline-none resize-y min-h-[80px] bg-white"
         />
       </div>
 
@@ -270,12 +273,12 @@ const ConsultationForm = () => {
       <button
         onClick={handleSubmit}
         disabled={loading}
-        className="w-full bg-[#2F6E73] hover:bg-[#296166] disabled:opacity-50 text-white py-3 rounded-lg font-semibold text-[14px] transition-colors"
+        className="w-full bg-[#1A2540] hover:bg-[#243160] disabled:opacity-50 text-white py-3 rounded-full font-semibold text-[14px] transition-colors"
       >
         {loading ? "Sending..." : "Request a Confidential Consultation"}
       </button>
 
-      <p className="text-center text-[11px] text-white/35 mt-3 leading-relaxed">
+      <p className="text-center text-[11px] text-gray-400 mt-3 leading-relaxed">
         By submitting, you agree to be contacted by a Langma International adviser.
         We do not share your details with any third party.
       </p>

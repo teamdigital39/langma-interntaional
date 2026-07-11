@@ -26,19 +26,19 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
     <div className="lg-page">
       <style>{`
   .lg-page {
-    --primary:#0E1F3D;
-    --deep-navy:#0E1F3D;
-    --navy-mid:#0E2A46;
+    --primary:#296166;
+    --deep-navy:#296166;
+    --navy-mid:#1B2B28;
     --gold:#2FC7A1;
-    --soft-gold:#4EC7B8;
-    --gold-deep:#17a398;
-    --bg:#F7FAFC;
+    --soft-gold:#6FE0C6;
+    --gold-deep:#2FC7A1;
+    --bg:#F5F8F6;
     --white:#FFFFFF;
-    --text:#0E2A46;
+    --text:#1B2B28;
     --muted:#296166;
     --radius:14px;
-    --shadow-soft: 0 10px 40px rgba(14,31,61,0.08);
-    --shadow-strong: 0 20px 60px rgba(14,31,61,0.18);
+    --shadow-soft: 0 10px 40px rgba(26,37,64,0.08);
+    --shadow-strong: 0 20px 60px rgba(26,37,64,0.18);
   }
 
   .lg-page * {margin:0;padding:0;box-sizing:border-box;}
@@ -82,12 +82,12 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
     position:fixed;
     top:0; left:0; right:0;
     z-index:1000;
-    background:rgba(14,31,61,0.0);
+    background:rgba(26,37,64,0.0);
     transition:background 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
     padding:26px 0;
   }
   .lg-page header.scrolled {
-    background:rgba(14,31,61,0.92);
+    background:rgba(26,37,64,0.92);
     backdrop-filter: blur(14px);
     box-shadow:0 6px 24px rgba(0,0,0,0.18);
     padding:14px 0;
@@ -140,21 +140,21 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
   /* ===== HERO ===== */
   .lg-page .hero {
     position:relative;
-    min-height:100vh;
+    min-height:auto;
     display:flex;
     align-items:center;
-    color:var(--white);
+    color:#1B2B28;
     overflow:hidden;
-    background:linear-gradient(135deg, var(--deep-navy) 0%, var(--primary) 55%, var(--navy-mid) 100%);
+    background:#FFFFFF;
+    padding:96px 0 70px;
   }
   .lg-page .hero::before {
     content:"";
-    position:absolute;inset:0;
-    background:
-      radial-gradient(ellipse at 15% 60%, rgba(47,199,161,0.09) 0%, transparent 50%),
-      radial-gradient(ellipse at 85% 15%, rgba(47,199,161,0.06) 0%, transparent 40%);
+    position:absolute;left:30px;top:96px;bottom:96px;width:3px;border-radius:999px;
+    background:linear-gradient(to bottom,transparent,#2FC7A1,transparent);
     z-index:0;
     pointer-events:none;
+    inset:auto;
   }
   .lg-page .hero-bg {display:none;}
   .lg-page .hero-split {
@@ -174,7 +174,7 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
     padding-top:0;
   }
   .lg-page .hero h1 {
-    color:var(--white);
+    color:#1B2B28;
     font-size:clamp(34px, 4.8vw, 60px);
     line-height:1.1;
     margin-bottom:24px;
@@ -182,11 +182,11 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
   }
   .lg-page .hero h1 em {
     font-style:normal;
-    color:var(--soft-gold);
+    color:#4FA3D1;
   }
   .lg-page .hero p {
     font-size:17.5px;
-    color:rgba(247,250,252,0.82);
+    color:#4C5C58;
     max-width:520px;
     margin-bottom:38px;
     font-family:'Helvetica Neue', Arial, sans-serif;
@@ -242,14 +242,14 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
   .lg-page .hero-img-card::before {
     content:"";
     position:absolute;inset:0;
-    background:linear-gradient(to top, rgba(14,31,61,0.50) 0%, transparent 50%);
+    background:linear-gradient(to top, rgba(26,37,64,0.50) 0%, transparent 50%);
     z-index:1;
     border-radius:16px;
     pointer-events:none;
   }
   .lg-page .hero-img-caption {
     position:absolute;bottom:20px;left:20px;z-index:3;
-    background:rgba(14,31,61,0.80);
+    background:rgba(26,37,64,0.80);
     backdrop-filter:blur(8px);
     border:1px solid rgba(47,199,161,0.28);
     border-radius:8px;
@@ -340,7 +340,7 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
   .lg-page .trust-bar {
     background:var(--white);
     padding:54px 0;
-    border-bottom:1px solid rgba(14,31,61,0.06);
+    border-bottom:1px solid rgba(26,37,64,0.06);
   }
   .lg-page .trust-grid {
     display:grid;
@@ -509,7 +509,7 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
     padding:42px 34px;
     box-shadow:var(--shadow-soft);
     transition:transform 0.3s ease, box-shadow 0.3s ease;
-    border:1px solid rgba(14,31,61,0.04);
+    border:1px solid rgba(26,37,64,0.04);
   }
   .lg-page .pcard:hover {
     transform:translateY(-8px);
@@ -579,14 +579,14 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
     border-radius:var(--radius);
     overflow:hidden;
     box-shadow:var(--shadow-soft);
-    border:1px solid rgba(14,31,61,0.04);
+    border:1px solid rgba(26,37,64,0.04);
   }
   .lg-page .inv-row {
     display:grid;
     grid-template-columns:1.3fr 1fr 1fr;
     align-items:center;
     padding:26px 36px;
-    border-bottom:1px solid rgba(14,31,61,0.06);
+    border-bottom:1px solid rgba(26,37,64,0.06);
   }
   .lg-page .inv-row:last-child {border-bottom:none;}
   .lg-page .inv-row.head {
@@ -735,7 +735,7 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
     position:absolute;
     bottom:0; left:0; right:0;
     padding:22px;
-    background:linear-gradient(180deg, transparent, rgba(14,31,61,0.85));
+    background:linear-gradient(180deg, transparent, rgba(26,37,64,0.85));
     font-family:'Helvetica Neue', Arial, sans-serif;
     font-weight:600;
     font-size:15px;
@@ -762,7 +762,7 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
     font-family:'Helvetica Neue', Arial, sans-serif;
     font-size:42px;
     font-weight:700;
-    color:rgba(14,31,61,0.08);
+    color:rgba(26,37,64,0.08);
     margin-bottom:6px;
   }
   .lg-page .lgcard h4 {font-size:19px; margin-bottom:12px;}
@@ -772,7 +772,7 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
   .lg-page .faq {background:var(--white);}
   .lg-page .faq-list {max-width:820px; margin:0 auto;}
   .lg-page .faq-item {
-    border-bottom:1px solid rgba(14,31,61,0.1);
+    border-bottom:1px solid rgba(26,37,64,0.1);
   }
   .lg-page .faq-question {
     width:100%;
@@ -871,7 +871,7 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
   .lg-page .field input, .lg-page .field select {
     width:100%;
     padding:14px 16px;
-    border:1px solid rgba(14,31,61,0.15);
+    border:1px solid rgba(26,37,64,0.15);
     border-radius:8px;
     font-family:'Helvetica Neue', Arial, sans-serif;
     font-size:15px;
@@ -937,7 +937,7 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
     border-radius:var(--radius);
     padding:44px;
     box-shadow:var(--shadow-soft);
-    border:1px solid rgba(14,31,61,0.04);
+    border:1px solid rgba(26,37,64,0.04);
     transition:box-shadow 0.3s ease;
   }
   .lg-page .ov-form:hover {box-shadow:var(--shadow-strong);}

@@ -167,15 +167,15 @@ const WhyChoosePR = () => {
   return (
     <>
       {/* ── OTHER RESIDENCY OPTIONS ── */}
-      <section className="w-full py-20 bg-[#EEF7F7]" id="other-options">
+      <section className="w-full py-20 bg-[#F5F8F6]" id="other-options">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#4FBDBA] mb-3">Beyond the Core Pathways</p>
-            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#0C5F5F]">
+            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#2FC7A1] mb-3">Beyond the Core Pathways</p>
+            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#296166]">
               Other Residency Options Worth Considering
             </h2>
-            <div className="w-12 h-0.5 bg-[#4FBDBA] mt-5 mb-4 mx-auto" />
-            <p className="text-[#0E2A46] text-[16px] max-w-2xl mx-auto leading-relaxed">
+            <div className="w-12 h-0.5 bg-[#2FC7A1] mt-5 mb-4 mx-auto" />
+            <p className="text-[#1B2B28] text-[16px] max-w-2xl mx-auto leading-relaxed">
               Not every international residency strategy requires a traditional investment migration route.
               Depending on personal goals, professional profile, family considerations and mobility requirements,
               a number of alternative residency programmes may offer suitable long-term options.
@@ -185,24 +185,24 @@ const WhyChoosePR = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
             {otherOptions.map((opt, i) => (
               <div key={i} className="bg-white rounded-xl border border-gray-100 overflow-hidden flex flex-col shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-250">
-                <div className="bg-[#0C5F5F] px-5 py-4 flex items-start justify-between gap-2">
+                <div className="bg-[#F5F8F6] px-5 py-4 flex items-start justify-between gap-2 border-b border-[#D8E0EC]">
                   <div>
-                    <div className="text-[14px] font-semibold text-white leading-snug">{opt.name}</div>
-                    <div className="text-[10px] font-semibold tracking-widest uppercase text-[#4FBDBA] mt-1">{opt.category}</div>
+                    <div className="text-[14px] font-semibold text-[#296166] leading-snug">{opt.name}</div>
+                    <div className="text-[10px] font-semibold tracking-widest uppercase text-[#2FC7A1] mt-1">{opt.category}</div>
                   </div>
-                  <span className="text-[10px] font-bold tracking-wide bg-[#4FBDBA]/15 border border-[#4FBDBA]/35 text-[#4FBDBA] px-2 py-0.5 rounded whitespace-nowrap flex-shrink-0">{opt.badge}</span>
+                  <span className="text-[10px] font-bold tracking-wide bg-[#2FC7A1]/15 border border-[#2FC7A1]/35 text-[#2FC7A1] px-2 py-0.5 rounded whitespace-nowrap flex-shrink-0">{opt.badge}</span>
                 </div>
                 <div className="p-5 flex-1 flex flex-col">
                   <ul className="space-y-2 flex-1 mb-4">
                     {opt.benefits.map((b, j) => (
-                      <li key={j} className="flex gap-2 items-start text-[13px] text-[#0E2A46] leading-relaxed">
-                        <span className="text-[#2F6E73] font-bold mt-0.5 flex-shrink-0">✓</span>
+                      <li key={j} className="flex gap-2 items-start text-[13px] text-[#1B2B28] leading-relaxed">
+                        <span className="text-[#296166] font-bold mt-0.5 flex-shrink-0">✓</span>
                         {b}
                       </li>
                     ))}
                   </ul>
                   {opt.note && (
-                    <div className="bg-[#4FBDBA]/8 border-l-4 border-[#4FBDBA] rounded-r px-3 py-2 text-[11px] text-gray-500 leading-relaxed">
+                    <div className="bg-[#2FC7A1]/8 border-l-4 border-[#2FC7A1] rounded-r px-3 py-2 text-[11px] text-gray-500 leading-relaxed">
                       {opt.note}
                     </div>
                   )}
@@ -211,12 +211,12 @@ const WhyChoosePR = () => {
                   {opt.slug && (
                     <Link
                       to={opt.slug}
-                      className="block text-center bg-[#296166] text-white hover:bg-[#1f4f53] py-2 rounded-lg text-[13px] font-semibold transition-colors"
+                      className="block text-center bg-[#1A2540] text-white hover:bg-[#243160] py-2 rounded-full text-[13px] font-semibold transition-colors"
                     >
                       View Programme Details
                     </Link>
                   )}
-                  <a href="#meeting" className="block text-center border-2 border-[#296166] text-[#296166] hover:bg-[#296166] hover:text-white py-2 rounded-lg text-[13px] font-semibold transition-colors">
+                  <a href="#meeting" className="block text-center border-2 border-[#2FC7A1] text-[#296166] hover:bg-[#E6F8F3] py-2 rounded-full text-[13px] font-semibold transition-colors">
                     Discuss This Pathway
                   </a>
                 </div>
@@ -230,12 +230,12 @@ const WhyChoosePR = () => {
       <section className="w-full py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#4FBDBA] mb-3">Key Considerations</p>
-            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#0C5F5F]">
+            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#2FC7A1] mb-3">Key Considerations</p>
+            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#296166]">
               What to Evaluate Before Selecting a Residency Pathway
             </h2>
-            <div className="w-12 h-0.5 bg-[#4FBDBA] mt-5 mb-4 mx-auto" />
-            <p className="text-[#0E2A46] text-[16px] max-w-2xl mx-auto leading-relaxed">
+            <div className="w-12 h-0.5 bg-[#2FC7A1] mt-5 mb-4 mx-auto" />
+            <p className="text-[#1B2B28] text-[16px] max-w-2xl mx-auto leading-relaxed">
               A well-chosen residency programme should align with your financial profile, family situation,
               physical presence capacity and long-term intentions.
             </p>
@@ -246,13 +246,13 @@ const WhyChoosePR = () => {
               <div key={i} className="bg-white border border-gray-100 rounded-xl p-8 shadow-sm">
                 <h3 className="text-[22px] font-semibold text-[#296166] mb-3">{c.title}</h3>
                 {c.content && (
-                  <p className="text-[16px] text-[#0E2A46] leading-relaxed">{c.content}</p>
+                  <p className="text-[16px] text-[#1B2B28] leading-relaxed">{c.content}</p>
                 )}
                 {c.list && (
                   <ul className="space-y-2">
                     {c.list.map((item, j) => (
-                      <li key={j} className="flex gap-2.5 items-start text-[16px] text-[#0E2A46] leading-relaxed">
-                        <span className="text-[#2F6E73] font-bold mt-0.5 flex-shrink-0">✓</span>
+                      <li key={j} className="flex gap-2.5 items-start text-[16px] text-[#1B2B28] leading-relaxed">
+                        <span className="text-[#296166] font-bold mt-0.5 flex-shrink-0">✓</span>
                         {item}
                       </li>
                     ))}
@@ -263,12 +263,12 @@ const WhyChoosePR = () => {
           </div>
 
           <div className="flex flex-wrap justify-center gap-4 mt-10">
-            <a href="#meeting" className="inline-flex items-center gap-2 bg-[#2F6E73] hover:bg-[#296166] text-white px-8 py-3.5 rounded-lg font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg">
+            <a href="#meeting" className="inline-flex items-center gap-2 bg-[#1A2540] hover:bg-[#243160] text-white px-8 py-3.5 rounded-full font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg">
               Request a Tailored Programme Assessment
             </a>
             <Link
               to="/assessment"
-              className="inline-flex items-center gap-2 bg-[#4FBDBA] hover:bg-[#3aa8a5] text-white px-8 py-3.5 rounded-lg font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg"
+              className="inline-flex items-center gap-2 bg-[#4FA3D1] hover:bg-[#3a8ab8] text-white px-8 py-3.5 rounded-full font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
@@ -280,13 +280,13 @@ const WhyChoosePR = () => {
       </section>
 
       {/* ── COMPARISON TABLE ── */}
-      <section className="w-full py-20 bg-[#EEF7F7]" id="compare">
+      <section className="w-full py-20 bg-[#F5F8F6]" id="compare">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#4FBDBA] mb-3">Side-by-Side Comparison</p>
-            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#0C5F5F]">Key Residency Programmes at a Glance</h2>
-            <div className="w-12 h-0.5 bg-[#4FBDBA] mt-5 mb-4 mx-auto" />
-            <p className="text-[#0E2A46] text-[16px] max-w-2xl mx-auto leading-relaxed">
+            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#2FC7A1] mb-3">Side-by-Side Comparison</p>
+            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#296166]">Key Residency Programmes at a Glance</h2>
+            <div className="w-12 h-0.5 bg-[#2FC7A1] mt-5 mb-4 mx-auto" />
+            <p className="text-[#1B2B28] text-[16px] max-w-2xl mx-auto leading-relaxed">
               A structured reference overview of the principal pathways in our advisory. All investment thresholds,
               income benchmarks and processing timelines are indicative and subject to change.
             </p>
@@ -295,7 +295,7 @@ const WhyChoosePR = () => {
           <div className="overflow-x-auto rounded-xl shadow-sm">
             <table className="w-full border-collapse text-[14px] bg-white">
               <thead>
-                <tr className="bg-[#0C5F5F] text-white">
+                <tr className="bg-[#296166] text-white">
                   {["Programme", "Client Profile", "Min. Investment / Income", "Indicative Timeline", "Physical Presence", "Long-Term Status"].map((h) => (
                     <th key={h} className="px-5 py-3.5 text-left font-semibold text-[12px] tracking-widest uppercase whitespace-nowrap">{h}</th>
                   ))}
@@ -304,11 +304,11 @@ const WhyChoosePR = () => {
               <tbody>
                 {comparisonRows.map((row, i) => (
                   <tr key={i} className={`border-b border-gray-100 ${i % 2 === 1 ? "bg-[#F8FDFD]" : ""}`}>
-                    <td className="px-5 py-3.5 font-semibold text-[#0C5F5F] whitespace-nowrap text-[14px]">{row.prog}</td>
-                    <td className="px-5 py-3.5 text-[#0E2A46] text-[14px]">{row.profile}</td>
-                    <td className="px-5 py-3.5 font-semibold text-[#0C5F5F] text-[14px]">{row.min}</td>
-                    <td className="px-5 py-3.5 text-[#0E2A46] whitespace-nowrap text-[14px]">{row.timeline}</td>
-                    <td className="px-5 py-3.5 text-[#0E2A46] text-[14px]">{row.presence}</td>
+                    <td className="px-5 py-3.5 font-semibold text-[#296166] whitespace-nowrap text-[14px]">{row.prog}</td>
+                    <td className="px-5 py-3.5 text-[#1B2B28] text-[14px]">{row.profile}</td>
+                    <td className="px-5 py-3.5 font-semibold text-[#296166] text-[14px]">{row.min}</td>
+                    <td className="px-5 py-3.5 text-[#1B2B28] whitespace-nowrap text-[14px]">{row.timeline}</td>
+                    <td className="px-5 py-3.5 text-[#1B2B28] text-[14px]">{row.presence}</td>
                     <td className="px-5 py-3.5">
                       <span className={`text-[12px] font-bold px-2 py-0.5 rounded ${
                         row.statusGreen ? "bg-emerald-50 text-emerald-700" : "bg-gray-100 text-gray-500"
@@ -325,17 +325,17 @@ const WhyChoosePR = () => {
       </section>
 
       {/* ── INDIA RELEVANCE BANNER ── */}
-      <section className="w-full py-14 bg-[#0E2A46] relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-72 h-72 pointer-events-none" style={{ background: "radial-gradient(circle, rgba(79,189,186,0.1) 0%, transparent 70%)" }} />
+      <section className="w-full py-14 bg-white border-y border-[#D8E0EC]/60 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-72 h-72 pointer-events-none" style={{ background: "radial-gradient(circle, rgba(47,199,161,0.1) 0%, transparent 70%)" }} />
         <div className="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <div>
-            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#4FBDBA] mb-3">For Indian Professionals, Investors & Families</p>
-            <h2 className="text-[28px] lg:text-[32px] font-bold text-white leading-tight mb-4">
+            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#2FC7A1] mb-3">For Indian Professionals, Investors & Families</p>
+            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#296166] leading-tight mb-4">
               International Residency as Part of{" "}
-              <em className="not-italic text-[#4FBDBA]">Long-Term Family Planning</em>
+              <em className="not-italic text-[#4FA3D1]">Long-Term Family Planning</em>
             </h2>
-            <div className="w-12 h-0.5 bg-[#4FBDBA] mb-6" />
-            <p className="text-white/70 text-[16px] leading-relaxed mb-6">
+            <div className="w-12 h-0.5 bg-[#2FC7A1] mb-6" />
+            <p className="text-gray-600 text-[16px] leading-relaxed mb-6">
               India's entrepreneurial and professional class increasingly seeks a structured international dimension
               to long-term family planning — not to replace life in India, but to build options for children's
               education, healthcare access, business connectivity and a considered second base abroad.
@@ -348,19 +348,19 @@ const WhyChoosePR = () => {
                 "TCS on outward remittances should be factored into total planning cost — a qualified Indian CA should be engaged from the outset",
                 "Programmes are available for diverse Indian profiles — HNIs, NRIs, active founders, senior professionals, retired executives and multi-generational families",
               ].map((pt, i) => (
-                <li key={i} className="flex gap-3 items-start text-[16px] text-white/80 leading-relaxed">
-                  <span className="text-[#4FBDBA] font-bold flex-shrink-0 mt-0.5">→</span>
+                <li key={i} className="flex gap-3 items-start text-[16px] text-[#1B2B28] leading-relaxed">
+                  <span className="text-[#2FC7A1] font-bold flex-shrink-0 mt-0.5">→</span>
                   {pt}
                 </li>
               ))}
             </ul>
             <div className="flex flex-wrap gap-3">
-              <a href="#meeting" className="inline-flex items-center gap-2 bg-[#2F6E73] hover:bg-[#296166] text-white px-7 py-3 rounded-lg font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg">
+              <a href="#meeting" className="inline-flex items-center gap-2 bg-[#1A2540] hover:bg-[#243160] text-white px-7 py-3 rounded-full font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg">
                 Discuss Your Situation
               </a>
               <Link
                 to="/assessment"
-                className="inline-flex items-center gap-2 bg-[#4FBDBA] hover:bg-[#3aa8a5] text-white px-7 py-3 rounded-lg font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                className="inline-flex items-center gap-2 bg-[#4FA3D1] hover:bg-[#3a8ab8] text-white px-7 py-3 rounded-full font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
@@ -377,9 +377,9 @@ const WhyChoosePR = () => {
               { num: "FEMA", label: "Indian regulatory compliance — FEMA, LRS and TCS guidance integrated from the outset" },
               { num: "USD 250k", label: "RBI LRS annual outward remittance limit per resident individual, subject to applicable TCS provisions" },
             ].map((stat, i) => (
-              <div key={i} className="bg-white/5 border border-[#4FBDBA]/20 rounded-xl p-6">
-                <div className="text-[28px] font-bold text-[#4FBDBA]">{stat.num}</div>
-                <div className="text-[12px] text-white/55 mt-2 leading-snug">{stat.label}</div>
+              <div key={i} className="bg-[#F5F8F6] border border-[#D8E0EC] rounded-xl p-6">
+                <div className="text-[28px] font-bold text-[#296166]">{stat.num}</div>
+                <div className="text-[12px] text-gray-500 mt-2 leading-snug">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -387,10 +387,10 @@ const WhyChoosePR = () => {
       </section>
 
       {/* ── WHY LANGMA ── */}
-      <section className="w-full py-20 bg-[#EEF7F7]" id="about">
+      <section className="w-full py-20 bg-[#F5F8F6]" id="about">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="bg-gradient-to-br from-[#0C5F5F] to-[#2F6E73] rounded-2xl p-10 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-48 h-48 pointer-events-none" style={{ background: "radial-gradient(circle, rgba(79,189,186,0.2) 0%, transparent 70%)" }} />
+          <div className="bg-white border border-[#D8E0EC] rounded-2xl p-10 relative overflow-hidden shadow-sm">
+            <div className="absolute top-0 right-0 w-48 h-48 pointer-events-none" style={{ background: "radial-gradient(circle, rgba(47,199,161,0.15) 0%, transparent 70%)" }} />
             <div className="relative z-10 grid grid-cols-2 gap-6">
               {[
                 { num: "15+", label: "Curated residence programmes across Europe, the Americas and beyond" },
@@ -398,21 +398,21 @@ const WhyChoosePR = () => {
                 { num: "Delhi\nBased", label: "New Delhi advisory office — discreet in-person consultations available" },
                 { num: "End-to-End", label: "Eligibility review, documentation, legal coordination and post-approval support" },
               ].map((n, i) => (
-                <div key={i} className="border border-[#4FBDBA]/25 rounded-xl p-5">
-                  <div className="text-[24px] font-bold text-[#4FBDBA] whitespace-pre-line leading-tight">{n.num}</div>
-                  <div className="text-[12px] text-white/60 mt-2 leading-snug">{n.label}</div>
+                <div key={i} className="border border-[#2FC7A1]/25 rounded-xl p-5 bg-[#F5F8F6]">
+                  <div className="text-[24px] font-bold text-[#296166] whitespace-pre-line leading-tight">{n.num}</div>
+                  <div className="text-[12px] text-gray-500 mt-2 leading-snug">{n.label}</div>
                 </div>
               ))}
             </div>
           </div>
 
           <div>
-            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#4FBDBA] mb-3">Why Langma International</p>
-            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#0C5F5F] leading-tight mb-4">
+            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#2FC7A1] mb-3">Why Langma International</p>
+            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#296166] leading-tight mb-4">
               Advisory That Places Your Interests First
             </h2>
-            <div className="w-12 h-0.5 bg-[#4FBDBA] mb-5" />
-            <p className="text-[#0E2A46] text-[16px] leading-relaxed mb-8">
+            <div className="w-12 h-0.5 bg-[#2FC7A1] mb-5" />
+            <p className="text-[#1B2B28] text-[16px] leading-relaxed mb-8">
               Committing to a long-term residence pathway is among the most considered decisions a family makes.
               Our role is to ensure that before any commitment is entered into, you understand the realistic costs,
               the genuine timelines, the tax implications and the long-term outcomes — specific to your circumstances.
@@ -421,12 +421,12 @@ const WhyChoosePR = () => {
             <div className="space-y-6">
               {whyFeatures.map((f, i) => (
                 <div key={i} className="flex gap-4 items-start">
-                  <div className="w-11 h-11 flex-shrink-0 bg-[#4FBDBA]/10 border border-[#4FBDBA]/25 rounded-xl flex items-center justify-center text-[18px]">
+                  <div className="w-11 h-11 flex-shrink-0 bg-[#2FC7A1]/10 border border-[#2FC7A1]/25 rounded-xl flex items-center justify-center text-[18px]">
                     {f.icon}
                   </div>
                   <div>
                     <div className="font-semibold text-[16px] text-[#296166] mb-1">{f.title}</div>
-                    <div className="text-[14px] text-[#0E2A46] leading-relaxed">{f.desc}</div>
+                    <div className="text-[14px] text-[#1B2B28] leading-relaxed">{f.desc}</div>
                   </div>
                 </div>
               ))}
@@ -439,24 +439,24 @@ const WhyChoosePR = () => {
       <section className="w-full py-20 bg-white" id="journey">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#4FBDBA] mb-3">The Process</p>
-            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#0C5F5F]">A Structured, Five-Stage Engagement</h2>
-            <div className="w-12 h-0.5 bg-[#4FBDBA] mt-5 mb-4 mx-auto" />
-            <p className="text-[#0E2A46] text-[16px] max-w-xl mx-auto leading-relaxed">
+            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#2FC7A1] mb-3">The Process</p>
+            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#296166]">A Structured, Five-Stage Engagement</h2>
+            <div className="w-12 h-0.5 bg-[#2FC7A1] mt-5 mb-4 mx-auto" />
+            <p className="text-[#1B2B28] text-[16px] max-w-xl mx-auto leading-relaxed">
               Our engagement is deliberately measured. Residency decisions of this scale are best made once,
               made well, and made with complete, accurate information in hand.
             </p>
           </div>
 
           <div className="relative grid grid-cols-1 md:grid-cols-5 gap-0">
-            <div className="hidden md:block absolute top-8 left-0 right-0 h-0.5 bg-gradient-to-r from-[#4FBDBA] to-[#4FBDBA]/30 z-0" />
+            <div className="hidden md:block absolute top-8 left-0 right-0 h-0.5 bg-gradient-to-r from-[#2FC7A1] to-[#2FC7A1]/30 z-0" />
             {journeySteps.map((step) => (
               <div key={step.num} className="relative z-10 text-center px-4 mb-8 md:mb-0">
-                <div className="w-16 h-16 bg-white border-[3px] border-[#4FBDBA] rounded-full flex items-center justify-center text-[22px] font-bold text-[#0C5F5F] mx-auto mb-5 relative z-20">
+                <div className="w-16 h-16 bg-white border-[3px] border-[#2FC7A1] rounded-full flex items-center justify-center text-[22px] font-bold text-[#296166] mx-auto mb-5 relative z-20">
                   {step.num}
                 </div>
                 <div className="font-semibold text-[14px] text-[#296166] mb-2">{step.title}</div>
-                <div className="text-[13px] text-[#0E2A46] leading-relaxed">{step.desc}</div>
+                <div className="text-[13px] text-[#1B2B28] leading-relaxed">{step.desc}</div>
               </div>
             ))}
           </div>

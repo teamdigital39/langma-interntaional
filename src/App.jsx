@@ -118,11 +118,12 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1000); 
+    }, 300);
     return () => clearTimeout(timer);
-  }, [location.pathname]); 
+  }, [location.pathname]);
 
   return (
     <>
@@ -132,8 +133,7 @@ function App() {
       <FloatingCallButton/>
       {loading && <Loader />}
 
-      {!loading && (
-        <Routes>
+      <Routes>
           <Route path="/" element={<HeroSection />} />
           <Route path="/about" element={<AboutHeroSection />} />
           <Route path="/work-abroad" element={<AbrotHeroSection />} />
@@ -246,7 +246,6 @@ function App() {
           <Route path="/thailand-elite-visa" element={<LangmaThailandEliteVisaPage />} />
           <Route path="/:slug" element={<Arabic/>} />
         </Routes>
-      )}
 
       <Footer />
       </div>

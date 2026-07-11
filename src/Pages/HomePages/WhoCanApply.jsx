@@ -13,16 +13,16 @@ const WhoCanApply = () => {
   return (
     <>
       {/* ── MEETING / CONSULTATION SECTION ── */}
-      <section className="w-full py-20 bg-[#0C5F5F]" id="meeting">
+      <section className="w-full py-20 bg-[#F5F8F6] border-t border-[#D8E0EC]/60" id="meeting">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left */}
           <div>
-            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#4FBDBA] mb-3">Book a Consultation</p>
-            <h2 className="text-[28px] lg:text-[32px] font-bold text-white leading-tight mb-4">
+            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#2FC7A1] mb-3">Book a Consultation</p>
+            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#296166] leading-tight mb-4">
               One Conversation. Clear Direction. Tailored to You.
             </h2>
-            <div className="w-12 h-0.5 bg-[#4FBDBA] mb-6" />
-            <p className="text-white/70 text-[16px] leading-relaxed mb-8">
+            <div className="w-12 h-0.5 bg-[#2FC7A1] mb-6" />
+            <p className="text-gray-600 text-[16px] leading-relaxed mb-8">
               A confidential, no-obligation discussion with a senior adviser. We listen first, set out the
               realistic options aligned with your profile and provide a structured preliminary view of the
               pathways that genuinely fit your circumstances.
@@ -37,23 +37,23 @@ const WhoCanApply = () => {
                 "Get structured guidance on documentation",
                 "Understand tax, FEMA and relocation considerations",
               ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-[16px] text-white/80 leading-relaxed">
-                  <span className="text-[#4FBDBA] font-bold flex-shrink-0 mt-0.5">✔</span>
+                <li key={i} className="flex items-start gap-3 text-[16px] text-[#1B2B28] leading-relaxed">
+                  <span className="text-[#2FC7A1] font-bold flex-shrink-0 mt-0.5">✔</span>
                   {item}
                 </li>
               ))}
             </ul>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <a href="#meeting-form" className="flex flex-col bg-white/5 border border-white/10 hover:border-[#4FBDBA] hover:bg-[#4FBDBA]/7 rounded-xl p-6 transition-all">
+              <a href="#meeting-form" className="flex flex-col bg-white border border-[#D8E0EC] hover:border-[#2FC7A1] hover:shadow-md rounded-xl p-6 transition-all">
                 <span className="text-[28px] mb-3">💻</span>
-                <span className="font-semibold text-[16px] text-white mb-1">Online Consultation</span>
-                <span className="text-[14px] text-white/55 leading-relaxed">Video call with a senior adviser — flexible scheduling, any time zone.</span>
+                <span className="font-semibold text-[16px] text-[#296166] mb-1">Online Consultation</span>
+                <span className="text-[14px] text-gray-500 leading-relaxed">Video call with a senior adviser — flexible scheduling, any time zone.</span>
               </a>
-              <a href="#office" className="flex flex-col bg-white/5 border border-white/10 hover:border-[#4FBDBA] hover:bg-[#4FBDBA]/7 rounded-xl p-6 transition-all">
+              <a href="#office" className="flex flex-col bg-white border border-[#D8E0EC] hover:border-[#2FC7A1] hover:shadow-md rounded-xl p-6 transition-all">
                 <span className="text-[28px] mb-3">🏢</span>
-                <span className="font-semibold text-[16px] text-white mb-1">Office Visit</span>
-                <span className="text-[14px] text-white/55 leading-relaxed">Meet us in person at our New Delhi office, South Extension I.</span>
+                <span className="font-semibold text-[16px] text-[#296166] mb-1">Office Visit</span>
+                <span className="text-[14px] text-gray-500 leading-relaxed">Meet us in person at our New Delhi office, South Extension I.</span>
               </a>
             </div>
           </div>
@@ -67,12 +67,12 @@ const WhoCanApply = () => {
       <section className="w-full py-20 bg-white" id="office">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div>
-            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#4FBDBA] mb-3">Our Office</p>
-            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#0C5F5F] leading-tight mb-4">
+            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#2FC7A1] mb-3">Our Office</p>
+            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#296166] leading-tight mb-4">
               Meet Our Advisers in Person
             </h2>
-            <div className="w-12 h-0.5 bg-[#4FBDBA] mb-5" />
-            <p className="text-[#0E2A46] text-[16px] leading-relaxed mb-8">
+            <div className="w-12 h-0.5 bg-[#2FC7A1] mb-5" />
+            <p className="text-[#1B2B28] text-[16px] leading-relaxed mb-8">
               Visit our New Delhi office for a dedicated, in-person conversation. Decisions of this nature
               are best made face to face, with time, discretion and complete information.
             </p>
@@ -85,17 +85,17 @@ const WhoCanApply = () => {
                 { icon: "💬", label: "WhatsApp", value: "+91 98101 17094", href: "https://wa.me/919810117094" },
               ].map((detail, i) => (
                 <div key={i} className="flex gap-4 items-start">
-                  <div className="w-11 h-11 flex-shrink-0 bg-[#4FBDBA]/10 border border-[#4FBDBA]/30 rounded-xl flex items-center justify-center text-[18px]">
+                  <div className="w-11 h-11 flex-shrink-0 bg-[#2FC7A1]/10 border border-[#2FC7A1]/30 rounded-xl flex items-center justify-center text-[18px]">
                     {detail.icon}
                   </div>
                   <div>
                     <div className="text-[11px] font-bold tracking-widest uppercase text-gray-400 mb-1">{detail.label}</div>
                     {detail.href ? (
-                      <a href={detail.href} className="text-[#0C5F5F] font-semibold text-[16px] hover:text-[#2F6E73] transition-colors whitespace-pre-line">
+                      <a href={detail.href} className="text-[#296166] font-semibold text-[16px] hover:text-[#2F6E73] transition-colors whitespace-pre-line">
                         {detail.value}
                       </a>
                     ) : (
-                      <div className="text-[#0E2A46] text-[16px] whitespace-pre-line leading-relaxed">{detail.value}</div>
+                      <div className="text-[#1B2B28] text-[16px] whitespace-pre-line leading-relaxed">{detail.value}</div>
                     )}
                   </div>
                 </div>

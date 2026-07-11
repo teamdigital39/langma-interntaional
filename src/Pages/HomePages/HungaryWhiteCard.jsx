@@ -178,20 +178,20 @@ const HungaryWhiteCardPage = () => {
 
       <style>{`
         .hu-page {
-          --navy:#0E1F3D;
-          --navy-deep:#0E1F3D;
-          --navy-mid:#006064;
-          --gold:#4EC7B8;
-          --gold-soft:#4EC7B8;
-          --gold-deep:#006064;
-          --ivory:#F7FAFC;
-          --beige:#E8F4F2;
-          --charcoal:#0E1F3D;
-          --muted:#0E1F3D;
+          --navy:#296166;
+          --navy-deep:#1A2540;
+          --navy-mid:#296166;
+          --gold:#6FE0C6;
+          --gold-soft:#6FE0C6;
+          --gold-deep:#296166;
+          --ivory:#F5F8F6;
+          --beige:#E9F1EE;
+          --charcoal:#296166;
+          --muted:#296166;
           --line:rgba(47,199,161,0.28);
           --radius:4px;
-          --shadow-soft:0 18px 50px rgba(14,31,61,0.10);
-          --shadow-strong:0 30px 70px rgba(14,31,61,0.22);
+          --shadow-soft:0 18px 50px rgba(26,37,64,0.10);
+          --shadow-strong:0 30px 70px rgba(26,37,64,0.22);
           --ease:cubic-bezier(.22,.61,.36,1);
         }
         .hu-page * { margin:0; padding:0; box-sizing:border-box; }
@@ -241,15 +241,15 @@ const HungaryWhiteCardPage = () => {
         .hu-page .burger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; }
         .hu-page .burger span { width:24px; height:2px; background:var(--ivory); display:block; }
 
-        .hu-page .hero { position:relative; min-height:100vh; display:flex; align-items:center; color:var(--ivory); overflow:hidden; background:linear-gradient(135deg,#0E1F3D 0%,#0E1F3D 55%,#006064 100%); }
+        .hu-page .hero { position:relative; min-height:auto; display:flex; align-items:center; color:#1B2B28; overflow:hidden; background:#FFFFFF;padding:96px 0 70px; }
         .hu-page .hero::before { content:""; position:absolute; inset:0; background-image:radial-gradient(circle at 15% 50%,rgba(47,199,161,0.08) 0%,transparent 50%),radial-gradient(circle at 85% 20%,rgba(47,199,161,0.05) 0%,transparent 40%); z-index:0; pointer-events:none; }
         .hu-page .hero-split { position:relative; z-index:2; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; padding-top:110px; padding-bottom:70px; }
         .hu-page .hero-copy { display:flex; flex-direction:column; }
-        .hu-page .hero h1 { font-size:clamp(38px,5vw,64px); color:var(--ivory); margin-bottom:26px; font-weight:600; line-height:1.08; }
-        .hu-page .hero h1 em { font-style:italic; color:var(--gold-soft); font-weight:500; }
-        .hu-page .hero .lead { font-size:17.5px; color:rgba(247,250,252,.82); max-width:560px; margin-bottom:38px; font-weight:300; line-height:1.72; }
+        .hu-page .hero h1 { font-size:clamp(38px,5vw,64px); color:#1B2B28; margin-bottom:26px; font-weight:600; line-height:1.08; }
+        .hu-page .hero h1 em { font-style:italic; color:#4FA3D1; font-weight:500; }
+        .hu-page .hero .lead { font-size:17.5px; color:#4C5C58; max-width:560px; margin-bottom:38px; font-weight:300; line-height:1.72; }
         .hu-page .hero-cta { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:48px; }
-        .hu-page .hero-badges { display:flex; gap:32px; flex-wrap:wrap; border-top:1px solid rgba(247,250,252,.18); padding-top:28px; }
+        .hu-page .hero-badges { display:flex; gap:32px; flex-wrap:wrap; border-top:1px solid #D8E0EC; padding-top:28px; }
         .hu-page .hero-badge-item .num { font-family:'Cormorant Garamond',serif; font-size:28px; color:var(--gold-soft); font-weight:600; line-height:1; }
         .hu-page .hero-badge-item .lbl { font-size:11px; letter-spacing:.5px; color:rgba(247,250,252,.68); margin-top:6px; }
 
@@ -265,7 +265,7 @@ const HungaryWhiteCardPage = () => {
         .hu-page .hero-img-badge .cap-txt { font-size:12px; color:rgba(247,250,252,.88); line-height:1.4; }
         .hu-page .hero-img-badge .cap-txt strong { color:var(--gold-soft); display:block; font-size:13.5px; }
 
-        .hu-page .scroll-hint { position:absolute; bottom:32px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:10px; color:rgba(247,250,252,.40); font-size:10.5px; letter-spacing:2.5px; text-transform:uppercase; z-index:3; }
+        .hu-page .scroll-hint { position:absolute; bottom:32px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:10px; color:#7E8C88; font-size:10.5px; letter-spacing:2.5px; text-transform:uppercase; z-index:3; }
         .hu-page .scroll-hint .line { width:1px; height:38px; background:linear-gradient(var(--gold),transparent); animation:hu-drop 2s var(--ease) infinite; }
         @keyframes hu-drop { 0% { transform:scaleY(0); transform-origin:top; } 50% { transform:scaleY(1); transform-origin:top; } 51% { transform-origin:bottom; } 100% { transform:scaleY(0); transform-origin:bottom; } }
 
@@ -408,7 +408,7 @@ const HungaryWhiteCardPage = () => {
         .hu-page .field textarea { resize:vertical; min-height:90px; }
         .hu-page .form-card .btn { width:100%; justify-content:center; margin-top:6px; }
         .hu-page .form-card .disc { font-size:12px; color:var(--muted); margin-top:14px; text-align:center; }
-        .hu-page .success-msg { display:none; background:rgba(47,199,161,.14); border:1px solid var(--gold); border-radius:var(--radius); padding:16px; color:#006064; font-size:14.5px; text-align:center; margin-top:16px; }
+        .hu-page .success-msg { display:none; background:rgba(47,199,161,.14); border:1px solid var(--gold); border-radius:var(--radius); padding:16px; color:#296166; font-size:14.5px; text-align:center; margin-top:16px; }
         .hu-page .success-msg.show { display:block; }
 
         .hu-page .office { background:var(--beige); }
@@ -439,7 +439,7 @@ const HungaryWhiteCardPage = () => {
 
         @media(max-width:980px) {
           .hu-page .nav-links { display:none; }
-          .hu-page .nav-links.open { display:flex; flex-direction:column; position:fixed; top:0; left:0; right:0; bottom:0; background:#0E1F3D; z-index:999; align-items:center; justify-content:center; gap:28px; }
+          .hu-page .nav-links.open { display:flex; flex-direction:column; position:fixed; top:0; left:0; right:0; bottom:0; background:#1A2540; z-index:999; align-items:center; justify-content:center; gap:28px; }
           .hu-page .burger { display:flex; position:relative; z-index:1001; }
           .hu-page .hero-split { grid-template-columns:1fr; gap:48px; padding-top:120px; padding-bottom:60px; }
           .hu-page .hero-img-frame img { height:380px; }

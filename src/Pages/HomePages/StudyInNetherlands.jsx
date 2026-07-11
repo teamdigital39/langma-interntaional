@@ -6,26 +6,7 @@ import FAQ from "./FAQ";
  * Study in the Netherlands — Langma International
  * Palette matches the Study in Poland / South Korea / Malta / Dubai / Singapore / Mauritius pages (teal brand accent over navy panels)
  */
-
-const C = {
-  navy: "#1AB7AC",
-  navyD: "#1AB7AC",
-  navyDark: "#1AB7AC",
-  navyL: "#2E6466",
-  gold: "#1AB7AC",
-  goldL: "#1AB7AC",
-  goldSoft: "#FDF3C8",
-  goldTint: "#FFFAE8",
-  cream: "#F5F7FA",
-  cream2: "#E8EDF5",
-  forest: "#2E7D5A",
-  forestL: "#4CAF80",
-  white: "#FFFFFF",
-  ink: "#1ab7ac",
-  slate: "#5A6A7A",
-  border: "#D8E0EC",
-  muted: "#7A8A9A",
-};
+import { STUDY_ABROAD_COLORS as C, STUDY_ABROAD_FONTS_URL, STUDY_ABROAD_BODY_FONT } from "../../theme/brandTheme";
 
 /* ===================================================================
  *  Hooks
@@ -565,7 +546,7 @@ function CourseCard({ num, title, body, icon, tag, delay }) {
             width: 36,
             height: 36,
             background: h ? "rgba(255,255,255,0.15)" : C.goldTint,
-            color: h ? "#FFFFFF" : "#429198",
+            color: h ? "#FFFFFF" : "#296166",
             fontSize: icon ? 17 : 13,
             fontWeight: 700,
             borderRadius: 10,
@@ -1434,7 +1415,7 @@ export default function StudyNetherlandsPage() {
   return (
     <div
       style={{
-        fontFamily: "'DM Sans', sans-serif",
+        fontFamily: STUDY_ABROAD_BODY_FONT,
         color: C.ink,
         background: C.cream,
         lineHeight: 1.6,
@@ -1442,7 +1423,7 @@ export default function StudyNetherlandsPage() {
       }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap');
+        @import url('${STUDY_ABROAD_FONTS_URL}');
         a { text-decoration: none; }
         html { scroll-behavior: smooth; }
         ::selection { background: ${C.navy}; color: ${C.white}; }
@@ -1481,14 +1462,14 @@ export default function StudyNetherlandsPage() {
       <ScrollProgress />
 
       {/* ---------------- HERO ---------------- */}
-      <section className="bg-[#f5f5f5] overflow-hidden">
+      <section className="bg-[#F5F8F6] overflow-hidden">
         <div className="max-w-8xl mx-auto px-6 lg:px-12 py-16 lg:py-20">
           <div className="grid lg:grid-cols-2 items-center gap-12">
 
             {/* Left Content */}
             <div className="z-10">
               <h1
-                className="text-[#15224C]"
+                className="text-[#1B2B28]"
                 style={{
                   fontSize: "clamp(28px, 3.6vw, 46px)",
                   fontWeight: 600,
@@ -1496,7 +1477,7 @@ export default function StudyNetherlandsPage() {
                   letterSpacing: "-0.6px",
                 }}
               >
-                Study In <span className="text-[#1ab7ac]">the Netherlands</span>
+                Study In <span className="text-[#2FC7A1]">the Netherlands</span>
                 <br />
                 Where Global
                 <br />
@@ -1523,7 +1504,7 @@ export default function StudyNetherlandsPage() {
                 ].map((item, index) => (
                   <span
                     key={index}
-                    className="bg-[#1ab7ac] text-white px-4 py-2 rounded-full text-sm md:text-base"
+                    className="bg-[#2FC7A1] text-white px-4 py-2 rounded-full text-sm md:text-base"
                   >
                     {item}
                   </span>
@@ -1534,13 +1515,13 @@ export default function StudyNetherlandsPage() {
               <div className="flex flex-wrap gap-4 mt-10">
                 <button
                   onClick={() => setOpen(true)}
-                  className="bg-[#006C70] hover:bg-[#00575a] transition-all text-white px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
+                  className="bg-[#1A2540] hover:bg-[#243160] transition-all text-white px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
                 >
                   Book Free Counselling →
                 </button>
                 <button
                   onClick={() => setOpen(true)}
-                  className="border border-[#006C70] text-[#006C70] hover:bg-[#006C70] hover:text-white transition-all px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
+                  className="border border-[#1A2540] text-[#1A2540] hover:bg-[#1A2540] hover:text-white transition-all px-8 py-4 rounded-full font-semibold text-lg cursor-pointer"
                 >
                   Check My Eligibility
                 </button>
@@ -1551,12 +1532,12 @@ export default function StudyNetherlandsPage() {
             <div className="relative flex justify-center lg:justify-end">
 
               {/* Decorative Rectangle */}
-              <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-50 h-[490px] bg-[#2C6D73] rounded-[24px]"></div>
+              <div className="hidden lg:block absolute right-0 top-1/2 -translate-y-1/2 w-50 h-[490px] bg-[#296166] rounded-[24px]"></div>
 
               {/* Dots */}
               <div className="hidden lg:grid absolute left-12 top-1/2 -translate-y-1/2 grid-cols-12 gap-4 z-0">
                 {[...Array(180)].map((_, i) => (
-                  <span key={i} className="w-2 h-2 rounded-full bg-[#C7E8E5]"></span>
+                  <span key={i} className="w-2 h-2 rounded-full bg-[#E6F8F3]"></span>
                 ))}
               </div>
 
@@ -1603,10 +1584,10 @@ export default function StudyNetherlandsPage() {
       <section style={{ background: C.cream, padding: "100px 48px", position: "relative" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Why the Netherlands</span>}
-            title={<span style={{ color: "#4197a2" }}>8 Reasons the Netherlands Stands Apart</span>}
+            tag={<span style={{ color: "#296166" }}>Why the Netherlands</span>}
+            title={<span style={{ color: "#296166" }}>8 Reasons the Netherlands Stands Apart</span>}
             sub={
-              <span style={{ color: "#429198" }}>
+              <span style={{ color: "#296166" }}>
                 More than 160 nationalities. Europe's top English-proficiency ranking. A job market stacked with global multinationals. Here's why thousands of students choose the Netherlands every year.
               </span>
             }
@@ -1768,10 +1749,10 @@ export default function StudyNetherlandsPage() {
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Cost of Studying</span>}
-            title={<span style={{ color: "#4197a2" }}>Study Investment — Netherlands 2026</span>}
+            tag={<span style={{ color: "#296166" }}>Cost of Studying</span>}
+            title={<span style={{ color: "#296166" }}>Study Investment — Netherlands 2026</span>}
             sub={
-              <span style={{ color: "#429198" }}>
+              <span style={{ color: "#296166" }}>
                 Transparent, all-in pricing. No hidden charges. The same fee structure applies to every international student regardless of nationality.
               </span>
             }
@@ -1797,10 +1778,10 @@ export default function StudyNetherlandsPage() {
       <section style={{ background: C.white, padding: "80px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Payment Schedule</span>}
-            title={<span style={{ color: "#4197a2" }}>How & When You Pay</span>}
+            tag={<span style={{ color: "#296166" }}>Payment Schedule</span>}
+            title={<span style={{ color: "#296166" }}>How & When You Pay</span>}
             sub={
-              <span style={{ color: "#429198" }}>
+              <span style={{ color: "#296166" }}>
                 A clear, staged payment structure — you never pay everything upfront. Fees are tied to milestones in your application and visa journey.
               </span>
             }
@@ -1824,14 +1805,14 @@ export default function StudyNetherlandsPage() {
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Popular Study Areas</span>}
+            tag={<span style={{ color: "#296166" }}>Popular Study Areas</span>}
             title={
-              <span style={{ color: "#4197a2" }}>
+              <span style={{ color: "#296166" }}>
                 In-Demand Programmes for International Students
               </span>
             }
             sub={
-              <span style={{ color: "#429198" }}>
+              <span style={{ color: "#296166" }}>
                 Career-aligned, English-taught, and built for the global business world. Foundation to MBA — choose from a 3-year fast-track or 4-year standard Bachelor's pathway.
               </span>
             }
@@ -1981,10 +1962,10 @@ export default function StudyNetherlandsPage() {
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Admission Requirements</span>}
-            title={<span style={{ color: "#4197a2" }}>What You Need to Apply</span>}
+            tag={<span style={{ color: "#296166" }}>Admission Requirements</span>}
+            title={<span style={{ color: "#296166" }}>What You Need to Apply</span>}
             sub={
-              <span style={{ color: "#429198" }}>
+              <span style={{ color: "#296166" }}>
                 A clear, straightforward process. Here is exactly what to prepare before submitting your application — no surprises, no hidden requirements.
               </span>
             }
@@ -2034,14 +2015,14 @@ export default function StudyNetherlandsPage() {
       <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Netherlands Student Visa Guide</span>}
+            tag={<span style={{ color: "#296166" }}>Netherlands Student Visa Guide</span>}
             title={
-              <span style={{ color: "#4197a2" }}>
+              <span style={{ color: "#296166" }}>
                 Straightforward, Efficient & Fully Guided
               </span>
             }
             sub={
-              <span style={{ color: "#429198" }}>
+              <span style={{ color: "#296166" }}>
                 The visa process is managed by the institution through the IND (Immigration and Naturalisation Service). Langma International guides you through every step from application to arrival.
               </span>
             }
@@ -2074,10 +2055,10 @@ export default function StudyNetherlandsPage() {
       <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Career Outlook · Netherlands 2026</span>}
-            title={<span style={{ color: "#4197a2" }}>Why Dutch Graduates Get Hired</span>}
+            tag={<span style={{ color: "#296166" }}>Career Outlook · Netherlands 2026</span>}
+            title={<span style={{ color: "#296166" }}>Why Dutch Graduates Get Hired</span>}
             sub={
-              <span style={{ color: "#429198" }}>
+              <span style={{ color: "#296166" }}>
                 The Netherlands doesn't just prepare you for a career — it places you inside one. With a mandatory paid internship, a 100+ company career fair, and a 50% internship-to-job rate, graduates are work-ready before they collect their diploma.
               </span>
             }
@@ -2127,10 +2108,10 @@ export default function StudyNetherlandsPage() {
       <section style={{ background: C.white, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead
-            tag={<span style={{ color: "#429198" }}>Student Life</span>}
-            title={<span style={{ color: "#4197a2" }}>Life in the Netherlands — More Than Just Study</span>}
+            tag={<span style={{ color: "#296166" }}>Student Life</span>}
+            title={<span style={{ color: "#296166" }}>Life in the Netherlands — More Than Just Study</span>}
             sub={
-              <span style={{ color: "#429198" }}>
+              <span style={{ color: "#296166" }}>
                 World-class education inside one of the world's most liveable countries. Here is what everyday life actually looks like as an international student.
               </span>
             }
@@ -2236,7 +2217,7 @@ export default function StudyNetherlandsPage() {
       <FAQ />
       {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <SectionHead tag={<span style={{ color: "#429198" }}>FAQs</span>} title="Frequently Asked Questions — Study in the Netherlands" center />
+          <SectionHead tag={<span style={{ color: "#296166" }}>FAQs</span>} title="Frequently Asked Questions — Study in the Netherlands" center />
           <Reveal>
             <div style={{ maxWidth: 860, margin: "0 auto" }}>
               {faqs.map((f, i) => (
@@ -2339,7 +2320,7 @@ export default function StudyNetherlandsPage() {
 
       {/* ---------------- FOOTER INFO ---------------- */}
       <div
-        className="-mb-[40px]"
+        className="-mb-[70px]"
         style={{
           background: C.navyDark,
           padding: "24px 48px",
@@ -2351,7 +2332,7 @@ export default function StudyNetherlandsPage() {
           borderTop: `1px solid rgba(240,192,64,0.1)`,
         }}
       >
-        <span style={{ fontSize: 13, color: "#4197a2", display: "block" }}>
+        <span style={{ fontSize: 13, color: "#296166", display: "block" }}>
           📍{" "}
           <a
             href="https://www.google.com/maps/place/Langma+International/@28.5700637,77.2214716,765m/data=!3m1!1e3!4m15!1m8!3m7!1s0x390ce25c4343e17b:0x9f40fbe93cafcba5!2s73,+South+Extension+I,+Block+H,+New+Delhi,+Delhi+110049!3b1!8m2!3d28.5700637!4d77.2214716!16s%2Fg%2F11hfk14hwt!3m5!1s0x390ce25dba89c087:0x6b74c7356d18b11a!8m2!3d28.5700396!4d77.2209663!16s%2Fg%2F1jglvgls2?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D"

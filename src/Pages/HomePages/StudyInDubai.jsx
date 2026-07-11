@@ -2049,7 +2049,7 @@ export default function StudyDubaiPage() {
 
       {/* ---------------- FOOTER INFO ---------------- */}
       <div
-        className="-mb-[40px]"
+        className="-mb-[70px]"
         style={{
           background: C.navyDark,
           padding: "24px 48px",

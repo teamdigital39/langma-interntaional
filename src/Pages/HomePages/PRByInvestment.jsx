@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const NOTE = ({ children }) => (
-  <div className="mt-4 bg-[#4FBDBA]/8 border-l-4 border-[#4FBDBA] rounded-r-md px-4 py-3 text-[12px] text-gray-500 leading-relaxed">
+  <div className="mt-4 bg-[#2FC7A1]/8 border-l-4 border-[#2FC7A1] rounded-r-md px-4 py-3 text-[12px] text-gray-500 leading-relaxed">
     {children}
   </div>
 );
@@ -10,12 +10,12 @@ const NOTE = ({ children }) => (
 const ProgramCard = ({ name, category, badge, from, fromLabel, timeline, benefits, note, slug, ctaLabel = "Discuss This Pathway" }) => (
   <div className="bg-white rounded-xl border border-gray-100 overflow-hidden flex flex-col shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-250 group">
     {/* Header */}
-    <div className="bg-[#0C5F5F] px-6 py-5 flex items-start justify-between gap-3">
+    <div className="bg-[#F5F8F6] px-6 py-5 flex items-start justify-between gap-3 border-b border-[#D8E0EC]">
       <div>
-        <div className="text-[16px] font-semibold text-white leading-snug">{name}</div>
-        <div className="text-[11px] font-semibold tracking-widest uppercase text-[#4FBDBA] mt-1">{category}</div>
+        <div className="text-[16px] font-semibold text-[#296166] leading-snug">{name}</div>
+        <div className="text-[11px] font-semibold tracking-widest uppercase text-[#2FC7A1] mt-1">{category}</div>
       </div>
-      <span className="text-[11px] font-bold tracking-wide bg-[#4FBDBA]/15 border border-[#4FBDBA]/35 text-[#4FBDBA] px-2 py-1 rounded whitespace-nowrap flex-shrink-0">
+      <span className="text-[11px] font-bold tracking-wide bg-[#E6F8F3] border border-[#2FC7A1]/35 text-[#296166] px-2 py-1 rounded-full whitespace-nowrap flex-shrink-0">
         {badge}
       </span>
     </div>
@@ -27,13 +27,13 @@ const ProgramCard = ({ name, category, badge, from, fromLabel, timeline, benefit
           {from && (
             <div>
               <span className="block text-[11px] font-bold tracking-widest uppercase text-gray-400 mb-0.5">{fromLabel || "From"}</span>
-              <span className="text-[16px] font-semibold text-[#0C5F5F]">{from}</span>
+              <span className="text-[16px] font-semibold text-[#296166]">{from}</span>
             </div>
           )}
           {timeline && (
             <div>
               <span className="block text-[11px] font-bold tracking-widest uppercase text-gray-400 mb-0.5">Timeline</span>
-              <span className="text-[16px] font-semibold text-[#0C5F5F]">{timeline}</span>
+              <span className="text-[16px] font-semibold text-[#296166]">{timeline}</span>
             </div>
           )}
         </div>
@@ -41,8 +41,8 @@ const ProgramCard = ({ name, category, badge, from, fromLabel, timeline, benefit
 
       <ul className="space-y-2 flex-1 mb-5">
         {benefits.map((b, i) => (
-          <li key={i} className="flex gap-2.5 items-start text-[14px] text-[#0E2A46] leading-relaxed">
-            <span className="text-[#2F6E73] font-bold mt-0.5 flex-shrink-0">✓</span>
+          <li key={i} className="flex gap-2.5 items-start text-[14px] text-[#1B2B28] leading-relaxed">
+            <span className="text-[#296166] font-bold mt-0.5 flex-shrink-0">✓</span>
             {b}
           </li>
         ))}
@@ -56,14 +56,14 @@ const ProgramCard = ({ name, category, badge, from, fromLabel, timeline, benefit
       {slug && (
         <Link
           to={slug}
-          className="block text-center bg-[#296166] text-white hover:bg-[#1f4f53] py-2.5 rounded-lg text-[14px] font-semibold transition-colors"
+          className="block text-center bg-[#1A2540] text-white hover:bg-[#243160] py-2.5 rounded-full text-[14px] font-semibold transition-colors"
         >
           View Programme Details
         </Link>
       )}
       <a
         href="#meeting"
-        className="block text-center border-2 border-[#296166] text-[#296166] hover:bg-[#296166] hover:text-white py-2.5 rounded-lg text-[14px] font-semibold transition-colors"
+        className="block text-center border-2 border-[#2FC7A1] text-[#296166] hover:bg-[#E6F8F3] py-2.5 rounded-full text-[14px] font-semibold transition-colors"
       >
         {ctaLabel}
       </a>
@@ -344,12 +344,12 @@ const PRByInvestment = () => {
         {/* Section header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-12">
           <div>
-            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#4FBDBA] mb-3">Residency Pathways</p>
-            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#0C5F5F] leading-tight">
+            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#2FC7A1] mb-3">Residency Pathways</p>
+            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#296166] leading-tight">
               Residence Programmes<br />Organised Around Your Profile
             </h2>
-            <div className="w-12 h-0.5 bg-[#4FBDBA] mt-5 mb-4" />
-            <p className="text-[#0E2A46] text-[16px] max-w-xl leading-relaxed">
+            <div className="w-12 h-0.5 bg-[#2FC7A1] mt-5 mb-4" />
+            <p className="text-[#1B2B28] text-[16px] max-w-xl leading-relaxed">
               Investors, financially self-sufficient individuals, remote professionals and business owners
               each arrive with a different starting point. We have structured our advisory around four
               distinct client profiles to help identify the pathway that genuinely reflects your circumstances.
@@ -357,7 +357,7 @@ const PRByInvestment = () => {
             <div className="mt-6">
               <Link
                 to="/assessment"
-                className="inline-flex items-center gap-2 bg-[#4FBDBA] hover:bg-[#3aa8a5] text-white px-6 py-2.5 rounded-lg font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-md"
+                className="inline-flex items-center gap-2 bg-[#1A2540] hover:bg-[#243160] text-white px-6 py-2.5 rounded-full font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-md"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
@@ -368,15 +368,15 @@ const PRByInvestment = () => {
           </div>
 
           {/* Tabs */}
-          <div className="flex flex-wrap gap-1.5 bg-[#EEF7F7] p-1.5 rounded-xl">
+          <div className="flex flex-wrap gap-1.5 bg-[#F5F8F6] p-1.5 rounded-xl border border-[#D8E0EC]/60">
             {TABS.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-4 py-2 rounded-lg text-[13px] font-semibold transition-all ${
                   activeTab === tab.id
-                    ? "bg-white text-[#0C5F5F] shadow-sm"
-                    : "text-gray-500 hover:text-[#0C5F5F]"
+                    ? "bg-white text-[#296166] shadow-sm"
+                    : "text-gray-500 hover:text-[#296166]"
                 }`}
               >
                 {tab.label}

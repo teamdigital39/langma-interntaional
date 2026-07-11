@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import { FiCheckCircle, FiAlertCircle, FiX } from "react-icons/fi";
 import API_BASE from "../../config";
 
-const ResidencyFinder = ({ setOpen }) => {
+const inputBase =
+  "w-full border border-[#D8E0EC] rounded-xl px-4 py-2.5 text-[14px] text-gray-900 bg-white focus:border-[#2FC7A1] focus:ring-2 focus:ring-[#2FC7A1]/20 outline-none transition-colors";
+
+const ResidencyFinder = () => {
   const [formData, setFormData] = useState({
     nationality: "",
     profile: "",
@@ -22,17 +25,13 @@ const ResidencyFinder = ({ setOpen }) => {
   };
 
   const inputError = (field) =>
-    errors[field] ? "border-red-400" : "border-white/15";
+    errors[field] ? "border-red-400 focus:border-red-400 focus:ring-red-100" : "";
 
   const handleSubmit = async () => {
     const validationErrors = {};
-
-    if (!formData.nationality)
-      validationErrors.nationality = "Please select your nationality";
-    if (!formData.profile)
-      validationErrors.profile = "Please select your profile";
-    if (!formData.investmentRange)
-      validationErrors.investmentRange = "Please select a range";
+    if (!formData.nationality) validationErrors.nationality = "Please select your nationality";
+    if (!formData.profile) validationErrors.profile = "Please select your profile";
+    if (!formData.investmentRange) validationErrors.investmentRange = "Please select a range";
 
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length > 0) return;
@@ -82,23 +81,18 @@ const ResidencyFinder = ({ setOpen }) => {
   };
 
   return (
-    <div className="hidden lg:block bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8">
-      <h2 className="text-[22px] font-bold text-white mb-1">
-        Find the Right Residency Pathway
-      </h2>
-      <p className="text-[12px] text-white/45 mb-6">
-        Answer a few quick questions and get a personalised shortlist.
-      </p>
+    <div className="bg-white border border-[#D8E0EC] shadow-[0_20px_50px_-20px_rgba(41,97,102,0.25)] rounded-2xl p-6 sm:p-8">
+      <p className="text-[11px] font-semibold tracking-widest uppercase text-[#2FC7A1] mb-2">Quick Shortlist</p>
+      <h2 className="text-[22px] font-bold text-[#296166] mb-1">Find the Right Residency Pathway</h2>
+      <p className="text-[13px] text-gray-500 mb-6">Answer a few quick questions and get a personalised shortlist.</p>
 
       <div className="space-y-4">
-
-        {/* RESPONSE BANNER */}
         {responseMsg && (
           <div
-            className={`flex items-center justify-between p-3 rounded-lg text-sm ${
+            className={`flex items-center justify-between p-3 rounded-xl text-sm ${
               isSuccess
-                ? "bg-green-900/40 border border-green-500/30 text-green-300"
-                : "bg-red-900/40 border border-red-500/30 text-red-300"
+                ? "bg-green-50 border border-green-200 text-green-800"
+                : "bg-red-50 border border-red-200 text-red-800"
             }`}
           >
             <div className="flex items-center gap-2">
@@ -111,113 +105,80 @@ const ResidencyFinder = ({ setOpen }) => {
           </div>
         )}
 
-        {/* NATIONALITY */}
-        <div>
-          <label className="block text-[11px] font-semibold tracking-widest uppercase text-white/50 mb-1.5">
-            Your Nationality
-          </label>
-          <select
-            name="nationality"
-            value={formData.nationality}
-            onChange={handleChange}
-            className={`w-full border rounded-lg px-4 py-2.5 text-[14px] focus:border-[#4FBDBA] outline-none bg-[#0E2A46] ${inputError("nationality")} ${
-              formData.nationality === "" ? "text-white/40" : "text-white"
-            }`}
-          >
-            <option value="">Select your country</option>
-            <option>India</option>
-            <option>United Arab Emirates</option>
-            <option>Saudi Arabia</option>
-            <option>United States</option>
-            <option>United Kingdom</option>
-            <option>Other</option>
-          </select>
-          {errors.nationality && (
-            <p className="text-red-400 text-[11px] mt-1">{errors.nationality}</p>
-          )}
-        </div>
+        {["nationality", "profile", "investmentRange"].map((field) => {
+          const labels = {
+            nationality: "Your Nationality",
+            profile: "Your Profile",
+            investmentRange: "Investment or Income Range",
+          };
+          const options = {
+            nationality: ["", "India", "United Arab Emirates", "Saudi Arabia", "United States", "United Kingdom", "Other"],
+            profile: [
+              "",
+              "Investor seeking permanent residency",
+              "Financially independent individual or retiree",
+              "Digital nomad or remote professional",
+              "Business owner or entrepreneur",
+              "Globally mobile family planning a second base",
+            ],
+            investmentRange: [
+              "",
+              "Passive income route (D7 or NLV profile)",
+              "Under €300,000",
+              "€300,000 – €600,000",
+              "€600,000 – €1,000,000",
+              "Over €1,000,000",
+            ],
+          };
+          const placeholders = {
+            nationality: "Select your country",
+            profile: "Select profile",
+            investmentRange: "Select range",
+          };
+          return (
+            <div key={field}>
+              <label className="block text-[11px] font-semibold tracking-widest uppercase text-[#296166] mb-1.5">
+                {labels[field]}
+              </label>
+              <select
+                name={field}
+                value={formData[field]}
+                onChange={handleChange}
+                className={`${inputBase} ${inputError(field)} ${formData[field] === "" ? "text-gray-400" : ""}`}
+              >
+                {options[field].map((opt, i) => (
+                  <option key={i} value={opt === "India" ? opt : opt}>
+                    {i === 0 ? placeholders[field] : opt}
+                  </option>
+                ))}
+              </select>
+              {errors[field] && <p className="text-red-500 text-[11px] mt-1">{errors[field]}</p>}
+            </div>
+          );
+        })}
 
-        {/* PROFILE */}
-        <div>
-          <label className="block text-[11px] font-semibold tracking-widest uppercase text-white/50 mb-1.5">
-            Your Profile
-          </label>
-          <select
-            name="profile"
-            value={formData.profile}
-            onChange={handleChange}
-            className={`w-full border rounded-lg px-4 py-2.5 text-[14px] focus:border-[#4FBDBA] outline-none bg-[#0E2A46] ${inputError("profile")} ${
-              formData.profile === "" ? "text-white/40" : "text-white"
-            }`}
-          >
-            <option value="">Select profile</option>
-            <option>Investor seeking permanent residency</option>
-            <option>Financially independent individual or retiree</option>
-            <option>Digital nomad or remote professional</option>
-            <option>Business owner or entrepreneur</option>
-            <option>Globally mobile family planning a second base</option>
-          </select>
-          {errors.profile && (
-            <p className="text-red-400 text-[11px] mt-1">{errors.profile}</p>
-          )}
-        </div>
-
-        {/* INVESTMENT RANGE */}
-        <div>
-          <label className="block text-[11px] font-semibold tracking-widest uppercase text-white/50 mb-1.5">
-            Investment or Income Range
-          </label>
-          <select
-            name="investmentRange"
-            value={formData.investmentRange}
-            onChange={handleChange}
-            className={`w-full border rounded-lg px-4 py-2.5 text-[14px] focus:border-[#4FBDBA] outline-none bg-[#0E2A46] ${inputError("investmentRange")} ${
-              formData.investmentRange === "" ? "text-white/40" : "text-white"
-            }`}
-          >
-            <option value="">Select range</option>
-            <option>Passive income route (D7 or NLV profile)</option>
-            <option>Under €300,000</option>
-            <option>€300,000 – €600,000</option>
-            <option>€600,000 – €1,000,000</option>
-            <option>Over €1,000,000</option>
-          </select>
-          {errors.investmentRange && (
-            <p className="text-red-400 text-[11px] mt-1">{errors.investmentRange}</p>
-          )}
-        </div>
-
-        {/* SUBMIT BUTTON */}
         <button
           onClick={handleSubmit}
           disabled={loading}
-          className="w-full bg-[#2F6E73] hover:bg-[#296166] disabled:opacity-50 text-white py-3 rounded-lg font-semibold text-[14px] transition-colors"
+          className="w-full bg-[#1A2540] hover:bg-[#243160] disabled:opacity-50 text-white py-3 rounded-full font-semibold text-[14px] transition-colors"
         >
           {loading ? "Submitting..." : "Request a Preliminary Shortlist"}
         </button>
 
-        {/* DIVIDER */}
         <div className="relative flex items-center gap-3 py-1">
-          <div className="flex-1 h-px bg-white/10" />
-          <span className="text-[11px] text-white/35 uppercase tracking-widest">or</span>
-          <div className="flex-1 h-px bg-white/10" />
+          <div className="flex-1 h-px bg-[#D8E0EC]" />
+          <span className="text-[11px] text-gray-400 uppercase tracking-widest">or</span>
+          <div className="flex-1 h-px bg-[#D8E0EC]" />
         </div>
 
-        {/* ASSESSMENT LINK */}
         <Link
           to="/assessment"
-          className="flex items-center justify-center gap-2 w-full border-2 border-[#4FBDBA]/60 hover:border-[#4FBDBA] hover:bg-[#4FBDBA]/10 text-[#4FBDBA] py-3 rounded-lg font-semibold text-[14px] transition-all"
+          className="flex items-center justify-center gap-2 w-full border-2 border-[#2FC7A1] hover:bg-[#E6F8F3] text-[#296166] py-3 rounded-full font-semibold text-[14px] transition-all"
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M9 11l3 3L22 4" />
-            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
-          </svg>
           Take the Full Assessment →
         </Link>
 
-        <p className="text-center text-[11px] text-white/35">
-          No obligation · Strictly confidential
-        </p>
+        <p className="text-center text-[11px] text-gray-400">No obligation · Strictly confidential</p>
       </div>
     </div>
   );

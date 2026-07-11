@@ -153,8 +153,9 @@ const HeroSection = () => {
     fetchData();
   }, []);
 
-  if (loading) return <h2 className="text-center py-20 text-gray-500">Loading…</h2>;
-  if (!apiData || !apiData.status) return <h2 className="text-center py-20 text-red-500">Failed to load</h2>;
+  if (!apiData || !apiData.status) {
+    console.warn("Home API failed or returned invalid status");
+  }
 
   return (
     <>
@@ -283,7 +284,7 @@ const HeroSection = () => {
   {/* RIGHT VIDEO */}
   <div className="relative order-1 lg:order-2">
     <div className="relative border-2 border-[#333931] rounded-[26px] p-2">
-      <div className="relative w-full h-[220px] sm:h-[280px] lg:h-[333px] rounded-2xl overflow-hidden bg-black mx-auto">
+      <div className="relative w-full h-[220px] sm:h-[280px] lg:h-[333px] rounded-2xl overflow-hidden bg-[#F5F8F6] mx-auto">
         <video
           className="w-full h-full object-cover"
           autoPlay
@@ -358,7 +359,7 @@ const HeroSection = () => {
 
 <AboutSection />
 
-<PopularCourses data={apiData?.languages} />
+<PopularCourses data={apiData?.languages ?? null} loading={loading} />
 
 <StudyAbroad />
 

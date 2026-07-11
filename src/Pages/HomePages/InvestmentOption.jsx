@@ -47,14 +47,14 @@ const InvestmentOption = () => {
   return (
     <>
       {/* ── FAQ ── */}
-      <section className="w-full py-20 bg-[#EEF7F7]" id="faq">
+      <section className="w-full py-20 bg-[#F5F8F6]" id="faq">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#4FBDBA] mb-3">Frequently Asked Questions</p>
-            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#0C5F5F]">
+            <p className="text-[12px] font-bold tracking-[2.5px] uppercase text-[#2FC7A1] mb-3">Frequently Asked Questions</p>
+            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#296166]">
               Questions Our Clients Actually Ask
             </h2>
-            <div className="w-12 h-0.5 bg-[#4FBDBA] mt-5 mx-auto" />
+            <div className="w-12 h-0.5 bg-[#2FC7A1] mt-5 mx-auto" />
           </div>
 
           <div className="max-w-3xl mx-auto space-y-0">
@@ -62,12 +62,12 @@ const InvestmentOption = () => {
               <div key={i} className="border-b border-gray-200">
                 <button onClick={() => toggle(i)} className="w-full flex items-center justify-between py-5 text-left gap-4">
                   <span className="font-semibold text-[16px] text-[#296166] leading-snug">{faq.q}</span>
-                  <div className={`w-6 h-6 flex-shrink-0 border-2 border-gray-200 rounded-full flex items-center justify-center text-[#4FBDBA] text-[16px] font-bold transition-all duration-200 ${openIndex === i ? "border-[#4FBDBA] rotate-45" : ""}`}>
+                  <div className={`w-6 h-6 flex-shrink-0 border-2 border-gray-200 rounded-full flex items-center justify-center text-[#2FC7A1] text-[16px] font-bold transition-all duration-200 ${openIndex === i ? "border-[#2FC7A1] rotate-45" : ""}`}>
                     +
                   </div>
                 </button>
                 <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openIndex === i ? "max-h-96 pb-5" : "max-h-0"}`}>
-                  <p className="text-[16px] text-[#0E2A46] leading-relaxed">{faq.a}</p>
+                  <p className="text-[16px] text-[#1B2B28] leading-relaxed">{faq.a}</p>
                 </div>
               </div>
             ))}
@@ -76,34 +76,34 @@ const InvestmentOption = () => {
       </section>
 
       {/* ── CTA BANNER ── */}
-      <section className="w-full -mb-[40px]  py-20 bg-[#0C5F5F] relative overflow-hidden text-center">
-        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(79,189,186,0.12) 0%, transparent 70%)" }} />
+      <section className="w-full -mb-[40px] py-20 bg-white border-t border-[#D8E0EC]/60 relative overflow-hidden text-center">
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(47,199,161,0.08) 0%, transparent 70%)" }} />
         <div className="relative z-10 max-w-3xl mx-auto px-6">
-          <h2 className="text-[28px] lg:text-[32px] font-bold text-white mb-4 leading-tight">
+          <h2 className="text-[28px] lg:text-[32px] font-bold text-[#296166] mb-4 leading-tight">
             Understand Your Real Residency Options
           </h2>
-          <p className="text-white/65 text-[16px] leading-relaxed mb-10 max-w-xl mx-auto">
+          <p className="text-gray-600 text-[16px] leading-relaxed mb-10 max-w-xl mx-auto">
             Speak with a Langma International adviser and receive a personalised, no-obligation view of
             the residency pathways genuinely suited to your profile. Considered guidance, never a sales pitch.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a href="#meeting"
-              className="inline-flex items-center gap-2 bg-[#2F6E73] hover:bg-[#4FBDBA] text-white px-8 py-3.5 rounded-lg font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg">
+              className="inline-flex items-center gap-2 bg-[#1A2540] hover:bg-[#243160] text-white px-8 py-3.5 rounded-full font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg">
               Schedule a Consultation
             </a>
             <Link to="/assessment"
-              className="inline-flex items-center gap-2 bg-[#4FBDBA] hover:bg-[#3aa8a5] text-white px-8 py-3.5 rounded-lg font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg">
+              className="inline-flex items-center gap-2 bg-[#4FA3D1] hover:bg-[#3a8ab8] text-white px-8 py-3.5 rounded-full font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
               </svg>
               Take Free Assessment
             </Link>
             <a href="#office"
-              className="inline-flex items-center gap-2 border-2 border-white/40 hover:border-[#4FBDBA] text-white px-8 py-3.5 rounded-lg font-semibold text-[14px] transition-all">
+              className="inline-flex items-center gap-2 border-2 border-[#2FC7A1] text-[#296166] hover:bg-[#E6F8F3] px-8 py-3.5 rounded-full font-semibold text-[14px] transition-all">
               Visit Our Office
             </a>
             <a href="https://wa.me/919810117094"
-              className="inline-flex items-center gap-2 border-2 border-[#4FBDBA]/50 hover:border-[#4FBDBA] text-[#4FBDBA] px-8 py-3.5 rounded-lg font-semibold text-[14px] transition-all">
+              className="inline-flex items-center gap-2 border-2 border-[#D8E0EC] hover:border-[#2FC7A1] text-[#296166] px-8 py-3.5 rounded-full font-semibold text-[14px] transition-all">
               Speak on WhatsApp
             </a>
           </div>

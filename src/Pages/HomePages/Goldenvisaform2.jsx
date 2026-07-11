@@ -148,8 +148,8 @@ function Goldenvisaform2() {
       ) : (
         <div style={{ textAlign: "center", padding: "12px 0" }}>
           <div style={{ fontSize: 36, marginBottom: 8 }}>📞</div>
-          <p style={{ fontSize: 14, fontWeight: 600, color: "white" }}>Thank you!</p>
-          <p style={{ fontSize: 13, marginTop: 4, color: "white" }}>We'll call you back shortly.</p>
+          <p style={{ fontSize: 14, fontWeight: 600, color: "var(--teal)" }}>Thank you!</p>
+          <p style={{ fontSize: 13, marginTop: 4, color: "var(--ink-soft)" }}>We'll call you back shortly.</p>
           <button type="button" className="btn btn-gold"
             style={{ marginTop: 14, fontSize: 13 }}
             onClick={() => { setLeadSent(false); setLeadMsg(""); setLeadSuccess(false); }}>

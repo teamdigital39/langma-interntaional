@@ -104,23 +104,23 @@ const PortugalGlobalTalentPage = () => {
    ================================================================= */
 
 .pt-page{
-  --navy:#0E1F3D;
-  --navy-deep:#0E1F3D;
-  --navy-soft:#0E2A46;
+  --navy:#296166;
+  --navy-deep:#1A2540;
+  --navy-soft:#296166;
   --royal:#2FC7A1;
   --gold:#2FC7A1;
-  --gold-bright:#4EC7B8;
-  --gold-soft:#4EC7B8;
-  --ivory:#F7FAFC;
+  --gold-bright:#6FE0C6;
+  --gold-soft:#6FE0C6;
+  --ivory:#F5F8F6;
   --warm-white:#FFFFFF;
   --beige:#E5F6F3;
-  --ink:#0E2A46;
+  --ink:#1B2B28;
   --muted:#296166;
   --muted-light:#5D7A7F;
   --line:#DDE7EB;
   --line-dark:rgba(47,199,161,.24);
-  --shadow-lg:0 30px 70px -30px rgba(14,31,61,.24);
-  --shadow-md:0 18px 44px -22px rgba(14,31,61,.22);
+  --shadow-lg:0 30px 70px -30px rgba(26,37,64,.24);
+  --shadow-md:0 18px 44px -22px rgba(26,37,64,.22);
   --maxw:1200px;
   --r:18px;
 }
@@ -213,7 +213,7 @@ const PortugalGlobalTalentPage = () => {
 .pt-page .nav-toggle span{width:26px;height:2px;background:var(--gold-soft);transition:.3s;display:block}
 
 /* ============ HERO ============ */
-.pt-page .hero{position:relative;min-height:100vh;display:flex;align-items:center;color:var(--warm-white);overflow:hidden;background:radial-gradient(ellipse at 20% 0%,var(--navy-soft) 0%,var(--navy) 45%,var(--navy-deep) 100%)}
+.pt-page .hero{position:relative;min-height:auto;display:flex;align-items:center;color:#1B2B28;overflow:hidden;background:#FFFFFF;padding:96px 0 70px}
 .pt-page .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
 .pt-page .hero-media{position:relative}
 .pt-page .hero-media-card{position:relative;border-radius:26px;overflow:hidden;border:1px solid rgba(231,214,174,.3);box-shadow:var(--shadow-lg);aspect-ratio:4/5}
@@ -229,11 +229,11 @@ const PortugalGlobalTalentPage = () => {
   background:radial-gradient(120% 120% at 80% 10%,transparent 40%,rgba(7,21,39,.6) 100%)}
 .pt-page .hero .wrap{padding-top:140px;padding-bottom:70px;width:100%}
 .pt-page .hero-content{max-width:620px}
-.pt-page .hero h1{font-size:clamp(2.6rem,6.2vw,5rem);font-weight:300;letter-spacing:-.02em;margin:26px 0 24px}
-.pt-page .hero h1 em{font-style:italic;color:var(--gold-bright)}
-.pt-page .hero-lead{font-size:clamp(1.05rem,1.6vw,1.28rem);color:rgba(246,242,233,.86);max-width:54ch;font-weight:300}
+.pt-page .hero h1{font-size:clamp(2.6rem,6.2vw,5rem);font-weight:300;letter-spacing:-.02em;margin:26px 0 24px;color:#1B2B28}
+.pt-page .hero h1 em{font-style:italic;color:#4FA3D1}
+.pt-page .hero-lead{font-size:clamp(1.05rem,1.6vw,1.28rem);color:#4C5C58;max-width:54ch;font-weight:300}
 .pt-page .hero-actions{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap}
-.pt-page .hero-stats{display:flex;gap:0;margin-top:74px;border-top:1px solid var(--line-dark);flex-wrap:wrap}
+.pt-page .hero-stats{display:flex;gap:0;margin-top:74px;border-top:1px solid #D8E0EC;flex-wrap:wrap}
 .pt-page .hstat{padding:26px 38px 4px 0;margin-right:38px;border-right:1px solid var(--line-dark)}
 .pt-page .hstat:last-child{border-right:0;margin-right:0}
 .pt-page .hstat .n{font-family:'Fraunces',serif;font-size:2.1rem;font-weight:400;color:var(--gold-bright);line-height:1}

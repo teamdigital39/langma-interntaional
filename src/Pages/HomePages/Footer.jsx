@@ -102,7 +102,7 @@ const Footer = () => {
             Site Links
           </h3>
           <ul className="flex flex-col gap-2 text-xs sm:text-sm text-gray-400">
-            <Link to="/investment" className="hover:text-[#80CBC4] transition">PR by Investment</Link>
+            <Link to="/pr-by-investment" className="hover:text-[#80CBC4] transition">PR by Investment</Link>
             <Link to="/programs" className="hover:text-[#80CBC4] transition">Cultural Infusion Programs</Link>
             <Link to="/holidays" className="hover:text-[#80CBC4] transition">Cultural Holidays</Link>
             <Link to="/business_Programs" className="hover:text-[#80CBC4] transition">Business Exchange</Link>

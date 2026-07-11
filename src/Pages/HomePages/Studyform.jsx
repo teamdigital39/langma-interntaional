@@ -171,7 +171,7 @@ function Studyform() {
 
           <div className="final-cta reveal" style={{ marginBottom: 64 }}>
             <div className="final-cta__inner">
-              <span className="eyebrow eyebrow--dark">Start Today</span>
+              <span className="eyebrow">Start Today</span>
               <h2 style={{ marginTop: 16 }}>Your Global Chapter Starts With One Conversation.</h2>
               <p>Thousands of students sat exactly where you're sitting now — unsure, excited, and wondering if it was really possible. It was. It is. For you too.</p>
               <div className="final-cta__ctas">

@@ -43,20 +43,20 @@ const LangmaMaltaNomadPage = () => {
 
       <style>{`
   .lg-page{
-    --navy:#0E1F3D;
-    --navy-deep:#0E1F3D;
-    --navy-mid:#0E1F3D;
-    --gold:#4EC7B8;
-    --gold-soft:#4EC7B8;
-    --gold-deep:#006064;
-    --ivory:#F7FAFC;
-    --beige:#E8F4F2;
-    --charcoal:#0E1F3D;
-    --muted:#0E1F3D;
+    --navy:#296166;
+    --navy-deep:#1A2540;
+    --navy-mid:#296166;
+    --gold:#6FE0C6;
+    --gold-soft:#6FE0C6;
+    --gold-deep:#296166;
+    --ivory:#F5F8F6;
+    --beige:#E9F1EE;
+    --charcoal:#296166;
+    --muted:#296166;
     --line:rgba(47,199,161,0.30);
     --radius:4px;
-    --shadow-soft:0 18px 50px rgba(14,31,61,0.10);
-    --shadow-strong:0 30px 70px rgba(14,31,61,0.22);
+    --shadow-soft:0 18px 50px rgba(26,37,64,0.10);
+    --shadow-strong:0 30px 70px rgba(26,37,64,0.22);
     --ease:cubic-bezier(.22,.61,.36,1);
   }
 
@@ -132,7 +132,7 @@ const LangmaMaltaNomadPage = () => {
 
   /* ===== HEADER ===== */
   .lg-page header{position:fixed;top:0;left:0;right:0;z-index:1000;padding:22px 0;transition:all .4s var(--ease);}
-  .lg-page header.scrolled{background:rgba(14,31,61,0.94);backdrop-filter:blur(10px);padding:14px 0;box-shadow:0 6px 30px rgba(0,0,0,.25);}
+  .lg-page header.scrolled{background:rgba(26,37,64,0.94);backdrop-filter:blur(10px);padding:14px 0;box-shadow:0 6px 30px rgba(0,0,0,.25);}
   .lg-page .nav-wrap{display:flex;align-items:center;justify-content:space-between;}
   .lg-page .brand{display:flex;flex-direction:column;line-height:1;}
   .lg-page .brand .name{font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:600;color:var(--ivory);letter-spacing:1px;}
@@ -147,16 +147,14 @@ const LangmaMaltaNomadPage = () => {
 
   /* ===== HERO ===== */
   .lg-page .hero{
-    position:relative;min-height:100vh;display:flex;align-items:center;
-    color:var(--ivory);overflow:hidden;
-    background:linear-gradient(135deg,var(--navy-deep) 0%,var(--navy) 55%,var(--navy-mid) 100%);
+    position:relative;min-height:auto;display:flex;align-items:center;
+    color:#1B2B28;overflow:hidden;
+    background:#FFFFFF;padding:96px 0 70px;
   }
   .lg-page .hero::before{
-    content:"";position:absolute;inset:0;
-    background-image:
-      radial-gradient(circle at 20% 50%, rgba(194,161,94,0.07) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(194,161,94,0.05) 0%, transparent 40%);
-    z-index:0;pointer-events:none;
+    content:"";position:absolute;left:30px;top:96px;bottom:96px;width:3px;border-radius:999px;
+    background:linear-gradient(to bottom,transparent,#2FC7A1,transparent);
+    z-index:0;pointer-events:none;inset:auto;
   }
   .lg-page .hero-split{
     position:relative;z-index:2;width:100%;
@@ -164,9 +162,9 @@ const LangmaMaltaNomadPage = () => {
     align-items:center;padding-top:110px;padding-bottom:70px;
   }
   .lg-page .hero-copy{display:flex;flex-direction:column;}
-  .lg-page .hero h1{font-size:clamp(38px,5vw,68px);color:var(--ivory);margin-bottom:26px;font-weight:600;line-height:1.08;}
-  .lg-page .hero h1 em{font-style:italic;color:var(--gold-soft);font-weight:500;}
-  .lg-page .hero .lead{font-size:17.5px;color:rgba(247,250,252,.82);max-width:560px;margin-bottom:38px;font-weight:300;line-height:1.72;}
+  .lg-page .hero h1{font-size:clamp(38px,5vw,68px);color:#1B2B28;margin-bottom:26px;font-weight:600;line-height:1.08;}
+  .lg-page .hero h1 em{font-style:italic;color:#4FA3D1;font-weight:500;}
+  .lg-page .hero .lead{font-size:17.5px;color:#4C5C58;max-width:560px;margin-bottom:38px;font-weight:300;line-height:1.72;}
   .lg-page .hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px;}
   .lg-page .hero-badges{display:flex;gap:36px;flex-wrap:wrap;border-top:1px solid rgba(247,250,252,.18);padding-top:28px;}
   .lg-page .hero-badge .num{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--gold-soft);font-weight:600;line-height:1;}
@@ -181,7 +179,7 @@ const LangmaMaltaNomadPage = () => {
   .lg-page .hero-img-frame img{height:540px;object-fit:cover;}
   .lg-page .hero-img-frame::after{
     content:"";position:absolute;inset:0;
-    background:linear-gradient(to top,rgba(14,31,61,.32) 0%,transparent 50%);
+    background:linear-gradient(to top,rgba(26,37,64,.32) 0%,transparent 50%);
   }
   .lg-page .hero-visual::before{
     content:"";position:absolute;top:-28px;right:-28px;
@@ -190,7 +188,7 @@ const LangmaMaltaNomadPage = () => {
   }
   .lg-page .hero-badge-overlay{
     position:absolute;bottom:28px;left:28px;z-index:10;
-    background:rgba(14,31,61,.85);backdrop-filter:blur(10px);
+    background:rgba(26,37,64,.85);backdrop-filter:blur(10px);
     border:1px solid rgba(194,161,94,.35);border-radius:var(--radius);
     padding:18px 24px;
   }
@@ -323,7 +321,7 @@ const LangmaMaltaNomadPage = () => {
   .lg-page .life-card{position:relative;height:420px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-soft);}
   .lg-page .life-card img{transition:transform .8s var(--ease);}
   .lg-page .life-card:hover img{transform:scale(1.06);}
-  .lg-page .life-card .ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,31,61,.88) 0%,rgba(14,31,61,.18) 55%,transparent 100%);z-index:1;}
+  .lg-page .life-card .ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,37,64,.88) 0%,rgba(26,37,64,.18) 55%,transparent 100%);z-index:1;}
   .lg-page .life-card .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:30px 28px;}
   .lg-page .life-card .cap h3{color:var(--ivory);font-size:27px;margin-bottom:6px;}
   .lg-page .life-card .cap p{color:rgba(247,250,252,.82);font-size:14px;}
