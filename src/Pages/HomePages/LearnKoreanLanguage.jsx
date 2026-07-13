@@ -7,7 +7,8 @@ const ASSETS = `${BASE}/landing-page/assets`;
 const img = (path) => `${ASSETS}/img/${path}`;
 const portfolioImg = (path) => `${ASSETS}/img/portfolio/${path}`;
 const testimonialImg = (path) => `${ASSETS}/img/testimonials/${path}`;
-const VIDEO_SRC = `${ASSETS}/video/korean-video.mp4`;
+// Local mp4 is gitignored (*.mp4) so it is not deployed — use hosted asset on live.
+const VIDEO_SRC = `${API_BASE}/landing-page/assets/video/korean-video.mp4`;
 
 const CSS_FILES = [
   `${ASSETS}/vendor/bootstrap/css/bootstrap.min.css`,
@@ -323,15 +324,15 @@ export default function LearnKoreanLanguage() {
           </div>
         </header>
 
-        <section style={{ position: "relative", maxHeight: "100%", overflow: "hidden", padding: "0 !important" }}>
+        <section className="korean-hero-video">
           <video
             autoPlay
             loop
             playsInline
             muted
+            preload="auto"
             className="w-100"
             src={VIDEO_SRC}
-            style={{ minWidth: "100%", maxWidth: "100%", maxHeight: "100vh", objectFit: "cover" }}
           />
         </section>
 
@@ -662,13 +663,12 @@ export default function LearnKoreanLanguage() {
                 {YOUTUBE_VIDEOS.map((video) => (
                   <div key={video.src} className="col-lg-4">
                     <div className="post-box">
-                      <div className="post-img">
+                      <div className="post-img korean-youtube-embed">
                         <iframe
-                          style={{ maxWidth: "100%" }}
-                          width="1024"
-                          height="312"
                           src={video.src}
                           title={video.title}
+                          loading="lazy"
+                          referrerPolicy="strict-origin-when-cross-origin"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowFullScreen
                         />
