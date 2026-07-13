@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import API_BASE from "../../config.js";
 
 /* ============================================================
    LANGMA INTERNATIONAL — GOLDEN VISA ELIGIBILITY ASSESSMENT™
@@ -298,6 +299,17 @@ const TRUST_ITEMS = [
 const TOTAL = QUESTIONS.length; // 10
 const SECTIONS = 5;
 
+const validateName = (name) => /^[A-Za-z\s]{2,}$/.test(String(name || "").trim());
+const validateEmail = (email) => /^\S+@\S+\.\S+$/.test(String(email || "").trim());
+const validatePhone = (phone) => /^[0-9]{10,15}$/.test(String(phone || "").replace(/\D/g, ""));
+
+const formatAssessmentAnswers = (answers) =>
+  QUESTIONS.map((q) => {
+    const val = answers[q.name];
+    const opt = q.options.find((o) => o.value === val);
+    return `${q.q}: ${opt?.label || val || "Not answered"}`;
+  }).join(" | ");
+
 /* ============================================================
    MAIN COMPONENT
 ============================================================ */
@@ -307,6 +319,7 @@ export default function GoldenVisaAssessment() {
   const [current, setCurrent] = useState(0); // 0-indexed
   const [answers, setAnswers] = useState({});
   const [formState, setFormState] = useState("idle"); // idle | submitting | done
+  const [errorMsg, setErrorMsg] = useState("");
 
   const wizardWrapRef = useRef(null);
   const resultsRef = useRef(null);
@@ -351,10 +364,64 @@ export default function GoldenVisaAssessment() {
     if (current > 0) goTo(current - 1);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setFormState("submitting");
-    setTimeout(() => setFormState("done"), 1200);
+    if (formState === "submitting" || formState === "done") return;
+
+    const form = e.currentTarget;
+    const name = form.querySelector("#fname")?.value?.trim() || "";
+    const email = form.querySelector("#femail")?.value?.trim() || "";
+    const phone = form.querySelector("#fphone")?.value?.replace(/\D/g, "") || "";
+    const nationality = form.querySelector("#fnationality")?.value?.trim() || "";
+    const residence = form.querySelector("#fresidence")?.value?.trim() || "";
+
+    if (!name) return setErrorMsg("Full name is required.");
+    if (!validateName(name)) return setErrorMsg("Name must contain only letters (min 2 chars).");
+    if (!email) return setErrorMsg("Email is required.");
+    if (!validateEmail(email)) return setErrorMsg("Please enter a valid email.");
+    if (!phone) return setErrorMsg("Phone number is required.");
+    if (!validatePhone(phone)) return setErrorMsg("Enter a valid 10-15 digit phone number.");
+    if (!nationality) return setErrorMsg("Nationality is required.");
+    if (!residence) return setErrorMsg("Country of residence is required.");
+
+    try {
+      setFormState("submitting");
+      setErrorMsg("");
+
+      const payload = {
+        name,
+        email,
+        mobile: phone,
+        message: [
+          "Golden Visa assessment report request.",
+          `Nationality: ${nationality}.`,
+          `Country of residence: ${residence}.`,
+          `Assessment answers: ${formatAssessmentAnswers(answers)}.`,
+        ].join(" "),
+        type: "Golden Visa Assessment",
+        service: "Golden Visa",
+      };
+
+      const response = await fetch(`${API_BASE}/api/contact-lead`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok) {
+        setFormState("done");
+        form.reset();
+      } else {
+        setFormState("idle");
+        setErrorMsg(data.message || "Submission failed. Please try again.");
+      }
+    } catch (error) {
+      console.error(error);
+      setFormState("idle");
+      setErrorMsg("Something went wrong. Please try again.");
+    }
   };
 
   return (
@@ -869,6 +936,9 @@ export default function GoldenVisaAssessment() {
             <p>Enter your details below to receive your personalised Golden Visa assessment report and connect with a dedicated Langma International advisor.</p>
 
             <form className="form-grid" onSubmit={handleFormSubmit} noValidate>
+              {errorMsg && (
+                <p style={{ gridColumn: "1 / -1", color: "#b91c1c", fontSize: 14, margin: 0 }}>{errorMsg}</p>
+              )}
               <div className="form-row">
                 <div className="field">
                   <label htmlFor="fname">Full Name</label>

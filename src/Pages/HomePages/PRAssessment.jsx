@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import API_BASE from "../../config.js";
 
 /* ── DATA ── */
 const SECTIONS = ["Objectives", "Finances", "Family", "Mobility", "Vision"];
@@ -303,6 +304,17 @@ const WizardProgress = ({ current }) => {
   );
 };
 
+const validateName = (name) => /^[A-Za-z\s]{2,}$/.test(name.trim());
+const validateEmail = (email) => /^\S+@\S+\.\S+$/.test(email.trim());
+const validatePhone = (phone) => /^[0-9]{10,15}$/.test(phone);
+
+const formatAssessmentAnswers = (answers) =>
+  QUESTIONS.map((q) => {
+    const val = answers[q.name];
+    const opt = q.options.find((o) => o.value === val);
+    return `${q.q}: ${opt?.label || val || "Not answered"}`;
+  }).join(" | ");
+
 /* ── MAIN COMPONENT ── */
 const PRAssessment = () => {
   const [current, setCurrent] = useState(0);        // 0-indexed question
@@ -312,6 +324,8 @@ const PRAssessment = () => {
   // Lead form state
   const [form, setForm] = useState({ name: "", email: "", phone: "", nationality: "", residence: "", program: "", budget: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const q = QUESTIONS[current];
   const TOTAL = QUESTIONS.length;
@@ -331,11 +345,75 @@ const PRAssessment = () => {
 
   const handleBack = () => { if (current > 0) setCurrent((c) => c - 1); };
 
-  const handleFormChange = (e) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    const next = name === "phone" ? value.replace(/\D/g, "") : value;
+    setForm((prev) => ({ ...prev, [name]: next }));
+    setErrorMsg("");
+  };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (loading) return;
+
+    const validationErrors = {};
+    if (!form.name.trim()) validationErrors.name = "Name is required";
+    else if (!validateName(form.name)) validationErrors.name = "Only alphabets (min 2 chars)";
+
+    if (!form.email.trim()) validationErrors.email = "Email is required";
+    else if (!validateEmail(form.email)) validationErrors.email = "Invalid email";
+
+    if (!form.phone.trim()) validationErrors.phone = "Phone is required";
+    else if (!validatePhone(form.phone)) validationErrors.phone = "Enter valid 10-15 digit number";
+
+    if (!form.nationality.trim()) validationErrors.nationality = "Nationality is required";
+    if (!form.residence.trim()) validationErrors.residence = "Residence is required";
+    if (!form.budget) validationErrors.budget = "Please select your investment range";
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrorMsg(Object.values(validationErrors)[0]);
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setErrorMsg("");
+
+      const payload = {
+        name: form.name.trim(),
+        email: form.email.trim(),
+        mobile: form.phone.trim(),
+        message: [
+          "PR residency assessment report request.",
+          `Nationality: ${form.nationality.trim()}.`,
+          `Current residence: ${form.residence.trim()}.`,
+          form.program ? `Preferred program: ${form.program}.` : "",
+          `Investment budget: ${form.budget}.`,
+          `Assessment answers: ${formatAssessmentAnswers(answers)}.`,
+        ].filter(Boolean).join(" "),
+        type: "Residency Assessment",
+        service: "PR by Investment",
+      };
+
+      const response = await fetch(`${API_BASE}/api/contact-lead`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        setErrorMsg(data.message || "Submission failed. Please try again.");
+      }
+    } catch (error) {
+      console.error(error);
+      setErrorMsg("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -607,6 +685,12 @@ const PRAssessment = () => {
                   Enter your details below to receive your full personalized assessment report and connect with a dedicated Langma International Residency Advisor.
                 </p>
 
+                {errorMsg && (
+                  <div className="mb-4 p-3 rounded-xl bg-red-50 border border-red-200 text-red-800 text-sm">
+                    {errorMsg}
+                  </div>
+                )}
+
                 <form className="space-y-4" onSubmit={handleFormSubmit} noValidate>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
@@ -671,9 +755,9 @@ const PRAssessment = () => {
                     </select>
                   </div>
 
-                  <button type="submit"
-                    className="w-full bg-gradient-to-r from-[#2FC7A1] to-[#296166] text-white py-4 rounded-full font-bold text-[15px] hover:-translate-y-0.5 hover:shadow-xl transition-all shadow-lg mt-2">
-                    Unlock My Personalized Residency Report
+                  <button type="submit" disabled={loading}
+                    className="w-full bg-gradient-to-r from-[#2FC7A1] to-[#296166] text-white py-4 rounded-full font-bold text-[15px] hover:-translate-y-0.5 hover:shadow-xl transition-all shadow-lg mt-2 disabled:opacity-60 disabled:hover:translate-y-0">
+                    {loading ? "Submitting..." : "Unlock My Personalized Residency Report"}
                   </button>
                 </form>
 

@@ -962,10 +962,9 @@ const questionGroups = [
   },
 ];
 
-function AssessmentSection() {
+function AssessmentSection({ answers, setAnswers }) {
   const [openGroup, setOpenGroup] = useState(0);
   const [doneGroups, setDoneGroups] = useState([]);
-  const [answers, setAnswers] = useState({});
 
   const handleGroupToggle = (i) => {
     if (openGroup === i) return;
@@ -1233,7 +1232,13 @@ function AssessmentSection() {
 // Assumes COLORS, styles, Eyebrow, and API_BASE are already defined in your app.
 import API_BASE from "../../config";
 
-function ResultsSection() {
+const formatStudyAnswers = (answers) =>
+  questionGroups
+    .flatMap((g) => g.questions)
+    .map((q) => `${q.text}: ${answers[q.name] || "Not answered"}`)
+    .join(" | ");
+
+function ResultsSection({ assessmentAnswers }) {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -1311,7 +1316,10 @@ function ResultsSection() {
           name: formData.fullName.trim(),
           email: formData.email.trim(),
           mobile: formData.phone.trim(),
-          message: `Qualification: ${formData.qualification.trim()} | Intake: ${formData.intake.trim()}${formData.destination.trim() ? ` | Destination: ${formData.destination.trim()}` : ""}`,
+          message: [
+            `Qualification: ${formData.qualification.trim()} | Intake: ${formData.intake.trim()}${formData.destination.trim() ? ` | Destination: ${formData.destination.trim()}` : ""}`,
+            `Assessment answers: ${formatStudyAnswers(assessmentAnswers)}.`,
+          ].join(" "),
           type: "Study Abroad Lead",
           service: "Study Abroad",
         }),
@@ -1594,6 +1602,7 @@ function ResultsSection() {
 }
 export default function LangmaGlobalMobilityAssessment() {
   const [scrolled, setScrolled] = useState(false);
+  const [assessmentAnswers, setAssessmentAnswers] = useState({});
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 8);
@@ -1628,8 +1637,8 @@ export default function LangmaGlobalMobilityAssessment() {
         <DestinationsSection />
         <WhySection />
         <HowSection />
-        <AssessmentSection />
-        <ResultsSection />
+        <AssessmentSection answers={assessmentAnswers} setAnswers={setAssessmentAnswers} />
+        <ResultsSection assessmentAnswers={assessmentAnswers} />
       </div>
     </>
   );
