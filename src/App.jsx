@@ -150,7 +150,7 @@ function App() {
 
       <Routes>
           <Route path="/" element={<HeroSection />} />
-          {/* <Route path="/about" element={<AboutHeroSection />} /> */}
+          {/* <Route path="/about" element={<AboutHeroSection />} />  */}
           <Route path="/about" element={<AboutLangma />} />
           <Route path="/work-abroad" element={<AbrotHeroSection />} />
           {/* <Route path="/study-abroad" element={<StudyAbrotHeroSection />} /> */}
