@@ -3,6 +3,7 @@ body.korean-landing-active {
   margin-left: 0;
   margin-right: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 .learn-korean-landing {
@@ -28,18 +29,25 @@ body.korean-landing-active {
 
 .learn-korean-landing .korean-hero-video {
   position: relative;
-  max-height: 100%;
+  width: 100%;
+  height: 100vh;
+  min-height: 420px;
+  max-height: none;
   overflow: hidden;
   padding: 0 !important;
+  line-height: 0;
 }
 
 .learn-korean-landing .korean-hero-video video {
   display: block;
+  width: 100%;
+  height: 100%;
   min-width: 100%;
+  min-height: 100%;
   max-width: 100%;
   max-height: 100vh;
-  width: 100%;
   object-fit: cover;
+  object-position: center center;
 }
 
 .learn-korean-landing .korean-youtube-embed {
@@ -129,4 +137,117 @@ body.korean-landing-active {
 
 .learn-korean-landing .back-to-top {
   text-decoration: none;
+}
+
+/* ── Responsive (mobile / tablet only) ── */
+.learn-korean-landing {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+.learn-korean-landing .container,
+.learn-korean-landing .container-fluid {
+  max-width: 100%;
+}
+
+@media (max-width: 992px) {
+  body.korean-landing-active {
+    margin-top: 0;
+  }
+
+  .learn-korean-landing #header .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .learn-korean-landing .contact .row {
+    flex-direction: column;
+  }
+
+  .learn-korean-landing .portfolio .row .col-lg-4,
+  .learn-korean-landing .recent-blog-posts .row .col-lg-4 {
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .learn-korean-landing .korean-hero-video {
+    height: 85vh;
+    min-height: 360px;
+  }
+
+  .learn-korean-landing .korean-hero-video video {
+    height: 100%;
+    min-height: 100%;
+    max-height: none;
+  }
+
+  .learn-korean-landing .blog-share1.wpshare1 {
+    top: auto !important;
+    bottom: 70px !important;
+    right: 4px;
+    transform: scale(0.92);
+    transform-origin: right center;
+  }
+
+  .learn-korean-landing .section-header p {
+    font-size: 22px !important;
+  }
+
+  .learn-korean-landing .php-email-form {
+    padding: 16px !important;
+  }
+
+  .learn-korean-landing .values .box {
+    margin-bottom: 20px;
+  }
+
+  .learn-korean-landing .footer-top .row > [class*="col-"] {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .learn-korean-landing .korean-hero-video {
+    height: 80vh;
+    min-height: 320px;
+  }
+
+  .learn-korean-landing .logo img {
+    max-height: 32px;
+  }
+
+  .learn-korean-landing #header {
+    padding: 10px 0;
+  }
+
+  .learn-korean-landing .section-header p {
+    font-size: 18px !important;
+  }
+
+  .learn-korean-landing .php-email-form .form-control,
+  .learn-korean-landing .php-email-form textarea {
+    font-size: 15px;
+  }
+
+  .learn-korean-landing .blog-share1.wpshare1 {
+    bottom: 60px !important;
+    transform: scale(0.85);
+  }
+
+  .learn-korean-landing .testimonials-slider {
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .learn-korean-landing .korean-hero-video {
+    height: 75vh;
+    min-height: 280px;
+  }
+
+  .learn-korean-landing #d-none4 .hrs {
+    font-size: 14px;
+  }
 }

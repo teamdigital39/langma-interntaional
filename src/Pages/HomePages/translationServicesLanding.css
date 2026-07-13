@@ -3,6 +3,7 @@ body.translation-services-active {
   padding: 0;
   font-family: "Open Sans", sans-serif;
   background: #fff;
+  overflow-x: hidden;
 }
 
 /* ── Translation template theme (beats Tailwind utility conflicts) ── */
@@ -331,4 +332,131 @@ body.translation-services-active {
 
 .translation-services-page .translation-form-msg.error {
   color: #dc3545;
+}
+
+/* ── Responsive (mobile / tablet only) ── */
+.translation-services-page {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+.translation-services-page .container,
+.translation-services-page .container-fluid {
+  max-width: 100%;
+}
+
+@media (max-width: 992px) {
+  .translation-services-page .carousel-header .carousel-inner .carousel-item {
+    min-height: 70vh;
+  }
+
+  .translation-services-page .container-fluid.py-5 .row > .col-xl-5 {
+    margin-left: 0 !important;
+  }
+
+  .translation-services-page .footer .offset-xl-6 {
+    margin-left: 0 !important;
+  }
+
+  .translation-services-page .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .translation-services-page .navbar-nav .nav-link {
+    padding: 10px 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .translation-services-page .carousel-header .carousel-inner .carousel-item {
+    min-height: 520px;
+  }
+
+  .translation-services-page .carousel-caption h1.display-1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .translation-services-page .carousel-caption p.fs-5 {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .translation-services-page .carousel-caption .btn {
+    padding: 0.65rem 1.5rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  .translation-services-page .counter-facts {
+    background-attachment: scroll !important;
+  }
+
+  .translation-services-page .navbar-brand img {
+    max-height: 40px;
+  }
+
+  .translation-services-page .display-5 {
+    font-size: 1.75rem !important;
+  }
+
+  .translation-services-page .counter-facts .counter {
+    margin-bottom: 24px;
+  }
+
+  .translation-services-page .service .service-item {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .translation-services-page .carousel-header .carousel-inner .carousel-item {
+    min-height: 460px;
+  }
+
+  .translation-services-page .carousel-caption {
+    padding: 0 12px !important;
+  }
+
+  .translation-services-page .carousel-caption h1.display-1 {
+    font-size: 1.5rem !important;
+  }
+
+  .translation-services-page .carousel-caption p.fs-5 {
+    font-size: 0.85rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .translation-services-page .sub-title,
+  .translation-services-page .section-title .sub-title {
+    font-size: 0.85rem !important;
+  }
+
+  .translation-services-page .footer .row > [class*="col-"] {
+    margin-bottom: 16px;
+  }
+
+  .translation-services-page .back-to-top {
+    right: 16px;
+    bottom: 16px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .translation-services-page .carousel-header .carousel-inner .carousel-item {
+    min-height: 400px;
+  }
+
+  .translation-services-page .carousel-caption h1.display-1 {
+    font-size: 1.35rem !important;
+  }
+
+  .translation-services-page .display-5 {
+    font-size: 1.5rem !important;
+  }
 }
