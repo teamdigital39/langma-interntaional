@@ -285,15 +285,18 @@ body.translation-services-active {
 }
 
 @media (max-width: 991.98px) {
+  .translation-services-page .navbar-toggler {
+    display: none !important;
+  }
+
+  .translation-services-page .navbar-collapse {
+    display: none !important;
+  }
+
   .translation-services-page .navbar-nav .nav-link {
     padding: 10px 0 !important;
     margin-left: 0 !important;
     color: #212529 !important;
-  }
-
-  .translation-services-page .navbar-collapse {
-    margin-top: 15px;
-    border-top: 1px solid #ddd;
   }
 }
 
@@ -357,17 +360,6 @@ body.translation-services-active {
 
   .translation-services-page .footer .offset-xl-6 {
     margin-left: 0 !important;
-  }
-
-  .translation-services-page .navbar-nav {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-  }
-
-  .translation-services-page .navbar-nav .nav-link {
-    padding: 10px 0 !important;
-    margin-right: 0 !important;
   }
 }
 
