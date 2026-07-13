@@ -147,7 +147,7 @@ const PortugalGlobalTalentPage = () => {
 }
 .pt-page .eyebrow::before{content:"";width:26px;height:1px;background:var(--gold);display:inline-block;opacity:.8}
 .pt-page .eyebrow.center{justify-content:center}
-.pt-page .eyebrow.light{color:var(--gold-bright)}
+.pt-page .eyebrow.light{color:var(--navy)}
 
 .pt-page .section{padding:108px 0;position:relative}
 .pt-page .section-head{max-width:760px;margin-bottom:56px}
@@ -213,8 +213,8 @@ const PortugalGlobalTalentPage = () => {
 .pt-page .nav-toggle span{width:26px;height:2px;background:var(--gold-soft);transition:.3s;display:block}
 
 /* ============ HERO ============ */
-.pt-page .hero{position:relative;min-height:auto;display:flex;align-items:center;color:#1B2B28;overflow:hidden;background:#FFFFFF;padding:96px 0 70px}
-.pt-page .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.pt-page .hero{position:relative;min-height:auto;display:flex;align-items:center;color:#1B2B28;overflow:hidden;background:#FFFFFF;padding:72px 0 48px}
+.pt-page .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding-top:0;padding-bottom:0;width:100%}
 .pt-page .hero-media{position:relative}
 .pt-page .hero-media-card{position:relative;border-radius:26px;overflow:hidden;border:1px solid rgba(231,214,174,.3);box-shadow:var(--shadow-lg);aspect-ratio:4/5}
 .pt-page .hero-media-card img{width:100%;height:100%;object-fit:cover;display:block}
@@ -226,8 +226,7 @@ const PortugalGlobalTalentPage = () => {
 .pt-page .hero-bg::after{content:"";position:absolute;inset:0;
   background:linear-gradient(105deg,rgba(7,21,39,.93) 0%,rgba(7,21,39,.78) 38%,rgba(11,31,58,.46) 70%,rgba(11,31,58,.34) 100%);}
 .pt-page .hero-grain{position:absolute;inset:0;z-index:-1;opacity:.5;
-  background:radial-gradient(120% 120% at 80% 10%,transparent 40%,rgba(7,21,39,.6) 100%)}
-.pt-page .hero .wrap{padding-top:140px;padding-bottom:70px;width:100%}
+  background:radial-gradient(120% 120% at 80% 10%,transparent 40%,rgba(47,199,161,.06) 100%)}
 .pt-page .hero-content{max-width:620px}
 .pt-page .hero h1{font-size:clamp(2.6rem,6.2vw,5rem);font-weight:300;letter-spacing:-.02em;margin:26px 0 24px;color:#1B2B28}
 .pt-page .hero h1 em{font-style:italic;color:#4FA3D1}
@@ -237,7 +236,7 @@ const PortugalGlobalTalentPage = () => {
 .pt-page .hstat{padding:26px 38px 4px 0;margin-right:38px;border-right:1px solid var(--line-dark)}
 .pt-page .hstat:last-child{border-right:0;margin-right:0}
 .pt-page .hstat .n{font-family:'Fraunces',serif;font-size:2.1rem;font-weight:400;color:var(--gold-bright);line-height:1}
-.pt-page .hstat .l{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,242,233,.66);margin-top:10px;font-weight:500}
+.pt-page .hstat .l{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#7E8C88;margin-top:10px;font-weight:500}
 .pt-page .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(231,214,174,.6);display:flex;flex-direction:column;align-items:center;gap:10px}
 .pt-page .scroll-hint .bar{width:1px;height:42px;background:linear-gradient(var(--gold),transparent);animation:drop 2.4s infinite}
 @keyframes drop{0%{transform:scaleY(0);transform-origin:top}40%{transform:scaleY(1);transform-origin:top}60%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
@@ -540,7 +539,7 @@ const PortugalGlobalTalentPage = () => {
   .pt-page header.nav.solid .nav-toggle span{background:var(--gold)}
   .pt-page .ov-grid,.pt-page .about-top,.pt-page .cost-layout,.pt-page .consult-grid,.pt-page .split-grid,.pt-page .elig-grid,.pt-page .lg-quote,.pt-page .office-grid{grid-template-columns:1fr}
   .pt-page .ov-figure{order:-1}
-  .pt-page .hero .wrap{grid-template-columns:1fr;padding-top:128px}
+  .pt-page .hero .wrap{grid-template-columns:1fr;padding-top:0;gap:36px}
   .pt-page .hero-media{order:-1}
   .pt-page .hero-media-card{aspect-ratio:16/10;max-width:520px}
   .pt-page .hero-content{max-width:none}
@@ -573,6 +572,18 @@ const PortugalGlobalTalentPage = () => {
   .pt-page .form-card,.pt-page .panel,.pt-page .elig-card,.pt-page .booking-card{padding:28px}
   .pt-page .visit-types{grid-template-columns:1fr}
   .pt-page .foot-grid{grid-template-columns:1fr 1fr}
+}
+/* PR hero responsive fix */
+@media(max-width:980px){
+  .pt-page .hero{padding:64px 0 40px;}
+  .pt-page .hero-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
+  .pt-page .hstat{border-right:0;margin-right:0;padding:0;}
+}
+@media(max-width:640px){
+  .pt-page .hero{padding:56px 0 32px;}
+  .pt-page .hero-actions{flex-direction:column;}
+  .pt-page .hero-actions .btn{width:100%;justify-content:center;}
+  .pt-page .hero-stats{grid-template-columns:1fr;}
 }`}</style>
       <main>
   {/* ============ HERO ============ */}

@@ -146,7 +146,7 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
     color:#1B2B28;
     overflow:hidden;
     background:#FFFFFF;
-    padding:96px 0 70px;
+    padding:72px 0 48px;
   }
   .lg-page .hero::before {
     content:"";
@@ -164,7 +164,7 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
     grid-template-columns:1fr 1fr;
     gap:72px;
     align-items:center;
-    padding-top:120px;
+    padding-top:0;
     padding-bottom:80px;
   }
   .lg-page .hero-content {
@@ -270,13 +270,13 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
     font-weight:500;
   }
   @media(max-width:1024px){
-    .hero-split {grid-template-columns:1fr;gap:48px;padding-top:130px;padding-bottom:60px;}
+    .hero-split {grid-template-columns:1fr;gap:48px;padding-top:0;padding-bottom:32px;}
     .hero-img-card img {height:360px;}
     .hero-visual::before {display:none;}
     .hero-img-card {max-width:100%;}
   }
   @media(max-width:768px){
-    .lg-page .hero-split {padding-top:110px;padding-bottom:50px;gap:36px;}
+    .lg-page .hero-split {padding-top:0;padding-bottom:24px;gap:36px;}
     .lg-page .hero-img-card img {height:260px;}
   }
   .lg-page .btn {
@@ -1058,7 +1058,26 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
       letter-spacing:1px;
     }
   }
-      `}</style>
+      /* PR hero responsive fix */
+  /* PR hero — account for site TopBar + Navbar only (no double top padding) */
+  @media(max-width:980px){
+    .lg-page .hero{padding:64px 0 40px;}
+    .lg-page .hero-split{grid-template-columns:1fr !important;gap:36px !important;padding-top:0 !important;}
+    .lg-page .hero-visual{order:-1;max-width:560px;margin:0 auto;width:100%;}
+    .lg-page .hero-visual::before{display:none;}
+    .lg-page .hero-img-frame,.lg-page .hero-img-card{max-width:100%;}
+    .lg-page .hero-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
+  }
+  @media(max-width:640px){
+    .lg-page .hero{padding:56px 0 32px;}
+    .lg-page .hero-split{gap:28px !important;padding-bottom:16px !important;}
+    .lg-page .hero h1{font-size:clamp(30px,8vw,42px);}
+    .lg-page .hero-badges{grid-template-columns:1fr;}
+    .lg-page .hero-cta,.lg-page .hero-ctas{flex-direction:column;}
+    .lg-page .hero-cta .btn,.lg-page .hero-ctas .btn{width:100%;justify-content:center;}
+    .lg-page .container{padding:0 20px;}
+  }
+`}</style>
 
       <main>
 

@@ -125,9 +125,9 @@ const SpainDNVPage = () => {
         .sp-page .nav-cta:hover { background:var(--gold-soft); }
         .sp-page .burger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; }
         .sp-page .burger span { width:24px; height:2px; background:var(--ivory); display:block; }
-        .sp-page .hero { position:relative; min-height:auto; display:flex; align-items:center; color:#1B2B28; overflow:hidden; background:#FFFFFF;padding:96px 0 70px; }
+        .sp-page .hero { position:relative; min-height:auto; display:flex; align-items:center; color:#1B2B28; overflow:hidden; background:#FFFFFF;padding:72px 0 48px; }
         .sp-page .hero::before { content:""; position:absolute; inset:0; background-image:radial-gradient(circle at 20% 50%, rgba(47,199,161,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(23,163,152,0.20) 0%, transparent 45%); z-index:0; pointer-events:none; }
-        .sp-page .hero-split { position:relative; z-index:2; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; padding-top:110px; padding-bottom:70px; }
+        .sp-page .hero-split { position:relative; z-index:2; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; padding-top:0;padding-bottom:0; }
         .sp-page .hero-copy { display:flex; flex-direction:column; }
         .sp-page .hero h1 { font-size:clamp(38px,5vw,66px); color:#1B2B28; margin-bottom:26px; font-weight:600; line-height:1.08; }
         .sp-page .hero h1 em { font-style:italic; color:#4FA3D1; font-weight:500; }
@@ -346,7 +346,7 @@ const SpainDNVPage = () => {
           .sp-page .facts-row { grid-template-columns:1fr 1fr; }
           .sp-page .lg-list { grid-template-columns:1fr; }
           .sp-page .about-media,.sp-page .fam-media { height:420px; }
-          .sp-page .hero-split { grid-template-columns:1fr; gap:48px; padding-top:120px; padding-bottom:60px; }
+          .sp-page .hero-split { grid-template-columns:1fr; gap:48px; padding-top:0;padding-bottom:32px; }
           .sp-page .hero-img-frame img { height:380px; }
           .sp-page .hero-visual::before { display:none; }
           .sp-page .hero-img-frame { max-width:100%; }
@@ -368,7 +368,26 @@ const SpainDNVPage = () => {
           .sp-page * { animation:none!important; transition:none!important; }
           .sp-page .sp-reveal { opacity:1; transform:none; }
         }
-      `}</style>
+      /* PR hero responsive fix */
+  /* PR hero — account for site TopBar + Navbar only (no double top padding) */
+  @media(max-width:980px){
+    .sp-page .hero{padding:64px 0 40px;}
+    .sp-page .hero-split{grid-template-columns:1fr !important;gap:36px !important;padding-top:0 !important;}
+    .sp-page .hero-visual{order:-1;max-width:560px;margin:0 auto;width:100%;}
+    .sp-page .hero-visual::before{display:none;}
+    .sp-page .hero-img-frame,.sp-page .hero-img-card{max-width:100%;}
+    .sp-page .hero-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
+  }
+  @media(max-width:640px){
+    .sp-page .hero{padding:56px 0 32px;}
+    .sp-page .hero-split{gap:28px !important;padding-bottom:16px !important;}
+    .sp-page .hero h1{font-size:clamp(30px,8vw,42px);}
+    .sp-page .hero-badges{grid-template-columns:1fr;}
+    .sp-page .hero-cta,.sp-page .hero-ctas{flex-direction:column;}
+    .sp-page .hero-cta .btn,.sp-page .hero-ctas .btn{width:100%;justify-content:center;}
+    .sp-page .container{padding:0 20px;}
+  }
+`}</style>
       <main>
         {/* HERO */}
         <section className="hero">

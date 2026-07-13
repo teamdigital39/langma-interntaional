@@ -144,7 +144,7 @@ const AustriaResidencePage = () => {
         .at-page .hero {
           position:relative; min-height:auto; display:flex; align-items:center;
           color:#1B2B28; overflow:hidden;
-          background:#FFFFFF;padding:96px 0 70px;
+          background:#FFFFFF;padding:72px 0 48px;
         }
         .at-page .hero::before {
           content:""; position:absolute; inset:0;
@@ -157,7 +157,7 @@ const AustriaResidencePage = () => {
         .at-page .hero-split {
           position:relative; z-index:2; width:100%;
           display:grid; grid-template-columns:1fr 1fr; gap:64px;
-          align-items:center; padding-top:110px; padding-bottom:70px;
+          align-items:center; padding-top:0;padding-bottom:0;
         }
         .at-page .hero-copy { display:flex; flex-direction:column; }
         .at-page .hero h1 { font-size:clamp(38px,5vw,64px); color:#1B2B28; margin-bottom:26px; font-weight:600; line-height:1.08; }
@@ -417,7 +417,7 @@ const AustriaResidencePage = () => {
           .at-page .facts-row { grid-template-columns:1fr 1fr; }
           .at-page .lg-list { grid-template-columns:1fr; }
           .at-page .about-media,.at-page .fam-media { height:420px; }
-          .at-page .hero-split { grid-template-columns:1fr; gap:48px; padding-top:120px; padding-bottom:60px; }
+          .at-page .hero-split { grid-template-columns:1fr; gap:48px; padding-top:0;padding-bottom:32px; }
           .at-page .hero-img-frame img { height:380px; }
           .at-page .hero-visual::before { display:none; }
           .at-page .hero-img-frame { max-width:100%; }
@@ -444,7 +444,26 @@ const AustriaResidencePage = () => {
           .at-page * { animation:none!important; transition:none!important; }
           .at-page .at-reveal { opacity:1; transform:none; }
         }
-      `}</style>
+      /* PR hero responsive fix */
+  /* PR hero — account for site TopBar + Navbar only (no double top padding) */
+  @media(max-width:980px){
+    .at-page .hero{padding:64px 0 40px;}
+    .at-page .hero-split{grid-template-columns:1fr !important;gap:36px !important;padding-top:0 !important;}
+    .at-page .hero-visual{order:-1;max-width:560px;margin:0 auto;width:100%;}
+    .at-page .hero-visual::before{display:none;}
+    .at-page .hero-img-frame,.at-page .hero-img-card{max-width:100%;}
+    .at-page .hero-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
+  }
+  @media(max-width:640px){
+    .at-page .hero{padding:56px 0 32px;}
+    .at-page .hero-split{gap:28px !important;padding-bottom:16px !important;}
+    .at-page .hero h1{font-size:clamp(30px,8vw,42px);}
+    .at-page .hero-badges{grid-template-columns:1fr;}
+    .at-page .hero-cta,.at-page .hero-ctas{flex-direction:column;}
+    .at-page .hero-cta .btn,.at-page .hero-ctas .btn{width:100%;justify-content:center;}
+    .at-page .container{padding:0 20px;}
+  }
+`}</style>
       <main>
         {/* ===== HERO ===== */}
         <section className="hero">

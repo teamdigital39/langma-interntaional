@@ -79,9 +79,9 @@ const AndorraPRPage = () => {
         .an-page .btn-dark { background:#1A2540; color:#F5F8F6; }
         .an-page .btn-dark:hover { background:#296166; transform:translateY(-2px); }
         .an-page .tile-divider { height:18px; width:100%; background: radial-gradient(circle at 10px 9px, #6FE0C6 0 2px, transparent 2.5px), radial-gradient(circle at 0 0, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px), radial-gradient(circle at 20px 0, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px), radial-gradient(circle at 0 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px), radial-gradient(circle at 20px 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px); background-size:20px 18px; background-repeat:repeat-x; background-position:left center; background-color:#1A2540; display:block; overflow:hidden; opacity:.92; }
-        .an-page .hero { position:relative; min-height:auto; display:flex; align-items:center; color:#1B2B28; overflow:hidden; background:#FFFFFF;padding:96px 0 70px; }
+        .an-page .hero { position:relative; min-height:auto; display:flex; align-items:center; color:#1B2B28; overflow:hidden; background:#FFFFFF;padding:72px 0 48px; }
         .an-page .hero::before { content:""; position:absolute; inset:0; background-image: radial-gradient(circle at 20% 50%, rgba(47,199,161,0.09) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(47,199,161,0.06) 0%, transparent 40%); z-index:0; pointer-events:none; }
-        .an-page .hero-split { position:relative; z-index:2; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; padding-top:110px; padding-bottom:70px; }
+        .an-page .hero-split { position:relative; z-index:2; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; padding-top:0;padding-bottom:0; }
         .an-page .hero-copy { display:flex; flex-direction:column; }
         .an-page .hero h1 { font-size:clamp(38px,5vw,68px); color:#1B2B28; margin-bottom:26px; font-weight:600; line-height:1.08; }
         .an-page .hero h1 em { font-style:italic; color:#4FA3D1; font-weight:500; }
@@ -311,7 +311,7 @@ const AndorraPRPage = () => {
           .an-page .stats-grid,.an-page .pillars-grid,.an-page .prog-grid,.an-page .ben-grid,.an-page .life-grid,.an-page .life-detail-grid,.an-page .tax-grid { grid-template-columns:1fr 1fr; }
           .an-page .facts-row,.an-page .elig-grid,.an-page .doc-grid { grid-template-columns:1fr 1fr; }
           .an-page .about-media,.an-page .fam-media,.an-page .reasons-media { height:420px; }
-          .an-page .hero-split { grid-template-columns:1fr; gap:48px; padding-top:120px; padding-bottom:60px; }
+          .an-page .hero-split { grid-template-columns:1fr; gap:48px; padding-top:0;padding-bottom:32px; }
           .an-page .hero-img-frame img { height:380px; }
           .an-page .hero-visual::before { display:none; }
           .an-page .hero-img-frame { max-width:100%; }
@@ -333,7 +333,26 @@ const AndorraPRPage = () => {
           .an-page * { animation:none!important; transition:none!important; }
           .an-page .an-reveal { opacity:1; transform:none; }
         }
-      `}</style>
+      /* PR hero responsive fix */
+  /* PR hero — account for site TopBar + Navbar only (no double top padding) */
+  @media(max-width:980px){
+    .an-page .hero{padding:64px 0 40px;}
+    .an-page .hero-split{grid-template-columns:1fr !important;gap:36px !important;padding-top:0 !important;}
+    .an-page .hero-visual{order:-1;max-width:560px;margin:0 auto;width:100%;}
+    .an-page .hero-visual::before{display:none;}
+    .an-page .hero-img-frame,.an-page .hero-img-card{max-width:100%;}
+    .an-page .hero-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
+  }
+  @media(max-width:640px){
+    .an-page .hero{padding:56px 0 32px;}
+    .an-page .hero-split{gap:28px !important;padding-bottom:16px !important;}
+    .an-page .hero h1{font-size:clamp(30px,8vw,42px);}
+    .an-page .hero-badges{grid-template-columns:1fr;}
+    .an-page .hero-cta,.an-page .hero-ctas{flex-direction:column;}
+    .an-page .hero-cta .btn,.an-page .hero-ctas .btn{width:100%;justify-content:center;}
+    .an-page .container{padding:0 20px;}
+  }
+`}</style>
 
       <main>
         {/* HERO */}

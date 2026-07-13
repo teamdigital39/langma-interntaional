@@ -76,9 +76,9 @@ const HungaryBusinessResidencyPage = () => {
         .hu-page .nav-cta:hover { background:var(--gold-soft); }
         .hu-page .burger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; }
         .hu-page .burger span { width:24px; height:2px; background:var(--ivory); display:block; }
-        .hu-page .hero { position:relative; min-height:auto; display:flex; align-items:center; color:#1B2B28; overflow:hidden; background:#FFFFFF;padding:96px 0 70px; }
+        .hu-page .hero { position:relative; min-height:auto; display:flex; align-items:center; color:#1B2B28; overflow:hidden; background:#FFFFFF;padding:72px 0 48px; }
         .hu-page .hero::before { content:""; position:absolute; inset:0; background-image:radial-gradient(circle at 20% 50%, rgba(47,199,161,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(47,199,161,0.05) 0%, transparent 40%); z-index:0; pointer-events:none; }
-        .hu-page .hero-split { position:relative; z-index:2; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; padding-top:110px; padding-bottom:70px; }
+        .hu-page .hero-split { position:relative; z-index:2; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; padding-top:0;padding-bottom:0; }
         .hu-page .hero-copy { display:flex; flex-direction:column; }
         .hu-page .hero h1 { font-size:clamp(38px,5vw,68px); color:#1B2B28; margin-bottom:26px; font-weight:600; line-height:1.08; }
         .hu-page .hero h1 em { font-style:italic; color:#4FA3D1; font-weight:500; }
@@ -286,7 +286,7 @@ const HungaryBusinessResidencyPage = () => {
           .hu-page .facts-row,.hu-page .country-cards { grid-template-columns:1fr 1fr; }
           .hu-page .lg-list { grid-template-columns:1fr; }
           .hu-page .about-media,.hu-page .fam-media,.hu-page .biz-media { height:420px; }
-          .hu-page .hero-split { grid-template-columns:1fr; gap:48px; padding-top:120px; padding-bottom:60px; }
+          .hu-page .hero-split { grid-template-columns:1fr; gap:48px; padding-top:0;padding-bottom:32px; }
           .hu-page .hero-img-frame img { height:380px; }
           .hu-page .hero-visual::before { display:none; }
           .hu-page .hero-img-frame { max-width:100%; }
@@ -308,7 +308,26 @@ const HungaryBusinessResidencyPage = () => {
           .hu-page * { animation:none!important; transition:none!important; }
           .hu-page .hu-reveal { opacity:1; transform:none; }
         }
-      `}</style>
+      /* PR hero responsive fix */
+  /* PR hero — account for site TopBar + Navbar only (no double top padding) */
+  @media(max-width:980px){
+    .hu-page .hero{padding:64px 0 40px;}
+    .hu-page .hero-split{grid-template-columns:1fr !important;gap:36px !important;padding-top:0 !important;}
+    .hu-page .hero-visual{order:-1;max-width:560px;margin:0 auto;width:100%;}
+    .hu-page .hero-visual::before{display:none;}
+    .hu-page .hero-img-frame,.hu-page .hero-img-card{max-width:100%;}
+    .hu-page .hero-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
+  }
+  @media(max-width:640px){
+    .hu-page .hero{padding:56px 0 32px;}
+    .hu-page .hero-split{gap:28px !important;padding-bottom:16px !important;}
+    .hu-page .hero h1{font-size:clamp(30px,8vw,42px);}
+    .hu-page .hero-badges{grid-template-columns:1fr;}
+    .hu-page .hero-cta,.hu-page .hero-ctas{flex-direction:column;}
+    .hu-page .hero-cta .btn,.hu-page .hero-ctas .btn{width:100%;justify-content:center;}
+    .hu-page .container{padding:0 20px;}
+  }
+`}</style>
       <main>
         {/* HERO */}
         <section className="hero">

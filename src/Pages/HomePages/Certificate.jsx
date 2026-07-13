@@ -41,32 +41,32 @@ const languages = [
 
 const features = [
   {
-    icon: <Award size={28} className="text-[#0A6B64]" />,
+    icon: <Award size={28} className="text-[#296166]" />,
     title: "Globally Recognized",
     desc: "Our certificates are recognized by universities, employers, and institutions worldwide.",
   },
   {
-    icon: <BookOpen size={28} className="text-[#0A6B64]" />,
+    icon: <BookOpen size={28} className="text-[#296166]" />,
     title: "Expert Trainers",
     desc: "Learn from certified native speakers and language experts with years of experience.",
   },
   {
-    icon: <Globe size={28} className="text-[#0A6B64]" />,
+    icon: <Globe size={28} className="text-[#296166]" />,
     title: "50+ Languages",
     desc: "Choose from over 50 international and regional languages to earn your certificate.",
   },
   {
-    icon: <Star size={28} className="text-[#0A6B64]" />,
+    icon: <Star size={28} className="text-[#296166]" />,
     title: "Structured Levels",
     desc: "Certificates available from A1 beginner to C2 mastery across all language programs.",
   },
   {
-    icon: <Clock size={28} className="text-[#0A6B64]" />,
+    icon: <Clock size={28} className="text-[#296166]" />,
     title: "Flexible Schedule",
     desc: "Online and offline programs designed to fit your lifestyle and learning pace.",
   },
   {
-    icon: <Users size={28} className="text-[#0A6B64]" />,
+    icon: <Users size={28} className="text-[#296166]" />,
     title: "200k+ Learners",
     desc: "Join a thriving community of certified language learners across the globe.",
   },
@@ -228,47 +228,50 @@ export default function Certificate() {
 
   // ── Input class helper ────────────────────────────────────────────────────
   const inputClass = (field) =>
-    `w-full border rounded-xl px-4 py-3 outline-none text-sm transition
-     focus:ring-2 focus:ring-[#0A6B64]/40
-     ${errors[field] ? "border-red-400 bg-red-50" : "border-gray-200 bg-white"}`;
+    `w-full border rounded-xl px-4 py-3 outline-none text-sm transition text-[#1B2B28]
+     focus:border-[#2FC7A1] focus:ring-2 focus:ring-[#2FC7A1]/20
+     ${errors[field] ? "border-red-400 bg-red-50" : "border-[#D8E0EC] bg-white"}`;
 
   // ─────────────────────────────────────────────────────────────────────────
   return (
     <>
       {/* ══════════════════════ HERO ══════════════════════ */}
-      <section
-        className="relative w-full min-h-[260px] md:min-h-[380px] flex items-center
-                   justify-center bg-cover bg-center bg-no-repeat overflow-hidden"
-        style={{ backgroundImage: "url('/images/pngwing.com 2.png')" }}
-      >
-        <div className="absolute inset-0 bg-[#0A6B64]/88" />
-        <div className="relative z-10 text-center text-white px-4 py-16 sm:py-20">
-          <span className="inline-block bg-white/20 backdrop-blur-sm text-white
-                           px-4 py-1 rounded-full text-xs sm:text-sm mb-4">
-            Globally Recognized Certifications
-          </span>
-          <h1 className="text-[24px] sm:text-[36px] md:text-[48px] font-bold leading-tight">
-            Apply for a Language{" "}
-            <span className="text-yellow-300">Certificate</span>
-          </h1>
-          <p className="mt-4 text-sm sm:text-base md:text-lg text-white/85
-                        max-w-2xl mx-auto leading-relaxed">
-            Earn internationally recognized language certificates from Langma
-            International — trusted by universities, employers, and institutions
-            across the globe.
-          </p>
+      <section className="relative w-full bg-white overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none opacity-[0.07]">
+          <div className="absolute inset-0" style={{
+            backgroundImage: "radial-gradient(circle at 20% 50%, rgba(47,199,161,0.35) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(79,163,209,0.2) 0%, transparent 45%)",
+          }} />
+        </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 border border-[#2FC7A1]/40 rounded-full px-4 py-1.5 mb-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2FC7A1]" />
+              <span className="text-[11px] font-semibold tracking-widest uppercase text-[#296166]">
+                Globally Recognized Certifications
+              </span>
+            </div>
+            <h1 className="text-[28px] sm:text-[40px] md:text-[48px] font-bold leading-tight text-[#1A2540]">
+              Apply for a Language{" "}
+              <span className="text-[#4FA3D1] italic">Certificate</span>
+            </h1>
+            <p className="mt-5 text-sm sm:text-base md:text-lg text-[#4C5C58] max-w-2xl leading-relaxed">
+              Earn internationally recognized language certificates from Langma
+              International — trusted by universities, employers, and institutions
+              across the globe.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* ══════════════════════ WHY CERTIFY ══════════════════════ */}
-      <section className="w-full py-12 sm:py-16 bg-gray-50">
+      <section className="w-full py-12 sm:py-16 bg-[#F5F8F6]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
-            <h2 className="text-[22px] sm:text-[28px] md:text-[34px] font-bold text-[#15224C]">
+            <h2 className="text-[22px] sm:text-[28px] md:text-[34px] font-bold text-[#1A2540]">
               Why Get Certified with{" "}
-              <span className="text-[#0A6B64]">Langma?</span>
+              <span className="text-[#4FA3D1]">Langma?</span>
             </h2>
-            <p className="mt-3 text-gray-500 text-sm sm:text-base max-w-xl mx-auto">
+            <p className="mt-3 text-[#4C5C58] text-sm sm:text-base max-w-xl mx-auto">
               A Langma certificate is more than a document — it's proof of your
               commitment, skill, and readiness to communicate globally.
             </p>
@@ -277,14 +280,14 @@ export default function Certificate() {
             {features.map((f, i) => (
               <div
                 key={i}
-                className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-100
-                           shadow-sm hover:shadow-md transition"
+                className="bg-white rounded-2xl p-5 sm:p-6 border border-[#D8E0EC]
+                           shadow-[0_4px_20px_-8px_rgba(26,37,64,.08)] hover:border-[#2FC7A1]/40 hover:shadow-[0_16px_40px_-20px_rgba(41,97,102,.15)] transition"
               >
                 <div className="mb-3">{f.icon}</div>
-                <h3 className="font-semibold text-[#15224C] text-sm sm:text-base mb-1">
+                <h3 className="font-semibold text-[#1A2540] text-sm sm:text-base mb-1">
                   {f.title}
                 </h3>
-                <p className="text-gray-500 text-xs sm:text-sm leading-relaxed">
+                <p className="text-[#4C5C58] text-xs sm:text-sm leading-relaxed">
                   {f.desc}
                 </p>
               </div>
@@ -297,10 +300,10 @@ export default function Certificate() {
       <section className="w-full py-12 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10">
-            <h2 className="text-[22px] sm:text-[28px] md:text-[34px] font-bold text-[#15224C]">
-              How It <span className="text-[#E41F23]">Works</span>
+            <h2 className="text-[22px] sm:text-[28px] md:text-[34px] font-bold text-[#1A2540]">
+              How It <span className="text-[#4FA3D1]">Works</span>
             </h2>
-            <p className="mt-3 text-gray-500 text-sm sm:text-base">
+            <p className="mt-3 text-[#4C5C58] text-sm sm:text-base">
               Your journey to a language certificate in 5 simple steps.
             </p>
           </div>
@@ -308,15 +311,15 @@ export default function Certificate() {
             {steps.map((s, i) => (
               <div key={i} className="text-center">
                 <div
-                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#0A6B64] text-white
+                  className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#1A2540] text-[#F5F2EC]
                              flex items-center justify-center text-lg sm:text-xl font-bold mx-auto mb-4"
                 >
                   {s.step}
                 </div>
-                <h4 className="font-semibold text-[#15224C] text-sm mb-1">
+                <h4 className="font-semibold text-[#1A2540] text-sm mb-1">
                   {s.title}
                 </h4>
-                <p className="text-gray-500 text-xs leading-relaxed">{s.desc}</p>
+                <p className="text-[#4C5C58] text-xs leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -324,22 +327,22 @@ export default function Certificate() {
       </section>
 
       {/* ══════════════════════ APPLICATION FORM ══════════════════════ */}
-      <section className="w-full py-12 sm:py-16 bg-gray-50">
+      <section className="w-full py-12 sm:py-16 bg-[#F5F8F6]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
 
             {/* ── LEFT — Info ── */}
             <div>
-              <span className="inline-block text-[#0A6B64] text-sm font-medium mb-2">
+              <span className="inline-block text-[#296166] text-sm font-semibold tracking-wider uppercase mb-2">
                 Certificate Application
               </span>
               <h2 className="text-[22px] sm:text-[28px] md:text-[34px] font-bold
-                             text-[#15224C] leading-tight mb-4">
+                             text-[#1A2540] leading-tight mb-4">
                 Start Your Journey
                 <br />
-                <span className="text-[#0A6B64]">Towards Certification</span>
+                <span className="text-[#4FA3D1]">Towards Certification</span>
               </h2>
-              <p className="text-gray-500 text-sm sm:text-base leading-relaxed mb-6">
+              <p className="text-[#4C5C58] text-sm sm:text-base leading-relaxed mb-6">
                 Fill out the form and our language counsellors will guide you
                 through the best certification program based on your goals,
                 language level, and timeline.
@@ -355,30 +358,30 @@ export default function Certificate() {
                 ].map((point, i) => (
                   <div key={i} className="flex items-start gap-3">
                     <FiCheckCircle
-                      className="text-[#0A6B64] mt-0.5 shrink-0"
+                      className="text-[#2FC7A1] mt-0.5 shrink-0"
                       size={17}
                     />
-                    <p className="text-gray-600 text-sm">{point}</p>
+                    <p className="text-[#4C5C58] text-sm">{point}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="bg-[#0A6B64]/10 rounded-2xl p-5 border border-[#0A6B64]/20">
-                <p className="text-[#0A6B64] font-semibold text-sm mb-1">
+              <div className="bg-white rounded-2xl p-5 border border-[#D8E0EC] shadow-[0_4px_16px_-8px_rgba(26,37,64,.06)]">
+                <p className="text-[#296166] font-semibold text-sm mb-1">
                   Need help choosing?
                 </p>
-                <p className="text-gray-600 text-sm">
+                <p className="text-[#4C5C58] text-sm">
                   Call us at{" "}
                   <a
                     href="tel:+919810117094"
-                    className="text-[#0A6B64] font-medium underline"
+                    className="text-[#296166] font-medium underline"
                   >
                     +91-9810117094
                   </a>{" "}
                   or email{" "}
                   <a
                     href="mailto:info@langmainternational.com"
-                    className="text-[#0A6B64] font-medium underline"
+                    className="text-[#296166] font-medium underline"
                   >
                     info@langmainternational.com
                   </a>
@@ -387,8 +390,8 @@ export default function Certificate() {
             </div>
 
             {/* ── RIGHT — Form ── */}
-            <div className="bg-white rounded-2xl shadow-md p-5 sm:p-8 border border-gray-100">
-              <h3 className="text-[17px] sm:text-[20px] font-bold text-[#15224C] mb-6">
+            <div className="bg-white rounded-2xl shadow-[0_4px_20px_-8px_rgba(26,37,64,.08)] p-5 sm:p-8 border border-[#D8E0EC]">
+              <h3 className="text-[17px] sm:text-[20px] font-bold text-[#1A2540] mb-6">
                 Certificate Application Form
               </h3>
 
@@ -421,7 +424,7 @@ export default function Certificate() {
 
                 {/* Full Name */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-[#1A2540] mb-1">
                     Full Name <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -440,7 +443,7 @@ export default function Certificate() {
                 {/* Phone + Email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-[#1A2540] mb-1">
                       Phone <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -457,7 +460,7 @@ export default function Certificate() {
                     )}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-[#1A2540] mb-1">
                       Email <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -476,7 +479,7 @@ export default function Certificate() {
 
                 {/* Language */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-[#1A2540] mb-1">
                     Language <span className="text-red-500">*</span>
                   </label>
                   <select
@@ -499,7 +502,7 @@ export default function Certificate() {
 
                 {/* Certificate Type */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-[#1A2540] mb-1">
                     Certificate Type <span className="text-red-500">*</span>
                   </label>
                   <select
@@ -524,7 +527,7 @@ export default function Certificate() {
 
                 {/* Message */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-[#1A2540] mb-1">
                     Message / Query <span className="text-red-500">*</span>
                   </label>
                   <textarea
@@ -544,9 +547,9 @@ export default function Certificate() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#0A6B64] text-white py-3 rounded-full
+                  className="w-full bg-[#1A2540] text-[#F5F2EC] py-3 rounded-full
                              font-semibold text-sm sm:text-base
-                             hover:bg-[#08514C] transition
+                             hover:bg-[#243160] transition
                              disabled:opacity-60 disabled:cursor-not-allowed
                              flex items-center justify-center gap-2"
                 >
@@ -584,18 +587,18 @@ export default function Certificate() {
       </section>
 
       {/* ══════════════════════ CTA BANNER ══════════════════════ */}
-      <section className="w-full py-12 sm:py-16 bg-[#15224C] text-white text-center px-4">
-        <h2 className="text-[20px] sm:text-[26px] md:text-[32px] font-bold mb-4">
+      <section className="w-full py-12 sm:py-16 bg-[#F5F8F6] border-t border-[#D8E0EC] text-center px-4">
+        <h2 className="text-[20px] sm:text-[26px] md:text-[32px] font-bold text-[#1A2540] mb-4">
           Ready to Earn Your Certificate?
         </h2>
-        <p className="text-white/75 text-sm sm:text-base max-w-xl mx-auto mb-8">
+        <p className="text-[#4C5C58] text-sm sm:text-base max-w-xl mx-auto mb-8">
           Join 200,000+ learners who have transformed their careers through
           certified language training at Langma International.
         </p>
         <a
           href="tel:+919810117094"
-          className="inline-block bg-[#0A6B64] text-white px-8 py-3 rounded-full
-                     font-semibold text-sm sm:text-base hover:bg-[#08514C] transition"
+          className="inline-block bg-[#1A2540] text-[#F5F2EC] px-8 py-3 rounded-full
+                     font-semibold text-sm sm:text-base hover:bg-[#243160] transition"
         >
           Call Us: +91-9810117094
         </a>

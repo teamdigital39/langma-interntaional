@@ -80,9 +80,9 @@ const PortugalD7VisaPage = () => {
         .d7-page .azulejo { height:18px; width:100%; background:radial-gradient(circle at 10px 9px, #6FE0C6 0 2px, transparent 2.5px),radial-gradient(circle at 0 0, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px),radial-gradient(circle at 20px 0, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px),radial-gradient(circle at 0 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px),radial-gradient(circle at 20px 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px); background-size:20px 18px; background-repeat:repeat-x; background-position:left center; background-color:#1A2540; display:block; overflow:hidden; opacity:.92; }
 
         /* Hero */
-        .d7-page .hero { position:relative; min-height:auto; display:flex; align-items:center; color:#1B2B28; overflow:hidden; background:#FFFFFF;padding:96px 0 70px; }
+        .d7-page .hero { position:relative; min-height:auto; display:flex; align-items:center; color:#1B2B28; overflow:hidden; background:#FFFFFF;padding:72px 0 48px; }
         .d7-page .hero::before { content:""; position:absolute; inset:0; background-image:radial-gradient(circle at 20% 50%, rgba(47,199,161,0.08) 0%, transparent 50%),radial-gradient(circle at 80% 20%, rgba(47,199,161,0.05) 0%, transparent 40%); z-index:0; pointer-events:none; }
-        .d7-page .hero-split { position:relative; z-index:2; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; padding-top:100px; padding-bottom:70px; }
+        .d7-page .hero-split { position:relative; z-index:2; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; padding-top:0; padding-bottom:0; }
         .d7-page .hero-copy { display:flex; flex-direction:column; }
         .d7-page .hero h1 { font-size:clamp(38px,5vw,68px); color:#1B2B28; margin-bottom:26px; font-weight:600; line-height:1.08; }
         .d7-page .hero h1 em { font-style:italic; color:#4FA3D1; font-weight:500; }
@@ -272,7 +272,7 @@ const PortugalD7VisaPage = () => {
           .d7-page .facts-row { grid-template-columns:1fr 1fr; }
           .d7-page .lg-list { grid-template-columns:1fr; }
           .d7-page .about-media, .d7-page .fam-media { height:420px; }
-          .d7-page .hero-split { grid-template-columns:1fr; gap:48px; padding-top:80px; padding-bottom:60px; }
+          .d7-page .hero-split { grid-template-columns:1fr; gap:36px; padding-top:0; padding-bottom:32px; }
           .d7-page .hero-img-frame img { height:380px; }
           .d7-page .hero-visual::before { display:none; }
           .d7-page .hero-img-frame { max-width:100%; }
@@ -288,12 +288,25 @@ const PortugalD7VisaPage = () => {
           .d7-page .fin-row.head { display:none; }
           .d7-page .hero-badges { gap:26px; }
           .d7-page .form-card, .d7-page .office-form { padding:30px; }
-          .d7-page .hero-split { padding-top:60px; padding-bottom:50px; gap:36px; }
+          .d7-page .hero-split { padding-top:0; padding-bottom:24px; gap:28px; }
           .d7-page .hero-img-frame img { height:280px; }
         }
         @media(prefers-reduced-motion:reduce) {
           .d7-page * { animation:none!important; transition:none!important; }
           .d7-page .reveal { opacity:1; transform:none; }
+        }
+        /* PR hero responsive fix */
+        @media(max-width:980px){
+          .d7-page .hero{padding:64px 0 40px;}
+          .d7-page .hero-split{grid-template-columns:1fr !important;gap:36px !important;padding-top:0 !important;}
+          .d7-page .hero-visual{order:-1;max-width:560px;margin:0 auto;width:100%;}
+          .d7-page .hero-badges{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
+        }
+        @media(max-width:640px){
+          .d7-page .hero{padding:56px 0 32px;}
+          .d7-page .hero-cta{flex-direction:column;}
+          .d7-page .hero-cta .btn{width:100%;justify-content:center;}
+          .d7-page .hero-badges{grid-template-columns:1fr;}
         }
       `}</style>
 
