@@ -48,7 +48,7 @@ const AndorraPRPage = () => {
         .an-page .container { max-width:1200px; margin:0 auto; padding:0 30px; }
         .an-page .block { padding:108px 0; }
         .an-page .site-header { position:fixed; top:0; left:0; right:0; z-index:1000; padding:22px 0; transition:all .4s cubic-bezier(.22,.61,.36,1); }
-        .an-page .site-header.scrolled { background:rgba(26,37,64,0.94); backdrop-filter:blur(10px); padding:14px 0; box-shadow:0 6px 30px rgba(0,0,0,.25); }
+        .an-page .site-header.scrolled { background:rgba(41,97,102,0.94); backdrop-filter:blur(10px); padding:14px 0; box-shadow:0 6px 30px rgba(0,0,0,.25); }
         .an-page .nav-wrap { display:flex; align-items:center; justify-content:space-between; }
         .an-page .brand { display:flex; flex-direction:column; line-height:1; text-decoration:none; }
         .an-page .brand .name { font-family:'Cormorant Garamond',serif; font-size:25px; font-weight:600; color:#F5F8F6; letter-spacing:1px; }
@@ -76,9 +76,9 @@ const AndorraPRPage = () => {
         .an-page .btn-primary:hover { background:#6FE0C6; transform:translateY(-2px); box-shadow:0 14px 30px rgba(47,199,161,.28); }
         .an-page .btn-ghost { background:transparent; color:#1A2540; border:2px solid #2FC7A1; }
         .an-page .btn-ghost:hover { border-color:#6FE0C6; color:#6FE0C6; }
-        .an-page .btn-dark { background:#1A2540; color:#F5F8F6; }
+        .an-page .btn-dark { background:#296166; color:#F5F8F6; }
         .an-page .btn-dark:hover { background:#296166; transform:translateY(-2px); }
-        .an-page .tile-divider { height:18px; width:100%; background: radial-gradient(circle at 10px 9px, #6FE0C6 0 2px, transparent 2.5px), radial-gradient(circle at 0 0, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px), radial-gradient(circle at 20px 0, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px), radial-gradient(circle at 0 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px), radial-gradient(circle at 20px 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px); background-size:20px 18px; background-repeat:repeat-x; background-position:left center; background-color:#1A2540; display:block; overflow:hidden; opacity:.92; }
+        .an-page .tile-divider { height:18px; width:100%; background: radial-gradient(circle at 10px 9px, #6FE0C6 0 2px, transparent 2.5px), radial-gradient(circle at 0 0, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px), radial-gradient(circle at 20px 0, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px), radial-gradient(circle at 0 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px), radial-gradient(circle at 20px 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px); background-size:20px 18px; background-repeat:repeat-x; background-position:left center; background-color:#296166; display:block; overflow:hidden; opacity:.92; }
         .an-page .hero { position:relative; min-height:auto; display:flex; align-items:center; color:#1B2B28; overflow:hidden; background:#FFFFFF;padding:72px 0 48px; }
         .an-page .hero::before { content:""; position:absolute; inset:0; background-image: radial-gradient(circle at 20% 50%, rgba(47,199,161,0.09) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(47,199,161,0.06) 0%, transparent 40%); z-index:0; pointer-events:none; }
         .an-page .hero-split { position:relative; z-index:2; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; padding-top:0;padding-bottom:0; }
@@ -104,7 +104,7 @@ const AndorraPRPage = () => {
         .an-page .scroll-hint { position:absolute; bottom:32px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:10px; color:#7E8C88; font-size:10.5px; letter-spacing:2.5px; text-transform:uppercase; z-index:3; }
         .an-page .scroll-hint .line { width:1px; height:38px; background:linear-gradient(#6FE0C6,transparent); animation:an-drop 2s cubic-bezier(.22,.61,.36,1) infinite; }
         @keyframes an-drop { 0% { transform:scaleY(0); transform-origin:top; } 50% { transform:scaleY(1); transform-origin:top; } 51% { transform-origin:bottom; } 100% { transform:scaleY(0); transform-origin:bottom; } }
-        .an-page .stats-bar { background:#1A2540; color:#F5F8F6; }
+        .an-page .stats-bar { background:#296166; color:#F5F8F6; }
         .an-page .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
         .an-page .stat-cell { padding:52px 30px; text-align:center; border-right:1px solid rgba(247,250,252,.10); }
         .an-page .stat-cell:last-child { border-right:none; }
@@ -135,13 +135,13 @@ const AndorraPRPage = () => {
         .an-page .reasons-list { list-style:none; }
         .an-page .reasons-list li { display:flex; gap:18px; padding:22px 0; border-bottom:1px solid #E5E5E5; }
         .an-page .reasons-list li:last-child { border-bottom:none; }
-        .an-page .reasons-list .ri { flex:0 0 44px; height:44px; border-radius:50%; background:#1A2540; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:20px; }
+        .an-page .reasons-list .ri { flex:0 0 44px; height:44px; border-radius:50%; background:#296166; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:20px; }
         .an-page .reasons-list h4 { font-size:22px; margin-bottom:4px; }
         .an-page .reasons-list p { color:#296166; font-size:14.5px; }
-        .an-page .about-transition { margin-top:54px; background:#1A2540; color:#F5F8F6; border-radius:4px; padding:40px 44px; display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap; }
+        .an-page .about-transition { margin-top:54px; background:#296166; color:#F5F8F6; border-radius:4px; padding:40px 44px; display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap; }
         .an-page .about-transition h3 { color:#F5F8F6; font-size:26px; margin-bottom:8px; }
         .an-page .about-transition p { color:rgba(247,250,252,.74); font-size:15px; max-width:680px; }
-        .an-page .prog { background:#1A2540; color:#F5F8F6; }
+        .an-page .prog { background:#296166; color:#F5F8F6; }
         .an-page .prog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
         .an-page .prog-card { background:rgba(247,250,252,.04); border:1px solid rgba(247,250,252,.12); border-radius:4px; padding:38px 32px; transition:all .35s cubic-bezier(.22,.61,.36,1); }
         .an-page .prog-card:hover { border-color:#6FE0C6; transform:translateY(-6px); }
@@ -164,7 +164,7 @@ const AndorraPRPage = () => {
         .an-page .elig-item::before { content:""; position:absolute; top:0; left:0; width:3px; height:0; background:#6FE0C6; transition:height .4s cubic-bezier(.22,.61,.36,1); }
         .an-page .elig-item:hover { box-shadow:0 18px 50px rgba(26,37,64,.08); transform:translateY(-3px); }
         .an-page .elig-item:hover::before { height:100%; }
-        .an-page .elig-item .ei { flex:0 0 42px; height:42px; border-radius:50%; background:#1A2540; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; }
+        .an-page .elig-item .ei { flex:0 0 42px; height:42px; border-radius:50%; background:#296166; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:600; }
         .an-page .elig-item h4 { font-size:18px; margin-bottom:6px; color:#296166; }
         .an-page .elig-item p { color:#296166; font-size:14.5px; }
         .an-page .investment { background:#E9F1EE; }
@@ -173,7 +173,7 @@ const AndorraPRPage = () => {
         .an-page .fin-table { background:#fff; border:1px solid rgba(47,199,161,.25); border-radius:4px; overflow:hidden; box-shadow:0 18px 50px rgba(26,37,64,.08); margin-bottom:24px; }
         .an-page .fin-row { display:grid; grid-template-columns:1.4fr 1fr 1.3fr; align-items:start; border-bottom:1px solid #E5E5E5; }
         .an-page .fin-row:last-child { border-bottom:none; }
-        .an-page .fin-row.head { background:#1A2540; color:#F5F8F6; }
+        .an-page .fin-row.head { background:#296166; color:#F5F8F6; }
         .an-page .fin-row.head .fc { padding:22px 28px; font-family:'Inter',sans-serif; font-size:13px; letter-spacing:.6px; text-transform:uppercase; color:rgba(247,250,252,.8); }
         .an-page .fc { padding:22px 28px; font-size:15.5px; }
         .an-page .fc.label { font-weight:600; color:#296166; }
@@ -196,15 +196,15 @@ const AndorraPRPage = () => {
         .an-page .fam-list { list-style:none; }
         .an-page .fam-list li { display:flex; gap:18px; padding:22px 0; border-bottom:1px solid #E5E5E5; }
         .an-page .fam-list li:last-child { border-bottom:none; }
-        .an-page .fam-list .fi { flex:0 0 42px; height:42px; border-radius:50%; background:#1A2540; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:19px; }
+        .an-page .fam-list .fi { flex:0 0 42px; height:42px; border-radius:50%; background:#296166; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:19px; }
         .an-page .fam-list h4 { font-size:21px; margin-bottom:2px; }
         .an-page .fam-list p { color:#296166; font-size:14.5px; }
-        .an-page .process { background:#1A2540; color:#F5F8F6; }
+        .an-page .process { background:#296166; color:#F5F8F6; }
         .an-page .timeline { position:relative; max-width:880px; margin:0 auto; }
         .an-page .timeline::before { content:""; position:absolute; left:31px; top:8px; bottom:8px; width:1px; background:rgba(247,250,252,.18); }
         .an-page .tl-item { position:relative; padding-left:92px; padding-bottom:44px; }
         .an-page .tl-item:last-child { padding-bottom:0; }
-        .an-page .tl-item .dot { position:absolute; left:0; top:0; width:64px; height:64px; border-radius:50%; border:1px solid #6FE0C6; background:#1A2540; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:24px; color:#6FE0C6; }
+        .an-page .tl-item .dot { position:absolute; left:0; top:0; width:64px; height:64px; border-radius:50%; border:1px solid #6FE0C6; background:#296166; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:24px; color:#6FE0C6; }
         .an-page .tl-item h3 { color:#F5F8F6; font-size:22px; margin-bottom:6px; }
         .an-page .tl-item p { color:rgba(247,250,252,.72); font-size:15px; max-width:620px; }
         .an-page .tl-time { display:inline-block; margin-top:10px; font-family:'Inter',sans-serif; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#6FE0C6; font-weight:600; }
@@ -212,8 +212,8 @@ const AndorraPRPage = () => {
         .an-page .doc-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; max-width:960px; margin:0 auto; }
         .an-page .doc-item { background:#fff; border:1px solid #E5E5E5; border-radius:4px; padding:20px 24px; display:flex; align-items:center; gap:16px; font-size:15px; color:#296166; transition:all .3s cubic-bezier(.22,.61,.36,1); }
         .an-page .doc-item:hover { box-shadow:0 18px 50px rgba(26,37,64,.08); transform:translateY(-2px); }
-        .an-page .doc-item .fi { flex:0 0 36px; height:36px; border-radius:50%; background:#1A2540; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:16px; }
-        .an-page .life { background:#1A2540; }
+        .an-page .doc-item .fi { flex:0 0 36px; height:36px; border-radius:50%; background:#296166; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:16px; }
+        .an-page .life { background:#296166; }
         .an-page .life-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:48px; }
         .an-page .life-card { position:relative; height:420px; border-radius:4px; overflow:hidden; box-shadow:0 18px 50px rgba(0,0,0,.28); }
         .an-page .life-card img { transition:transform .8s cubic-bezier(.22,.61,.36,1); }
@@ -241,7 +241,7 @@ const AndorraPRPage = () => {
         .an-page .tx-card .mk { font-family:'Cormorant Garamond',serif; font-size:22px; color:#296166; letter-spacing:1px; margin-bottom:16px; }
         .an-page .tx-card h4 { font-size:20px; margin-bottom:10px; }
         .an-page .tx-card p { color:#296166; font-size:15px; }
-        .an-page .langma { background:#1A2540; color:#F5F8F6; position:relative; overflow:hidden; }
+        .an-page .langma { background:#296166; color:#F5F8F6; position:relative; overflow:hidden; }
         .an-page .langma-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
         .an-page .lg-card { background:rgba(247,250,252,.04); border:1px solid rgba(247,250,252,.12); border-radius:4px; padding:38px 32px; transition:all .35s cubic-bezier(.22,.61,.36,1); }
         .an-page .lg-card:hover { border-color:#6FE0C6; transform:translateY(-6px); }
@@ -256,7 +256,7 @@ const AndorraPRPage = () => {
         .an-page .faq-item.open .pm { background:#6FE0C6; color:#296166; transform:rotate(45deg); }
         .an-page .faq-a { max-height:0; overflow:hidden; transition:max-height .4s cubic-bezier(.22,.61,.36,1); }
         .an-page .faq-a p { padding:0 0 28px; color:#296166; font-size:16px; max-width:760px; }
-        .an-page .lead-sec { background:#1A2540; color:#F5F8F6; }
+        .an-page .lead-sec { background:#296166; color:#F5F8F6; }
         .an-page .lead-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:64px; align-items:start; }
         .an-page .lead-copy h2 { color:#F5F8F6; font-size:clamp(32px,4.2vw,50px); margin-bottom:20px; }
         .an-page .lead-copy p { color:rgba(247,250,252,.80); margin-bottom:26px; font-size:16.5px; }
@@ -289,7 +289,7 @@ const AndorraPRPage = () => {
         .an-page .office-form h3 { font-size:25px; margin-bottom:6px; }
         .an-page .office-form .fsub { color:#296166; font-size:14.5px; margin-bottom:26px; }
         /* FOOTER — ADDED matching HTML foot-brand/h4 structure */
-        .an-page .foot { background:#1A2540; color:rgba(247,250,252,.7); padding:74px 0 32px; }
+        .an-page .foot { background:#296166; color:rgba(247,250,252,.7); padding:74px 0 32px; }
         .an-page .foot-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1.3fr; gap:44px; margin-bottom:50px; }
         .an-page .foot-brand .fname { font-family:'Cormorant Garamond',serif; font-size:28px; color:#F5F8F6; font-weight:600; letter-spacing:1px; }
         .an-page .foot-brand .ftag { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#6FE0C6; margin:6px 0 18px; display:block; }

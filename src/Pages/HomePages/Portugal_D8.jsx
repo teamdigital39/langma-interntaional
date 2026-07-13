@@ -118,7 +118,7 @@ const PortugalD8Page = () => {
         .pt-page .btn-primary:hover { background:#296166; transform:translateY(-2px); box-shadow:0 14px 30px rgba(47,199,161,.28); }
         .pt-page .btn-ghost { background:transparent; color:#1A2540; border:2px solid #2FC7A1; }
         .pt-page .btn-ghost:hover { border-color:#6FE0C6; color:#6FE0C6; }
-        .pt-page .btn-dark { background:#1A2540; color:#F5F8F6; }
+        .pt-page .btn-dark { background:#296166; color:#F5F8F6; }
         .pt-page .btn-dark:hover { background:#296166; transform:translateY(-2px); }
 
         /* Tile divider */
@@ -131,7 +131,7 @@ const PortugalD8Page = () => {
             radial-gradient(circle at 0 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px),
             radial-gradient(circle at 20px 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px);
           background-size:20px 18px; background-repeat:repeat-x;
-          background-position:left center; background-color:#1A2540;
+          background-position:left center; background-color:#296166;
           display:block; overflow:hidden; opacity:.92;
         }
 
@@ -191,7 +191,7 @@ const PortugalD8Page = () => {
         @keyframes pt-drop { 0% { transform:scaleY(0); transform-origin:top; } 50% { transform:scaleY(1); transform-origin:top; } 51% { transform-origin:bottom; } 100% { transform:scaleY(0); transform-origin:bottom; } }
 
         /* Stats Bar */
-        .pt-page .stats-bar { background:#1A2540; color:#F5F8F6; }
+        .pt-page .stats-bar { background:#296166; color:#F5F8F6; }
         .pt-page .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
         .pt-page .stat-cell { padding:52px 30px; text-align:center; border-right:1px solid rgba(247,250,252,.10); }
         .pt-page .stat-cell:last-child { border-right:none; }
@@ -220,7 +220,7 @@ const PortugalD8Page = () => {
         .pt-page .why-card p { color:#296166; font-size:15px; }
 
         /* Programme */
-        .pt-page .prog { background:#1A2540; color:#F5F8F6; }
+        .pt-page .prog { background:#296166; color:#F5F8F6; }
         .pt-page .prog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
         .pt-page .prog-card { background:rgba(247,250,252,.04); border:1px solid rgba(247,250,252,.12); border-radius:4px; padding:38px 32px; transition:all .35s cubic-bezier(.22,.61,.36,1); }
         .pt-page .prog-card:hover { border-color:#6FE0C6; transform:translateY(-6px); }
@@ -243,7 +243,7 @@ const PortugalD8Page = () => {
         .pt-page .eligibility-sec { background:#E9F1EE; }
         .pt-page .elig-grid { display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:52px; }
         .pt-page .elig-block { border-radius:4px; overflow:hidden; border:1px solid rgba(47,199,161,.25); box-shadow:0 18px 50px rgba(26,37,64,.08); }
-        .pt-page .elig-hd { padding:24px 32px; background:#1A2540; display:flex; align-items:center; gap:14px; }
+        .pt-page .elig-hd { padding:24px 32px; background:#296166; display:flex; align-items:center; gap:14px; }
         .pt-page .elig-hd-icon { width:40px; height:40px; background:rgba(47,199,161,.15); border:1px solid rgba(47,199,161,.3); border-radius:6px; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#6FE0C6; font-size:18px; }
         .pt-page .elig-hd h3 { color:#F5F8F6; font-size:20px; margin:0; }
         .pt-page .elig-bd { padding:28px 32px; background:#F5F8F6; }
@@ -252,7 +252,7 @@ const PortugalD8Page = () => {
         .pt-page .elig-dot { width:6px; height:6px; background:#6FE0C6; border-radius:50%; flex-shrink:0; margin-top:7px; }
 
         /* Finance */
-        .pt-page .finance { background:#1A2540; color:#F5F8F6; }
+        .pt-page .finance { background:#296166; color:#F5F8F6; }
         .pt-page .fin-cards { display:grid; grid-template-columns:1fr 1fr; gap:26px; }
         .pt-page .fin-option { background:rgba(247,250,252,.04); border:1px solid rgba(47,199,161,.18); border-radius:4px; overflow:hidden; }
         .pt-page .fin-opt-head { padding:22px 30px; border-bottom:1px solid rgba(47,199,161,.12); display:flex; align-items:center; gap:12px; }
@@ -281,12 +281,12 @@ const PortugalD8Page = () => {
         .pt-page .docs-note { margin-top:28px; font-size:13px; color:#296166; text-align:center; font-style:italic; }
 
         /* Process */
-        .pt-page .process { background:#1A2540; color:#F5F8F6; }
+        .pt-page .process { background:#296166; color:#F5F8F6; }
         .pt-page .timeline { position:relative; max-width:880px; margin:0 auto; }
         .pt-page .timeline::before { content:""; position:absolute; left:31px; top:8px; bottom:8px; width:1px; background:rgba(247,250,252,.18); }
         .pt-page .tl-item { position:relative; padding-left:92px; padding-bottom:44px; }
         .pt-page .tl-item:last-child { padding-bottom:0; }
-        .pt-page .tl-item .dot { position:absolute; left:0; top:0; width:64px; height:64px; border-radius:50%; border:1px solid #6FE0C6; background:#1A2540; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:24px; color:#6FE0C6; }
+        .pt-page .tl-item .dot { position:absolute; left:0; top:0; width:64px; height:64px; border-radius:50%; border:1px solid #6FE0C6; background:#296166; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:24px; color:#6FE0C6; }
         .pt-page .tl-item h3 { color:#F5F8F6; font-size:25px; margin-bottom:6px; }
         .pt-page .tl-item p { color:rgba(247,250,252,.72); font-size:15px; max-width:620px; }
         .pt-page .tl-time { display:inline-block; margin-top:8px; font-size:11.5px; font-weight:600; color:#6FE0C6; background:rgba(47,199,161,.10); border:1px solid rgba(47,199,161,.22); border-radius:30px; padding:4px 14px; letter-spacing:.05em; }
@@ -299,7 +299,7 @@ const PortugalD8Page = () => {
         .pt-page .fam-list { list-style:none; }
         .pt-page .fam-list li { display:flex; gap:18px; padding:22px 0; border-bottom:1px solid #E5E5E5; }
         .pt-page .fam-list li:last-child { border-bottom:none; }
-        .pt-page .fam-list .fi { flex:0 0 42px; height:42px; border-radius:50%; background:#1A2540; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:19px; }
+        .pt-page .fam-list .fi { flex:0 0 42px; height:42px; border-radius:50%; background:#296166; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:19px; }
         .pt-page .fam-list h4 { font-size:21px; margin-bottom:2px; }
         .pt-page .fam-list p { color:#296166; font-size:14.5px; }
 
@@ -307,7 +307,7 @@ const PortugalD8Page = () => {
         .pt-page .pathway-sec { background:#E9F1EE; }
         .pt-page .pathway-grid { display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:52px; }
         .pt-page .path-card { border-radius:4px; overflow:hidden; box-shadow:0 18px 50px rgba(26,37,64,.08); }
-        .pt-page .path-head { padding:30px 34px; background:#1A2540; }
+        .pt-page .path-head { padding:30px 34px; background:#296166; }
         .pt-page .path-badge { display:inline-block; background:rgba(47,199,161,.15); border:1px solid rgba(47,199,161,.3); color:#6FE0C6; font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:5px 14px; border-radius:30px; margin-bottom:14px; }
         .pt-page .path-head h3 { color:#F5F8F6; font-size:22px; }
         .pt-page .path-body { padding:30px 34px; background:#F5F8F6; }
@@ -332,7 +332,7 @@ const PortugalD8Page = () => {
         .pt-page .life-tag { border:1px solid #296166; border-radius:40px; padding:10px 22px; font-size:13.5px; color:#296166; background:#fff; }
 
         /* Living Details */
-        .pt-page .living-details { background:#1A2540; color:#F5F8F6; position:relative; overflow:hidden; }
+        .pt-page .living-details { background:#296166; color:#F5F8F6; position:relative; overflow:hidden; }
         .pt-page .living-details::before { content:''; position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1555881400-74d7acaacd8b?q=80&w=1800&auto=format&fit=crop'); background-size:cover; background-position:center; opacity:.07; }
         .pt-page .living-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
         .pt-page .living-card { background:rgba(247,250,252,.05); border:1px solid rgba(47,199,161,.15); border-radius:4px; padding:36px 30px; transition:all .35s cubic-bezier(.22,.61,.36,1); }
@@ -357,7 +357,7 @@ const PortugalD8Page = () => {
         .pt-page .comparison { background:#F5F8F6; }
         .pt-page .comp-wrap { overflow-x:auto; border-radius:4px; box-shadow:0 18px 50px rgba(26,37,64,.08); border:1px solid #E5E5E5; }
         .pt-page .comp-table { width:100%; border-collapse:collapse; min-width:680px; }
-        .pt-page .comp-table thead tr { background:#1A2540; }
+        .pt-page .comp-table thead tr { background:#296166; }
         .pt-page .comp-table th { padding:20px 26px; text-align:left; font-family:'Inter',sans-serif; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(247,250,252,.6); }
         .pt-page .comp-table th:first-child { color:rgba(247,250,252,.4); }
         .pt-page .comp-table th.hl { color:#6FE0C6; }
@@ -370,7 +370,7 @@ const PortugalD8Page = () => {
         .pt-page .comp-note { margin-top:18px; font-size:12.5px; color:#296166; text-align:center; font-style:italic; }
 
         /* Why Langma */
-        .pt-page .langma { background:#1A2540; color:#F5F8F6; position:relative; overflow:hidden; }
+        .pt-page .langma { background:#296166; color:#F5F8F6; position:relative; overflow:hidden; }
         .pt-page .langma-grid { display:grid; grid-template-columns:1.05fr 1fr; gap:64px; align-items:center; }
         .pt-page .langma h2 { color:#F5F8F6; font-size:clamp(32px,4.4vw,52px); margin-bottom:20px; }
         .pt-page .langma .lead { color:rgba(247,250,252,.82); font-size:17px; margin-bottom:14px; }
@@ -392,7 +392,7 @@ const PortugalD8Page = () => {
         .pt-page .faq-a p { padding:0 0 28px; color:#296166; font-size:16px; max-width:760px; }
 
         /* Lead form */
-        .pt-page .lead-sec { background:#1A2540; color:#F5F8F6; }
+        .pt-page .lead-sec { background:#296166; color:#F5F8F6; }
         .pt-page .lead-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:64px; align-items:start; }
         .pt-page .lead-copy h2 { color:#F5F8F6; font-size:clamp(32px,4.2vw,50px); margin-bottom:20px; }
         .pt-page .lead-copy p { color:rgba(247,250,252,.80); margin-bottom:26px; font-size:16.5px; }
@@ -427,7 +427,7 @@ const PortugalD8Page = () => {
         .pt-page .office-form h3 { font-size:25px; margin-bottom:22px; }
 
         /* Final CTA */
-        .pt-page .final-cta { background:#1A2540; color:#F5F8F6; text-align:center; padding:90px 0; }
+        .pt-page .final-cta { background:#296166; color:#F5F8F6; text-align:center; padding:90px 0; }
         .pt-page .final-cta .eyebrow { justify-content:center; }
         .pt-page .final-cta h2 { color:#F5F8F6; font-size:clamp(34px,4.8vw,60px); margin-bottom:20px; }
         .pt-page .final-cta h2 em { font-style:italic; color:#6FE0C6; }
@@ -435,7 +435,7 @@ const PortugalD8Page = () => {
         .pt-page .final-cta-btns { display:flex; gap:18px; justify-content:center; flex-wrap:wrap; }
 
         /* Footer */
-        .pt-page .foot { background:#1A2540; color:rgba(247,250,252,.7); padding:74px 0 32px; }
+        .pt-page .foot { background:#296166; color:rgba(247,250,252,.7); padding:74px 0 32px; }
         .pt-page .foot-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1.3fr; gap:44px; margin-bottom:50px; }
         .pt-page .foot-brand .name { font-family:'Cormorant Garamond',serif; font-size:28px; color:#F5F8F6; font-weight:600; letter-spacing:1px; }
         .pt-page .foot-brand .tag { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#6FE0C6; margin:6px 0 18px; }
@@ -464,7 +464,7 @@ const PortugalD8Page = () => {
           .pt-page .hero-img-frame { max-width:100%; }
           .pt-page .foot-grid { grid-template-columns:1fr 1fr; }
           .pt-page .nav-links { display:none; }
-          .pt-page .nav-links.open { display:flex; flex-direction:column; position:fixed; top:0; left:0; right:0; bottom:0; background:#1A2540; z-index:999; align-items:center; justify-content:center; gap:28px; }
+          .pt-page .nav-links.open { display:flex; flex-direction:column; position:fixed; top:0; left:0; right:0; bottom:0; background:#296166; z-index:999; align-items:center; justify-content:center; gap:28px; }
           .pt-page .burger { display:flex; position:relative; z-index:1001; }
         }
         @media(max-width:640px) {

@@ -46,7 +46,7 @@ const Investment1 = () => {
             <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 mb-10">
               <a
                 href="#programs"
-                className="w-full sm:w-auto bg-[#1A2540] text-[#F5F2EC] rounded-full px-6 py-3 text-sm font-semibold inline-flex items-center justify-center gap-2 tracking-wide hover:bg-[#243160] transition-all duration-200"
+                className="w-full sm:w-auto bg-[#296166] text-[#F5F2EC] rounded-full px-6 py-3 text-sm font-semibold inline-flex items-center justify-center gap-2 tracking-wide hover:bg-[#1f4a4e] transition-all duration-200"
               >
                 Explore Residency Programmes
                 <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />

@@ -40,7 +40,7 @@ const HungaryBusinessResidencyPage = () => {
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
       <style>{`
-        .hu-page { --navy:#1A2540; --navy-deep:#1A2540; --navy-mid:#296166; --gold:#2FC7A1; --gold-soft:#6FE0C6; --gold-deep:#2FC7A1; --ivory:#F5F8F6; --beige:#E9F1EE; --champagne:#E9F1EE; --charcoal:#1B2B28; --muted:#296166; --line:rgba(47,199,161,0.30); --radius:4px; --shadow-soft:0 18px 50px rgba(26,37,64,0.10); --shadow-strong:0 30px 70px rgba(26,37,64,0.22); --ease:cubic-bezier(.22,.61,.36,1); }
+        .hu-page { --navy:#296166; --navy-deep:#296166; --navy-mid:#296166; --gold:#2FC7A1; --gold-soft:#6FE0C6; --gold-deep:#2FC7A1; --ivory:#F5F8F6; --beige:#E9F1EE; --champagne:#E9F1EE; --charcoal:#1B2B28; --muted:#296166; --line:rgba(47,199,161,0.30); --radius:4px; --shadow-soft:0 18px 50px rgba(26,37,64,0.10); --shadow-strong:0 30px 70px rgba(26,37,64,0.22); --ease:cubic-bezier(.22,.61,.36,1); }
         .hu-page * { margin:0; padding:0; box-sizing:border-box; }
         .hu-page { font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; color:var(--charcoal); background:var(--ivory); line-height:1.7; font-weight:400; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
         .hu-page h1,.hu-page h2,.hu-page h3,.hu-page h4 { font-family:'Cormorant Garamond',Georgia,serif; font-weight:600; color:var(--navy); line-height:1.12; letter-spacing:0.2px; }
@@ -64,7 +64,7 @@ const HungaryBusinessResidencyPage = () => {
         .hu-page .btn-forest:hover { background:var(--navy-mid); transform:translateY(-2px); }
         .hu-page .folk-divider { height:18px; width:100%; background:radial-gradient(circle at 10px 9px, var(--gold) 0 2px, transparent 2.5px), radial-gradient(circle at 0 0, transparent 8px, var(--gold) 8px 8.6px, transparent 9.2px), radial-gradient(circle at 20px 0, transparent 8px, var(--gold) 8px 8.6px, transparent 9.2px), radial-gradient(circle at 0 18px, transparent 8px, var(--gold) 8px 8.6px, transparent 9.2px), radial-gradient(circle at 20px 18px, transparent 8px, var(--gold) 8px 8.6px, transparent 9.2px); background-size:20px 18px; background-repeat:repeat-x; background-position:left center; background-color:var(--navy-deep); display:block; overflow:hidden; opacity:.92; }
         .hu-page .site-header { position:fixed; top:0; left:0; right:0; z-index:1000; padding:22px 0; transition:all .4s var(--ease); }
-        .hu-page .site-header.scrolled { background:rgba(26,37,64,0.94); backdrop-filter:blur(10px); padding:14px 0; box-shadow:0 6px 30px rgba(0,0,0,.25); }
+        .hu-page .site-header.scrolled { background:rgba(41,97,102,0.94); backdrop-filter:blur(10px); padding:14px 0; box-shadow:0 6px 30px rgba(0,0,0,.25); }
         .hu-page .nav-wrap { display:flex; align-items:center; justify-content:space-between; }
         .hu-page .brand { display:flex; flex-direction:column; line-height:1; }
         .hu-page .brand .name { font-family:'Cormorant Garamond',serif; font-size:25px; font-weight:600; color:var(--ivory); letter-spacing:1px; }

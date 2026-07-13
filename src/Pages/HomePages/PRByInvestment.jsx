@@ -56,7 +56,7 @@ const ProgramCard = ({ name, category, badge, from, fromLabel, timeline, benefit
       {slug && (
         <Link
           to={slug}
-          className="block text-center bg-[#1A2540] text-white hover:bg-[#243160] py-2.5 rounded-full text-[14px] font-semibold transition-colors"
+          className="block text-center bg-[#296166] text-white hover:bg-[#1f4a4e] py-2.5 rounded-full text-[14px] font-semibold transition-colors"
         >
           View Programme Details
         </Link>
@@ -357,7 +357,7 @@ const PRByInvestment = () => {
             <div className="mt-6">
               <Link
                 to="/assessment"
-                className="inline-flex items-center gap-2 bg-[#1A2540] hover:bg-[#243160] text-white px-6 py-2.5 rounded-full font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-md"
+                className="inline-flex items-center gap-2 bg-[#296166] hover:bg-[#1f4a4e] text-white px-6 py-2.5 rounded-full font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-md"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />

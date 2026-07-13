@@ -90,7 +90,7 @@ const LangmaPortugalStartupVisaPage = () => {
       <style>{`
   .lg-page {
     --navy:#296166;
-    --navy-deep:#1A2540;
+    --navy-deep:#296166;
     --navy-mid:#296166;
     --emerald:#0E4B3E;
     --emerald-soft:#3D7A68;
@@ -188,7 +188,7 @@ const LangmaPortugalStartupVisaPage = () => {
     padding:22px 0;transition:all .4s var(--ease);
   }
   .lg-page header.scrolled {
-    background:rgba(26,37,64,0.94);backdrop-filter:blur(10px);
+    background:rgba(41,97,102,0.94);backdrop-filter:blur(10px);
     padding:14px 0;box-shadow:0 6px 30px rgba(0,0,0,.25);
   }
   .lg-page .nav-wrap {display:flex;align-items:center;justify-content:space-between;}

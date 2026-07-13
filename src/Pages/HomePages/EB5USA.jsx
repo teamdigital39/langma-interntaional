@@ -40,7 +40,7 @@ const LangmaEB5USAPage = () => {
       <style>{`
   .lg-page {
     --navy:#296166;
-    --navy-deep:#1A2540;
+    --navy-deep:#296166;
     --navy-mid:#1B2B28;
     --gold:#2FC7A1;
     --gold-soft:#6FE0C6;
@@ -123,7 +123,7 @@ const LangmaEB5USAPage = () => {
 
   /* ===== HEADER ===== */
   .lg-page header {position:fixed;top:0;left:0;right:0;z-index:1000;padding:22px 0;transition:all .4s var(--ease);}
-  .lg-page header.scrolled {background:rgba(26,37,64,0.94);backdrop-filter:blur(10px);padding:14px 0;box-shadow:0 6px 30px rgba(0,0,0,.25);}
+  .lg-page header.scrolled {background:rgba(41,97,102,0.94);backdrop-filter:blur(10px);padding:14px 0;box-shadow:0 6px 30px rgba(0,0,0,.25);}
   .lg-page .nav-wrap {display:flex;align-items:center;justify-content:space-between;}
   .lg-page .brand {display:flex;flex-direction:column;line-height:1;}
   .lg-page .brand .name {font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:600;color:var(--ivory);letter-spacing:1px;}

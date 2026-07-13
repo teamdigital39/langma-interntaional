@@ -87,7 +87,7 @@ const SpainNLVPage = () => {
         .sp-page .btn-primary:hover { background:#6FE0C6; transform:translateY(-2px); box-shadow:0 14px 30px rgba(47,199,161,.28); }
         .sp-page .btn-ghost { background:transparent; color:#1A2540; border:2px solid #2FC7A1; }
         .sp-page .btn-ghost:hover { border-color:#2FC7A1; color:#296166; }
-        .sp-page .btn-dark { background:#1A2540; color:#F5F8F6; }
+        .sp-page .btn-dark { background:#296166; color:#F5F8F6; }
         .sp-page .btn-dark:hover { background:#296166; transform:translateY(-2px); }
 
         /* Tile divider */
@@ -100,7 +100,7 @@ const SpainNLVPage = () => {
             radial-gradient(circle at 0 18px, transparent 8px, #2FC7A1 8px 8.6px, transparent 9.2px),
             radial-gradient(circle at 20px 18px, transparent 8px, #2FC7A1 8px 8.6px, transparent 9.2px);
           background-size:20px 18px; background-repeat:repeat-x;
-          background-position:left center; background-color:#1A2540;
+          background-position:left center; background-color:#296166;
           display:block; overflow:hidden; opacity:.92;
         }
 
@@ -162,7 +162,7 @@ const SpainNLVPage = () => {
         @keyframes sp-drop { 0% { transform:scaleY(0); transform-origin:top; } 50% { transform:scaleY(1); transform-origin:top; } 51% { transform-origin:bottom; } 100% { transform:scaleY(0); transform-origin:bottom; } }
 
         /* Stats Bar */
-        .sp-page .stats-bar { background:#1A2540; color:#F5F8F6; }
+        .sp-page .stats-bar { background:#296166; color:#F5F8F6; }
         .sp-page .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
         .sp-page .stat-cell { padding:52px 30px; text-align:center; border-right:1px solid rgba(247,250,252,.10); }
         .sp-page .stat-cell:last-child { border-right:none; }
@@ -191,7 +191,7 @@ const SpainNLVPage = () => {
         .sp-page .why-card p { color:#296166; font-size:15px; }
 
         /* Programme */
-        .sp-page .prog { background:#1A2540; color:#F5F8F6; }
+        .sp-page .prog { background:#296166; color:#F5F8F6; }
         .sp-page .prog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
         .sp-page .prog-card { background:rgba(247,250,252,.04); border:1px solid rgba(247,250,252,.12); border-radius:4px; padding:38px 32px; transition:all .35s cubic-bezier(.22,.61,.36,1); }
         .sp-page .prog-card:hover { border-color:#2FC7A1; transform:translateY(-6px); }
@@ -214,7 +214,7 @@ const SpainNLVPage = () => {
         .sp-page .eligibility-sec { background:#E9F1EE; }
         .sp-page .elig-grid { display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:52px; }
         .sp-page .elig-block { border-radius:4px; overflow:hidden; border:1px solid rgba(47,199,161,.25); box-shadow:0 18px 50px rgba(26,37,64,.08); }
-        .sp-page .elig-hd { padding:24px 32px; background:#1A2540; display:flex; align-items:center; gap:14px; }
+        .sp-page .elig-hd { padding:24px 32px; background:#296166; display:flex; align-items:center; gap:14px; }
         .sp-page .elig-hd-icon { width:40px; height:40px; background:rgba(47,199,161,.15); border:1px solid rgba(47,199,161,.3); border-radius:6px; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#6FE0C6; font-size:18px; }
         .sp-page .elig-hd h3 { color:#F5F8F6; font-size:20px; margin:0; }
         .sp-page .elig-bd { padding:28px 32px; background:#F5F8F6; }
@@ -223,7 +223,7 @@ const SpainNLVPage = () => {
         .sp-page .elig-dot { width:6px; height:6px; background:#2FC7A1; border-radius:50%; flex-shrink:0; margin-top:7px; }
 
         /* Finance */
-        .sp-page .finance { background:#1A2540; color:#F5F8F6; }
+        .sp-page .finance { background:#296166; color:#F5F8F6; }
         .sp-page .fin-cards { display:grid; grid-template-columns:1fr 1fr; gap:26px; }
         .sp-page .fin-option { background:rgba(247,250,252,.04); border:1px solid rgba(47,199,161,.18); border-radius:4px; overflow:hidden; }
         .sp-page .fin-opt-head { padding:22px 30px; border-bottom:1px solid rgba(47,199,161,.12); display:flex; align-items:center; gap:12px; }
@@ -252,12 +252,12 @@ const SpainNLVPage = () => {
         .sp-page .docs-note { margin-top:28px; font-size:13px; color:#296166; text-align:center; font-style:italic; }
 
         /* Process */
-        .sp-page .process { background:#1A2540; color:#F5F8F6; }
+        .sp-page .process { background:#296166; color:#F5F8F6; }
         .sp-page .timeline { position:relative; max-width:880px; margin:0 auto; }
         .sp-page .timeline::before { content:""; position:absolute; left:31px; top:8px; bottom:8px; width:1px; background:rgba(247,250,252,.18); }
         .sp-page .tl-item { position:relative; padding-left:92px; padding-bottom:44px; }
         .sp-page .tl-item:last-child { padding-bottom:0; }
-        .sp-page .tl-item .dot { position:absolute; left:0; top:0; width:64px; height:64px; border-radius:50%; border:1px solid #2FC7A1; background:#1A2540; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:24px; color:#6FE0C6; }
+        .sp-page .tl-item .dot { position:absolute; left:0; top:0; width:64px; height:64px; border-radius:50%; border:1px solid #2FC7A1; background:#296166; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:24px; color:#6FE0C6; }
         .sp-page .tl-item h3 { color:#F5F8F6; font-size:25px; margin-bottom:6px; }
         .sp-page .tl-item p { color:rgba(247,250,252,.72); font-size:15px; max-width:620px; }
         .sp-page .tl-time { display:inline-block; margin-top:8px; font-size:11.5px; font-weight:600; color:#6FE0C6; background:rgba(47,199,161,.10); border:1px solid rgba(47,199,161,.22); border-radius:30px; padding:4px 14px; letter-spacing:.05em; }
@@ -270,7 +270,7 @@ const SpainNLVPage = () => {
         .sp-page .fam-list { list-style:none; }
         .sp-page .fam-list li { display:flex; gap:18px; padding:22px 0; border-bottom:1px solid #E5E5E5; }
         .sp-page .fam-list li:last-child { border-bottom:none; }
-        .sp-page .fam-list .fi { flex:0 0 42px; height:42px; border-radius:50%; background:#1A2540; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:19px; }
+        .sp-page .fam-list .fi { flex:0 0 42px; height:42px; border-radius:50%; background:#296166; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:19px; }
         .sp-page .fam-list h4 { font-size:21px; margin-bottom:2px; }
         .sp-page .fam-list p { color:#296166; font-size:14.5px; }
 
@@ -278,7 +278,7 @@ const SpainNLVPage = () => {
         .sp-page .pathway-sec { background:#E9F1EE; }
         .sp-page .pathway-grid { display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:52px; }
         .sp-page .path-card { border-radius:4px; overflow:hidden; box-shadow:0 18px 50px rgba(26,37,64,.08); }
-        .sp-page .path-head { padding:30px 34px; background:#1A2540; }
+        .sp-page .path-head { padding:30px 34px; background:#296166; }
         .sp-page .path-badge { display:inline-block; background:rgba(47,199,161,.15); border:1px solid rgba(47,199,161,.3); color:#6FE0C6; font-size:10.5px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:5px 14px; border-radius:30px; margin-bottom:14px; }
         .sp-page .path-head h3 { color:#F5F8F6; font-size:22px; }
         .sp-page .path-body { padding:30px 34px; background:#F5F8F6; }
@@ -303,7 +303,7 @@ const SpainNLVPage = () => {
         .sp-page .life-tag { border:1px solid #296166; border-radius:40px; padding:10px 22px; font-size:13.5px; color:#296166; background:#fff; }
 
         /* Living Details */
-        .sp-page .living-details { background:#1A2540; color:#F5F8F6; position:relative; overflow:hidden; }
+        .sp-page .living-details { background:#296166; color:#F5F8F6; position:relative; overflow:hidden; }
         .sp-page .living-details::before { content:''; position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1539037116277-4db20889f2d4?q=80&w=1800&auto=format&fit=crop'); background-size:cover; background-position:center; opacity:.07; }
         .sp-page .living-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
         .sp-page .living-card { background:rgba(247,250,252,.05); border:1px solid rgba(47,199,161,.15); border-radius:4px; padding:36px 30px; transition:all .35s cubic-bezier(.22,.61,.36,1); }
@@ -328,7 +328,7 @@ const SpainNLVPage = () => {
         .sp-page .comparison { background:#F5F8F6; }
         .sp-page .comp-wrap { overflow-x:auto; border-radius:4px; box-shadow:0 18px 50px rgba(26,37,64,.08); border:1px solid #E5E5E5; }
         .sp-page .comp-table { width:100%; border-collapse:collapse; min-width:600px; }
-        .sp-page .comp-table thead tr { background:#1A2540; }
+        .sp-page .comp-table thead tr { background:#296166; }
         .sp-page .comp-table th { padding:20px 26px; text-align:left; font-family:'Inter',sans-serif; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(247,250,252,.6); }
         .sp-page .comp-table th:first-child { color:rgba(247,250,252,.4); }
         .sp-page .comp-table th.hl { color:#6FE0C6; }
@@ -341,7 +341,7 @@ const SpainNLVPage = () => {
         .sp-page .comp-note { margin-top:18px; font-size:12.5px; color:#296166; text-align:center; font-style:italic; }
 
         /* Why Langma */
-        .sp-page .langma { background:#1A2540; color:#F5F8F6; position:relative; overflow:hidden; }
+        .sp-page .langma { background:#296166; color:#F5F8F6; position:relative; overflow:hidden; }
         .sp-page .langma-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:64px; align-items:center; }
         .sp-page .langma h2 { color:#F5F8F6; font-size:clamp(32px,4.4vw,52px); margin-bottom:20px; }
         .sp-page .langma .lead { color:rgba(247,250,252,.82); font-size:17px; margin-bottom:14px; }
@@ -360,7 +360,7 @@ const SpainNLVPage = () => {
         .sp-page .faq-a p { padding:0 0 28px; color:#296166; font-size:16px; max-width:760px; }
 
         /* Lead form */
-        .sp-page .lead-sec { background:#1A2540; color:#F5F8F6; }
+        .sp-page .lead-sec { background:#296166; color:#F5F8F6; }
         .sp-page .lead-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:64px; align-items:start; }
         .sp-page .lead-copy h2 { color:#F5F8F6; font-size:clamp(32px,4.2vw,50px); margin-bottom:20px; }
         .sp-page .lead-copy p { color:rgba(247,250,252,.80); margin-bottom:26px; font-size:16.5px; }

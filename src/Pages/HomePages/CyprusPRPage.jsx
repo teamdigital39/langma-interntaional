@@ -88,7 +88,7 @@ const CyprusPRPage = () => {
         .cy-page .btn-primary:hover { background:#6FE0C6; transform:translateY(-2px); box-shadow:0 14px 30px rgba(47,199,161,.28); }
         .cy-page .btn-ghost { background:transparent; color:#1A2540; border:2px solid #2FC7A1; }
         .cy-page .btn-ghost:hover { border-color:#2FC7A1; color:#296166; }
-        .cy-page .btn-dark { background:#1A2540; color:#F5F8F6; }
+        .cy-page .btn-dark { background:#296166; color:#F5F8F6; }
         .cy-page .btn-dark:hover { background:#296166; transform:translateY(-2px); }
 
         /* Tile divider */
@@ -101,7 +101,7 @@ const CyprusPRPage = () => {
             radial-gradient(circle at 0 18px, transparent 8px, #2FC7A1 8px 8.6px, transparent 9.2px),
             radial-gradient(circle at 20px 18px, transparent 8px, #2FC7A1 8px 8.6px, transparent 9.2px);
           background-size:20px 18px; background-repeat:repeat-x;
-          background-position:left center; background-color:#1A2540;
+          background-position:left center; background-color:#296166;
           display:block; overflow:hidden; opacity:.92;
         }
 
@@ -159,7 +159,7 @@ const CyprusPRPage = () => {
         @keyframes cy-drop { 0% { transform:scaleY(0); transform-origin:top; } 50% { transform:scaleY(1); transform-origin:top; } 51% { transform-origin:bottom; } 100% { transform:scaleY(0); transform-origin:bottom; } }
 
         /* Stats Bar */
-        .cy-page .stats-bar { background:#1A2540; color:#F5F8F6; }
+        .cy-page .stats-bar { background:#296166; color:#F5F8F6; }
         .cy-page .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
         .cy-page .stat-cell { padding:52px 30px; text-align:center; border-right:1px solid rgba(247,250,252,.10); }
         .cy-page .stat-cell:last-child { border-right:none; }
@@ -190,7 +190,7 @@ const CyprusPRPage = () => {
 
         /* CTA banner */
         .cy-page .cta-banner {
-          margin-top:56px; background:#1A2540; border-radius:4px; padding:52px 56px;
+          margin-top:56px; background:#296166; border-radius:4px; padding:52px 56px;
           display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center;
           box-shadow:0 30px 70px rgba(26,37,64,.22); position:relative; overflow:hidden;
         }
@@ -208,12 +208,12 @@ const CyprusPRPage = () => {
         .cy-page .reasons-list { list-style:none; }
         .cy-page .reasons-list li { display:flex; gap:18px; padding:22px 0; border-bottom:1px solid #E5E5E5; }
         .cy-page .reasons-list li:last-child { border-bottom:none; }
-        .cy-page .reasons-list .ri { flex:0 0 44px; height:44px; border-radius:50%; background:#1A2540; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:20px; }
+        .cy-page .reasons-list .ri { flex:0 0 44px; height:44px; border-radius:50%; background:#296166; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:20px; }
         .cy-page .reasons-list h4 { font-size:22px; margin-bottom:4px; }
         .cy-page .reasons-list p { color:#296166; font-size:14.5px; }
 
         /* Programme */
-        .cy-page .prog { background:#1A2540; color:#F5F8F6; }
+        .cy-page .prog { background:#296166; color:#F5F8F6; }
         .cy-page .prog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
         .cy-page .prog-card { background:rgba(247,250,252,.04); border:1px solid rgba(247,250,252,.12); border-radius:4px; padding:38px 32px; transition:all .35s cubic-bezier(.22,.61,.36,1); }
         .cy-page .prog-card:hover { border-color:#2FC7A1; transform:translateY(-6px); }
@@ -237,7 +237,7 @@ const CyprusPRPage = () => {
         .cy-page .inv-wrap { background:#fff; border:1px solid rgba(47,199,161,.25); border-radius:4px; overflow:hidden; box-shadow:0 18px 50px rgba(26,37,64,.08); margin-top:52px; }
         .cy-page .inv-row { display:grid; grid-template-columns:1.3fr 0.8fr 1.7fr; align-items:center; border-bottom:1px solid #E5E5E5; }
         .cy-page .inv-row:last-child { border-bottom:none; }
-        .cy-page .inv-row.head { background:#1A2540; }
+        .cy-page .inv-row.head { background:#296166; }
         .cy-page .inv-row.head > div { padding:20px 28px; font-family:'Inter',sans-serif; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(247,250,252,.6); }
         .cy-page .inv-row .label { padding:24px 28px; font-family:'Inter',sans-serif; font-weight:600; color:#296166; font-size:15.5px; }
         .cy-page .inv-row .label small { display:block; font-weight:400; color:#296166; font-size:13px; margin-top:5px; }
@@ -253,17 +253,17 @@ const CyprusPRPage = () => {
         .cy-page .fam-list { list-style:none; }
         .cy-page .fam-list li { display:flex; gap:18px; padding:22px 0; border-bottom:1px solid #E5E5E5; }
         .cy-page .fam-list li:last-child { border-bottom:none; }
-        .cy-page .fam-list .fi { flex:0 0 44px; height:44px; border-radius:50%; background:#1A2540; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:19px; }
+        .cy-page .fam-list .fi { flex:0 0 44px; height:44px; border-radius:50%; background:#296166; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:19px; }
         .cy-page .fam-list h4 { font-size:22px; margin-bottom:2px; }
         .cy-page .fam-list p { color:#296166; font-size:14.5px; }
 
         /* Process */
-        .cy-page .process { background:#1A2540; color:#F5F8F6; }
+        .cy-page .process { background:#296166; color:#F5F8F6; }
         .cy-page .timeline { position:relative; max-width:880px; margin:0 auto; }
         .cy-page .timeline::before { content:""; position:absolute; left:31px; top:8px; bottom:8px; width:1px; background:rgba(247,250,252,.18); }
         .cy-page .tl-item { position:relative; padding-left:92px; padding-bottom:44px; }
         .cy-page .tl-item:last-child { padding-bottom:0; }
-        .cy-page .tl-item .dot { position:absolute; left:0; top:0; width:64px; height:64px; border-radius:50%; border:1px solid #2FC7A1; background:#1A2540; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:24px; color:#6FE0C6; }
+        .cy-page .tl-item .dot { position:absolute; left:0; top:0; width:64px; height:64px; border-radius:50%; border:1px solid #2FC7A1; background:#296166; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:24px; color:#6FE0C6; }
         .cy-page .tl-item h3 { color:#F5F8F6; font-size:25px; margin-bottom:6px; }
         .cy-page .tl-item p { color:rgba(247,250,252,.72); font-size:15px; max-width:620px; }
         .cy-page .tl-time { display:inline-block; margin-top:8px; font-size:11.5px; font-weight:600; color:#6FE0C6; background:rgba(47,199,161,.10); border:1px solid rgba(47,199,161,.22); border-radius:30px; padding:4px 14px; letter-spacing:.05em; }
@@ -281,7 +281,7 @@ const CyprusPRPage = () => {
         .cy-page .life-tag { border:1px solid #296166; border-radius:40px; padding:10px 22px; font-size:13.5px; color:#296166; background:#fff; }
 
         /* Why Langma */
-        .cy-page .langma { background:#1A2540; color:#F5F8F6; position:relative; overflow:hidden; }
+        .cy-page .langma { background:#296166; color:#F5F8F6; position:relative; overflow:hidden; }
         .cy-page .langma-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:64px; align-items:center; }
         .cy-page .langma h2 { color:#F5F8F6; font-size:clamp(32px,4.4vw,52px); margin-bottom:20px; }
         .cy-page .langma .lead { color:rgba(247,250,252,.82); font-size:17px; margin-bottom:14px; }
@@ -302,7 +302,7 @@ const CyprusPRPage = () => {
         .cy-page .faq-a p { padding:0 0 28px; color:#296166; font-size:16px; max-width:780px; }
 
         /* Lead form */
-        .cy-page .lead-sec { background:#1A2540; color:#F5F8F6; }
+        .cy-page .lead-sec { background:#296166; color:#F5F8F6; }
         .cy-page .lead-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:64px; align-items:start; }
         .cy-page .lead-copy h2 { color:#F5F8F6; font-size:clamp(32px,4.2vw,50px); margin-bottom:20px; }
         .cy-page .lead-copy p { color:rgba(247,250,252,.80); margin-bottom:26px; font-size:16.5px; }
@@ -338,7 +338,7 @@ const CyprusPRPage = () => {
         .cy-page .office-form h3 { font-size:25px; margin-bottom:22px; }
 
         /* Footer */
-        .cy-page .foot { background:#1A2540; color:rgba(247,250,252,.7); padding:74px 0 32px; }
+        .cy-page .foot { background:#296166; color:rgba(247,250,252,.7); padding:74px 0 32px; }
         .cy-page .foot-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1.3fr; gap:44px; margin-bottom:50px; }
         .cy-page .foot-logo { font-family:'Cormorant Garamond',serif; font-size:28px; color:#F5F8F6; font-weight:600; letter-spacing:1px; margin-bottom:18px; }
         .cy-page .foot-logo span { color:#6FE0C6; }

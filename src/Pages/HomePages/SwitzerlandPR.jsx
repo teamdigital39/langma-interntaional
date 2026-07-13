@@ -85,13 +85,13 @@ const SwitzerlandPRPage = () => {
         .sw-page .btn-primary:hover { background:#6FE0C6; transform:translateY(-2px); box-shadow:0 14px 30px rgba(47,199,161,.28); }
         .sw-page .btn-ghost { background:transparent; color:#1A2540; border:2px solid #2FC7A1; }
         .sw-page .btn-ghost:hover { border-color:#6FE0C6; color:#6FE0C6; }
-        .sw-page .btn-dark { background:#1A2540; color:#F5F8F6; }
+        .sw-page .btn-dark { background:#296166; color:#F5F8F6; }
         .sw-page .btn-dark:hover { background:#296166; transform:translateY(-2px); }
 
         /* Swiss Divider */
         .sw-page .swiss-divider {
           height:16px; width:100%;
-          background:#1A2540;
+          background:#296166;
           display:flex;
           align-items:center;
           justify-content:center;
@@ -114,7 +114,7 @@ const SwitzerlandPRPage = () => {
             radial-gradient(circle at 0 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px),
             radial-gradient(circle at 20px 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px);
           background-size:20px 18px; background-repeat:repeat-x;
-          background-position:left center; background-color:#1A2540;
+          background-position:left center; background-color:#296166;
           display:block; overflow:hidden; opacity:.92;
         }
 
@@ -171,7 +171,7 @@ const SwitzerlandPRPage = () => {
         @keyframes sw-drop { 0% { transform:scaleY(0); transform-origin:top; } 50% { transform:scaleY(1); transform-origin:top; } 51% { transform-origin:bottom; } 100% { transform:scaleY(0); transform-origin:bottom; } }
 
         /* Stats Bar */
-        .sw-page .stats-bar { background:#1A2540; color:#F5F8F6; }
+        .sw-page .stats-bar { background:#296166; color:#F5F8F6; }
         .sw-page .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
         .sw-page .stat-cell { padding:52px 30px; text-align:center; border-right:1px solid rgba(247,250,252,.10); }
         .sw-page .stat-cell:last-child { border-right:none; }
@@ -208,7 +208,7 @@ const SwitzerlandPRPage = () => {
         .sw-page .why-card p { color:#296166; font-size:15px; }
 
         /* Programme */
-        .sw-page .prog { background:#1A2540; color:#F5F8F6; }
+        .sw-page .prog { background:#296166; color:#F5F8F6; }
         .sw-page .prog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
         .sw-page .prog-card { background:rgba(247,250,252,.04); border:1px solid rgba(247,250,252,.12); border-radius:4px; padding:38px 32px; transition:all .35s cubic-bezier(.22,.61,.36,1); }
         .sw-page .prog-card:hover { border-color:#6FE0C6; transform:translateY(-6px); }
@@ -232,7 +232,7 @@ const SwitzerlandPRPage = () => {
         .sw-page .fin-table { background:#fff; border:1px solid rgba(47,199,161,.25); border-radius:4px; overflow:hidden; box-shadow:0 18px 50px rgba(26,37,64,.08); }
         .sw-page .fin-row { display:grid; grid-template-columns:2fr 1fr 1fr; align-items:center; border-bottom:1px solid #E5E5E5; }
         .sw-page .fin-row:last-child { border-bottom:none; }
-        .sw-page .fin-row.head { background:#1A2540; }
+        .sw-page .fin-row.head { background:#296166; }
         .sw-page .fin-row.head .fc { padding:22px 28px; font-family:'Inter',sans-serif; font-size:13px; letter-spacing:.6px; text-transform:uppercase; color:rgba(247,250,252,.8); }
         .sw-page .fc { padding:22px 28px; font-size:15.5px; }
         .sw-page .fc.label { font-weight:600; color:#296166; }
@@ -247,17 +247,17 @@ const SwitzerlandPRPage = () => {
         .sw-page .fam-list { list-style:none; }
         .sw-page .fam-list li { display:flex; gap:18px; padding:22px 0; border-bottom:1px solid #E5E5E5; }
         .sw-page .fam-list li:last-child { border-bottom:none; }
-        .sw-page .fam-list .fi { flex:0 0 42px; height:42px; border-radius:50%; background:#1A2540; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:19px; }
+        .sw-page .fam-list .fi { flex:0 0 42px; height:42px; border-radius:50%; background:#296166; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:19px; }
         .sw-page .fam-list h4 { font-size:21px; margin-bottom:2px; }
         .sw-page .fam-list p { color:#296166; font-size:14.5px; }
 
         /* Process */
-        .sw-page .process { background:#1A2540; color:#F5F8F6; }
+        .sw-page .process { background:#296166; color:#F5F8F6; }
         .sw-page .timeline { position:relative; max-width:880px; margin:0 auto; }
         .sw-page .timeline::before { content:""; position:absolute; left:31px; top:8px; bottom:8px; width:1px; background:rgba(247,250,252,.18); }
         .sw-page .tl-item { position:relative; padding-left:92px; padding-bottom:44px; }
         .sw-page .tl-item:last-child { padding-bottom:0; }
-        .sw-page .tl-item .dot { position:absolute; left:0; top:0; width:64px; height:64px; border-radius:50%; border:1px solid #6FE0C6; background:#1A2540; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:24px; color:#6FE0C6; }
+        .sw-page .tl-item .dot { position:absolute; left:0; top:0; width:64px; height:64px; border-radius:50%; border:1px solid #6FE0C6; background:#296166; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:24px; color:#6FE0C6; }
         .sw-page .tl-item h3 { color:#F5F8F6; font-size:25px; margin-bottom:6px; }
         .sw-page .tl-item p { color:rgba(247,250,252,.72); font-size:15px; max-width:620px; }
         .sw-page .tl-time { display:inline-block; margin-top:10px; font-family:'Inter',sans-serif; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:#6FE0C6; font-weight:600; }
@@ -275,7 +275,7 @@ const SwitzerlandPRPage = () => {
         .sw-page .life-tag { border:1px solid #E5E5E5; border-radius:40px; padding:10px 22px; font-size:13.5px; color:#296166; background:#fff; }
 
         /* Langma */
-        .sw-page .langma { background:#1A2540; color:#F5F8F6; }
+        .sw-page .langma { background:#296166; color:#F5F8F6; }
         .sw-page .langma-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:64px; align-items:center; }
         .sw-page .langma h2 { color:#F5F8F6; font-size:clamp(32px,4.4vw,52px); margin-bottom:20px; }
         .sw-page .lg-list { display:grid; grid-template-columns:1fr 1fr; gap:30px 36px; }
@@ -293,7 +293,7 @@ const SwitzerlandPRPage = () => {
         .sw-page .faq-a p { padding:0 0 28px; color:#296166; font-size:16px; max-width:760px; }
 
         /* Lead form */
-        .sw-page .lead-sec { background:#1A2540; color:#F5F8F6; }
+        .sw-page .lead-sec { background:#296166; color:#F5F8F6; }
         .sw-page .lead-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:64px; align-items:start; }
         .sw-page .lead-copy h2 { color:#F5F8F6; font-size:clamp(32px,4.2vw,50px); margin-bottom:20px; }
         .sw-page .lead-copy p { color:rgba(247,250,252,.80); margin-bottom:26px; font-size:16.5px; }
@@ -328,7 +328,7 @@ const SwitzerlandPRPage = () => {
         .sw-page .office-form h3 { font-size:25px; margin-bottom:22px; }
 
         /* Footer */
-        .sw-page .foot { background:#1A2540; color:rgba(247,250,252,.7); padding:74px 0 32px; }
+        .sw-page .foot { background:#296166; color:rgba(247,250,252,.7); padding:74px 0 32px; }
         .sw-page .foot-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1.3fr; gap:44px; margin-bottom:50px; }
         .sw-page .foot-logo { font-family:'Cormorant Garamond',serif; font-size:28px; color:#F5F8F6; font-weight:600; letter-spacing:1px; margin-bottom:18px; }
         .sw-page .foot-logo span { color:#6FE0C6; }

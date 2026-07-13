@@ -273,7 +273,7 @@ const ConsultationForm = () => {
       <button
         onClick={handleSubmit}
         disabled={loading}
-        className="w-full bg-[#1A2540] hover:bg-[#243160] disabled:opacity-50 text-white py-3 rounded-full font-semibold text-[14px] transition-colors"
+        className="w-full bg-[#296166] hover:bg-[#1f4a4e] disabled:opacity-50 text-white py-3 rounded-full font-semibold text-[14px] transition-colors"
       >
         {loading ? "Sending..." : "Request a Confidential Consultation"}
       </button>

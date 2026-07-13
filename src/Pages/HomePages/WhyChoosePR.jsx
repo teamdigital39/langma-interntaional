@@ -211,7 +211,7 @@ const WhyChoosePR = () => {
                   {opt.slug && (
                     <Link
                       to={opt.slug}
-                      className="block text-center bg-[#1A2540] text-white hover:bg-[#243160] py-2 rounded-full text-[13px] font-semibold transition-colors"
+                      className="block text-center bg-[#296166] text-white hover:bg-[#1f4a4e] py-2 rounded-full text-[13px] font-semibold transition-colors"
                     >
                       View Programme Details
                     </Link>
@@ -263,7 +263,7 @@ const WhyChoosePR = () => {
           </div>
 
           <div className="flex flex-wrap justify-center gap-4 mt-10">
-            <a href="#meeting" className="inline-flex items-center gap-2 bg-[#1A2540] hover:bg-[#243160] text-white px-8 py-3.5 rounded-full font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg">
+            <a href="#meeting" className="inline-flex items-center gap-2 bg-[#296166] hover:bg-[#1f4a4e] text-white px-8 py-3.5 rounded-full font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg">
               Request a Tailored Programme Assessment
             </a>
             <Link
@@ -355,7 +355,7 @@ const WhyChoosePR = () => {
               ))}
             </ul>
             <div className="flex flex-wrap gap-3">
-              <a href="#meeting" className="inline-flex items-center gap-2 bg-[#1A2540] hover:bg-[#243160] text-white px-7 py-3 rounded-full font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg">
+              <a href="#meeting" className="inline-flex items-center gap-2 bg-[#296166] hover:bg-[#1f4a4e] text-white px-7 py-3 rounded-full font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg">
                 Discuss Your Situation
               </a>
               <Link

@@ -179,7 +179,7 @@ const HungaryWhiteCardPage = () => {
       <style>{`
         .hu-page {
           --navy:#296166;
-          --navy-deep:#1A2540;
+          --navy-deep:#296166;
           --navy-mid:#296166;
           --gold:#6FE0C6;
           --gold-soft:#6FE0C6;
@@ -439,7 +439,7 @@ const HungaryWhiteCardPage = () => {
 
         @media(max-width:980px) {
           .hu-page .nav-links { display:none; }
-          .hu-page .nav-links.open { display:flex; flex-direction:column; position:fixed; top:0; left:0; right:0; bottom:0; background:#1A2540; z-index:999; align-items:center; justify-content:center; gap:28px; }
+          .hu-page .nav-links.open { display:flex; flex-direction:column; position:fixed; top:0; left:0; right:0; bottom:0; background:#296166; z-index:999; align-items:center; justify-content:center; gap:28px; }
           .hu-page .burger { display:flex; position:relative; z-index:1001; }
           .hu-page .hero-split { grid-template-columns:1fr; gap:48px; padding-top:0;padding-bottom:32px; }
           .hu-page .hero-img-frame img { height:380px; }

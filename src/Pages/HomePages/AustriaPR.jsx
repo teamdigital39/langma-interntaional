@@ -123,7 +123,7 @@ const AustriaResidencePage = () => {
         .at-page .btn-primary:hover { background:#296166; transform:translateY(-2px); box-shadow:0 14px 30px rgba(47,199,161,.28); }
         .at-page .btn-ghost { background:transparent; color:#1A2540; border:2px solid #2FC7A1; }
         .at-page .btn-ghost:hover { border-color:#6FE0C6; color:#6FE0C6; }
-        .at-page .btn-dark { background:#1A2540; color:#F5F8F6; }
+        .at-page .btn-dark { background:#296166; color:#F5F8F6; }
         .at-page .btn-dark:hover { background:#296166; transform:translateY(-2px); }
 
         /* Alpine divider */
@@ -136,7 +136,7 @@ const AustriaResidencePage = () => {
             radial-gradient(circle at 0 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px),
             radial-gradient(circle at 20px 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px);
           background-size:20px 18px; background-repeat:repeat-x;
-          background-position:left center; background-color:#1A2540;
+          background-position:left center; background-color:#296166;
           display:block; overflow:hidden; opacity:.92;
         }
 
@@ -197,7 +197,7 @@ const AustriaResidencePage = () => {
         @keyframes at-drop { 0% { transform:scaleY(0); transform-origin:top; } 50% { transform:scaleY(1); transform-origin:top; } 51% { transform-origin:bottom; } 100% { transform:scaleY(0); transform-origin:bottom; } }
 
         /* Stats Bar */
-        .at-page .stats-bar { background:#1A2540; color:#F5F8F6; }
+        .at-page .stats-bar { background:#296166; color:#F5F8F6; }
         .at-page .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
         .at-page .stat-cell { padding:52px 30px; text-align:center; border-right:1px solid rgba(247,250,252,.10); }
         .at-page .stat-cell:last-child { border-right:none; }
@@ -226,7 +226,7 @@ const AustriaResidencePage = () => {
         .at-page .why-card p { color:#296166; font-size:15px; }
 
         /* Programme */
-        .at-page .prog { background:#1A2540; color:#F5F8F6; }
+        .at-page .prog { background:#296166; color:#F5F8F6; }
         .at-page .prog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
         .at-page .prog-card { background:rgba(247,250,252,.04); border:1px solid rgba(247,250,252,.12); border-radius:4px; padding:38px 32px; transition:all .35s cubic-bezier(.22,.61,.36,1); }
         .at-page .prog-card:hover { border-color:#6FE0C6; transform:translateY(-6px); }
@@ -262,7 +262,7 @@ const AustriaResidencePage = () => {
         .at-page .fin-table { border:1px solid #E5E5E5; border-radius:4px; overflow:hidden; box-shadow:0 18px 50px rgba(26,37,64,.06); }
         .at-page .fin-row { display:grid; grid-template-columns:2fr 1fr 1fr; border-bottom:1px solid #E5E5E5; align-items:center; }
         .at-page .fin-row:last-child { border-bottom:none; }
-        .at-page .fin-row.head { background:#1A2540; color:#F5F8F6; }
+        .at-page .fin-row.head { background:#296166; color:#F5F8F6; }
         .at-page .fin-row.head .fc { color:#F5F8F6; font-weight:600; font-family:'Inter',sans-serif; font-size:13px; letter-spacing:.6px; text-transform:uppercase; }
         .at-page .fc { padding:22px 28px; font-size:15.5px; }
         .at-page .fc.label { font-weight:600; color:#296166; }
@@ -282,17 +282,17 @@ const AustriaResidencePage = () => {
         .at-page .fam-list { list-style:none; }
         .at-page .fam-list li { display:flex; gap:18px; padding:22px 0; border-bottom:1px solid #E5E5E5; }
         .at-page .fam-list li:last-child { border-bottom:none; }
-        .at-page .fam-list .fi { flex:0 0 42px; height:42px; border-radius:50%; background:#1A2540; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:19px; }
+        .at-page .fam-list .fi { flex:0 0 42px; height:42px; border-radius:50%; background:#296166; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:19px; }
         .at-page .fam-list h4 { font-size:21px; margin-bottom:2px; }
         .at-page .fam-list p { color:#296166; font-size:14.5px; }
 
         /* Process */
-        .at-page .process { background:#1A2540; color:#F5F8F6; }
+        .at-page .process { background:#296166; color:#F5F8F6; }
         .at-page .timeline { position:relative; max-width:880px; margin:0 auto; }
         .at-page .timeline::before { content:""; position:absolute; left:31px; top:8px; bottom:8px; width:1px; background:rgba(247,250,252,.18); }
         .at-page .tl-item { position:relative; padding-left:92px; padding-bottom:44px; }
         .at-page .tl-item:last-child { padding-bottom:0; }
-        .at-page .tl-item .dot { position:absolute; left:0; top:0; width:64px; height:64px; border-radius:50%; border:1px solid #6FE0C6; background:#1A2540; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:24px; color:#6FE0C6; }
+        .at-page .tl-item .dot { position:absolute; left:0; top:0; width:64px; height:64px; border-radius:50%; border:1px solid #6FE0C6; background:#296166; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:24px; color:#6FE0C6; }
         .at-page .tl-item h3 { color:#F5F8F6; font-size:24px; margin-bottom:6px; }
         .at-page .tl-item p { color:rgba(247,250,252,.72); font-size:15px; max-width:620px; }
 
@@ -318,7 +318,7 @@ const AustriaResidencePage = () => {
         .at-page .path-card p { font-size:13.5px; color:#296166; }
 
         /* Citizenship */
-        .at-page .cit { background:#1A2540; color:#F5F8F6; position:relative; overflow:hidden; }
+        .at-page .cit { background:#296166; color:#F5F8F6; position:relative; overflow:hidden; }
         .at-page .cit-grid { display:grid; grid-template-columns:1fr 1fr; gap:50px; }
         .at-page .cit-card { background:rgba(247,250,252,.04); border:1px solid rgba(247,250,252,.12); border-radius:4px; padding:30px; }
         .at-page .cit-card h4 { color:#6FE0C6; font-size:21px; margin-bottom:8px; }
@@ -327,7 +327,7 @@ const AustriaResidencePage = () => {
         .at-page .cit-callout p { color:#6FE0C6; font-size:16px; font-style:italic; }
 
         /* Why Langma */
-        .at-page .langma { background:#1A2540; color:#F5F8F6; position:relative; overflow:hidden; }
+        .at-page .langma { background:#296166; color:#F5F8F6; position:relative; overflow:hidden; }
         .at-page .langma-grid { display:grid; grid-template-columns:1fr 1.05fr; gap:64px; align-items:center; }
         .at-page .langma h2 { color:#F5F8F6; font-size:clamp(32px,4.4vw,50px); margin-bottom:20px; }
         .at-page .langma .lead { color:rgba(247,250,252,.82); font-size:16.5px; margin-bottom:16px; }
@@ -349,7 +349,7 @@ const AustriaResidencePage = () => {
         .at-page .faq-a p { padding:0 0 28px; color:#296166; font-size:16px; max-width:780px; }
 
         /* Lead form */
-        .at-page .lead-sec { background:#1A2540; color:#F5F8F6; }
+        .at-page .lead-sec { background:#296166; color:#F5F8F6; }
         .at-page .lead-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:64px; align-items:start; }
         .at-page .lead-copy h2 { color:#F5F8F6; font-size:clamp(32px,4.2vw,50px); margin-bottom:20px; }
         .at-page .lead-copy p { color:rgba(247,250,252,.80); margin-bottom:26px; font-size:16.5px; }
@@ -384,7 +384,7 @@ const AustriaResidencePage = () => {
         .at-page .office-form h3 { font-size:25px; margin-bottom:22px; }
 
         /* Calendar widget */
-        .at-page .cal-strip { margin-top:38px; background:#1A2540; border-radius:4px; padding:30px 32px; box-shadow:0 30px 70px rgba(26,37,64,.18); }
+        .at-page .cal-strip { margin-top:38px; background:#296166; border-radius:4px; padding:30px 32px; box-shadow:0 30px 70px rgba(26,37,64,.18); }
         .at-page .cal-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
         .at-page .cal-head h4 { color:#F5F8F6; font-size:18px; }
         .at-page .cal-head span { color:#6FE0C6; font-size:12.5px; letter-spacing:.5px; }
@@ -395,7 +395,7 @@ const AustriaResidencePage = () => {
         .at-page .cal-day.sel { background:#6FE0C6; color:#296166; font-weight:700; }
 
         /* Footer */
-        .at-page .foot { background:#1A2540; color:rgba(247,250,252,.7); padding:74px 0 32px; }
+        .at-page .foot { background:#296166; color:rgba(247,250,252,.7); padding:74px 0 32px; }
         .at-page .foot-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1.3fr; gap:44px; margin-bottom:50px; }
         .at-page .foot-brand .name { font-family:'Cormorant Garamond',serif; font-size:28px; color:#F5F8F6; font-weight:600; letter-spacing:1px; }
         .at-page .foot-brand .tag { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#6FE0C6; margin:6px 0 18px; }
@@ -423,7 +423,7 @@ const AustriaResidencePage = () => {
           .at-page .hero-img-frame { max-width:100%; }
           .at-page .foot-grid { grid-template-columns:1fr 1fr; }
           .at-page .nav-links { display:none; }
-          .at-page .nav-links.open { display:flex; flex-direction:column; position:fixed; top:0; left:0; right:0; bottom:0; background:#1A2540; z-index:999; align-items:center; justify-content:center; gap:28px; }
+          .at-page .nav-links.open { display:flex; flex-direction:column; position:fixed; top:0; left:0; right:0; bottom:0; background:#296166; z-index:999; align-items:center; justify-content:center; gap:28px; }
           .at-page .burger { display:flex; position:relative; z-index:1001; }
         }
         @media(max-width:640px) {

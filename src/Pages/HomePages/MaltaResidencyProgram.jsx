@@ -87,7 +87,7 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
     padding:26px 0;
   }
   .lg-page header.scrolled {
-    background:rgba(26,37,64,0.92);
+    background:rgba(41,97,102,0.92);
     backdrop-filter: blur(14px);
     box-shadow:0 6px 24px rgba(0,0,0,0.18);
     padding:14px 0;

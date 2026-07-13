@@ -74,10 +74,10 @@ const PortugalD7VisaPage = () => {
         .d7-page .btn-primary:hover { background:#6FE0C6; transform:translateY(-2px); box-shadow:0 14px 30px rgba(47,199,161,.28); }
         .d7-page .btn-ghost { background:transparent; color:#1A2540; border:2px solid #2FC7A1; }
         .d7-page .btn-ghost:hover { border-color:#6FE0C6; color:#6FE0C6; }
-        .d7-page .btn-dark { background:#1A2540; color:#F5F8F6; }
+        .d7-page .btn-dark { background:#296166; color:#F5F8F6; }
         .d7-page .btn-dark:hover { background:#296166; transform:translateY(-2px); }
 
-        .d7-page .azulejo { height:18px; width:100%; background:radial-gradient(circle at 10px 9px, #6FE0C6 0 2px, transparent 2.5px),radial-gradient(circle at 0 0, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px),radial-gradient(circle at 20px 0, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px),radial-gradient(circle at 0 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px),radial-gradient(circle at 20px 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px); background-size:20px 18px; background-repeat:repeat-x; background-position:left center; background-color:#1A2540; display:block; overflow:hidden; opacity:.92; }
+        .d7-page .azulejo { height:18px; width:100%; background:radial-gradient(circle at 10px 9px, #6FE0C6 0 2px, transparent 2.5px),radial-gradient(circle at 0 0, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px),radial-gradient(circle at 20px 0, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px),radial-gradient(circle at 0 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px),radial-gradient(circle at 20px 18px, transparent 8px, #6FE0C6 8px 8.6px, transparent 9.2px); background-size:20px 18px; background-repeat:repeat-x; background-position:left center; background-color:#296166; display:block; overflow:hidden; opacity:.92; }
 
         /* Hero */
         .d7-page .hero { position:relative; min-height:auto; display:flex; align-items:center; color:#1B2B28; overflow:hidden; background:#FFFFFF;padding:72px 0 48px; }
@@ -108,7 +108,7 @@ const PortugalD7VisaPage = () => {
         @keyframes drop { 0% { transform:scaleY(0); transform-origin:top; } 50% { transform:scaleY(1); transform-origin:top; } 51% { transform-origin:bottom; } 100% { transform:scaleY(0); transform-origin:bottom; } }
 
         /* Stats Bar */
-        .d7-page .stats-bar { background:#1A2540; color:#F5F8F6; }
+        .d7-page .stats-bar { background:#296166; color:#F5F8F6; }
         .d7-page .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:0; }
         .d7-page .stat-cell { padding:52px 30px; text-align:center; border-right:1px solid rgba(247,250,252,.10); }
         .d7-page .stat-cell:last-child { border-right:none; }
@@ -137,7 +137,7 @@ const PortugalD7VisaPage = () => {
         .d7-page .why-card p { color:#296166; font-size:15px; }
 
         /* Programme */
-        .d7-page .prog { background:#1A2540; color:#F5F8F6; }
+        .d7-page .prog { background:#296166; color:#F5F8F6; }
         .d7-page .prog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
         .d7-page .prog-card { background:rgba(247,250,252,.04); border:1px solid rgba(247,250,252,.12); border-radius:4px; padding:38px 32px; transition:all .35s cubic-bezier(.22,.61,.36,1); }
         .d7-page .prog-card:hover { border-color:#6FE0C6; transform:translateY(-6px); }
@@ -161,7 +161,7 @@ const PortugalD7VisaPage = () => {
         .d7-page .fin-table { background:#fff; border:1px solid #E5E5E5; border-radius:4px; overflow:hidden; box-shadow:0 18px 50px rgba(26,37,64,.08); }
         .d7-page .fin-row { display:grid; grid-template-columns:1.4fr 1fr 1fr; align-items:center; border-bottom:1px solid #E5E5E5; }
         .d7-page .fin-row:last-child { border-bottom:none; }
-        .d7-page .fin-row.head { background:#1A2540; color:#F5F8F6; }
+        .d7-page .fin-row.head { background:#296166; color:#F5F8F6; }
         .d7-page .fin-row.head .fc { color:#F5F8F6; font-weight:600; font-family:'Inter',sans-serif; font-size:13px; letter-spacing:.6px; text-transform:uppercase; }
         .d7-page .fc { padding:22px 28px; font-size:15.5px; }
         .d7-page .fc.label { font-weight:600; color:#296166; }
@@ -179,19 +179,19 @@ const PortugalD7VisaPage = () => {
         .d7-page .fam-list { list-style:none; }
         .d7-page .fam-list li { display:flex; gap:18px; padding:22px 0; border-bottom:1px solid #E5E5E5; }
         .d7-page .fam-list li:last-child { border-bottom:none; }
-        .d7-page .fi { flex:0 0 42px; height:42px; border-radius:50%; background:#1A2540; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:19px; }
+        .d7-page .fi { flex:0 0 42px; height:42px; border-radius:50%; background:#296166; color:#6FE0C6; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:19px; }
         .d7-page .fam-list h4 { font-size:21px; margin-bottom:2px; }
         .d7-page .fam-list p { color:#296166; font-size:14.5px; }
         .d7-page .fam-media { height:520px; border-radius:4px; overflow:hidden; box-shadow:0 30px 70px rgba(26,37,64,.18); position:relative; }
         .d7-page .fam-media .frame { position:absolute; inset:14px; border:1px solid rgba(247,250,252,.5); z-index:2; }
 
         /* Process */
-        .d7-page .process { background:#1A2540; color:#F5F8F6; }
+        .d7-page .process { background:#296166; color:#F5F8F6; }
         .d7-page .timeline { position:relative; max-width:880px; margin:0 auto; }
         .d7-page .timeline::before { content:""; position:absolute; left:31px; top:8px; bottom:8px; width:1px; background:rgba(247,250,252,.18); }
         .d7-page .tl-item { position:relative; padding-left:92px; padding-bottom:44px; }
         .d7-page .tl-item:last-child { padding-bottom:0; }
-        .d7-page .tl-item .dot { position:absolute; left:0; top:0; width:64px; height:64px; border-radius:50%; border:1px solid #6FE0C6; background:#1A2540; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:24px; color:#6FE0C6; }
+        .d7-page .tl-item .dot { position:absolute; left:0; top:0; width:64px; height:64px; border-radius:50%; border:1px solid #6FE0C6; background:#296166; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:24px; color:#6FE0C6; }
         .d7-page .tl-item h3 { color:#F5F8F6; font-size:25px; margin-bottom:6px; }
         .d7-page .tl-item p { color:rgba(247,250,252,.72); font-size:15px; max-width:620px; }
 
@@ -209,7 +209,7 @@ const PortugalD7VisaPage = () => {
         .d7-page .life-tag { border:1px solid #296166; border-radius:40px; padding:10px 22px; font-size:13.5px; color:#296166; background:#fff; }
 
         /* Why Langma */
-        .d7-page .langma { background:#1A2540; color:#F5F8F6; position:relative; overflow:hidden; }
+        .d7-page .langma { background:#296166; color:#F5F8F6; position:relative; overflow:hidden; }
         .d7-page .langma-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:64px; align-items:center; }
         .d7-page .langma h2 { color:#F5F8F6; font-size:clamp(32px,4.4vw,52px); margin-bottom:20px; }
         .d7-page .langma .lead { color:rgba(247,250,252,.82); font-size:17px; margin-bottom:14px; }
@@ -228,7 +228,7 @@ const PortugalD7VisaPage = () => {
         .d7-page .faq-a p { padding:0 0 28px; color:#296166; font-size:16px; max-width:760px; }
 
         /* Lead Form */
-        .d7-page .lead-sec { background:#1A2540; color:#F5F8F6; }
+        .d7-page .lead-sec { background:#296166; color:#F5F8F6; }
         .d7-page .lead-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:64px; align-items:start; }
         .d7-page .lead-copy h2 { color:#F5F8F6; font-size:clamp(32px,4.2vw,50px); margin-bottom:20px; }
         .d7-page .lead-copy p { color:rgba(247,250,252,.80); margin-bottom:26px; font-size:16.5px; }

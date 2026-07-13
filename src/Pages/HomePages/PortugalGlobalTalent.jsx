@@ -105,7 +105,7 @@ const PortugalGlobalTalentPage = () => {
 
 .pt-page{
   --navy:#296166;
-  --navy-deep:#1A2540;
+  --navy-deep:#296166;
   --navy-soft:#296166;
   --royal:#2FC7A1;
   --gold:#2FC7A1;
