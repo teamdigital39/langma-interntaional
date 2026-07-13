@@ -11,21 +11,9 @@ import AssessmentBand from "./AssessmentBand";
 import CounselSection from "./CounselSection";
 import FAQSection from "./FAQSection";
 import FinalCTASection from "./FinalCTASection";
-import { useMediaQuery, BP } from "./styles.jsx";
+import { C, F, S, useMediaQuery, BP } from "./styles.jsx";
 import PopupForm from "./PopupForm.jsx";
 import API_BASE from "../../config.js";
-
-/* ── inline styles ── */
-const S = {
-  ink:      "#dae6e9",
-  ink2:     "#000102",
-  ink3:     "#1d3158",
-  gold:     "#20c7bf",
-  goldDeep: "#17a398",
-  goldSoft: "#2FC7A1",
-  paper:    "#000000",
-  tr:       "0.28s cubic-bezier(0.4,0,0.2,1)",
-};
 
 const InternationalHeroSection = () => {
   const [open, setOpen] = useState(false);
@@ -69,20 +57,20 @@ const InternationalHeroSection = () => {
           HERO — image stacks below text on small screens
       ──────────────────────────────────────────── */}
       <header style={{
-        background: S.ink,
-        minHeight: isMobile ? "auto" : "92vh",
+        background: C.bgWhite,
+        minHeight: isMobile ? "auto" : "auto",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         position: "relative",
         overflow: "hidden",
-        padding: isMobile ? "84px 18px 56px" : "100px 26px 80px",
+        padding: isMobile ? "84px 18px 56px" : "88px 26px 72px",
       }}>
 
         {/* Greeting ribbon */}
         <div aria-hidden="true" style={{
           position: "absolute", top: 0, left: 0, right: 0,
-          background: "rgba(47,199,161,.08)",
+          background: C.bgMint,
           borderBottom: "1px solid rgba(47,199,161,.18)",
           overflow: "hidden", whiteSpace: "nowrap",
           height: 36, display: "flex", alignItems: "center",
@@ -91,9 +79,9 @@ const InternationalHeroSection = () => {
           <div style={{
             display: "inline-flex", gap: 48,
             animation: "lm-marquee 30s linear infinite",
-            fontFamily: "'Spline Sans Mono',monospace",
+            fontFamily: F.sans,
             fontSize: ".72rem", letterSpacing: ".12em",
-            color: "#05494a", opacity: 0.9,
+            color: C.teal, opacity: 0.9,
           }}>
             Bonjour &nbsp;·&nbsp; こんにちは &nbsp;·&nbsp; 你好 &nbsp;·&nbsp; مرحبا &nbsp;·&nbsp; Hola &nbsp;·&nbsp; Namaste &nbsp;·&nbsp; Ciao &nbsp;·&nbsp; Guten Tag &nbsp;·&nbsp; Annyeonghaseyo &nbsp;·&nbsp; Olá &nbsp;·&nbsp; Привет &nbsp;·&nbsp; สวัสดี &nbsp;·&nbsp; Xin chào &nbsp;·&nbsp; Sawubona &nbsp;·&nbsp; Merhaba &nbsp;·&nbsp; Bonjour &nbsp;·&nbsp; こんにちは &nbsp;·&nbsp; 你好 &nbsp;·&nbsp; مرحبا &nbsp;·&nbsp; Hola &nbsp;·&nbsp; Namaste &nbsp;·&nbsp; Ciao &nbsp;·&nbsp; Guten Tag &nbsp;·&nbsp; Annyeonghaseyo &nbsp;·&nbsp; Olá &nbsp;·&nbsp; Привет &nbsp;·&nbsp; สวัสดี &nbsp;·&nbsp; Xin chào &nbsp;·&nbsp; Sawubona &nbsp;·&nbsp; Merhaba &nbsp;·&nbsp;
           </div>
@@ -102,7 +90,7 @@ const InternationalHeroSection = () => {
         {/* Meridian rings */}
         <div aria-hidden="true" style={{
           position: "absolute", inset: 0,
-          pointerEvents: "none", overflow: "hidden", opacity: 0.07,
+          pointerEvents: "none", overflow: "hidden", opacity: 0.06,
         }}>
           <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice"
             style={{ width: "100%", height: "100%" }}>
@@ -125,12 +113,36 @@ const InternationalHeroSection = () => {
           }}>
 
             {/* ── LEFT: text ── */}
-            <div>
+            <div style={{ position: "relative", paddingLeft: isMobile ? 0 : 18 }}>
+              <div style={{
+                position: "absolute", left: 0, top: 8, bottom: 8, width: 3, borderRadius: 999,
+                background: "linear-gradient(to bottom, transparent, #2FC7A1, transparent)",
+                display: isMobile ? "none" : "block",
+              }} />
+
+              <div style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                border: "1px solid rgba(47,199,161,.4)", borderRadius: 999,
+                padding: "6px 14px", marginBottom: 16,
+              }}>
+                <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.tealLight, flexShrink: 0 }} />
+                <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: ".14em", textTransform: "uppercase", color: C.tealLight }}>
+                  Global Language Training
+                </span>
+              </div>
+
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20 }}>
+                <span style={{ width: 28, height: 1.5, background: C.teal, display: "block" }} />
+                <span style={{ fontSize: 11, letterSpacing: ".12em", textTransform: "uppercase", color: C.teal, fontWeight: 500 }}>
+                  Langma International
+                </span>
+              </div>
+
               <p style={{
-                fontFamily: "'Spline Sans Mono',monospace",
+                fontFamily: F.sans,
                 fontSize: ".72rem", letterSpacing: ".22em",
-                textTransform: "uppercase", color: S.gold,
-                marginBottom: 20,
+                textTransform: "uppercase", color: C.tealLight,
+                marginBottom: 12, fontWeight: 600,
               }}>
                 Established 2012 · New Delhi &amp; Online Worldwide
               </p>
@@ -138,17 +150,17 @@ const InternationalHeroSection = () => {
               <h1 style={{
                 fontFamily: "'Fraunces',Georgia,serif",
                 fontSize: "clamp(2.2rem,6vw,4.7rem)",
-                fontWeight: 700, color: S.paper,
-                lineHeight: 1.15, marginBottom: 18,
+                fontWeight: 700, color: "#111827",
+                lineHeight: 1.12, marginBottom: 18,
               }}>
                 Language Skills for a{" "}
-                <em style={{ color: S.gold, fontStyle: "italic" }}>Borderless Future</em>
+                <em style={{ color: "#4FA3D1", fontStyle: "italic" }}>Borderless Future</em>
               </h1>
 
               <p style={{
-                fontSize: isMobile ? "1.02rem" : "1.15rem", color: "rgba(0, 0, 0, 0.78)",
+                fontSize: isMobile ? "1.02rem" : "1.15rem", color: "#4C5C58",
                 marginBottom: 32, maxWidth: 520, lineHeight: 1.7,
-                fontFamily: "'Hanken Grotesk',system-ui,sans-serif",
+                fontFamily: F.sans,
               }}>
                 Train in 50+ languages with expert instructors at Langma International.
                 Built for students, working professionals, corporations, diplomatic missions,
@@ -161,15 +173,15 @@ const InternationalHeroSection = () => {
                   style={{
                     display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8,
                     padding: "14px 32px", borderRadius: 100,
-                    fontFamily: "'Hanken Grotesk',system-ui,sans-serif",
+                    fontFamily: F.sans,
                     fontWeight: 600, fontSize: ".95rem", textDecoration: "none",
-                    background: S.gold, color: S.ink,
-                    boxShadow: "0 2px 16px rgba(47,199,161,.28)",
-                    transition: `background ${S.tr}, transform ${S.tr}`,
+                    background: C.navy, color: "#F5F2EC",
+                    boxShadow: "0 10px 30px -15px rgba(26,37,64,.25)",
+                    transition: `background ${S.transition}, transform ${S.transition}`,
                     flex: isMobile ? "1 1 100%" : "0 0 auto",
                   }}
-                  onMouseEnter={e => { e.currentTarget.style.background = S.goldDeep; e.currentTarget.style.transform = "translateY(-2px)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = S.gold;     e.currentTarget.style.transform = "none"; }}
+                  onMouseEnter={e => { e.currentTarget.style.background = "#243160"; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = C.navy; e.currentTarget.style.transform = "none"; }}
                 >
                   Book a Free Consultation
                 </a>
@@ -178,16 +190,16 @@ const InternationalHeroSection = () => {
                   style={{
                     display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8,
                     padding: "14px 32px", borderRadius: 100,
-                    fontFamily: "'Hanken Grotesk',system-ui,sans-serif",
+                    fontFamily: F.sans,
                     fontWeight: 600, fontSize: ".95rem",
-                    background: "transparent", color: S.goldSoft,
-                    border: "1.5px solid rgba(244,241,233,.3)",
+                    background: C.bgWhite, color: C.navy,
+                    border: "2px solid #2FC7A1",
                     cursor: "pointer",
-                    transition: `border-color ${S.tr}, color ${S.tr}, transform ${S.tr}`,
+                    transition: `border-color ${S.transition}, background ${S.transition}, transform ${S.transition}`,
                     flex: isMobile ? "1 1 100%" : "0 0 auto",
                   }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = S.gold; e.currentTarget.style.color = S.gold; e.currentTarget.style.transform = "translateY(-2px)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(244,241,233,.3)"; e.currentTarget.style.color = S.goldSoft; e.currentTarget.style.transform = "none"; }}
+                  onMouseEnter={e => { e.currentTarget.style.background = C.bgMint; e.currentTarget.style.transform = "translateY(-2px)"; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = C.bgWhite; e.currentTarget.style.transform = "none"; }}
                 >
                   Let's Connect →
                 </button>
@@ -196,7 +208,7 @@ const InternationalHeroSection = () => {
               {/* Trust bar */}
               <div style={{
                 display: "flex", gap: isMobile ? 20 : 32, flexWrap: "wrap",
-                borderTop: "1px solid rgba(47,199,161,.22)", paddingTop: 28,
+                borderTop: "1px solid #D8E0EC", paddingTop: 28,
               }}>
                 {[
                   ["50+", "Global Languages Taught"],
@@ -206,12 +218,12 @@ const InternationalHeroSection = () => {
                   <div key={num} style={{ display: "flex", alignItems: "center", gap: 10 }}>
                     <div style={{
                       fontFamily: "'Fraunces',Georgia,serif",
-                      fontSize: "1.6rem", fontWeight: 700, color: S.gold, lineHeight: 1,
+                      fontSize: "1.6rem", fontWeight: 700, color: C.teal, lineHeight: 1,
                     }}>{num}</div>
                     <div style={{
-                      fontSize: ".82rem", color: "rgb(0, 0, 0)",
+                      fontSize: ".82rem", color: "#7E8C88",
                       lineHeight: 1.3, maxWidth: 80,
-                      fontFamily: "'Hanken Grotesk',system-ui,sans-serif",
+                      fontFamily: F.sans,
                     }}>{label}</div>
                   </div>
                 ))}
@@ -223,10 +235,11 @@ const InternationalHeroSection = () => {
               position: "relative",
               borderRadius: 22,
               overflow: "hidden",
-              boxShadow: "0 20px 60px rgba(0,0,0,.35)",
+              boxShadow: "0 20px 50px -20px rgba(41,97,102,.18)",
+              border: "1px solid rgba(47,199,161,.15)",
               aspectRatio: isMobile ? "16/10" : "4/3",
-              order: isTablet ? -1 : 0,          // image above text when stacked
-              maxWidth: isTablet ? 520 : "none", // keep it from getting huge when stacked
+              order: isTablet ? -1 : 0,
+              maxWidth: isTablet ? 520 : "none",
               width: "100%",
               margin: isTablet ? "0 auto" : 0,
             }}>
@@ -239,10 +252,9 @@ const InternationalHeroSection = () => {
                   objectFit: "cover", display: "block",
                 }}
               />
-              {/* Gold overlay tint at bottom */}
               <div style={{
                 position: "absolute", bottom: 0, left: 0, right: 0, height: "30%",
-                background: "linear-gradient(to top, rgba(13,27,51,.5), transparent)",
+                background: "linear-gradient(to top, rgba(41,97,102,.22), transparent)",
                 pointerEvents: "none",
               }} />
             </div>
@@ -287,7 +299,7 @@ const InternationalHeroSection = () => {
           alignItems: "center", justifyContent: "center",
           boxShadow: "0 4px 20px rgba(37,211,102,.4)",
           textDecoration: "none",
-          transition: `transform ${S.tr}`,
+          transition: `transform ${S.transition}`,
         }}
         onMouseEnter={e => e.currentTarget.style.transform = "scale(1.08)"}
         onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}

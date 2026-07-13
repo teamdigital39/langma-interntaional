@@ -17,13 +17,14 @@ const PathCard = ({ p }) => {
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
       style={{
-        background: hov ? "rgba(205, 229, 223, 0.08)" : "rgba(196, 196, 196, 0.05)",
-        border: `1px solid ${hov ? C.tealLight : "rgba(255, 255, 255, 0.25)"}`,
+        background: C.bgWhite,
+        border: `1px solid ${hov ? C.tealLight : "#D8E0EC"}`,
         borderRadius: S.radius,
         padding: "28px 26px",
         position: "relative",
         overflow: "hidden",
         transform: hov ? "translateY(-4px)" : "none",
+        boxShadow: hov ? "0 16px 40px -20px rgba(41,97,102,.15)" : "0 4px 16px -8px rgba(26,37,64,.06)",
         transition: `all ${S.transition}`,
       }}
     >
@@ -31,17 +32,17 @@ const PathCard = ({ p }) => {
       <div style={{
         position:"absolute", bottom:-10, right:14,
         fontFamily:F.sans, fontSize:"5rem", fontWeight:800,
-        color:"rgba(255, 255, 255, 0.08)", lineHeight:1,
+        color:"rgba(41,97,102,.06)", lineHeight:1,
         pointerEvents:"none", userSelect:"none",
       }}>{p.num}</div>
 
-      <span style={{ fontFamily:F.sans, fontSize:".7rem", letterSpacing:".18em", color:C.tealLight, textTransform:"uppercase", fontWeight:700, marginBottom:8, display:"block" }}>
+      <span style={{ fontFamily:F.sans, fontSize:".7rem", letterSpacing:".18em", color:C.teal, textTransform:"uppercase", fontWeight:700, marginBottom:8, display:"block" }}>
         Pathway {p.num}
       </span>
-      <h4 style={{ fontFamily:F.sans, fontWeight:700, color:"#E9F7F6", fontSize:"1.05rem", marginBottom:14 }}>{p.title}</h4>
+      <h4 style={{ fontFamily:F.sans, fontWeight:700, color:C.navy, fontSize:"1.05rem", marginBottom:14 }}>{p.title}</h4>
       <ul style={{ listStyle:"none", padding:0, margin:0, display:"flex", flexDirection:"column", gap:8 }}>
         {p.items.map((item, j) => (
-          <li key={j} style={{ fontFamily:F.sans, fontSize:".87rem", color:"rgba(233,247,246,.75)", display:"flex", alignItems:"baseline", gap:8 }}>
+          <li key={j} style={{ fontFamily:F.sans, fontSize:".87rem", color:"#4C5C58", display:"flex", alignItems:"baseline", gap:8 }}>
             <span style={{ color:C.tealLight, flexShrink:0, fontWeight:700 }}>—</span>
             {item}
           </li>
@@ -52,13 +53,13 @@ const PathCard = ({ p }) => {
 };
 
 const PathwaysSection = () => (
-  <section id="pathways" style={{ padding:"80px 0", background:C.navy }}>
+  <section id="pathways" style={{ padding:"80px 0", background:C.bgLight }}>
     <div style={{ maxWidth:1180, margin:"0 auto", padding:"0 26px" }}>
       <div style={{ textAlign:"center", maxWidth:720, margin:"0 auto 60px" }}>
-        <p style={{ fontFamily:F.sans, fontSize:".72rem", letterSpacing:".22em", textTransform:"uppercase", color:C.tealLight, marginBottom:8, fontWeight:600 }}>Tailored Learning Journeys</p>
-        <h2 style={{ fontFamily:F.sans, fontSize:"clamp(1.9rem,4vw,2.8rem)", fontWeight:700, color:"#E9F7F6", lineHeight:1.2, margin:0 }}>Language Learning Pathways</h2>
+        <p style={{ fontFamily:F.sans, fontSize:".72rem", letterSpacing:".22em", textTransform:"uppercase", color:C.teal, marginBottom:8, fontWeight:600 }}>Tailored Learning Journeys</p>
+        <h2 style={{ fontFamily:F.sans, fontSize:"clamp(1.9rem,4vw,2.8rem)", fontWeight:700, color:C.navy, lineHeight:1.2, margin:0 }}>Language Learning Pathways</h2>
         <div style={{ width:48, height:3, background:C.tealLight, margin:"14px auto 0", borderRadius:2 }} />
-        <p style={{ fontFamily:F.sans, fontSize:"1.05rem", color:"rgba(233,247,246,.72)", marginTop:18, lineHeight:1.7 }}>
+        <p style={{ fontFamily:F.sans, fontSize:"1.05rem", color:"#4C5C58", marginTop:18, lineHeight:1.7 }}>
           Every learner arrives with a different goal. Langma International designs programmes around where you are and where you need to go.
         </p>
       </div>

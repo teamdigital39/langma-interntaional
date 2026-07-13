@@ -34,19 +34,18 @@ const PopularCourses = ({ data, loading, error }) => {
 
   return (
     <section
-      className="w-full py-10 bg-cover bg-center"
-      style={{ backgroundImage: "url('/images/Background.png')" }}
+      className="w-full py-16 bg-[#F5F8F6]"
     >
       <div className="max-w-7xl mx-auto px-6">
 
         {/* TOP */}
         <div className="flex flex-col lg:flex-row justify-between items-start">
           <div>
-            <p className="text-sm font-semibold text-[#2FC7A1] uppercase">
+            <p className="text-sm font-semibold text-[#296166] uppercase tracking-wider">
               Top Popular Course
             </p>
 
-            <h2 className="text-[28px] lg:text-[32px] font-bold text-gray-900 pb-4">
+            <h2 className="text-[28px] lg:text-[32px] font-bold text-[#1A2540] pb-4">
               Speak Any  <span className="text-[#4FA3D1]">Language </span>with Confidence
             </h2>
 
@@ -80,10 +79,10 @@ const PopularCourses = ({ data, loading, error }) => {
               absolute left-0 top-1/2 -translate-y-1/2 z-10
               w-10 h-10 items-center justify-center
               rounded-full bg-white
-              border border-[#d9e8e7]
-              text-[#006064]
-              shadow-[0_2px_10px_rgba(0,0,0,0.08)]
-              hover:bg-[#006064] hover:text-white hover:border-[#006064]
+              border border-[#D8E0EC]
+              text-[#296166]
+              shadow-[0_4px_16px_-8px_rgba(26,37,64,.08)]
+              hover:bg-[#296166] hover:text-white hover:border-[#296166]
               transition-all duration-300
             "
           >
@@ -99,10 +98,10 @@ const PopularCourses = ({ data, loading, error }) => {
               absolute right-0 top-1/2 -translate-y-1/2 z-10
               w-10 h-10 items-center justify-center
               rounded-full bg-white
-              border border-[#d9e8e7]
-              text-[#006064]
-              shadow-[0_2px_10px_rgba(0,0,0,0.08)]
-              hover:bg-[#006064] hover:text-white hover:border-[#006064]
+              border border-[#D8E0EC]
+              text-[#296166]
+              shadow-[0_4px_16px_-8px_rgba(26,37,64,.08)]
+              hover:bg-[#296166] hover:text-white hover:border-[#296166]
               transition-all duration-300
             "
           >
@@ -142,9 +141,9 @@ const PopularCourses = ({ data, loading, error }) => {
           >
             {filteredCourses.map((course, index) => (
               <SwiperSlide key={`${course.link}-${index}`}>
-                <div className="bg-white rounded-2xl shadow-md p-4 h-full">
+                <div className="bg-white rounded-2xl shadow-[0_4px_20px_-8px_rgba(26,37,64,.08)] border border-[#D8E0EC] p-4 h-full hover:border-[#2FC7A1]/40 hover:shadow-[0_16px_40px_-20px_rgba(41,97,102,.15)] transition-all duration-300">
 
-                  <div className="h-[190px] overflow-hidden rounded-xl">
+                  <div className="h-[190px] overflow-hidden rounded-xl border border-[#D8E0EC]">
                     <img
                       src={course.image}
                       alt={course.title}
@@ -152,17 +151,17 @@ const PopularCourses = ({ data, loading, error }) => {
                     />
                   </div>
 
-                  <h3 className="mt-3 font-bold">
+                  <h3 className="mt-3 font-bold text-[#1A2540]">
                     {course.title}
                   </h3>
 
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-[#4C5C58]">
                     {course.desc}
                   </p>
 
                   <Link
                     to={course.link}
-                    className="mt-3 inline-block bg-yellow-300 px-4 py-2 rounded-full"
+                    className="mt-3 inline-block bg-[#1A2540] text-[#F5F2EC] px-5 py-2 rounded-full text-sm font-semibold hover:bg-[#243160] transition-colors duration-300"
                   >
                     Learn More
                   </Link>
