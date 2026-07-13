@@ -1,18 +1,42 @@
 import API_BASE from "../../config.js";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FiCheckCircle,
   FiAlertCircle,
   FiX,
 } from "react-icons/fi";
 
+const RAZORPAY_KEY = "rzp_live_k1Q4kKwidvbaAl";
+// const RAZORPAY_KEY = "rzp_test_yDPq1hOhTk89u8"; // test key from backend
+const PRODUCT_ID = "1";
+
+const loadRazorpayScript = () => {
+  return new Promise((resolve) => {
+    if (window.Razorpay) {
+      resolve(true);
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+};
+
+const getCsrfToken = () => {
+  const meta = document.querySelector('meta[name="csrf-token"]');
+  return meta ? meta.getAttribute("content") : "";
+};
+
 function Payment() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    service: "",
-    message: "",
+    amount: "",
+    description: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -20,32 +44,37 @@ function Payment() {
   const [responseMsg, setResponseMsg] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
 
-  // VALIDATIONS
+  useEffect(() => {
+    loadRazorpayScript();
+  }, []);
+
   const validateName = (name) =>
     /^[A-Za-z\s]{2,}$/.test(name.trim());
 
   const validateEmail = (email) =>
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
-      email
-    );
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const validatePhone = (phone) =>
     /^[0-9]{10,15}$/.test(phone);
 
-  const validateMessage = (message) =>
-    message.trim().length >= 5;
+  const validateAmount = (amount) =>
+    /^\d+(\.\d{1,2})?$/.test(amount) &&
+    parseFloat(amount) > 0;
 
-  // HANDLE CHANGE
+  const validateDescription = (description) =>
+    description.trim().length >= 5;
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     let updatedValue = value;
 
     if (name === "phone") {
-      updatedValue = value.replace(
-        /\D/g,
-        ""
-      );
+      updatedValue = value.replace(/\D/g, "");
+    }
+
+    if (name === "amount") {
+      updatedValue = value.replace(/[^\d.]/g, "");
     }
 
     setFormData({
@@ -59,127 +88,157 @@ function Payment() {
     });
   };
 
-  // SUBMIT
+  const savePaymentToBackend = async (paymentId) => {
+    const csrfToken = getCsrfToken();
+
+    const response = await fetch(`${API_BASE}/payment`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        ...(csrfToken && { "X-CSRF-TOKEN": csrfToken }),
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        amount: formData.amount,
+        description: formData.description.trim(),
+        product_id: PRODUCT_ID,
+        payment_id: paymentId,
+      }),
+    });
+
+    if (!response.ok && !response.redirected) {
+      throw new Error("Payment save failed");
+    }
+
+    return response;
+  };
+
+  const openRazorpayCheckout = () => {
+    const options = {
+      key: RAZORPAY_KEY,
+      amount: Math.round(parseFloat(formData.amount) * 100),
+      currency: "INR",
+      name: "Langma School of Languages",
+      description: formData.description.trim(),
+      image:
+        "https://langmainternational.com/normal_images/1589034655.png",
+      handler: async function (response) {
+        try {
+          await savePaymentToBackend(
+            response.razorpay_payment_id
+          );
+
+          setIsSuccess(true);
+          setResponseMsg(
+            "Payment successful!"
+          );
+
+          setFormData({
+            name: "",
+            email: "",
+            phone: "",
+            amount: "",
+            description: "",
+          });
+
+          setErrors({});
+
+          setTimeout(() => {
+            window.location.href = "/thank-you";
+          }, 1500);
+        } catch (error) {
+          console.error(error);
+          setIsSuccess(false);
+          setResponseMsg(
+            "Payment completed but saving failed. Please contact support."
+          );
+        } finally {
+          setLoading(false);
+        }
+      },
+      prefill: {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        contact: formData.phone.trim(),
+      },
+      theme: {
+        color: "#429198",
+      },
+      modal: {
+        ondismiss: function () {
+          setLoading(false);
+        },
+      },
+    };
+
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     let validationErrors = {};
 
     if (!formData.name.trim())
-      validationErrors.name =
-        "Name is required";
-    else if (
-      !validateName(formData.name)
-    )
-      validationErrors.name =
-        "Only alphabets allowed";
+      validationErrors.name = "Name is required";
+    else if (!validateName(formData.name))
+      validationErrors.name = "Only alphabets allowed";
 
     if (!formData.phone.trim())
-      validationErrors.phone =
-        "Phone is required";
-    else if (
-      !validatePhone(formData.phone)
-    )
+      validationErrors.phone = "Phone is required";
+    else if (!validatePhone(formData.phone))
       validationErrors.phone =
         "Enter valid 10-15 digit number";
 
     if (!formData.email.trim())
-      validationErrors.email =
-        "Email is required";
-    else if (
-      !validateEmail(formData.email)
-    )
-      validationErrors.email =
-        "Invalid email address";
+      validationErrors.email = "Email is required";
+    else if (!validateEmail(formData.email))
+      validationErrors.email = "Invalid email address";
 
-    if (!formData.service.trim())
-      validationErrors.service =
-        "Please enter payment";
+    if (!formData.amount.trim())
+      validationErrors.amount = "Amount is required";
+    else if (!validateAmount(formData.amount))
+      validationErrors.amount =
+        "Enter a valid amount greater than 0";
 
-    if (!formData.message.trim())
-      validationErrors.message =
-        "Message is required";
+    if (!formData.description.trim())
+      validationErrors.description =
+        "Description is required";
     else if (
-      !validateMessage(formData.message)
+      !validateDescription(formData.description)
     )
-      validationErrors.message =
+      validationErrors.description =
         "Minimum 5 characters required";
 
     setErrors(validationErrors);
 
-    if (
-      Object.keys(validationErrors).length >
-      0
-    )
+    if (Object.keys(validationErrors).length > 0)
       return;
+
+    const scriptLoaded = await loadRazorpayScript();
+    if (!scriptLoaded || !window.Razorpay) {
+      setIsSuccess(false);
+      setResponseMsg(
+        "Unable to load Razorpay. Please try again."
+      );
+      return;
+    }
 
     try {
       setLoading(true);
       setResponseMsg("");
-
-      const payload = {
-        name: formData.name,
-        email: formData.email,
-        mobile: formData.phone,
-        message: formData.message,
-        type: "Payment Inquiry",
-        service:
-          formData.service || "Payment",
-        // company: "Langma International",
-        // language: "German",
-      };
-
-      const response = await fetch(
-        `${API_BASE}/api/contact-lead`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body: JSON.stringify(payload),
-        }
-      );
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setIsSuccess(true);
-
-        setResponseMsg(
-          "Form submitted successfully!"
-        );
-
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          service: "",
-          message: "",
-        });
-
-        setErrors({});
-
-        setTimeout(() => {
-          setResponseMsg("");
-        }, 3000);
-      } else {
-        setIsSuccess(false);
-
-        setResponseMsg(
-          data.message ||
-            "Submission failed. Please try again."
-        );
-      }
+      openRazorpayCheckout();
     } catch (error) {
       console.error(error);
-
       setIsSuccess(false);
-
       setResponseMsg(
         "Something went wrong. Please try again."
       );
-    } finally {
       setLoading(false);
     }
   };
@@ -195,14 +254,12 @@ function Payment() {
         <div className="max-w-6xl mx-auto bg-white rounded-xl shadow-md p-6 md:p-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
 
-            {/* QR SECTION */}
             <div className="flex justify-center">
               <div className="bg-gray-50 p-4 rounded-lg shadow-inner">
                 <div className="text-center mb-3">
                   <p className="text-sm font-semibold text-purple-600">
                     All in One QR
                   </p>
-
                   <p className="text-xs text-gray-500">
                     UPI, GPay, Paytm
                   </p>
@@ -216,13 +273,10 @@ function Payment() {
               </div>
             </div>
 
-            {/* FORM */}
             <form
               className="space-y-4"
               onSubmit={handleSubmit}
             >
-
-              {/* ALERT */}
               {responseMsg && (
                 <div
                   className={`flex items-center justify-between p-4 rounded-xl ${
@@ -237,7 +291,6 @@ function Payment() {
                     ) : (
                       <FiAlertCircle size={20} />
                     )}
-
                     <span className="text-sm">
                       {responseMsg}
                     </span>
@@ -245,16 +298,13 @@ function Payment() {
 
                   <button
                     type="button"
-                    onClick={() =>
-                      setResponseMsg("")
-                    }
+                    onClick={() => setResponseMsg("")}
                   >
                     <FiX size={18} />
                   </button>
                 </div>
               )}
 
-              {/* NAME */}
               <div>
                 <input
                   type="text"
@@ -266,7 +316,6 @@ function Payment() {
                     "name"
                   )}`}
                 />
-
                 {errors.name && (
                   <p className="text-red-500 text-xs">
                     {errors.name}
@@ -274,7 +323,6 @@ function Payment() {
                 )}
               </div>
 
-              {/* EMAIL */}
               <div>
                 <input
                   type="email"
@@ -286,7 +334,6 @@ function Payment() {
                     "email"
                   )}`}
                 />
-
                 {errors.email && (
                   <p className="text-red-500 text-xs">
                     {errors.email}
@@ -294,7 +341,6 @@ function Payment() {
                 )}
               </div>
 
-              {/* PHONE */}
               <div>
                 <input
                   type="tel"
@@ -306,7 +352,6 @@ function Payment() {
                     "phone"
                   )}`}
                 />
-
                 {errors.phone && (
                   <p className="text-red-500 text-xs">
                     {errors.phone}
@@ -314,57 +359,49 @@ function Payment() {
                 )}
               </div>
 
-              {/* PAYMENT / SERVICE */}
               <div>
                 <input
                   type="text"
-                  name="service"
-                  value={formData.service}
+                  name="amount"
+                  value={formData.amount}
                   onChange={handleChange}
-                  placeholder="Enter Payment"
+                  placeholder="Enter Amount (INR)"
                   className={`w-full border rounded-md px-4 py-2 ${inputError(
-                    "service"
+                    "amount"
                   )}`}
                 />
-
-                {errors.service && (
+                {errors.amount && (
                   <p className="text-red-500 text-xs">
-                    {errors.service}
+                    {errors.amount}
                   </p>
                 )}
               </div>
 
-              {/* MESSAGE */}
               <div>
                 <textarea
                   rows="3"
-                  name="message"
-                  value={formData.message}
+                  name="description"
+                  value={formData.description}
                   onChange={handleChange}
-                  placeholder="Write your message"
+                  placeholder="Enter payment description"
                   className={`w-full border rounded-md px-4 py-2 ${inputError(
-                    "message"
+                    "description"
                   )}`}
                 />
-
-                {errors.message && (
+                {errors.description && (
                   <p className="text-red-500 text-xs">
-                    {errors.message}
+                    {errors.description}
                   </p>
                 )}
               </div>
 
-              {/* BUTTON */}
               <button
                 type="submit"
                 disabled={loading}
                 className="bg-[#429198] text-white px-6 py-2 rounded-md w-full disabled:opacity-50"
               >
-                {loading
-                  ? "Submitting..."
-                  : "Submit"}
+                {loading ? "Processing..." : "Pay Now"}
               </button>
-
             </form>
           </div>
         </div>
