@@ -1,0 +1,334 @@
+body.translation-services-active {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+  background: #fff;
+}
+
+/* ── Translation template theme (beats Tailwind utility conflicts) ── */
+.translation-services-page {
+  --bs-primary: #003a66;
+  --bs-secondary: #e02454;
+  --bs-white: #ffffff;
+  --bs-light: #f0f5fb;
+  --bs-dark: #003a66;
+
+  font-family: "Open Sans", sans-serif;
+  color: #333;
+  background: #fff;
+  isolation: isolate;
+}
+
+.translation-services-page * {
+  box-sizing: border-box;
+}
+
+/* Bootstrap utility overrides inside this page */
+.translation-services-page .bg-primary {
+  background-color: #003a66 !important;
+}
+
+.translation-services-page .bg-light {
+  background-color: #f0f5fb !important;
+}
+
+.translation-services-page .bg-white {
+  background-color: #fff !important;
+}
+
+.translation-services-page .text-primary {
+  color: #003a66 !important;
+}
+
+.translation-services-page .text-secondary {
+  color: #e02454 !important;
+}
+
+.translation-services-page .text-white {
+  color: #fff !important;
+}
+
+.translation-services-page .text-muted {
+  color: #6c757d !important;
+}
+
+.translation-services-page .border-primary {
+  border-color: #003a66 !important;
+}
+
+.translation-services-page .btn.btn-primary {
+  background: #e02454 !important;
+  color: #fff !important;
+  border-color: #e02454 !important;
+}
+
+.translation-services-page .btn.btn-primary:hover {
+  background: #003a66 !important;
+  color: #fff !important;
+  border-color: #003a66 !important;
+}
+
+.translation-services-page .btn.btn-primary.btn-lg-square {
+  background: #e02454 !important;
+}
+
+/* ── Hero carousel ── */
+.translation-services-page .carousel-header .carousel-inner .carousel-item {
+  min-height: 100vh;
+}
+
+.translation-services-page .carousel-header .carousel-inner .carousel-item img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.translation-services-page .carousel-header .carousel-inner .carousel-item .carousel-caption {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)) !important;
+}
+
+/* ── Counter facts section background ── */
+.translation-services-page .counter-facts {
+  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)),
+    var(--translation-bg) !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+
+.translation-services-page .counter-facts .counter {
+  background: #fff !important;
+}
+
+.translation-services-page .counter-facts .counter::before {
+  background-color: #003a66 !important;
+}
+
+.translation-services-page .counter-facts .counter .counter-icon {
+  background: rgba(1, 143, 252, 0.5) !important;
+}
+
+.translation-services-page .counter-facts .counter .counter-icon::before {
+  background: rgba(0, 58, 102, 0.5) !important;
+}
+
+.translation-services-page .counter-facts .counter h3 {
+  color: #003a66 !important;
+}
+
+/* ── Service cards ── */
+.translation-services-page .service .service-item .service-inner .service-title .service-content {
+  background: #003a66 !important;
+}
+
+.translation-services-page .service .service-item .service-inner .service-title .service-content p {
+  color: #fff !important;
+}
+
+/* ── Footer ── */
+.translation-services-page .footer {
+  background: #003a66 !important;
+}
+
+.translation-services-page .footer .footer-item a {
+  color: #fff !important;
+}
+
+.translation-services-page .footer .footer-item a:hover {
+  color: #e02454 !important;
+}
+
+/* ── About section stat box ── */
+.translation-services-page .container-fluid.py-5 {
+  background: #fff;
+}
+
+/* ── Section title decorative lines ── */
+.translation-services-page .section-title .sub-style::before,
+.translation-services-page .sub-title::before {
+  border-color: #e02454 !important;
+}
+
+.translation-services-page .section-title .sub-style::after,
+.translation-services-page .sub-title::after {
+  border-color: #003a66 !important;
+}
+
+/* ── Navbar: override Tailwind link/reset styles ── */
+.translation-services-page .nav-bar {
+  z-index: 1030;
+}
+
+.translation-services-page .navbar.navbar-expand-lg {
+  background-color: #f0f5fb !important;
+}
+
+.translation-services-page .navbar-brand {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  margin-right: 1rem !important;
+  text-decoration: none !important;
+}
+
+.translation-services-page .navbar-brand img {
+  max-height: 60px;
+  width: auto;
+  height: auto;
+  transition: 0.5s;
+}
+
+.translation-services-page .nav-bar.sticky-top .navbar-brand img,
+.translation-services-page .sticky-top .navbar-brand img {
+  max-height: 45px;
+}
+
+.translation-services-page .navbar-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.translation-services-page .navbar-nav .nav-link {
+  font-family: "Poppins", sans-serif !important;
+  position: relative !important;
+  display: block !important;
+  margin-right: 25px !important;
+  padding: 35px 0 !important;
+  color: #003a66 !important;
+  font-size: 17px !important;
+  font-weight: 400 !important;
+  text-decoration: none !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  transition: 0.5s !important;
+  line-height: 1.5 !important;
+}
+
+.translation-services-page .nav-bar.sticky-top .navbar-nav .nav-link,
+.translation-services-page .sticky-top .navbar-nav .nav-link {
+  padding: 20px 0 !important;
+  color: #003a66 !important;
+}
+
+.translation-services-page .navbar-nav .nav-link:hover,
+.translation-services-page .navbar-nav .nav-link.active {
+  color: #e02454 !important;
+}
+
+.translation-services-page .navbar-toggler {
+  padding: 10px 20px !important;
+  border: 1px solid #003a66 !important;
+  color: #003a66 !important;
+  background: transparent !important;
+  border-radius: 0.25rem !important;
+}
+
+.translation-services-page .navbar-toggler:focus {
+  box-shadow: none !important;
+}
+
+@media (min-width: 992px) {
+  .translation-services-page .nav-bar.sticky-top .navbar,
+  .translation-services-page .sticky-top.navbar {
+    background-color: #f0f5fb !important;
+  }
+
+  .translation-services-page .navbar-nav .nav-link::before,
+  .translation-services-page .navbar-nav .nav-link::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #003a66;
+    opacity: 0;
+    transition: all 0.5s;
+  }
+
+  .translation-services-page .navbar-nav .nav-link::before {
+    top: 30px;
+    bottom: auto;
+  }
+
+  .translation-services-page .navbar-nav .nav-link::after {
+    top: auto;
+    bottom: 30px;
+  }
+
+  .translation-services-page .navbar-nav .nav-link:hover::before,
+  .translation-services-page .navbar-nav .nav-link.active::before {
+    top: 20px;
+    opacity: 1;
+  }
+
+  .translation-services-page .navbar-nav .nav-link:hover::after,
+  .translation-services-page .navbar-nav .nav-link.active::after {
+    bottom: 20px;
+    opacity: 1;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .translation-services-page .navbar-nav .nav-link {
+    padding: 10px 0 !important;
+    margin-left: 0 !important;
+    color: #212529 !important;
+  }
+
+  .translation-services-page .navbar-collapse {
+    margin-top: 15px;
+    border-top: 1px solid #ddd;
+  }
+}
+
+/* ── Back to top ── */
+.translation-services-page .back-to-top {
+  display: none;
+}
+
+.translation-services-page .back-to-top.show {
+  display: flex;
+}
+
+/* ── Spinner (matches original template) ── */
+#translation-spinner {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-out, visibility 0s linear 0.5s;
+  z-index: 99999;
+}
+
+#translation-spinner.show {
+  transition: opacity 0.5s ease-out, visibility 0s linear 0s;
+  visibility: visible;
+  opacity: 1;
+}
+
+.translation-services-page .translation-form-msg {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.translation-services-page .translation-form-msg.success {
+  color: #198754;
+}
+
+.translation-services-page .translation-form-msg.error {
+  color: #dc3545;
+}

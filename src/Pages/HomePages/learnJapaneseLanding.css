@@ -1,0 +1,259 @@
+/* Isolate Japanese landing page from site Tailwind / global styles */
+body.japanese-landing-active {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+.learn-japanese-landing {
+  font-family: "Poppins", sans-serif;
+  color: #444;
+  background: #fff;
+  isolation: isolate;
+}
+
+.learn-japanese-landing .branding {
+  color: #bc012e;
+}
+
+.learn-japanese-landing header#stickyHeader {
+  position: absolute !important;
+  width: 100% !important;
+  z-index: 111 !important;
+  padding-top: 30px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.learn-japanese-landing header#stickyHeader .logo {
+  display: flex;
+  align-items: center;
+}
+
+.learn-japanese-landing header#stickyHeader .logo img {
+  width: 173px !important;
+  height: 40px !important;
+  max-width: none !important;
+  display: inline-block !important;
+  object-fit: contain;
+}
+
+.learn-japanese-landing .hero-section {
+  overflow: hidden !important;
+  position: relative !important;
+  padding-top: 180px !important;
+}
+
+.learn-japanese-landing .hero-section::before {
+  background-color: #0e0c01 !important;
+  height: 1556px !important;
+  content: "" !important;
+  position: absolute !important;
+  width: 2300px !important;
+  border-radius: 666px !important;
+  transform: rotate(331deg) !important;
+  top: -93% !important;
+  left: -10% !important;
+  z-index: 0 !important;
+  box-shadow: 94px 0 0 88px rgb(237 237 237) !important;
+  pointer-events: none;
+}
+
+.learn-japanese-landing .hero-section::after {
+  height: 1556px !important;
+  content: "" !important;
+  position: absolute !important;
+  width: 2300px !important;
+  border-radius: 666px !important;
+  transform: rotate(331deg) !important;
+  top: -93% !important;
+  left: -10% !important;
+  z-index: 0 !important;
+  opacity: 0.1 !important;
+  background-repeat: no-repeat !important;
+  background-image: var(--japanese-hero-bg) !important;
+  background-size: cover !important;
+  background-position: center !important;
+  pointer-events: none;
+}
+
+.learn-japanese-landing .hero-section .container {
+  position: relative;
+  z-index: 1;
+}
+
+.learn-japanese-landing .hero-section-text h1,
+.learn-japanese-landing .hero-section-text p {
+  color: #fff;
+}
+
+.learn-japanese-landing img.dotsc {
+  width: 50px !important;
+  height: 40px !important;
+  max-width: none !important;
+  display: inline-block !important;
+  vertical-align: middle;
+}
+
+.learn-japanese-landing img.dots {
+  width: 94px !important;
+  height: 85px !important;
+  max-width: none !important;
+}
+
+.learn-japanese-landing .we-are-img img,
+.learn-japanese-landing .some-features-img img,
+.learn-japanese-landing .questions-img > img:first-child,
+.learn-japanese-landing .team-expert > img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.learn-japanese-landing .service img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.learn-japanese-landing .creative-design img {
+  width: 72px !important;
+  height: 62px !important;
+  max-width: none !important;
+}
+
+.learn-japanese-landing .review img {
+  width: 98px !important;
+  height: 40px !important;
+  max-width: none !important;
+}
+
+.learn-japanese-landing .state img {
+  width: 52px !important;
+  height: 52px !important;
+  max-width: none !important;
+}
+
+.learn-japanese-landing .get-a-quote input[type="text"],
+.learn-japanese-landing .get-a-quote input[type="email"],
+.learn-japanese-landing .get-a-quote input[type="number"],
+.learn-japanese-landing .get-a-quote input[type="tel"] {
+  width: 100% !important;
+  height: 64px !important;
+  border: 1px solid #d3d3d3 !important;
+  border-radius: 12px !important;
+  outline: 0 !important;
+  margin-bottom: 20px !important;
+  padding-left: 30px !important;
+  padding-right: 86px !important;
+  color: #444 !important;
+  font-size: 16px !important;
+  font-family: "Poppins", sans-serif !important;
+  background: #fff !important;
+  box-shadow: 0 0 20px 7px rgba(0, 0, 0, 0.08) !important;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.learn-japanese-landing .get-a-quote .group-img {
+  position: relative;
+}
+
+.learn-japanese-landing .get-a-quote .group-img::before {
+  content: "";
+  background-color: #d9d9d9;
+  width: 1px;
+  height: 35px;
+  position: absolute;
+  right: 70px;
+  top: 15px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.learn-japanese-landing .get-a-quote .group-img svg {
+  position: absolute !important;
+  right: 30px !important;
+  width: 24px !important;
+  height: auto !important;
+  top: 21px !important;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.learn-japanese-landing .get-a-quote button.batton {
+  width: 100% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: #fff !important;
+  background-color: #bc012e !important;
+  padding: 16px 40px !important;
+  border-radius: 50px !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  font-family: "Poppins", sans-serif !important;
+  border: 0 !important;
+  position: relative !important;
+  overflow: hidden !important;
+  z-index: 0 !important;
+  cursor: pointer !important;
+  box-shadow: none !important;
+  text-transform: none !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+
+.learn-japanese-landing .get-a-quote button.batton::before {
+  content: "";
+  width: 20%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 25%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  z-index: -1;
+  transition: all 0.3s ease-out 0.1s;
+}
+
+.learn-japanese-landing .get-a-quote button.batton:hover {
+  color: #fff !important;
+  background-color: #bc012e !important;
+}
+
+.learn-japanese-landing .get-a-quote button.batton:hover::before {
+  width: 100%;
+  opacity: 0.5;
+  visibility: visible;
+}
+
+.learn-japanese-landing .get-a-quote button.batton:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.learn-japanese-landing .accordion-item .heading {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.learn-japanese-landing .japanese-landing-form-msg {
+  margin-top: 12px;
+  color: #bc012e;
+  font-weight: 500;
+}
+
+.learn-japanese-landing #button {
+  display: inline-block;
+}

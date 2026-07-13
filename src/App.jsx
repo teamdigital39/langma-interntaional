@@ -115,9 +115,22 @@ import SwitzerlandPRPage from "./Pages/HomePages/SwitzerlandPR";
 import LangmaThailandEliteVisaPage from "./Pages/HomePages/ThilandEliteVisa";
 import GoldenVisaAssessment from "./Pages/HomePages/GoldenVisaAssessment";
 import AboutLangma from "./Pages/HomePages/Aboutus";
+import LearnGermanLanguage from "./Pages/HomePages/LearnGermanLanguage";
+import LearnKoreanLanguage from "./Pages/HomePages/LearnKoreanLanguage";
+import LearnJapaneseLanguage from "./Pages/HomePages/LearnJapaneseLanguage";
+import TranslationServices from "./Pages/HomePages/TranslationServices";
+
+const STANDALONE_LANDING_ROUTES = [
+  "/learn-german-language",
+  "/learn-korean-language",
+  "/learn-japanese-language",
+  "/translation-services",
+];
+
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
+  const isStandaloneLanding = STANDALONE_LANDING_ROUTES.includes(location.pathname);
 
   useEffect(() => {
     setLoading(true);
@@ -130,10 +143,10 @@ function App() {
   return (
     <>
     <div className="w-full overflow-x-hidden">
-      <TopBar />
+      {!isStandaloneLanding && <TopBar />}
       <ScrollToTop />
-      <FloatingCallButton/>
-      {loading && <Loader />}
+      {!isStandaloneLanding && <FloatingCallButton />}
+      {!isStandaloneLanding && loading && <Loader />}
 
       <Routes>
           <Route path="/" element={<HeroSection />} />
@@ -247,11 +260,15 @@ function App() {
           <Route path="/eb5-usa" element={<LangmaEB5USAPage />} />
           <Route path="/indonesia-second-home-visa" element={<LangmaIndonesiaSecondHomeVisaPage />} />
           <Route path="/thailand-elite-visa" element={<LangmaThailandEliteVisaPage />} />
+          <Route path="/learn-german-language" element={<LearnGermanLanguage />} />
+          <Route path="/learn-korean-language" element={<LearnKoreanLanguage />} />
+          <Route path="/learn-japanese-language" element={<LearnJapaneseLanguage />} />
+          <Route path="/translation-services" element={<TranslationServices />} />
           <Route path="/:slug" element={<Arabic/>} />
           <Route path="/golden-visa-assessment" element={<GoldenVisaAssessment/>} />
         </Routes>
 
-      <Footer />
+      {!isStandaloneLanding && <Footer />}
       </div>
     </>
   );
