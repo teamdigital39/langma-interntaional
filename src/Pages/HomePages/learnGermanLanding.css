@@ -17,6 +17,16 @@ body.german-landing-active {
   color: #00be85;
 }
 
+/* Large screens — keep content from stretching edge-to-edge */
+@media (min-width: 1200px) {
+  .learn-german-landing .container {
+    max-width: 1320px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100%;
+  }
+}
+
 /* Header — match api.langmainternational.com landing */
 .learn-german-landing header#stickyHeader {
   position: absolute !important;

@@ -13,6 +13,17 @@ body.korean-landing-active {
   isolation: isolate;
 }
 
+/* Large screens — keep content from stretching edge-to-edge */
+@media (min-width: 1200px) {
+  .learn-korean-landing .container,
+  .learn-korean-landing .container-xl {
+    max-width: 1320px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100%;
+  }
+}
+
 .learn-korean-landing #header.header {
   position: fixed !important;
   top: 0;

@@ -17,6 +17,16 @@ body.japanese-landing-active {
   color: #bc012e;
 }
 
+/* Large screens — keep content from stretching edge-to-edge */
+@media (min-width: 1200px) {
+  .learn-japanese-landing .container {
+    max-width: 1320px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100%;
+  }
+}
+
 .learn-japanese-landing header#stickyHeader {
   position: absolute !important;
   width: 100% !important;

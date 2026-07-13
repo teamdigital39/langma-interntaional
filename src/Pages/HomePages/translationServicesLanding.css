@@ -24,6 +24,31 @@ body.translation-services-active {
   box-sizing: border-box;
 }
 
+/* Large screens — keep content from stretching edge-to-edge */
+@media (min-width: 1200px) {
+  .translation-services-page .container {
+    max-width: 1320px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 100%;
+  }
+
+  .translation-services-page .nav-bar .navbar {
+    max-width: 1320px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .translation-services-page .carousel-caption > div {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 /* Bootstrap utility overrides inside this page */
 .translation-services-page .bg-primary {
   background-color: #003a66 !important;
