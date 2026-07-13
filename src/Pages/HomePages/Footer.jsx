@@ -12,7 +12,7 @@ import { FaYoutube, FaXTwitter, FaLinkedinIn } from "react-icons/fa6";
 const Footer = () => {
   return (
     <footer
-      className="text-gray-300 mt-10 relative bg-cover bg-center bg-no-repeat bg-gray-900"
+      className="text-gray-300 relative bg-cover bg-center bg-no-repeat bg-gray-900"
       style={{ backgroundImage: "url('/images/pngwing.com 2.png')" }}
     >
 

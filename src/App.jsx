@@ -114,6 +114,7 @@ import SpainNLVPage from "./Pages/HomePages/SpainNLVPage";
 import SwitzerlandPRPage from "./Pages/HomePages/SwitzerlandPR";
 import LangmaThailandEliteVisaPage from "./Pages/HomePages/ThilandEliteVisa";
 import GoldenVisaAssessment from "./Pages/HomePages/GoldenVisaAssessment";
+import AboutLangma from "./Pages/HomePages/Aboutus";
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -136,7 +137,8 @@ function App() {
 
       <Routes>
           <Route path="/" element={<HeroSection />} />
-          <Route path="/about" element={<AboutHeroSection />} />
+          {/* <Route path="/about" element={<AboutHeroSection />} /> */}
+          <Route path="/about" element={<AboutLangma />} />
           <Route path="/work-abroad" element={<AbrotHeroSection />} />
           {/* <Route path="/study-abroad" element={<StudyAbrotHeroSection />} /> */}
           <Route path="/study-abroad" element={<StudyAbrotHeroSection1 />} />
