@@ -641,6 +641,7 @@ const LangmaMaltaGlobalResidenceProgrammePage = () => {
   .lg-page .fam2-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
   .lg-page .fam2-card {background:var(--ivory);border:1px solid var(--line);border-radius:var(--radius);padding:34px 30px;}
   .lg-page .fam2-card .ic {width:44px;height:44px;border-radius:50%;background:var(--navy);color:var(--gold-soft);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:19px;margin-bottom:18px;}
+  .lg-page .fam2-card .fam2-img {width:100%;height:170px;object-fit:cover;border-radius:var(--radius);margin-bottom:18px;}
   .lg-page .fam2-card h3 {font-size:21px;margin-bottom:8px;}
   .lg-page .fam2-card p {color:var(--muted);font-size:14.5px;}
 
@@ -833,7 +834,7 @@ const LangmaMaltaGlobalResidenceProgrammePage = () => {
       </div>
       <div className="hero-visual">
         <div className="hero-img-frame">
-          <img src="https://images.unsplash.com/photo-1696159380859-2d6b563cfc4f?q=80&w=1200&auto=format&fit=crop" alt="The fortified skyline of Valletta, Malta's capital, overlooking the Grand Harbour" />
+          <img src="/images/malta-global/residence-mediterranean.png" alt="Lifetime of residence rights in the heart of the Mediterranean — Valletta skyline" />
           <div className="hero-img-badge">
             <span className="dot-pulse"></span>
             <span>Valletta, Malta</span>
@@ -872,7 +873,7 @@ const LangmaMaltaGlobalResidenceProgrammePage = () => {
       </div>
       <div className="about-media reveal">
         <span className="frame"></span>
-        <img src="https://images.unsplash.com/photo-1667570224324-9dd6b75f1d72?q=80&w=1200&auto=format&fit=crop" alt="Valletta's historic waterfront promenade lined with colourful balconies along the Grand Harbour" />
+        <img src="/images/malta-global/stable-european-base.png" alt="A stable, connected and distinguished European base on the Mediterranean coast" />
       </div>
     </div>
 
@@ -1012,7 +1013,7 @@ const LangmaMaltaGlobalResidenceProgrammePage = () => {
     <div className="fam-grid">
       <div className="fam-media reveal">
         <span className="frame"></span>
-        <img src="https://images.unsplash.com/photo-1728051104379-de466fd0f3f4?q=80&w=1200&auto=format&fit=crop" alt="A luxury Maltese resort infinity pool overlooking the island, reflecting the lifestyle families enjoy" />
+        <img src="/images/malta-global/family-living.png" alt="Family living and dining together in Malta" />
       </div>
       <div className="reveal">
         <span className="eyebrow">Eligible Applicants &amp; Family</span>
@@ -1101,8 +1102,14 @@ const LangmaMaltaGlobalResidenceProgrammePage = () => {
     </div>
     <div className="fam2-grid">
       <div className="fam2-card reveal"><div className="ic">&#10031;</div><h3>Mediterranean climate</h3><p>Mild winters and long, dry summers make outdoor life a year-round feature rather than a seasonal luxury.</p></div>
-      <div className="fam2-card reveal"><div className="ic">&#10010;</div><h3>Accessible healthcare</h3><p>Residents and family members can access medical treatment in Malta without needing separate visas, alongside an internationally regarded public health system.</p></div>
-      <div className="fam2-card reveal"><div className="ic">&#9998;</div><h3>Education in English</h3><p>An English-language education system, complemented by international schools, gives children continuity wherever they have studied before.</p></div>
+      <div className="fam2-card reveal">
+        <img className="fam2-img" src="/images/malta-global/healthcare-access.png" alt="Healthcare access in Malta" />
+        <div className="ic">&#10010;</div><h3>Accessible healthcare</h3><p>Residents and family members can access medical treatment in Malta without needing separate visas, alongside an internationally regarded public health system.</p>
+      </div>
+      <div className="fam2-card reveal">
+        <img className="fam2-img" src="/images/malta-global/international-education.png" alt="International education in Malta" />
+        <div className="ic">&#9998;</div><h3>Education in English</h3><p>An English-language education system, complemented by international schools, gives children continuity wherever they have studied before.</p>
+      </div>
       <div className="fam2-card reveal"><div className="ic">&#9733;</div><h3>A genuinely safe island</h3><p>Malta is consistently regarded as one of Europe's safer destinations, an important consideration for families relocating with children.</p></div>
       <div className="fam2-card reveal"><div className="ic">&#9215;</div><h3>Compact, connected living</h3><p>Nowhere on the islands is far from anywhere else, and ferry and air connections keep mainland Europe within easy reach.</p></div>
       <div className="fam2-card reveal"><div className="ic">&#9919;</div><h3>An established expatriate community</h3><p>Decades of inbound relocation have built a settled, welcoming international community across Malta's main towns.</p></div>
@@ -1120,12 +1127,12 @@ const LangmaMaltaGlobalResidenceProgrammePage = () => {
     </div>
     <div className="life-grid">
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1632422836490-b8d03c494856?q=80&w=1200&auto=format&fit=crop" alt="Valletta's historic skyline and bastions above the Grand Harbour" />
+        <img src="/images/malta-global/historic-architecture.png" alt="Historic architecture and Mediterranean heritage in Malta" />
         <div className="ov"></div>
         <div className="cap"><h3>Valletta &amp; the Grand Harbour</h3><p>The fortified capital — Baroque architecture, government and culture, with the harbour's marinas close at hand.</p></div>
       </div>
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1623718649591-311775a30c43?q=80&w=1200&auto=format&fit=crop" alt="A modern luxury infinity pool and sun deck overlooking Malta, typical of Sliema and St Julian's" />
+        <img src="/images/malta-global/yacht-marinas.png" alt="Yacht marinas and leisure lifestyle in Malta" />
         <div className="ov"></div>
         <div className="cap"><h3>Sliema &amp; St Julian's</h3><p>Malta's contemporary waterfront — marinas, dining and a concentration of international residents and businesses.</p></div>
       </div>

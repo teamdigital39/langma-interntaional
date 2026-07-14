@@ -358,7 +358,7 @@ const HungaryBusinessResidencyPage = () => {
               </div>
               <div className="hero-visual">
                 <div className="hero-img-frame">
-                  <img src="https://images.unsplash.com/photo-1555990793-da11153b2473?q=80&w=1200" alt="The Hungarian Parliament Building illuminated at dusk, reflected in the waters of the Danube" />
+                  <img src="/images/hungary-business/residency-opening-company.png" alt="Budapest Castle District and Matthias Church — Hungary residency by opening a company" />
                   <div className="hero-img-badge">
                     <span className="dot-pulse"></span>
                     <span>Budapest, Hungary</span>
@@ -397,7 +397,7 @@ const HungaryBusinessResidencyPage = () => {
               </div>
               <div className="about-media hu-reveal">
                 <span className="frame" aria-hidden="true"></span>
-                <img src="https://images.unsplash.com/photo-1535598745644-bc7913bb1a2a?q=80&w=1200" alt="Aerial view of Budapest's Chain Bridge spanning the Danube between Buda and Pest" />
+                <img src="/images/hungary-business/central-european-crossroads.png" alt="St. Stephen's Basilica on Zrínyi Street, Budapest — Hungary as a Central European crossroads" />
               </div>
             </div>
 
@@ -550,7 +550,7 @@ const HungaryBusinessResidencyPage = () => {
             <div className="about-grid biz-grid" style={{ marginBottom: 0 }}>
               <div className="biz-media hu-reveal">
                 <span className="frame" aria-hidden="true"></span>
-                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1200" alt="Two entrepreneurs in discussion at a modern European business meeting" />
+                <img src="/images/hungary-business/business-requirements.png" alt="Professional advisors reviewing legal and business requirements for company residency" />
               </div>
               <div className="hu-reveal">
                 <span className="eyebrow">Business Requirements</span>
@@ -620,7 +620,7 @@ const HungaryBusinessResidencyPage = () => {
             <div className="fam-grid">
               <div className="fam-media hu-reveal">
                 <span className="frame" aria-hidden="true"></span>
-                <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1200" alt="A family walking together along a sunlit European promenade" />
+                <img src="/images/hungary-business/family-belongs.png" alt="A family viewing a property with a professional advisor — your family belongs in the picture" />
               </div>
               <div className="hu-reveal">
                 <span className="eyebrow">Family Inclusion</span>
@@ -708,9 +708,9 @@ const HungaryBusinessResidencyPage = () => {
             </div>
             <div className="life-grid">
               {[
-                { img: 'https://images.unsplash.com/photo-1512484776495-a09d92e87c3b?q=80&w=1200', alt: "The thermal baths and ornate architecture of Budapest's historic city centre at golden hour", t: 'Rich Heritage & Modern Lifestyle', p: 'From thermal baths and Baroque architecture to thriving café culture and a world-class music scene, Budapest fuses the grandeur of its past with an unmistakably contemporary energy.' },
-                { img: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1200', alt: 'A modern co-working space in Budapest with entrepreneurs collaborating', t: 'Business & Innovation Hub', p: 'Hungary\u2019s growing start-up ecosystem, established multinational presence and supportive fiscal environment make it a credible and increasingly visible European business destination for internationally minded entrepreneurs.' },
-                { img: 'https://images.unsplash.com/photo-1555990793-da11153b2473?q=80&w=1200', alt: 'The illuminated Hungarian Parliament and Danube waterfront at night', t: 'European Living with Global Connectivity', p: 'Austria, Slovakia, Croatia and beyond are all within a short drive or flight. Hungary\u2019s central position within the Schengen Area means that Europe — for business or leisure — is never far away.' },
+                { img: '/images/hungary-business/rich-modern-lifestyle.png', alt: 'Evening life on a pedestrian street in Budapest — rich heritage and modern lifestyle', t: 'Rich Heritage & Modern Lifestyle', p: 'From thermal baths and Baroque architecture to thriving café culture and a world-class music scene, Budapest fuses the grandeur of its past with an unmistakably contemporary energy.' },
+                { img: '/images/hungary-business/business-innovation-hub.png', alt: 'Modern business district skyline — Hungary as a business and innovation hub', t: 'Business & Innovation Hub', p: 'Hungary\u2019s growing start-up ecosystem, established multinational presence and supportive fiscal environment make it a credible and increasingly visible European business destination for internationally minded entrepreneurs.' },
+                { img: '/images/hungary-business/european-living-connectivity.png', alt: 'Professional working from a cafe — European living with global connectivity', t: 'European Living with Global Connectivity', p: 'Austria, Slovakia, Croatia and beyond are all within a short drive or flight. Hungary\u2019s central position within the Schengen Area means that Europe — for business or leisure — is never far away.' },
               ].map((c, i) => (
                 <div className="life-card hu-reveal" key={i}>
                   <img src={c.img} alt={c.alt} />

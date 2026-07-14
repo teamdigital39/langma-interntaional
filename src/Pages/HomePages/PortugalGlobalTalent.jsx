@@ -393,6 +393,7 @@ const PortugalGlobalTalentPage = () => {
 .pt-page .panel{border-radius:var(--r);padding:44px;border:1px solid var(--line)}
 .pt-page .panel.dark{background:var(--navy);color:#fff;border-color:var(--navy)}
 .pt-page .panel.light{background:var(--warm-white)}
+.pt-page .panel.light .panel-img{width:100%;height:220px;object-fit:cover;border-radius:calc(var(--r) - 4px);margin-bottom:22px}
 .pt-page .panel h3{font-size:1.7rem;margin-bottom:14px;color:var(--navy)}
 .pt-page .panel.dark h3{color:#fff}
 .pt-page .panel p{color:var(--muted);font-size:.96rem;margin-bottom:14px}
@@ -607,7 +608,7 @@ const PortugalGlobalTalentPage = () => {
       </div>
       <div className="hero-media reveal">
         <div className="hero-media-card">
-          <img src="https://images.unsplash.com/photo-1748279944004-f1d733dc711b?auto=format&fit=crop&w=1400&q=80" alt="Lisbon skyline glowing under a sunset over the Tagus river, Portugal" fetchPriority="high" />
+          <img src="/images/portugal-global-talent/stable-sunlit-gateway.png" alt="Portugal — a stable sunlit gateway to the European Union, Lisbon at dusk" fetchPriority="high" />
           <span className="hero-tag"><span className="dot" />Lisbon, Portugal</span>
         </div>
       </div>
@@ -639,7 +640,7 @@ const PortugalGlobalTalentPage = () => {
   <section className="section overview" id="overview">
     <div className="wrap ov-grid">
       <div className="ov-figure reveal">
-        <img src="https://images.unsplash.com/photo-1762294946283-6921938e9937?auto=format&fit=crop&w=1400&q=80" alt="Aerial view of the Dom Luís I Bridge spanning the Douro River in Porto, Portugal" loading="lazy" />
+        <img src="/images/portugal-global-talent/porto-douro-river.png" alt="Porto and the Douro River, Portugal" loading="lazy" />
         <div className="cap"><b>Porto, Douro Valley</b><span>Atlantic Europe</span></div>
       </div>
       <div className="ov-copy">
@@ -891,6 +892,7 @@ const PortugalGlobalTalentPage = () => {
           <p style={{fontSize: '.8rem', color: 'rgba(246,242,233,.55)'}}>*Citizenship is subject to the requirements in force at the time of application, including language and residence conditions.</p>
         </div>
         <div className="panel light reveal">
+          <img className="panel-img" src="/images/portugal-global-talent/family.png" alt="One venture, your family — quality of life in Portugal" loading="lazy" />
           <span className="eyebrow">Family Inclusion</span>
           <h3 style={{marginTop: 14}}>Bring those who matter most.</h3>
           <p>The programme is built for families. Your core engagement already includes your spouse or partner and two dependent children — and the door remains open to others.</p>
@@ -924,7 +926,7 @@ const PortugalGlobalTalentPage = () => {
   {/* ============ LIFE IN PORTUGAL ============ */}
   <section className="section life">
     <div className="life-bg">
-      <img src="https://images.unsplash.com/photo-1754318090243-ff996799b84e?auto=format&fit=crop&w=2200&q=80" alt="The Atlantic ocean at sunset seen from a grassy cliffside on the Algarve coast, Portugal" loading="lazy" />
+      <img src="/images/portugal-global-talent/algarve-coast.png" alt="The Algarve Coast, Portugal" loading="lazy" />
     </div>
     <div className="wrap">
       <div className="section-head reveal">
@@ -1044,7 +1046,7 @@ const PortugalGlobalTalentPage = () => {
   {/* ============ CONSULT / FORM ============ */}
   <section className="section consult" id="consult">
     <div className="consult-bg">
-      <img src="https://images.unsplash.com/photo-1748279944004-f1d733dc711b?auto=format&fit=crop&w=2000&q=80" alt="Lisbon at dusk over the river" loading="lazy" />
+      <img src="/images/portugal-global-talent/parque-das-nacoes-lisbon.png" alt="Parque das Nações, Lisbon, Portugal" loading="lazy" />
     </div>
     <div className="wrap consult-grid">
       <div className="consult-copy reveal">

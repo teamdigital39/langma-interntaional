@@ -403,7 +403,7 @@ const LangmaEB5USAPage = () => {
 {/* ===== HERO ===== */}
 <section className="hero">
   <div className="hero-bg" aria-hidden="true">
-    <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1900" alt="" role="presentation" />
+    <img src="/images/eb5-usa/united-states-scale.png" alt="" role="presentation" />
   </div>
   <div className="container">
     <div className="hero-split">
@@ -424,7 +424,7 @@ const LangmaEB5USAPage = () => {
       </div>
       <div className="hero-visual">
         <div className="hero-img-frame">
-          <img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?q=80&w=1200" alt="Manhattan skyline rising above the Hudson River at golden hour" />
+          <img src="/images/eb5-usa/eb5-visa-usa.png" alt="EB-5 Visa to the USA — Empire State Building and American flag in New York" />
           <div className="hero-img-badge">
             <span className="dot-pulse"></span>
             <span>New York, United States</span>
@@ -463,7 +463,7 @@ const LangmaEB5USAPage = () => {
       </div>
       <div className="about-media reveal">
         <span className="frame"></span>
-        <img src="https://images.unsplash.com/photo-1485738422979-f5c462d49f74?q=80&w=1200" alt="Modern American business district skyline against a clear sky" />
+        <img src="/images/eb5-usa/united-states-scale.png" alt="The United States at scale — Statue of Liberty" />
       </div>
     </div>
 
@@ -654,7 +654,7 @@ const LangmaEB5USAPage = () => {
     <div className="fam-grid">
       <div className="fam-media reveal">
         <span className="frame"></span>
-        <img src="https://images.unsplash.com/photo-1543342384-1f1350e27861?q=80&w=1200" alt="A family of four enjoying time together outdoors in an American city park" />
+        <img src="/images/eb5-usa/family-included.png" alt="One investment, your family included — family lifestyle in the USA" />
       </div>
       <div className="reveal">
         <span className="eyebrow">Eligible Applicants &amp; Family</span>
@@ -700,17 +700,17 @@ const LangmaEB5USAPage = () => {
     </div>
     <div className="life-grid">
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=1200" alt="The Statue of Liberty standing in New York Harbor with the city skyline beyond" />
+        <img src="/images/eb5-usa/new-york.png" alt="New York — Manhattan Bridge and Empire State Building" />
         <div className="ov"></div>
         <div className="cap"><h3>New York</h3><p>The world's financial capital, with unmatched access to global business, culture and opportunity.</p></div>
       </div>
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1444723121867-7a241cacace9?q=80&w=1200" alt="A modern Californian business and technology district skyline at dusk" />
+        <img src="/images/eb5-usa/california.png" alt="California — Los Angeles palm-lined boulevard" />
         <div className="ov"></div>
         <div className="cap"><h3>California</h3><p>Home to Silicon Valley and a deep, entrepreneurial technology and innovation ecosystem.</p></div>
       </div>
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1531218150217-54595bc2b934?q=80&w=1200" alt="A sunlit suburban American neighbourhood with tree-lined streets" />
+        <img src="/images/eb5-usa/sunbelt-suburban.png" alt="Sunbelt and suburban states — American residential neighbourhoods" />
         <div className="ov"></div>
         <div className="cap"><h3>Sunbelt &amp; suburban states</h3><p>Family-oriented communities, lower costs of living and fast-growing regional economies across the South and Southwest.</p></div>
       </div>
