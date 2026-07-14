@@ -5,7 +5,7 @@ import "./translationServicesLanding.css";
 
 const BASE = import.meta.env.BASE_URL.replace(/\/$/, "");
 const ASSETS = `${BASE}/translation`;
-const SITE_LOGO = `${BASE}/images/Logo.png`;
+const SITE_LOGO = `${BASE}/images/langma.svg`;
 const img = (path) => `${ASSETS}/img/${path}`;
 
 const CSS_FILES = [

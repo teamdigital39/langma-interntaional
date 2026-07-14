@@ -271,7 +271,7 @@ export default function LearnGermanLanguage() {
           <div className="nav">
             <div className="logo">
               <a href="/">
-                <img alt="logo" src={img("langma2-logo.png")} width="173" height="40" />
+                <img alt="logo" src="/images/langma.svg" width="173" height="40" />
               </a>
             </div>
           </div>

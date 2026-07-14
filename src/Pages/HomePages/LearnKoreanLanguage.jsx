@@ -304,7 +304,7 @@ export default function LearnKoreanLanguage() {
         <header id="header" className="header fixed-top">
           <div className="container-fluid container-xl d-flex align-items-center justify-content-between">
             <a href="/" className="logo d-flex align-items-center">
-              <img src={img("langma-black-logo.png")} alt="Langma" />
+              <img src="/images/langma.svg" alt="Langma" />
             </a>
             <nav id="navbar" className="navbar">
               <ul>
@@ -687,7 +687,7 @@ export default function LearnKoreanLanguage() {
               <div className="row gy-4">
                 <div className="col-lg-5 col-md-12 footer-info">
                   <a href="/" className="logo d-flex align-items-center">
-                    <img src={img("langma-black-logo.png")} alt="Langma Logo" />
+                    <img src="/images/langma.svg" alt="Langma Logo" />
                   </a>
                   <p>
                     Langma School of Languages&apos; vision is to offer students, opportunities to create better and enriched lives for themselves and others surrounding them by introducing them to different and unique cultures and enriching their experiences, both locally and globally.
