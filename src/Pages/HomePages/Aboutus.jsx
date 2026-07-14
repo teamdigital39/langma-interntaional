@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 const Check = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
     <path d="M20 6L9 17l-5-5" />
@@ -489,8 +490,8 @@ export default function AboutLangma() {
                   <p className="hero__sub">Langma International is a Global Opportunities Platform committed to empowering individuals, institutions, businesses and investors through learning, education, careers, mobility, cultural exchange, business collaboration and transformative international experiences.</p>
                   <p className="hero__sub">What began as a foreign language training initiative has evolved into a dynamic ecosystem connecting people with opportunities across borders and industries.</p>
                   <div className="hero__actions">
-                    <a href="#connect" className="btn btn-animated">Book a Consultation</a>
-                    <a href="#connect" className="btn btn--ghost btn-animated">Become a Partner</a>
+                    <Link to="/contact" className="btn btn-animated">Book a Consultation</Link>
+                    <Link to="/contact" className="btn btn--ghost btn-animated">Become a Partner</Link>
                   </div>
                   <div className="langma__stats">
                     {STATS.map((s) => (
@@ -760,8 +761,8 @@ export default function AboutLangma() {
                 <p className="lede" style={{ margin: "18px auto 0" }}>Whether you are a student, professional, institution, entrepreneur or investor, Langma International invites you to become part of a growing global community built on learning, collaboration and opportunity.</p>
                 <p className="closing-line" style={{ margin: "22px auto 0" }}>Let&rsquo;s build a more connected future together.</p>
                 <div className="hero__actions" style={{ justifyContent: "center", marginTop: "36px" }}>
-                  <a href="#" className="btn btn--light btn-animated">Book a Consultation</a>
-                  <a href="#" className="btn btn--ghost btn-animated">Become a Partner</a>
+                  <Link to="/contact" className="btn btn--light btn-animated">Book a Consultation</Link>
+                  <Link to="/contact" className="btn btn--ghost btn-animated">Become a Partner</Link>
                 </div>
               </Reveal>
             </div>
