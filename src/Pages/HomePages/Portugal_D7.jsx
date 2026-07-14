@@ -332,7 +332,7 @@ const PortugalD7VisaPage = () => {
               </div>
               <div className="hero-visual">
                 <div className="hero-img-frame">
-                  <img src="https://images.unsplash.com/photo-1585208798174-6cedd86e019a?q=80&w=1200" alt="Lisbon's terracotta rooftops descending toward the Tagus river at dusk" />
+                  <img src="/images/portugal-d7/stable-sunlit-gateway.png" alt="Portugal D7 Visa — gateway to European residency, Lisbon at dusk" />
                   <div className="hero-img-badge">
                     <span className="dot-pulse"></span>
                     <span>Lisbon, Portugal</span>
@@ -371,7 +371,7 @@ const PortugalD7VisaPage = () => {
               </div>
               <div className="about-media d7-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?q=80&w=1200" alt="Sunlit coastal town in Portugal with whitewashed buildings above the sea" />
+                <img src="/images/portugal-d7/porto-ribeira.png" alt="Portugal — a stable, unhurried home on the western shore of Europe" />
               </div>
             </div>
             <div className="facts-row">
@@ -493,7 +493,7 @@ const PortugalD7VisaPage = () => {
             <div className="fam-grid">
               <div className="fam-media d7-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1200" alt="A family of four walking together along a sunlit promenade" />
+                <img src="/images/portugal-d7/family.png" alt="One application, your family included — family life in Portugal" />
               </div>
               <div className="d7-reveal">
                 <span className="eyebrow">Eligible Applicants & Family</span>
@@ -548,9 +548,9 @@ const PortugalD7VisaPage = () => {
             </div>
             <div className="life-grid">
               {[
-                { img: 'https://images.unsplash.com/photo-1588535619791-4ba78de3e29e?q=80&w=1200', alt: "Lisbon's hills, yellow trams and pastel facades above the river", t: 'Lisbon', p: 'A sunlit, hilly capital of trams, miradouros and a thriving international community.' },
-                { img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?q=80&w=1200', alt: "Porto's Ribeira district and the Douro riverfront at golden hour", t: 'Porto', p: 'The dignified northern city of the Douro, port-wine cellars and old-world charm.' },
-                { img: 'https://images.unsplash.com/photo-1591105575633-c3c5acba62b1?q=80&w=1200', alt: 'Golden cliffs and turquoise water along the Algarve coastline', t: 'The Algarve', p: 'Golden cliffs, calm beaches and a long-established community of relocating retirees.' },
+                { img: '/images/portugal-d7/parque-das-nacoes-lisbon.png', alt: 'Parque das Nações, Lisbon, Portugal', t: 'Lisbon', p: 'A sunlit, hilly capital of trams, miradouros and a thriving international community.' },
+                { img: '/images/portugal-d7/porto-douro-river.png', alt: "Porto's Ribeira and the Douro riverfront", t: 'Porto', p: 'The dignified northern city of the Douro, port-wine cellars and old-world charm.' },
+                { img: '/images/portugal-d7/algarve-coast.png', alt: 'The Algarve Coast, Portugal', t: 'The Algarve', p: 'Golden cliffs, calm beaches and a long-established community of relocating retirees.' },
               ].map((c, i) => (
                 <div className="life-card d7-reveal" key={i}>
                   <img src={c.img} alt={c.alt} /><div className="ov"></div><div className="cap"><h3>{c.t}</h3><p>{c.p}</p></div>

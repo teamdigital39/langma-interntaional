@@ -1097,7 +1097,7 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
       </div>
       <div className="hero-visual">
         <div className="hero-img-card">
-          <img src="https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?q=80&w=1200" alt="Valletta harbour and historic fortifications, Malta" />
+          <img src="/images/malta-residency/residence-mediterranean.png" alt="A lifetime of residence rights in the heart of the Mediterranean — Valletta, Malta" />
           <div className="hero-img-caption">
             <span className="pulse-dot"></span>
             <span>Valletta, Malta</span>
@@ -1139,7 +1139,7 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
   <div className="container">
     <div className="why-grid">
       <div className="why-image">
-        <img src="https://images.unsplash.com/photo-1591018871985-99e2c4f9c8e3?q=80&w=1200" alt="Valletta skyline, Malta" />
+        <img src="/images/malta-residency/stable-european-base.png" alt="A stable, connected and distinguished European base on the Mediterranean coast" />
       </div>
       <div>
         <span className="eyebrow">Why Malta</span>
@@ -1510,23 +1510,23 @@ const LangmaMaltaPermanentResidenceProgrammePage = () => {
     </div>
     <div className="lifestyle-grid">
       <div className="lcard">
-        <img src="https://images.unsplash.com/photo-1593238739364-66f8d3c5f7f5?q=80&w=1200" alt="Mediterranean coastline and historic architecture in Malta" />
+        <img src="/images/malta-residency/historic-architecture.png" alt="Historic architecture and Mediterranean coastline in Malta" />
         <div className="lcaption">Historic Architecture &amp; Mediterranean Coastline</div>
       </div>
       <div className="lcard">
-        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=800" alt="Family enjoying lifestyle in Malta" />
+        <img src="/images/malta-residency/family-living.png" alt="Family living in Malta" />
         <div className="lcaption">Family Living</div>
       </div>
       <div className="lcard">
-        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800" alt="International education in Malta" />
+        <img src="/images/malta-residency/international-education.png" alt="International education in Malta" />
         <div className="lcaption">International Education</div>
       </div>
       <div className="lcard">
-        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=1200" alt="Luxury yacht marina in Malta" />
+        <img src="/images/malta-residency/yacht-marinas.png" alt="Yacht marinas and leisure in Malta" />
         <div className="lcaption">Yacht Marinas &amp; Leisure</div>
       </div>
       <div className="lcard">
-        <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=800" alt="Healthcare facilities in Malta" />
+        <img src="/images/malta-residency/healthcare-access.png" alt="Healthcare access in Malta" />
         <div className="lcaption">Healthcare Access</div>
       </div>
     </div>
