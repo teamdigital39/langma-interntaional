@@ -585,7 +585,7 @@ const LangmaPortugalStartupVisaPage = () => {
       </div>
       <div className="hero-visual">
         <div className="hero-img-frame">
-          <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?q=80&w=1200&auto=format&fit=crop" alt="Lisbon skyline at golden hour above the Tagus River" />
+          <img src="/images/portugal-startup-visa/portugal-startup-visa.png" alt="Portugal Startup Visa — Ribeira district and Douro River, Porto" />
           <div className="hero-img-badge">
             <span className="dot-pulse"></span>
             <span>Lisbon, Portugal</span>
@@ -624,7 +624,7 @@ const LangmaPortugalStartupVisaPage = () => {
       </div>
       <div className="about-media reveal">
         <span className="frame"></span>
-        <img src="https://images.unsplash.com/photo-1513735492246-483525079686?q=80&w=1200&auto=format&fit=crop" alt="Historic tiled rooftops and tram lines in central Lisbon" />
+        <img src="/images/portugal-startup-visa/stable-sunlit-gateway.png" alt="Portugal — a stable, sunlit gateway to the European Union, Lisbon at dusk" />
       </div>
     </div>
 
@@ -822,7 +822,7 @@ const LangmaPortugalStartupVisaPage = () => {
     <div className="fam-grid">
       <div className="fam-media reveal">
         <span className="frame"></span>
-        <img src="https://images.unsplash.com/photo-1525920470207-a519b283561c?q=80&w=1200&auto=format&fit=crop" alt="Founders collaborating in a modern Lisbon coworking space" />
+        <img src="/images/portugal-startup-visa/one-venture-family.png" alt="One venture, your family included — family life in Portugal" />
       </div>
       <div className="reveal">
         <span className="eyebrow">Eligible Applicants &amp; Family</span>
@@ -909,17 +909,17 @@ const LangmaPortugalStartupVisaPage = () => {
     </div>
     <div className="life-grid">
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1585208798174-6cedd86e019a?q=80&w=1200&auto=format&fit=crop" alt="Lisbon's historic Alfama district overlooking the Tagus River" />
+        <img src="/images/portugal-startup-visa/parque-das-nacoes-lisbon.png" alt="Parque das Nações, Lisbon — modern business and innovation district" />
         <div className="ov"></div>
         <div className="cap"><h3>Lisbon</h3><p>The capital and the country's leading start-up hub, home to incubators, venture capital and one of Europe's most active founder communities.</p></div>
       </div>
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1555881400-29d3bca691f9?q=80&w=1200&auto=format&fit=crop" alt="Colourful riverside buildings along Porto's Douro River" />
+        <img src="/images/portugal-startup-visa/porto-douro-river.png" alt="Aerial view of Porto and the Douro River" />
         <div className="ov"></div>
         <div className="cap"><h3>Porto</h3><p>A rising technology centre on the Douro River, prized for its lower cost of living and increasingly international talent pool.</p></div>
       </div>
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1559573770-d4eda3a7df9c?q=80&w=1200&auto=format&fit=crop" alt="A sunlit coastal town along Portugal's Algarve coastline" />
+        <img src="/images/portugal-startup-visa/algarve-coast.png" alt="The Algarve Coast, Portugal" />
         <div className="ov"></div>
         <div className="cap"><h3>The Algarve &amp; Coast</h3><p>Sunshine, ocean and a relaxed, well-connected base for founders who want their working life balanced by coastal living.</p></div>
       </div>
