@@ -40,7 +40,7 @@ function Reveal({ as: Tag = "div", className = "", children, ...rest }) {
 const STATS = [
   { n: "2012", l: "Established" },
   { n: "100,000+", l: "Candidates Trained" },
-  { n: "40+", l: "Languages" },
+  { n: "50+", l: "Languages" },
   { n: "Global", l: "Reach & Staffing" },
 ];
 
