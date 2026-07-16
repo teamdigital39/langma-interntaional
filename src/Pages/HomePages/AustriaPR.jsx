@@ -494,7 +494,7 @@ const AustriaResidencePage = () => {
               </div>
               <div className="hero-visual">
                 <div className="hero-img-frame">
-                  <img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?q=80&w=1200" alt="Vienna skyline with the Danube and historic spires at dusk" />
+                  <img src="/images/austria-residency/quiet-considered-path.png" alt="A quiet, considered path to residency in Austria — historic street in Vienna" />
                   <div className="hero-img-badge">
                     <span className="dot-pulse"></span>
                     <span>Vienna, Austria</span>
@@ -533,7 +533,7 @@ const AustriaResidencePage = () => {
               </div>
               <div className="about-media at-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1516550893923-42d28e5677af?q=80&w=1200" alt="Historic Vienna architecture along a quiet boulevard" />
+                <img src="/images/austria-residency/landlocked-heart-europe.png" alt="Austria — a landlocked heart of Europe built on order and refinement, Vienna on the Danube" />
               </div>
             </div>
             <div className="facts-row">
@@ -707,7 +707,7 @@ const AustriaResidencePage = () => {
             <div className="fam-grid">
               <div className="fam-media at-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1500835556837-99ac94a94552?q=80&w=1200" alt="A family of four enjoying a sunlit park setting" />
+                <img src="/images/austria-residency/one-application-family.png" alt="One application, your family included — family arriving at a new home in Austria" />
               </div>
               <div className="at-reveal">
                 <span className="eyebrow">Family Inclusion</span>
@@ -769,9 +769,9 @@ const AustriaResidencePage = () => {
             </div>
             <div className="life-grid">
               {[
-                { img: 'https://images.unsplash.com/photo-1516550893923-42d28e5677af?q=80&w=1200', alt: "Vienna's historic skyline along the Danube at golden hour", t: 'Vienna', p: "An imperial capital of grand boulevards, world-class museums and one of the world's most liveable cities." },
-                { img: 'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?q=80&w=1200', alt: 'Snow-covered peaks of the Austrian Alps under a clear sky', t: 'The Austrian Alps', p: 'Mountain air, alpine villages and year-round outdoor living within easy reach of every major city.' },
-                { img: 'https://images.unsplash.com/photo-1503917988258-f87a78e3c995?q=80&w=1200', alt: 'Historic architecture and culture in an Austrian old town', t: 'Culture & Heritage', p: 'Centuries of music, art and architecture woven into everyday life, from Salzburg to Innsbruck.' },
+                { img: '/images/austria-residency/vienna.png', alt: 'Hofburg Palace and Michaelerplatz, Vienna', t: 'Vienna', p: "An imperial capital of grand boulevards, world-class museums and one of the world's most liveable cities." },
+                { img: '/images/austria-residency/austrian-alps.png', alt: 'Hallstatt and the Austrian Alps reflected in the lake', t: 'The Austrian Alps', p: 'Mountain air, alpine villages and year-round outdoor living within easy reach of every major city.' },
+                { img: '/images/austria-residency/culture-heritage.png', alt: 'Salzburg fortress and old town — culture and heritage in Austria', t: 'Culture & Heritage', p: 'Centuries of music, art and architecture woven into everyday life, from Salzburg to Innsbruck.' },
               ].map((c, i) => (
                 <div className="life-card at-reveal" key={i}>
                   <img src={c.img} alt={c.alt} />

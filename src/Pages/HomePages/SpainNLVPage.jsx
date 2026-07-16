@@ -478,7 +478,7 @@ const SpainNLVPage = () => {
               </div>
               <div className="hero-visual">
                 <div className="hero-img-frame">
-                  <img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?q=80&w=1000&auto=format&fit=crop" alt="Madrid skyline at golden hour, Spain" />
+                  <img src="/images/spain-nlv/live-in-spain-on-your-terms.png" alt="Live in Spain on your own terms — Mediterranean promenade at sunset" />
                   <div className="hero-img-badge">
                     <span className="flag">🇪🇸</span>
                     <div className="cap-txt">
@@ -520,7 +520,7 @@ const SpainNLVPage = () => {
               </div>
               <div className="about-media sp-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop" alt="Iconic Spanish architecture under a bright blue sky" />
+                <img src="/images/spain-nlv/sun-drenched-powerhouse.png" alt="Spain — a sun-drenched European powerhouse with an unmatched quality of life, Barcelona at sunset" />
               </div>
             </div>
             <div className="facts-row">
@@ -800,7 +800,7 @@ const SpainNLVPage = () => {
             <div className="fam-grid">
               <div className="fam-media sp-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1511895426328-dc8714191011?q=80&w=1200&auto=format&fit=crop" alt="A family enjoying life together in Spain" />
+                <img src="/images/spain-nlv/one-application-family.png" alt="One application — residency for the whole family in Spain" />
               </div>
               <div className="sp-reveal">
                 <span className="eyebrow">Family Inclusion</span>
@@ -881,9 +881,9 @@ const SpainNLVPage = () => {
             </div>
             <div className="life-grid">
               {[
-                { img: 'https://images.unsplash.com/photo-1543783207-ec64e4d95325?q=80&w=1200&auto=format&fit=crop', alt: 'Barcelona rooftops and Gothic Quarter at dusk', t: 'Barcelona', p: 'A cosmopolitan Mediterranean capital of architecture, culture and international connectivity.' },
-                { img: 'https://images.unsplash.com/photo-1592386708687-a8ccc6e26d4f?q=80&w=1200&auto=format&fit=crop', alt: 'Madrid gran via at night', t: 'Madrid', p: "Spain's vibrant capital — world-class museums, restaurants and a thriving international community." },
-                { img: 'https://images.unsplash.com/photo-1560969184-10fe8719e047?q=80&w=1200&auto=format&fit=crop', alt: 'Sunny Spanish coastal town with white buildings', t: 'Costa del Sol', p: 'Over 300 days of sunshine per year, warm waters and a well-established community of international residents.' },
+                { img: '/images/spain-nlv/barcelona.png', alt: 'Barcelona rooftop view of the Sagrada Família at sunset', t: 'Barcelona', p: 'A cosmopolitan Mediterranean capital of architecture, culture and international connectivity.' },
+                { img: '/images/spain-nlv/madrid.png', alt: 'Puerta de Alcalá and Retiro Park, Madrid at sunset', t: 'Madrid', p: "Spain's vibrant capital — world-class museums, restaurants and a thriving international community." },
+                { img: '/images/spain-nlv/costa-del-sol.png', alt: 'Costa del Sol coastline with beaches and high-rises', t: 'Costa del Sol', p: 'Over 300 days of sunshine per year, warm waters and a well-established community of international residents.' },
               ].map((c, i) => (
                 <div className="life-card sp-reveal" key={i}>
                   <img src={c.img} alt={c.alt} /><div className="ov"></div><div className="cap"><h3>{c.t}</h3><p>{c.p}</p></div>

@@ -267,7 +267,7 @@ function App() {
           <Route path="/:slug" element={<Arabic/>} />
           <Route path="/golden-visa-assessment" element={<GoldenVisaAssessment/>} />
         </Routes>
-
+        
       {!isStandaloneLanding && <Footer />}
       </div>
     </>

@@ -332,7 +332,7 @@ const PortugalD7VisaPage = () => {
               </div>
               <div className="hero-visual">
                 <div className="hero-img-frame">
-                  <img src="/images/portugal-d7/stable-sunlit-gateway.png" alt="Portugal D7 Visa — gateway to European residency, Lisbon at dusk" />
+                  <img src="/images/portugal-d7/d7-gateway-passive-income.png" alt="Portugal D7 Visa: your gateway to European residency through passive income — Lisbon tram and cityscape" />
                   <div className="hero-img-badge">
                     <span className="dot-pulse"></span>
                     <span>Lisbon, Portugal</span>
@@ -371,7 +371,7 @@ const PortugalD7VisaPage = () => {
               </div>
               <div className="about-media d7-reveal">
                 <span className="frame"></span>
-                <img src="/images/portugal-d7/porto-ribeira.png" alt="Portugal — a stable, unhurried home on the western shore of Europe" />
+                <img src="/images/portugal-d7/stable-unhurried-home.png" alt="Portugal — a stable, unhurried home on the western shore of Europe, Lisbon panorama" />
               </div>
             </div>
             <div className="facts-row">
@@ -493,7 +493,7 @@ const PortugalD7VisaPage = () => {
             <div className="fam-grid">
               <div className="fam-media d7-reveal">
                 <span className="frame"></span>
-                <img src="/images/portugal-d7/family.png" alt="One application, your family included — family life in Portugal" />
+                <img src="/images/portugal-d7/one-application-family.png" alt="One application, your family included — family at home in Portugal" />
               </div>
               <div className="d7-reveal">
                 <span className="eyebrow">Eligible Applicants & Family</span>
@@ -548,9 +548,9 @@ const PortugalD7VisaPage = () => {
             </div>
             <div className="life-grid">
               {[
-                { img: '/images/portugal-d7/parque-das-nacoes-lisbon.png', alt: 'Parque das Nações, Lisbon, Portugal', t: 'Lisbon', p: 'A sunlit, hilly capital of trams, miradouros and a thriving international community.' },
-                { img: '/images/portugal-d7/porto-douro-river.png', alt: "Porto's Ribeira and the Douro riverfront", t: 'Porto', p: 'The dignified northern city of the Douro, port-wine cellars and old-world charm.' },
-                { img: '/images/portugal-d7/algarve-coast.png', alt: 'The Algarve Coast, Portugal', t: 'The Algarve', p: 'Golden cliffs, calm beaches and a long-established community of relocating retirees.' },
+                { img: '/images/portugal-d7/lisbon-sunlit.png', alt: 'Lisbon — a sunlit capital of trams, hills and terracotta roofs', t: 'Lisbon', p: 'A sunlit, hilly capital of trams, miradouros and a thriving international community.' },
+                { img: '/images/portugal-d7/porto-douro.png', alt: 'Porto and the Douro Valley terraced vineyards', t: 'Porto', p: 'The dignified northern city of the Douro, port-wine cellars and old-world charm.' },
+                { img: '/images/portugal-d7/algarve-golden-cliffs.png', alt: 'The Algarve — golden cliffs and turquoise Atlantic waters', t: 'The Algarve', p: 'Golden cliffs, calm beaches and a long-established community of relocating retirees.' },
               ].map((c, i) => (
                 <div className="life-card d7-reveal" key={i}>
                   <img src={c.img} alt={c.alt} /><div className="ov"></div><div className="cap"><h3>{c.t}</h3><p>{c.p}</p></div>

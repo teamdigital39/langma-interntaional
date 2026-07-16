@@ -419,7 +419,7 @@ const SwitzerlandPRPage = () => {
               </div>
               <div className="hero-visual">
                 <div className="hero-img-frame">
-                  <img src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=1200" alt="Switzerland Residence Permit — Zurich lakefront" />
+                  <img src="/images/switzerland-residency/swiss-residency-financial-independence.png" alt="Swiss residency through financial independence — alpine village in Switzerland" />
                   <div className="hero-img-badge">
                     <span>Zurich, Switzerland</span>
                   </div>
@@ -459,7 +459,7 @@ const SwitzerlandPRPage = () => {
               </div>
               <div className="about-media sw-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?q=80&w=1200" alt="Bern old town" />
+                <img src="/images/switzerland-residency/sovereign-centre-stability.png" alt="Switzerland — a sovereign centre of global stability, prosperity and prestige, Zurich at golden hour" />
               </div>
             </div>
             <div className="facts-row">
@@ -481,7 +481,7 @@ const SwitzerlandPRPage = () => {
             <div className="living-grid">
               <div className="living-media sw-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1504512485720-7d83a16ee930?q=80&w=1200" alt="Geneva lakefront" />
+                <img src="/images/switzerland-residency/life-in-switzerland.png" alt="Life in Switzerland — Matterhorn, alpine lake and mountain train" />
               </div>
               <div className="sw-reveal">
                 <span className="eyebrow">Life in Switzerland</span>
@@ -600,7 +600,7 @@ const SwitzerlandPRPage = () => {
             <div className="fam-grid">
               <div className="fam-media sw-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200" alt="Family lifestyle in Switzerland" />
+                <img src="/images/switzerland-residency/family-inclusion.png" alt="Family inclusion — family walking along a Swiss lakeside promenade" />
               </div>
               <div className="sw-reveal">
                 <span className="eyebrow">Family Inclusion</span>
