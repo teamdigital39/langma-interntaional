@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 import ContactForm from "./ContactForm";
 import PopupForm from "./PopupForm";
 
@@ -243,28 +245,28 @@ const PATHWAYS = [
     icon: (<><path d="M12 4L3 9l9 5 9-5-9-5z" /><path d="M7 11.5V16c0 1.4 2.5 2.5 5 2.5s5-1.1 5-2.5v-4.5" /></>),
     title: "Study Abroad",
     body: "Discover universities, scholarships, and academic pathways that align with your ambitions.",
-    href: "https://www.langmainternational.com/study-abroad",
+    href: "/study-abroad",
     img: "https://images.unsplash.com/photo-1559135197-8a45ea74d367?auto=format&fit=crop&w=600&q=80",
   },
   {
     icon: (<><rect x="3" y="8" width="18" height="12" rx="2" /><path d="M8 8V6a2 2 0 012-2h4a2 2 0 012 2v2" /><path d="M3 13h18" /></>),
     title: "Work Abroad",
     body: "Build an international career through language readiness, career preparation, and recruitment support.",
-    href: "https://www.langmainternational.com/work-abroad",
+    href: "/work-abroad",
     img: "https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=600&q=80",
   },
   {
     icon: (<><path d="M22 2L11 13" /><path d="M22 2l-7 20-4-9-9-4z" /></>),
     title: "Immigration & Residency",
     body: "Explore pathways for long-term mobility, residency, and international settlement.",
-    href: "#connect",
+    href: "/pr-by-investment",
     img: "https://images.unsplash.com/photo-1530469525856-cf37954301f7?auto=format&fit=crop&w=600&q=80",
   },
   {
     icon: (<><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z" /><path d="M9 12l2 2 4-4" /></>),
     title: "Golden Visa Programs",
     body: "Access investment-linked residency opportunities and global mobility solutions.",
-    href: "#connect",
+    href: "/golden-visa",
     img: "https://images.unsplash.com/photo-1544984243-ec57ea16fe25?auto=format&fit=crop&w=600&q=80",
   },
   {
@@ -281,7 +283,7 @@ const CULTURAL_WELLNESS = [
     icon: (<><circle cx="12" cy="12" r="9" /><path d="M14.8 9.2l-2 4.4-4.4 2 2-4.4z" /></>),
     title: "Cultural Immersion Tours",
     body: "Explore languages, traditions, heritage, and communities through carefully curated international experiences.",
-    img: "/images/Cultural Immersion Tours.png",
+    img: "/images/Cultural Immersion Tours_01.png",
   },
   {
     icon: (<><path d="M4 8h13M14 4l3 4-3 4" /><path d="M20 16H7M10 12l-3 4 3 4" /></>),
@@ -375,7 +377,7 @@ const RESOURCES = [
 
 /* Global city photo mosaic for the Global Reach section */
 const REACH_MOSAIC = [
-  { country: "South Korea", img: "/images/SouthKR.webp" },
+  { country: "South Korea", img: "/images/South korea.webp" },
   { country: "Japan", img: "/images/Japan.webp" },
   { country: "Germany", img: "/images/Germany.webp" },
   { country: "UAE", img: "/images/Dubai.webp" },
@@ -394,6 +396,15 @@ export default function HomeLangma() {
   const [open, setOpen] = useState(false);
   return (
     <>
+      <Helmet>
+        <title>
+          Foreign Language Courses, Foreign Language Classes, Study Abroad, Work Abroad Delhi, India
+        </title>
+        <meta
+          name="description"
+          content="Langma International offers foreign language courses, international language training, study abroad, work abroad, PR by investment, foreign language classes Delhi NCR, India."
+        />
+      </Helmet>
       <style>{`
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600;1,700&family=Roboto:wght@300;400;500;700&display=swap');
 
@@ -837,7 +848,7 @@ export default function HomeLangma() {
                   </div>
                   <div className="hero__trust">
                     <div className="hero__trust-avatars">
-                      <img src="/images/img1001.avif" alt="" loading="lazy" />
+                      <img src="/images/img1002.avif" alt="" loading="lazy" />
                       <img src="/images/img1002.avif" alt="" loading="lazy" />
                       <img src="/images/img1003.jpeg" alt="" loading="lazy" />
                       <img src="/images/img1004.avif" alt="" loading="lazy" />
@@ -924,7 +935,7 @@ export default function HomeLangma() {
                   <h2 className="display">Learn. Explore. Connect. <em>Grow Globally.</em></h2>
                   <p style={{ color: "var(--muted)", marginTop: "14px" }}>Langma International began with a vision to bridge cultures through language learning. Over the years, that vision has evolved into a broader mission: empowering individuals and organizations to access opportunities beyond geographical and linguistic boundaries.</p>
                   <p style={{ color: "var(--muted)" }}>Today, Langma serves as a trusted partner for students, professionals, institutions, businesses, and investors seeking global growth through learning, education, careers, mobility, cultural immersion, and international collaboration.</p>
-                  <a href="https://www.langmainternational.com/about" className="btn btn--ghost btn--sm" target="_blank" rel="noopener noreferrer" style={{ marginTop: "10px" }}>Read More About Us</a>
+                  <Link to="/about" className="btn btn--ghost btn--sm" style={{ marginTop: "10px" }}>Read More About Us</Link>
                 </Reveal>
               </div>
             </div>
@@ -973,7 +984,7 @@ export default function HomeLangma() {
                       <div className="orbit-hub__pulse" aria-hidden="true"></div>
                       <div className="orbit-hub__core">
                         <div className="orbit-hub__logo">
-                          <img src="https://www.langmainternational.com/images/langma.svg" alt="Langma International" />
+                          <img src="/images/langma.svg" alt="Langma International" />
                         </div>
                       </div>
                     </div>
@@ -1036,47 +1047,55 @@ export default function HomeLangma() {
               </Reveal>
 
               <div className="pathway-strip section-body">
-                {PATHWAYS.map((item, i) => (
-                  <Reveal
-                    as={item.href === "#connect" ? "button" : "a"}
-                    href={item.href === "#connect" ? undefined : item.href}
-                    type={item.href === "#connect" ? "button" : undefined}
-                    onClick={item.href === "#connect" ? () => setOpen(true) : undefined}
-                    className="pathway-tile"
-                    key={item.title}
-                    delay={(i % 6) * 70}
-                    style={{ textDecoration: "none", cursor: "pointer", background: "none", border: "none", textAlign: "left", font: "inherit", color: "inherit", width: "100%" }}
-                    target={item.href?.startsWith("http") ? "_blank" : undefined}
-                    rel={item.href?.startsWith("http") ? "noopener noreferrer" : undefined}
-                  >
-                    <div className="card__ico">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">{item.icon}</svg>
-                    </div>
-                    <h3>{twoLineTitle(item.title)}</h3>
-                    <p>{item.body}</p>
-                    <span className="path-link">Learn more →</span>
-                  </Reveal>
-                ))}
+                {PATHWAYS.map((item, i) => {
+                  const isHash = item.href.startsWith("#");
+                  const tileClass =
+                    "pathway-tile";
+                  const tileStyle = {
+                    textDecoration: "none",
+                    cursor: "pointer",
+                    background: "none",
+                    border: "none",
+                    textAlign: "left",
+                    font: "inherit",
+                    color: "inherit",
+                    width: "100%",
+                    display: "block",
+                  };
+                  const tileInner = (
+                    <>
+                      <div className="card__ico">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">{item.icon}</svg>
+                      </div>
+                      <h3>{twoLineTitle(item.title)}</h3>
+                      <p>{item.body}</p>
+                      <span className="path-link">Learn more →</span>
+                    </>
+                  );
+                  return (
+                    <Reveal key={item.title} delay={(i % 6) * 70}>
+                      {isHash ? (
+                        <a href={item.href} className={tileClass} style={tileStyle}>
+                          {tileInner}
+                        </a>
+                      ) : (
+                        <Link to={item.href} className={tileClass} style={tileStyle}>
+                          {tileInner}
+                        </Link>
+                      )}
+                    </Reveal>
+                  );
+                })}
               </div>
 
               {/* CTA row */}
               <Reveal className="pathway-cta">
-                <a
-                  href="https://www.langmainternational.com/study-abroad"
-                  className="btn btn--teal"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link to="/study-abroad" className="btn btn--teal">
                   Explore Study Abroad
-                </a>
-                <a
-                  href="https://www.langmainternational.com/work-abroad"
-                  className="btn btn--ghost"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                </Link>
+                <Link to="/work-abroad" className="btn btn--ghost">
                   Explore Work Abroad
-                </a>
+                </Link>
                 <button type="button" className="btn" onClick={() => setOpen(true)}>
                   Talk to a Counselor
                 </button>

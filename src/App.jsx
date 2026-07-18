@@ -133,13 +133,13 @@ function App() {
   const [loading, setLoading] = useState(true);
   const isStandaloneLanding = STANDALONE_LANDING_ROUTES.includes(location.pathname);
 
+  // Show branded loader only on first paint — not on every Link navigation
   useEffect(() => {
-    setLoading(true);
     const timer = setTimeout(() => {
       setLoading(false);
     }, 300);
     return () => clearTimeout(timer);
-  }, [location.pathname]);
+  }, []);
 
   return (
     <>
