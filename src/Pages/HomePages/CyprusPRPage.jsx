@@ -439,7 +439,7 @@ const CyprusPRPage = () => {
               </div>
               <div className="hero-visual">
                 <div className="hero-img-frame">
-                  <img src="https://images.unsplash.com/photo-1602089633947-8543e83b7b7c?q=80&w=1000&auto=format&fit=crop" alt="Cyprus Mediterranean coastline and seafront" />
+                  <img src="/images/cyprus-pr/secure-cyprus-residence.png" alt="Secure Cyprus Residence — Limassol marina and Mediterranean waterfront" />
                   <div className="hero-img-badge">
                     <span className="flag">🇨🇾</span>
                     <div className="cap-txt">
@@ -484,7 +484,7 @@ const CyprusPRPage = () => {
               </div>
               <div className="about-media cy-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1569288035807-e36a32f21d9d?q=80&w=1200&auto=format&fit=crop" alt="Limassol marina and seafront, Cyprus" />
+                <img src="/images/cyprus-pr/mediterranean-gateway.png" alt="Cyprus — a Mediterranean gateway for global investors, Limassol coastline" />
               </div>
             </div>
             <div className="facts-row">
@@ -550,7 +550,7 @@ const CyprusPRPage = () => {
               </div>
               <div className="reasons-media cy-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1597466765654-24af2960cf5d?q=80&w=1200&auto=format&fit=crop" alt="Coastal Cyprus landscape with turquoise Mediterranean waters" />
+                <img src="/images/cyprus-pr/eu-jurisdiction-long-term.png" alt="An EU jurisdiction that rewards long-term thinking — Cyprus and EU flags" />
               </div>
             </div>
           </div>
@@ -647,7 +647,7 @@ const CyprusPRPage = () => {
             <div className="fam-grid">
               <div className="fam-media cy-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=1200&auto=format&fit=crop" alt="Family lifestyle and leisure in Cyprus" />
+                <img src="/images/cyprus-pr/single-filing-household.png" alt="A single filing that can cover your household — family at home in Cyprus" />
               </div>
               <div className="cy-reveal">
                 <span className="eyebrow">Family Inclusion</span>
@@ -708,11 +708,11 @@ const CyprusPRPage = () => {
             </div>
             <div className="life-grid">
               {[
-                { img: 'https://images.unsplash.com/photo-1590736969955-71cc94901144?q=80&w=1200&auto=format&fit=crop', alt: 'Mediterranean coastline of Cyprus', t: 'Coastlines & Natural Surroundings' },
-                { img: 'https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=1000&auto=format&fit=crop', alt: 'Residential property in Cyprus', t: 'Residential Property Options' },
-                { img: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1000&auto=format&fit=crop', alt: 'International schools in Cyprus', t: 'International Schooling' },
-                { img: 'https://images.unsplash.com/photo-1511895426328-dc8714191011?q=80&w=1200&auto=format&fit=crop', alt: 'Family life in Cyprus', t: 'Everyday Family Life' },
-                { img: 'https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1000&auto=format&fit=crop', alt: 'Private healthcare in Cyprus', t: 'Private Healthcare Access' },
+                { img: '/images/cyprus-pr/coastlines-natural-surroundings.png', alt: 'Coastlines and natural surroundings in Cyprus', t: 'Coastlines & Natural Surroundings' },
+                { img: '/images/cyprus-pr/residential-property-options.png', alt: 'Residential property options in Cyprus — church and neighbourhood', t: 'Residential Property Options' },
+                { img: '/images/cyprus-pr/international-schooling.png', alt: 'International schooling in Cyprus — modern campus at dusk', t: 'International Schooling' },
+                { img: '/images/cyprus-pr/everyday-family-life.png', alt: 'Everyday family life in Cyprus — family on a cobblestone street', t: 'Everyday Family Life' },
+                { img: '/images/cyprus-pr/private-healthcare-access.png', alt: 'Private healthcare access in Cyprus — doctor with a young family', t: 'Private Healthcare Access' },
               ].map((c, i) => (
                 <div className="life-card cy-reveal" key={i}>
                   <img src={c.img} alt={c.alt} /><div className="ov"></div><div className="cap"><h3>{c.t}</h3></div>

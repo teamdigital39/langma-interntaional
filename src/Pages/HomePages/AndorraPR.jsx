@@ -383,7 +383,7 @@ const AndorraPRPage = () => {
               </div>
               <div className="hero-visual">
                 <div className="hero-img-frame">
-                  <img src="https://images.unsplash.com/photo-1508193638397-1c4234db14d8?q=80&w=1200" alt="Andorra la Vella, the Pyrenean capital of the Principality of Andorra" />
+                  <img src="/images/andorra-residency/pyrenean-principality.png" alt="A Pyrenean Principality — Andorra la Vella nestled in the mountain valley" />
                   <div className="hero-img-badge">
                     <span className="dot-pulse"></span>
                     <span>Andorra la Vella, Principality of Andorra</span>
@@ -424,7 +424,7 @@ const AndorraPRPage = () => {
               </div>
               <div className="about-media an-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1526078669370-7f68a3f72b7f?q=80&w=1200" alt="Andorra mountain village panorama — scenic Pyrenean landscape" />
+                <img src="/images/andorra-residency/european-principality-global-appeal.png" alt="A European Principality with Global Appeal — Andorra street with Pyrenees backdrop" />
               </div>
             </div>
             <div className="facts-row">
@@ -484,7 +484,7 @@ const AndorraPRPage = () => {
               </div>
               <div className="reasons-media an-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1580487932618-ca2b56c543b3?q=80&w=1200" alt="Andorra la Vella modern cityscape surrounded by Pyrenean mountains" />
+                <img src="/images/andorra-residency/best-kept-residency-secret.png" alt="Europe's best-kept residency secret — scenic Andorra village with canal and mountains" />
               </div>
             </div>
             <div className="about-transition an-reveal">
@@ -630,7 +630,7 @@ const AndorraPRPage = () => {
             <div className="fam-grid">
               <div className="fam-media an-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200" alt="Family lifestyle outdoors in safe environment" />
+                <img src="/images/andorra-residency/one-application-family.png" alt="One application — residency for the whole family relocating to Andorra" />
               </div>
               <div className="an-reveal">
                 <span className="eyebrow">Family Inclusion</span>
@@ -722,9 +722,9 @@ const AndorraPRPage = () => {
             </div>
             <div className="life-grid">
               {[
-                { img: 'https://images.unsplash.com/photo-1591800898745-de1e90dfe07a?q=80&w=1200', alt: 'Andorra Pyrenean mountain landscape in autumn', t: 'Mountain Living', p: 'Natural beauty and outdoor lifestyle year-round' },
-                { img: 'https://images.unsplash.com/photo-1519152297761-3e3c8024b6f7?q=80&w=800', alt: 'Modern Andorra la Vella city centre', t: 'Modern Infrastructure', p: 'Contemporary capital with excellent connectivity' },
-                { img: 'https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=800', alt: 'Premium private healthcare facilities', t: 'Healthcare Up to 90% Covered', p: 'Among the highest standards in Europe' },
+                { img: '/images/andorra-residency/mountain-living.png', alt: 'Mountain living in Andorra — stone bridge and Pyrenean village', t: 'Mountain Living', p: 'Natural beauty and outdoor lifestyle year-round' },
+                { img: '/images/andorra-residency/modern-infrastructure.png', alt: 'Modern infrastructure in Andorra la Vella city centre', t: 'Modern Infrastructure', p: 'Contemporary capital with excellent connectivity' },
+                { img: '/images/andorra-residency/healthcare.png', alt: 'Healthcare in Andorra — doctor consulting with a patient', t: 'Healthcare Up to 90% Covered', p: 'Among the highest standards in Europe' },
               ].map((c, i) => (
                 <div className="life-card an-reveal" key={i}>
                   <img src={c.img} alt={c.alt} />

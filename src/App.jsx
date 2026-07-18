@@ -119,6 +119,7 @@ import LearnGermanLanguage from "./Pages/HomePages/LearnGermanLanguage";
 import LearnKoreanLanguage from "./Pages/HomePages/LearnKoreanLanguage";
 import LearnJapaneseLanguage from "./Pages/HomePages/LearnJapaneseLanguage";
 import TranslationServices from "./Pages/HomePages/TranslationServices";
+import HomeLangma from "./Pages/HomePages/Homepage";
 
 const STANDALONE_LANDING_ROUTES = [
   "/learn-german-language",
@@ -149,7 +150,8 @@ function App() {
       {!isStandaloneLanding && loading && <Loader />}
 
       <Routes>
-          <Route path="/" element={<HeroSection />} />
+          {/* <Route path="/" element={<HeroSection />} /> */}
+          <Route path="/" element={<HomeLangma />} />
           {/* <Route path="/about" element={<AboutHeroSection />} />*/}
           <Route path="/about" element={<AboutLangma />} />
           <Route path="/work-abroad" element={<AbrotHeroSection />} />
@@ -266,6 +268,7 @@ function App() {
           <Route path="/translation-services" element={<TranslationServices />} />
           <Route path="/:slug" element={<Arabic/>} />
           <Route path="/golden-visa-assessment" element={<GoldenVisaAssessment/>} />
+          {/* <Route path="/newhome" element={<HomeLangma/>} /> */}
         </Routes>
       {!isStandaloneLanding && <Footer />}
       </div>
