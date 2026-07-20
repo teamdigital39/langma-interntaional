@@ -142,7 +142,7 @@ function ConnectForm() {
 const ECOSYSTEM = [
   {
     icon: (<><rect x="3" y="5" width="18" height="12" rx="2" /><path d="M8 17l-2 4v-4" /></>),
-    title: "Global Learning",
+    title: "Global Language Learning",
     short: "Learning",
     body: "Build language proficiency, communication skills, and cultural intelligence through industry-focused language training and certification programs.",
     img: "/images/Global Learning.png",
@@ -848,7 +848,7 @@ export default function HomeLangma() {
                   </div>
                   <div className="hero__trust">
                     <div className="hero__trust-avatars">
-                      <img src="/images/img1002.avif" alt="" loading="lazy" />
+                      <img src="/images/img1001.png" alt="" loading="lazy" />
                       <img src="/images/img1002.avif" alt="" loading="lazy" />
                       <img src="/images/img1003.jpeg" alt="" loading="lazy" />
                       <img src="/images/img1004.avif" alt="" loading="lazy" />
