@@ -333,7 +333,7 @@ const PortugalD8Page = () => {
 
         /* Living Details */
         .pt-page .living-details { background:#296166; color:#F5F8F6; position:relative; overflow:hidden; }
-        .pt-page .living-details::before { content:''; position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1555881400-74d7acaacd8b?q=80&w=1800&auto=format&fit=crop'); background-size:cover; background-position:center; opacity:.07; }
+        .pt-page .living-details::before { content:''; position:absolute; inset:0; background-image:url('/images/portugal-d8/atlantic-character.png'); background-size:cover; background-position:center; opacity:.07; }
         .pt-page .living-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
         .pt-page .living-card { background:rgba(247,250,252,.05); border:1px solid rgba(47,199,161,.15); border-radius:4px; padding:36px 30px; transition:all .35s cubic-bezier(.22,.61,.36,1); }
         .pt-page .living-card:hover { background:rgba(47,199,161,.07); border-color:rgba(47,199,161,.35); }
@@ -533,7 +533,7 @@ const PortugalD8Page = () => {
               </div>
               <div className="hero-visual">
                 <div className="hero-img-frame">
-                  <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?q=80&w=1000&auto=format&fit=crop" alt="Lisbon rooftops and the Tagus River at golden hour, Portugal" />
+                  <img src="/images/portugal-d8/hero-live-work.png" alt="Remote professionals working in a Lisbon café with city views" />
                   <div className="hero-img-badge">
                     <span className="flag">🇵🇹</span>
                     <div className="cap-txt">
@@ -575,7 +575,7 @@ const PortugalD8Page = () => {
               </div>
               <div className="about-media pt-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1513735492246-483525079686?q=80&w=1200&auto=format&fit=crop" alt="Porto's Ribeira waterfront reflected in the Douro River, Portugal" />
+                <img src="/images/portugal-d8/atlantic-character.png" alt="Lisbon miradouro overlooking Alfama and the Tagus at sunset" />
               </div>
             </div>
             <div className="facts-row">
@@ -865,7 +865,7 @@ const PortugalD8Page = () => {
             <div className="fam-grid">
               <div className="fam-media pt-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1511895426328-dc8714191011?q=80&w=1200&auto=format&fit=crop" alt="A family enjoying life together in Portugal" />
+                <img src="/images/portugal-d8/family-application.png" alt="Family relocating and moving into their new home together" />
               </div>
               <div className="pt-reveal">
                 <span className="eyebrow">Family Inclusion</span>
@@ -946,9 +946,9 @@ const PortugalD8Page = () => {
             </div>
             <div className="life-grid">
               {[
-                { img: 'https://images.unsplash.com/photo-1585208798174-6cedd86e019a?q=80&w=1200&auto=format&fit=crop', alt: 'Lisbon historic Alfama district at golden hour, Portugal', t: 'Lisbon', p: 'A cosmopolitan European capital of light, culture and innovation — with a thriving international community of remote workers.' },
-                { img: 'https://images.unsplash.com/photo-1555881400-74d7acaacd8b?q=80&w=1200&auto=format&fit=crop', alt: 'Porto waterfront and the Douro River at dusk, Portugal', t: 'Porto', p: 'Historic, creative and deeply characterful — Porto combines Atlantic energy with world-renowned cuisine and a rapidly growing creative economy.' },
-                { img: 'https://images.unsplash.com/photo-1548697963-b5a01d4f5ee3?q=80&w=1200&auto=format&fit=crop', alt: 'Algarve golden cliffs and Atlantic coastline at sunrise, Portugal', t: 'The Algarve', p: '300 days of sunshine, dramatic Atlantic cliffs, pristine beaches and a well-established international community of long-term residents.' },
+                { img: '/images/portugal-d8/lisbon.png', alt: 'Yellow Lisbon tram on a steep street lined with orange trees', t: 'Lisbon', p: 'A cosmopolitan European capital of light, culture and innovation — with a thriving international community of remote workers.' },
+                { img: '/images/portugal-d8/porto.png', alt: 'Historic Porto street corner illuminated at twilight', t: 'Porto', p: 'Historic, creative and deeply characterful — Porto combines Atlantic energy with world-renowned cuisine and a rapidly growing creative economy.' },
+                { img: '/images/portugal-d8/algarve.png', alt: 'Algarve golden cliffs and Atlantic coastline viewpoint', t: 'The Algarve', p: '300 days of sunshine, dramatic Atlantic cliffs, pristine beaches and a well-established international community of long-term residents.' },
               ].map((c, i) => (
                 <div className="life-card pt-reveal" key={i}>
                   <img src={c.img} alt={c.alt} /><div className="ov"></div><div className="cap"><h3>{c.t}</h3><p>{c.p}</p></div>
@@ -1087,7 +1087,7 @@ const PortugalD8Page = () => {
               </div>
               <div className="langma-img pt-reveal">
                 <span className="langma-img-frame"></span>
-                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop" alt="Langma International advisory team in professional consultation" />
+                <img src="/images/portugal-d8/trusted-partner.png" alt="Advisor consulting with a client on residency documents" />
               </div>
             </div>
           </div>

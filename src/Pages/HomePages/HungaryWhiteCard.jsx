@@ -123,12 +123,12 @@ const HungaryWhiteCardPage = () => {
   ];
 
   const lifeCards = [
-    { img: 'https://images.unsplash.com/photo-1467371020306-d8a93d3b7f2c?q=80&w=800&auto=format&fit=crop', alt: 'Budapest historic streets and architecture', t: 'Budapest', p: 'A walkable, historic capital blending grand 19th-century architecture with a growing café and co-working culture.' },
-    { img: 'https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?q=80&w=800&auto=format&fit=crop', alt: 'Thermal baths in Budapest', t: 'Thermal Baths & Culture', p: 'Centuries-old thermal bath traditions sit alongside museums, galleries and a lively arts and music scene.' },
-    { img: 'https://images.unsplash.com/photo-1538332576228-eb5b4c4de6f5?q=80&w=800&auto=format&fit=crop', alt: 'Modern Budapest financial district', t: 'Cost of Living', p: 'Rental, utilities and medical services remain considerably more affordable than in Western European capitals.' },
-    { img: 'https://images.unsplash.com/photo-1576016770956-debb63d92058?q=80&w=800&auto=format&fit=crop', alt: 'Healthcare facility in Hungary', t: 'Healthcare', p: 'A healthcare system known for affordable, high-quality dental, surgical and diagnostic care.' },
-    { img: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=800&auto=format&fit=crop', alt: 'Public transport in Budapest', t: 'Transport & Safety', p: 'An efficient public transport network and a reputation as one of the safer EU capitals for daily life.' },
-    { img: 'https://images.unsplash.com/photo-1577128494906-2e1ee8b3c1a8?q=80&w=800&auto=format&fit=crop', alt: 'Co-working space in Budapest', t: 'Working Remotely', p: 'A maturing network of co-working spaces and reliable connectivity support remote and hybrid working life.' },
+    { img: '/images/hungary-white-card/budapest.png', alt: 'Fisherman\'s Bastion overlooking the Hungarian Parliament at night, Budapest', t: 'Budapest', p: 'A walkable, historic capital blending grand 19th-century architecture with a growing café and co-working culture.' },
+    { img: '/images/hungary-white-card/thermal-baths-culture.png', alt: 'Széchenyi Thermal Baths in Budapest', t: 'Thermal Baths & Culture', p: 'Centuries-old thermal bath traditions sit alongside museums, galleries and a lively arts and music scene.' },
+    { img: '/images/hungary-white-card/cost-of-living.png', alt: 'Couple enjoying breakfast in a Budapest apartment', t: 'Cost of Living', p: 'Rental, utilities and medical services remain considerably more affordable than in Western European capitals.' },
+    { img: '/images/hungary-white-card/healthcare.png', alt: 'Doctor consulting with a patient in a modern clinic', t: 'Healthcare', p: 'A healthcare system known for affordable, high-quality dental, surgical and diagnostic care.' },
+    { img: '/images/hungary-white-card/transport-safety.png', alt: 'Yellow tram outside historic architecture in Budapest', t: 'Transport & Safety', p: 'An efficient public transport network and a reputation as one of the safer EU capitals for daily life.' },
+    { img: '/images/hungary-white-card/working-remotely.png', alt: 'Professional working remotely on a video call', t: 'Working Remotely', p: 'A maturing network of co-working spaces and reliable connectivity support remote and hybrid working life.' },
   ];
 
   const lgItems = [
@@ -515,7 +515,7 @@ const HungaryWhiteCardPage = () => {
               </div>
               <div className="hero-visual">
                 <div className="hero-img-frame">
-                  <img src="https://images.unsplash.com/photo-1541849546-216549ae564b?q=80&w=1000&auto=format&fit=crop" alt="Hungarian Parliament Building on the Danube at sunset, Budapest" />
+                  <img src="/images/hungary-white-card/gateway-european-living.png" alt="Remote professional overlooking the Hungarian Parliament and Danube from a Budapest café" />
                   <div className="hero-img-badge">
                     <span className="flag">🇭🇺</span>
                     <div className="cap-txt"><strong>Hungary</strong>EU Member · Schengen Area</div>
@@ -552,7 +552,7 @@ const HungaryWhiteCardPage = () => {
                 <p>Hungarian, the official language, sits alongside widely spoken English and German in business and hospitality settings, while the forint remains the national currency. Budapest's blend of historic architecture, thermal culture and a growing innovation scene gives newcomers a city that feels both established and forward-looking.</p>
               </div>
               <div className="about-media reveal">
-                <img src="https://images.unsplash.com/photo-1551867633-194f125bddfa?q=80&w=1000&auto=format&fit=crop" alt="Danube River and Budapest skyline" />
+                <img src="/images/hungary-white-card/central-european-base.png" alt="Hungarian Parliament Building on the Danube at sunset, Budapest" />
                 <div className="frame"></div>
               </div>
             </div>
@@ -716,7 +716,7 @@ const HungaryWhiteCardPage = () => {
                 <p>Langma International advises families on the most realistic combination of permits for their situation, and coordinates parallel applications where more than one family member intends to relocate.</p>
               </div>
               <div className="fam-media reveal">
-                <img src="https://images.unsplash.com/photo-1505764706515-aa95265c5abc?q=80&w=1000&auto=format&fit=crop" alt="International family enjoying a European city break" />
+                <img src="/images/hungary-white-card/bringing-family.png" alt="Family at Fisherman's Bastion with the Hungarian Parliament across the Danube" />
               </div>
             </div>
           </div>
@@ -755,7 +755,7 @@ const HungaryWhiteCardPage = () => {
                 </div>
               </div>
               <div className="lg-media reveal">
-                <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=900&auto=format&fit=crop" alt="Advisory consultation meeting" />
+                <img src="/images/hungary-white-card/guidance-eligibility.png" alt="Immigration advisor reviewing documents with a client" />
               </div>
             </div>
           </div>

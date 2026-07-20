@@ -331,7 +331,7 @@ const ItalyDNVPage = () => {
               </div>
               <div className="hero-visual">
                 <div className="hero-img-frame">
-                  <img src="https://images.unsplash.com/photo-1525874684015-58379d421a52?q=80&w=1200" alt="Rome's domes and terracotta rooftops at golden hour" />
+                  <img src="/images/italy-digital-nomad/hero-dolce-vita.png" alt="Remote professional working from a Venice apartment overlooking the Grand Canal" />
                   <div className="hero-img-badge">
                     <span className="dot-pulse"></span>
                     <span>Rome, Italy</span>
@@ -370,7 +370,7 @@ const ItalyDNVPage = () => {
               </div>
               <div className="about-media it-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1534445867742-43195f401b6c?q=80&w=1200" alt="Sunlit Italian piazza with historic architecture and outdoor cafés" />
+                <img src="/images/italy-digital-nomad/mediterranean-base.png" alt="Sunset over Positano on Italy's Amalfi Coast" />
               </div>
             </div>
             <div className="facts-row">
@@ -525,7 +525,7 @@ const ItalyDNVPage = () => {
             <div className="fam-grid">
               <div className="fam-media it-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1543349689-9a4d426bee8e?q=80&w=1200" alt="A family walking together along a sunlit Italian street" />
+                <img src="/images/italy-digital-nomad/family-included.png" alt="Family arriving at their new home together" />
               </div>
               <div className="it-reveal">
                 <span className="eyebrow">Eligible Applicants &amp; Family</span>
@@ -587,9 +587,9 @@ const ItalyDNVPage = () => {
             </div>
             <div className="life-grid">
               {[
-                { img: 'https://images.unsplash.com/photo-1572552635104-376e7903b9b2?q=80&w=1200', alt: "Milan's Duomo cathedral and modern skyline", t: 'Milan', p: 'Italy\u2019s commercial and design capital, with a fast-growing start-up scene and strong international business community.' },
-                { img: 'https://images.unsplash.com/photo-1543429776-2782fc8e1acd?q=80&w=1200', alt: "Florence's terracotta rooftops and the Duomo at sunset", t: 'Florence', p: 'A Renaissance city of art, architecture and an established community of relocating professionals and creatives.' },
-                { img: 'https://images.unsplash.com/photo-1514890547357-a9ee288728e0?q=80&w=1200', alt: 'Venice canals lined with historic buildings and gondolas', t: 'Venice', p: 'A singular lagoon city of canals, history and a famously slower, more deliberate way of life.' },
+                { img: '/images/italy-digital-nomad/milan.png', alt: "Milan Cathedral illuminated at twilight", t: 'Milan', p: 'Italy\u2019s commercial and design capital, with a fast-growing start-up scene and strong international business community.' },
+                { img: '/images/italy-digital-nomad/florence.png', alt: "Florence rooftops and the Duomo at sunset", t: 'Florence', p: 'A Renaissance city of art, architecture and an established community of relocating professionals and creatives.' },
+                { img: '/images/italy-digital-nomad/venice.png', alt: 'Gondola on a Venetian canal at golden hour', t: 'Venice', p: 'A singular lagoon city of canals, history and a famously slower, more deliberate way of life.' },
               ].map((c, i) => (
                 <div className="life-card it-reveal" key={i}>
                   <img src={c.img} alt={c.alt} />

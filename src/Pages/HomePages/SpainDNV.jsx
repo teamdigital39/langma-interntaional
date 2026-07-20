@@ -417,7 +417,7 @@ const SpainDNVPage = () => {
               </div>
               <div className="hero-visual">
                 <div className="hero-img-frame">
-                  <img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?q=80&w=1200&auto=format&fit=crop" alt="Aerial view of Barcelona's dense city grid stretching toward the Mediterranean" />
+                  <img src="/images/spain-digital-nomad/hero-gateway.png" alt="Remote professional working from home with a view of the Sagrada Família, Barcelona" />
                   <div className="hero-img-badge">
                     <span className="dot-pulse"></span>
                     <span>Barcelona, Spain</span>
@@ -456,7 +456,7 @@ const SpainDNVPage = () => {
               </div>
               <div className="about-media sp-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1653385324919-e413ff41070e?q=80&w=1200&auto=format&fit=crop" alt="A Spanish coastal city beside calm Mediterranean water" />
+                <img src="/images/spain-digital-nomad/sunlit-home.png" alt="Coastal Spanish patio overlooking the sea at sunset" />
               </div>
             </div>
 
@@ -602,7 +602,7 @@ const SpainDNVPage = () => {
             <div className="fam-grid">
               <div className="fam-media sp-reveal">
                 <span className="frame"></span>
-                <img src="https://images.unsplash.com/photo-1628084102616-ce6a67fafd7c?q=80&w=1200&auto=format&fit=crop" alt="People relaxing on a sunlit Spanish Mediterranean beach" />
+                <img src="/images/spain-digital-nomad/family-included.png" alt="Family settling into their new home together" />
               </div>
               <div className="sp-reveal">
                 <span className="eyebrow">Eligible Applicants &amp; Family</span>
@@ -691,9 +691,9 @@ const SpainDNVPage = () => {
             </div>
             <div className="life-grid">
               {[
-                { img: 'https://images.unsplash.com/photo-1511527661048-7fe73d85e9a4?q=80&w=1200&auto=format&fit=crop', alt: 'The towering spires of the Sagrada Família rising above Barcelona', t: 'Barcelona', p: 'A creative, coastal city of Gaudí architecture, a thriving start-up scene and one of Europe\u2019s most loved nomad communities.' },
-                { img: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?q=80&w=1200&auto=format&fit=crop', alt: "Aerial view of Madrid's Gran Vía boulevard lined with grand buildings", t: 'Madrid', p: 'The energetic capital — business, culture and nightlife — with superb transport links across Spain and beyond.' },
-                { img: 'https://images.unsplash.com/photo-1622112359064-04163bf6fb8f?q=80&w=1200&auto=format&fit=crop', alt: 'A Spanish Mediterranean coastal town seen from the air', t: 'The Mediterranean Coast', p: 'Valencia, Málaga and the Costa del Sol — sunshine, sea air and relaxed, well-connected coastal living.' },
+                { img: '/images/spain-digital-nomad/barcelona.png', alt: 'Sagrada Família illuminated at night under a full moon, Barcelona', t: 'Barcelona', p: 'A creative, coastal city of Gaudí architecture, a thriving start-up scene and one of Europe\u2019s most loved nomad communities.' },
+                { img: '/images/spain-digital-nomad/madrid.png', alt: 'Historic Madrid street leading to a grand blue-domed building', t: 'Madrid', p: 'The energetic capital — business, culture and nightlife — with superb transport links across Spain and beyond.' },
+                { img: '/images/spain-digital-nomad/mediterranean-coast.png', alt: 'Mediterranean coastal town cascading down a hillside at sunset', t: 'The Mediterranean Coast', p: 'Valencia, Málaga and the Costa del Sol — sunshine, sea air and relaxed, well-connected coastal living.' },
               ].map((c, i) => (
                 <div className="life-card sp-reveal" key={i}>
                   <img src={c.img} alt={c.alt} />
