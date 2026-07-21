@@ -607,7 +607,7 @@ const PortugalGlobalTalentPage = () => {
       </div>
       <div className="hero-media reveal">
         <div className="hero-media-card">
-          <img src="https://images.unsplash.com/photo-1748279944004-f1d733dc711b?auto=format&fit=crop&w=1400&q=80" alt="Lisbon skyline glowing under a sunset over the Tagus river, Portugal" fetchPriority="high" />
+          <img src="/images/portugal-global-talent/hero-talent-belonging.png" alt="Professional overlooking Lisbon's skyline and the Tagus at sunset" fetchPriority="high" />
           <span className="hero-tag"><span className="dot" />Lisbon, Portugal</span>
         </div>
       </div>
@@ -639,7 +639,7 @@ const PortugalGlobalTalentPage = () => {
   <section className="section overview" id="overview">
     <div className="wrap ov-grid">
       <div className="ov-figure reveal">
-        <img src="https://images.unsplash.com/photo-1762294946283-6921938e9937?auto=format&fit=crop&w=1400&q=80" alt="Aerial view of the Dom Luís I Bridge spanning the Douro River in Porto, Portugal" loading="lazy" />
+        <img src="/images/portugal-global-talent/magnetic-address.png" alt="Porto's Ribeira and the Douro River filled with boats under a clear sky" loading="lazy" />
         <div className="cap"><b>Porto, Douro Valley</b><span>Atlantic Europe</span></div>
       </div>
       <div className="ov-copy">
@@ -924,7 +924,7 @@ const PortugalGlobalTalentPage = () => {
   {/* ============ LIFE IN PORTUGAL ============ */}
   <section className="section life">
     <div className="life-bg">
-      <img src="https://images.unsplash.com/photo-1754318090243-ff996799b84e?auto=format&fit=crop&w=2200&q=80" alt="The Atlantic ocean at sunset seen from a grassy cliffside on the Algarve coast, Portugal" loading="lazy" />
+      <img src="/images/portugal-global-talent/why-choose-here.png" alt="People jogging and cycling along Lisbon's sunny riverside promenade" loading="lazy" />
     </div>
     <div className="wrap">
       <div className="section-head reveal">
@@ -1044,7 +1044,7 @@ const PortugalGlobalTalentPage = () => {
   {/* ============ CONSULT / FORM ============ */}
   <section className="section consult" id="consult">
     <div className="consult-bg">
-      <img src="https://images.unsplash.com/photo-1748279944004-f1d733dc711b?auto=format&fit=crop&w=2000&q=80" alt="Lisbon at dusk over the river" loading="lazy" />
+      <img src="/images/portugal-global-talent/private-consultation.png" alt="Group enjoying a wine tasting on a terrace above the Douro valley" loading="lazy" />
     </div>
     <div className="wrap consult-grid">
       <div className="consult-copy reveal">

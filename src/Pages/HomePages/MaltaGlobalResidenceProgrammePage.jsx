@@ -833,7 +833,7 @@ const LangmaMaltaGlobalResidenceProgrammePage = () => {
       </div>
       <div className="hero-visual">
         <div className="hero-img-frame">
-          <img src="https://images.unsplash.com/photo-1696159380859-2d6b563cfc4f?q=80&w=1200&auto=format&fit=crop" alt="The fortified skyline of Valletta, Malta's capital, overlooking the Grand Harbour" />
+          <img src="/images/malta-global/hero-refined-route.png" alt="Luxury Maltese limestone villa with an infinity pool overlooking the Mediterranean at sunset" />
           <div className="hero-img-badge">
             <span className="dot-pulse"></span>
             <span>Valletta, Malta</span>
@@ -872,7 +872,7 @@ const LangmaMaltaGlobalResidenceProgrammePage = () => {
       </div>
       <div className="about-media reveal">
         <span className="frame"></span>
-        <img src="https://images.unsplash.com/photo-1667570224324-9dd6b75f1d72?q=80&w=1200&auto=format&fit=crop" alt="Valletta's historic waterfront promenade lined with colourful balconies along the Grand Harbour" />
+        <img src="/images/malta-global/compact-archipelago.png" alt="Aerial view of Malta's densely built coastline and bays around Sliema and St Julian's" />
       </div>
     </div>
 
@@ -1012,7 +1012,7 @@ const LangmaMaltaGlobalResidenceProgrammePage = () => {
     <div className="fam-grid">
       <div className="fam-media reveal">
         <span className="frame"></span>
-        <img src="https://images.unsplash.com/photo-1728051104379-de466fd0f3f4?q=80&w=1200&auto=format&fit=crop" alt="A luxury Maltese resort infinity pool overlooking the island, reflecting the lifestyle families enjoy" />
+        <img src="/images/malta-global/three-generations.png" alt="Three generations of a family laughing together at home" />
       </div>
       <div className="reveal">
         <span className="eyebrow">Eligible Applicants &amp; Family</span>
@@ -1120,17 +1120,17 @@ const LangmaMaltaGlobalResidenceProgrammePage = () => {
     </div>
     <div className="life-grid">
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1632422836490-b8d03c494856?q=80&w=1200&auto=format&fit=crop" alt="Valletta's historic skyline and bastions above the Grand Harbour" />
+        <img src="/images/malta-global/valletta-grand-harbour.png" alt="A yacht moored in the Grand Harbour beneath Valletta's historic skyline" />
         <div className="ov"></div>
         <div className="cap"><h3>Valletta &amp; the Grand Harbour</h3><p>The fortified capital — Baroque architecture, government and culture, with the harbour's marinas close at hand.</p></div>
       </div>
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1623718649591-311775a30c43?q=80&w=1200&auto=format&fit=crop" alt="A modern luxury infinity pool and sun deck overlooking Malta, typical of Sliema and St Julian's" />
+        <img src="/images/malta-global/sliema-st-julians.png" alt="Valletta street of colourful balconies opening onto the harbour toward Sliema" />
         <div className="ov"></div>
         <div className="cap"><h3>Sliema &amp; St Julian's</h3><p>Malta's contemporary waterfront — marinas, dining and a concentration of international residents and businesses.</p></div>
       </div>
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1684158903180-36fe8201531a?q=80&w=1200&auto=format&fit=crop" alt="The sunlit limestone streets of Mdina, Malta's ancient walled city" />
+        <img src="/images/malta-global/mdina-rabat.png" alt="A quiet limestone alley with traditional wooden balconies in Mdina, Malta" />
         <div className="ov"></div>
         <div className="cap"><h3>Mdina &amp; Rabat</h3><p>The island's ancient walled city and surrounds — quiet limestone streets and a slower, historic pace of life.</p></div>
       </div>

@@ -1,0 +1,35 @@
+﻿PATH /
+HTTP/1.1 302 Found
+Server: Apache
+Location: /404.html
+---
+PATH /index.html
+HTTP/1.1 302 Found
+Server: Apache
+Location: /404.html
+---
+PATH /index.php
+HTTP/1.1 302 Found
+Server: Apache
+Location: /404.html
+---
+PATH /nepal/
+HTTP/1.1 302 Found
+Server: Apache
+Location: /404.html
+---
+PATH /nepal/index.html
+HTTP/1.1 302 Found
+Server: Apache
+Location: /404.html
+---
+PATH /public_html/
+HTTP/1.1 302 Found
+Server: Apache
+Location: /404.html
+---
+PATH /404.html
+HTTP/1.1 404 Not Found
+Server: Apache
+Content-Length: 583
+---

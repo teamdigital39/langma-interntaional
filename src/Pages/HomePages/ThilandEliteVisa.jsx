@@ -585,7 +585,7 @@ const LangmaThailandEliteVisaPage = () => {
       </div>
       <div className="hero-visual">
         <div className="hero-img-frame">
-          <img src="https://images.unsplash.com/photo-1704872656367-aab145fdee7f?q=80&w=1200&auto=format&fit=crop" alt="The Bangkok skyline along the Chao Phraya River at dusk" />
+          <img src="/images/thailand-elite/hero-gateway.png" alt="Luxury balcony overlooking the Chao Phraya River and Bangkok skyline at sunset" />
           <div className="hero-img-badge">
             <span className="dot-pulse"></span>
             <span>Bangkok, Thailand</span>
@@ -624,7 +624,7 @@ const LangmaThailandEliteVisaPage = () => {
       </div>
       <div className="about-media reveal">
         <span className="frame"></span>
-        <img src="https://images.unsplash.com/photo-1755251042986-91270ffd76f5?q=80&w=1200&auto=format&fit=crop" alt="Wat Arun, the Temple of Dawn, on the banks of the Chao Phraya River in Bangkok" />
+        <img src="/images/thailand-elite/warm-connected-home.png" alt="Giant golden Buddha and temple beside a Bangkok canal with a longtail boat" />
       </div>
     </div>
 
@@ -753,7 +753,7 @@ const LangmaThailandEliteVisaPage = () => {
     <div className="fam-grid">
       <div className="fam-media reveal">
         <span className="frame"></span>
-        <img src="https://images.unsplash.com/photo-1688821999533-b0b719348555?q=80&w=1200&auto=format&fit=crop" alt="Aerial view of a turquoise cove near Phuket, Thailand" />
+        <img src="/images/thailand-elite/family-membership.png" alt="Parents playing with their children at home" />
       </div>
       <div className="reveal">
         <span className="eyebrow">Eligible Applicants &amp; Family</span>
@@ -821,19 +821,24 @@ const LangmaThailandEliteVisaPage = () => {
     </div>
     <div className="life-grid">
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1704872656367-aab145fdee7f?q=80&w=1200&auto=format&fit=crop" alt="The modern skyline of Bangkok along the Chao Phraya River" />
+        <img src="/images/thailand-elite/bangkok.png" alt="Riverside terrace overlooking Bangkok's modern skyline at golden hour" />
         <div className="ov"></div>
         <div className="cap"><h3>Bangkok</h3><p>A global business hub layered over centuries of history, with international schools, JCI-accredited hospitals and world-class dining.</p></div>
       </div>
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1688821999533-b0b719348555?q=80&w=1200&auto=format&fit=crop" alt="Aerial view of a turquoise island cove near Phuket" />
+        <img src="/images/thailand-elite/phuket.png" alt="Longtail boats on a turquoise beach framed by limestone cliffs near Phuket" />
         <div className="ov"></div>
         <div className="cap"><h3>Phuket &amp; the Andaman Coast</h3><p>Thailand's largest island and gateway to the Andaman Sea — beaches, marinas and a well-established international community.</p></div>
       </div>
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1575474970096-54aa20b7e784?q=80&w=1200&auto=format&fit=crop" alt="A historic temple in Chiang Mai, northern Thailand" />
+        <img src="/images/thailand-elite/chiang-mai.png" alt="Hilltop pagodas above misty mountains at sunset in Chiang Mai" />
         <div className="ov"></div>
         <div className="cap"><h3>Chiang Mai</h3><p>A slower-paced northern capital of temples and mountains, long favoured by long-stay residents and remote professionals alike.</p></div>
+      </div>
+      <div className="life-card reveal">
+        <img src="/images/thailand-elite/koh-samui.png" alt="Tropical garden villas on Koh Samui" />
+        <div className="ov"></div>
+        <div className="cap"><h3>Koh Samui</h3><p>An island of palm-fringed beaches and villa living in the Gulf of Thailand — a relaxed base with resort-standard comforts year-round.</p></div>
       </div>
     </div>
     <div className="life-strip">

@@ -580,7 +580,7 @@ const LangmaIndonesiaSecondHomeVisaPage = () => {
       </div>
       <div className="hero-visual">
         <div className="hero-img-frame">
-          <img src="https://images.unsplash.com/photo-1709879811940-c88f7eecc66c?q=80&w=1200&auto=format&fit=crop" alt="Aerial view of Jakarta's skyline of glass towers under a blue sky" />
+          <img src="/images/indonesia-second-home/hero-gateway.png" alt="Jakarta's illuminated skyline and Selamat Datang roundabout at night" />
           <div className="hero-img-badge">
             <span className="dot-pulse"></span>
             <span>Jakarta, Indonesia</span>
@@ -619,7 +619,7 @@ const LangmaIndonesiaSecondHomeVisaPage = () => {
       </div>
       <div className="about-media reveal">
         <span className="frame"></span>
-        <img src="https://images.unsplash.com/photo-1591674585153-ca78d0339b09?q=80&w=1200&auto=format&fit=crop" alt="Silhouette of Borobudur Temple against the sky at sunrise in Central Java" />
+        <img src="/images/indonesia-second-home/archipelago-economy.png" alt="Jakarta's modern skyline and waterways at sunset" />
       </div>
     </div>
 
@@ -754,7 +754,7 @@ const LangmaIndonesiaSecondHomeVisaPage = () => {
     <div className="fam-grid">
       <div className="fam-media reveal">
         <span className="frame"></span>
-        <img src="https://images.unsplash.com/photo-1754027675944-0b0bbb20398e?q=80&w=1200&auto=format&fit=crop" alt="Turquoise water meeting a tropical Indonesian coastline" />
+        <img src="/images/indonesia-second-home/family-included.png" alt="Family embracing together outside their home" />
       </div>
       <div className="reveal">
         <span className="eyebrow">Eligible Applicants &amp; Family</span>
@@ -823,17 +823,17 @@ const LangmaIndonesiaSecondHomeVisaPage = () => {
     </div>
     <div className="life-grid">
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1733119132799-8dec838b3644?q=80&w=1200&auto=format&fit=crop" alt="Aerial view of Jakarta's business district skyscrapers" />
+        <img src="/images/indonesia-second-home/jakarta.png" alt="Jakarta's business district skyscrapers and elevated highways" />
         <div className="ov"></div>
         <div className="cap"><h3>Jakarta</h3><p>Indonesia's business and financial capital — banking, government and a fast-growing skyline, with the country's best domestic and international connectivity.</p></div>
       </div>
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1557093793-d149a38a1be8?q=80&w=1200&auto=format&fit=crop" alt="Terraced rice fields on the hillsides of Ubud, Bali" />
+        <img src="/images/indonesia-second-home/ubud-bali.png" alt="Ulun Danu temple reflected on the lake in Bali's highlands" />
         <div className="ov"></div>
         <div className="cap"><h3>Ubud &amp; Bali's Highlands</h3><p>Rice terraces, wellness retreats and a long-established community of long-term residents in Bali's cultural and creative heartland.</p></div>
       </div>
       <div className="life-card reveal">
-        <img src="https://images.unsplash.com/photo-1591674585153-ca78d0339b09?q=80&w=1200&auto=format&fit=crop" alt="Ancient temple silhouetted against the sky in Central Java" />
+        <img src="/images/indonesia-second-home/yogyakarta.png" alt="Prambanan temple spires under a blue sky in Central Java" />
         <div className="ov"></div>
         <div className="cap"><h3>Yogyakarta &amp; Central Java</h3><p>Home to Borobudur and a rich seam of Javanese culture, craft and history, within easy reach of Indonesia's central rail and flight network.</p></div>
       </div>
