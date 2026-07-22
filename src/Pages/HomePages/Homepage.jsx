@@ -1198,7 +1198,6 @@ export default function HomeLangma() {
                   </div>
                 ))}
               </Reveal>
-
               <div className="marquee">
                 <div className="marquee__track">
                   {[...COUNTRIES, ...COUNTRIES].map((c, i) => (
