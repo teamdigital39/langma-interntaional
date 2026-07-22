@@ -180,28 +180,26 @@ const TILES = [
     pin: "Landmark",
     loc: "Cape Sounion",
     d: "The ancient marble columns of the Temple of Poseidon over the Aegean",
-    image:
-      "https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/greece-golden-visa/cape-sounion.jpg",
   },
   {
     pin: "Islands",
     loc: "Santorini",
     d: "Whitewashed hillside houses over the caldera at golden hour",
-    image:
-      "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/greece-golden-visa/santorini.jpg",
   },
   {
     pin: "Capital",
     loc: "Athens",
     d: "A cosmopolitan capital where antiquity meets modern European life",
-    image:
-      "https://images.unsplash.com/photo-1555993539-1732b0258235?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/greece-golden-visa/athens.jpg",
   },
   {
     wide: true,
     pin: "Coastline",
     loc: "The Greek Islands",
     d: "Hundreds of inhabited islands scattered across the Aegean and Ionian seas",
+    image: "/images/greece-golden-visa/greek-island.jpg",
   },
 ];
 
@@ -982,7 +980,7 @@ export default function GreeceGoldenVisa() {
                 <div className="hero__media">
                   <div className="hero__media-frame">
                     <img
-                      src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=1200&q=80"
+                      src="/images/greece-golden-visa/hero-golden-visa.jpg"
                       width="1200"
                       height="1500"
                       alt="The Greek flag flying above the whitewashed hillside houses of Santorini at golden hour"

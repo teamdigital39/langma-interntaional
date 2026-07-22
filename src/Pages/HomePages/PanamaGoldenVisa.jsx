@@ -183,15 +183,46 @@ const TILES = [
     pin: "Capital",
     loc: "Panama City Skyline",
     d: "A modern financial district on the Pacific",
-    image:
-      "https://images.unsplash.com/photo-1540610410855-b4c8877b761c?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/panama-golden-visa/panama-city-skyline.png",
   },
-  { pin: "Engineering", loc: "The Canal", d: "Crossroads of world shipping" },
-  { pin: "Heritage", loc: "Casco Viejo", d: "UNESCO old quarter" },
-  { wide: true, pin: "Caribbean", loc: "San Blas Islands", d: "Turquoise archipelago of the Guna" },
-  { pin: "Highlands", loc: "Boquete", d: "Cool mountain living & coffee country" },
-  { pin: "Pacific", loc: "Bocas del Toro", d: "Rainforest & island retreats" },
-  { wide: true, pin: "Living", loc: "Resort Residences", d: "Gated coastal & golf communities" },
+  {
+    pin: "Engineering",
+    loc: "The Canal",
+    d: "Crossroads of world shipping",
+    image: "/images/panama-golden-visa/the-canal.jpg",
+  },
+  {
+    pin: "Heritage",
+    loc: "Casco Viejo",
+    d: "UNESCO old quarter",
+    image: "/images/panama-golden-visa/casco-viejo.jpg",
+  },
+  {
+    wide: true,
+    pin: "Caribbean",
+    loc: "San Blas Islands",
+    d: "Turquoise archipelago of the Guna",
+    image: "/images/panama-golden-visa/san-blas-islands.jpg",
+  },
+  {
+    pin: "Highlands",
+    loc: "Boquete",
+    d: "Cool mountain living & coffee country",
+    image: "/images/panama-golden-visa/boquete.jpg",
+  },
+  {
+    pin: "Pacific",
+    loc: "Bocas del Toro",
+    d: "Rainforest & island retreats",
+    image: "/images/panama-golden-visa/bocas-del-toro.jpg",
+  },
+  {
+    wide: true,
+    pin: "Living",
+    loc: "Resort Residences",
+    d: "Gated coastal & golf communities",
+    image: "/images/panama-golden-visa/resort-residences.jpg",
+  },
 ];
 
 const TIMELINE = [
@@ -1040,8 +1071,7 @@ export default function PanamaGoldenVisa() {
                 <div className="hero__media">
                   <div className="hero__media-frame">
                     <img
-                      src="https://images.unsplash.com/photo-1587759301533-ae42d7065a80?auto=format&fit=crop&w=1200&q=80"
-                      srcSet="https://images.unsplash.com/photo-1587759301533-ae42d7065a80?auto=format&fit=crop&w=800&q=80 800w, https://images.unsplash.com/photo-1587759301533-ae42d7065a80?auto=format&fit=crop&w=1200&q=80 1200w"
+                      src="/images/panama-golden-visa/hero-quiet-precision.jpg"
                       sizes="(max-width: 900px) 90vw, 480px"
                       width="1200"
                       height="1500"

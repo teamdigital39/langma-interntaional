@@ -155,15 +155,46 @@ const TILES = [
     pin: "Capital",
     loc: "Budapest Parliament",
     d: "The Hungarian Parliament Building at twilight",
-    image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/East%20fa%C3%A7ade%20of%20the%20Hungarian%20Parliament%20Building%20(Orsz%C3%A1gh%C3%A1z)%20at%20twilight.jpg",
+    image: "/images/hungary-golden-visa/budapest-parliament.jpg",
   },
-  { pin: "Landmark", loc: "Chain Bridge", d: "Linking Buda and Pest across the Danube" },
-  { pin: "Heritage", loc: "Fisherman's Bastion", d: "Neo-Gothic terraces above the river" },
-  { wide: true, pin: "Wellness", loc: "Széchenyi Baths", d: "Thermal spa culture in central Budapest" },
-  { pin: "Business", loc: "Manufacturing & Tech", d: "Automotive, precision industry, growing tech sector" },
-  { pin: "Education", loc: "Academic Hungary", d: "11 universities in the QS World Top 1,500" },
-  { wide: true, pin: "Travel", loc: "Schengen Access", d: "90 days in any 180 across the Schengen Area" },
+  {
+    pin: "Landmark",
+    loc: "Chain Bridge",
+    d: "Linking Buda and Pest across the Danube",
+    image: "/images/hungary-golden-visa/chain-bridge.jpg",
+  },
+  {
+    pin: "Heritage",
+    loc: "Fisherman's Bastion",
+    d: "Neo-Gothic terraces above the river",
+    image: "/images/hungary-golden-visa/fishermans-bastion.jpg",
+  },
+  {
+    wide: true,
+    pin: "Wellness",
+    loc: "Széchenyi Baths",
+    d: "Thermal spa culture in central Budapest",
+    image: "/images/hungary-golden-visa/szechenyi-baths.jpg",
+  },
+  {
+    pin: "Business",
+    loc: "Manufacturing & Tech",
+    d: "Automotive, precision industry, growing tech sector",
+    image: "/images/hungary-golden-visa/manufacturing-tech.jpg",
+  },
+  {
+    pin: "Education",
+    loc: "Academic Hungary",
+    d: "11 universities in the QS World Top 1,500",
+    image: "/images/hungary-golden-visa/academic-hungary.jpg",
+  },
+  {
+    wide: true,
+    pin: "Travel",
+    loc: "Schengen Access",
+    d: "90 days in any 180 across the Schengen Area",
+    image: "/images/hungary-golden-visa/schengen-access.jpg",
+  },
 ];
 
 const TIMELINE = [
@@ -920,7 +951,7 @@ export default function HungaryGoldenVisa() {
                 <div className="hero__media">
                   <div className="hero__media-frame">
                     <img
-                      src="https://commons.wikimedia.org/wiki/Special:FilePath/East%20fa%C3%A7ade%20of%20the%20Hungarian%20Parliament%20Building%20(Orsz%C3%A1gh%C3%A1z)%20at%20twilight.jpg"
+                      src="/images/hungary-golden-visa/hero-residence-investment.jpg"
                       alt="Hungarian Parliament Building on the Danube at twilight, Budapest"
                       width="1200"
                       height="1500"

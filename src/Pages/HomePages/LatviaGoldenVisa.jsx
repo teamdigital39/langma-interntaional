@@ -185,30 +185,26 @@ const TILES = [
     pin: "Capital",
     loc: "Riga",
     d: "A UNESCO Old Town and the world's finest Art Nouveau architecture",
-    image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Riga%20Skyline%20Panorama%2C%20Latvia%20-%20Diliff.jpg",
+    image: "/images/latvia-golden-visa/riga.jpg",
   },
   {
     pin: "Heritage",
     loc: "Riga's Cultural Heart",
     d: "The Freedom Monument and the medieval House of the Blackheads",
-    image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Freedom%20Monument%20(Brivibas%20Piemineklis).JPG",
+    image: "/images/latvia-golden-visa/riga-cultural-heart.jpg",
   },
   {
     pin: "Nature",
     loc: "Latvia's Forests",
     d: "Half the country lies under forest, with quiet trails and lakes nearby",
-    image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Footpath%20in%20Pokaini%20forest%20(Latvia)%20-%20Uldis%20Osis%20-%20Panoramio.jpg",
+    image: "/images/latvia-golden-visa/latvias-forests.jpg",
   },
   {
     wide: true,
     pin: "Coastline",
     loc: "The Baltic Shore",
     d: "Pine-backed beaches at Jurmala, a short drive from Riga",
-    image:
-      "https://commons.wikimedia.org/wiki/Special:FilePath/Latvia%2C%20Jurmala%2C%20Bulduri%20beach%20sunset.jpg",
+    image: "/images/latvia-golden-visa/baltic-shore.jpg",
   },
 ];
 
@@ -991,7 +987,7 @@ export default function LatviaGoldenVisa() {
                 <div className="hero__media">
                   <div className="hero__media-frame">
                     <img
-                      src="https://commons.wikimedia.org/wiki/Special:FilePath/Riga%20Skyline%20Panorama%2C%20Latvia%20-%20Diliff.jpg"
+                      src="/images/latvia-golden-visa/hero-accessible-route.jfif"
                       width="1200"
                       height="1500"
                       alt="Panoramic skyline of Riga's Old Town along the Daugava River in Latvia"

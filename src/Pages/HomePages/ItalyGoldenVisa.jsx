@@ -188,20 +188,41 @@ const TILES = [
     pin: "Icon",
     loc: "Venice, Grand Canal",
     d: "Golden-hour gondolas among historic palazzos",
-    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Venice_canals_sunset.JPG?width=1200",
+    image: "/images/italy-golden-visa/venice-grand-canal.jpg",
   },
   { pin: "Coastal", loc: "Cinque Terre", d: "Cliffside colour above the Ligurian Sea" },
-  { pin: "Heritage", loc: "Tuscan Hill Towns", d: "Stone streets and vineyard horizons" },
+  {
+    pin: "Heritage",
+    loc: "Tuscan Hill Towns",
+    d: "Stone streets and vineyard horizons",
+    image: "/images/italy-golden-visa/tuscan-hill-towns.webp",
+  },
   {
     wide: true,
     pin: "Lakes",
     loc: "Lake Como",
     d: "Alpine villas above turquoise water",
-    image: "https://commons.wikimedia.org/wiki/Special:FilePath/Panoramic%20view%20of%20Varenna%20-%20Lake%20Como.jpg?width=1200",
+    image: "/images/italy-golden-visa/lake-como.jpg",
   },
-  { pin: "History", loc: "Pisa", d: "Piazza dei Miracoli at sunrise" },
-  { pin: "Capital", loc: "Rome", d: "Millennia of history, lived in daily" },
-  { wide: true, pin: "Living", loc: "Milanese Residences", d: "Design-led apartments in Italy's business capital" },
+  {
+    pin: "History",
+    loc: "Pisa",
+    d: "Piazza dei Miracoli at sunrise",
+    image: "/images/italy-golden-visa/pisa.jpg",
+  },
+  {
+    pin: "Capital",
+    loc: "Rome",
+    d: "Millennia of history, lived in daily",
+    image: "/images/italy-golden-visa/rome.jpg",
+  },
+  {
+    wide: true,
+    pin: "Living",
+    loc: "Milanese Residences",
+    d: "Design-led apartments in Italy's business capital",
+    image: "/images/italy-golden-visa/milanese-residences.jpg",
+  },
 ];
 
 const TIMELINE = [
@@ -1049,7 +1070,7 @@ export default function ItalyGoldenVisa() {
                 <div className="hero__media">
                   <div className="hero__media-frame">
                     <img
-                      src="https://commons.wikimedia.org/wiki/Special:FilePath/Venice_canals_sunset.JPG?width=1200"
+                      src="/images/italy-golden-visa/hero-handled-with-mastery.jpg"
                       alt="Golden-hour view of Venice's Grand Canal with a gondola gliding past historic Italian palazzos"
                       width="1200"
                       height="1500"

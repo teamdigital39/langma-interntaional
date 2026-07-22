@@ -181,28 +181,26 @@ const TILES = [
     pin: "Emirate",
     loc: "Dubai",
     d: "A global business and lifestyle capital, from Business Bay to Palm Jumeirah",
-    image:
-      "https://images.unsplash.com/photo-1723539584805-16e92ecb9272?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/uae-golden-visa/dubai.jpg",
   },
   {
     pin: "Capital",
     loc: "Abu Dhabi",
     d: "Government, sovereign wealth institutions and culture",
-    image:
-      "https://images.unsplash.com/photo-1741204472540-e213116cb3ef?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/uae-golden-visa/abu-dhabi.jpg",
   },
   {
     pin: "Economy",
     loc: "Business & Innovation",
     d: "Free zones, finance and a post-oil future",
-    image:
-      "https://images.unsplash.com/photo-1624317937315-0ced8736c9e9?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/uae-golden-visa/business-innovation.jpg",
   },
   {
     wide: true,
     pin: "Ownership",
     loc: "Freehold Living",
     d: "Full foreign title within the UAE's designated freehold zones",
+    image: "/images/uae-golden-visa/freehold-living.jpg",
   },
 ];
 
@@ -1032,7 +1030,7 @@ export default function UaeGoldenVisa() {
                 <div className="hero__media">
                   <div className="hero__media-frame">
                     <img
-                      src="https://images.unsplash.com/photo-1748373448914-1d7f882700e2?q=80&w=1200&auto=format&fit=crop"
+                      src="/images/uae-golden-visa/hero-gulf-residency.jpg"
                       width="1200"
                       height="1500"
                       alt="The Burj Khalifa rising above Downtown Dubai's skyline"

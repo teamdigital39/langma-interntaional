@@ -185,28 +185,26 @@ const TILES = [
     pin: "Capital",
     loc: "Lisbon",
     d: "Hillside neighbourhoods and a thriving start-up scene on the Atlantic",
-    image:
-      "https://images.unsplash.com/photo-1585208798174-6cedd86e019a?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/portugal-golden-visa/lisbon.jpg",
   },
   {
     pin: "Heritage",
     loc: "Porto",
     d: "Port-wine cellars and granite streets along the Douro",
-    image:
-      "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/portugal-golden-visa/porto.jpg",
   },
   {
     pin: "Coastline",
     loc: "The Algarve",
     d: "Golden cliffs and sheltered coves along the south",
-    image:
-      "https://images.unsplash.com/photo-1533104816931-20fa691ff6ca?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/portugal-golden-visa/the-algarve.jpg",
   },
   {
     wide: true,
     pin: "Everyday Life",
     loc: "Atlantic Living",
     d: "Mild winters, long summers and an unhurried pace across the coast",
+    image: "/images/portugal-golden-visa/atlantic-living.jpg",
   },
 ];
 
@@ -1030,7 +1028,7 @@ export default function PortugalGoldenVisa() {
                 <div className="hero__media">
                   <div className="hero__media-frame">
                     <img
-                      src="https://images.unsplash.com/photo-1585208798174-6cedd86e019a?auto=format&fit=crop&w=1200&q=80"
+                      src="/images/portugal-golden-visa/hero-european-residency.jpg"
                       width="1200"
                       height="1500"
                       alt="Panoramic view over Lisbon's rooftops at dusk, with the 25 de Abril Bridge on the horizon"
