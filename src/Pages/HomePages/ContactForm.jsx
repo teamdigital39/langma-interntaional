@@ -169,8 +169,8 @@ const ContactForm = () => {
 
             {/* IMAGE */}
             <img
-              src="/images/young-happy-businesswoman-working-desktop-pc-communicating-mobile-phone-office 1.png"
-              alt="Contact Visual"
+              src="/images/knowledge-opportunity.png"
+              alt="Advisor consulting with a client on travel and residency documents"
               className="w-full h-full object-cover"
             />
 
@@ -344,15 +344,16 @@ const ContactForm = () => {
                         name="service"
                         value={formData.service}
                         onChange={handleChange}
-                        className={`w-full border rounded-2xl px-4 py-3 pl-12 pr-12 appearance-none bg-white/90 focus:outline-none focus:ring-2 focus:ring-[#27C4A8] transition ${inputError("service")} ${
-                          formData.service === "" ? "text-[#837f7f]" : "text-black"
+                        className={`w-full border rounded-2xl px-4 py-3 pl-12 pr-12 appearance-none bg-white focus:outline-none focus:ring-2 focus:ring-[#27C4A8] transition text-[#1B2B28] ${inputError("service")} ${
+                          formData.service === "" ? "text-[#837f7f]" : "text-[#1B2B28]"
                         }`}
                       >
-                        <option value="">Services</option>
-                        <option value="Language Training">Language Training</option>
-                        <option value="Study Abroad">Study Abroad</option>
-                        <option value="Work Abroad">Work Abroad</option>
-                        <option value="PR by Investment">PR by Investment</option>
+                        <option value="" className="text-[#1B2B28]">Services</option>
+                        <option value="Language Training" className="text-[#1B2B28]">Language Training</option>
+                        <option value="Study Abroad" className="text-[#1B2B28]">Study Abroad</option>
+                        <option value="Work Abroad" className="text-[#1B2B28]">Work Abroad</option>
+                        <option value="PR by Investment" className="text-[#1B2B28]">PR by Investment</option>
+                        <option value="Golden Visa" className="text-[#1B2B28]">Golden Visa</option>
                       </select>
                     </div>
                     {errors.service && (
@@ -374,8 +375,8 @@ const ContactForm = () => {
                           name="language"
                           value={formData.language}
                           onChange={handleChange}
-                          className={`w-full border rounded-2xl px-4 py-3 pl-12 pr-12 appearance-none bg-white/90 focus:outline-none focus:ring-2 focus:ring-[#27C4A8] transition ${inputError("language")} ${
-                            formData.language === "" ? "text-[#837f7f]" : "text-black"
+                          className={`w-full border rounded-2xl px-4 py-3 pl-12 pr-12 appearance-none bg-white focus:outline-none focus:ring-2 focus:ring-[#27C4A8] transition text-[#1B2B28] ${inputError("language")} ${
+                            formData.language === "" ? "text-[#837f7f]" : "text-[#1B2B28]"
                           }`}
                         >
                           <option value="">Select Language</option>

@@ -754,14 +754,15 @@ export default function HomeLangma() {
 /* connect form */
 .langma-home .btn:disabled{opacity:.5;cursor:not-allowed;pointer-events:none;}
 .langma-home .connect-form{display:flex;flex-direction:column;gap:14px;}
-.connect-form input,
-.connect-form select,
+.langma-home .connect-form input,
+.langma-home .connect-form select,
 .langma-home .connect-form textarea{width:100%;font-family:var(--font-body);font-size:14px;color:#fff;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.22);border-radius:12px;padding:13px 16px;transition:border-color .25s var(--ease), background .25s var(--ease);}
 .langma-home .connect-form select{color-scheme:dark;}
-.connect-form input::placeholder,
+.langma-home .connect-form select option{color:#1A2027;background:#fff;}
+.langma-home .connect-form input::placeholder,
 .langma-home .connect-form textarea::placeholder{color:rgba(255,255,255,.45);}
-.connect-form input:focus-visible,
-.connect-form select:focus-visible,
+.langma-home .connect-form input:focus-visible,
+.langma-home .connect-form select:focus-visible,
 .langma-home .connect-form textarea:focus-visible{outline:2px solid var(--teal-300);outline-offset:2px;border-color:var(--teal-300);background:rgba(255,255,255,.11);}
 .langma-home .connect-form textarea{resize:vertical;min-height:96px;font-family:var(--font-body);}
 .langma-home .connect-form .btn{align-self:flex-start;margin-top:2px;}

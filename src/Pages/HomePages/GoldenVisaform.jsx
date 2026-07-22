@@ -4,7 +4,17 @@ import { useState, useEffect, useRef } from "react";
 import { FiCheckCircle, FiAlertCircle, FiX } from "react-icons/fi";
 
 const TIME_SLOTS = ["10:00 AM","11:00 AM","12:00 PM","2:00 PM","3:00 PM","4:00 PM","5:00 PM"];
-const PROGRAM_OPTIONS = ["Select a program","Portugal Golden Visa","Greece Golden Visa","Italy Investor Visa","Hungary Guest Investor Programme","UAE Golden Visa","Panama Qualified Investor Programme","Latvia Golden Visa","Not sure — I need guidance"];
+const PROGRAM_OPTIONS = [
+  { value: "", label: "Select a program" },
+  { value: "Portugal Golden Visa", label: "Portugal Golden Visa" },
+  { value: "Greece Golden Visa", label: "Greece Golden Visa" },
+  { value: "Italy Investor Visa", label: "Italy Investor Visa" },
+  { value: "Hungary Guest Investor Programme", label: "Hungary Guest Investor Programme" },
+  { value: "UAE Golden Visa", label: "UAE Golden Visa" },
+  { value: "Panama Qualified Investor Programme", label: "Panama Qualified Investor Programme" },
+  { value: "Latvia Golden Visa", label: "Latvia Golden Visa" },
+  { value: "Not sure — I need guidance", label: "Not sure — I need guidance" },
+];
 
 function GoldenVisaform() {
   const rootRef = useRef(null);
@@ -62,7 +72,7 @@ function GoldenVisaform() {
     if (!form.email)                    ve.email  = "Email is required";
     else if (!validateEmail(form.email)) ve.email = "Invalid email";
 
-    if (!form.program || form.program === "Select a program")
+    if (!form.program)
                                         ve.program = "Please select a program";
 
     if (!form.consult)                  ve.consult = "Please choose a consultation type";
@@ -178,7 +188,11 @@ function GoldenVisaform() {
                 <label className="form-label" htmlFor="gv-program">Program of Interest</label>
                 <select id="gv-program" className="form-select"
                   style={errStyle("program")} value={form.program} onChange={handleChange}>
-                  {PROGRAM_OPTIONS.map(o => <option key={o}>{o}</option>)}
+                  {PROGRAM_OPTIONS.map(o => (
+                    <option key={o.label} value={o.value} disabled={o.value === ""}>
+                      {o.label}
+                    </option>
+                  ))}
                 </select>
                 {errors.program && <p style={{ color: "#ef4444", fontSize: 12, marginTop: 4 }}>{errors.program}</p>}
               </div>
@@ -189,8 +203,8 @@ function GoldenVisaform() {
                 <select id="gv-consult" className="form-select"
                   style={errStyle("consult")} value={form.consult} onChange={handleChange}>
                   <option value="">Choose your preference</option>
-                  <option>New Delhi — Head Office (In Person)</option>
-                  <option>Virtual — Secure Video Consultation</option>
+                  <option value="New Delhi — Head Office (In Person)">New Delhi — Head Office (In Person)</option>
+                  <option value="Virtual — Secure Video Consultation">Virtual — Secure Video Consultation</option>
                 </select>
                 {errors.consult && <p style={{ color: "#ef4444", fontSize: 12, marginTop: 4 }}>{errors.consult}</p>}
               </div>
@@ -207,7 +221,7 @@ function GoldenVisaform() {
                 <div>
                   <label className="form-label" htmlFor="gv-time">Preferred Time</label>
                   <select id="gv-time" className="form-select" value={form.time} onChange={handleChange}>
-                    {TIME_SLOTS.map(t => <option key={t}>{t}</option>)}
+                    {TIME_SLOTS.map(t => <option key={t} value={t}>{t}</option>)}
                   </select>
                 </div>
               </div>
