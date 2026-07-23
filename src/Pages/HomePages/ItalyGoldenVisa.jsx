@@ -190,7 +190,12 @@ const TILES = [
     d: "Golden-hour gondolas among historic palazzos",
     image: "/images/italy-golden-visa/venice-grand-canal.jpg",
   },
-  { pin: "Coastal", loc: "Cinque Terre", d: "Cliffside colour above the Ligurian Sea" },
+  {
+    pin: "Coastal",
+    loc: "Cinque Terre",
+    d: "Cliffside colour above the Ligurian Sea",
+    image: "/images/italy-golden-visa/cinque-terre.png",
+  },
   {
     pin: "Heritage",
     loc: "Tuscan Hill Towns",
