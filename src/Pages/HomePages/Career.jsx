@@ -428,10 +428,10 @@ Langma is where your journey begins.
           </span>
         <div className="bg-white rounded-full px-5 py-3 flex items-center gap-3 shadow-md">
           <a
-            href="mailto:careers@langmainternational.com"
+            href="mailto:info@langmainternational.com"
             className="text-teal-800 font-semibold text-sm"
           >
-            careers@langmainternational.com
+            info@langmainternational.com
           </a>
         </div>
         </div>
