@@ -161,7 +161,7 @@ const HeroSection = () => {
     <>
     <Helmet>
         <title>
-          Foreign Language Courses, Foreign Language Classes, Study Abroad, Work Abroad Delhi, India
+          50+ Language Courses, Career & Global Opportunities | Langma
         </title>
         <meta
           name="description"
