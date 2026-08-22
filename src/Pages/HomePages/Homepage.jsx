@@ -400,9 +400,46 @@ export default function HomeLangma() {
         <title>
           50+ Language Courses, Career & Global Opportunities | Langma
         </title>
+        <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
         <meta
           name="description"
-          content="Langma International offers foreign language courses, international language training, study abroad, work abroad, PR by investment, foreign language classes Delhi NCR, India."
+          content="Learn 50+ international languages with Langma. Join expert-led online & classroom courses, corporate training, and certification preparation for study, career, and global opportunities."
+        />
+        <meta
+          name="robots"
+          content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        />
+        <link rel="canonical" href="https://www.langmainternational.com/" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="Foreign Language Institute | Language Courses, Corporate Training & Global Opportunities | Langma"
+        />
+        <meta
+          property="og:description"
+          content="Learn 50+ international languages with Langma. Join expert-led online & classroom courses, corporate training, and certification preparation for study, career, and global opportunities."
+        />
+        <meta property="og:url" content="https://www.langmainternational.com/" />
+        <meta property="og:site_name" content="Langma International" />
+        <meta
+          property="og:image"
+          content="https://www.langmainternational.com/assets/hs-image-2.png"
+        />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Foreign Language Institute | Language Courses, Corporate Training & Global Opportunities | Langma"
+        />
+        <meta
+          name="twitter:description"
+          content="Learn 50+ international languages with Langma. Join expert-led online & classroom courses, corporate training, and certification preparation for study, career, and global opportunities."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.langmainternational.com/assets/hs-image-2.png"
         />
       </Helmet>
       <style>{`

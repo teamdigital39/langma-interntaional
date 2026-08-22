@@ -1,5 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { HelmetProvider } from "react-helmet-async";
 
 import TopBar from "./Components/Common/Header/TopBar";
 import HeroSection from "./Pages/HomePages/HeroSection";
@@ -142,7 +143,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <HelmetProvider>
     <div className="w-full overflow-x-hidden">
       {!isStandaloneLanding && <TopBar />}
       <ScrollToTop />
@@ -272,7 +273,7 @@ function App() {
         </Routes>
       {!isStandaloneLanding && <Footer />}
       </div>
-    </>
+    </HelmetProvider>
   );
 }
 
