@@ -74,9 +74,7 @@ const Footer = () => {
             className=" mb-3 h-14"
           />
           <p className="text-xs sm:text-sm leading-relaxed text-gray-400">
-            At Langma we offer you a complete insight into the language and the
-            culture. We provide tailored programmes which cater to the needs of
-            all the learners.
+            An integrated ecosystem where language opens doors to education, education shapes global careers, careers create international mobility, and every journey inspires cultural connection, business growth, and lifelong opportunities.
           </p>
         </div>
 
