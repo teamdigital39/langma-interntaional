@@ -45,12 +45,12 @@ const Navbar = () => {
 
       <header className="w-full bg-white sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-18">
 
             {/* ── LOGO ─────────────────────────────────────────── */}
             <Link to="/" className="shrink-0" onClick={closeMenu}>
               <img
-                src="/images/langma.svg"
+                src="/images/lngm2.png"
                 alt="Langma International"
                 className="h-10 sm:h-16 w-auto"
               />
