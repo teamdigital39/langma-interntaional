@@ -50,9 +50,9 @@ const Navbar = () => {
             {/* ── LOGO ─────────────────────────────────────────── */}
             <Link to="/" className="shrink-0" onClick={closeMenu}>
               <img
-                src="/images/langma-logo.png?v=2"
+                src="/images/lngm2.png"
                 alt="Langma International"
-                className="h-11 sm:h-14 w-auto object-contain bg-transparent"
+                className="h-10 sm:h-16 w-auto"
               />
             </Link>
 
@@ -159,7 +159,7 @@ const Navbar = () => {
             {/* Sidebar Header */}
             <div className="flex justify-between items-center p-5 border-b">
               <Link to="/" onClick={closeMenu}>
-                <img src="/images/langma-logo.png?v=2" alt="Langma International" className="h-10 w-auto object-contain bg-transparent" />
+                <img src="/images/Logo.png" alt="logo" className="h-9" />
               </Link>
               <button
                 onClick={closeMenu}

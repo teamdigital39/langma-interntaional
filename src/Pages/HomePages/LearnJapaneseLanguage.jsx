@@ -1179,7 +1179,7 @@ export default function LangmaJapaneseCourse() {
               </div>
             </div>
             <div>
-              <img className="lang-photo" src="/Public/images/caligraphy.png" alt="Hand-brushed Japanese kanji calligraphy" loading="lazy" />
+              <img className="lang-photo" src="/images/caligraphy.png" alt="Hand-brushed Japanese kanji calligraphy" loading="lazy" />
               <div className="fact-strip">
                 <div className="fact-box"><b>~125M</b><span>native speakers, almost entirely within Japan</span></div>
                 <div className="fact-box"><b>#4</b><span>world's fourth-largest economy by nominal GDP</span></div>
@@ -1246,7 +1246,7 @@ export default function LangmaJapaneseCourse() {
             <h2>Pick your platform.</h2>
             <p>Every format runs the same rigorous, expert-taught curriculum. Choose the one that fits your life.</p>
           </div>
-          <img className="modes-photo" src="/Public/images/platform.png" alt="Students in a Japanese language class listening to their instructor" loading="lazy" />
+          <img className="modes-photo" src="/images/platform.png" alt="Students in a Japanese language class listening to their instructor" loading="lazy" />
           <div className="modes-grid">
             <div className="mode-card">
               <span className="mode-tag">Most Popular</span>
@@ -1298,7 +1298,7 @@ export default function LangmaJapaneseCourse() {
             </div>
 
             <div className="path-card">
-              <div className="path-photo-wrap"><img className="path-photo" src="/Public/images/Engineers.jpeg" alt="Busy Shibuya crossing at night with neon lights, representing Tokyo's business and tech scene" loading="lazy" /></div>
+              <div className="path-photo-wrap"><img className="path-photo" src="/images/Engineers.jpeg" alt="Busy Shibuya crossing at night with neon lights, representing Tokyo's business and tech scene" loading="lazy" /></div>
               <div className="path-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
               </div>
