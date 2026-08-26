@@ -4,9 +4,9 @@ const Loader = () => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-white z-[9999]">
       <img
-        src="/images/Logo.png"
+        src="/images/langma-logo.png?v=2"
         alt="Langma International"
-        className="w-[200px] sm:w-[260px] md:w-[300px] h-auto object-contain animate-pulse"
+        className="w-[240px] sm:w-[320px] md:w-[380px] h-auto object-contain bg-transparent animate-pulse"
       />
     </div>
   );
