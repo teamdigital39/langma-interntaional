@@ -229,6 +229,9 @@ export default function LangmaJapaneseCourse() {
       formData.set("message", "Japanese Language Course enquiry");
     }
 
+    const successText =
+      "Thanks! Our counsellor will share the course details shortly. For an instant reply, message us on WhatsApp.";
+
     try {
       const res = await fetch(`${API_BASE}/apply-submit`, {
         method: "POST",
@@ -236,7 +239,7 @@ export default function LangmaJapaneseCourse() {
       });
       if (res.ok) {
         setSubmitted(true);
-        setMessage("Thank you! We will contact you soon.");
+        setMessage(successText);
         form.reset();
         return;
       }
@@ -257,7 +260,7 @@ export default function LangmaJapaneseCourse() {
         });
         if (fallback.ok) {
           setSubmitted(true);
-          setMessage("Thank you! We will contact you soon.");
+          setMessage(successText);
           form.reset();
         } else {
           setMessage("Something went wrong. Please try again.");
@@ -396,7 +399,8 @@ export default function LangmaJapaneseCourse() {
 
   /* ===== HERO ===== */
   .hero{position:relative; overflow:hidden; border-bottom:1px solid var(--line); max-width:100vw; padding:0;}
-  .hero-photo{position:absolute; inset:0; background-image:linear-gradient(100deg, rgba(250,245,233,.985) 0%, rgba(250,245,233,.96) 48%, rgba(250,245,233,.78) 68%, rgba(250,245,233,.38) 100%), url('https://images.unsplash.com/photo-1767794000619-09165200be45?fm=jpg&q=70&w=1800&auto=format&fit=crop'); background-size:cover; background-position:center 65%; opacity:.12;}
+  .hero-grid{opacity:.35;}
+  .hero-photo{position:absolute; inset:0; background-image:linear-gradient(100deg, rgba(250,245,233,.985) 0%, rgba(250,245,233,.96) 48%, rgba(250,245,233,.78) 68%, rgba(250,245,233,.38) 100%), url('https://images.unsplash.com/photo-1767794000619-09165200be45?fm=jpg&q=70&w=1800&auto=format&fit=crop'); background-size:cover; background-position:center 65%; opacity:.03;}
   .hero-inner{position:relative; z-index:2; display:grid; grid-template-columns:1.15fr .85fr; gap:56px; padding:40px 32px 48px; max-width:1180px; margin:0 auto; align-items:center;}
   .hero-inner > div{min-width:0;}
   .hero-title{font-size:clamp(34px, 4.6vw, 62px); line-height:1.08; margin:0 0 22px; word-break:break-word;}
@@ -533,6 +537,8 @@ export default function LangmaJapaneseCourse() {
   .audience-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
   .audience-card{border:1px solid var(--line); padding:28px 24px; border-radius:var(--r-md); min-width:0; transition:box-shadow .2s ease, transform .2s ease;}
   .audience-card:hover{box-shadow:var(--shadow-md); transform:translateY(-3px);}
+  .audience-icon, .feature-icon, .method-icon{width:46px; height:46px; border-radius:50%; border:1.5px solid var(--rust); color:var(--rust); background:var(--white); display:flex; align-items:center; justify-content:center; margin-bottom:18px;}
+  .audience-icon svg, .feature-icon svg, .method-icon svg{width:21px; height:21px;}
   .audience-num{font-family:'IBM Plex Mono', monospace; text-transform:uppercase; letter-spacing:.08em; font-size:10px; color:var(--rust); margin-bottom:17px;}
   .audience-card h3{font-size:20px; margin-bottom:9px;}
   .audience-card p{font-size:13.5px; color:var(--ink-soft);}
@@ -540,6 +546,7 @@ export default function LangmaJapaneseCourse() {
   /* ===== FEATURES ===== */
   .features-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden;}
   .feature{padding:38px 32px; min-width:0;}
+  .feature-icon{margin-bottom:18px;}
   .feature .fnum{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--rust); letter-spacing:.08em; text-transform:uppercase;}
   .feature h3{font-size:21px; margin:15px 0 11px; font-weight:600;}
   .feature p{font-size:14.3px; color:var(--ink-soft);}
@@ -577,6 +584,7 @@ export default function LangmaJapaneseCourse() {
   .methodology{background:var(--paper);}
   .method-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden;}
   .method-step{background:var(--white); padding:30px 24px;}
+  .method-icon{margin-bottom:18px;}
   .step-no{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--rust); letter-spacing:.05em;}
   .method-step h3{font-size:19px; margin:14px 0 9px;}
   .method-step p{font-size:13px; color:var(--ink-soft);}
@@ -709,7 +717,9 @@ export default function LangmaJapaneseCourse() {
   .submit-btn{width:100%; padding:15px; background:var(--rust); color:var(--white); border:none; border-radius:var(--r-sm); font-weight:600; font-size:15px; cursor:pointer; margin-top:6px; transition:transform .18s ease, background .18s ease; font-family:'IBM Plex Sans', sans-serif;}
   .submit-btn:hover{transform:translateY(-2px); background:var(--rust-deep);}
   .submit-btn:disabled{opacity:.7; cursor:not-allowed; transform:none;}
-  .form-msg{font-size:12.5px; margin-top:14px; color:var(--gold-soft); font-family:'IBM Plex Mono', monospace;}
+  .form-msg{display:block; font-size:13.5px; line-height:1.45; margin-top:14px; padding:12px 14px; border-radius:var(--r-sm); font-family:'IBM Plex Sans', sans-serif; font-weight:500;}
+  .form-msg.success{color:#0f3d2e; background:#d9f5e5; border:1px solid #8fd9b4;}
+  .form-msg.error{color:#7a1c1c; background:#fde8e8; border:1px solid #f0b4b4;}
   .form-alt{display:flex; align-items:center; gap:10px; margin-top:22px; padding-top:22px; border-top:1px dashed rgba(255,255,255,.2); flex-wrap:wrap;}
 
   /* ===== MAP STRIP ===== */
@@ -976,7 +986,9 @@ export default function LangmaJapaneseCourse() {
                   {heroSubmitting ? "Submitting..." : heroSubmitted ? "Details Requested ✓" : "Get Course Details →"}
                 </button>
                 {heroFormMessage && (
-                  <div className="form-msg" role="status">{heroSubmitted ? `✓ ${heroFormMessage}` : heroFormMessage}</div>
+                  <div className={`form-msg ${heroSubmitted ? "success" : "error"}`} role="status">
+                    {heroSubmitted ? `✓ ${heroFormMessage}` : heroFormMessage}
+                  </div>
                 )}
               </form>
             </div>
@@ -1026,7 +1038,7 @@ export default function LangmaJapaneseCourse() {
       <section className="course-details" id="course-details"><div className="wrap"><div className="sec-head-row"><div className="sec-head"><h2>Know the course before you enrol.</h2><p>Everything you need to choose the right Japanese language learning path, including the current course format and how to get fee details.</p></div><div className="sec-icon-big" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="14" width="80" height="96" rx="10" stroke="currentColor" strokeWidth="6"/><path d="M45 14h30v10a4 4 0 0 1-4 4H49a4 4 0 0 1-4-4V14z" fill="currentColor"/><path d="M34 46l6 6 12-12" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/><path d="M60 44h26" stroke="currentColor" strokeWidth="6" strokeLinecap="round"/><path d="M34 74l6 6 12-12" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/><path d="M60 72h26" stroke="currentColor" strokeWidth="6" strokeLinecap="round"/><path d="M34 96h52" stroke="currentColor" strokeWidth="6" strokeLinecap="round" opacity=".45"/></svg></div></div><div className="details-grid"><div className="detail-box"><div className="detail-label">Levels</div><div className="detail-value">N5 → N1</div><div className="detail-note">Beginner to advanced</div></div><div className="detail-box"><div className="detail-label">Learning Modes</div><div className="detail-value">Online / Offline</div><div className="detail-note">Hybrid option available</div></div><div className="detail-box"><div className="detail-label">Location</div><div className="detail-value">South Delhi</div><div className="detail-note">South Extension I, New Delhi</div></div><div className="detail-box"><div className="detail-label">Course Fee</div><div className="detail-value">Get Fee Details</div><div className="detail-note">Ask a counsellor for current fees &amp; batches</div></div></div></div></section>
 
       {/* WHO THIS IS FOR */}
-      <section id="who"><div className="wrap"><div className="sec-head"><h2>Japanese for the goal you're working towards.</h2><p>Whether you're starting from zero or already know Japanese, choose a learning route that matches your objective.</p></div><div className="audience-grid"><div className="audience-card"><div className="audience-num">Students</div><h3>Study in Japan</h3><p>Build Japanese proficiency for language-school, university and higher-education pathways.</p></div><div className="audience-card"><div className="audience-num">Career</div><h3>Work in Japan</h3><p>Prepare for Japanese communication, workplace vocabulary, interviews and career pathways.</p></div><div className="audience-card"><div className="audience-num">SSW</div><h3>Specified Skilled Worker</h3><p>Build the Japanese skills needed for relevant JFT-Basic or JLPT N4-level pathways, alongside sector preparation where applicable.</p></div><div className="audience-card"><div className="audience-num">Personal</div><h3>Travel &amp; Culture</h3><p>Learn practical Japanese for travel, conversation, Japanese media and cultural understanding.</p></div></div></div></section>
+      <section id="who"><div className="wrap"><div className="sec-head"><h2>Japanese for the goal you're working towards.</h2><p>Whether you're starting from zero or already know Japanese, choose a learning route that matches your objective.</p></div><div className="audience-grid"><div className="audience-card"><div className="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M6 11.5V16c1.8 1.8 4 2.7 6 2.7s4.2-.9 6-2.7v-4.5"/><path d="M21 9v5"/></svg></div><div className="audience-num">Students</div><h3>Study in Japan</h3><p>Build Japanese proficiency for language-school, university and higher-education pathways.</p></div><div className="audience-card"><div className="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"/></svg></div><div className="audience-num">Career</div><h3>Work in Japan</h3><p>Prepare for Japanese communication, workplace vocabulary, interviews and career pathways.</p></div><div className="audience-card"><div className="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19h16"/><path d="M6 19V9l6-4 6 4v10"/><path d="M9 19v-5h6v5M9 10h.01M12 10h.01M15 10h.01"/></svg></div><div className="audience-num">SSW</div><h3>Specified Skilled Worker</h3><p>Build the Japanese skills needed for relevant JFT-Basic or JLPT N4-level pathways, alongside sector preparation where applicable.</p></div><div className="audience-card"><div className="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.2l-1.9 3.7-3.7 1.9 1.9-3.7 3.7-1.9zM12 3.5v1.5M20.5 12H19M12 19v1.5M5 12H3.5"/></svg></div><div className="audience-num">Personal</div><h3>Travel &amp; Culture</h3><p>Learn practical Japanese for travel, conversation, Japanese media and cultural understanding.</p></div></div></div></section>
 
       {/* WHAT YOU'LL LEARN */}
       <section id="skills">
@@ -1179,7 +1191,7 @@ export default function LangmaJapaneseCourse() {
               </div>
             </div>
             <div>
-              <img className="lang-photo" src="/images/caligraphy.png" alt="Hand-brushed Japanese kanji calligraphy" loading="lazy" />
+              <img className="lang-photo" src="images/caligraphy.png" alt="Hand-brushed Japanese kanji calligraphy" loading="lazy" />
               <div className="fact-strip">
                 <div className="fact-box"><b>~125M</b><span>native speakers, almost entirely within Japan</span></div>
                 <div className="fact-box"><b>#4</b><span>world's fourth-largest economy by nominal GDP</span></div>
@@ -1206,31 +1218,37 @@ export default function LangmaJapaneseCourse() {
         <div className="wrap">
           <div className="features-grid">
             <div className="feature">
+              <div className="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c.3-3.2 2.1-5 5.5-5s5.2 1.8 5.5 5M16 11a2.5 2.5 0 1 0-1.8-4.3M16 15c2.7.1 4.2 1.7 4.5 5"/></svg></div>
               <div className="fnum">Trainers</div>
               <h3>Learn from expert instructors</h3>
               <p>Experienced, well-trained instructors fluent in Japanese ensure you get the highest quality instruction, not a script.</p>
             </div>
             <div className="feature">
+              <div className="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 10l9-5 9 5-9 5-9-5z"/><path d="M6 12.5V16c1.5 1.5 3.5 2.3 6 2.3s4.5-.8 6-2.3v-3.5"/><path d="M21 10v5"/></svg></div>
               <div className="fnum">Immersion</div>
               <h3>Cultural integration</h3>
               <p>Experience Japanese etiquette, workplace culture and daily life through real-life scenarios that prepare you for actually living in Japan.</p>
             </div>
             <div className="feature">
+              <div className="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 7h16v13H4z"/><path d="M8 7V4h8v3M8 12h8M8 16h5"/></svg></div>
               <div className="fnum">Careers</div>
               <h3>Placement &amp; visa assistance</h3>
               <p>Exclusive support for the Specified Skilled Worker visa, Engineer/Specialist roles, and in-demand IT and manufacturing jobs in Japan, right after your course.</p>
             </div>
             <div className="feature">
+              <div className="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="4"/><path d="M8.5 12.5L7 21l5-2.5 5 2.5-1.5-8.5"/><path d="M10 8l1.3 1.3L14.5 6"/></svg></div>
               <div className="fnum">Certification</div>
               <h3>Exam-ready, if you need it</h3>
               <p>For learners who need a certificate, we prepare you for JLPT, JFT-Basic and BJT, targeting the exact score your visa or employer requires.</p>
             </div>
             <div className="feature">
+              <div className="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5v-12z"/><path d="M4 17.5A2.5 2.5 0 0 1 6.5 15H20M8 7h7M8 10h7"/></svg></div>
               <div className="fnum">Curriculum</div>
               <h3>Built for your goal</h3>
               <p>Learning for travel, study, work or personal growth, beginner to advanced, the curriculum adapts to why you're learning.</p>
             </div>
             <div className="feature">
+              <div className="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01"/></svg></div>
               <div className="fnum">Schedule</div>
               <h3>Learn on your terms</h3>
               <p>Online, offline, or hybrid classes at a pace that fits your week, from anywhere in the world.</p>
@@ -1246,7 +1264,7 @@ export default function LangmaJapaneseCourse() {
             <h2>Pick your platform.</h2>
             <p>Every format runs the same rigorous, expert-taught curriculum. Choose the one that fits your life.</p>
           </div>
-          <img className="modes-photo" src="/images/platform.png" alt="Students in a Japanese language class listening to their instructor" loading="lazy" />
+          <img className="modes-photo" src="images/platform.png" alt="Students in a Japanese language class listening to their instructor" loading="lazy" />
           <div className="modes-grid">
             <div className="mode-card">
               <span className="mode-tag">Most Popular</span>
@@ -1268,7 +1286,7 @@ export default function LangmaJapaneseCourse() {
       </section>
 
       {/* TEACHING METHODOLOGY */}
-      <section className="methodology" id="methodology"><div className="wrap"><div className="sec-head"><h2>Not just lessons. A system for learning Japanese.</h2><p>Our approach combines structured instruction with active practice, assessment and real-world application.</p></div><div className="method-grid"><div className="method-step"><div className="step-no">01 / LEARN</div><h3>Understand</h3><p>Learn grammar, vocabulary, scripts and pronunciation through structured lessons.</p></div><div className="method-step"><div className="step-no">02 / PRACTISE</div><h3>Use it</h3><p>Apply new language through drills, exercises, dialogues and guided activities.</p></div><div className="method-step"><div className="step-no">03 / SPEAK</div><h3>Communicate</h3><p>Build confidence through conversation, role plays and real-life Japanese scenarios.</p></div><div className="method-step"><div className="step-no">04 / CULTURE</div><h3>Experience Japan</h3><p>Learn Japanese etiquette, traditions, festivals, food culture and workplace customs through cultural activities.</p></div><div className="method-step"><div className="step-no">05 / ASSESS</div><h3>Measure</h3><p>Use tests and feedback to identify gaps and keep your learning on track.</p></div><div className="method-step"><div className="step-no">06 / PROGRESS</div><h3>Advance</h3><p>Move towards your next level, exam, study route or career objective.</p></div></div></div></section>
+      <section className="methodology" id="methodology"><div className="wrap"><div className="sec-head"><h2>Not just lessons. A system for learning Japanese.</h2><p>Our approach combines structured instruction with active practice, assessment and real-world application.</p></div><div className="method-grid"><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5v-12z"/><path d="M4 17.5A2.5 2.5 0 0 1 6.5 15H20M8 7h7M8 10h7"/></svg></div><div className="step-no">01 / LEARN</div><h3>Understand</h3><p>Learn grammar, vocabulary, scripts and pronunciation through structured lessons.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h5M8 16h6"/></svg></div><div className="step-no">02 / PRACTISE</div><h3>Use it</h3><p>Apply new language through drills, exercises, dialogues and guided activities.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 8.5c1.2-2 3.4-3 7-3s5.8 1 7 3"/><path d="M6 10c1.5 1.6 3.5 2.4 6 2.4s4.5-.8 6-2.4"/><path d="M8 15.5c1.1 1 2.4 1.5 4 1.5s2.9-.5 4-1.5"/></svg></div><div className="step-no">03 / SPEAK</div><h3>Communicate</h3><p>Build confidence through conversation, role plays and real-life Japanese scenarios.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 10l9-5 9 5-9 5-9-5z"/><path d="M6 12.5V16c1.5 1.5 3.5 2.3 6 2.3s4.5-.8 6-2.3v-3.5"/><path d="M21 10v5"/></svg></div><div className="step-no">04 / CULTURE</div><h3>Experience Japan</h3><p>Learn Japanese etiquette, traditions, festivals, food culture and workplace customs through cultural activities.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19V5M4 19h17"/><path d="M7 15l4-4 3 2 5-6"/><path d="M15 7h4v4"/></svg></div><div className="step-no">05 / ASSESS</div><h3>Measure</h3><p>Use tests and feedback to identify gaps and keep your learning on track.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M7 10l5-5 5 5"/><path d="M5 19h14"/></svg></div><div className="step-no">06 / PROGRESS</div><h3>Advance</h3><p>Move towards your next level, exam, study route or career objective.</p></div></div></div></section>
 
       {/* WHAT YOU GET */}
       <section className="included" id="included"><div className="wrap"><div className="sec-head"><h2>What your Japanese learning experience can include.</h2><p>Support is designed around both language development and the goal behind your Japanese learning journey.</p></div><div className="included-grid"><div className="included-item"><span className="tick">✓</span><span>Live instructor-led Japanese classes</span></div><div className="included-item"><span className="tick">✓</span><span>N5–N1 structured learning pathway</span></div><div className="included-item"><span className="tick">✓</span><span>Speaking, listening, reading &amp; writing practice</span></div><div className="included-item"><span className="tick">✓</span><span>Kanji and vocabulary development</span></div><div className="included-item"><span className="tick">✓</span><span>Japanese exam preparation</span></div><div className="included-item"><span className="tick">✓</span><span>Mock tests &amp; progress assessment</span></div><div className="included-item"><span className="tick">✓</span><span>Cultural &amp; real-life communication practice</span></div><div className="included-item"><span className="tick">✓</span><span>Online, offline &amp; hybrid learning options</span></div><div className="included-item"><span className="tick">✓</span><span>Goal-based counselling for Japan pathways</span></div></div></div></section>
@@ -1282,7 +1300,7 @@ export default function LangmaJapaneseCourse() {
           </div>
           <div className="path-grid">
             <div className="path-card">
-              <div className="path-photo-wrap"><img className="path-photo" src="/images/ssw.jpeg" alt="Sparks flying as a worker welds metal, representing SSW manufacturing roles" loading="lazy" /></div>
+              <div className="path-photo-wrap"><img className="path-photo" src="images/ssw.jpeg" alt="Sparks flying as a worker welds metal, representing SSW manufacturing roles" loading="lazy" /></div>
               <div className="path-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
               </div>
@@ -1298,7 +1316,7 @@ export default function LangmaJapaneseCourse() {
             </div>
 
             <div className="path-card">
-              <div className="path-photo-wrap"><img className="path-photo" src="/images/Engineers.jpeg" alt="Busy Shibuya crossing at night with neon lights, representing Tokyo's business and tech scene" loading="lazy" /></div>
+              <div className="path-photo-wrap"><img className="path-photo" src="images/Engineers.jpeg" alt="Busy Shibuya crossing at night with neon lights, representing Tokyo's business and tech scene" loading="lazy" /></div>
               <div className="path-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
               </div>
@@ -1314,7 +1332,7 @@ export default function LangmaJapaneseCourse() {
             </div>
 
             <div className="path-card">
-              <div className="path-photo-wrap"><img className="path-photo" src="/images/sj.jpeg" alt="Path through vibrant orange torii gates in Japan" loading="lazy" /></div>
+              <div className="path-photo-wrap"><img className="path-photo" src="images/sj.jpeg" alt="Path through vibrant orange torii gates in Japan" loading="lazy" /></div>
               <div className="path-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
               </div>
@@ -1529,7 +1547,9 @@ export default function LangmaJapaneseCourse() {
                   {submitting ? "Submitting..." : "Get Course Details →"}
                 </button>
                 {formMessage && (
-                  <div className="form-msg" role="status">{formSubmitted ? `✓ ${formMessage}` : formMessage}</div>
+                  <div className={`form-msg ${formSubmitted ? "success" : "error"}`} role="status">
+                    {formSubmitted ? `✓ ${formMessage}` : formMessage}
+                  </div>
                 )}
               </form>
               <div className="form-alt">
