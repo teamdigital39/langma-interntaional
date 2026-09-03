@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import '../../assets/Styles/globle.css';
 
-const Thankyou = ({ 
+const LangmaThankYouPageMinimal = ({
   programmeType = 'residency',
   defaultLanguage = 'en'
 }) => {
@@ -196,10 +197,8 @@ const Thankyou = ({
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
+      
       <style>{`
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         .langma-thank-you {
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
           color: #296166;
@@ -207,11 +206,19 @@ const Thankyou = ({
           min-height: 100vh;
           display: flex;
           flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          padding: 40px 30px;
           position: relative;
           overflow: hidden;
+        }
+
+        .langma-thank-you > .thank-you-container {
+          flex: 1;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 60px 30px 40px;
         }
 
         .langma-thank-you::before {
@@ -232,7 +239,9 @@ const Thankyou = ({
         }
 
         .thank-you-container {
+          width: min(100%, 800px);
           max-width: 800px;
+          margin: 0 auto;
           text-align: center;
           z-index: 2;
           position: relative;
@@ -470,7 +479,7 @@ const Thankyou = ({
           </div>
         </div>
 
-        <a href="/" className="cta-button slide-up">
+        <a href="https://www.langmainternational.com/" className="cta-button slide-up">
           {t('back_home')} ↑
         </a>
       </div>
@@ -478,4 +487,4 @@ const Thankyou = ({
   );
 };
 
-export default Thankyou;
+export default LangmaThankYouPageMinimal;
