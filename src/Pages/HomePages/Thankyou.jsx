@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const LangmaThankYouPageMinimal = ({ 
-  programme = 'Langma Programme',
+const LangmaThankYouPageMinimal = ({
   programmeType = 'residency',
   defaultLanguage = 'en'
 }) => {
@@ -197,235 +196,10 @@ const LangmaThankYouPageMinimal = ({
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
       <style>{`
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: #F5F8F6; }
-
-        /* TOP BAR */
-        .top-bar {
-          width: 100%;
-          background: #2D7A8F;
-          color: white;
-          padding: 10px 0;
-          font-size: 12px;
-          border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .top-bar-content {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 30px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          flex-wrap: wrap;
-          gap: 20px;
-        }
-
-        .top-bar-contact {
-          display: flex;
-          gap: 20px;
-        }
-
-        .top-bar-contact a {
-          color: white;
-          text-decoration: none;
-          transition: color 0.3s;
-        }
-
-        .top-bar-contact a:hover {
-          color: #6FE0C6;
-        }
-
-        /* HEADER */
-        .header {
-          width: 100%;
-          background: white;
-          padding: 15px 0;
-          border-bottom: 1px solid rgba(0,0,0,0.05);
-          position: sticky;
-          top: 0;
-          z-index: 999;
-        }
-
-        .header-content {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 30px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 40px;
-        }
-
-        .logo {
-          flex-shrink: 0;
-        }
-
-        .logo a {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          text-decoration: none;
-          color: #296166;
-        }
-
-        .logo-icon {
-          font-size: 32px;
-          width: 40px;
-          height: 40px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .logo-text {
-          display: flex;
-          flex-direction: column;
-          line-height: 1.1;
-        }
-
-        .logo-main {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 20px;
-          font-weight: 600;
-          color: #296166;
-          letter-spacing: 2px;
-        }
-
-        .logo-sub {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 10px;
-          font-weight: 600;
-          color: #6FE0C6;
-          letter-spacing: 1.5px;
-          text-transform: uppercase;
-        }
-
-        .logo-tagline {
-          font-family: 'Inter', sans-serif;
-          font-size: 8px;
-          color: #6FE0C6;
-          letter-spacing: 0.5px;
-          margin-top: 2px;
-        }
-
-        .nav {
-          display: flex;
-          gap: 8px;
-          flex-wrap: wrap;
-          justify-content: flex-end;
-        }
-
-        .nav a {
-          padding: 8px 12px;
-          color: #296166;
-          text-decoration: none;
-          font-size: 13px;
-          font-weight: 500;
-          transition: color 0.3s;
-          border-bottom: 2px solid transparent;
-        }
-
-        .nav a:hover {
-          color: #6FE0C6;
-          border-bottom-color: #6FE0C6;
-        }
-
-        @media (max-width: 1024px) {
-          .nav {
-            gap: 6px;
-          }
-
-          .nav a {
-            padding: 6px 8px;
-            font-size: 12px;
-          }
-
-          .header-content {
-            gap: 20px;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .top-bar-content {
-            flex-direction: column;
-            gap: 10px;
-            padding: 0 20px;
-            text-align: center;
-          }
-
-          .top-bar-contact {
-            flex-direction: column;
-            gap: 5px;
-            font-size: 11px;
-          }
-
-          .header-content {
-            flex-direction: column;
-            gap: 15px;
-          }
-
-          .nav {
-            justify-content: center;
-            gap: 4px;
-          }
-
-          .nav a {
-            padding: 5px 6px;
-            font-size: 11px;
-          }
-
-          .logo a {
-            gap: 8px;
-          }
-
-          .logo-icon {
-            font-size: 24px;
-            width: 32px;
-            height: 32px;
-          }
-
-          .logo-main {
-            font-size: 16px;
-          }
-
-          .logo-sub {
-            font-size: 8px;
-          }
-
-          .logo-tagline {
-            font-size: 7px;
-          }
-        }
-
-        @media (max-width: 640px) {
-          .top-bar {
-            padding: 8px 0;
-            font-size: 10px;
-          }
-
-          .header {
-            padding: 10px 0;
-          }
-
-          .header-content {
-            padding: 0 20px;
-          }
-
-          .top-bar-contact {
-            gap: 10px;
-          }
-
-          .nav {
-            gap: 2px;
-          }
-
-          .nav a {
-            padding: 4px 5px;
-            font-size: 10px;
-          }
-        }
         
         .langma-thank-you {
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -434,17 +208,11 @@ const LangmaThankYouPageMinimal = ({
           min-height: 100vh;
           display: flex;
           flex-direction: column;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .langma-thank-you > .thank-you-container {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 60px 30px 40px;
+          padding: 40px 30px;
+          position: relative;
+          overflow: hidden;
         }
 
         .langma-thank-you::before {
