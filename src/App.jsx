@@ -1,7 +1,7 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { HelmetProvider } from "react-helmet-async";
-
+import Thankyou from "./Pages/HomePages/Thankyou";
 import TopBar from "./Components/Common/Header/TopBar";
 import HeroSection from "./Pages/HomePages/HeroSection";
 import AboutHeroSection from "./Pages/HomePages/Aboutpage/AboutHeroSection";
@@ -269,6 +269,7 @@ function App() {
           <Route path="/translation-services" element={<TranslationServices />} />
           <Route path="/:slug" element={<Arabic/>} />
           <Route path="/golden-visa-assessment" element={<GoldenVisaAssessment/>} />
+        <Route path="/thank-you" element={<Thankyou />} />
           {/* <Route path="/newhome" element={<HomeLangma/>} /> */}
         </Routes>
       {!isStandaloneLanding && <Footer />}
