@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../Components/Common/Header/Navbar';
-import TopBar from '../Components/Common/Header/TopBar';
-import Footer from '../Pages/HomePages/Footer';
+import Navbar from '../../Components/Common/Header/Navbar';
+import TopBar from '../../Components/Common/Header/TopBar';
+import Footer from './Footer';
 
-const LangmaThankYouPageWithHeaderFooter = ({ 
+const LangmaThankYouPageMinimal = ({ 
   programmeType = 'residency',
   defaultLanguage = 'en'
 }) => {
@@ -195,7 +195,7 @@ const LangmaThankYouPageWithHeaderFooter = ({
   const t = (key) => translations[language]?.[key] || translations['en'][key];
 
   return (
-    <div className="langma-thank-you-wrapper">
+    <>
       {/* HEADER */}
       <TopBar />
       <Navbar />
@@ -488,8 +488,8 @@ const LangmaThankYouPageWithHeaderFooter = ({
 
       {/* FOOTER */}
       <Footer />
-    </div>
+    </>
   );
 };
 
-export default LangmaThankYouPageWithHeaderFooter;
+export default LangmaThankYouPageMinimal;
