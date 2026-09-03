@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../../Components/Common/Header/Navbar';
-import TopBar from '../../Components/Common/Header/TopBar';
-import Footer from './Footer';
 
-const LangmaThankYouPageMinimal = ({ 
+const Thankyou = ({ 
   programmeType = 'residency',
   defaultLanguage = 'en'
 }) => {
@@ -195,301 +192,290 @@ const LangmaThankYouPageMinimal = ({
   const t = (key) => translations[language]?.[key] || translations['en'][key];
 
   return (
-    <>
-      {/* HEADER */}
-      <TopBar />
-      <Navbar />
+    <div className="langma-thank-you">
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-      {/* THANK YOU PAGE CONTENT - UNCHANGED */}
-      <div className="langma-thank-you">
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+      <style>{`
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        .langma-thank-you {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+          color: #296166;
+          background: #F5F8F6;
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 40px 30px;
+          position: relative;
+          overflow: hidden;
+        }
 
-        <style>{`
-          * { margin: 0; padding: 0; box-sizing: border-box; }
-          body { background: #F5F8F6; }
-          
-          .langma-thank-you {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: #296166;
-            background: #F5F8F6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 30px;
-            position: relative;
-            overflow: hidden;
-          }
+        .langma-thank-you::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background-image: 
+            radial-gradient(circle at 20% 50%, rgba(47,199,161,0.08) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(47,199,161,0.06) 0%, transparent 40%);
+          z-index: 0;
+          pointer-events: none;
+          animation: gradientShift 8s ease-in-out infinite;
+        }
 
-          .langma-thank-you::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: 
-              radial-gradient(circle at 20% 50%, rgba(47,199,161,0.08) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(47,199,161,0.06) 0%, transparent 40%);
-            z-index: 0;
-            pointer-events: none;
-            animation: gradientShift 8s ease-in-out infinite;
-          }
+        @keyframes gradientShift {
+          0%, 100% { opacity: 0.6; }
+          50% { opacity: 0.9; }
+        }
 
-          @keyframes gradientShift {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 0.9; }
-          }
+        .thank-you-container {
+          max-width: 800px;
+          text-align: center;
+          z-index: 2;
+          position: relative;
+        }
 
-          .thank-you-container {
-            max-width: 800px;
-            text-align: center;
-            z-index: 2;
-            position: relative;
-          }
+        .checkmark {
+          font-size: 120px;
+          display: block;
+          margin-bottom: 40px;
+          animation: bounceInScale 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+          opacity: 0;
+        }
 
-          .checkmark {
-            font-size: 120px;
-            display: block;
-            margin-bottom: 40px;
-            animation: bounceInScale 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        @keyframes bounceInScale {
+          0% {
+            transform: scale(0) rotateZ(-45deg);
             opacity: 0;
           }
-
-          @keyframes bounceInScale {
-            0% {
-              transform: scale(0) rotateZ(-45deg);
-              opacity: 0;
-            }
-            50% {
-              transform: scale(1.15);
-            }
-            100% {
-              transform: scale(1) rotateZ(0deg);
-              opacity: 1;
-            }
+          50% {
+            transform: scale(1.15);
           }
-
-          .slide-up {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), 
-                        transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
-          }
-
-          .slide-up.in {
+          100% {
+            transform: scale(1) rotateZ(0deg);
             opacity: 1;
-            transform: translateY(0);
           }
+        }
 
-          .slide-up:nth-child(2) {
-            transition-delay: 0.2s;
-          }
+        .slide-up {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), 
+                      transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
 
-          .slide-up:nth-child(3) {
-            transition-delay: 0.4s;
-          }
+        .slide-up.in {
+          opacity: 1;
+          transform: translateY(0);
+        }
 
-          .slide-up:nth-child(4) {
-            transition-delay: 0.6s;
-          }
+        .slide-up:nth-child(2) {
+          transition-delay: 0.2s;
+        }
 
-          .slide-up:nth-child(5) {
-            transition-delay: 0.8s;
+        .slide-up:nth-child(3) {
+          transition-delay: 0.4s;
+        }
+
+        .slide-up:nth-child(4) {
+          transition-delay: 0.6s;
+        }
+
+        .slide-up:nth-child(5) {
+          transition-delay: 0.8s;
+        }
+
+        h1 {
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: clamp(48px, 8vw, 96px);
+          font-weight: 600;
+          color: #296166;
+          margin-bottom: 30px;
+          letter-spacing: 1px;
+          line-height: 1.1;
+        }
+
+        .message {
+          font-size: clamp(18px, 3vw, 24px);
+          color: #4C5C58;
+          margin-bottom: 50px;
+          max-width: 700px;
+          line-height: 1.8;
+          font-weight: 300;
+          letter-spacing: 0.3px;
+        }
+
+        .language-selector {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          justify-content: center;
+          margin-bottom: 50px;
+          align-items: center;
+        }
+
+        .language-label {
+          font-size: 13px;
+          font-weight: 600;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          color: #6FE0C6;
+        }
+
+        .language-buttons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+          justify-content: center;
+        }
+
+        .lang-btn {
+          padding: 10px 16px;
+          border: 1.5px solid rgba(47,199,161,0.4);
+          background: transparent;
+          color: #296166;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+          font-family: 'Inter', sans-serif;
+        }
+
+        .lang-btn:hover {
+          border-color: #6FE0C6;
+          color: #6FE0C6;
+          transform: translateY(-2px);
+        }
+
+        .lang-btn.active {
+          background: #6FE0C6;
+          color: #296166;
+          border-color: #6FE0C6;
+          box-shadow: 0 8px 20px rgba(47,199,161,0.25);
+        }
+
+        .cta-button {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 18px 40px;
+          background: #6FE0C6;
+          color: #296166;
+          border: none;
+          border-radius: 4px;
+          font-size: 14px;
+          font-weight: 600;
+          letter-spacing: 0.4px;
+          cursor: pointer;
+          text-decoration: none;
+          transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+          position: relative;
+          font-family: 'Inter', sans-serif;
+        }
+
+        .cta-button::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: rgba(111,224,198,0.2);
+          border-radius: 4px;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+          z-index: -1;
+        }
+
+        .cta-button:hover::before {
+          transform: scaleX(1);
+        }
+
+        .cta-button:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 14px 30px rgba(47,199,161,0.28);
+        }
+
+        @media (max-width: 640px) {
+          .langma-thank-you {
+            padding: 30px 20px;
+            min-height: 100vh;
           }
 
           h1 {
-            font-family: 'Cormorant Garamond', Georgia, serif;
-            font-size: clamp(48px, 8vw, 96px);
-            font-weight: 600;
-            color: #296166;
+            font-size: clamp(36px, 7vw, 56px);
+            margin-bottom: 24px;
+          }
+
+          .checkmark {
+            font-size: 80px;
             margin-bottom: 30px;
-            letter-spacing: 1px;
-            line-height: 1.1;
           }
 
           .message {
-            font-size: clamp(18px, 3vw, 24px);
-            color: #4C5C58;
-            margin-bottom: 50px;
-            max-width: 700px;
-            line-height: 1.8;
-            font-weight: 300;
-            letter-spacing: 0.3px;
+            font-size: clamp(16px, 2.5vw, 20px);
+            margin-bottom: 40px;
           }
 
           .language-selector {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-            margin-bottom: 50px;
-            align-items: center;
-          }
-
-          .language-label {
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #6FE0C6;
+            flex-direction: column;
+            gap: 16px;
           }
 
           .language-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
+            width: 100%;
           }
 
           .lang-btn {
-            padding: 10px 16px;
-            border: 1.5px solid rgba(47,199,161,0.4);
-            background: transparent;
-            color: #296166;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
-            font-family: 'Inter', sans-serif;
+            flex: 1;
+            min-width: 80px;
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          * {
+            animation: none !important;
+            transition: none !important;
           }
 
-          .lang-btn:hover {
-            border-color: #6FE0C6;
-            color: #6FE0C6;
-            transform: translateY(-2px);
+          .slide-up {
+            opacity: 1;
+            transform: none;
           }
+        }
+      `}</style>
 
-          .lang-btn.active {
-            background: #6FE0C6;
-            color: #296166;
-            border-color: #6FE0C6;
-            box-shadow: 0 8px 20px rgba(47,199,161,0.25);
-          }
+      <div className="thank-you-container">
+        <span className="checkmark">✓</span>
+        
+        <h1 className="slide-up">{t('thank_you')}</h1>
+        
+        <p className="message slide-up">{getMessage()}</p>
 
-          .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 18px 40px;
-            background: #6FE0C6;
-            color: #296166;
-            border: none;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.4px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
-            position: relative;
-            font-family: 'Inter', sans-serif;
-          }
-
-          .cta-button::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(111,224,198,0.2);
-            border-radius: 4px;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-            z-index: -1;
-          }
-
-          .cta-button:hover::before {
-            transform: scaleX(1);
-          }
-
-          .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 14px 30px rgba(47,199,161,0.28);
-          }
-
-          @media (max-width: 640px) {
-            .langma-thank-you {
-              padding: 30px 20px;
-              min-height: 100vh;
-            }
-
-            h1 {
-              font-size: clamp(36px, 7vw, 56px);
-              margin-bottom: 24px;
-            }
-
-            .checkmark {
-              font-size: 80px;
-              margin-bottom: 30px;
-            }
-
-            .message {
-              font-size: clamp(16px, 2.5vw, 20px);
-              margin-bottom: 40px;
-            }
-
-            .language-selector {
-              flex-direction: column;
-              gap: 16px;
-            }
-
-            .language-buttons {
-              width: 100%;
-            }
-
-            .lang-btn {
-              flex: 1;
-              min-width: 80px;
-            }
-          }
-
-          @media (prefers-reduced-motion: reduce) {
-            * {
-              animation: none !important;
-              transition: none !important;
-            }
-
-            .slide-up {
-              opacity: 1;
-              transform: none;
-            }
-          }
-        `}</style>
-
-        <div className="thank-you-container">
-          <span className="checkmark">✓</span>
-          
-          <h1 className="slide-up">{t('thank_you')}</h1>
-          
-          <p className="message slide-up">{getMessage()}</p>
-
-          <div className="language-selector slide-up">
-            <span className="language-label">{t('select_language')}</span>
-            <div className="language-buttons">
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  className={`lang-btn ${language === lang.code ? 'active' : ''}`}
-                  onClick={() => setLanguage(lang.code)}
-                >
-                  {lang.name}
-                </button>
-              ))}
-            </div>
+        <div className="language-selector slide-up">
+          <span className="language-label">{t('select_language')}</span>
+          <div className="language-buttons">
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                className={`lang-btn ${language === lang.code ? 'active' : ''}`}
+                onClick={() => setLanguage(lang.code)}
+              >
+                {lang.name}
+              </button>
+            ))}
           </div>
-
-          <a href="/" className="cta-button slide-up">
-            {t('back_home')} ↑
-          </a>
         </div>
-      </div>
 
-      {/* FOOTER */}
-      <Footer />
-    </>
+        <a href="/" className="cta-button slide-up">
+          {t('back_home')} ↑
+        </a>
+      </div>
+    </div>
   );
 };
 
-export default LangmaThankYouPageMinimal;
+export default Thankyou;
