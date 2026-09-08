@@ -115,6 +115,31 @@ const ACTIVITIES = [
 
 ];
 
+// Video testimonials — each card uses the hosted video directly, without a thumbnail.
+const TESTIMONIALS = [
+  {
+    video: "https://res.cloudinary.com/dzv9zcrlz/video/upload/v1788866467/Video-7940_wgu9vv.mp4"
+  },
+  {
+    video: "https://res.cloudinary.com/dzv9zcrlz/video/upload/v1788866469/Video-4433_f0dqcu.mp4"
+  },
+  {
+    video: "https://res.cloudinary.com/dzv9zcrlz/video/upload/v1788866469/Video-8173_yo5wdt.mp4"
+  },
+  {
+    video: "https://res.cloudinary.com/dzv9zcrlz/video/upload/v1788866483/Video-1086_iif9ho.mp4"
+  },
+  {
+    video: "https://res.cloudinary.com/dzv9zcrlz/video/upload/v1788866488/Video-42967_rh4ntr.mp4"
+  },
+    {
+    video: "https://res.cloudinary.com/dzv9zcrlz/video/upload/v1788866470/Video-15072_t2jxxa.mp4"
+  },
+      {
+    video: "https://res.cloudinary.com/dzv9zcrlz/video/upload/v1788868150/Video-91513_dintai.mp4"
+  },
+];
+
 // Japanese language certification exam badges shown in the hero exam strip
 const EXAM_BADGES = [
   { code: "JLPT", subtitle: "N5–N1, Worldwide", ring: "#BC002D", accent: "#0A2422", letter: "N" },
@@ -127,6 +152,19 @@ const EXAM_BADGES = [
 
 export default function LangmaJapaneseCourse() {
   const [phoneError, setPhoneError] = useState(false);
+  const [showAnnouncement, setShowAnnouncement] = useState(true);
+  const [announceHeight, setAnnounceHeight] = useState(0);
+  const announceRef = useRef(null);
+
+  useEffect(() => {
+    function measure() {
+      setAnnounceHeight(showAnnouncement && announceRef.current ? announceRef.current.offsetHeight : 0);
+    }
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [showAnnouncement]);
+
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formMessage, setFormMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -205,10 +243,95 @@ export default function LangmaJapaneseCourse() {
     setIsPaused(false);
   }
 
+  // ---- Video testimonial slider (independent of the activities slider above) ----
+  const [testiIndex, setTestiIndex] = useState(0);
+  const [testiPerView, setTestiPerView] = useState(4);
+  const [testiPaused, setTestiPaused] = useState(false);
+  const testiTouchStartX = useRef(null);
+  const testiTouchDeltaX = useRef(0);
+
+  useEffect(() => {
+    function updateTestiPerView() {
+      const w = window.innerWidth;
+      if (w <= 640) setTestiPerView(1);
+      else if (w <= 900) setTestiPerView(2);
+      else if (w <= 1240) setTestiPerView(3);
+      else setTestiPerView(4);
+    }
+    updateTestiPerView();
+    window.addEventListener("resize", updateTestiPerView);
+    return () => window.removeEventListener("resize", updateTestiPerView);
+  }, []);
+
+  const testiMaxIndex = Math.max(0, TESTIMONIALS.length - testiPerView);
+
+  useEffect(() => {
+    setTestiIndex((i) => Math.min(i, testiMaxIndex));
+  }, [testiPerView, testiMaxIndex]);
+
+  useEffect(() => {
+    if (testiPaused) return;
+    const timer = setInterval(() => {
+      setTestiIndex((i) => (i >= testiMaxIndex ? 0 : i + 1));
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [testiMaxIndex, testiPaused]);
+
+  function goToTesti(i) {
+    setTestiIndex(Math.min(Math.max(i, 0), testiMaxIndex));
+  }
+  function nextTesti() {
+    setTestiIndex((i) => (i >= testiMaxIndex ? 0 : i + 1));
+  }
+  function prevTesti() {
+    setTestiIndex((i) => (i <= 0 ? testiMaxIndex : i - 1));
+  }
+  function handleTestiTouchStart(e) {
+    testiTouchStartX.current = e.touches[0].clientX;
+    testiTouchDeltaX.current = 0;
+    setTestiPaused(true);
+  }
+  function handleTestiTouchMove(e) {
+    if (testiTouchStartX.current === null) return;
+    testiTouchDeltaX.current = e.touches[0].clientX - testiTouchStartX.current;
+  }
+  function handleTestiTouchEnd() {
+    if (Math.abs(testiTouchDeltaX.current) > 45) {
+      if (testiTouchDeltaX.current < 0) nextTesti();
+      else prevTesti();
+    }
+    testiTouchStartX.current = null;
+    testiTouchDeltaX.current = 0;
+    setTestiPaused(false);
+  }
+
   useEffect(() => {
     setShowWaTip(true);
     const timer = setTimeout(() => setShowWaTip(false), 3200);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Scroll-reveal: fade/slide sections and card grids up as they enter view.
+  useEffect(() => {
+    const targets = document.querySelectorAll(".reveal, .reveal-group");
+    if (!targets.length) return;
+    if (typeof IntersectionObserver === "undefined") {
+      targets.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+    );
+    targets.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   async function submitLead(form, phoneValue, { setError, setSubmitted, setBusy, setMessage }) {
@@ -297,9 +420,12 @@ export default function LangmaJapaneseCourse() {
   const maxIndex = Math.max(0, ACTIVITIES.length - slidesPerView);
   const dotCount = maxIndex + 1;
 
+  const testiWidthPct = 100 / testiPerView;
+  const testiDotCount = testiMaxIndex + 1;
+
   return (
-    <div className="langma-page" id="top">
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;600;700&display=swap');
+    <div className="langma-page" id="top" style={{ '--announce-h': `${announceHeight}px` }}>
+      <style>{`@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;600;700&display=swap');
 
   /* ============================================================
      DESIGN TOKENS
@@ -308,17 +434,17 @@ export default function LangmaJapaneseCourse() {
   ============================================================ */
   :root{
     --header-h:74px;
-    --ink:#211C16;
-    --ink-soft:#4A4238;
-    --ink-mute:#6B6255;
-    --paper:#FAF5E9;
-    --paper-2:#F1E6CD;
-    --prussian:#1E3A54;
-    --prussian-deep:#132738;
-    --gold:#C7A24F;
-    --gold-soft:#F4E7C3;
-    --rust:#BE1E2D;
-    --rust-deep:#8F1620;
+    --ink:#201b18;
+    --ink-soft:#514840;
+    --ink-mute:#75695d;
+    --paper:#fbf8f1;
+    --paper-2:#f2eadc;
+    --prussian:#263f4d;
+    --prussian-deep:#142c32;
+    --gold:#b28a3e;
+    --gold-soft:#f1e2bd;
+    --rust:#bc002d;
+    --rust-deep:#8d0022;
     --white:#FFFFFF;
     --jp-red:#BC002D;
     --line: rgba(33,28,22,0.13);
@@ -342,14 +468,17 @@ export default function LangmaJapaneseCourse() {
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
-  section[id]{scroll-margin-top:calc(var(--header-h) + 14px);}
+  section[id]{scroll-margin-top:calc(var(--header-h) + var(--announce-h, 0px) + 14px);}
   .langma-page{
     background:var(--paper);
     color:var(--ink);
-    font-family:'IBM Plex Sans', sans-serif;
-    font-size:16px;
+    font-family:'Noto Sans JP', sans-serif;
+    font-size:18px;
+    font-weight:500;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    text-rendering:optimizeLegibility;
     min-height:100vh;
     overflow-x:hidden;
     width:100%;
@@ -358,111 +487,135 @@ export default function LangmaJapaneseCourse() {
   img{max-width:100%; display:block;}
   a{color:inherit;}
   .wrap{max-width:1180px; margin:0 auto; padding:0 32px; width:100%; box-sizing:border-box;}
-  h1,h2,h3{font-family:'Shippori Mincho', serif; font-weight:600; letter-spacing:-0.01em; color:var(--ink);}
+  h1,h2,h3{font-family:'Noto Sans JP', sans-serif; font-weight:700; letter-spacing:0; color:var(--ink);}
   * { min-width: 0; }
   table, pre, code { min-width: unset; }
   ::selection{background:var(--gold); color:var(--prussian-deep);}
   :focus-visible{outline:2px solid var(--rust); outline-offset:3px; border-radius:2px;}
   @media (prefers-reduced-motion: reduce){*{animation:none !important; transition:none !important;}}
 
+  /* ===== SCROLL REVEAL — fade/slide elements up as they enter the viewport ===== */
+  .reveal{opacity:0; transform:translateY(26px); transition:opacity .6s var(--ease), transform .6s var(--ease);}
+  .reveal.is-visible{opacity:1; transform:translateY(0);}
+  .reveal-group > *{opacity:0; transform:translateY(24px); transition:opacity .55s var(--ease), transform .55s var(--ease);}
+  .reveal-group.is-visible > *{opacity:1; transform:translateY(0);}
+  .reveal-group.is-visible > *:nth-child(1){transition-delay:.02s;}
+  .reveal-group.is-visible > *:nth-child(2){transition-delay:.08s;}
+  .reveal-group.is-visible > *:nth-child(3){transition-delay:.14s;}
+  .reveal-group.is-visible > *:nth-child(4){transition-delay:.2s;}
+  .reveal-group.is-visible > *:nth-child(5){transition-delay:.26s;}
+  .reveal-group.is-visible > *:nth-child(6){transition-delay:.32s;}
+  .reveal-group.is-visible > *:nth-child(n+7){transition-delay:.36s;}
+
   /* ===== SEIGAIHA WAVE MOTIF — the page's one recurring signature ===== */
   .seigaiha-dark{position:absolute; inset:0; pointer-events:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='none' stroke='rgb(199,162,79)' stroke-width='1.3' opacity='0.14'%3E%3Cpath d='M -18 20 A 18 18 0 0 1 18 20'/%3E%3Cpath d='M -12 20 A 12 12 0 0 1 12 20'/%3E%3Cpath d='M -6 20 A 6 6 0 0 1 6 20'/%3E%3Cpath d='M 22 20 A 18 18 0 0 1 58 20'/%3E%3Cpath d='M 28 20 A 12 12 0 0 1 52 20'/%3E%3Cpath d='M 34 20 A 6 6 0 0 1 46 20'/%3E%3Cpath d='M 2 40 A 18 18 0 0 1 38 40'/%3E%3Cpath d='M 8 40 A 12 12 0 0 1 32 40'/%3E%3Cpath d='M 14 40 A 6 6 0 0 1 26 40'/%3E%3C/g%3E%3C/svg%3E"); background-size:40px 40px;}
   .hero-grid{position:absolute; inset:0; pointer-events:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill='none' stroke='rgb(30,58,84)' stroke-width='1.3' opacity='0.16'%3E%3Cpath d='M -18 20 A 18 18 0 0 1 18 20'/%3E%3Cpath d='M -12 20 A 12 12 0 0 1 12 20'/%3E%3Cpath d='M -6 20 A 6 6 0 0 1 6 20'/%3E%3Cpath d='M 22 20 A 18 18 0 0 1 58 20'/%3E%3Cpath d='M 28 20 A 12 12 0 0 1 52 20'/%3E%3Cpath d='M 2 40 A 18 18 0 0 1 38 40'/%3E%3Cpath d='M 8 40 A 12 12 0 0 1 32 40'/%3E%3Cpath d='M 14 40 A 6 6 0 0 1 26 40'/%3E%3C/g%3E%3C/svg%3E"); background-size:40px 40px; mask-image:linear-gradient(to bottom, black, transparent 85%);}
 
   /* ===== BUTTONS ===== */
-  .btn{font-family:'IBM Plex Sans', sans-serif; font-weight:600; font-size:14.5px; padding:13px 22px; border-radius:var(--r-sm); border:1.5px solid transparent; display:inline-flex; align-items:center; gap:9px; cursor:pointer; text-decoration:none; white-space:nowrap; transition:transform .18s var(--ease), box-shadow .18s var(--ease), background .18s var(--ease); max-width:100%;}
+  .btn{font-family:'Noto Sans JP', sans-serif; font-weight:700; font-size:16px; padding:13px 22px; border-radius:var(--r-sm); border:1.5px solid transparent; display:inline-flex; align-items:center; gap:9px; cursor:pointer; text-decoration:none; white-space:nowrap; transition:transform .18s var(--ease), box-shadow .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease); max-width:100%;}
+  .btn:active{transform:translateY(0) scale(.96);}
   .btn-primary{background:var(--rust); color:var(--white); box-shadow:var(--shadow-sm);}
   .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 22px rgba(190,30,45,.32);}
   .btn-ghost{background:transparent; border-color:var(--line-strong); color:var(--ink);}
-  .btn-ghost:hover{background:var(--ink); border-color:var(--ink); color:var(--paper);}
+  .btn-ghost:hover{background:var(--ink); border-color:var(--ink); color:var(--paper); transform:translateY(-2px);}
   .btn-wa{background:#1F9C56; color:#fff;}
   .btn-wa:hover{transform:translateY(-2px); box-shadow:0 10px 22px rgba(31,156,86,.35); background:#188047;}
-  .btn-sm{padding:10px 16px; font-size:13px;}
+  .btn-sm{padding:10px 16px; font-size:14.5px;}
 
   /* ===== TOPBAR ===== */
-  .topbar{background:var(--prussian-deep); color:var(--white); font-family:'IBM Plex Mono', monospace; font-size:12.5px; margin-top:var(--header-h);}
+  .topbar{background:var(--prussian-deep); color:var(--white); font-family:'Roboto', sans-serif; font-size:14px; margin-top:calc(var(--header-h) + var(--announce-h, 0px)); transition:margin-top .25s ease;}
   .topbar .wrap{display:flex; justify-content:center; align-items:center; padding:9px 32px;}
   .topbar-links{display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:8px 26px; width:100%; line-height:1.4;}
   .topbar-links a{display:inline-flex; align-items:center; gap:7px; text-decoration:none; opacity:.88; white-space:nowrap;}
   .topbar-links a:hover{opacity:1; text-decoration:underline;}
 
   /* ===== HEADER ===== */
-  .jp-header{background:rgba(250,245,233,.96); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); position:fixed; top:0; left:0; right:0; width:100%; height:var(--header-h); z-index:80; box-shadow:0 4px 18px rgba(19,39,56,.08);}
+  .announcement-bar{position:fixed; top:0; left:0; right:0; z-index:90; background:linear-gradient(90deg, var(--rust), var(--rust-deep)); color:#fff; display:flex; align-items:center; justify-content:center; gap:16px; padding:9px 44px 9px 16px; text-align:center; box-shadow:0 2px 10px rgba(0,0,0,.15);}
+  .announcement-inner{display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;}
+  .announcement-text{font-family:'Roboto', sans-serif; font-size:13.5px; font-weight:500;}
+  .announcement-link{font-family:'Roboto', sans-serif; font-size:13.5px; font-weight:700; color:#fff; text-decoration:underline; text-underline-offset:2px; white-space:nowrap; transition:opacity .15s ease;}
+  .announcement-link:hover{opacity:.82;}
+  .announcement-close{position:absolute; right:10px; top:50%; transform:translateY(-50%); width:26px; height:26px; border-radius:50%; border:none; background:rgba(255,255,255,.18); color:#fff; font-size:17px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .15s ease;}
+  .announcement-close:hover{background:rgba(255,255,255,.32);}
+  .jp-header{background:rgba(250,245,233,.96); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); position:fixed; top:var(--announce-h, 0px); left:0; right:0; width:100%; height:var(--header-h); z-index:80; box-shadow:0 4px 18px rgba(19,39,56,.08); transition:top .25s ease;}
   .jp-nav{min-height:74px; display:flex; align-items:center; justify-content:space-between; gap:24px;}
-  .jp-brand{display:flex; align-items:center; text-decoration:none;}
+  .jp-brand{display:flex; align-items:center; text-decoration:none; transition:opacity .18s ease;}
+  .jp-brand:hover{opacity:.82;}
   .jp-brand-text{display:flex; align-items:center; width:200px; min-width:150px; height:46px;}
   .jp-brand-logo{width:100%; height:100%; object-fit:contain; object-position:left center; display:block;}
-  .jp-brand-fallback{font-family:'Shippori Mincho', serif; font-weight:700; font-size:20px; color:var(--prussian); white-space:nowrap;}
+  .jp-brand-fallback{font-family:'Roboto', sans-serif; font-weight:700; font-size:22.5px; color:var(--prussian); white-space:nowrap;}
   .jp-menu{display:flex; align-items:center; gap:18px; flex-wrap:wrap;}
-  .jp-menu .jp-cta{background:var(--rust); color:#fff; padding:11px 18px; border-radius:var(--r-sm); font-size:13px; font-weight:600; text-decoration:none; transition:background .18s ease, transform .18s ease;}
+  .jp-phone{display:flex; align-items:center; gap:9px; font-family:'Roboto', sans-serif; font-weight:700; font-size:16px; color:var(--prussian-deep); text-decoration:none; white-space:nowrap; transition:color .18s ease;}
+  .jp-phone svg{flex-shrink:0; color:var(--rust);}
+  .jp-phone:hover{color:var(--rust);}
+  .jp-menu .jp-cta{background:var(--rust); color:#fff; padding:11px 18px; border-radius:var(--r-sm); font-size:14.5px; font-weight:700; text-decoration:none; transition:background .18s ease, transform .18s ease;}
   .jp-menu .jp-cta:hover{background:var(--rust-deep); transform:translateY(-1px);}
 
   /* ===== HERO ===== */
+  @keyframes fadeUpIn{from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}}
   .hero{position:relative; overflow:hidden; border-bottom:1px solid var(--line); max-width:100vw; padding:0;}
   .hero-grid{opacity:.35;}
   .hero-photo{position:absolute; inset:0; background-image:linear-gradient(100deg, rgba(250,245,233,.985) 0%, rgba(250,245,233,.96) 48%, rgba(250,245,233,.78) 68%, rgba(250,245,233,.38) 100%), url('https://images.unsplash.com/photo-1767794000619-09165200be45?fm=jpg&q=70&w=1800&auto=format&fit=crop'); background-size:cover; background-position:center 65%; opacity:.03;}
   .hero-inner{position:relative; z-index:2; display:grid; grid-template-columns:1.15fr .85fr; gap:56px; padding:40px 32px 48px; max-width:1180px; margin:0 auto; align-items:center;}
   .hero-inner > div{min-width:0;}
-  .hero-title{font-size:clamp(34px, 4.6vw, 62px); line-height:1.08; margin:0 0 22px; word-break:break-word;}
-  .hero-title em{font-style:italic; color:var(--prussian); font-weight:500;}
-  .hero-sub{font-size:17.5px; max-width:620px; color:var(--ink); font-weight:500; margin-bottom:26px; text-shadow:0 1px 1px rgba(255,255,255,.65);}
-  .hero-kicker{display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--rust); background:rgba(190,30,45,.08); border:1px solid rgba(190,30,45,.18); padding:6px 12px; border-radius:var(--r-pill);}
-  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:34px;}
-  .hero-stats{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:0; border-top:1px solid var(--line); padding-top:24px;}
-  .stat{min-width:0; display:flex; align-items:flex-start; gap:12px; padding:0 18px; border-right:1px solid var(--line);}
+  .hero-kicker{display:inline-flex; align-items:center; gap:8px; font-family:'Roboto', sans-serif; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--rust); background:rgba(190,30,45,.08); border:1px solid rgba(190,30,45,.18); padding:6px 12px; border-radius:var(--r-pill); animation:fadeUpIn .6s var(--ease) both;}
+  .hero-title{font-size:clamp(40px, 5.2vw, 72px); line-height:1.06; margin:0 0 22px; word-break:break-word; animation:fadeUpIn .7s var(--ease) .06s both;}
+  .hero-title em{font-style:normal; color:var(--prussian); font-weight:700;}
+  .hero-sub{font-size:19.5px; max-width:620px; color:var(--ink); font-weight:500; margin-bottom:26px; text-shadow:0 1px 1px rgba(255,255,255,.65); animation:fadeUpIn .7s var(--ease) .14s both;}
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:34px; animation:fadeUpIn .7s var(--ease) .22s both;}
+  .hero-stats{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:0; border-top:1px solid var(--line); padding-top:24px; animation:fadeUpIn .7s var(--ease) .3s both;}
+  .stat{min-width:0; display:flex; align-items:flex-start; gap:12px; padding:0 18px; border-right:1px solid var(--line); transition:transform .2s ease;}
+  .stat:hover{transform:translateY(-2px);}
   .stat:first-child{padding-left:0;}
   .stat:last-child{border-right:none; padding-right:0;}
-  .stat-icon{width:36px; height:36px; border-radius:50%; border:1.5px solid var(--rust); color:var(--rust); display:flex; align-items:center; justify-content:center; flex-shrink:0; background:var(--white);}
+  .stat-icon{width:36px; height:36px; border-radius:50%; border:1.5px solid var(--rust); color:var(--rust); display:flex; align-items:center; justify-content:center; flex-shrink:0; background:var(--white); transition:background .2s ease, color .2s ease;}
+  .stat:hover .stat-icon{background:var(--rust); color:var(--white);}
   .stat-text{display:flex; flex-direction:column; min-width:0;}
-  .stat b{font-family:'Shippori Mincho', serif; font-size:25px; display:block; color:var(--prussian); font-weight:700; white-space:nowrap;}
-  .stat span{font-size:11.5px; color:var(--ink-mute); font-family:'IBM Plex Mono', monospace; letter-spacing:.03em; line-height:1.3;}
+  .stat b{font-family:'Roboto', sans-serif; font-size:28px; display:block; color:var(--prussian); font-weight:700; white-space:nowrap;}
+  .stat span{font-size:13px; color:var(--ink-mute); font-family:'Roboto', sans-serif; letter-spacing:.03em; line-height:1.3;}
 
   /* Ticket visual — the hero's signature element: a boarding pass to Japan */
-  .ticket{background:var(--prussian); color:var(--white); border-radius:var(--r-md); padding:0; position:relative; box-shadow:var(--shadow-lg); overflow:hidden; width:100%; max-width:100%;}
+  .ticket{background:var(--prussian); color:var(--white); border-radius:var(--r-md); padding:0; position:relative; box-shadow:var(--shadow-lg); overflow:hidden; width:100%; max-width:100%; animation:fadeUpIn .8s var(--ease) .2s both; transition:box-shadow .3s ease, transform .3s ease;}
+  .ticket:hover{box-shadow:0 32px 64px -18px rgba(19,39,56,.5); transform:translateY(-3px);}
   .hanko{position:absolute; top:18px; right:18px; width:56px; height:56px; border:2px solid var(--rust); border-radius:8px; color:#fff; background:var(--rust); display:flex; align-items:center; justify-content:center; transform:rotate(-8deg); z-index:3; box-shadow:0 6px 16px rgba(190,30,45,.4); pointer-events:none;}
-  .hanko span{font-family:'Noto Sans JP', sans-serif; font-weight:700; font-size:19px; line-height:1.05; letter-spacing:1px;}
+  .hanko span{font-family:'Noto Sans JP', sans-serif; font-weight:700; font-size:21.5px; line-height:1.05; letter-spacing:1px;}
   .ticket::before{content:''; position:absolute; top:0; left:0; right:0; height:6px; background:repeating-linear-gradient(90deg, var(--gold) 0 14px, transparent 14px 24px);}
   .ticket-top{padding:32px 28px 24px; border-bottom:1px dashed rgba(255,255,255,.28); position:relative;}
   .ticket-notch{position:absolute; width:22px; height:22px; background:var(--paper); border-radius:50%; bottom:-11px;}
   .ticket-notch.left{left:-11px;} .ticket-notch.right{right:-11px;}
   .ticket-route{display:flex; justify-content:space-between; align-items:center; margin-bottom:22px; gap:8px; flex-wrap:wrap;}
-  .ticket-route .city{font-family:'Shippori Mincho', serif; font-size:23px; font-weight:700;}
-  .ticket-route .arrow{font-family:'IBM Plex Mono', monospace; color:var(--gold-soft); font-size:11px; text-align:center; letter-spacing:.04em;}
-  .ticket-route .sub{font-family:'IBM Plex Mono', monospace; font-size:10px; opacity:.68; letter-spacing:.07em; text-transform:uppercase; margin-top:4px;}
-  .ticket-form-head{font-family:'IBM Plex Mono', monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--gold-soft); margin-bottom:16px;}
+  .ticket-route .city{font-family:'Roboto', sans-serif; font-size:26px; font-weight:700;}
+  .ticket-route .arrow{font-family:'Roboto', sans-serif; color:var(--gold-soft); font-size:12.5px; text-align:center; letter-spacing:.04em;}
+  .ticket-route .sub{font-family:'Roboto', sans-serif; font-size:11px; opacity:.68; letter-spacing:.07em; text-transform:uppercase; margin-top:4px;}
+  .ticket-form-head{font-family:'Roboto', sans-serif; font-size:16px; text-transform:uppercase; letter-spacing:.08em; color:var(--gold-soft); margin-bottom:16px;}
   .ticket-form .form-row{margin-bottom:14px;}
   .ticket-form-row{display:grid; grid-template-columns:1fr 1fr; gap:0 12px;}
   .ticket-form-row > .form-row{min-width:0;}
   .ticket-bottom{padding:18px 28px 26px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;}
   .ticket-bottom .barcode{display:flex; gap:2.5px; align-items:flex-end; height:32px;}
   .ticket-bottom .barcode i{display:block; width:2.5px; background:var(--gold-soft); opacity:.85; border-radius:1px;}
-  .ticket-rating{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--gold-soft); letter-spacing:.04em;}
+  .ticket-rating{font-family:'Roboto', sans-serif; font-size:12.5px; color:var(--gold-soft); letter-spacing:.04em;}
 
   /* ===== EXAM BADGES STRIP ===== */
   .exam-strip{position:relative; z-index:2; background:linear-gradient(180deg, rgba(30,58,84,.05) 0%, var(--paper) 100%); border-top:1px dashed var(--line); padding:34px 0 44px; max-width:100vw; overflow:hidden;}
   .exam-strip .exam-head{text-align:center; margin-bottom:26px;}
-  .exam-strip .exam-head .kicker{font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--rust); margin-bottom:8px; display:block;}
-  .exam-strip .exam-head h3{font-family:'Shippori Mincho', serif; font-size:clamp(20px, 2.4vw, 26px); color:var(--prussian-deep); font-weight:600; line-height:1.3;}
-  .exam-strip .exam-head h3 em{font-style:italic; color:var(--rust);}
-  .exam-row{display:flex; justify-content:center; align-items:flex-start; gap:30px; flex-wrap:wrap; padding:6px 0;}
-  .exam-badge{display:flex; flex-direction:column; align-items:center; gap:10px; text-decoration:none; color:inherit; transition:transform .22s var(--ease);}
+  .exam-strip .exam-head .kicker{font-family:'Roboto', sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.12em; color:var(--rust); margin-bottom:8px; display:block;}
+  .exam-strip .exam-head h3{font-family:'Roboto', sans-serif; font-size:clamp(23px, 2.7vw, 30px); color:var(--prussian-deep); font-weight:700; line-height:1.3;}
+  .exam-strip .exam-head h3 em{font-style:normal; font-weight:700; color:var(--rust);}
+  .exam-row{display:flex; justify-content:center; align-items:flex-start; gap:36px; flex-wrap:wrap; padding:6px 0;}
+  .exam-badge{display:flex; flex-direction:column; align-items:center; gap:8px; text-decoration:none; color:inherit; transition:transform .22s var(--ease);}
   .exam-badge:hover{transform:translateY(-4px);}
-  .exam-badge .badge-circle{width:76px; height:76px; border-radius:50%; background:var(--white); display:flex; align-items:center; justify-content:center; position:relative; box-shadow:var(--shadow-sm), 0 0 0 1px var(--line); overflow:hidden;}
-  .exam-badge .badge-circle::before{content:''; position:absolute; inset:3px; border-radius:50%; border:2px solid var(--ring, var(--prussian)); background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(228,244,242,.6));}
-  .exam-badge .badge-inner{position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%; height:100%;}
-  .exam-badge .badge-letter{font-family:'Shippori Mincho', serif; font-weight:700; font-size:23px; color:var(--ring, var(--prussian-deep)); line-height:1;}
-  .exam-badge .badge-code{font-family:'IBM Plex Sans', sans-serif; font-size:9px; font-weight:700; letter-spacing:.06em; color:var(--accent, #0A2422); margin-top:4px; text-transform:uppercase;}
-  .exam-badge .badge-code.wide{letter-spacing:.02em;}
-  .exam-badge .badge-flag{position:absolute; top:7px; left:50%; transform:translateX(-50%); width:14px; height:14px; border-radius:50%; background:#fff; border:1.5px solid var(--jp-red); z-index:3; box-shadow:0 1px 2px rgba(0,0,0,.15);}
-  .exam-badge .badge-caption{font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.03em; color:var(--ink-mute); text-align:center; max-width:100px; line-height:1.35;}
-  .exam-badge .badge-caption b{color:var(--prussian-deep); font-weight:600; font-family:'IBM Plex Sans', sans-serif;}
+  .exam-badge .badge-letter{font-family:'Roboto', sans-serif; font-weight:900; font-size:56px; line-height:1; color:var(--ring, var(--prussian-deep)); transition:transform .22s var(--ease), filter .22s ease;}
+  .exam-badge:hover .badge-letter{transform:scale(1.08); filter:drop-shadow(0 6px 14px rgba(0,0,0,.18));}
+  .exam-badge .badge-caption{font-family:'Roboto', sans-serif; font-size:12px; letter-spacing:.03em; color:var(--ink-mute); text-align:center; max-width:100px; line-height:1.35;}
+  .exam-badge .badge-caption b{color:var(--prussian-deep); font-weight:700; font-family:'Roboto', sans-serif;}
 
   /* ===== SECTION RHYTHM ===== */
   section{padding:var(--section-pad) 0; max-width:100vw; overflow-x:hidden;}
   .sec-head{max-width:660px; margin-bottom:44px;}
-  .sec-head .kicker{display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--gold-soft); margin-bottom:12px;}
-  .sec-head h2{font-size:clamp(28px,3.4vw,42px); line-height:1.14;}
-  .sec-head p{color:var(--ink-soft); font-size:16px; margin-top:14px; max-width:580px;}
+  .sec-head .kicker{display:inline-block; font-family:'Roboto', sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.12em; color:var(--gold-soft); margin-bottom:12px;}
+  .sec-head h2{font-size:clamp(32px,3.8vw,48px); line-height:1.12;}
+  .sec-head p{color:var(--ink-soft); font-size:18px; margin-top:14px; max-width:580px;}
   .sec-head-row{display:flex; align-items:center; justify-content:flex-start; gap:32px; margin-bottom:44px;}
   .sec-head-row .sec-head{margin-bottom:0;}
   .sec-icon-big{flex-shrink:0; width:112px; height:112px; color:var(--rust); opacity:.9;}
@@ -473,17 +626,44 @@ export default function LangmaJapaneseCourse() {
     .sec-icon-big{width:64px; height:64px; align-self:center;}
   }
 
+  /* ===== INLINE SECTION CTA — repeated banner used throughout the page ===== */
+  .inline-cta{margin-top:40px; padding:26px 30px; border:1px solid var(--line); border-radius:var(--r-md); background:var(--white); display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; position:relative; overflow:hidden; transition:box-shadow .25s var(--ease), transform .25s var(--ease), border-color .25s ease;}
+  .inline-cta::before{content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--gold); transform:scaleY(0); transform-origin:center; transition:transform .3s var(--ease);}
+  .inline-cta:hover{box-shadow:var(--shadow-md); transform:translateY(-3px); border-color:var(--line-strong);}
+  .inline-cta:hover::before{transform:scaleY(1);}
+  .inline-cta-text{font-family:'Roboto', sans-serif; font-size:19px; font-weight:700; color:var(--prussian-deep); max-width:480px; line-height:1.3;}
+  .inline-cta-actions{display:flex; gap:10px; flex-wrap:wrap;}
+  .inline-cta.on-dark{background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.16);}
+  .inline-cta.on-dark .inline-cta-text{color:var(--white);}
+  .inline-cta.on-dark .btn-ghost{border-color:rgba(255,255,255,.45); color:var(--white);}
+  .inline-cta.on-dark .btn-ghost:hover{background:var(--white); color:var(--ink);}
+  .inline-cta.on-dark:hover{border-color:rgba(199,162,79,.5);}
+  .inline-cta.on-tint{background:var(--paper-2);}
+  @media (max-width: 720px){
+    .inline-cta{padding:22px 22px; margin-top:32px;}
+    .inline-cta-text{max-width:none;}
+    .inline-cta-actions{width:100%;}
+    .inline-cta-actions .btn{flex:1; justify-content:center;}
+  }
+
   /* ===== GENERIC CARD LOOK — used across grids for consistency ===== */
-  .skill-stamp, .feature, .mode-card, .curriculum-card, .audience-card, .detail-box, .fact-box, .included-item, .batch-card{
+  .skill-stamp, .feature, .mode-card, .curriculum-card, .audience-card, .detail-box, .fact-box, .included-item, .batch-card, .method-step, .career-card{
     background:var(--white);
+    transition:transform .24s var(--ease), box-shadow .24s var(--ease);
+  }
+  .skill-stamp:hover, .feature:hover, .mode-card:hover, .curriculum-card:hover, .detail-box:hover, .fact-box:hover, .included-item:hover, .batch-card:hover, .method-step:hover, .career-card:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow-md);
+    position:relative;
+    z-index:2;
   }
 
   /* ===== WHAT YOU'LL LEARN ===== */
   .skills-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden;}
   .skill-stamp{padding:32px 26px 28px; position:relative; min-width:0;}
-  .skill-stamp .skill-native{width:54px; height:54px; border:2px solid var(--rust); border-radius:var(--r-sm); display:flex; align-items:center; justify-content:center; font-family:'Noto Sans JP', 'Shippori Mincho', serif; font-weight:700; font-size:23px; color:var(--rust); margin-bottom:18px;}
-  .skill-stamp .skill-en{font-family:'IBM Plex Mono', monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--prussian); margin-bottom:14px; display:block;}
-  .skill-stamp p{font-size:13.8px; color:var(--ink-soft);}
+  .skill-stamp .skill-native{width:54px; height:54px; border:2px solid var(--rust); border-radius:var(--r-sm); display:flex; align-items:center; justify-content:center; font-family:'Noto Sans JP', 'Roboto', sans-serif; font-weight:700; font-size:26px; color:var(--rust); margin-bottom:18px;}
+  .skill-stamp .skill-en{font-family:'Roboto', sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--prussian); margin-bottom:14px; display:block;}
+  .skill-stamp p{font-size:15.5px; color:var(--ink-soft);}
 
   /* ===== JOURNEY / RAIL LINE ===== */
   .journey{background:var(--prussian-deep); color:var(--white); position:relative; overflow:hidden;}
@@ -495,159 +675,170 @@ export default function LangmaJapaneseCourse() {
   .rail::before{content:''; position:absolute; top:23px; left:0; right:0; height:3px; background:repeating-linear-gradient(90deg, var(--gold) 0 10px, transparent 10px 18px);}
   .stop{padding:0 18px 0 0; position:relative; min-width:0;}
   .stop:last-child{padding-right:0;}
-  .stop-dot{width:46px; height:46px; border-radius:50%; background:var(--prussian-deep); border:3px solid var(--gold); position:relative; z-index:2; margin-bottom:20px; display:flex; align-items:center; justify-content:center; color:var(--gold-soft); font-family:'IBM Plex Mono', monospace; font-weight:700; font-size:14px; box-shadow:0 0 0 5px var(--prussian-deep);}
+  .stop-dot{width:46px; height:46px; border-radius:50%; background:var(--prussian-deep); border:3px solid var(--gold); position:relative; z-index:2; margin-bottom:20px; display:flex; align-items:center; justify-content:center; color:var(--gold-soft); font-family:'Roboto', sans-serif; font-weight:700; font-size:15.5px; box-shadow:0 0 0 5px var(--prussian-deep);}
   .stop-dot.final{background:var(--gold); border-color:var(--white); color:var(--prussian-deep);}
-  .stop-code{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--gold-soft); letter-spacing:.06em;}
-  .stop h3{font-family:'Shippori Mincho', serif; font-size:21px; margin:7px 0 9px; font-weight:600; max-width:190px; color:var(--white);}
-  .stop p{font-size:13.4px; color:rgba(255,255,255,.72); line-height:1.55; max-width:190px;}
-  .rail-flag{position:absolute; right:18px; top:-8px; font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--gold-soft); letter-spacing:.08em; text-transform:uppercase;}
-  .unlock-tag{display:inline-block; margin-top:13px; font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.03em; color:var(--prussian-deep); background:var(--gold-soft); padding:6px 10px; border-radius:var(--r-sm); font-weight:500;}
+  .stop-code{font-family:'Roboto', sans-serif; font-size:14px; color:var(--gold-soft); letter-spacing:.06em;}
+  .stop h3{font-family:'Roboto', sans-serif; font-size:23.5px; margin:7px 0 9px; font-weight:700; max-width:190px; color:var(--white);}
+  .stop p{font-size:15px; color:rgba(255,255,255,.72); line-height:1.55; max-width:190px;}
+  .rail-flag{position:absolute; right:18px; top:-8px; font-family:'Roboto', sans-serif; font-size:12.5px; color:var(--gold-soft); letter-spacing:.08em; text-transform:uppercase;}
+  .unlock-tag{display:inline-block; margin-top:13px; font-family:'Roboto', sans-serif; font-size:12px; letter-spacing:.03em; color:var(--prussian-deep); background:var(--gold-soft); padding:6px 10px; border-radius:var(--r-sm); font-weight:500;}
 
   /* ===== LANGUAGE FACTS ===== */
   .lang-facts{background:var(--paper); border-top:1px solid var(--line);}
-  .lang-photo{width:100%; height:290px; object-fit:cover; object-position:center 30%; border-radius:var(--r-md); margin-bottom:24px; border:1px solid var(--line); box-shadow:var(--shadow-sm);}
+  .lang-photo{width:100%; height:450px; object-fit:cover; object-position:center 30%; border-radius:var(--r-md); margin-bottom:24px; border:1px solid var(--line); box-shadow:var(--shadow-sm);}
   .lang-inner{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;}
   .lang-inner > div{min-width:0;}
-  .lang-copy p{color:var(--ink-soft); font-size:15.5px; margin-bottom:18px; max-width:480px;}
+  .lang-copy p{color:var(--ink-soft); font-size:17.5px; margin-bottom:18px; max-width:480px;}
   .lang-copy p:last-child{margin-bottom:0;}
   .fact-strip{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden; margin-top:8px;}
   .fact-box{padding:26px 24px; min-width:0;}
-  .fact-box b{font-family:'Shippori Mincho', serif; font-size:27px; display:block; color:var(--prussian); font-weight:700; line-height:1;}
-  .fact-box span{font-size:12.5px; color:var(--ink-mute); display:block; margin-top:9px; line-height:1.45;}
+  .fact-box b{font-family:'Roboto', sans-serif; font-size:30px; display:block; color:var(--prussian); font-weight:700; line-height:1;}
+  .fact-box span{font-size:14px; color:var(--ink-mute); display:block; margin-top:9px; line-height:1.45;}
   .cognates{margin-top:28px; border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden; background:var(--white);}
-  .cognates-head{display:grid; grid-template-columns:1fr 1fr 1fr; background:var(--prussian); color:var(--white); font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;}
+  .cognates-head{display:grid; grid-template-columns:1fr 1fr 1fr; background:var(--prussian); color:var(--white); font-family:'Roboto', sans-serif; font-size:12.5px; letter-spacing:.06em; text-transform:uppercase;}
   .cognates-head div{padding:11px 16px; min-width:0;}
-  .cognate-row{display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid var(--line); font-size:14px;}
+  .cognate-row{display:grid; grid-template-columns:1fr 1fr 1fr; border-top:1px solid var(--line); font-size:15.5px; transition:background .18s ease;}
+  .cognate-row:hover{background:rgba(199,162,79,.09);}
   .cognate-row div{padding:12px 16px; min-width:0; overflow-wrap:break-word;}
-  .cognate-row div:first-child{font-weight:600; font-family:'Shippori Mincho', serif; font-style:italic;}
-  .cognate-row div:last-child{color:var(--ink-mute); font-size:13px;}
+  .cognate-row div:first-child{font-weight:700; font-family:'Roboto', sans-serif; font-style:normal;}
+  .cognate-row div:last-child{color:var(--ink-mute); font-size:14.5px;}
   .lang-note{margin-top:26px; border:1px solid var(--line); border-radius:var(--r-md); padding:22px 24px; background:var(--white);}
-  .lang-note h4{font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--prussian); margin-bottom:11px;}
-  .lang-note p{font-size:14px; color:var(--ink-soft); line-height:1.65;}
+  .lang-note h4{font-family:'Roboto', sans-serif; font-size:13.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--prussian); margin-bottom:11px;}
+  .lang-note p{font-size:15.5px; color:var(--ink-soft); line-height:1.65;}
 
   /* ===== COURSE DETAILS / QUICK FACTS ===== */
   .course-details{background:var(--paper-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
   .details-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden;}
   .detail-box{padding:26px 22px; min-width:0;}
-  .detail-label{font-family:'IBM Plex Mono', monospace; text-transform:uppercase; letter-spacing:.08em; font-size:10.5px; color:var(--rust); margin-bottom:8px;}
-  .detail-value{font-family:'Shippori Mincho', serif; font-size:20px; font-weight:600; line-height:1.25;}
-  .detail-note{font-size:12.5px; color:var(--ink-mute); margin-top:7px;}
+  .detail-label{font-family:'Roboto', sans-serif; text-transform:uppercase; letter-spacing:.08em; font-size:12px; color:var(--rust); margin-bottom:8px;}
+  .detail-value{font-family:'Roboto', sans-serif; font-size:22.5px; font-weight:700; line-height:1.25;}
+  .detail-note{font-size:14px; color:var(--ink-mute); margin-top:7px;}
 
   /* ===== WHO THIS IS FOR ===== */
-  .audience-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  .audience-grid{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px;}
   .audience-card{border:1px solid var(--line); padding:28px 24px; border-radius:var(--r-md); min-width:0; transition:box-shadow .2s ease, transform .2s ease;}
   .audience-card:hover{box-shadow:var(--shadow-md); transform:translateY(-3px);}
   .audience-icon, .feature-icon, .method-icon{width:46px; height:46px; border-radius:50%; border:1.5px solid var(--rust); color:var(--rust); background:var(--white); display:flex; align-items:center; justify-content:center; margin-bottom:18px;}
   .audience-icon svg, .feature-icon svg, .method-icon svg{width:21px; height:21px;}
-  .audience-num{font-family:'IBM Plex Mono', monospace; text-transform:uppercase; letter-spacing:.08em; font-size:10px; color:var(--rust); margin-bottom:17px;}
-  .audience-card h3{font-size:20px; margin-bottom:9px;}
-  .audience-card p{font-size:13.5px; color:var(--ink-soft);}
+  .audience-num{font-family:'Roboto', sans-serif; text-transform:uppercase; letter-spacing:.08em; font-size:11px; color:var(--rust); margin-bottom:17px;}
+  .audience-card h3{font-size:22.5px; margin-bottom:9px;}
+  .audience-card p{font-size:15px; color:var(--ink-soft);}
+  .heading-accent{color:var(--rust);}
 
   /* ===== FEATURES ===== */
   .features-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden;}
   .feature{padding:38px 32px; min-width:0;}
   .feature-icon{margin-bottom:18px;}
-  .feature .fnum{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--rust); letter-spacing:.08em; text-transform:uppercase;}
-  .feature h3{font-size:21px; margin:15px 0 11px; font-weight:600;}
-  .feature p{font-size:14.3px; color:var(--ink-soft);}
+  .feature .fnum{font-family:'Roboto', sans-serif; font-size:13px; color:var(--rust); letter-spacing:.08em; text-transform:uppercase;}
+  .feature h3{font-size:23.5px; margin:15px 0 11px; font-weight:700;}
+  .feature p{font-size:16px; color:var(--ink-soft);}
 
   /* ===== MODES ===== */
   .modes{background:var(--paper-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
-  .modes-photo{width:100%; height:450px; object-fit:cover; border-radius:var(--r-md); margin-bottom:34px; border:1px solid var(--line); box-shadow:var(--shadow-md);}
+  .modes-photo{width:100%; height:520px; object-fit:cover; border-radius:var(--r-md); margin-bottom:34px; border:1px solid var(--line); box-shadow:var(--shadow-md);}
   .modes-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
   .mode-card{border:1px solid var(--line); border-radius:var(--r-md); padding:30px 26px; position:relative; overflow:hidden; min-width:0; border-top:4px solid var(--gold);}
-  .mode-card h3{font-size:20px; margin-bottom:11px;}
-  .mode-card p{font-size:14px; color:var(--ink-soft); margin-bottom:16px;}
-  .mode-tag{font-family:'IBM Plex Mono', monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--prussian); background:rgba(30,58,84,.08); padding:5px 10px; border-radius:var(--r-sm); display:inline-block;}
+  .mode-card h3{font-size:22.5px; margin-bottom:11px;}
+  .mode-card p{font-size:15.5px; color:var(--ink-soft); margin-bottom:16px;}
+  .mode-tag{font-family:'Roboto', sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--prussian); background:rgba(30,58,84,.08); padding:5px 10px; border-radius:var(--r-sm); display:inline-block;}
 
   /* ===== CURRICULUM ===== */
   .curriculum-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
   .curriculum-card{border:1px solid var(--line); border-radius:var(--r-md); padding:26px 24px;}
-  .curriculum-level{color:var(--rust); font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase;}
-  .curriculum-card h3{font-size:22px; margin:8px 0 9px;}
-  .curriculum-card p{font-size:13.5px; color:var(--ink-soft); margin-bottom:16px;}
+  .curriculum-level{color:var(--rust); font-family:'Roboto', sans-serif; font-size:12.5px; letter-spacing:.06em; text-transform:uppercase;}
+  .curriculum-card h3{font-size:24.5px; margin:8px 0 9px;}
+  .curriculum-card p{font-size:15px; color:var(--ink-soft); margin-bottom:16px;}
   .curriculum-card ul{list-style:none; display:grid; gap:9px;}
-  .curriculum-card li{font-size:13px; color:var(--ink); padding-left:19px; position:relative;}
+  .curriculum-card li{font-size:14.5px; color:var(--ink); padding-left:19px; position:relative;}
   .curriculum-card li::before{content:'✓'; position:absolute; left:0; color:var(--prussian); font-weight:700;}
 
   /* ===== STUDY HOURS ===== */
   .study-hours{background:var(--paper-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
   .hours-chart{display:flex; flex-direction:column; gap:20px; max-width:840px;}
   .hours-row{display:grid; grid-template-columns:56px 1fr 92px; align-items:center; gap:18px;}
-  .hours-level{font-family:'Shippori Mincho', serif; font-weight:700; font-size:19px; color:var(--ink);}
+  .hours-level{font-family:'Roboto', sans-serif; font-weight:700; font-size:21.5px; color:var(--ink);}
   .hours-track{height:14px; background:var(--white); border:1px solid var(--line); border-radius:var(--r-pill); overflow:hidden; position:relative;}
   .hours-bar{height:100%; background:linear-gradient(90deg, var(--rust), var(--gold)); border-radius:var(--r-pill); transition:width .4s ease;}
-  .hours-value{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--prussian-deep); text-align:right; white-space:nowrap;}
-  .hours-note{font-size:12.5px; color:var(--ink-mute); margin-top:20px; max-width:640px;}
+  .hours-value{font-family:'Roboto', sans-serif; font-size:14px; color:var(--prussian-deep); text-align:right; white-space:nowrap;}
+  .hours-note{font-size:14px; color:var(--ink-mute); margin-top:20px; max-width:640px;}
 
   /* ===== METHODOLOGY ===== */
   .methodology{background:var(--paper);}
   .method-grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden;}
   .method-step{background:var(--white); padding:30px 24px;}
   .method-icon{margin-bottom:18px;}
-  .step-no{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--rust); letter-spacing:.05em;}
-  .method-step h3{font-size:19px; margin:14px 0 9px;}
-  .method-step p{font-size:13px; color:var(--ink-soft);}
+  .step-no{font-family:'Roboto', sans-serif; font-size:12.5px; color:var(--rust); letter-spacing:.05em;}
+  .method-step h3{font-size:21.5px; margin:14px 0 9px;}
+  .method-step p{font-size:14.5px; color:var(--ink-soft);}
 
   /* ===== WHAT'S INCLUDED ===== */
   .included{background:var(--paper-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
   .included-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
   .included-item{border:1px solid var(--line); border-radius:var(--r-sm); padding:17px 19px; display:flex; gap:12px; align-items:flex-start;}
-  .included-item .tick{width:22px; height:22px; border-radius:50%; background:var(--gold-soft); color:var(--prussian-deep); display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0; font-size:12px;}
-  .included-item span:last-child{font-size:13.5px; color:var(--ink);}
+  .included-item .tick{width:22px; height:22px; border-radius:50%; background:var(--gold-soft); color:var(--prussian-deep); display:flex; align-items:center; justify-content:center; font-weight:700; flex-shrink:0; font-size:13.5px;}
+  .included-item span:last-child{font-size:15px; color:var(--ink);}
 
   /* ===== PATHWAYS ===== */
   .pathways{background:var(--prussian-deep); color:var(--white);}
   .pathways .sec-head h2{color:var(--white);}
   .pathways .sec-head p{color:rgba(255,255,255,.68);}
   .path-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;}
-  .path-card{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.14); border-radius:var(--r-lg); padding:30px 26px; position:relative; overflow:hidden; min-width:0;}
-  .path-photo-wrap{width:calc(100% + 52px); height:150px; margin:-30px -26px 22px; overflow:hidden; position:relative; display:block;}
-  .path-photo{width:100%; height:100%; object-fit:cover; display:block;}
-  .path-card .path-icon{width:46px; height:46px; border-radius:50%; background:var(--gold); color:var(--prussian-deep); display:flex; align-items:center; justify-content:center; margin-bottom:20px; flex-shrink:0;}
-  .path-card h3{font-size:23px; margin-bottom:7px; color:var(--white);}
-  .path-card .path-tag{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--gold-soft); text-transform:uppercase; letter-spacing:.08em;}
+  .path-card{background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.14); border-radius:var(--r-lg); padding:30px 26px; position:relative; overflow:hidden; min-width:0; transition:transform .26s var(--ease), background .26s ease, border-color .26s ease, box-shadow .26s var(--ease);}
+  .path-card:hover{transform:translateY(-6px); background:rgba(255,255,255,.07); border-color:rgba(199,162,79,.4); box-shadow:0 20px 40px -18px rgba(0,0,0,.5);}
+  .path-photo-wrap{width:calc(100% + 52px); height:250px; margin:-30px -26px 22px; overflow:hidden; position:relative; display:block;}
+  .path-photo{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s var(--ease);}
+  .path-card:hover .path-photo{transform:scale(1.08);}
+  .path-card .path-icon{width:46px; height:46px; border-radius:50%; background:var(--gold); color:var(--prussian-deep); display:flex; align-items:center; justify-content:center; margin-bottom:20px; flex-shrink:0; transition:transform .3s var(--ease);}
+  .path-card:hover .path-icon{transform:scale(1.1) rotate(-6deg);}
+  .path-card h3{font-size:26px; margin-bottom:7px; color:var(--white);}
+  .path-card .path-tag{font-family:'Roboto', sans-serif; font-size:12.5px; color:var(--gold-soft); text-transform:uppercase; letter-spacing:.08em;}
   .path-card ul{margin-top:19px; list-style:none; display:flex; flex-direction:column; gap:12px;}
-  .path-card li{display:flex; gap:10px; font-size:14px; color:rgba(255,255,255,.82); line-height:1.5;}
+  .path-card li{display:flex; gap:10px; font-size:15.5px; color:rgba(255,255,255,.82); line-height:1.5;}
   .path-card li::before{content:'◦'; color:var(--gold); flex-shrink:0;}
 
   /* ===== CAREERS ===== */
   .career-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px;}
   .career-card{border:1px solid var(--line); border-radius:var(--r-md); padding:28px 26px;}
-  .career-card h3{font-size:21px; margin-bottom:14px;}
+  .career-card h3{font-size:23.5px; margin-bottom:14px;}
   .career-tags{display:flex; flex-wrap:wrap; gap:8px;}
-  .career-tag{font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--prussian-deep); background:var(--gold-soft); border:1px solid var(--line); padding:7px 10px; border-radius:var(--r-sm);}
+  .career-tag{font-family:'Roboto', sans-serif; font-size:12px; color:var(--prussian-deep); background:var(--gold-soft); border:1px solid var(--line); padding:7px 10px; border-radius:var(--r-sm);}
 
   /* ===== EXAM COMPARE TABLE ===== */
   .exam-compare{background:var(--white); border-top:1px solid var(--line);}
   .compare-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--r-md);}
   .compare-table{width:100%; min-width:720px; border-collapse:collapse;}
-  .compare-table th, .compare-table td{padding:17px 20px; border-bottom:1px solid var(--line); text-align:left; font-size:13.5px; vertical-align:top;}
-  .compare-table th{font-family:'IBM Plex Mono', monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.07em; color:var(--white); background:var(--prussian-deep);}
+  .compare-table th, .compare-table td{padding:17px 20px; border-bottom:1px solid var(--line); text-align:left; font-size:15px; vertical-align:top;}
+  .compare-table th{font-family:'Roboto', sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.07em; color:var(--white); background:var(--prussian-deep);}
   .compare-table tr:last-child td{border-bottom:none;}
   .compare-table td:first-child{font-weight:700;}
+  .compare-table tbody tr{transition:background .15s ease;}
+  .compare-table tbody tr:hover{background:rgba(30,58,84,.05);}
 
   /* ===== BATCHES ===== */
   .batches{background:var(--paper);}
   .batch-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
   .batch-card{border:1px solid var(--line); border-radius:var(--r-md); padding:28px 24px; position:relative;}
   .batch-card::before{content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--gold); border-radius:var(--r-md) 0 0 var(--r-md);}
-  .batch-tag{font-family:'IBM Plex Mono', monospace; text-transform:uppercase; letter-spacing:.08em; font-size:10.5px; color:var(--rust);}
-  .batch-card h3{font-size:21px; margin:9px 0 14px;}
+  .batch-tag{font-family:'Roboto', sans-serif; text-transform:uppercase; letter-spacing:.08em; font-size:12px; color:var(--rust);}
+  .batch-card h3{font-size:23.5px; margin:9px 0 14px;}
   .batch-meta{display:grid; gap:9px; margin-bottom:20px;}
-  .batch-meta div{display:flex; justify-content:space-between; gap:12px; font-size:13px; border-bottom:1px dashed var(--line); padding-bottom:8px;}
+  .batch-meta div{display:flex; justify-content:space-between; gap:12px; font-size:14.5px; border-bottom:1px dashed var(--line); padding-bottom:8px;}
   .batch-meta span{color:var(--ink-mute); text-align:right;}
   .batch-card .btn{width:100%; justify-content:center;}
-  .batch-note{font-size:12px; color:var(--ink-mute); margin-top:20px;}
+  .batch-note{font-size:13.5px; color:var(--ink-mute); margin-top:20px;}
+  .trust-badges{display:flex; flex-wrap:wrap; gap:11px 24px; justify-content:center; margin-top:24px; padding-top:22px; border-top:1px dashed var(--line);}
+  .trust-badges span{font-family:'Roboto', sans-serif; font-size:13.5px; font-weight:700; color:var(--prussian-deep); display:inline-flex; align-items:center; gap:6px;}
 
   /* ===== FAQ ===== */
   .faq-list{display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden;}
-  .faq-item{background:var(--white); padding:0;}
-  .faq-item summary{padding:21px 26px; cursor:pointer; font-weight:600; font-size:15.5px; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px;}
+  .faq-item{background:var(--white); padding:0; transition:background .18s ease;}
+  .faq-item summary{padding:21px 26px; cursor:pointer; font-weight:700; font-size:17.5px; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; transition:background .18s ease;}
+  .faq-item summary:hover{background:rgba(199,162,79,.07);}
   .faq-item summary::-webkit-details-marker{display:none;}
-  .faq-item summary::after{content:'+'; font-family:'IBM Plex Mono', monospace; font-size:20px; color:var(--rust); flex-shrink:0; transition:transform .2s ease;}
+  .faq-item summary::after{content:'+'; font-family:'Roboto', sans-serif; font-size:22.5px; color:var(--rust); flex-shrink:0; transition:transform .25s var(--ease);}
   .faq-item[open] summary::after{transform:rotate(45deg);}
-  .faq-item .faq-a{padding:0 26px 22px; font-size:14.3px; color:var(--ink-soft); max-width:720px;}
+  .faq-item .faq-a{padding:0 26px 22px; font-size:16px; color:var(--ink-soft); max-width:720px; animation:faqReveal .35s ease both;}
+  @keyframes faqReveal{from{opacity:0; transform:translateY(-6px);} to{opacity:1; transform:translateY(0);}}
 
   /* ===== JAPANESE ACTIVITIES SLIDER ===== */
   .activities{background:var(--ink); color:var(--white); position:relative; overflow:hidden;}
@@ -658,17 +849,19 @@ export default function LangmaJapaneseCourse() {
   .activity-viewport{overflow:hidden; border-radius:var(--r-lg);}
   .activity-track{display:flex; align-items:stretch; transition:transform .5s var(--ease); touch-action:pan-y;}
   .activity-slide{flex-shrink:0; padding:0 8px; min-width:0; display:flex;}
-  .activity-card{background:linear-gradient(145deg,#1C2E42,#142536); border:1px solid var(--line-on-dark); border-radius:var(--r-lg); width:100%; height:100%; display:flex; flex-direction:column; position:relative; overflow:hidden;}
-  .activity-image{width:100%; aspect-ratio:5/0; height:auto; object-fit:contain; object-position:center; display:block; flex-shrink:0; background:#142536;}
+  .activity-card{background:linear-gradient(145deg,#1C2E42,#142536); border:1px solid var(--line-on-dark); border-radius:var(--r-lg); width:100%; height:100%; display:flex; flex-direction:column; position:relative; overflow:hidden; transition:transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s ease;}
+  .activity-card:hover{transform:translateY(-6px); box-shadow:0 22px 42px -16px rgba(0,0,0,.55); border-color:rgba(199,162,79,.4);}
+  .activity-image{width:100%; aspect-ratio:5/0; height:auto; object-fit:contain; object-position:center; display:block; flex-shrink:0; background:#142536; transition:transform .5s var(--ease);}
+  .activity-card:hover .activity-image{transform:scale(1.06);}
   .activity-image-wrap{position:relative; overflow:hidden; background:#142536;}
   .activity-image-wrap::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(10,20,30,0) 45%,rgba(10,20,30,.45) 100%); pointer-events:none;}
   .activity-content{padding:18px 18px 20px; position:relative; z-index:2; flex:1; display:flex; flex-direction:column;}
   .activity-content p{margin-top:auto; padding-top:10px;}
   .activity-card::after{content:''; position:absolute; right:-8px; bottom:-18px; pointer-events:none;}
-  .activity-icon{width:36px; height:36px; border:1.5px solid var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--gold-soft); font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:700; margin-bottom:10px; background:rgba(20,37,54,.92);}
-  .activity-tag{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.08em; color:var(--gold-soft); text-transform:uppercase;}
-  .activity-card h3{font-size:17px; color:var(--white); margin:6px 0 9px;}
-  .activity-card p{font-size:13px; color:rgba(255,255,255,.72); line-height:1.55; min-height:4.65em; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;}
+  .activity-icon{width:36px; height:36px; border:1.5px solid var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--gold-soft); font-family:'Roboto',monospace; font-size:14.5px; font-weight:700; margin-bottom:10px; background:rgba(20,37,54,.92);}
+  .activity-tag{font-family:'Roboto',monospace; font-size:11px; letter-spacing:.08em; color:var(--gold-soft); text-transform:uppercase;}
+  .activity-card h3{font-size:19px; color:var(--white); margin:6px 0 9px;}
+  .activity-card p{font-size:14.5px; color:rgba(255,255,255,.72); line-height:1.55; min-height:4.65em; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;}
   .activity-controls{display:flex; align-items:center; justify-content:space-between; margin-top:28px; gap:20px;}
   .activity-arrows{display:flex; gap:10px;}
   .activity-arrow{width:44px; height:44px; border-radius:50%; border:1.5px solid rgba(255,255,255,.25); background:transparent; color:var(--white); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .18s ease, border-color .18s ease, transform .18s ease;}
@@ -677,78 +870,112 @@ export default function LangmaJapaneseCourse() {
   .activity-dot{width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.25); border:none; cursor:pointer; padding:0; transition:width .2s ease, background .2s ease;}
   .activity-dot.active{background:var(--gold); width:22px; border-radius:var(--r-pill);}
 
+  /* ===== VIDEO TESTIMONIALS ===== */
+  .testimonials{background:var(--prussian-deep); color:var(--white); position:relative; overflow:hidden;}
+  .testimonials .wrap{position:relative; z-index:2;}
+  .testimonials .sec-head h2{color:var(--white);}
+  .testimonials .sec-head p{color:rgba(255,255,255,.65);}
+  .testi-slider{position:relative;}
+  .testi-viewport{overflow:hidden; border-radius:var(--r-lg);}
+  .testi-track{display:flex; align-items:stretch; transition:transform .5s var(--ease); touch-action:pan-y;}
+  .testi-slide{flex-shrink:0; padding:0 8px; min-width:0; display:flex;}
+  .testi-card{position:relative; width:100%; aspect-ratio:9/16; border-radius:var(--r-lg); overflow:hidden; background:#0c1822; box-shadow:0 18px 36px -18px rgba(0,0,0,.55); transition:transform .3s var(--ease), box-shadow .3s var(--ease);}
+  .testi-card:hover{transform:translateY(-6px); box-shadow:0 24px 46px -16px rgba(0,0,0,.6);}
+  .testi-video-el{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; background:#000;}
+  .testi-controls{display:flex; align-items:center; justify-content:space-between; margin-top:28px; gap:20px;}
+  .testi-arrows{display:flex; gap:10px;}
+  .testi-arrow{width:44px; height:44px; border-radius:50%; border:1.5px solid rgba(255,255,255,.25); background:transparent; color:var(--white); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background .18s ease, border-color .18s ease, transform .18s ease;}
+  .testi-arrow:hover{background:rgba(255,255,255,.1); border-color:var(--gold-soft); transform:translateY(-1px);}
+  .testi-dots{display:flex; gap:8px; flex-wrap:wrap;}
+  .testi-dot{width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.25); border:none; cursor:pointer; padding:0; transition:width .2s ease, background .2s ease;}
+  .testi-dot.active{background:var(--gold); width:22px; border-radius:var(--r-pill);}
+
   /* ===== FINAL CTA ===== */
   .final-cta{background:var(--prussian-deep); color:var(--white); text-align:center; position:relative; overflow:hidden;}
   .final-cta .wrap{position:relative; z-index:2;}
-  .final-cta .kicker{font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:var(--gold-soft);}
-  .final-cta h2{font-size:clamp(30px,4vw,48px); margin:14px auto; max-width:760px; color:var(--white);}
-  .final-cta p{max-width:650px; margin:0 auto 28px; color:rgba(255,255,255,.7); font-size:16px;}
+  .final-cta .kicker{font-family:'Roboto', sans-serif; font-size:12.5px; text-transform:uppercase; letter-spacing:.12em; color:var(--gold-soft);}
+  .final-cta h2{font-size:clamp(34px,4.4vw,54px); margin:14px auto; max-width:760px; color:var(--white);}
+  .final-cta p{max-width:650px; margin:0 auto 28px; color:rgba(255,255,255,.7); font-size:18px;}
   .final-cta-actions{display:flex; justify-content:center; gap:12px; flex-wrap:wrap;}
   .final-cta .btn-ghost{border-color:rgba(255,255,255,.45); color:var(--white);}
   .final-cta .btn-ghost:hover{background:var(--white); color:var(--ink);}
-  .final-cta .microcopy{font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:rgba(255,255,255,.5); margin-top:18px;}
+  .final-cta .microcopy{font-family:'Roboto', sans-serif; font-size:12px; color:rgba(255,255,255,.5); margin-top:18px;}
 
   /* ===== CONTACT ===== */
   .contact{background:var(--paper);}
   .contact-grid{display:grid; grid-template-columns:.95fr 1.05fr; gap:60px; align-items:start;}
   .contact-grid > div{min-width:0;}
   .contact-list{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line);}
-  .contact-row{display:flex; gap:18px; padding:23px 0; border-bottom:1px solid var(--line); align-items:flex-start;}
-  .contact-icon{width:42px; height:42px; border-radius:50%; background:var(--prussian); color:var(--white); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .contact-row{display:flex; gap:18px; padding:23px 0; border-bottom:1px solid var(--line); align-items:flex-start; transition:padding-left .2s ease;}
+  .contact-row:hover{padding-left:6px;}
+  .contact-icon{width:42px; height:42px; border-radius:50%; background:var(--prussian); color:var(--white); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background .2s ease, transform .2s ease;}
+  .contact-row:hover .contact-icon{background:var(--rust); transform:scale(1.08);}
   .contact-row > div:last-child{min-width:0;}
-  .contact-row h4{font-size:12px; font-family:'IBM Plex Mono', monospace; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); margin-bottom:6px;}
-  .contact-row a, .contact-row div.val{font-size:16.5px; font-weight:600; text-decoration:none; word-break:break-word;}
+  .contact-row h4{font-size:13.5px; font-family:'Roboto', sans-serif; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute); margin-bottom:6px;}
+  .contact-row a, .contact-row div.val{font-size:18.5px; font-weight:700; text-decoration:none; word-break:break-word;}
   .contact-row a:hover{color:var(--rust);}
-  .contact-row .note{font-size:13px; color:var(--ink-soft); font-weight:400; margin-top:4px;}
+  .contact-row .note{font-size:14.5px; color:var(--ink-soft); font-weight:400; margin-top:4px;}
   .social-row{display:flex; gap:12px; margin-top:26px; flex-wrap:wrap;}
   .social-chip{width:38px; height:38px; border-radius:50%; border:1.5px solid var(--ink); display:flex; align-items:center; justify-content:center; text-decoration:none; color:var(--ink); transition:all .2s ease; flex-shrink:0;}
-  .social-chip:hover{background:var(--ink); color:var(--paper);}
+  .social-chip:hover{background:var(--ink); color:var(--paper); transform:translateY(-2px);}
 
-  .enroll-card{background:var(--prussian); color:var(--white); border-radius:var(--r-lg); padding:40px 36px; position:relative; overflow:hidden; box-shadow:var(--shadow-lg);}
+  .enroll-card{background:var(--prussian); color:var(--white); border-radius:var(--r-lg); padding:48px 44px; position:relative; overflow:hidden; box-shadow:var(--shadow-lg); transition:box-shadow .3s ease, transform .3s ease;}
+  .enroll-card:hover{box-shadow:0 32px 60px -16px rgba(19,39,56,.55); transform:translateY(-3px);}
   .enroll-card::before{content:''; position:absolute; top:-60px; right:-60px; width:180px; height:180px; border-radius:50%; background:rgba(199,162,79,.22);}
-  .enroll-card h3{font-size:24px; margin-bottom:9px; position:relative; color:var(--white);}
-  .enroll-card p{font-size:14px; color:rgba(255,255,255,.7); margin-bottom:28px; position:relative;}
-  .form-row{margin-bottom:17px; position:relative;}
-  .form-row label{display:block; font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px; color:var(--gold-soft);}
-  .form-row input{width:100%; box-sizing:border-box; padding:13px 14px; border-radius:var(--r-sm); border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.06); color:var(--white); font-family:'IBM Plex Sans', sans-serif; font-size:14.5px; min-height:48px; line-height:1.3;}
+  .enroll-card h3{font-size:32px; margin-bottom:12px; position:relative; color:var(--white);}
+  .enroll-card p{font-size:19px; color:rgba(255,255,255,.7); margin-bottom:32px; position:relative;}
+  .form-row{margin-bottom:20px; position:relative;}
+  .form-row label{display:block; font-family:'Roboto', sans-serif; font-size:16px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:9px; color:var(--gold-soft);}
+  .form-row input{width:100%; box-sizing:border-box; padding:16px 16px; border-radius:var(--r-sm); border:1px solid rgba(255,255,255,.25); background:rgba(255,255,255,.06); color:var(--white); font-family:'Roboto', sans-serif; font-size:19px; min-height:56px; line-height:1.3; transition:border-color .2s ease, background .2s ease;}
+  .form-row input:hover{border-color:rgba(255,255,255,.42);}
   .form-row input::placeholder{color:rgba(255,255,255,.4);}
   .form-row input:focus{outline:2px solid var(--gold); outline-offset:1px; background:rgba(255,255,255,.1);}
-  .field-error{display:block; margin-top:7px; font-size:12px; color:#FF8A80; font-family:'IBM Plex Sans', sans-serif;}
-  .submit-btn{width:100%; padding:15px; background:var(--rust); color:var(--white); border:none; border-radius:var(--r-sm); font-weight:600; font-size:15px; cursor:pointer; margin-top:6px; transition:transform .18s ease, background .18s ease; font-family:'IBM Plex Sans', sans-serif;}
-  .submit-btn:hover{transform:translateY(-2px); background:var(--rust-deep);}
+  .field-error{display:block; margin-top:7px; font-size:13.5px; color:#FF8A80; font-family:'Roboto', sans-serif;}
+  .submit-btn{width:100%; padding:18px; background:var(--rust); color:var(--white); border:none; border-radius:var(--r-sm); font-weight:700; font-size:20px; cursor:pointer; margin-top:8px; transition:transform .18s ease, background .18s ease, box-shadow .18s ease; font-family:'Roboto', sans-serif;}
+  .submit-btn:hover{transform:translateY(-2px); background:var(--rust-deep); box-shadow:0 10px 22px rgba(190,30,45,.35);}
+  .submit-btn:active{transform:translateY(0) scale(.97);}
   .submit-btn:disabled{opacity:.7; cursor:not-allowed; transform:none;}
-  .form-msg{display:block; font-size:13.5px; line-height:1.45; margin-top:14px; padding:12px 14px; border-radius:var(--r-sm); font-family:'IBM Plex Sans', sans-serif; font-weight:500;}
+  .form-msg{display:block; font-size:14px; line-height:1.45; margin-top:14px; padding:12px 14px; border-radius:var(--r-sm); font-family:'Roboto', sans-serif; font-weight:500;}
   .form-msg.success{color:#0f3d2e; background:#d9f5e5; border:1px solid #8fd9b4;}
   .form-msg.error{color:#7a1c1c; background:#fde8e8; border:1px solid #f0b4b4;}
   .form-alt{display:flex; align-items:center; gap:10px; margin-top:22px; padding-top:22px; border-top:1px dashed rgba(255,255,255,.2); flex-wrap:wrap;}
 
   /* ===== MAP STRIP ===== */
   .map-strip{border-top:1px solid var(--line); border-bottom:1px solid var(--line); display:flex; align-items:center; justify-content:space-between; padding:24px 0; flex-wrap:wrap; gap:16px;}
-  .map-strip a{text-decoration:none; font-weight:600; display:inline-flex; align-items:center; gap:8px; color:var(--rust);}
+  .map-strip a{text-decoration:none; font-weight:700; display:inline-flex; align-items:center; gap:8px; color:var(--rust); transition:color .18s ease, transform .18s ease;}
+  .map-strip a:hover{color:var(--rust-deep); transform:translateX(4px);}
 
   /* ===== FOOTER ===== */
   .jp-footer{background:var(--prussian-deep); color:#fff; position:relative; overflow:hidden; padding:64px 0 30px;}
   .jp-footer .wrap{position:relative; z-index:2;}
   .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid var(--line-on-dark);}
-  .footer-brand h2{font-family:'Shippori Mincho',serif; font-size:28px; margin-bottom:7px; color:var(--white);}
-  .footer-brand .jp-motto{font-family:'IBM Plex Sans',sans-serif; font-style:italic; color:var(--gold-soft); font-size:14px; margin-bottom:15px;}
-  .footer-brand p{font-size:13px; color:rgba(255,255,255,.62); max-width:360px;}
-  .footer-col h4{font-family:'IBM Plex Sans',sans-serif; color:var(--gold-soft); font-size:13px; margin-bottom:14px; letter-spacing:.04em; text-transform:uppercase;}
-  .footer-col a{display:block; text-decoration:none; color:rgba(255,255,255,.68); font-size:13px; margin:9px 0; transition:color .15s ease;}
-  .footer-col a:hover{color:#fff;}
+  .footer-brand h2{font-family:'Roboto',serif; font-size:31.5px; margin-bottom:7px; color:var(--white);}
+  .footer-brand .jp-motto{font-family:'Roboto',sans-serif; font-style:normal; font-weight:500; color:var(--gold-soft); font-size:15.5px; margin-bottom:15px;}
+  .footer-brand p{font-size:14.5px; color:rgba(255,255,255,.62); max-width:360px;}
+  .footer-col h4{font-family:'Roboto',sans-serif; color:var(--gold-soft); font-size:14.5px; margin-bottom:14px; letter-spacing:.04em; text-transform:uppercase;}
+  .footer-col a{display:block; text-decoration:none; color:rgba(255,255,255,.68); font-size:14.5px; margin:9px 0; transition:color .15s ease, padding-left .15s ease;}
+  .footer-col a:hover{color:#fff; padding-left:5px;}
   .footer-bottom{display:flex; justify-content:space-between; gap:20px; align-items:center; padding-top:22px; flex-wrap:wrap;}
-  .footer-bottom span{font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:rgba(255,255,255,.45);}
+  .footer-bottom span{font-family:'Roboto',monospace; font-size:12px; color:rgba(255,255,255,.45);}
 
   /* ===== FLOATING ACTIONS ===== */
-  .wa-float{position:fixed; bottom:26px; right:26px; z-index:100; width:60px; height:60px; border-radius:50%; background:#1F9C56; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 26px rgba(31,156,86,.45); text-decoration:none; animation:wa-pulse 2.6s infinite;}
+  .mobile-cta-bar{display:none; position:fixed; left:14px; right:14px; bottom:18px; z-index:95; align-items:flex-end; justify-content:space-between; pointer-events:none;}
+  .mobile-cta-bar-actions{display:flex; flex-direction:column; align-items:center; gap:8px; pointer-events:auto;}
+  .mobile-cta-bar-call, .mobile-cta-bar-wa{position:relative; width:58px; height:58px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none; box-shadow:0 10px 24px rgba(15,25,38,.25); transition:transform .15s ease, box-shadow .15s ease;}
+  .mobile-cta-bar-call{background:var(--rust);}
+  .mobile-cta-bar-wa{background:#1F9C56;}
+  .mobile-cta-bar-call:active, .mobile-cta-bar-wa:active{transform:scale(.96);}
+  .mobile-cta-label{font-size:9px; letter-spacing:.12em; text-transform:uppercase; font-weight:700; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.2);}
+  @keyframes floatFadeIn{from{opacity:0;} to{opacity:1;}}
+  .wa-float{position:fixed; bottom:26px; right:26px; z-index:100; width:60px; height:60px; border-radius:50%; background:#1F9C56; display:flex; align-items:center; justify-content:center; box-shadow:0 10px 26px rgba(31,156,86,.45); text-decoration:none; animation:wa-pulse 2.6s infinite, floatFadeIn .5s ease .9s both; transition:transform .18s ease;}
   .wa-float:hover{transform:scale(1.06);}
   @keyframes wa-pulse{0%{box-shadow:0 10px 26px rgba(31,156,86,.45), 0 0 0 0 rgba(31,156,86,.5);} 70%{box-shadow:0 10px 26px rgba(31,156,86,.45), 0 0 0 16px rgba(31,156,86,0);} 100%{box-shadow:0 10px 26px rgba(31,156,86,.45), 0 0 0 0 rgba(31,156,86,0);}}
-  .wa-tip{position:fixed; bottom:38px; right:96px; z-index:100; background:var(--ink); color:var(--white); padding:9px 14px; border-radius:var(--r-sm); font-size:13px; font-weight:500; opacity:0; pointer-events:none; transition:opacity .25s ease; white-space:nowrap;}
+  .wa-tip{position:fixed; bottom:38px; right:96px; z-index:100; background:var(--ink); color:var(--white); padding:9px 14px; border-radius:var(--r-sm); font-size:14.5px; font-weight:500; opacity:0; pointer-events:none; transition:opacity .25s ease; white-space:nowrap;}
   .wa-float:hover + .wa-tip, .wa-tip.show{opacity:1;}
-  .call-float{position:fixed; bottom:26px; left:26px; z-index:100; width:60px; height:60px; border-radius:50%; background:var(--rust); display:flex; align-items:center; justify-content:center; box-shadow:0 10px 26px rgba(190,30,45,.4); text-decoration:none;}
-  .call-float:hover{transform:scale(1.06);}
-  .call-tip{position:fixed; bottom:38px; left:96px; z-index:100; background:var(--ink); color:var(--white); padding:9px 14px; border-radius:var(--r-sm); font-size:13px; font-weight:500; opacity:0; pointer-events:none; transition:opacity .25s ease; white-space:nowrap;}
-  .call-float:hover + .call-tip{opacity:1;}
+  .call-float{position:fixed; bottom:26px; left:26px; z-index:100; display:flex; align-items:center; gap:10px; height:60px; padding:0 22px 0 18px; border-radius:999px; background:var(--rust); box-shadow:0 10px 26px rgba(190,30,45,.4); text-decoration:none; animation:floatFadeIn .5s ease 1s both; transition:transform .18s ease, box-shadow .18s ease;}
+  .call-float:hover{transform:scale(1.04); box-shadow:0 14px 32px rgba(190,30,45,.5);}
+  .call-float-icon{width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.18); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .call-float-number{font-family:'Roboto', sans-serif; font-weight:700; font-size:15.5px; color:#fff; white-space:nowrap; letter-spacing:.01em;}
 
   /* ============================================================
      RESPONSIVE
@@ -756,6 +983,7 @@ export default function LangmaJapaneseCourse() {
   @media (max-width: 1180px){
     .path-grid{grid-template-columns:1fr 1fr;}
     .wrap{padding:0 24px;}
+    .jp-phone{display:none;}
   }
   @media (max-width: 980px){
     .details-grid,.audience-grid,.curriculum-grid,.method-grid,.included-grid{grid-template-columns:1fr 1fr;}
@@ -774,8 +1002,7 @@ export default function LangmaJapaneseCourse() {
     .skills-grid{grid-template-columns:1fr 1fr;}
     section{padding:52px 0;}
     .exam-row{gap:20px;}
-    .exam-badge .badge-circle{width:68px; height:68px;}
-    .exam-badge .badge-letter{font-size:21px;}
+    .exam-badge .badge-letter{font-size:44px;}
     .hero-stats{grid-template-columns:repeat(2,minmax(0,1fr)); row-gap:18px;}
     .stat:nth-child(2){border-right:0;}
     .stat:nth-child(3){padding-left:0;}
@@ -785,10 +1012,10 @@ export default function LangmaJapaneseCourse() {
   @media (max-width: 720px){
     .method-grid{grid-template-columns:1fr;}
     .modes-photo{height:170px;}
-    .lang-photo{height:160px;}
-    .path-photo-wrap{height:120px;}
+    .lang-photo{height:450px;}
+    .path-photo-wrap{height:320px;}
     .details-grid,.audience-grid,.curriculum-grid,.method-grid,.included-grid{grid-template-columns:1fr;}
-    .topbar-links{gap:5px 14px; font-size:10.5px;}
+    .topbar-links{gap:5px 14px; font-size:12px;}
     .topbar .wrap{padding:7px 20px;}
     .wrap{padding:0 20px;}
     .features-grid{grid-template-columns:1fr;}
@@ -804,8 +1031,8 @@ export default function LangmaJapaneseCourse() {
     .ticket-form .form-row{margin-bottom:14px;}
     .ticket-form-head{text-align:center;}
     .ticket-top{padding:26px 22px 20px;}
-    .form-row label{font-size:10.5px; margin-bottom:6px;}
-    .form-row input{padding:12px 13px; font-size:16px;}
+    .form-row label{font-size:12px; margin-bottom:6px;}
+    .form-row input{padding:12px 13px; font-size:18px;}
     .skills-grid{grid-template-columns:1fr;}
     .path-grid{grid-template-columns:1fr;}
     .contact-row{gap:14px;}
@@ -816,47 +1043,53 @@ export default function LangmaJapaneseCourse() {
     #why{padding-top:26px;}
     .exam-row{gap:14px; justify-content:flex-start; overflow-x:auto; flex-wrap:nowrap; padding:6px 4px 12px; -webkit-overflow-scrolling:touch;}
     .exam-badge{flex-shrink:0;}
-    .exam-badge .badge-circle{width:60px; height:60px;}
-    .exam-badge .badge-letter{font-size:18px;}
-    .exam-badge .badge-code{font-size:8px;}
-    .exam-badge .badge-caption{font-size:9.5px; max-width:82px;}
+    .exam-badge .badge-letter{font-size:36px;}
+    .exam-badge .badge-caption{font-size:10.5px; max-width:82px;}
     .exam-strip{padding:26px 0 34px;}
     .jp-nav{min-height:66px; height:66px; padding-top:8px; padding-bottom:8px;}
+    .announcement-bar{padding:8px 38px 8px 12px; gap:8px;}
+    .announcement-text, .announcement-link{font-size:12px;}
+    .wa-float{display:none;}
+    .call-float{display:none;}
+    .mobile-cta-bar{display:flex;}
+    .langma-page{padding-bottom:74px;}
+    /* Hides a separate, site-wide floating WhatsApp/call widget (rendered outside
+       this component, e.g. in a shared layout) that duplicates the mobile CTA bar
+       above. Matched by its Tailwind utility classes seen in DevTools. If this
+       widget is ever restyled, this selector may need updating to match. */
+    div[class*="fixed"][class*="right-0"][class*="top-1/2"][class*="z-50"]{display:none !important;}
     .jp-brand-text{width:150px; min-width:130px; height:38px;}
     .footer-grid{grid-template-columns:1fr 1fr; gap:28px;}
     .footer-brand{grid-column:1/-1;}
     .activity-content{padding:16px 16px 18px;}
     .hanko{top:12px; right:12px; width:48px; height:48px;}
-    .hanko span{font-size:16px;}
+    .hanko span{font-size:18px;}
     .ticket-route{padding-right:56px;}
   }
   @media (max-width: 480px){
-    .sec-head h2{font-size:clamp(26px,8vw,34px); line-height:1.18;}
+    .sec-head h2{font-size:clamp(30px,8.5vw,40px); line-height:1.16;}
     .jp-nav{gap:12px;}
     .jp-brand-text{width:120px; min-width:96px; height:34px;}
-    .jp-menu .jp-cta{padding:9px 13px; font-size:11.5px;}
-    .hero-title{font-size:clamp(28px, 9vw, 40px);}
-    .hero-sub{font-size:15.5px;}
-    .stat b{font-size:20px;}
+    .jp-menu .jp-cta{padding:9px 13px; font-size:13px;}
+    .hero-title{font-size:clamp(32px, 9.5vw, 46px);}
+    .hero-sub{font-size:17.5px;}
+    .stat b{font-size:22.5px;}
     .ticket-top, .ticket-bottom{padding-left:20px; padding-right:20px;}
     .ticket-top{padding-top:52px;}
-    .ticket-route .city{font-size:19px;}
-    .enroll-card{padding:26px 22px;}
+    .ticket-route .city{font-size:21.5px;}
+    .enroll-card{padding:32px 24px;}
     .path-card{padding:24px 20px;}
     .feature{padding:28px 22px;}
     .skill-stamp{padding:24px 20px;}
-    .activity-card p{font-size:13px;}
+    .activity-card p{font-size:14.5px;}
     .activity-slide{padding:0 6px;}
-    .btn{padding:12px 17px; font-size:13.5px;}
-    .wa-float{width:52px; height:52px; bottom:16px; right:16px;}
-    .wa-tip{right:76px; bottom:26px; font-size:11.5px; padding:7px 11px;}
-    .call-float{width:52px; height:52px; bottom:16px; left:16px;}
-    .call-tip{left:76px; bottom:26px; font-size:11.5px; padding:7px 11px;}
-    .faq-item summary{padding:16px 18px; font-size:14px;}
-    .faq-item .faq-a{padding:0 18px 18px; font-size:13.6px;}
+    .testi-slide{padding:0 6px;}
+    .btn{padding:12px 17px; font-size:15px;}
+    .faq-item summary{padding:16px 18px; font-size:15.5px;}
+    .faq-item .faq-a{padding:0 18px 18px; font-size:15px;}
     .fact-strip{grid-template-columns:1fr;}
-    .cognates-head div, .cognate-row div{padding:9px 10px; font-size:12.5px;}
-    .contact-row a, .contact-row div.val{font-size:15px;}
+    .cognates-head div, .cognate-row div{padding:9px 10px; font-size:14px;}
+    .contact-row a, .contact-row div.val{font-size:17px;}
     .hero-actions{flex-direction:column; align-items:stretch;}
     .hero-actions .btn{white-space:normal; justify-content:center; text-align:center;}
     .final-cta-actions{flex-direction:column; align-items:stretch;}
@@ -873,6 +1106,17 @@ export default function LangmaJapaneseCourse() {
   }
   `}</style>
 
+      {/* URGENCY ANNOUNCEMENT BAR */}
+      {showAnnouncement && (
+        <div className="announcement-bar" ref={announceRef}>
+          <div className="announcement-inner">
+            <span className="announcement-text">🎌 New Japanese batch enrolling now — seats are limited.</span>
+            <a className="announcement-link" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20to%20reserve%20a%20seat%20in%20the%20new%20Japanese%20batch." target="_blank" rel="noopener">Reserve My Seat →</a>
+          </div>
+          <button className="announcement-close" onClick={() => setShowAnnouncement(false)} aria-label="Dismiss announcement">×</button>
+        </div>
+      )}
+
       {/* JAPANESE HEADER */}
       <header className="jp-header">
         <div className="wrap jp-nav">
@@ -886,6 +1130,10 @@ export default function LangmaJapaneseCourse() {
             </span>
           </a>
           <nav className="jp-menu" aria-label="Japanese course navigation">
+            <a className="jp-phone" href="tel:+919810117094" aria-label="Call Langma International at +91-98101-17094">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              +91-98101-17094
+            </a>
             <a className="jp-cta" href="#contact">Free Counselling</a>
           </nav>
         </div>
@@ -908,8 +1156,9 @@ export default function LangmaJapaneseCourse() {
         <div className="hero-grid"></div>
         <div className="hero-inner">
           <div>
-            <h1 className="hero-title">Learn Japanese <em>from zero</em><br />to a life in Japan.</h1>
-            <p className="hero-sub">Learn Japanese with native-speaking trainers, small live batches and full visa &amp; placement support. Our course covers N5–N1, prepares you for every major Japanese language exam, and takes you from hiragana to career-ready, all from a school that's been teaching languages in Delhi since 2007.</p>
+            <span className="hero-kicker">Japanese Language Course · Online &amp; Offline Classes</span>
+            <h1 className="hero-title">Your Gateway to Japan. Begins with <span className="heading-accent">Japanese Language</span>.</h1>
+            <p className="hero-sub">Langma helps students and professionals master Japanese with expert trainers, small batch learning, JLPT preparation, and practical support for study in Japan, work in Japan, and visa pathways. Choose flexible online or offline Japanese classes in Delhi and build real fluency for your future in Japan.</p>
             <div className="hero-actions">
               <a href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20a%20free%20Japanese%20demo%20class." target="_blank" rel="noopener" className="btn btn-wa">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm5.86 14.13c-.25.7-1.45 1.34-2 1.42-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.69-.63-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.05-2.49.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.68.53.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.1.2-.15.32-.3.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.75 1.25 1.62 2.02 1.11.99 2.05 1.3 2.35 1.45.3.15.47.12.65-.07.18-.19.75-.87.95-1.17.2-.3.4-.25.66-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.13.07.75-.18 1.45z"/></svg>
@@ -1009,22 +1258,15 @@ export default function LangmaJapaneseCourse() {
         <div className="exam-strip">
           <div className="wrap">
             <div className="exam-head">
-              <span className="kicker">Official Japanese Language Exam Preparation</span>
-              <h3>Learn Japanese &amp; ace every major <em>Japanese Language</em> certification</h3>
+              <span className="kicker">JLPT, JFT, EJU &amp; Career Readiness</span>
+              <h3>Prepare for the exam and the life you want in Japan.</h3>
             </div>
-            <div className="exam-row" role="list" aria-label="Japanese language certification exams we prepare you for">
+            <div className="exam-row reveal-group" role="list" aria-label="Japanese language certification exams we prepare you for">
               {EXAM_BADGES.map((b, i) => {
-                const codeClass = b.code.length > 5 ? 'badge-code wide' : 'badge-code';
                 return (
                   <div className="exam-badge" role="listitem" key={i}
                        style={{ '--ring': b.ring, '--accent': b.accent }}>
-                    <div className="badge-circle">
-                      <div className="badge-flag" aria-hidden="true"></div>
-                      <div className="badge-inner">
-                        <div className="badge-letter">{b.letter}</div>
-                        <div className={codeClass}>{b.code}</div>
-                      </div>
-                    </div>
+                    <div className="badge-letter">{b.letter}</div>
                     <div className="badge-caption"><b>{b.code}</b><br/>{b.subtitle}</div>
                   </div>
                 );
@@ -1035,19 +1277,66 @@ export default function LangmaJapaneseCourse() {
       </section>
 
       {/* COURSE DETAILS / QUICK FACTS */}
-      <section className="course-details" id="course-details"><div className="wrap"><div className="sec-head-row"><div className="sec-head"><h2>Know the course before you enrol.</h2><p>Everything you need to choose the right Japanese language learning path, including the current course format and how to get fee details.</p></div><div className="sec-icon-big" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="14" width="80" height="96" rx="10" stroke="currentColor" strokeWidth="6"/><path d="M45 14h30v10a4 4 0 0 1-4 4H49a4 4 0 0 1-4-4V14z" fill="currentColor"/><path d="M34 46l6 6 12-12" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/><path d="M60 44h26" stroke="currentColor" strokeWidth="6" strokeLinecap="round"/><path d="M34 74l6 6 12-12" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/><path d="M60 72h26" stroke="currentColor" strokeWidth="6" strokeLinecap="round"/><path d="M34 96h52" stroke="currentColor" strokeWidth="6" strokeLinecap="round" opacity=".45"/></svg></div></div><div className="details-grid"><div className="detail-box"><div className="detail-label">Levels</div><div className="detail-value">N5 → N1</div><div className="detail-note">Beginner to advanced</div></div><div className="detail-box"><div className="detail-label">Learning Modes</div><div className="detail-value">Online / Offline</div><div className="detail-note">Hybrid option available</div></div><div className="detail-box"><div className="detail-label">Location</div><div className="detail-value">South Delhi</div><div className="detail-note">South Extension I, New Delhi</div></div><div className="detail-box"><div className="detail-label">Course Fee</div><div className="detail-value">Get Fee Details</div><div className="detail-note">Ask a counsellor for current fees &amp; batches</div></div></div></div></section>
+      <section className="course-details" id="course-details"><div className="wrap"><div className="sec-head-row"><div className="sec-head reveal"><h2>A <span className="heading-accent">Japanese Language</span> Learning Path Built for Your Goals.
+</h2><p>Flexible learning options, clear pathways, and expert guidance for study, work, and life in Japan.</p></div><div className="sec-icon-big" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="14" width="80" height="96" rx="10" stroke="currentColor" strokeWidth="6"/><path d="M45 14h30v10a4 4 0 0 1-4 4H49a4 4 0 0 1-4-4V14z" fill="currentColor"/><path d="M34 46l6 6 12-12" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/><path d="M60 44h26" stroke="currentColor" strokeWidth="6" strokeLinecap="round"/><path d="M34 74l6 6 12-12" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/><path d="M60 72h26" stroke="currentColor" strokeWidth="6" strokeLinecap="round"/><path d="M34 96h52" stroke="currentColor" strokeWidth="6" strokeLinecap="round" opacity=".45"/></svg></div></div><div className="details-grid reveal-group"><div className="detail-box"><div className="detail-label">Levels</div><div className="detail-value">N5 → N1</div><div className="detail-note">Beginner to advanced</div></div><div className="detail-box"><div className="detail-label">Learning Modes</div><div className="detail-value">Online / Offline</div><div className="detail-note">Hybrid option available</div></div><div className="detail-box"><div className="detail-label">Location</div><div className="detail-value">South Delhi</div><div className="detail-note">South Extension I, New Delhi</div></div><div className="detail-box"><div className="detail-label">Course Fee</div><div className="detail-value">Get Fee Details</div><div className="detail-note">Ask a counsellor for current fees &amp; batches</div></div></div><div className="inline-cta"><span className="inline-cta-text">Tell us your goal, and we’ll help you find the right Japanese course for you.</span><div className="inline-cta-actions"><a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20to%20know%20the%20best%20Japanese%20course%20for%20my%20goal." target="_blank" rel="noopener">Talk to an Advisor</a><a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a></div></div></div></section>
 
       {/* WHO THIS IS FOR */}
-      <section id="who"><div className="wrap"><div className="sec-head"><h2>Japanese for the goal you're working towards.</h2><p>Whether you're starting from zero or already know Japanese, choose a learning route that matches your objective.</p></div><div className="audience-grid"><div className="audience-card"><div className="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M6 11.5V16c1.8 1.8 4 2.7 6 2.7s4.2-.9 6-2.7v-4.5"/><path d="M21 9v5"/></svg></div><div className="audience-num">Students</div><h3>Study in Japan</h3><p>Build Japanese proficiency for language-school, university and higher-education pathways.</p></div><div className="audience-card"><div className="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"/></svg></div><div className="audience-num">Career</div><h3>Work in Japan</h3><p>Prepare for Japanese communication, workplace vocabulary, interviews and career pathways.</p></div><div className="audience-card"><div className="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19h16"/><path d="M6 19V9l6-4 6 4v10"/><path d="M9 19v-5h6v5M9 10h.01M12 10h.01M15 10h.01"/></svg></div><div className="audience-num">SSW</div><h3>Specified Skilled Worker</h3><p>Build the Japanese skills needed for relevant JFT-Basic or JLPT N4-level pathways, alongside sector preparation where applicable.</p></div><div className="audience-card"><div className="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.2l-1.9 3.7-3.7 1.9 1.9-3.7 3.7-1.9zM12 3.5v1.5M20.5 12H19M12 19v1.5M5 12H3.5"/></svg></div><div className="audience-num">Personal</div><h3>Travel &amp; Culture</h3><p>Learn practical Japanese for travel, conversation, Japanese media and cultural understanding.</p></div></div></div></section>
+      <section id="who">
+        <div className="wrap">
+          <div className="sec-head reveal">
+            <h2>Japanese learning paths for study, work and life in <span className="heading-accent">Japan</span>.</h2>
+            <p>Choose a learning route that matches your goals, whether you want to study abroad, work in Japan, prepare for exams, or build practical Japanese for everyday life.</p>
+          </div>
+          <div className="audience-grid reveal-group">
+            <div className="audience-card">
+              <div className="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 0 4 22.5v-17z"/><path d="M4 17.5A2.5 2.5 0 0 1 6.5 15H20M8 7h7M8 10h5"/></svg></div>
+              <div className="audience-num">Language</div>
+              <h3>Learn Japanese Language</h3>
+              <p>Start from the basics or strengthen your current level with structured lessons in speaking, listening, reading, writing and kanji.</p>
+            </div>
+            <div className="audience-card">
+              <div className="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M6 11.5V16c1.8 1.8 4 2.7 6 2.7s4.2-.9 6-2.7v-4.5"/><path d="M21 9v5"/></svg></div>
+              <div className="audience-num">Students</div>
+              <h3>Study in Japan</h3>
+              <p>Build strong Japanese skills for university admissions, language programs, and long-term academic goals.</p>
+            </div>
+            <div className="audience-card">
+              <div className="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M10 12v2h4v-2"/></svg></div>
+              <div className="audience-num">Career</div>
+              <h3>Work in Japan</h3>
+              <p>Prepare for workplace communication, interview confidence, and career pathways in Japan.</p>
+            </div>
+            <div className="audience-card">
+              <div className="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19h16"/><path d="M6 19V9l6-4 6 4v10"/><path d="M9 19v-5h6v5M9 10h.01M12 10h.01M15 10h.01"/></svg></div>
+              <div className="audience-num">SSW</div>
+              <h3>Specified Skilled Worker</h3>
+              <p>Build the Japanese language foundation needed for sector-specific work, test preparation, and skilled migration pathways.</p>
+            </div>
+            <div className="audience-card">
+              <div className="audience-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M14.8 9.2l-1.9 3.7-3.7 1.9 1.9-3.7 3.7-1.9zM12 3.5v1.5M20.5 12H19M12 19v1.5M5 12H3.5"/></svg></div>
+              <div className="audience-num">Personal</div>
+              <h3>Travel &amp; Culture</h3>
+              <p>Learn practical Japanese for travel, conversation, Japanese media and cultural understanding.</p>
+            </div>
+          </div>
+          <div className="inline-cta">
+            <span className="inline-cta-text">Not sure which path fits you? A quick call will tell you.</span>
+            <div className="inline-cta-actions">
+              <a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20help%20choosing%20the%20right%20Japanese%20learning%20path." target="_blank" rel="noopener">Find My Path</a>
+              <a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* WHAT YOU'LL LEARN */}
       <section id="skills">
         <div className="wrap">
-          <div className="sec-head">
-            <h2>Real Japanese, for real conversations.</h2>
-            <p>Our Japanese language curriculum builds all four core skills side by side, so you actually learn Japanese you can use, not just recognise it on a page.</p>
+          <div className="sec-head reveal">
+            <h2>Build real Japanese skills for everyday life and work.</h2>
+            <p>Our Japanese curriculum develops speaking, listening, reading, and writing together so you can communicate confidently in real situations, not just in a classroom.</p>
           </div>
-          <div className="skills-grid">
+          <div className="skills-grid reveal-group">
             <div className="skill-stamp">
               <div className="skill-native">話す</div>
               <span className="skill-en">Speaking (Hanasu)</span>
@@ -1069,6 +1358,13 @@ export default function LangmaJapaneseCourse() {
               <p>Stroke order, sentence structure, and the shift from casual to keigo, corrected and improved as you go.</p>
             </div>
           </div>
+          <div className="inline-cta">
+            <span className="inline-cta-text">Ready to build all four skills together? Book a free demo class.</span>
+            <div className="inline-cta-actions">
+              <a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20to%20book%20a%20free%20Japanese%20demo%20class." target="_blank" rel="noopener">Book a Free Demo</a>
+              <a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1076,13 +1372,13 @@ export default function LangmaJapaneseCourse() {
       <section className="journey" id="journey">
         <div className="seigaiha-dark" aria-hidden="true"></div>
         <div className="wrap">
-          <div className="sec-head">
-            <h2>Six stops to fluency.</h2>
+          <div className="sec-head reveal">
+            <h2>Six Steps to Japanese Language Fluency.</h2>
             <p>Every learner boards at N5 and rides the same line through to N1, and one stop beyond, each stage building the grammar, conversation and confidence you need for the next.</p>
           </div>
 
           <div className="rail-wrap">
-            <div className="rail">
+            <div className="rail reveal-group">
               <div className="stop">
                 <div className="stop-dot" aria-hidden="true">01</div>
                 <div className="stop-code">STOP 01 · N5</div>
@@ -1127,13 +1423,20 @@ export default function LangmaJapaneseCourse() {
               </div>
             </div>
           </div>
+          <div className="inline-cta on-dark">
+            <span className="inline-cta-text">Which stop are you closest to? Find out with a free level check.</span>
+            <div className="inline-cta-actions">
+              <a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20a%20free%20Japanese%20level%20check." target="_blank" rel="noopener">Get a Level Check</a>
+              <a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* STUDY HOURS INFOGRAPHIC */}
       <section className="study-hours" id="study-hours">
         <div className="wrap">
-          <div className="sec-head">
+          <div className="sec-head reveal">
             <h2>How much runway each level takes.</h2>
             <p>Approximate cumulative self-study hours to reach each JLPT level from zero. Your actual pace depends on prior exposure, study method and hours committed per week.</p>
           </div>
@@ -1165,18 +1468,25 @@ export default function LangmaJapaneseCourse() {
             </div>
           </div>
           <p className="hours-note">Figures are commonly cited estimates, not a guarantee. Structured classes, native-speaker practice and consistent weekly hours are what actually move learners along this line faster.</p>
+          <div className="inline-cta on-tint">
+            <span className="inline-cta-text">Want a study-hour estimate built around your weekly availability?</span>
+            <div className="inline-cta-actions">
+              <a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20a%20personalised%20study-hour%20estimate." target="_blank" rel="noopener">Ask a Counsellor</a>
+              <a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* COURSE CURRICULUM */}
-      <section id="curriculum"><div className="wrap"><div className="sec-head"><h2>What you study at every level.</h2><p>The learning journey develops grammar, vocabulary, scripts, comprehension and communication together as you progress from N5 towards advanced Japanese.</p></div><div className="curriculum-grid"><div className="curriculum-card"><div className="curriculum-level">Level 01 · N5</div><h3>Foundations</h3><p>Build the base you need to start understanding and using Japanese.</p><ul><li>Hiragana &amp; Katakana</li><li>Basic grammar &amp; sentence patterns</li><li>Greetings &amp; introductions</li><li>Everyday vocabulary</li><li>Basic Kanji &amp; listening</li></ul></div><div className="curriculum-card"><div className="curriculum-level">Level 02 · N4</div><h3>Everyday Japanese</h3><p>Move from basic phrases into more independent everyday communication.</p><ul><li>Expanded grammar &amp; vocabulary</li><li>Daily-life conversations</li><li>Kanji &amp; reading practice</li><li>Listening comprehension</li><li>JLPT / JFT-Basic preparation</li></ul></div><div className="curriculum-card"><div className="curriculum-level">Level 03 · N3</div><h3>Intermediate Bridge</h3><p>Develop longer conversations and wider real-world Japanese.</p><ul><li>Intermediate grammar</li><li>Workplace vocabulary</li><li>Longer reading passages</li><li>Natural conversation practice</li><li>Exam-focused mock practice</li></ul></div><div className="curriculum-card"><div className="curriculum-level">Level 04 · N2</div><h3>Business-Level Japanese</h3><p>Build stronger comprehension and communication for professional environments.</p><ul><li>Advanced grammar &amp; vocabulary</li><li>News &amp; workplace Japanese</li><li>Meetings &amp; professional scenarios</li><li>Formal communication</li><li>JLPT N2 preparation</li></ul></div><div className="curriculum-card"><div className="curriculum-level">Level 05 · N1</div><h3>Advanced Mastery</h3><p>Handle complex written and spoken Japanese with greater accuracy.</p><ul><li>Complex grammar structures</li><li>Advanced Kanji &amp; vocabulary</li><li>Abstract &amp; formal Japanese</li><li>High-level reading &amp; listening</li><li>JLPT N1 preparation</li></ul></div><div className="curriculum-card"><div className="curriculum-level">Beyond N1</div><h3>Business &amp; Keigo</h3><p>Go beyond exam Japanese into professional and high-context communication.</p><ul><li>Keigo &amp; honorific speech</li><li>Business etiquette</li><li>Professional conversations</li><li>Presentation &amp; meeting language</li><li>Executive communication practice</li></ul></div></div></div></section>
+      <section id="curriculum"><div className="wrap"><div className="sec-head reveal"><h2>Your Japanese Language Learning Journey, Level by Level.</h2><p>The learning journey develops grammar, vocabulary, scripts, comprehension and communication together as you progress from N5 towards advanced Japanese.</p></div><div className="curriculum-grid reveal-group"><div className="curriculum-card"><div className="curriculum-level">Level 01 · N5</div><h3>Foundations</h3><p>Build the base you need to start understanding and using Japanese.</p><ul><li>Hiragana &amp; Katakana</li><li>Basic grammar &amp; sentence patterns</li><li>Greetings &amp; introductions</li><li>Everyday vocabulary</li><li>Basic Kanji &amp; listening</li></ul></div><div className="curriculum-card"><div className="curriculum-level">Level 02 · N4</div><h3>Everyday Japanese</h3><p>Move from basic phrases into more independent everyday communication.</p><ul><li>Expanded grammar &amp; vocabulary</li><li>Daily-life conversations</li><li>Kanji &amp; reading practice</li><li>Listening comprehension</li><li>JLPT / JFT-Basic preparation</li></ul></div><div className="curriculum-card"><div className="curriculum-level">Level 03 · N3</div><h3>Intermediate Bridge</h3><p>Develop longer conversations and wider real-world Japanese.</p><ul><li>Intermediate grammar</li><li>Workplace vocabulary</li><li>Longer reading passages</li><li>Natural conversation practice</li><li>Exam-focused mock practice</li></ul></div><div className="curriculum-card"><div className="curriculum-level">Level 04 · N2</div><h3>Business-Level Japanese</h3><p>Build stronger comprehension and communication for professional environments.</p><ul><li>Advanced grammar &amp; vocabulary</li><li>News &amp; workplace Japanese</li><li>Meetings &amp; professional scenarios</li><li>Formal communication</li><li>JLPT N2 preparation</li></ul></div><div className="curriculum-card"><div className="curriculum-level">Level 05 · N1</div><h3>Advanced Mastery</h3><p>Handle complex written and spoken Japanese with greater accuracy.</p><ul><li>Complex grammar structures</li><li>Advanced Kanji &amp; vocabulary</li><li>Abstract &amp; formal Japanese</li><li>High-level reading &amp; listening</li><li>JLPT N1 preparation</li></ul></div><div className="curriculum-card"><div className="curriculum-level">Beyond N1</div><h3>Business &amp; Keigo</h3><p>Go beyond exam Japanese into professional and high-context communication.</p><ul><li>Keigo &amp; honorific speech</li><li>Business etiquette</li><li>Professional conversations</li><li>Presentation &amp; meeting language</li><li>Executive communication practice</li></ul></div></div><div className="inline-cta"><span className="inline-cta-text">See the full syllabus for your target level, in detail.</span><div className="inline-cta-actions"><a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20detailed%20curriculum%20for%20my%20level." target="_blank" rel="noopener">Get the Full Syllabus</a><a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a></div></div></div></section>
 
       {/* ABOUT THE LANGUAGE */}
       <section className="lang-facts" id="language">
         <div className="wrap">
           <div className="lang-inner">
             <div>
-              <h2 style={{fontSize: 'clamp(26px,3vw,38px)', margin: '0 0 20px', lineHeight: '1.18'}}>Japanese: more useful than most people expect.</h2>
+              <h2 style={{fontSize: 'clamp(30px,3.4vw,44px)', margin: '0 0 20px', lineHeight: '1.16'}}>Japanese: more useful than most people expect.</h2>
               <div className="lang-copy">
                 <p>Japanese is spoken by roughly 125 million people, almost entirely within Japan, one of the few major world languages where nearly every speaker lives in a single country, and still one of the most-spoken languages on Earth.</p>
                 <p>It belongs to the Japonic language family, unrelated to English or the Romance and Germanic languages, so learning Japanese usually means different study habits than learning German or Spanish. There aren't many cognates to lean on. Instead, once Japanese sentence structure clicks (verb at the end, particles doing the work English uses word order for), vocabulary starts building itself.</p>
@@ -1191,8 +1501,8 @@ export default function LangmaJapaneseCourse() {
               </div>
             </div>
             <div>
-              <img className="lang-photo" src="images/caligraphy.png" alt="Hand-brushed Japanese kanji calligraphy" loading="lazy" />
-              <div className="fact-strip">
+              <img className="lang-photo" src="/Public/images/caligraphy.png" alt="Hand-brushed Japanese kanji calligraphy" loading="lazy" />
+              <div className="fact-strip reveal-group">
                 <div className="fact-box"><b>~125M</b><span>native speakers, almost entirely within Japan</span></div>
                 <div className="fact-box"><b>#4</b><span>world's fourth-largest economy by nominal GDP</span></div>
                 <div className="fact-box"><b>3</b><span>writing systems used together: hiragana, katakana and kanji</span></div>
@@ -1200,8 +1510,15 @@ export default function LangmaJapaneseCourse() {
               </div>
               <div className="lang-note">
                 <h4>Good to know</h4>
-                <p>Japanese verbs go at the end of the sentence, and pitch (not stress) can change a word's meaning entirely, which is the part that trips up most beginners. It's also a language built for compression: <em style={{fontFamily: "'Shippori Mincho', serif"}}>tsundoku</em> (積ん読) simply means buying books and letting them pile up unread. Once the sentence pattern clicks, vocabulary starts building itself.</p>
+                <p>Japanese verbs go at the end of the sentence, and pitch (not stress) can change a word's meaning entirely, which is the part that trips up most beginners. It's also a language built for compression: <em style={{fontFamily: "'Roboto', sans-serif", fontStyle: 'normal', fontWeight: 700}}>tsundoku</em> (積ん読) simply means buying books and letting them pile up unread. Once the sentence pattern clicks, vocabulary starts building itself.</p>
               </div>
+            </div>
+          </div>
+          <div className="inline-cta">
+            <span className="inline-cta-text">Curious how fast you could get conversational? Ask us directly.</span>
+            <div className="inline-cta-actions">
+              <a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20how%20fast%20could%20I%20get%20conversational%20in%20Japanese%3F" target="_blank" rel="noopener">Ask a Counsellor</a>
+              <a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a>
             </div>
           </div>
         </div>
@@ -1210,13 +1527,13 @@ export default function LangmaJapaneseCourse() {
       {/* WHY CHOOSE US */}
       <section id="why">
         <div className="wrap">
-          <div className="sec-head">
+          <div className="sec-head reveal">
             <h2>Language is the passport.<br />We help you use it.</h2>
             <p>A structured curriculum is only half the journey. The rest is culture, confidence, and what happens after you're fluent.</p>
           </div>
         </div>
         <div className="wrap">
-          <div className="features-grid">
+          <div className="features-grid reveal-group">
             <div className="feature">
               <div className="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 20c.3-3.2 2.1-5 5.5-5s5.2 1.8 5.5 5M16 11a2.5 2.5 0 1 0-1.8-4.3M16 15c2.7.1 4.2 1.7 4.5 5"/></svg></div>
               <div className="fnum">Trainers</div>
@@ -1254,18 +1571,25 @@ export default function LangmaJapaneseCourse() {
               <p>Online, offline, or hybrid classes at a pace that fits your week, from anywhere in the world.</p>
             </div>
           </div>
+          <div className="inline-cta">
+            <span className="inline-cta-text">Meet the trainers and see a real class before you commit.</span>
+            <div className="inline-cta-actions">
+              <a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20to%20sit%20in%20on%20a%20trial%20Japanese%20class." target="_blank" rel="noopener">Book a Trial Class</a>
+              <a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* MODES */}
       <section className="modes" id="modes">
         <div className="wrap">
-          <div className="sec-head">
-            <h2>Pick your platform.</h2>
-            <p>Every format runs the same rigorous, expert-taught curriculum. Choose the one that fits your life.</p>
+          <div className="sec-head reveal">
+            <h2>Choose your course: online or offline.</h2>
+            <p>Every format runs the same rigorous, expert-taught curriculum pick the one that fits your life.</p>
           </div>
-          <img className="modes-photo" src="images/platform.png" alt="Students in a Japanese language class listening to their instructor" loading="lazy" />
-          <div className="modes-grid">
+          <img className="modes-photo" src="/Public/images/platform.png" alt="Students in a Japanese language course classroom listening to their instructor" loading="lazy" />
+          <div className="modes-grid reveal-group">
             <div className="mode-card">
               <span className="mode-tag">Most Popular</span>
               <h3 style={{marginTop: '14px'}}>Live Online</h3>
@@ -1282,31 +1606,38 @@ export default function LangmaJapaneseCourse() {
               <p>Mix classroom and online sessions to match a schedule that shifts week to week.</p>
             </div>
           </div>
+          <div className="inline-cta on-tint">
+            <span className="inline-cta-text">Not sure which mode fits your schedule? Let's figure it out.</span>
+            <div className="inline-cta-actions">
+              <a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20help%20choosing%20between%20online%2C%20offline%20and%20hybrid%20Japanese%20batches." target="_blank" rel="noopener">Help Me Choose</a>
+              <a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* TEACHING METHODOLOGY */}
-      <section className="methodology" id="methodology"><div className="wrap"><div className="sec-head"><h2>Not just lessons. A system for learning Japanese.</h2><p>Our approach combines structured instruction with active practice, assessment and real-world application.</p></div><div className="method-grid"><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5v-12z"/><path d="M4 17.5A2.5 2.5 0 0 1 6.5 15H20M8 7h7M8 10h7"/></svg></div><div className="step-no">01 / LEARN</div><h3>Understand</h3><p>Learn grammar, vocabulary, scripts and pronunciation through structured lessons.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h5M8 16h6"/></svg></div><div className="step-no">02 / PRACTISE</div><h3>Use it</h3><p>Apply new language through drills, exercises, dialogues and guided activities.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 8.5c1.2-2 3.4-3 7-3s5.8 1 7 3"/><path d="M6 10c1.5 1.6 3.5 2.4 6 2.4s4.5-.8 6-2.4"/><path d="M8 15.5c1.1 1 2.4 1.5 4 1.5s2.9-.5 4-1.5"/></svg></div><div className="step-no">03 / SPEAK</div><h3>Communicate</h3><p>Build confidence through conversation, role plays and real-life Japanese scenarios.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 10l9-5 9 5-9 5-9-5z"/><path d="M6 12.5V16c1.5 1.5 3.5 2.3 6 2.3s4.5-.8 6-2.3v-3.5"/><path d="M21 10v5"/></svg></div><div className="step-no">04 / CULTURE</div><h3>Experience Japan</h3><p>Learn Japanese etiquette, traditions, festivals, food culture and workplace customs through cultural activities.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19V5M4 19h17"/><path d="M7 15l4-4 3 2 5-6"/><path d="M15 7h4v4"/></svg></div><div className="step-no">05 / ASSESS</div><h3>Measure</h3><p>Use tests and feedback to identify gaps and keep your learning on track.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M7 10l5-5 5 5"/><path d="M5 19h14"/></svg></div><div className="step-no">06 / PROGRESS</div><h3>Advance</h3><p>Move towards your next level, exam, study route or career objective.</p></div></div></div></section>
+      <section className="methodology" id="methodology"><div className="wrap"><div className="sec-head reveal"><h2>Not just lessons. A system for learning Japanese.</h2><p>Our approach combines structured instruction with active practice, assessment and real-world application.</p></div><div className="method-grid reveal-group"><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5v-12z"/><path d="M4 17.5A2.5 2.5 0 0 1 6.5 15H20M8 7h7M8 10h7"/></svg></div><div className="step-no">01 / LEARN</div><h3>Understand</h3><p>Learn grammar, vocabulary, scripts and pronunciation through structured lessons.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h5M8 16h6"/></svg></div><div className="step-no">02 / PRACTISE</div><h3>Use it</h3><p>Apply new language through drills, exercises, dialogues and guided activities.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 8.5c1.2-2 3.4-3 7-3s5.8 1 7 3"/><path d="M6 10c1.5 1.6 3.5 2.4 6 2.4s4.5-.8 6-2.4"/><path d="M8 15.5c1.1 1 2.4 1.5 4 1.5s2.9-.5 4-1.5"/></svg></div><div className="step-no">03 / SPEAK</div><h3>Communicate</h3><p>Build confidence through conversation, role plays and real-life Japanese scenarios.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 10l9-5 9 5-9 5-9-5z"/><path d="M6 12.5V16c1.5 1.5 3.5 2.3 6 2.3s4.5-.8 6-2.3v-3.5"/><path d="M21 10v5"/></svg></div><div className="step-no">04 / CULTURE</div><h3>Experience Japan</h3><p>Learn Japanese etiquette, traditions, festivals, food culture and workplace customs through cultural activities.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19V5M4 19h17"/><path d="M7 15l4-4 3 2 5-6"/><path d="M15 7h4v4"/></svg></div><div className="step-no">05 / ASSESS</div><h3>Measure</h3><p>Use tests and feedback to identify gaps and keep your learning on track.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M7 10l5-5 5 5"/><path d="M5 19h14"/></svg></div><div className="step-no">06 / PROGRESS</div><h3>Advance</h3><p>Move towards your next level, exam, study route or career objective.</p></div></div><div className="inline-cta"><span className="inline-cta-text">See this teaching method in action with a free trial class.</span><div className="inline-cta-actions"><a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20to%20try%20a%20free%20Japanese%20trial%20class." target="_blank" rel="noopener">Book a Trial Class</a><a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a></div></div></div></section>
 
       {/* WHAT YOU GET */}
-      <section className="included" id="included"><div className="wrap"><div className="sec-head"><h2>What your Japanese learning experience can include.</h2><p>Support is designed around both language development and the goal behind your Japanese learning journey.</p></div><div className="included-grid"><div className="included-item"><span className="tick">✓</span><span>Live instructor-led Japanese classes</span></div><div className="included-item"><span className="tick">✓</span><span>N5–N1 structured learning pathway</span></div><div className="included-item"><span className="tick">✓</span><span>Speaking, listening, reading &amp; writing practice</span></div><div className="included-item"><span className="tick">✓</span><span>Kanji and vocabulary development</span></div><div className="included-item"><span className="tick">✓</span><span>Japanese exam preparation</span></div><div className="included-item"><span className="tick">✓</span><span>Mock tests &amp; progress assessment</span></div><div className="included-item"><span className="tick">✓</span><span>Cultural &amp; real-life communication practice</span></div><div className="included-item"><span className="tick">✓</span><span>Online, offline &amp; hybrid learning options</span></div><div className="included-item"><span className="tick">✓</span><span>Goal-based counselling for Japan pathways</span></div></div></div></section>
+      <section className="included" id="included"><div className="wrap"><div className="sec-head reveal"><h2>Everything included in your Japanese course.</h2><p>Support is designed around both language development and the goal behind your Japanese learning journey.</p></div><div className="included-grid reveal-group"><div className="included-item"><span className="tick">✓</span><span>Live instructor-led Japanese classes</span></div><div className="included-item"><span className="tick">✓</span><span>N5–N1 structured learning pathway</span></div><div className="included-item"><span className="tick">✓</span><span>Speaking, listening, reading &amp; writing practice</span></div><div className="included-item"><span className="tick">✓</span><span>Kanji and vocabulary development</span></div><div className="included-item"><span className="tick">✓</span><span>Japanese exam preparation</span></div><div className="included-item"><span className="tick">✓</span><span>Mock tests &amp; progress assessment</span></div><div className="included-item"><span className="tick">✓</span><span>Cultural &amp; real-life communication practice</span></div><div className="included-item"><span className="tick">✓</span><span>Online, offline &amp; hybrid learning options</span></div><div className="included-item"><span className="tick">✓</span><span>Goal-based counselling for Japan pathways</span></div></div><div className="inline-cta"><span className="inline-cta-text">Get the complete inclusions list with pricing for your level.</span><div className="inline-cta-actions"><a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20full%20inclusions%20list%20and%20pricing." target="_blank" rel="noopener">Get Full Details</a><a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a></div></div></div></section>
 
       {/* SSW / ENGINEER / STUDY PATHWAYS */}
       <section className="pathways" id="pathways">
         <div className="wrap">
-          <div className="sec-head">
+          <div className="sec-head reveal">
             <h2>SSW visas. Engineer roles. University routes.</h2>
             <p>Langma's counsellors don't stop at fluency. These are the three routes we actively guide candidates through, once your Japanese is at the level each one needs.</p>
           </div>
-          <div className="path-grid">
+          <div className="path-grid reveal-group">
             <div className="path-card">
-              <div className="path-photo-wrap"><img className="path-photo" src="images/ssw.jpeg" alt="Sparks flying as a worker welds metal, representing SSW manufacturing roles" loading="lazy" /></div>
+              <div className="path-photo-wrap"><img className="path-photo" src="Public/images/ssw.jpeg" alt="Sparks flying as a worker welds metal, representing SSW manufacturing roles" loading="lazy" /></div>
               <div className="path-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
               </div>
               <span className="path-tag">Skilled Worker Route</span>
               <h3>Specified Skilled Worker</h3>
-              <p style={{fontSize: '14px', color: 'rgba(255,255,255,.7)'}}>A fast-growing route into Japan's manufacturing, hospitality, caregiving and food-service sectors. Most fields ask for the JFT-Basic or JLPT N4, plus a sector-specific skills test.</p>
+              <p style={{fontSize: '15.5px', color: 'rgba(255,255,255,.7)'}}>A fast-growing route into Japan's manufacturing, hospitality, caregiving and food-service sectors. Most fields ask for the JFT-Basic or JLPT N4, plus a sector-specific skills test.</p>
               <ul>
                 <li>Japanese coaching timed to your target sector's test date</li>
                 <li>Sector-specific vocabulary and skills-test preparation</li>
@@ -1316,13 +1647,13 @@ export default function LangmaJapaneseCourse() {
             </div>
 
             <div className="path-card">
-              <div className="path-photo-wrap"><img className="path-photo" src="images/Engineers.jpeg" alt="Busy Shibuya crossing at night with neon lights, representing Tokyo's business and tech scene" loading="lazy" /></div>
+              <div className="path-photo-wrap"><img className="path-photo" src="/Public/images/Engineers.jpeg" alt="Busy Shibuya crossing at night with neon lights, representing Tokyo's business and tech scene" loading="lazy" /></div>
               <div className="path-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
               </div>
               <span className="path-tag">White-Collar Work Visa</span>
               <h3>Engineer &amp; Specialist Roles</h3>
-              <p style={{fontSize: '14px', color: 'rgba(255,255,255,.7)'}}>Japan's most common work visa for IT, engineering, marketing and international-business roles. As of April 2026, JLPT N2 is now required by many employers for this category.</p>
+              <p style={{fontSize: '15.5px', color: 'rgba(255,255,255,.7)'}}>Japan's most common work visa for IT, engineering, marketing and international-business roles. As of April 2026, JLPT N2 is now required by many employers for this category.</p>
               <ul>
                 <li>Business Japanese coaching aimed at N2 and BJT</li>
                 <li>Résumé and interview preparation for Japanese employers</li>
@@ -1332,13 +1663,13 @@ export default function LangmaJapaneseCourse() {
             </div>
 
             <div className="path-card">
-              <div className="path-photo-wrap"><img className="path-photo" src="images/sj.jpeg" alt="Path through vibrant orange torii gates in Japan" loading="lazy" /></div>
+              <div className="path-photo-wrap"><img className="path-photo" src="Public/images/study_in_japan.jpeg" alt="Path through vibrant orange torii gates in Japan" loading="lazy" /></div>
               <div className="path-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
               </div>
               <span className="path-tag">Language School &amp; University</span>
               <h3>Study in Japan</h3>
-              <p style={{fontSize: '14px', color: 'rgba(255,255,255,.7)'}}>From short-term language schools to full degree programmes. Japanese universities increasingly test the EJU alongside JLPT for international admissions.</p>
+              <p style={{fontSize: '15.5px', color: 'rgba(255,255,255,.7)'}}>From short-term language schools to full degree programmes. Japanese universities increasingly test the EJU alongside JLPT for international admissions.</p>
               <ul>
                 <li>JLPT and EJU-focused exam coaching</li>
                 <li>University and language-school shortlisting</li>
@@ -1347,23 +1678,71 @@ export default function LangmaJapaneseCourse() {
               </ul>
             </div>
           </div>
+          <div className="inline-cta on-dark">
+            <span className="inline-cta-text">Which pathway matches your goal? Let's map it out together.</span>
+            <div className="inline-cta-actions">
+              <a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20help%20choosing%20a%20Japan%20pathway%20(SSW%2C%20Engineer%20or%20Study)." target="_blank" rel="noopener">Find My Pathway</a>
+              <a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* CAREER OPPORTUNITIES */}
-      <section id="careers"><div className="wrap"><div className="sec-head"><h2>Where can Japanese take you?</h2><p>Japanese can support multiple academic, professional and international pathways, depending on your qualifications, experience and target route.</p></div><div className="career-grid"><div className="career-card"><h3>Career &amp; Work in Japan</h3><div className="career-tags"><span className="career-tag">Specified Skilled Worker</span><span className="career-tag">IT &amp; Engineering</span><span className="career-tag">Manufacturing</span><span className="career-tag">Hospitality</span><span className="career-tag">Caregiving</span><span className="career-tag">International Business</span></div></div><div className="career-card"><h3>Study &amp; Professional Opportunities</h3><div className="career-tags"><span className="career-tag">Language Schools</span><span className="career-tag">Universities</span><span className="career-tag">EJU Preparation</span><span className="career-tag">Japanese MNCs</span><span className="career-tag">Translation</span><span className="career-tag">Business Japanese</span></div></div></div></div></section>
+      <section id="careers"><div className="wrap"><div className="sec-head reveal"><h2>Where can Japanese take you?</h2><p>Japanese can support multiple academic, professional and international pathways, depending on your qualifications, experience and target route.</p></div><div className="career-grid reveal-group"><div className="career-card"><h3>Career &amp; Work in Japan</h3><div className="career-tags"><span className="career-tag">Specified Skilled Worker</span><span className="career-tag">IT &amp; Engineering</span><span className="career-tag">Manufacturing</span><span className="career-tag">Hospitality</span><span className="career-tag">Caregiving</span><span className="career-tag">International Business</span></div></div><div className="career-card"><h3>Study &amp; Professional Opportunities</h3><div className="career-tags"><span className="career-tag">Language Schools</span><span className="career-tag">Universities</span><span className="career-tag">EJU Preparation</span><span className="career-tag">Japanese MNCs</span><span className="career-tag">Translation</span><span className="career-tag">Business Japanese</span></div></div></div><div className="inline-cta"><span className="inline-cta-text">Explore which roles and routes your target Japanese level unlocks.</span><div className="inline-cta-actions"><a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20guidance%20on%20Japan%20career%20opportunities." target="_blank" rel="noopener">Explore Career Options</a><a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a></div></div></div></section>
 
       {/* JLPT VS JFT-BASIC */}
-      <section className="exam-compare" id="exam-guide"><div className="wrap"><div className="sec-head"><h2>JLPT or JFT-Basic: which one is right for you?</h2><p>The right assessment depends on your objective. A counsellor can help you identify the appropriate preparation route.</p></div><div className="compare-wrap"><table className="compare-table"><thead><tr><th>Exam</th><th>Best known for</th><th>Levels / format</th><th>Useful for</th></tr></thead><tbody><tr><td>JLPT</td><td>General Japanese proficiency</td><td>N5–N1</td><td>Language proficiency, study and employment requirements where accepted</td></tr><tr><td>JFT-Basic</td><td>Practical Japanese communication</td><td>Basic-level assessment</td><td>Specified Skilled Worker-related Japanese requirements where applicable</td></tr><tr><td>BJT</td><td>Business Japanese</td><td>Business communication assessment</td><td>Professional and corporate Japanese contexts</td></tr><tr><td>EJU</td><td>University admissions</td><td>Admission examination</td><td>International students applying to Japanese higher-education programmes where required</td></tr></tbody></table></div></div></section>
+      <section className="exam-compare" id="exam-guide"><div className="wrap"><div className="sec-head reveal"><h2>JLPT or JFT-Basic: which one is right for you?</h2><p>The right assessment depends on your objective. A counsellor can help you identify the appropriate preparation route.</p></div><div className="compare-wrap"><table className="compare-table"><thead><tr><th>Exam</th><th>Best known for</th><th>Levels / format</th><th>Useful for</th></tr></thead><tbody><tr><td>JLPT</td><td>General Japanese proficiency</td><td>N5–N1</td><td>Language proficiency, study and employment requirements where accepted</td></tr><tr><td>JFT-Basic</td><td>Practical Japanese communication</td><td>Basic-level assessment</td><td>Specified Skilled Worker-related Japanese requirements where applicable</td></tr><tr><td>BJT</td><td>Business Japanese</td><td>Business communication assessment</td><td>Professional and corporate Japanese contexts</td></tr><tr><td>EJU</td><td>University admissions</td><td>Admission examination</td><td>International students applying to Japanese higher-education programmes where required</td></tr></tbody></table></div><div className="inline-cta"><span className="inline-cta-text">Not sure which exam applies to you? We'll help you decide.</span><div className="inline-cta-actions"><a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20help%20deciding%20between%20JLPT%2C%20JFT-Basic%2C%20BJT%20and%20EJU." target="_blank" rel="noopener">Which Exam Is Right for Me?</a><a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a></div></div></div></section>
 
       {/* UPCOMING BATCHES */}
-      <section className="batches" id="batches"><div className="wrap"><div className="sec-head"><h2>Find a batch that fits your schedule.</h2><p>We offer online, classroom and hybrid options. Ask us for the latest batch start dates, timings and course fee details.</p></div><div className="batch-grid"><div className="batch-card"><div className="batch-tag">Online</div><h3>Live Online Batch</h3><div className="batch-meta"><div><b>Level</b><span>N5 / N4 / N3 / N2 / N1</span></div><div><b>Format</b><span>Instructor-led</span></div><div><b>Timings</b><span>Ask for current schedule</span></div></div><a className="btn btn-primary" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20latest%20Japanese%20online%20batch%20details." target="_blank" rel="noopener">Get Online Batch Details →</a></div><div className="batch-card"><div className="batch-tag">South Delhi</div><h3>Classroom Batch</h3><div className="batch-meta"><div><b>Location</b><span>South Extension I</span></div><div><b>Format</b><span>Face-to-face</span></div><div><b>Timings</b><span>Ask for current schedule</span></div></div><a className="btn btn-primary" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20latest%20Japanese%20classroom%20batch%20details." target="_blank" rel="noopener">Get Classroom Details →</a></div><div className="batch-card"><div className="batch-tag">Flexible</div><h3>Hybrid Batch</h3><div className="batch-meta"><div><b>Format</b><span>Online + classroom</span></div><div><b>Level</b><span>Based on availability</span></div><div><b>Timings</b><span>Ask for current schedule</span></div></div><a className="btn btn-primary" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20latest%20Japanese%20hybrid%20batch%20details." target="_blank" rel="noopener">Get Hybrid Details →</a></div></div><p className="batch-note">Course fees, schedules and batch availability may vary. Contact Langma International for the current course options.</p></div></section>
+      <section className="batches" id="batches"><div className="wrap"><div className="sec-head reveal"><h2>Find a batch that fits your schedule.</h2><p>We offer online, classroom and hybrid options. Ask us for the latest batch start dates, timings and course fee details.</p></div><div className="batch-grid reveal-group"><div className="batch-card"><div className="batch-tag">Online</div><h3>Live Online Batch</h3><div className="batch-meta"><div><b>Level</b><span>N5 / N4 / N3 / N2 / N1</span></div><div><b>Format</b><span>Instructor-led</span></div><div><b>Timings</b><span>Ask for current schedule</span></div></div><a className="btn btn-primary" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20latest%20Japanese%20online%20batch%20details." target="_blank" rel="noopener">Get Online Batch Details →</a></div><div className="batch-card"><div className="batch-tag">South Delhi</div><h3>Classroom Batch</h3><div className="batch-meta"><div><b>Location</b><span>South Extension I</span></div><div><b>Format</b><span>Face-to-face</span></div><div><b>Timings</b><span>Ask for current schedule</span></div></div><a className="btn btn-primary" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20latest%20Japanese%20classroom%20batch%20details." target="_blank" rel="noopener">Get Classroom Details →</a></div><div className="batch-card"><div className="batch-tag">Flexible</div><h3>Hybrid Batch</h3><div className="batch-meta"><div><b>Format</b><span>Online + classroom</span></div><div><b>Level</b><span>Based on availability</span></div><div><b>Timings</b><span>Ask for current schedule</span></div></div><a className="btn btn-primary" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20latest%20Japanese%20hybrid%20batch%20details." target="_blank" rel="noopener">Get Hybrid Details →</a></div></div><p className="batch-note">Course fees, schedules and batch availability may vary. Contact Langma International for the current course options.</p><div className="trust-badges"><span>✓ Free demo before you enrol</span><span>✓ Flexible batch switching</span><span>✓ Certified native-level trainers</span><span>✓ Visa &amp; placement support included</span></div></div></section>
+
+      {/* VIDEO TESTIMONIALS */}
+      <section className="testimonials" id="testimonials">
+        <div className="wrap">
+          <div className="sec-head reveal">
+            <h2>Discover Japan Through Language & Culture.</h2>
+           <p>From interactive activities and cultural experiences to practical conversations, make every step of learning Japanese more engaging, meaningful, and fun.</p>
+          </div>
+          <div className="testi-slider" onMouseEnter={() => setTestiPaused(true)} onMouseLeave={() => setTestiPaused(false)}>
+            <div className="testi-viewport" onTouchStart={handleTestiTouchStart} onTouchMove={handleTestiTouchMove} onTouchEnd={handleTestiTouchEnd}>
+              <div className="testi-track" style={{ transform: `translateX(-${testiIndex * testiWidthPct}%)` }}>
+                {TESTIMONIALS.map((t, i) => (
+                  <div className="testi-slide" key={i} style={{ width: `${testiWidthPct}%` }}>
+                    <div className="testi-card">
+                      <video className="testi-video-el" src={t.video} controls playsInline preload="metadata" aria-label="Langma Japanese course video testimonial" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="testi-controls">
+              <div className="testi-dots" role="tablist" aria-label="Video testimonial slides">
+                {Array.from({ length: testiDotCount }).map((_, i) => (
+                  <button key={i} className={`testi-dot${i === testiIndex ? ' active' : ''}`} onClick={() => goToTesti(i)} aria-label={`Go to testimonial slide ${i + 1}`} aria-current={i === testiIndex} />
+                ))}
+              </div>
+              <div className="testi-arrows">
+                <button className="testi-arrow" onClick={prevTesti} aria-label="Previous testimonials"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+                <button className="testi-arrow" onClick={nextTesti} aria-label="Next testimonials"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg></button>
+              </div>
+            </div>
+          </div>
+          <div className="inline-cta on-dark">
+            <span className="inline-cta-text">Ready to Take the First Step Toward Japan? Book a free demo class.</span>
+            <div className="inline-cta-actions">
+              <a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20to%20book%20a%20free%20Japanese%20demo%20class." target="_blank" rel="noopener">Book a Free Demo</a>
+              <a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* FAQ */}
       <section id="faq">
         <div className="wrap">
-          <div className="sec-head">
-            <h2>Common questions about learning Japanese.</h2>
+          <div className="sec-head reveal">
+            <h2>Common questions about our Japanese language course.</h2>
           </div>
           <div className="faq-list">
             <details className="faq-item">
@@ -1397,6 +1776,13 @@ export default function LangmaJapaneseCourse() {
             <details className="faq-item"><summary>Do you provide Japan career or visa guidance?</summary><p className="faq-a">Japan pathway support is available for the routes described on this page, including SSW, Engineer/Specialist and Study in Japan pathways. Exact eligibility and immigration decisions depend on the applicable requirements.</p></details>
 
           </div>
+          <div className="inline-cta">
+            <span className="inline-cta-text">Still have questions? Talk to a real counsellor, not a chatbot.</span>
+            <div className="inline-cta-actions">
+              <a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%20have%20a%20few%20questions%20about%20the%20Japanese%20course." target="_blank" rel="noopener">Ask on WhatsApp</a>
+              <a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1404,8 +1790,8 @@ export default function LangmaJapaneseCourse() {
       <section className="activities" id="activities">
         <div className="seigaiha-dark" aria-hidden="true"></div>
         <div className="wrap">
-          <div className="sec-head">
-            <div className="activity-eyebrow" style={{fontFamily: "'IBM Plex Mono', monospace", fontSize: '10px', letterSpacing: '.14em', color: 'var(--gold-soft)', textTransform: 'uppercase', marginBottom: '10px'}}>Activities &amp; Japan Experience</div>
+          <div className="sec-head reveal">
+            <div className="activity-eyebrow" style={{fontFamily: "'Roboto', sans-serif", fontSize: '11px', letterSpacing: '.14em', color: 'var(--gold-soft)', textTransform: 'uppercase', marginBottom: '10px'}}>Activities &amp; Japan Experience</div>
             <h2>Learn. Experience. Connect.</h2>
             <p>Learning Japanese at Langma goes beyond classroom lessons. Build confidence through interactive activities, cultural experiences and real-life Japanese practice.</p>
           </div>
@@ -1441,6 +1827,13 @@ export default function LangmaJapaneseCourse() {
               </div>
             </div>
           </div>
+          <div className="inline-cta on-dark">
+            <span className="inline-cta-text">Want your own Japan story? Join the next live batch.</span>
+            <div className="inline-cta-actions">
+              <a className="btn btn-wa btn-sm" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20to%20join%20the%20next%20Japanese%20batch." target="_blank" rel="noopener">Join the Next Batch</a>
+              <a className="btn btn-ghost btn-sm" href="tel:+919810117094">Call +91-98101-17094</a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1450,7 +1843,7 @@ export default function LangmaJapaneseCourse() {
       {/* CONTACT */}
       <section className="contact" id="contact">
         <div className="wrap">
-          <div className="sec-head">
+          <div className="sec-head reveal">
             <h2>Board the next batch.</h2>
             <p>Call, WhatsApp, or drop by our South Delhi centre. A counsellor will help you pick the right starting level.</p>
           </div>
@@ -1553,8 +1946,8 @@ export default function LangmaJapaneseCourse() {
                 )}
               </form>
               <div className="form-alt">
-                <span style={{fontSize: '13px', color: 'rgba(255,255,255,.7)'}}>Prefer to skip the form?</span>
-                <a href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20to%20enroll%20for%20the%20Japanese%20course." target="_blank" rel="noopener" style={{fontSize: '13px', fontWeight: '600', color: 'var(--gold-soft)', textDecoration: 'underline'}}>Message us on WhatsApp →</a>
+                <span style={{fontSize: '14.5px', color: 'rgba(255,255,255,.7)'}}>Prefer to skip the form?</span>
+                <a href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20to%20enroll%20for%20the%20Japanese%20course." target="_blank" rel="noopener" style={{fontSize: '14.5px', fontWeight: '600', color: 'var(--gold-soft)', textDecoration: 'underline'}}>Message us on WhatsApp →</a>
               </div>
             </div>
           </div>
@@ -1582,16 +1975,35 @@ export default function LangmaJapaneseCourse() {
         </div>
       </footer>
       {/* FLOATING CALL */}
-      <a href="tel:+919810117094" className="call-float" id="callFloat" aria-label="Call Langma">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <a href="tel:+919810117094" className="call-float" id="callFloat" aria-label="Call Langma at +91-98101-17094">
+        <span className="call-float-icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </span>
+        <span className="call-float-number">+91-98101-17094</span>
       </a>
-      <div className="call-tip" id="callTip">Call us: +91-98101-17094</div>
 
       {/* FLOATING WHATSAPP */}
       <a href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Japanese%20course." target="_blank" rel="noopener" className="wa-float" id="waFloat" aria-label="Chat on WhatsApp">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm5.86 14.13c-.25.7-1.45 1.34-2 1.42-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.69-.63-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.05-2.49.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.68.53.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.1.2-.15.32-.3.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.75 1.25 1.62 2.02 1.11.99 2.05 1.3 2.35 1.45.3.15.47.12.65-.07.18-.19.75-.87.95-1.17.2-.3.4-.25.66-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.13.07.75-.18 1.45z"/></svg>
       </a>
       <div className={`wa-tip${showWaTip ? ' show' : ''}`} id="waTip">Chat with us, usually replies in minutes</div>
+
+      {/* STICKY MOBILE CTA BAR (floating call/WhatsApp buttons, no white strip) */}
+      <div className="mobile-cta-bar" aria-label="Quick contact buttons">
+        <div className="mobile-cta-bar-actions">
+          <a className="mobile-cta-bar-call" href="tel:+919810117094" aria-label="Call Langma at +91-98101-17094">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </a>
+          <span className="mobile-cta-label">Demo</span>
+        </div>
+        <div className="mobile-cta-bar-actions">
+          <a className="mobile-cta-bar-wa" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Japanese%20course." target="_blank" rel="noopener" aria-label="Chat with Langma on WhatsApp">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm5.86 14.13c-.25.7-1.45 1.34-2 1.42-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.69-.63-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.05-2.49.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.68.53.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.1.2-.15.32-.3.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.75 1.25 1.62 2.02 1.11.99 2.05 1.3 2.35 1.45.3.15.47.12.65-.07.18-.19.75-.87.95-1.17.2-.3.4-.25.66-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.13.07.75-.18 1.45z"/></svg>
+          </a>
+          <span className="mobile-cta-label">Chat</span>
+        </div>
+      </div>
+
     </div>
   );
 }
