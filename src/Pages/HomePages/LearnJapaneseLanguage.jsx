@@ -1302,7 +1302,7 @@ export default function LangmaJapaneseCourse() {
             <div className="hero-stats">
               <div className="stat">
                 <div className="stat-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-                <div className="stat-text"><b>13+ yrs</b><span>TEACHING IN {locationProfile.city.toUpperCase()}</span></div>
+                <div className="stat-text"><b>13+ Yrs</b><span>TEACHING IN {locationProfile.city.toUpperCase()}</span></div>
               </div>
               <div className="stat">
                 <div className="stat-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
