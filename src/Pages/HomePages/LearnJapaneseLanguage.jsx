@@ -115,7 +115,7 @@ const ACTIVITIES = [
 
 ];
 
-// Video testimonials — each card uses the hosted video directly, without a thumbnail.
+// Cloudinary can return a frame from each video as a JPG poster without another upload.
 const TESTIMONIALS = [
   {
     video: "https://res.cloudinary.com/dzv9zcrlz/video/upload/v1788866467/Video-7940_wgu9vv.mp4"
@@ -139,6 +139,12 @@ const TESTIMONIALS = [
     video: "https://res.cloudinary.com/dzv9zcrlz/video/upload/v1788868150/Video-91513_dintai.mp4"
   },
 ];
+
+function getVideoPoster(videoUrl) {
+  return videoUrl
+    .replace("/video/upload/", "/video/upload/so_1/")
+    .replace(/\.mp4(?:\?.*)?$/, ".jpg");
+}
 
 // Japanese language certification exam badges shown in the hero exam strip
 const EXAM_BADGES = [
@@ -1741,7 +1747,7 @@ export default function LangmaJapaneseCourse() {
                 {TESTIMONIALS.map((t, i) => (
                   <div className="testi-slide" key={i} style={{ width: `${testiWidthPct}%` }}>
                     <div className="testi-card">
-                      <video className="testi-video-el" src={t.video} controls playsInline preload="none" aria-label="Langma Japanese course student testimonial" />
+                      <video className="testi-video-el" src={t.video} poster={getVideoPoster(t.video)} controls playsInline preload="none" aria-label="Langma Japanese course student testimonial" />
                     </div>
                   </div>
                 ))}
