@@ -1853,11 +1853,7 @@ export default function LangmaJapaneseCourse() {
 
       {sectionFormCta}
 
- 
-
-            {sectionFormCta}
-
-            {/* UPCOMING BATCHES */}
+        {/* UPCOMING BATCHES */}
       <section className="batches" id="batches"><div className="wrap"><div className="sec-head reveal"><h2>Find a batch that fits your schedule.</h2><p>We offer online, classroom and hybrid options. Ask us for the latest batch start dates, timings and course fee details.</p></div><div className="batch-grid reveal-group"><div className="batch-card"><div className="batch-tag">Online</div><h3>Live Online Batch</h3><div className="batch-meta"><div><b>Level</b><span>N5 / N4 / N3 / N2 / N1</span></div><div><b>Format</b><span>Instructor-led</span></div><div><b>Timings</b><span>Ask for current schedule</span></div></div><a className="btn btn-primary" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20latest%20Japanese%20online%20batch%20details." target="_blank" rel="noopener">Get Online Batch Details →</a></div><div className="batch-card"><div className="batch-tag">{locationProfile.centre}</div><h3>Classroom Batch</h3><div className="batch-meta"><div><b>Location</b><span>{locationProfile.area}</span></div><div><b>Format</b><span>Face-to-face</span></div><div><b>Timings</b><span>Ask for current schedule</span></div></div><a className="btn btn-primary" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20latest%20Japanese%20classroom%20batch%20details." target="_blank" rel="noopener">Get Classroom Details →</a></div><div className="batch-card"><div className="batch-tag">Flexible</div><h3>Hybrid Batch</h3><div className="batch-meta"><div><b>Format</b><span>Online + classroom</span></div><div><b>Level</b><span>Based on availability</span></div><div><b>Timings</b><span>Ask for current schedule</span></div></div><a className="btn btn-primary" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20latest%20Japanese%20hybrid%20batch%20details." target="_blank" rel="noopener">Get Hybrid Details →</a></div></div><p className="batch-note">Course fees, schedules and batch availability may vary. Contact Langma International for the latest.rent course options.</p><div className="trust-badges"><span>✓ Free demo before you enrol</span><span>✓ Flexible batch switching</span><span>✓ Certified native-level trainers</span><span>✓ Visa &amp; placement support included</span></div></div></section>
 
       {sectionFormCta}
