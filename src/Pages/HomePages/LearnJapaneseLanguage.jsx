@@ -1412,10 +1412,8 @@ export default function LangmaJapaneseCourse() {
       {/* COURSE DETAILS / QUICK FACTS */}
       <section className="course-details" id="course-details"><div className="wrap"><div className="sec-head-row"><div className="sec-head reveal"><h2>Choose Your <span className="heading-accent">Japanese Learning Mode</span>.</h2><p>Choose the right level, learning mode and route with expert guidance from {locationProfile.city} for study, work and life in Japan.</p></div><div className="sec-icon-big" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="20" y="14" width="80" height="96" rx="10" stroke="currentColor" strokeWidth="6"/><path d="M45 14h30v10a4 4 0 0 1-4 4H49a4 4 0 0 1-4-4V14z" fill="currentColor"/><path d="M34 46l6 6 12-12" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/><path d="M60 44h26" stroke="currentColor" strokeWidth="6" strokeLinecap="round"/><path d="M34 74l6 6 12-12" stroke="currentColor" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round"/><path d="M60 72h26" stroke="currentColor" strokeWidth="6" strokeLinecap="round"/><path d="M34 96h52" stroke="currentColor" strokeWidth="6" strokeLinecap="round" opacity=".45"/></svg></div></div><div className="details-grid reveal-group"><div className="detail-box"><div className="detail-label">Levels</div><div className="detail-value">N5 → N1</div><div className="detail-note">Beginner to advanced</div></div><div className="detail-box"><div className="detail-label">Learning Modes</div><div className="detail-value">Online / Offline</div><div className="detail-note">Hybrid option available</div></div><div className="detail-box"><div className="detail-label">Location</div><div className="detail-value">{locationProfile.centre}</div><div className="detail-note">{locationProfile.area}, {locationProfile.city}</div></div><div className="detail-box"><div className="detail-label">Course Fee</div><div className="detail-value">Get Fee Details</div><div className="detail-note">Ask a counsellor for current fees &amp; batches</div></div></div></div></section>
 
-      {sectionFormCta}
-
       {/* WHO THIS IS FOR */}
-      <section id="who">
+      {false && <section id="who">
         <div className="wrap">
           <div className="sec-head reveal">
             <h2>Choose your Japanese learning options for study, work and life in <span className="heading-accent">Japan</span>.</h2>
@@ -1468,7 +1466,9 @@ export default function LangmaJapaneseCourse() {
             <a className="btn-alt" href="tel:+919810117094">Speak to a counsellor</a>
           </div>
         </div>
-      </section>
+      </section>}
+
+      {sectionFormCta}
 
       {/* WHAT YOU'LL LEARN */}
       <section id="skills">
@@ -1614,10 +1614,11 @@ export default function LangmaJapaneseCourse() {
       {/* COURSE CURRICULUM */}
       <section id="curriculum"><div className="wrap"><div className="sec-head reveal"><h2>Your Japanese Language Learning Journey, Level by Level.</h2><p>The learning journey develops grammar, vocabulary, scripts, comprehension and communication together as you progress from N5 towards advanced Japanese.</p></div><div className="curriculum-grid reveal-group"><div className="curriculum-card"><div className="curriculum-level">Level 01 · N5</div><h3>Foundations</h3><p>Build the base you need to start understanding and using Japanese.</p><ul><li>Hiragana &amp; Katakana</li><li>Basic grammar &amp; sentence patterns</li><li>Greetings &amp; introductions</li><li>Everyday vocabulary</li><li>Basic Kanji &amp; listening</li></ul></div><div className="curriculum-card"><div className="curriculum-level">Level 02 · N4</div><h3>Everyday Japanese</h3><p>Move from basic phrases into more independent everyday communication.</p><ul><li>Expanded grammar &amp; vocabulary</li><li>Daily-life conversations</li><li>Kanji &amp; reading practice</li><li>Listening comprehension</li><li>JLPT / JFT-Basic preparation</li></ul></div><div className="curriculum-card"><div className="curriculum-level">Level 03 · N3</div><h3>Intermediate Bridge</h3><p>Develop longer conversations and wider real-world Japanese.</p><ul><li>Intermediate grammar</li><li>Workplace vocabulary</li><li>Longer reading passages</li><li>Natural conversation practice</li><li>Exam-focused mock practice</li></ul></div><div className="curriculum-card"><div className="curriculum-level">Level 04 · N2</div><h3>Business-Level Japanese</h3><p>Build stronger comprehension and communication for professional environments.</p><ul><li>Advanced grammar &amp; vocabulary</li><li>News &amp; workplace Japanese</li><li>Meetings &amp; professional scenarios</li><li>Formal communication</li><li>JLPT N2 preparation</li></ul></div><div className="curriculum-card"><div className="curriculum-level">Level 05 · N1</div><h3>Advanced Mastery</h3><p>Handle complex written and spoken Japanese with greater accuracy.</p><ul><li>Complex grammar structures</li><li>Advanced Kanji &amp; vocabulary</li><li>Abstract &amp; formal Japanese</li><li>High-level reading &amp; listening</li><li>JLPT N1 preparation</li></ul></div><div className="curriculum-card"><div className="curriculum-level">Beyond N1</div><h3>Business &amp; Keigo</h3><p>Go beyond exam Japanese into professional and high-context communication.</p><ul><li>Keigo &amp; honorific speech</li><li>Business etiquette</li><li>Professional conversations</li><li>Presentation &amp; meeting language</li><li>Executive communication practice</li></ul></div></div></div></section>
 
+
       {sectionFormCta}
 
       {/* ABOUT THE LANGUAGE */}
-      <section className="lang-facts" id="language">
+      {false && <section className="lang-facts" id="language">
         <div className="wrap">
           <div className="lang-inner">
             <div>
@@ -1650,12 +1651,10 @@ export default function LangmaJapaneseCourse() {
             </div>
           </div>
         </div>
-      </section>
-
-      {sectionFormCta}
+      </section>}
 
       {/* WHY CHOOSE US */}
-      <section id="why">
+      {false && <section id="why">
         <div className="wrap">
           <div className="sec-head reveal">
             <h2>Language is the passport.<br />We help you use it.</h2>
@@ -1702,9 +1701,7 @@ export default function LangmaJapaneseCourse() {
             </div>
           </div>
         </div>
-      </section>
-
-      {sectionFormCta}
+      </section>}
 
       {/* MODES */}
       <section className="modes" id="modes">
@@ -1733,6 +1730,8 @@ export default function LangmaJapaneseCourse() {
           </div>
         </div>
       </section>
+
+      {sectionFormCta}
 
       {/* VIDEO TESTIMONIALS & SOCIAL PROOF */}
       <section className="testimonials" id="testimonials">
@@ -1767,6 +1766,8 @@ export default function LangmaJapaneseCourse() {
           </div>
         </div>
       </section>
+
+      {sectionFormCta}
 
       {/* TEACHING METHODOLOGY */}
       <section className="methodology" id="methodology"><div className="wrap"><div className="sec-head reveal"><h2>Not just lessons. A system for learning Japanese.</h2><p>Our approach combines structured instruction with active practice, assessment and real-world application.</p></div><div className="method-grid reveal-group"><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5v-12z"/><path d="M4 17.5A2.5 2.5 0 0 1 6.5 15H20M8 7h7M8 10h7"/></svg></div><div className="step-no">01 / LEARN</div><h3>Understand</h3><p>Learn grammar, vocabulary, scripts and pronunciation through structured lessons.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h5M8 16h6"/></svg></div><div className="step-no">02 / PRACTISE</div><h3>Use it</h3><p>Apply new language through drills, exercises, dialogues and guided activities.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M5 8.5c1.2-2 3.4-3 7-3s5.8 1 7 3"/><path d="M6 10c1.5 1.6 3.5 2.4 6 2.4s4.5-.8 6-2.4"/><path d="M8 15.5c1.1 1 2.4 1.5 4 1.5s2.9-.5 4-1.5"/></svg></div><div className="step-no">03 / SPEAK</div><h3>Communicate</h3><p>Build confidence through conversation, role plays and real-life Japanese scenarios.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M3 10l9-5 9 5-9 5-9-5z"/><path d="M6 12.5V16c1.5 1.5 3.5 2.3 6 2.3s4.5-.8 6-2.3v-3.5"/><path d="M21 10v5"/></svg></div><div className="step-no">04 / CULTURE</div><h3>Experience Japan</h3><p>Learn Japanese etiquette, traditions, festivals, food culture and workplace customs through cultural activities.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19V5M4 19h17"/><path d="M7 15l4-4 3 2 5-6"/><path d="M15 7h4v4"/></svg></div><div className="step-no">05 / ASSESS</div><h3>Measure</h3><p>Use tests and feedback to identify gaps and keep your learning on track.</p></div><div className="method-step"><div className="method-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 19V5M7 10l5-5 5 5"/><path d="M5 19h14"/></svg></div><div className="step-no">06 / PROGRESS</div><h3>Advance</h3><p>Move towards your next level, exam, study route or career objective.</p></div></div></div></section>
@@ -1898,6 +1899,8 @@ export default function LangmaJapaneseCourse() {
           </div>
         </div>
       </section>
+
+      {sectionFormCta}
 
       {/* STUDENT ACTIVITIES / JAPAN CONNECTIONS */}
       <section className="activities" id="activities">
