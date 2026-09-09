@@ -1791,7 +1791,7 @@ export default function LangmaJapaneseCourse() {
           </div>
           <div className="path-grid reveal-group">
             <div className="path-card">
-              <div className="path-photo-wrap"><img className="path-photo" src="Public/images/ssw.jpeg" alt="Sparks flying as a worker welds metal, representing SSW manufacturing roles" loading="lazy" /></div>
+              <div className="path-photo-wrap"><img className="path-photo" src="https://res.cloudinary.com/dzv9zcrlz/image/upload/v1788941070/ssw_wqhvh8.jpg" alt="Sparks flying as a worker welds metal, representing SSW manufacturing roles" loading="lazy" /></div>
               <div className="path-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
               </div>
@@ -1807,7 +1807,7 @@ export default function LangmaJapaneseCourse() {
             </div>
 
             <div className="path-card">
-              <div className="path-photo-wrap"><img className="path-photo" src="/Public/images/Engineers.jpeg" alt="Busy Shibuya crossing at night with neon lights, representing Tokyo's business and tech scene" loading="lazy" /></div>
+              <div className="path-photo-wrap"><img className="path-photo" src="https://res.cloudinary.com/dzv9zcrlz/image/upload/v1788941036/Engineers_imtxk0.jpg" alt="Busy Shibuya crossing at night with neon lights, representing Tokyo's business and tech scene" loading="lazy" /></div>
               <div className="path-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
               </div>
@@ -1823,7 +1823,7 @@ export default function LangmaJapaneseCourse() {
             </div>
 
             <div className="path-card">
-              <div className="path-photo-wrap"><img className="path-photo" src="Public/images/study_in_japan.jpeg" alt="Path through vibrant orange torii gates in Japan" loading="lazy" /></div>
+              <div className="path-photo-wrap"><img className="path-photo" src="https://res.cloudinary.com/dzv9zcrlz/image/upload/v1788941037/study_in_japan_qfx2ha.jpg" alt="Path through vibrant orange torii gates in Japan" loading="lazy" /></div>
               <div className="path-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
               </div>
