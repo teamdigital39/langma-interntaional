@@ -387,6 +387,8 @@ export default function LangmaJapaneseCourse() {
     formData.set("mobile", phoneValue);
     formData.set("currenturl", window.location.href);
     formData.set("language", "Japanese");
+    formData.set("type", "Japanese Landing");
+    formData.set("service", "Language Training - Japanese");
     if (!formData.get("message")) {
       formData.set("message", "Japanese Language Course enquiry");
     }
@@ -503,7 +505,8 @@ export default function LangmaJapaneseCourse() {
           message: typeMessages[requestPopupType] || "Japanese Course Inquiry",
           currenturl: window.location.href,
           language: "Japanese",
-          type: "Japanese Landing - Request Form"
+          type: "Japanese Landing - Request Form",
+          service: "Language Training - Japanese"
         }),
       });
       if (res.ok) {
@@ -1364,6 +1367,8 @@ export default function LangmaJapaneseCourse() {
                 </div>
                 <input type="hidden" name="language" value="Japanese" />
                 <input type="hidden" name="message" value="Japanese Language Course enquiry" />
+                <input type="hidden" name="type" value="Japanese Landing" />
+                <input type="hidden" name="service" value="Language Training - Japanese" />
                 <button type="submit" className="submit-btn" disabled={heroSubmitting}>
                   {heroSubmitting ? "Submitting..." : heroSubmitted ? "Details Requested ✓" : "Get Course Details →"}
                 </button>
@@ -2036,6 +2041,8 @@ export default function LangmaJapaneseCourse() {
                 </div>
                 <input type="hidden" name="language" value="Japanese" />
                 <input type="hidden" name="message" value="Japanese Language Course enquiry" />
+                <input type="hidden" name="type" value="Japanese Landing" />
+                <input type="hidden" name="service" value="Language Training - Japanese" />
                 <button type="submit" className="submit-btn" disabled={submitting}>
                   {submitting ? "Submitting..." : "Get Course Details →"}
                 </button>
