@@ -1544,6 +1544,11 @@ export default function LangmaKoreanCourse() {
             </div>
             <div className="hours-row">
               <div className="hours-level">TOPIK 5</div>
+              <div className="hours-track"><div className="hours-bar" style={{width: '80%'}}></div></div>
+              <div className="hours-value">~50 hrs</div>
+            </div>
+              <div className="hours-row">
+              <div className="hours-level">TOPIK 6</div>
               <div className="hours-track"><div className="hours-bar" style={{width: '100%'}}></div></div>
               <div className="hours-value">~50 hrs</div>
             </div>
