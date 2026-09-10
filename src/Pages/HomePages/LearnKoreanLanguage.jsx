@@ -445,7 +445,8 @@ export default function LangmaKoreanCourse() {
           message: typeMessages[requestPopupType] || "Korean Course Inquiry",
           currenturl: window.location.href,
           language: "Korean",
-          type: "Korean Landing - Request Form"
+          type: "Korean Landing - Request Form",
+          service: KOREAN_FORM_CONFIG.service
         }),
       });
       if (res.ok) {
