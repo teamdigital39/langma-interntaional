@@ -337,7 +337,7 @@ export default function LangmaKoreanCourse() {
       "Thanks! Our counsellor will share the course details shortly. For an instant reply, message us on WhatsApp.";
 
     try {
-      const res = await fetch(`${API_BASE}/apply-submit`, {
+      const res = await fetch(`${API_BASE}/api/apply-submit`, {
         method: "POST",
         body: formData,
       });
