@@ -387,8 +387,6 @@ export default function LangmaJapaneseCourse() {
     formData.set("mobile", phoneValue);
     formData.set("currenturl", window.location.href);
     formData.set("language", "Japanese");
-    formData.set("type", "Japanese Landing");
-    formData.set("service", "Language Training - Japanese");
     if (!formData.get("message")) {
       formData.set("message", "Japanese Language Course enquiry");
     }
@@ -397,7 +395,7 @@ export default function LangmaJapaneseCourse() {
       "Thanks! Our counsellor will share the course details shortly. For an instant reply, message us on WhatsApp.";
 
     try {
-      const res = await fetch(`${API_BASE}/apply-submit`, {
+      const res = await fetch(`${API_BASE}/api/apply-submit`, {
         method: "POST",
         body: formData,
       });
@@ -505,8 +503,7 @@ export default function LangmaJapaneseCourse() {
           message: typeMessages[requestPopupType] || "Japanese Course Inquiry",
           currenturl: window.location.href,
           language: "Japanese",
-          type: "Japanese Landing - Request Form",
-          service: "Language Training - Japanese"
+          type: "Japanese Landing - Request Form"
         }),
       });
       if (res.ok) {
@@ -1305,7 +1302,7 @@ export default function LangmaJapaneseCourse() {
             <div className="hero-stats">
               <div className="stat">
                 <div className="stat-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
-                <div className="stat-text"><b>13+ Yrs</b><span>TEACHING IN {locationProfile.city.toUpperCase()}</span></div>
+                <div className="stat-text"><b>13+ yrs</b><span>TEACHING IN {locationProfile.city.toUpperCase()}</span></div>
               </div>
               <div className="stat">
                 <div className="stat-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
@@ -1367,8 +1364,6 @@ export default function LangmaJapaneseCourse() {
                 </div>
                 <input type="hidden" name="language" value="Japanese" />
                 <input type="hidden" name="message" value="Japanese Language Course enquiry" />
-                <input type="hidden" name="type" value="Japanese Landing" />
-                <input type="hidden" name="service" value="Language Training - Japanese" />
                 <button type="submit" className="submit-btn" disabled={heroSubmitting}>
                   {heroSubmitting ? "Submitting..." : heroSubmitted ? "Details Requested ✓" : "Get Course Details →"}
                 </button>
@@ -2041,8 +2036,6 @@ export default function LangmaJapaneseCourse() {
                 </div>
                 <input type="hidden" name="language" value="Japanese" />
                 <input type="hidden" name="message" value="Japanese Language Course enquiry" />
-                <input type="hidden" name="type" value="Japanese Landing" />
-                <input type="hidden" name="service" value="Language Training - Japanese" />
                 <button type="submit" className="submit-btn" disabled={submitting}>
                   {submitting ? "Submitting..." : "Get Course Details →"}
                 </button>
