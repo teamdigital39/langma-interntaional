@@ -434,7 +434,7 @@ export default function LangmaGermanCourse() {
       travel: "Interested in Travel & Culture Program"
     };
     try {
-      const res = await fetch(`${API_BASE}/apply-submit`, {
+      const res = await fetch(`${API_BASE}/api/apply-submit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
