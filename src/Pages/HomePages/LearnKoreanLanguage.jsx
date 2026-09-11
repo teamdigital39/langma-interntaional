@@ -435,7 +435,7 @@ export default function LangmaKoreanCourse() {
       travel: "Interested in Travel & Culture Program"
     };
     try {
-      const res = await fetch(`${API_BASE}/apply-submit`, {
+      const res = await fetch(`${API_BASE}/api/apply-submit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -1525,32 +1525,27 @@ export default function LangmaKoreanCourse() {
             <div className="hours-row">
               <div className="hours-level">TOPIK 1</div>
               <div className="hours-track"><div className="hours-bar" style={{width: '17%'}}></div></div>
-              <div className="hours-value">~50 hrs</div>
+              <div className="hours-value">~100 hrs</div>
             </div>
             <div className="hours-row">
               <div className="hours-level">TOPIK 2</div>
               <div className="hours-track"><div className="hours-bar" style={{width: '33%'}}></div></div>
-              <div className="hours-value">~50 hrs</div>
+              <div className="hours-value">~100 hrs</div>
             </div>
             <div className="hours-row">
               <div className="hours-level">TOPIK 3</div>
               <div className="hours-track"><div className="hours-bar" style={{width: '50%'}}></div></div>
-              <div className="hours-value">~50 hrs</div>
+              <div className="hours-value">~100 hrs</div>
             </div>
             <div className="hours-row">
               <div className="hours-level">TOPIK 4</div>
               <div className="hours-track"><div className="hours-bar" style={{width: '67%'}}></div></div>
-              <div className="hours-value">~50 hrs</div>
+              <div className="hours-value">~100 hrs</div>
             </div>
             <div className="hours-row">
               <div className="hours-level">TOPIK 5</div>
-              <div className="hours-track"><div className="hours-bar" style={{width: '80%'}}></div></div>
-              <div className="hours-value">~50 hrs</div>
-            </div>
-              <div className="hours-row">
-              <div className="hours-level">TOPIK 6</div>
               <div className="hours-track"><div className="hours-bar" style={{width: '100%'}}></div></div>
-              <div className="hours-value">~50 hrs</div>
+              <div className="hours-value">~100 hrs</div>
             </div>
           </div>
           <p className="hours-note">Figures are commonly cited estimates, not a guarantee. Structured classes, native-speaker practice and consistent weekly hours are what actually move learners along this line faster.</p>
