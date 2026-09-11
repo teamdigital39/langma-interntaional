@@ -336,7 +336,7 @@ export default function LangmaGermanCourse() {
       "Thanks! Our counsellor will share the course details shortly. For an instant reply, message us on WhatsApp.";
 
     try {
-      const res = await fetch(`${API_BASE}/apply-submit`, {
+      const res = await fetch(`${API_BASE}/api/apply-submit`, {
         method: "POST",
         body: formData,
       });
@@ -434,7 +434,7 @@ export default function LangmaGermanCourse() {
       travel: "Interested in Travel & Culture Program"
     };
     try {
-      const res = await fetch(`${API_BASE}/api/apply-submit`, {
+      const res = await fetch(`${API_BASE}/apply-submit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -444,8 +444,7 @@ export default function LangmaGermanCourse() {
           message: typeMessages[requestPopupType] || "German Course Inquiry",
           currenturl: window.location.href,
           language: "German",
-          type: "German Landing - Request Form",
-          service: GERMAN_FORM_CONFIG.service
+          type: "German Landing - Request Form"
         }),
       });
       if (res.ok) {
@@ -1527,32 +1526,27 @@ export default function LangmaGermanCourse() {
             <div className="hours-row">
               <div className="hours-level">A1</div>
               <div className="hours-track"><div className="hours-bar" style={{width: '17%'}}></div></div>
-              <div className="hours-value">~50 hrs</div>
+              <div className="hours-value">~100 hrs</div>
             </div>
             <div className="hours-row">
               <div className="hours-level">A2</div>
               <div className="hours-track"><div className="hours-bar" style={{width: '33%'}}></div></div>
-              <div className="hours-value">~50 hrs</div>
+              <div className="hours-value">~100 hrs</div>
             </div>
             <div className="hours-row">
               <div className="hours-level">B1</div>
               <div className="hours-track"><div className="hours-bar" style={{width: '50%'}}></div></div>
-              <div className="hours-value">~50 hrs</div>
+              <div className="hours-value">~100 hrs</div>
             </div>
             <div className="hours-row">
               <div className="hours-level">B2</div>
               <div className="hours-track"><div className="hours-bar" style={{width: '67%'}}></div></div>
-              <div className="hours-value">~50 hrs</div>
-            </div>
-               <div className="hours-row">
-              <div className="hours-level">C1</div>
-              <div className="hours-track"><div className="hours-bar" style={{width: '80%'}}></div></div>
-              <div className="hours-value">~50 hrs</div>
+              <div className="hours-value">~100 hrs</div>
             </div>
             <div className="hours-row">
-              <div className="hours-level">C2</div>
+              <div className="hours-level">C1</div>
               <div className="hours-track"><div className="hours-bar" style={{width: '100%'}}></div></div>
-              <div className="hours-value">~50 hrs</div>
+              <div className="hours-value">~100 hrs</div>
             </div>
           </div>
           <p className="hours-note">Figures are commonly cited estimates, not a guarantee. Structured classes, native-speaker practice and consistent weekly hours are what actually move learners along this line faster.</p>
