@@ -336,7 +336,7 @@ export default function LangmaGermanCourse() {
       "Thanks! Our counsellor will share the course details shortly. For an instant reply, message us on WhatsApp.";
 
     try {
-      const res = await fetch(`${API_BASE}/api/apply-submit`, {
+      const res = await fetch(`${API_BASE}/api/contact-lead`, {
         method: "POST",
         body: formData,
       });
@@ -434,7 +434,7 @@ export default function LangmaGermanCourse() {
       travel: "Interested in Travel & Culture Program"
     };
     try {
-      const res = await fetch(`${API_BASE}/api/apply-submit`, {
+      const res = await fetch(`${API_BASE}/api/contact-lead`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
