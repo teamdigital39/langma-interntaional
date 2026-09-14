@@ -128,7 +128,7 @@ const STANDALONE_LANDING_ROUTES = [
   "/learn-korean-language",
   "/learn-japanese-language",
   "/translation-services",
-  "learn-french-language"
+  "/learn-french-language"
 ];
 
 function App() {
