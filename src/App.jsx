@@ -119,7 +119,7 @@ import AboutLangma from "./Pages/HomePages/Aboutus";
 import LearnGermanLanguage from "./Pages/HomePages/LearnGermanLanguage";
 import LearnKoreanLanguage from "./Pages/HomePages/LearnKoreanLanguage";
 import LearnJapaneseLanguage from "./Pages/HomePages/LearnJapaneseLanguage";
-import LearnFrenchCourse from "./Pages/HomePages/LearnFrenchCourse";
+import LangmaFrenchCourse from "./Pages/HomePages/LangmaFrenchCourse";
 import TranslationServices from "./Pages/HomePages/TranslationServices";
 import HomeLangma from "./Pages/HomePages/Homepage";
 
@@ -267,7 +267,7 @@ function App() {
           <Route path="/learn-german-language" element={<LearnGermanLanguage />} />
           <Route path="/learn-korean-language" element={<LearnKoreanLanguage />} />
           <Route path="/learn-japanese-language" element={<LearnJapaneseLanguage />} />
-          <Route path="/learn-french-language" element={<LearnFrenchCourse />} />
+          <Route path="/learn-french-language" element={<LangmaFrenchCourse />} />
 
           <Route path="/translation-services" element={<TranslationServices />} />
           <Route path="/:slug" element={<Arabic/>} />
