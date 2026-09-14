@@ -6,7 +6,7 @@ const ACTIVITIES = [
     title: "Celebrating French Progress",
     tag: "Achievement",
     text: "From learning basic greetings to speaking with confidence, every class and practice session brought our students one step closer to their French language goals.",
-    image: "https://www.langmainternational.com/images/french-1.jpg",
+    image: "https://res.cloudinary.com/dzv9zcrlz/image/upload/v1789381673/french-1_jkkdxy.jpg",
     alt: "French language student receiving a certificate at Langma",
   },
 
@@ -14,7 +14,7 @@ const ACTIVITIES = [
     title: "Hard Work Pays Off",
     tag: "Success",
     text: "The journey to learning French takes consistency and dedication. Our students' achievements reflect the effort, practice and commitment they put into every step.",
-    image: "https://www.langmainternational.com/images/french-2.jpg",
+    image: "https://res.cloudinary.com/dzv9zcrlz/image/upload/v1789381673/french-2_y2pflj.jpg",
     alt: "French language student receiving a certificate for their achievement at Langma",
   },
 
@@ -22,7 +22,7 @@ const ACTIVITIES = [
     title: "More Than a Certificate",
     tag: "Milestone",
     text: "Every certificate represents more than a result. It reflects growing confidence, stronger language skills and new opportunities to connect with the French-speaking world.",
-    image: "https://www.langmainternational.com/images/french-3.jpg",
+    image: "https://res.cloudinary.com/dzv9zcrlz/image/upload/v1789381674/french-3_okuhkk.jpg",
     alt: "French language student celebrating a certificate achievement at Langma",
   },
 
@@ -30,7 +30,7 @@ const ACTIVITIES = [
     title: "One Level at a Time",
     tag: "Learning",
     text: "Every new level is a milestone built through patience, practice and passion. We are proud to celebrate our students as they continue progressing in French.",
-    image: "https://www.langmainternational.com/images/french-4.jpg",
+    image: "https://res.cloudinary.com/dzv9zcrlz/image/upload/v1789381674/french-4_h36dwd.jpg",
     alt: "French language student receiving a certificate after completing a French language level",
   },
 ];
