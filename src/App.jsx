@@ -120,6 +120,8 @@ import LearnGermanLanguage from "./Pages/HomePages/LearnGermanLanguage";
 import LearnKoreanLanguage from "./Pages/HomePages/LearnKoreanLanguage";
 import LearnJapaneseLanguage from "./Pages/HomePages/LearnJapaneseLanguage";
 import LangmaFrenchCourse from "./Pages/HomePages/LangmaFrenchCourse";
+import LangmaChineseCourse from "./Pages/HomePages/LangmaChineseCourse"
+
 import TranslationServices from "./Pages/HomePages/TranslationServices";
 import HomeLangma from "./Pages/HomePages/Homepage";
 
@@ -128,7 +130,8 @@ const STANDALONE_LANDING_ROUTES = [
   "/learn-korean-language",
   "/learn-japanese-language",
   "/translation-services",
-  "/learn-french-language"
+  "/learn-french-language",
+  "/learn-chinese-language"
 ];
 
 function App() {
@@ -269,6 +272,7 @@ function App() {
           <Route path="/learn-korean-language" element={<LearnKoreanLanguage />} />
           <Route path="/learn-japanese-language" element={<LearnJapaneseLanguage />} />
           <Route path="/learn-french-language" element={<LangmaFrenchCourse />} />
+        <Route path="/learn-chinese-language" element={<LangmaChineseCourse />} />
 
           <Route path="/translation-services" element={<TranslationServices />} />
           <Route path="/:slug" element={<Arabic/>} />
