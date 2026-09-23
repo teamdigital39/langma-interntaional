@@ -124,15 +124,66 @@ import LangmaChineseCourse from "./Pages/HomePages/LangmaChineseCourse"
 
 import TranslationServices from "./Pages/HomePages/TranslationServices";
 import HomeLangma from "./Pages/HomePages/Homepage";
+import SuccessStories from "./Pages/HomePages/SuccessStories";
+import {
+  GOOGLE_ADS_ID,
+  GOOGLE_ANALYTICS_ID,
+  GTM_ID,
+  STANDALONE_LANDING_ROUTES,
+} from "./standaloneLandingRoutes";
 
-const STANDALONE_LANDING_ROUTES = [
-  "/learn-german-language",
-  "/learn-korean-language",
-  "/learn-japanese-language",
-  "/translation-services",
-  "/learn-french-language",
-  "/learn-chinese-language"
-];
+function StandaloneLandingGtm() {
+  useEffect(() => {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      "gtm.start": new Date().getTime(),
+      event: "gtm.js",
+    });
+
+    const existingGtmScript = document.querySelector(`script[data-gtm-id="${GTM_ID}"]`);
+    if (!existingGtmScript) {
+      const gtmScript = document.createElement("script");
+      gtmScript.async = true;
+      gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
+      gtmScript.setAttribute("data-gtm-id", GTM_ID);
+      document.head.appendChild(gtmScript);
+    }
+
+    window.gtag = window.gtag || function gtag() {
+      window.dataLayer.push(arguments);
+    };
+
+    const existingAdsScript = document.querySelector(
+      `script[data-google-ads-id="${GOOGLE_ADS_ID}"]`
+    );
+    if (!existingAdsScript) {
+      const adsScript = document.createElement("script");
+      adsScript.async = true;
+      adsScript.src = `https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}`;
+      adsScript.setAttribute("data-google-ads-id", GOOGLE_ADS_ID);
+      document.head.appendChild(adsScript);
+    }
+
+    if (!window.__langmaTrackingConfigured) {
+      window.gtag("js", new Date());
+      window.gtag("config", GOOGLE_ADS_ID);
+      window.gtag("config", GOOGLE_ANALYTICS_ID);
+      window.__langmaTrackingConfigured = true;
+    }
+  }, []);
+
+  return (
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+        height="0"
+        width="0"
+        style={{ display: "none", visibility: "hidden" }}
+        title="Google Tag Manager"
+      />
+    </noscript>
+  );
+}
 
 function App() {
   const location = useLocation();
@@ -154,6 +205,7 @@ function App() {
       <ScrollToTop />
       {!isStandaloneLanding && <FloatingCallButton />}
       {!isStandaloneLanding && loading && <Loader />}
+      {isStandaloneLanding && <StandaloneLandingGtm />}
 
       <Routes>
           {/* <Route path="/" element={<HeroSection />} /> */}
@@ -210,6 +262,7 @@ function App() {
           <Route path="/aust" element={<Australia/>} />
           <Route path="/america" element={<America/>} />
           <Route path="/blog" element={<BlogPage/>} />
+          <Route path="/success-stories" element={<SuccessStories />} />
           <Route path="/blog-detail/:slug" element={<BlogDetailPage />} />
           {/* <Route path="/poland" element={<Poland/>} /> */}
           <Route path="/contact" element={<ContactUs/>} />
