@@ -444,9 +444,9 @@ export default function TranslationServices() {
               </div>
               <div className="col-xl-7 wow fadeInRight" data-wow-delay="0.3s">
                 <h5 className="sub-title pe-3">About Langma</h5>
-                <h1 className="display-5 mb-4">
+                <h2 className="display-5 mb-4">
                   You Have Reached The Translation Experts
-                </h1>
+                </h2>
                 <p className="mb-4" style={{ color: "black" }}>
                   Our team of highly skilled language professionals is dedicated to
                   delivering top-quality translations on time, every time. With a
@@ -459,7 +459,7 @@ export default function TranslationServices() {
                       <div className="mb-2">
                         <i className="fas fa-language fa-4x text-primary" />
                       </div>
-                      <h1 className="display-5 fw-bold mb-2">13+</h1>
+                      <div className="display-5 fw-bold mb-2" aria-label="13 plus years of experience">13+</div>
                       <p className="text-muted mb-0">Years of Experience</p>
                     </div>
                   </div>
