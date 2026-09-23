@@ -398,7 +398,7 @@ export default function HomeLangma() {
     <>
       <Helmet>
         <title>
-          50+ Language Courses, Career & Global Opportunities | Langma
+          Foreign Language Institute in Delhi & Online | Langma International
         </title>
         <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
         <meta
@@ -1178,7 +1178,7 @@ export default function HomeLangma() {
                 ))}
               </div>
               <Reveal style={{ textAlign: "center", marginTop: "32px" }}>
-                <a href="#insights" className="btn">View Success Stories</a>
+                <Link to="/success-stories" className="btn">View Success Stories</Link>
               </Reveal>
             </div>
           </section>
