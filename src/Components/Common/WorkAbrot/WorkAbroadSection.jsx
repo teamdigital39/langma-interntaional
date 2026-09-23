@@ -2,7 +2,7 @@ import React from "react";
 
 const WorkAbroadSection = () => {
   return (
-    <section className="w-full bg-gradient-to-br from-[#F4FEFF] to-white py-20">
+    <section id="work-abroad-overview" className="w-full bg-gradient-to-br from-[#F4FEFF] to-white py-20">
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           
@@ -13,19 +13,20 @@ const WorkAbroadSection = () => {
             </h3>
 
             <h2 className="text-[20px] md:text-[26px] font-semibold text-[#0E2A46] mb-5 leading-snug">
-              Your Dream Job Overseas Starts With the Right Guidance
+              Your dream job overseas starts with the right guidance.
             </h2>
 
             <p className="text-[#0E2A46] text-[16px] md:text-[18px] mb-4 leading-relaxed">
-              Many people want to work abroad but don’t know where to start.
-              Confusing visa rules, fake job offers, rejected applications —
-              these fears stop thousands from taking the first step.
+              Working abroad can feel overwhelming when job requirements, visa rules,
+              and application steps are unclear. The right preparation helps you make
+              informed decisions and avoid costly mistakes.
             </p>
 
             <p className="text-gray-600 text-sm md:text-base leading-relaxed">
-              At Langma International, we make your overseas job journey simple,
-              honest, and clear. From finding the right job to helping you apply
-              for your work visa, we stay with you at every stage.
+              Langma International helps you understand your options and prepare for
+              the next step—from profile assessment and job-search direction to
+              language, interview, and work-visa readiness. Our support is available
+              online and offline, based on your goals and stage of preparation.
             </p>
 
             <div className="mt-6 w-24 h-1 bg-[#80CBC4] rounded-full"></div>

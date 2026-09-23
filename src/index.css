@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap');
 @import "tailwindcss";
 
 @tailwind base;
@@ -14,11 +15,63 @@ html, body {
   box-sizing: border-box;
 }
 
+body,
+#root,
+main,
+section,
+article,
+header,
+footer {
+  min-width: 0;
+}
+
+img,
+video,
+svg,
+canvas,
+iframe,
+embed,
+object {
+  max-width: 100%;
+}
+
+iframe,
+embed,
+object {
+  border: 0;
+}
+
+input,
+textarea,
+select,
+button {
+  max-width: 100%;
+}
+
+pre,
+code {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+table {
+  max-width: 100%;
+}
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 body{
   font-family: "Roboto", sans-serif;
+}
+
+.langma-display-title {
+  font-family: "Roboto", sans-serif;
+  font-size: clamp(34px, 5vw, 56px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
 }
 
 .scrollbar-hide {

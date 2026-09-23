@@ -3,27 +3,27 @@ import React from "react";
 const services = [
   {
     title: "Overseas Job Search",
-    // desc: "We connect you with genuine employers and verified overseas job openings that match your skills and experience.",
+    desc: "Understand suitable roles, destinations, and application requirements before you apply.",
     img: "/images/Group 4462.png",
   },
   {
-    title: "Work Visa Assistance",
-    // desc: "Complete support for documentation, filing, and approval for your work visa.",
+    title: "Work Visa Guidance",
+    desc: "Prepare the documents and next steps relevant to your employer and visa route.",
     img: "/images/work-visa.png",
   },
   {
-    title: "Profile Assessment & Resume Support",
-    // desc: "We evaluate your profile and build a professional resume that stands out.",
+    title: "Profile & Resume Support",
+    desc: "Present your skills, experience, and qualifications clearly for international opportunities.",
     img: "/images/resume1.png",
   },
   {
     title: "Interview Preparation",
-    // desc: "Mock interviews and expert guidance to help you crack overseas interviews.",
+    desc: "Build confidence with role-focused practice and practical interview guidance.",
     img: "/images/interview.png",
   },
   {
-    title: "After-Landing Support",
-    // desc: "Assistance with accommodation, local guidance, and settling abroad smoothly.",
+    title: "Relocation Guidance",
+    desc: "Plan the practical next steps for your move and understand what to prepare before departure.",
     img: "/images/support.png",
   },
 ];
@@ -38,8 +38,7 @@ const WhatWeHelpYouWith = () => {
             What We Help You With
           </h2>
           <p className="text-[#0E2A46] mt-2 text-[20px] lg:text-[25px] md:text-base">
-            Guiding you through every step of your study abroad journey with
-            care.
+            Practical guidance for each stage of your work-abroad preparation.
           </p>
         </div>
 

@@ -15,7 +15,7 @@ const WhyLangmaSection = () => {
             >
               <img
                 src="/images/png-study-usa-education-photo-collage-transparent-background 1.png"
-                alt="Study Abroad"
+                alt="Professionals preparing for international careers"
                 className="w-full h-full object-contain"
               />
             </div>

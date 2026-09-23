@@ -21,8 +21,9 @@ const JobsWeAssistWith = () => {
               Jobs We Assist With
             </h2>
 
-            <p className="text-[#0E2A46] mb-5">
-              We regularly work with opportunities in
+            <p className="text-[#0E2A46] mb-5 leading-relaxed">
+              Explore preparation support for roles across a range of industries.
+              Availability and requirements vary by destination, employer, and profile.
             </p>
 
             <ul className="space-y-3">
