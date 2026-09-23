@@ -37,14 +37,21 @@ const OurPromise = () => {
             </h3>
 
             <h2 className="text-[22px] md:text-[26px] font-semibold mb-5 text-[#296166] leading-snug">
-              We believe trust is more important than business.
+              Clear advice. Practical preparation. No false promises.
             </h2>
 
             <p className="text-[16px] md:text-[18px] leading-relaxed text-[#0E2A46]">
-              At Langma International, we keep everything transparent — from
-              your chances of selection to the real process timeline. 
-              If something is not possible, we tell you honestly.
+              Your options, requirements, expected steps, and realistic timelines
+              should be easy to understand. We explain what we know, highlight what
+              still needs to be verified, and tell you honestly when a route may not
+              be suitable for your profile.
             </p>
+
+            <ul className="mt-6 space-y-3 text-[15px] text-[#0E2A46] md:text-base">
+              <li className="flex items-start gap-3"><span className="mt-1 text-[#16856F]">✓</span><span>Transparent guidance at every stage</span></li>
+              <li className="flex items-start gap-3"><span className="mt-1 text-[#16856F]">✓</span><span>Support shaped around your goals and readiness</span></li>
+              <li className="flex items-start gap-3"><span className="mt-1 text-[#16856F]">✓</span><span>Honest communication when requirements or outcomes are uncertain</span></li>
+            </ul>
 
             {/* Decorative Line */}
             <div className="mt-6 w-20 h-1 bg-[#80CBC4] rounded-full"></div>
