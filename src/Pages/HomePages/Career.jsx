@@ -340,7 +340,7 @@ Langma is where your journey begins.
             </div>
             <div className='flex'>
               <img src="/images/cr51.svg" className='mr-4' alt="" />
-            <li>Fill in your details and upload your résumé</li>
+            <li>Share your background, experience, and résumé details</li>
             </div>
             <div className='flex'>
               <img src="/images/cr51.svg" className='mr-4' alt="" />
