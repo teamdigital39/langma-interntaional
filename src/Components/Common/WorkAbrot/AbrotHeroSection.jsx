@@ -13,7 +13,7 @@ import JobsWeAssistWith from "./JobsWeAssistWith";
 import CTASection from "../CTASection";
 import BlogSection from "../../../Pages/HomePages/BlogSection";
 import LangmaSection from "../../../Pages/HomePages/LangmaSection";
-import FAQ from "../../../Pages/HomePages/FAQ";
+import WorkAbroadFAQ from "./WorkAbroadFAQ";
 // import ContactForm from "../../../Pages/HomePages/ContactForm";
 import ConnectedSection from "../../../Pages/HomePages/ConnectedSection";
 import PopupForm from "../../PopupForm";
@@ -64,25 +64,66 @@ const AbrotHeroSection = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <section className="relative w-full overflow-hidden bg-[#F7FAFC] mx-auto">
-       <div className="w-full  grid grid-cols-1 h-[150px] md:h-[300px] lg:h-[400px] xl:h-[600px]">
-  <div
-    className="relative w-full"
-    style={{
-      backgroundImage: "url('/images/wabb.png')", 
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
-  >
-    <div className="absolute bottom-0 md:bottom-8 ml-5 md:ml-20">
-      <button onClick={() => setOpen(!open)} className="cursor-pointer inline-flex items-center gap-2 bg-[#006064] text-white px-3 py-1 md:px-8 md:py-3 rounded-full text-sm font-medium hover:bg-[#17a398] transition shadow-lg">
-        Let’s Connect →
-      </button>
-    </div>
-  </div>
-</div>
-
+      <section className="relative overflow-hidden bg-white">
+        <div className="relative min-h-[540px] bg-white lg:min-h-[650px]">
+          <div className="absolute inset-y-12 right-0 w-2/5 rounded-l-full bg-gradient-to-l from-[#E6F7F6] to-transparent opacity-80" aria-hidden="true" />
+          <div className="relative mx-auto flex min-h-[540px] max-w-7xl flex-col items-center justify-between gap-12 px-4 py-16 sm:px-6 lg:min-h-[650px] lg:flex-row lg:px-10 lg:py-20">
+            <div className="w-full max-w-3xl text-[#1B2B28] lg:w-[58%]">
+              <p className="mb-5 inline-flex rounded-full border border-[#2FC7A1]/40 bg-[#E9F1EE] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#296166]">
+                Work Abroad · Langma International
+              </p>
+              <h1 className="langma-display-title max-w-3xl text-[#296166]">
+                Build your international career with confidence.
+              </h1>
+              <p className="mt-6 max-w-2xl text-base leading-8 text-[#4C5C58] sm:text-lg">
+                Get practical language, career, application, and destination guidance for your overseas job journey — with support designed for both online and offline learners.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <button
+                  type="button"
+                  onClick={() => setOpen(true)}
+                  className="inline-flex items-center rounded-full bg-[#1A2540] px-7 py-3.5 font-bold text-white shadow-lg transition hover:bg-[#243160]"
+                >
+                  Start your journey <span className="ml-2">→</span>
+                </button>
+                <a
+                  href="#work-abroad-overview"
+                  className="inline-flex items-center rounded-full border-2 border-[#2FC7A1] px-7 py-3.5 font-semibold text-[#1A2540] transition hover:bg-[#E6F8F3]"
+                >
+                  Explore the process
+                </a>
+              </div>
+              <div className="mt-10 grid max-w-2xl grid-cols-1 gap-3 sm:grid-cols-3">
+                {[
+                  ["01", "Prepare", "Language and interview readiness"],
+                  ["02", "Plan", "Clear route and destination guidance"],
+                  ["03", "Move", "Support from application to arrival"],
+                ].map(([number, title, text]) => (
+                  <div key={number} className="rounded-2xl border border-[#2FC7A1]/20 bg-[#F5F8F6] p-4 shadow-sm">
+                    <span className="text-xs font-bold text-[#296166]">{number}</span>
+                    <h2 className="mt-2 text-base font-bold text-[#296166]">{title}</h2>
+                    <p className="mt-1 text-xs leading-5 text-[#4C5C58]">{text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative mt-2 w-full max-w-[430px] lg:mt-0 lg:w-[36%]">
+              <div className="absolute -inset-4 rounded-[2rem] border border-[#2FC7A1]/25" aria-hidden="true" />
+              <div className="relative overflow-hidden rounded-[2rem] border border-[#2FC7A1]/20 bg-[#F5F8F6] p-3 shadow-[0_30px_70px_-30px_rgba(6,40,37,0.35)]">
+                <img
+                  src="/images/Global Careers.png"
+                  alt="Professionals exploring global career opportunities"
+                  className="h-[300px] w-full rounded-[1.4rem] object-cover lg:h-[390px]"
+                  loading="eager"
+                />
+                <div className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white/20 bg-[#1A2540]/90 px-4 py-3 text-white shadow-lg">
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#A8F2D8]">Global career support</p>
+                  <p className="mt-1 text-sm font-semibold">Prepare with a clearer route forward.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
       {/* <StatsCards /> */}
       
@@ -165,7 +206,7 @@ const AbrotHeroSection = () => {
           </Swiper>
         </div>
       </div>
-      <FAQ />
+      <WorkAbroadFAQ />
       <ConnectedSection />
       {/* <ContactForm /> */}
       <PopupForm open={open} onClose={() => setOpen(false)} />
