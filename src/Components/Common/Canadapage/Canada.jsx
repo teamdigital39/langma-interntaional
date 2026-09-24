@@ -72,7 +72,7 @@ const Canada = () => {
       )}
 
       {(activeTab === null || activeTab === "investment") && (
-        <FAQ />
+        <FAQ section="golden-visa" />
       )}
    <PopupForm open={open} onClose={() => setOpen(false)} />
     </>
