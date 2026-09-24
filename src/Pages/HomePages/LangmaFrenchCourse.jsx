@@ -1220,16 +1220,6 @@ export default function LangmaFrenchCourse() {
         </div>
       </header>
 
-      {/* TOPBAR */}
-      <div className="topbar">
-        <div className="wrap">
-          <div className="topbar-links">
-            <a href="tel:+919810117094">📞 +91-98101-17094</a>
-            <a href="https://maps.app.goo.gl/NoVexf8RiHPrtW6D7" target="_blank" rel="noopener">📍 {locationProfile.area}, {locationProfile.city}</a>
-          </div>
-        </div>
-      </div>
-
       {/* HERO */}
       <section className="hero">
         <div className="hero-photo" aria-hidden="true"></div>
@@ -2012,9 +2002,9 @@ export default function LangmaFrenchCourse() {
           <div className="footer-grid">
             <div className="footer-brand"><img src="https://www.langmainternational.com/images/ftrnlg.png" alt="Langma International" className="footer-logo" />
             <br /><div className="fr-motto">Learn French. Understand France. Build Your Future.</div><p>Learn French with structured A1–C2 learning, practical communication, cultural activities and France-focused counselling.</p></div>
-            <div className="footer-col"><h4>Learn</h4><a href="#course-details">French Course</a><a href="#skills">What You Learn</a><a href="#methodology">Teaching Method</a><a href="#batches">Batches</a></div>
-            <div className="footer-col"><h4>France</h4><a href="#activities">Student Activities</a><a href="#pathways">France Pathways</a><a href="#careers">Career Opportunities</a><a href="#exam-guide">DELF / TCF / DFP</a></div>
-            <div className="footer-col"><h4>Contact</h4><a href="tel:+919810117094">+91-98101-17094</a><a href="https://maps.app.goo.gl/NoVexf8RiHPrtW6D7" target="_blank" rel="noopener">{locationProfile.area}, {locationProfile.city}</a><a href="#contact">Free Counselling</a></div>
+            <div className="footer-col"><h4>Start Here</h4><a href="#contact">Book a Free Demo</a></div>
+            <div className="footer-col"><h4>Contact</h4><a href="tel:+919810117094">+91-98101-17094</a><a href="https://wa.me/919810117094" target="_blank" rel="noopener">Chat on WhatsApp</a><a href="https://maps.app.goo.gl/NoVexf8RiHPrtW6D7" target="_blank" rel="noopener">{locationProfile.area}, {locationProfile.city}</a></div>
+            <div className="footer-col"><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms-and-conditions">Terms and Conditions</a></div>
           </div>
           <div className="footer-bottom"><span>© {new Date().getFullYear()} Langma International Pvt. Ltd.</span><span>FRENCH LANGUAGE · {locationProfile.city.toUpperCase()}</span></div>
         </div>

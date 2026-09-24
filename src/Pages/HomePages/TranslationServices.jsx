@@ -349,15 +349,9 @@ export default function TranslationServices() {
               className={`collapse navbar-collapse${navOpen ? " show" : ""}`}
             >
               <div className="navbar-nav ms-auto py-0">
-                <Link to="/" className="nav-link active" onClick={() => setNavOpen(false)}>
-                  Home
-                </Link>
-                <Link to="/about" className="nav-link" onClick={() => setNavOpen(false)}>
-                  About
-                </Link>
-                <Link to="/contact" className="nav-link" onClick={() => setNavOpen(false)}>
-                  Contact
-                </Link>
+                <a href="#contact-form" className="btn btn-primary rounded-pill py-2 px-4" onClick={() => setNavOpen(false)}>
+                  Get a Free Quote
+                </a>
               </div>
             </div>
           </nav>
@@ -583,90 +577,9 @@ export default function TranslationServices() {
           </div>
         </div>
 
-        <div className="container-fluid footer py-2 wow fadeIn" data-wow-delay="0.2s">
-          <div className="container py-3">
-            <div className="row g-3">
-              <div className="col-md-6 col-lg-6 col-xl-3">
-                <div className="footer-item d-flex flex-column">
-                  <h4 className="text-secondary mb-2" style={{ fontSize: "1.1rem" }}>
-                    Contact Info
-                  </h4>
-                  <a
-                    href="https://maps.app.goo.gl/NoVexf8RiHPrtW6D7"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ fontSize: "0.9rem" }}
-                  >
-                    <i className="fa fa-map-marker-alt me-1" />
-                    E-73 Part 1, South Extension I, Block E, New Delhi, Delhi 110049
-                  </a>
-                  <a href="mailto:info@langmainternational.com" style={{ fontSize: "0.9rem" }}>
-                    <i className="fas fa-envelope me-1" />
-                    info@langmainternational.com
-                  </a>
-                  <a href="tel:9810117094" style={{ fontSize: "0.9rem" }}>
-                    <i className="fas fa-phone me-1" />
-                    +91-9810117094
-                  </a>
-                  <br />
-                  <div className="d-flex align-items-center">
-                    <a
-                      className="btn mx-1"
-                      href="https://www.facebook.com/officiallangma"
-                      style={{
-                        backgroundColor: "#3b5998",
-                        color: "white",
-                        fontSize: "1.5rem",
-                        padding: "0.5rem",
-                      }}
-                    >
-                      <i className="fab fa-facebook-f" />
-                    </a>
-                    <a
-                      className="btn mx-1"
-                      href="https://twitter.com/official_langma"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        backgroundColor: "#1DA1F2",
-                        color: "white",
-                        fontSize: "1.5rem",
-                        padding: "0.5rem",
-                      }}
-                    >
-                      <img
-                        src={img("twitter-x.svg")}
-                        alt="Twitter"
-                        style={{ width: 18, height: 18 }}
-                      />
-                    </a>
-                    <a
-                      className="btn mx-1"
-                      href="https://www.instagram.com/officiallangma/"
-                      style={{
-                        backgroundColor: "#C13584",
-                        color: "white",
-                        fontSize: "1.5rem",
-                        padding: "0.5rem",
-                      }}
-                    >
-                      <i className="fab fa-instagram" />
-                    </a>
-                    <a
-                      className="btn mx-1"
-                      href="https://www.linkedin.com/school/langma-international"
-                      style={{
-                        backgroundColor: "#0077B5",
-                        color: "white",
-                        fontSize: "1.5rem",
-                        padding: "0.5rem",
-                      }}
-                    >
-                      <i className="fab fa-linkedin-in" />
-                    </a>
-                  </div>
-                </div>
-              </div>
+        <section className="translation-contact-section py-5" id="contact">
+          <div className="container py-4">
+            <div className="row justify-content-center">
               <div className="col-md-6 col-lg-6 col-xl-3 offset-xl-6">
                 <div className="footer-item">
                   <div
@@ -733,6 +646,40 @@ export default function TranslationServices() {
                       )}
                     </form>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="container-fluid footer py-4 wow fadeIn" data-wow-delay="0.2s">
+          <div className="container py-3">
+            <div className="row g-4 align-items-start">
+              <div className="col-md-6 col-lg-3">
+                <div className="footer-item d-flex flex-column">
+                  <img src={SITE_LOGO} alt="Langma International" width="160" height="46" className="mb-3" />
+                  <p className="mb-0">Professional translation support for businesses, institutions and individuals.</p>
+                </div>
+              </div>
+              <div className="col-md-6 col-lg-3">
+                <div className="footer-item d-flex flex-column">
+                  <h4 className="text-secondary mb-2" style={{ fontSize: "1.1rem" }}>Start Here</h4>
+                  <a href="#contact-form">Get a Free Quote</a>
+                </div>
+              </div>
+              <div className="col-md-6 col-lg-3">
+                <div className="footer-item d-flex flex-column">
+                  <h4 className="text-secondary mb-2" style={{ fontSize: "1.1rem" }}>Contact</h4>
+                  <a href="mailto:info@langmainternational.com">info@langmainternational.com</a>
+                  <a href="tel:+919810117094">+91-98101-17094</a>
+                  <a href="https://wa.me/919810117094" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+                </div>
+              </div>
+              <div className="col-md-6 col-lg-3">
+                <div className="footer-item d-flex flex-column">
+                  <h4 className="text-secondary mb-2" style={{ fontSize: "1.1rem" }}>Legal</h4>
+                  <Link to="/privacy-policy">Privacy Policy</Link>
+                  <Link to="/terms-and-conditions">Terms and Conditions</Link>
                 </div>
               </div>
             </div>

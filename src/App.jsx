@@ -188,7 +188,8 @@ function StandaloneLandingGtm() {
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
-  const isStandaloneLanding = STANDALONE_LANDING_ROUTES.includes(location.pathname);
+  const normalizedPathname = location.pathname.replace(/\/+$/, "") || "/";
+  const isStandaloneLanding = STANDALONE_LANDING_ROUTES.includes(normalizedPathname);
 
   // Show branded loader only on first paint — not on every Link navigation
   useEffect(() => {
