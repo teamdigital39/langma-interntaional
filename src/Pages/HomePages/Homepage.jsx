@@ -141,30 +141,30 @@ function ConnectForm() {
 const ECOSYSTEM = [
   {
     icon: (<><rect x="3" y="5" width="18" height="12" rx="2" /><path d="M8 17l-2 4v-4" /></>),
-    title: "Global Language Learning",
-    short: "Learning",
-    body: "Build language proficiency, communication skills, and cultural intelligence through industry-focused language training and certification programs.",
+    title: "Foreign Language Courses",
+    short: "Languages",
+    body: "Learn 50+ foreign languages through online and classroom language courses, corporate training, and internationally recognised exam preparation.",
     img: "/images/Global Learning.png",
   },
   {
     icon: (<><path d="M12 4L3 9l9 5 9-5-9-5z" /><path d="M7 11.5V16c0 1.4 2.5 2.5 5 2.5s5-1.1 5-2.5v-4.5" /></>),
-    title: "Global Education",
-    short: "Education",
-    body: "Access world-class education opportunities through expert guidance on admissions, scholarships, student visas, and academic pathways.",
+    title: "Study Abroad Consultancy",
+    short: "Study Abroad",
+    body: "Get study abroad guidance for university admissions, scholarships, student visas, and international education pathways.",
     img: "/images/Global education.png",
   },
   {
     icon: (<><rect x="3" y="8" width="18" height="12" rx="2" /><path d="M8 8V6a2 2 0 012-2h4a2 2 0 012 2v2" /><path d="M3 13h18" /></>),
-    title: "Global Careers",
-    short: "Careers",
-    body: "Prepare for international employment through career readiness programs, recruitment support, language preparation, and professional mobility solutions.",
+    title: "Overseas Jobs & Careers",
+    short: "Overseas Jobs",
+    body: "Prepare for jobs abroad through overseas recruitment, career guidance, language preparation, and international employment support.",
     img: "/images/Global Careers.png",
   },
   {
     icon: (<><path d="M22 2L11 13" /><path d="M22 2l-7 20-4-9-9-4z" /></>),
-    title: "Global Mobility",
-    short: "Mobility",
-    body: "Explore residency, immigration, PR pathways, Golden Visa opportunities, and international mobility solutions with confidence.",
+    title: "Golden Visa & PR Consultancy",
+    short: "Golden Visa",
+    body: "Explore Golden Visa, permanent residency, immigration, and residency-by-investment pathways for international mobility.",
     img: "/images/Global Mobility.png",
   },
   {
@@ -235,22 +235,22 @@ const WHY_LANGMA = [
 const PATHWAYS = [
   {
     icon: (<><rect x="3" y="5" width="18" height="12" rx="2" /><path d="M8 17l-2 4v-4" /></>),
-    title: "Language Learning",
-    body: "Develop language proficiency and cultural intelligence to unlock global opportunities.",
+    title: "Foreign Language Classes",
+    body: "Join online or classroom foreign language classes and prepare for internationally recognised language exams.",
     href: "#ecosystem",
     img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80",
   },
   {
     icon: (<><path d="M12 4L3 9l9 5 9-5-9-5z" /><path d="M7 11.5V16c0 1.4 2.5 2.5 5 2.5s5-1.1 5-2.5v-4.5" /></>),
-    title: "Study Abroad",
-    body: "Discover universities, scholarships, and academic pathways that align with your ambitions.",
+    title: "Study Abroad Consultants",
+    body: "Find university admissions, scholarships, student visa guidance, and study abroad opportunities matched to your goals.",
     href: "/study-abroad",
     img: "https://images.unsplash.com/photo-1559135197-8a45ea74d367?auto=format&fit=crop&w=600&q=80",
   },
   {
     icon: (<><rect x="3" y="8" width="18" height="12" rx="2" /><path d="M8 8V6a2 2 0 012-2h4a2 2 0 012 2v2" /><path d="M3 13h18" /></>),
-    title: "Work Abroad",
-    body: "Build an international career through language readiness, career preparation, and recruitment support.",
+    title: "Work Abroad & Overseas Jobs",
+    body: "Explore overseas jobs, international recruitment, work visa guidance, and career preparation for working abroad.",
     href: "/work-abroad",
     img: "https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=600&q=80",
   },
@@ -830,19 +830,19 @@ export default function HomeLangma() {
             <div className="wrap">
               <div className="hero__grid">
                 <div className="hero__copy">
-                  <h1>Your Gateway to <em>Global Opportunities</em></h1>
-                  <p className="hero__sub">Langma International is a Global Opportunities Platform connecting individuals, institutions, and businesses to language learning, international education, global careers, cultural exchange, and cross-border opportunities.</p>
-                  <p className="hero__sub">We empower people to learn, grow, and succeed in an increasingly connected world.</p>
+                  <h1><em>Foreign Language Courses</em>, Study Abroad &amp; Global Careers</h1>
+                  <p className="hero__sub">Explore 50+ foreign language courses online and in the classroom, study abroad guidance, overseas jobs, international recruitment, and global mobility solutions.</p>
+                  <p className="hero__sub">Build the language skills, qualifications, and confidence you need to study, work, and succeed worldwide.</p>
                   <div className="hero__actions">
                     <button type="button" className="btn" onClick={() => setOpen(true)}>Book a Consultation</button>
                     <a href="#ecosystem" className="btn btn--ghost">Explore Opportunities</a>
                   </div>
                   <div className="hero__trust">
                     <div className="hero__trust-avatars">
-                      <img src="/images/img1001.png" alt="" loading="lazy" />
-                      <img src="/images/img1002.avif" alt="" loading="lazy" />
-                      <img src="/images/img1003.jpeg" alt="" loading="lazy" />
-                      <img src="/images/img1004.avif" alt="" loading="lazy" />
+                      <img src="/images/img1001.png" alt="" width={36} height={36} loading="lazy" decoding="async" />
+                      <img src="/images/img1002.avif" alt="" width={36} height={36} loading="lazy" decoding="async" />
+                      <img src="/images/img1003.jpeg" alt="" width={36} height={36} loading="lazy" decoding="async" />
+                      <img src="/images/img1004.avif" alt="" width={36} height={36} loading="lazy" decoding="async" />
                     </div>
                     <div className="hero__trust-text">
                       <strong>100,000+ learners</strong> trusted us for their global journey
@@ -910,7 +910,7 @@ export default function HomeLangma() {
               <div className="split" style={{ alignItems: "center" }}>
                 <Reveal style={{ position: "relative" }}>
                   <div className="photo-frame photo-frame--tall">
-                    <img src="/images/Learn. Explore. Connect. Grow Globally..jpg" alt="Learners connecting through language and culture, reflecting Langma International's global learning community" loading="lazy" />
+                    <img src="/images/Learn. Explore. Connect. Grow Globally..jpg" alt="Learners connecting through language and culture, reflecting Langma International's global learning community" width={736} height={1104} loading="lazy" decoding="async" />
                   </div>
                   <svg className="year-ring" viewBox="0 0 120 120" aria-label="Established 2012, over a decade of experience" style={{ position: "absolute", bottom: "-24px", right: "12px", background: "#fff", borderRadius: "50%", boxShadow: "var(--shadow-lg)", padding: "6px" }}>
                     <path d="M 60 18 A 42 42 0 0 1 93.9787137637478 84.68698059628386 L 81.03444185374863 75.2824165596043 A 26 26 0 0 0 60 34 Z" fill="#2FC7A1" />
@@ -975,7 +975,7 @@ export default function HomeLangma() {
                       <div className="orbit-hub__pulse" aria-hidden="true"></div>
                       <div className="orbit-hub__core">
                         <div className="orbit-hub__logo">
-                          <img src="/images/langma.svg" alt="Langma International" />
+                          <img src="/images/langma.svg" alt="Langma International" width={76} height={76} decoding="async" />
                         </div>
                       </div>
                     </div>
@@ -1131,7 +1131,7 @@ export default function HomeLangma() {
                   <p className="lede" style={{ marginTop: "12px" }}>Designed for entrepreneurs, exporters, investors, startups, and business leaders seeking international exposure and growth.</p>
                   <p className="closing-line">Through experiential learning and strategic networking, Langma helps businesses build meaningful global connections.</p>
                   <div className="photo-frame photo-frame--wide" style={{ marginTop: "22px" }}>
-                    <img src="/images/Connecting Businesses to Global Opportunities.png" alt="Business leaders connecting to explore global trade opportunities" loading="lazy" />
+                    <img src="/images/Connecting Businesses to Global Opportunities.png" alt="Business leaders connecting to explore global trade opportunities" width={1536} height={1024} loading="lazy" decoding="async" />
                   </div>
                 </Reveal>
                 <Reveal>
