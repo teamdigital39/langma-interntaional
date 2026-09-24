@@ -131,7 +131,7 @@ const ItalianLanguage = () => {
       />
 
       {/* FAQ */}
-      <FAQ />
+      <FAQ language="Italian" />
     </>
   );
 };
