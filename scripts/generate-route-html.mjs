@@ -8,6 +8,7 @@ import {
   canonicalPath,
   fallbackMetadata,
 } from "../src/seo.js";
+import { getLanguageFaqs, getSectionFaqs } from "../src/languageFaqs.js";
 import {
   GOOGLE_ADS_ID,
   GOOGLE_ANALYTICS_ID,
@@ -129,6 +130,54 @@ async function metadataFor(pathname) {
   return staticRoute(normalized);
 }
 
+const STATIC_LANGUAGE_NAMES = {
+  "/balkan-language": "Balkan Languages",
+  "/chinese": "Chinese",
+  "/french": "French",
+  "/german": "German",
+  "/hind": "Hindi",
+  "/online-italian-la": "Italian",
+  "/online-japanese-la": "Japanese",
+  "/online-ko": "Korean",
+  "/russian": "Russian",
+  "/persian": "Persian",
+  "/polish": "Polish",
+  "/sanskrit": "Sanskrit",
+  "/learn-german-language": "German",
+  "/learn-korean-language": "Korean",
+  "/learn-japanese-language": "Japanese",
+  "/learn-french-language": "French",
+  "/learn-chinese-language": "Chinese",
+};
+
+const SECTION_FAQ_ROUTES = {
+  "/languages": "language-courses",
+  "/study-abroad": "study-abroad",
+  "/investment": "pr-investment",
+  "/pr-by-investment": "pr-investment",
+  "/greece": "golden-visa",
+  "/cyprus": "golden-visa",
+  "/latvia": "golden-visa",
+  "/canada": "golden-visa",
+  "/unitedstate": "golden-visa",
+  "/costaRica": "golden-visa",
+  "/hongkong": "golden-visa",
+  "/malasiya": "golden-visa",
+  "/singapore": "golden-visa",
+  "/thailand": "golden-visa",
+  "/unitedarab": "golden-visa",
+  "/mauritius": "golden-visa",
+  "/australia": "golden-visa",
+};
+
+function languageNameFor(path, metadata) {
+  if (STATIC_LANGUAGE_NAMES[path]) return STATIC_LANGUAGE_NAMES[path];
+  if (languageSlugs.has(path.slice(1))) {
+    return metadata.h1?.replace(/^Learn\s+/i, "").replace(/\s+with\s+Langma$/i, "") || null;
+  }
+  return null;
+}
+
 function schemaFor(metadata, url) {
   const path = canonicalPath(new URL(url).pathname);
   const graph = [
@@ -186,6 +235,38 @@ function schemaFor(metadata, url) {
       ],
     },
   ];
+
+  const languageName = languageNameFor(path, metadata);
+  if (languageName) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${url}#language-faq`,
+      mainEntity: getLanguageFaqs(languageName).map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    });
+  }
+
+  const sectionName = SECTION_FAQ_ROUTES[path];
+  if (sectionName && !languageName) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${url}#${sectionName}-faq`,
+      mainEntity: getSectionFaqs(sectionName).map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    });
+  }
 
   if (metadata.courseName) {
     graph.push({
@@ -265,7 +346,7 @@ for (const rawUrl of urls) {
     ${gtmNoscript}
     <noscript>
       <main>
-        <h1>${escapeHtml(metadata.h1 || metadata.title)}</h1>
+        <p class="seo-fallback-heading" role="heading" aria-level="1">${escapeHtml(metadata.h1 || metadata.title)}</p>
         <p>${escapeHtml(metadata.description)}</p>
       </main>
     </noscript>
