@@ -5,8 +5,8 @@ const SERVICE = 'Austria Residence Permit';
 
 const AustriaResidencePage = () => {
   const [openFaq, setOpenFaq] = useState(null);
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [_scrolled, setScrolled] = useState(false);
+  const [_menuOpen, setMenuOpen] = useState(false);
   const [selectedDay, setSelectedDay] = useState(null);
   const {
     handleLeadSubmit, handleOfficeSubmit,
@@ -35,7 +35,7 @@ const AustriaResidencePage = () => {
   }, []);
 
   const toggleFaq = (index) => setOpenFaq(openFaq === index ? null : index);
-  const closeMenu = () => setMenuOpen(false);
+  const _closeMenu = () => setMenuOpen(false);
 
   const calDays = [
     { n: 1 }, { n: 2, avail: true }, { n: 3, avail: true }, { n: 4 }, { n: 5, avail: true }, { n: 6 }, { n: 7 },
