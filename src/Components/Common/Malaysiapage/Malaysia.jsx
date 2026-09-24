@@ -71,7 +71,7 @@ const Malaysia = () => {
 
           <GlobalPR />
 
-          <FAQ />
+          <FAQ section="golden-visa" />
         </>
       )}
 
