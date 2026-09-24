@@ -6,8 +6,8 @@ const SERVICE = 'Portugal Digital Nomad Visa (D8)';
 
 const PortugalD8Page = () => {
   const [openFaq, setOpenFaq] = useState(0);
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [_scrolled, setScrolled] = useState(false);
+  const [_menuOpen, setMenuOpen] = useState(false);
   const {
     handleLeadSubmit, handleOfficeSubmit,
     leadLoading, officeLoading,
@@ -35,7 +35,7 @@ const PortugalD8Page = () => {
   }, []);
 
   const toggleFaq = (index) => setOpenFaq(openFaq === index ? null : index);
-  const closeMenu = () => setMenuOpen(false);
+  const _closeMenu = () => setMenuOpen(false);
 
   return (
     <div className="pt-page">
