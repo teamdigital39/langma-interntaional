@@ -48,7 +48,7 @@ function useCountUp(target, duration = 1600, start = false) {
 /* ===================================================================
  *  Reveal wrapper
  * ================================================================ */
-function Reveal({ children, delay = 0, y = 24, as: Tag = "div", style }) {
+function Reveal({ children, delay = 0, y = 24, as: _Tag = "div", style }) {
   const [ref, visible] = useReveal();
   return (
     <Tag
@@ -124,7 +124,7 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay }) {
 /* ===================================================================
  *  Section header
  * ================================================================ */
-function SectionHead({ style, tag, title, sub, light, center }) {
+function SectionHead({ _style, tag, title, sub, _light, center }) {
   return (
     <Reveal>
       <div
@@ -951,7 +951,7 @@ const courses = [
   { icon: "🔬", title: "Biotechnology & Health Sciences", body: "Health sciences, biotech, food science, animal resources, and companion animal industries." },
 ];
 
-const faqs = [
+const _faqs = [
   { q: "Is IELTS mandatory to study in South Korea?", a: "For English-taught programs, an IELTS score of 5.5 or TOEFL iBT 51 is the typical minimum requirement. For Korean-medium programs, TOPIK Level 3 or above is generally required. Students from countries where English is the official medium of education may qualify for exemptions — this varies by institution. Our advisors will confirm the exact requirement for your chosen program." },
   { q: "Can I work part-time while studying in South Korea?", a: "Yes. International students on a valid D-2 student visa are permitted to work part-time in South Korea. Bachelor's students may work up to 20 hours per week during academic sessions. Master's students may work up to 30 hours per week during academic sessions. During official university vacation periods, full-time work may be permitted. University and immigration authority approval is required." },
   { q: "What is the student visa process for South Korea?", a: "After receiving your official Certificate of Admission, you apply for a D-2 student visa at the Korean Embassy or Visa Application Centre in your home country. You'll need your admission letter, valid passport, financial proof — Bank Balance Certificate showing approximately KRW 16,000,000 – KRW 25,000,000 (Approx. INR 9.5 Lakhs – INR 15 Lakhs) — academic certificates, and family/birth documents. Langma International provides step-by-step guidance through this process." },
@@ -1001,7 +1001,7 @@ const visaDocs = [
  *  MAIN
  * ================================================================ */
 export default function StudySouthKoreaPage() {
-  const [openFAQ, setOpenFAQ] = useState(0);
+  const [_openFAQ, _setOpenFAQ] = useState(0);
   const [open, setOpen] = useState(false);
 
   return (
@@ -1866,7 +1866,7 @@ export default function StudySouthKoreaPage() {
       </div>
 
       {/* ---------------- FAQ ---------------- */}
-      <FAQ />
+      <FAQ section="study-abroad" />
       {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead tag={<span style={{ color: "#296166" }}>FAQs</span>} title="Frequently Asked Questions" center />
