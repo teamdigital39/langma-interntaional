@@ -6,8 +6,8 @@ const SERVICE = 'Spain Digital Nomad Visa';
 
 const SpainDNVPage = () => {
   const [openFaq, setOpenFaq] = useState(null);
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [_scrolled, setScrolled] = useState(false);
+  const [_menuOpen, _setMenuOpen] = useState(false);
   const {
     handleLeadSubmit, handleOfficeSubmit,
     leadLoading, officeLoading,
