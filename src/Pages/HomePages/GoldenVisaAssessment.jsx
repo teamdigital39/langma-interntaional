@@ -315,7 +315,7 @@ const formatAssessmentAnswers = (answers) =>
 ============================================================ */
 
 export default function GoldenVisaAssessment() {
-  const [scrolled, setScrolled] = useState(false);
+  const [_scrolled, setScrolled] = useState(false);
   const [current, setCurrent] = useState(0); // 0-indexed
   const [answers, setAnswers] = useState({});
   const [formState, setFormState] = useState("idle"); // idle | submitting | done
