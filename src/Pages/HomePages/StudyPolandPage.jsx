@@ -59,7 +59,7 @@ function useCountUp(target, duration = 1600, start = false) {
 /* ===================================================================
  *  Reveal wrapper
  * ================================================================ */
-function Reveal({ children, delay = 0, y = 24, as: Tag = "div", style }) {
+function Reveal({ children, delay = 0, y = 24, as: _Tag = "div", style }) {
   const [ref, visible] = useReveal();
   return (
     <Tag
@@ -135,7 +135,7 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay }) {
 /* ===================================================================
  *  Section header
  * ================================================================ */
-function SectionHead({  style, tag, title, sub, light, center }) {
+function SectionHead({  _style, tag, title, sub, _light, center }) {
   return (
     <Reveal>
       <div
@@ -262,8 +262,8 @@ function NavyButton({ children, style, onClick }) {
 }
 
 function GhostButton({ children, dark, style, onClick }) {
-  const [h, setH] = useState(false);
-  const [open, setOpen]  = useState(false);
+  const [_h, setH] = useState(false);
+  const [_open, _setOpen]  = useState(false);
   return (
     <button
       onMouseEnter={() => setH(true)}
@@ -1193,7 +1193,7 @@ const salaries = [
   { sector: "Hospitality & Tourism", monthly: "€2,200", yearly: "€26,400", pct: 58 },
 ];
 
-const faqs = [
+const _faqs = [
   { q: "How much does it cost to study in Poland as an international student?", a: "Tuition fees at accredited Polish higher education providers range from €2,550 to €29,000 per year depending on the institution and programme. Living costs in Poland average approximately €500–€800 per month (approximately PLN 700–800 for day-to-day living expenses, plus a recommended return travel reserve of approximately PLN 2,500). Total annual costs are typically €8,000–€18,000 — making Poland one of the most affordable EU study destinations in Europe." },
   { q: "Can international students work while studying in Poland?", a: "Yes. International students who hold a valid Temporary Residence Card (TRC) can work part-time in Poland without a separate work permit. Popular sectors include IT, hospitality, retail, and multilingual customer service roles. Poland's dynamic job market, with an unemployment rate of 3.2%, means there are genuine opportunities available to students throughout their studies." },
   { q: "Is IELTS mandatory to study in Poland?", a: "IELTS is not always mandatory for academic admission — a Medium of Instruction (MOI) certificate may be accepted by the partner institution for admission purposes. However, IELTS (minimum 5.5 overall) or PTE Academic (minimum 50) are strongly recommended to strengthen your Embassy National Visa application, as language scores improve embassy confidence during visa assessment. TOEFL iBT, PTE, and Cambridge certificates are also accepted by many institutions. Typical IELTS requirements range from 5.5 to 7.0 depending on the level and programme. Your Langma advisor will confirm exactly what you need." },
@@ -1228,7 +1228,7 @@ const outlooks = [
  *  MAIN
  * ================================================================ */
 export default function StudyPolandPage() {
-  const [openFAQ, setOpenFAQ] = useState(0);
+  const [_openFAQ, _setOpenFAQ] = useState(0);
   const [open, setOpen] = useState(false);
 
   return (
@@ -2093,7 +2093,7 @@ title={
                   "English proficiency certificate (B2 level)",
                   "NAWA diploma recognition decision (non-EU/OECD/EFTA applicants)",
                   "Flight reservation (actual ticket not required at application stage)",
-                ].map((d, i) => (
+                ].map((d, _i) => (
                   <div
                     key={d}
                     style={{
@@ -2259,7 +2259,7 @@ title={
       </section>
 
       {/* ---------------- FAQ ---------------- */}
-      <FAQ />
+      <FAQ section="study-abroad" />
       {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead  tag={
