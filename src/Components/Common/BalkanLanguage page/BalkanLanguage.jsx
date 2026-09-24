@@ -110,7 +110,7 @@ const BalkanLanguage = () => {
         buttonText="Start Your Journey Today."
       />
 
-      <FAQ />
+      <FAQ language="Balkan Languages" />
     </>
   );
 };
