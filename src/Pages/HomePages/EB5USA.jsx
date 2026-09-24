@@ -5,8 +5,8 @@ const SERVICE = 'USA EB-5 Immigrant Investor Pathway';
 
 const LangmaEB5USAPage = () => {
   const [openFaq, setOpenFaq] = useState(null);
-  const [navOpen, setNavOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [_navOpen, _setNavOpen] = useState(false);
+  const [_scrolled, setScrolled] = useState(false);
   const {
     handleLeadSubmit, handleOfficeSubmit,
     leadLoading, officeLoading,
