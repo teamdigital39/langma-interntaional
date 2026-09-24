@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import API_BASE from "../../config";
+import { LanguageFaqSchema } from "./FAQ";
 const calligraphyImage = "/images/calligraphy.jpg";
 const chopsticksCandyImage = "/images/chopsticks-candy.jpg";
 const cultureKimonoImage = "/images/culture-kimono.jpg";
@@ -219,7 +220,7 @@ export default function LangmaJapaneseCourse() {
   const touchStartX = useRef(null);
   const touchDeltaX = useRef(0);
 
-  const slideCount = Math.max(1, ACTIVITIES.length - slidesPerView + 1);
+  const _slideCount = Math.max(1, ACTIVITIES.length - slidesPerView + 1);
 
   useEffect(() => {
     function updateSlidesPerView() {
@@ -551,6 +552,7 @@ export default function LangmaJapaneseCourse() {
 
   return (
     <div className="langma-page" id="top" style={{ '--announce-h': `${announceHeight}px` }}>
+      <LanguageFaqSchema language="Japanese" />
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;500;600;700&display=swap');
 
   /* ============================================================
@@ -1998,134 +2000,31 @@ export default function LangmaJapaneseCourse() {
               <h3>Get Course Details</h3>
               <p>Tell us your current level (or none at all). We will share the relevant course, fee, batch and learning-mode details with you.</p>
               <form id="enrollForm" onSubmit={handleSubmit}>
-                <div className="form-row">
-                  <label htmlFor="fname">Full Name</label>
-                  <input type="text" id="fname" name="name" autoComplete="name" placeholder="Your name" required />
-                </div>
-                <div className="form-row">
-                  <label htmlFor="fphone">Phone Number</label>
-                  <input
-                    type="tel"
-                    id="fphone"
-                    name="phone"
-                    autoComplete="tel"
-                    ref={phoneRef}
-                    placeholder="10-digit mobile number"
-                    pattern="[0-9]{10}"
-                    required
-                    aria-invalid={phoneError}
-                    aria-describedby={phoneError ? "fphone-error" : undefined}
-                    onChange={() => setPhoneError(false)}
-                    style={phoneError ? { outline: '2px solid #E4574C' } : undefined}
-                  />
-                  {phoneError && <span id="fphone-error" className="field-error" role="alert">Enter a valid 10-digit phone number</span>}
-                </div>
-                <div className="form-row">
-                  <label htmlFor="femail">Email</label>
-                  <input type="email" id="femail" name="email" autoComplete="email" placeholder="Your email" required />
-                </div>
-                <input type="hidden" name="language" value="Japanese" />
-                <input type="hidden" name="message" value="Japanese Language Course enquiry" />
-                <button type="submit" className="submit-btn" disabled={submitting}>
-                  {submitting ? "Submitting..." : "Get Course Details →"}
-                </button>
-                {formMessage && (
-                  <div className={`form-msg ${formSubmitted ? "success" : "error"}`} role="status">
-                    {formSubmitted ? `✓ ${formMessage}` : formMessage}
-                  </div>
-                )}
+                <div className="form-row"><label htmlFor="japanese-fname">Full Name</label><input type="text" id="japanese-fname" name="name" autoComplete="name" placeholder="Your name" required /></div>
+                <div className="form-row"><label htmlFor="japanese-fphone">Phone Number</label><input type="tel" id="japanese-fphone" name="phone" autoComplete="tel" ref={phoneRef} placeholder="10-digit mobile number" pattern="[0-9]{10}" required aria-invalid={phoneError} onChange={() => setPhoneError(false)} style={phoneError ? { outline: "2px solid #E4574C" } : undefined} />{phoneError && <span className="field-error" role="alert">Enter a valid 10-digit phone number</span>}</div>
+                <div className="form-row"><label htmlFor="japanese-femail">Email</label><input type="email" id="japanese-femail" name="email" autoComplete="email" placeholder="Your email" required /></div>
+                <input type="hidden" name="language" value="Japanese" /><input type="hidden" name="message" value="Japanese Language Course enquiry" /><input type="hidden" name="type" value="Japanese Landing" /><input type="hidden" name="service" value="Language Training - Japanese" />
+                <button type="submit" className="submit-btn" disabled={submitting}>{submitting ? "Submitting..." : "Get Course Details →"}</button>
+                {formMessage && <div className={`form-msg ${formSubmitted ? "success" : "error"}`} role="status">{formSubmitted ? `✓ ${formMessage}` : formMessage}</div>}
               </form>
-              <div className="form-alt">
-                <span style={{fontSize: '14.5px', color: 'rgba(255,255,255,.7)'}}>Prefer to skip the form?</span>
-                <a href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20to%20enroll%20for%20the%20Japanese%20course." target="_blank" rel="noopener" style={{fontSize: '14.5px', fontWeight: '600', color: 'var(--gold-soft)', textDecoration: 'underline'}}>Message us on WhatsApp →</a>
-              </div>
+              <div className="form-alt"><span style={{ fontSize: "14.5px", color: "rgba(255,255,255,.7)" }}>Prefer to skip the form?</span><a href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20to%20enroll%20for%20the%20Japanese%20course." target="_blank" rel="noopener" style={{ fontSize: "14.5px", fontWeight: "600", color: "var(--gold-soft)", textDecoration: "underline" }}>Message us on WhatsApp →</a></div>
             </div>
           </div>
         </div>
-
-        <div className="wrap">
-          <div className="map-strip">
-            <a href="https://maps.app.goo.gl/LTvhZxM9HFnZ2gqp7" target="_blank" rel="noopener">Get Directions →</a>
-          </div>
-        </div>
+        <div className="wrap"><div className="map-strip"><a href="https://maps.app.goo.gl/LTvhZxM9HFnZ2gqp7" target="_blank" rel="noopener">Get Directions →</a></div></div>
       </section>
 
-      {/* JAPANESE FOOTER */}
-        <footer className="jp-footer">
+      <footer className="fr-footer">
         <div className="seigaiha-dark" aria-hidden="true"></div>
-        <div className="wrap">
-          <div className="footer-grid">
-            <div className="footer-brand"><img src="https://www.langmainternational.com/images/ftrnlg.png" alt="Langma International" className="footer-logo" />
-            <br /><div className="jp-motto">Learn Japanese. Understand Japan. Build Your Future.</div><p>Learn Japanese with structured N5–N1 learning, practical communication, cultural activities and Japan-focused counselling.</p></div>
-            <div className="footer-col"><h4>Start Here</h4><a href="#contact">Book a Free Demo</a></div>
-            <div className="footer-col"><h4>Contact</h4><a href="tel:+919810117094">+91-98101-17094</a><a href="https://wa.me/919810117094" target="_blank" rel="noopener">Chat on WhatsApp</a><a href="https://maps.app.goo.gl/NoVexf8RiHPrtW6D7" target="_blank" rel="noopener">{locationProfile.area}, {locationProfile.city}</a></div>
-            <div className="footer-col"><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms-and-conditions">Terms and Conditions</a></div>
-          </div>
-          <div className="footer-bottom"><span>© {new Date().getFullYear()} Langma International Pvt. Ltd.</span><span>JAPANESE LANGUAGE · {locationProfile.city.toUpperCase()}</span></div>
-        </div>
+        <div className="wrap"><div className="footer-grid">
+          <div className="footer-brand"><img src="https://www.langmainternational.com/images/ftrnlg.png" alt="Langma International" className="footer-logo" /><br /><div className="fr-motto">Learn Japanese. Understand Japan. Build Your Future.</div><p>Learn Japanese with structured N5–N1 learning, practical communication, cultural activities and Japan-focused counselling.</p></div>
+          <div className="footer-col"><h4>Start Here</h4><a href="#contact">Book a Free Demo</a></div>
+          <div className="footer-col"><h4>Contact</h4><a href="tel:+919810117094">+91-98101-17094</a><a href="https://wa.me/919810117094" target="_blank" rel="noopener">Chat on WhatsApp</a><a href="https://maps.app.goo.gl/NoVexf8RiHPrtW6D7" target="_blank" rel="noopener">{locationProfile.area}, {locationProfile.city}</a></div>
+          <div className="footer-col"><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms-and-conditions">Terms and Conditions</a></div>
+        </div><div className="footer-bottom"><span>© {new Date().getFullYear()} Langma International Pvt. Ltd.</span><span>JAPANESE LANGUAGE · {locationProfile.city.toUpperCase()}</span></div></div>
       </footer>
-      {/* FLOATING CALL */}
-      <a href="tel:+919810117094" className="call-float" id="callFloat" aria-label="Call Langma at +91-98101-17094">
-        <span className="call-float-icon" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </span>
-      </a>
-
-      {/* REQUEST POPUP MODAL */}
-      {showRequestPopup && (
-        <div style={{position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999}} onClick={closeRequestPopup}>
-          <div style={{background: '#fbf8f1', borderRadius: '16px', padding: '40px 32px', maxWidth: '420px', width: '90%', boxShadow: '0 28px 60px rgba(0,0,0,0.2)', animation: 'slideUp 0.3s ease'}} onClick={(e) => e.stopPropagation()}>
-            <button onClick={closeRequestPopup} style={{position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', fontSize: '24px', cursor: 'pointer', color: '#201b18'}}>×</button>
-            <h2 style={{fontSize: '28px', fontWeight: 700, color: '#263f4d', marginBottom: '8px'}}>Tell us more about you</h2>
-            <p style={{fontSize: '14px', color: '#514840', marginBottom: '24px'}}>We'll match you with the perfect Japanese learning path</p>
-            <form onSubmit={handleRequestSubmit} style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
-              <div>
-                <label htmlFor="req-name" style={{fontSize: '13px', fontWeight: 600, color: '#201b18', display: 'block', marginBottom: '6px'}}>Your Name</label>
-                <input type="text" id="req-name" name="name" autoComplete="name" placeholder="Enter your name" value={requestFormData.name} onChange={(e) => setRequestFormData(prev => ({...prev, name: e.target.value}))} required style={{width: '100%', padding: '12px 14px', border: '1px solid #d4cfc8', borderRadius: '8px', fontSize: '14px'}} />
-              </div>
-              <div>
-                <label htmlFor="req-phone" style={{fontSize: '13px', fontWeight: 600, color: '#201b18', display: 'block', marginBottom: '6px'}}>Phone Number</label>
-                <input type="tel" id="req-phone" name="phone" autoComplete="tel" ref={requestPhoneRef} placeholder="10-digit number" pattern="[0-9]{10}" value={requestFormData.phone} onChange={(e) => {setRequestFormData(prev => ({...prev, phone: e.target.value})); setRequestPhoneError(false);}} required style={{width: '100%', padding: '12px 14px', border: requestPhoneError ? '2px solid #E4574C' : '1px solid #d4cfc8', borderRadius: '8px', fontSize: '14px'}} />
-                {requestPhoneError && <span style={{fontSize: '12px', color: '#E4574C', display: 'block', marginTop: '4px'}}>Enter a valid 10-digit number</span>}
-              </div>
-              <div>
-                <label htmlFor="req-email" style={{fontSize: '13px', fontWeight: 600, color: '#201b18', display: 'block', marginBottom: '6px'}}>Email</label>
-                <input type="email" id="req-email" name="email" autoComplete="email" placeholder="Your email" value={requestFormData.email} onChange={(e) => setRequestFormData(prev => ({...prev, email: e.target.value}))} required style={{width: '100%', padding: '12px 14px', border: '1px solid #d4cfc8', borderRadius: '8px', fontSize: '14px'}} />
-              </div>
-              <button type="submit" disabled={requestSubmitting} style={{padding: '14px', background: '#bc002d', color: '#fff', border: 'none', borderRadius: '8px', fontSize: '16px', fontWeight: 600, cursor: 'pointer', marginTop: '8px'}}>
-                {requestSubmitting ? 'Submitting...' : requestSubmitted ? 'Request Sent ✓' : 'Send Request'}
-              </button>
-              {requestFormMessage && <div style={{fontSize: '13px', color: requestSubmitted ? '#0a7d3e' : '#E4574C', textAlign: 'center', padding: '8px', background: requestSubmitted ? '#e6f5f0' : '#fef0f0', borderRadius: '6px', marginTop: '8px'}}>{requestFormMessage}</div>}
-              <div style={{fontSize: '12px', color: '#514840', textAlign: 'center', marginTop: '8px'}}>
-                Or reach us via <a href="tel:+919810117094" style={{color: '#bc002d', fontWeight: 600, textDecoration: 'none'}}>call</a> / <a href="https://wa.me/919810117094" target="_blank" rel="noopener" style={{color: '#bc002d', fontWeight: 600, textDecoration: 'none'}}>WhatsApp</a>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* FLOATING WHATSAPP */}
-      <a href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Japanese%20course." target="_blank" rel="noopener" className="wa-float" id="waFloat" aria-label="Chat on WhatsApp">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm5.86 14.13c-.25.7-1.45 1.34-2 1.42-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.69-.63-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.05-2.49.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.68.53.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.1.2-.15.32-.3.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.75 1.25 1.62 2.02 1.11.99 2.05 1.3 2.35 1.45.3.15.47.12.65-.07.18-.19.75-.87.95-1.17.2-.3.4-.25.66-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.13.07.75-.18 1.45z"/></svg>
-      </a>
-      <div className={`wa-tip${showWaTip ? ' show' : ''}`} id="waTip">Chat with us, usually replies in minutes</div>
-
-      {/* STICKY MOBILE CTA BAR (floating call/WhatsApp buttons, no white strip) */}
-      <div className="mobile-cta-bar" aria-label="Quick contact buttons">
-        <div className="mobile-cta-bar-actions">
-          <a className="mobile-cta-bar-call" href="tel:+919810117094" aria-label="Call Langma at +91-98101-17094">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </a>
-          <span className="mobile-cta-label">Demo</span>
-        </div>
-        <div className="mobile-cta-bar-actions">
-          <a className="mobile-cta-bar-wa" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Japanese%20course." target="_blank" rel="noopener" aria-label="Chat with Langma on WhatsApp">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm5.86 14.13c-.25.7-1.45 1.34-2 1.42-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.69-.63-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.05-2.49.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.68.53.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.1.2-.15.32-.3.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.75 1.25 1.62 2.02 1.11.99 2.05 1.3 2.35 1.45.3.15.47.12.65-.07.18-.19.75-.87.95-1.17.2-.3.4-.25.66-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.13.07.75-.18 1.45z"/></svg>
-          </a>
-          <span className="mobile-cta-label">Chat</span>
-        </div>
-      </div>
-
+      <a href="tel:+919810117094" className="call-float" aria-label="Call Langma at +91-98101-17094">Call</a>
+      <a href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Japanese%20course." target="_blank" rel="noopener" className="wa-float" aria-label="Chat on WhatsApp">WhatsApp</a>
     </div>
   );
 }
