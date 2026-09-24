@@ -48,7 +48,7 @@ function useCountUp(target, duration = 1600, start = false) {
 /* ===================================================================
  *  Reveal wrapper
  * ================================================================ */
-function Reveal({ children, delay = 0, y = 24, as: Tag = "div", style }) {
+function Reveal({ children, delay = 0, y = 24, as: _Tag = "div", style }) {
   const [ref, visible] = useReveal();
   return (
     <Tag
@@ -130,7 +130,7 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay, text
 /* ===================================================================
  *  Section header
  * ================================================================ */
-function SectionHead({ style, tag, title, sub, light, center }) {
+function SectionHead({ style, tag, title, sub, _light, center }) {
   return (
     <Reveal>
       <div
@@ -1392,7 +1392,7 @@ const testimonials = [
   { quote: "As someone coming from Bangladesh, I was worried about the additional sponsorship requirements. Langma walked me through exactly what I needed. I'm now interning at a Dutch fintech company.", name: "Farhan Hossain", meta: "MBA — Data Strategy · Dhaka, Bangladesh" },
 ];
 
-const faqs = [
+const _faqs = [
   { q: "Can I study in the Netherlands without IELTS?", a: "IELTS Academic is the most commonly accepted English test, but TOEFL iBT, PTE Academic, and Cambridge English qualifications are all accepted alternatives. Foundation entry requires IELTS 5.0–5.5; direct Bachelor's entry requires IELTS 6.0; Master's/MBA entry requires IELTS 6.5." },
   { q: "How much does it cost to study in the Netherlands?", a: "Foundation programmes are €12,250/year (all-inclusive). Bachelor's tuition is €24,500/year. Master's and MBA tuition is €25,500/year. Non-EU/EEA students pay an initial package fee of €6,050 covering visa, insurance, and airport pickup. Monthly living costs range €800–€1,200." },
   { q: "Can international students work part-time in the Netherlands?", a: "Yes. Students from outside the EU/EEA can work up to 16 hours per week during term. Every programme also includes a mandatory full-time paid internship — with 50% of interns receiving a direct job offer from their employer." },
@@ -1409,7 +1409,7 @@ const faqs = [
  *  MAIN
  * ================================================================ */
 export default function StudyNetherlandsPage() {
-  const [openFAQ, setOpenFAQ] = useState(0);
+  const [_openFAQ, _setOpenFAQ] = useState(0);
   const [open, setOpen] = useState(false);
 
   return (
@@ -2214,7 +2214,7 @@ export default function StudyNetherlandsPage() {
       </section>
 
       {/* ---------------- FAQ ---------------- */}
-      <FAQ />
+      <FAQ section="study-abroad" />
       {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead tag={<span style={{ color: "#296166" }}>FAQs</span>} title="Frequently Asked Questions — Study in the Netherlands" center />
