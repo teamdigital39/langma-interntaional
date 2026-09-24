@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import API_BASE from "../../config";
+import { LanguageFaqSchema } from "./FAQ";
 
 const ACTIVITIES = [
 
@@ -150,7 +151,7 @@ export default function LangmaChineseCourse() {
   const touchStartX = useRef(null);
   const touchDeltaX = useRef(0);
 
-  const slideCount = Math.max(1, ACTIVITIES.length - slidesPerView + 1);
+  const _slideCount = Math.max(1, ACTIVITIES.length - slidesPerView + 1);
 
   useEffect(() => {
     function updateSlidesPerView() {
@@ -481,6 +482,7 @@ export default function LangmaChineseCourse() {
 
   return (
     <div className="langma-page" id="top" style={{ '--announce-h': `${announceHeight}px` }}>
+      <LanguageFaqSchema language="Chinese" />
       <style>{`@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Roboto:wght@400;500;700;900&display=swap');
 
   /* ============================================================
