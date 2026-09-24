@@ -23,13 +23,13 @@ import { getLanguageHeroContent, getHeroDescription } from "./languageHeroConten
 const Arabic = () => {
    const [open, setOpen] = useState(false);
 const { slug } = useParams();
-    const prevRef = useRef(null);
+    const _prevRef = useRef(null);
     const [details, setDetails] = useState([]);
-  const nextRef = useRef(null);
+  const _nextRef = useRef(null);
 
   const [languageData, setLanguageData] = useState(null);
   const [apiData, setApiData] = useState(null);
-   const [languages, setLanguages] = useState([]);
+   const [_languages, setLanguages] = useState([]);
 
   const [homeLoading, setHomeLoading] = useState(true);
   const [pageLoading, setPageLoading] = useState(true);
@@ -1016,7 +1016,7 @@ useEffect(() => {
         buttonText="Start Your Journey Today"
       />
     
-      <FAQ />
+      <FAQ language={languageData?.title || "Arabic"} />
       <ConnectedSection />
       <PopupForm open={open} onClose={() => setOpen(false)} />
     </>
