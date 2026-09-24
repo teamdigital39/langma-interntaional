@@ -4,8 +4,8 @@ import { useResidencyLeadForms } from '../../hooks/useResidencyLeadForms';
 const SERVICE = 'Malta Permanent Residence Programme';
 
 const LangmaMaltaPermanentResidenceProgrammePage = () => {
-  const [navOpen, setNavOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [_navOpen, _setNavOpen] = useState(false);
+  const [_scrolled, setScrolled] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
   const {
     handleLeadSubmit, handleOfficeSubmit,
