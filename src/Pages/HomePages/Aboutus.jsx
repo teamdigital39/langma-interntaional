@@ -6,7 +6,7 @@ const Check = () => (
   </svg>
 );
 
-function Reveal({ as: Tag = "div", className = "", children, ...rest }) {
+function Reveal({ as: _Tag = "div", className = "", children, ...rest }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 

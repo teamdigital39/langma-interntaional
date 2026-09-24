@@ -60,7 +60,7 @@ const Polish = () => {
 
       {/* <BlogSection />
       <LangmaSection /> */}
-      <FAQ />
+      <FAQ language="Polish" />
       {/* <ContactForm /> */}
     </>
   );

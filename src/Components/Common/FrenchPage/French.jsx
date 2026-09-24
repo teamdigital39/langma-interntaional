@@ -74,6 +74,9 @@ const French = () => {
           <div className="w-full lg:w-1/2 flex justify-center">
             <img
               src={languageData?.image || "/images/Logo.png"}
+              alt={`${languageData?.title || "French language"} course at Langma International`}
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -110,7 +113,7 @@ const French = () => {
         buttonText="Start Your Journey Today."
       />
 
-      <FAQ />
+      <FAQ language="French" />
     </>
   );
 };

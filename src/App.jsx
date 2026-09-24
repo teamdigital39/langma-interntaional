@@ -1,130 +1,130 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { HelmetProvider } from "react-helmet-async";
-import Thankyou from "./Pages/HomePages/Thankyou";
+const Thankyou = lazy(() => import("./Pages/HomePages/Thankyou"));
 import TopBar from "./Components/Common/Header/TopBar";
-import HeroSection from "./Pages/HomePages/HeroSection";
-import AboutHeroSection from "./Pages/HomePages/Aboutpage/AboutHeroSection";
+const HeroSection = lazy(() => import("./Pages/HomePages/HeroSection"));
+const AboutHeroSection = lazy(() => import("./Pages/HomePages/Aboutpage/AboutHeroSection"));
 import Footer from "./Pages/HomePages/Footer";
-import AbrotHeroSection from "./Components/Common/WorkAbrot/AbrotHeroSection";
-import StudyAbrotHeroSection from "./Components/Common/StudyAbortSection/StudyAbrotHeroSection";
+const AbrotHeroSection = lazy(() => import("./Components/Common/WorkAbrot/AbrotHeroSection"));
+const StudyAbrotHeroSection = lazy(() => import("./Components/Common/StudyAbortSection/StudyAbrotHeroSection"));
 // import InternationalHeroSection1 from "./Components/InternationlHeroSection/InternationalHeroSection1";
-import GlobleHeroSection from "./Components/GlobleHeroSection/GlobleHeroSection";
+const GlobleHeroSection = lazy(() => import("./Components/GlobleHeroSection/GlobleHeroSection"));
 import ScrollToTop from "./Pages/HomePages/Loader/ScrollToTop";
 import Loader from "./Pages/HomePages/Loader/Loader";
-import Investment from "./Components/InvestmentPage/Investment";
-import Cultural_Programs from "./Components/Cultural_Infusion_Programs/Cultural_Programs";
-import CulturalHolidays from "./Components/Cultural Holidays/CulturalHolidays";
-import BusinessPrograms from "./Components/Business Exchange Programs/BusinessPrograms";
-import Business_Delegation_Programs from "./Components/Business Delegation Programs/Business_Delegation_Programs";
-import Lagmabusinesshub from "./Components/LagmabusinessHub/Lagmabusinesshub";
-import Greece from "./Components/Common/GracePages/Greece";
-import Cyprus from "./Components/Common/Cyprus/Cyprus";
-import Latvia from "./Components/Common/Latvia/Latvia";
-import Canada from "./Components/Common/Canadapage/Canada";
-import UnitedStates from "./Components/Common/UnitedStates Page/UnitedStates";
-import CostaRica from "./Components/Common/CostaRica Page/CostaRica";
-import HongKong from "./Components/Common/HongKong/HongKong";
-import Malaysia from "./Components/Common/Malaysiapage/Malaysia";
-import Singapore from "./Components/Common/SingaporePage/Singapore";
-import Thailand from "./Components/Common/ThailandPage/Thailand";
+const Investment = lazy(() => import("./Components/InvestmentPage/Investment"));
+const Cultural_Programs = lazy(() => import("./Components/Cultural_Infusion_Programs/Cultural_Programs"));
+const CulturalHolidays = lazy(() => import("./Components/Cultural Holidays/CulturalHolidays"));
+const BusinessPrograms = lazy(() => import("./Components/Business Exchange Programs/BusinessPrograms"));
+const Business_Delegation_Programs = lazy(() => import("./Components/Business Delegation Programs/Business_Delegation_Programs"));
+const Lagmabusinesshub = lazy(() => import("./Components/LagmabusinessHub/Lagmabusinesshub"));
+const Greece = lazy(() => import("./Components/Common/GracePages/Greece"));
+const Cyprus = lazy(() => import("./Components/Common/Cyprus/Cyprus"));
+const Latvia = lazy(() => import("./Components/Common/Latvia/Latvia"));
+const Canada = lazy(() => import("./Components/Common/Canadapage/Canada"));
+const UnitedStates = lazy(() => import("./Components/Common/UnitedStates Page/UnitedStates"));
+const CostaRica = lazy(() => import("./Components/Common/CostaRica Page/CostaRica"));
+const HongKong = lazy(() => import("./Components/Common/HongKong/HongKong"));
+const Malaysia = lazy(() => import("./Components/Common/Malaysiapage/Malaysia"));
+const Singapore = lazy(() => import("./Components/Common/SingaporePage/Singapore"));
+const Thailand = lazy(() => import("./Components/Common/ThailandPage/Thailand"));
 // import Australia from "./Components/Common/AustraliaPage/Australia";
-import UnitedArabEmirates from "./Components/Common/UnitedArabEmirates Page/UnitedArabEmirates";
-import Mauritius from "./Components/Common/Mauritius Page/Mauritius";
-import Arabic from "./Components/Common/ArabicPages/Arabic";
-import BalkanLanguage from "./Components/Common/BalkanLanguage page/BalkanLanguage";
-import Chinese from "./Components/Common/ChinesePage/Chinese";
-import Frame from "./Components/Common/FramePage/Frame";
-import French from "./Components/Common/FrenchPage/French";
-import German from "./Components/Common/GermanPage/German";
-import Hindi from "./Components/Common/HindiPage/Hindi";
-import ItalianLanguage from "./Components/Common/ItalianLanguage Page/ItalianLanguage";
-import Japanese from "./Components/Common/JapanesePage/Japanese";
-import Korean from "./Components/Common/KoreanPage/Korean";
-import Russian from "./Components/Common/RussianPage/Russian";
-import Persian from "./Components/Common/PersianPage/Persian";
-import Polish from "./Components/Common/PolishPage/Polish";
-import Sanskrit from "./Components/Common/SanskritPage/Sanskrit";
-import Asia from "./Components/Common/Asia/Asia";
+const UnitedArabEmirates = lazy(() => import("./Components/Common/UnitedArabEmirates Page/UnitedArabEmirates"));
+const Mauritius = lazy(() => import("./Components/Common/Mauritius Page/Mauritius"));
+const Arabic = lazy(() => import("./Components/Common/ArabicPages/Arabic"));
+const BalkanLanguage = lazy(() => import("./Components/Common/BalkanLanguage page/BalkanLanguage"));
+const Chinese = lazy(() => import("./Components/Common/ChinesePage/Chinese"));
+const Frame = lazy(() => import("./Components/Common/FramePage/Frame"));
+const French = lazy(() => import("./Components/Common/FrenchPage/French"));
+const German = lazy(() => import("./Components/Common/GermanPage/German"));
+const Hindi = lazy(() => import("./Components/Common/HindiPage/Hindi"));
+const ItalianLanguage = lazy(() => import("./Components/Common/ItalianLanguage Page/ItalianLanguage"));
+const Japanese = lazy(() => import("./Components/Common/JapanesePage/Japanese"));
+const Korean = lazy(() => import("./Components/Common/KoreanPage/Korean"));
+const Russian = lazy(() => import("./Components/Common/RussianPage/Russian"));
+const Persian = lazy(() => import("./Components/Common/PersianPage/Persian"));
+const Polish = lazy(() => import("./Components/Common/PolishPage/Polish"));
+const Sanskrit = lazy(() => import("./Components/Common/SanskritPage/Sanskrit"));
+const Asia = lazy(() => import("./Components/Common/Asia/Asia"));
 import Europe from "./Components/Common/Europe/Europe";
-import Australia from "./Components/Common/Aust/Australia";
-import America from "./Components/Common/America/America";
-import BlogPage from "./Pages/HomePages/BlogPage";
-import BlogDetailPage from "./Pages/HomePages/BlogDetails";
-import Poland from "./Pages/HomePages/Poland";
+const Australia = lazy(() => import("./Components/Common/Aust/Australia"));
+const America = lazy(() => import("./Components/Common/America/America"));
+const BlogPage = lazy(() => import("./Pages/HomePages/BlogPage"));
+const BlogDetailPage = lazy(() => import("./Pages/HomePages/BlogDetails"));
+const Poland = lazy(() => import("./Pages/HomePages/Poland"));
 import PopupForm from "./Components/PopupForm";
-import ContactUs from "./Pages/HomePages/ContactUs";
-import Career from "./Pages/HomePages/Career";
-import Privacy from "./Pages/HomePages/Privacy";
-import Payment from "./Pages/HomePages/Payment";
-import Event from "./Pages/HomePages/Event";
-import StudyNetherlandsPage from "./Pages/HomePages/StudyInNetherlands";
-import StudyInSouthKorea from "./Pages/HomePages/StudyInSouthKorea";
-import StudyMaltaPage from "./Pages/HomePages/StudyInMalta";
-import Transcription from "./Pages/HomePages/Transcription";
-import Translational from "./Pages/HomePages/Translational";
-import Localization from "./Pages/HomePages/Localization";
-import Multilanguage from "./Pages/HomePages/Multilanguage";
-import Profreding from "./Pages/HomePages/Profreding";
-import Voiceover from "./Pages/HomePages/Voiceover";
-import Contentwriting from "./Pages/HomePages/Contentwriting";
-import Dubbing from "./Pages/HomePages/Dubbing";
-import Subtitle from "./Pages/HomePages/Subtitle";
-import Workabroad from "./Pages/HomePages/Workabroad";
+const ContactUs = lazy(() => import("./Pages/HomePages/ContactUs"));
+const Career = lazy(() => import("./Pages/HomePages/Career"));
+const Privacy = lazy(() => import("./Pages/HomePages/Privacy"));
+const Payment = lazy(() => import("./Pages/HomePages/Payment"));
+const Event = lazy(() => import("./Pages/HomePages/Event"));
+const StudyNetherlandsPage = lazy(() => import("./Pages/HomePages/StudyInNetherlands"));
+const StudyInSouthKorea = lazy(() => import("./Pages/HomePages/StudyInSouthKorea"));
+const StudyMaltaPage = lazy(() => import("./Pages/HomePages/StudyInMalta"));
+const Transcription = lazy(() => import("./Pages/HomePages/Transcription"));
+const Translational = lazy(() => import("./Pages/HomePages/Translational"));
+const Localization = lazy(() => import("./Pages/HomePages/Localization"));
+const Multilanguage = lazy(() => import("./Pages/HomePages/Multilanguage"));
+const Profreding = lazy(() => import("./Pages/HomePages/Profreding"));
+const Voiceover = lazy(() => import("./Pages/HomePages/Voiceover"));
+const Contentwriting = lazy(() => import("./Pages/HomePages/Contentwriting"));
+const Dubbing = lazy(() => import("./Pages/HomePages/Dubbing"));
+const Subtitle = lazy(() => import("./Pages/HomePages/Subtitle"));
+const Workabroad = lazy(() => import("./Pages/HomePages/Workabroad"));
 import FloatingCallButton from "./Components/Floatingcalbutton";
-import Test from "./Components/Common/Header/Test";
-import Termscondition from "./Pages/HomePages/Termscondition";
-import Test1 from "./Pages/HomePages/Test1";
-import StudyCyprusPage from "./Pages/HomePages/StudyInCyprus";
-import Certificate from "./Pages/HomePages/Certificate";
-import StudyDubaiPage from "./Pages/HomePages/Studynew";
-import StudyPolandPage from "./Pages/HomePages/StudyPolandPage";
-import StudyGeorgiaPage from "./Pages/HomePages/StudyInGeorgia";
-import Investment1 from "./Pages/HomePages/Investment1";
-import PRAssessment from "./Pages/HomePages/PRAssessment";
-import StudyAbrotHeroSection1 from "./Pages/HomePages/StudyAbrotHeroSection1";
-import GoldenVisaPage from "./Pages/HomePages/GoldenVisa";
-import PortugalGoldenVisaPage from "./Pages/HomePages/PortugalGoldenVis";
-import GreeceGoldenVisaPage from "./Pages/HomePages/GreeceGoldenVisa";
-import ItalyGoldenVisaPage from "./Pages/HomePages/ItalyGoldenVisa";
-import HungaryGoldenVisaPage from "./Pages/HomePages/HungaryGoldenVisa";
-import UaeGoldenVisaPage from "./Pages/HomePages/UAEGoldenVisa";
-import PanamaGoldenVisaPage from "./Pages/HomePages/PanamaGoldenVisa";
-import LatviaGoldenVisaPage from "./Pages/HomePages/LatviaGoldenVisa";
-import LangmaStudyAbroadAssessment from "./Pages/HomePages/LangmaStudyAbroadAssessment";
-import InternationalHeroSection from "./Pages/HomePages/InternationalHeroSection";
-import StudyMauritiusPage from "./Pages/HomePages/StudyInMauritius";
-import StudySingaporePage from "./Pages/HomePages/StudyInSingapore";
-import LangmaMaltaGlobalResidenceProgrammePage from "./Pages/HomePages/MaltaGlobalResidenceProgrammePage";
-import LangmaMaltaPermanentResidenceProgrammePage from "./Pages/HomePages/MaltaResidencyProgram";
-import AndorraPRPage from "./Pages/HomePages/AndorraPR";
-import AustriaResidencePage from "./Pages/HomePages/AustriaPR";
-import CyprusPRPage from "./Pages/HomePages/CyprusPRPage";
-import LangmaEB5USAPage from "./Pages/HomePages/EB5USA";
-import HungaryBusinessResidencyPage from "./Pages/HomePages/HungaryBusiness";
-import HungaryWhiteCardPage from "./Pages/HomePages/HungaryWhiteCard";
-import LangmaIndonesiaSecondHomeVisaPage from "./Pages/HomePages/IndonesiaSecondHomeVisa";
-import ItalyDNVPage from "./Pages/HomePages/ItalyDNV";
-import LangmaMaltaNomadPage from "./Pages/HomePages/MaltaNomad";
-import PortugalGlobalTalentPage from "./Pages/HomePages/PortugalGlobalTalent";
-import LangmaPortugalStartupVisaPage from "./Pages/HomePages/PortugalStartup";
-import PortugalD7VisaPage from "./Pages/HomePages/Portugal_D7";
-import PortugalD8Page from "./Pages/HomePages/Portugal_D8";
-import SpainDNVPage from "./Pages/HomePages/SpainDNV";
-import SpainNLVPage from "./Pages/HomePages/SpainNLVPage";
-import SwitzerlandPRPage from "./Pages/HomePages/SwitzerlandPR";
-import LangmaThailandEliteVisaPage from "./Pages/HomePages/ThilandEliteVisa";
-import GoldenVisaAssessment from "./Pages/HomePages/GoldenVisaAssessment";
-import AboutLangma from "./Pages/HomePages/Aboutus";
-import LearnGermanLanguage from "./Pages/HomePages/LearnGermanLanguage";
-import LearnKoreanLanguage from "./Pages/HomePages/LearnKoreanLanguage";
-import LearnJapaneseLanguage from "./Pages/HomePages/LearnJapaneseLanguage";
-import LangmaFrenchCourse from "./Pages/HomePages/LangmaFrenchCourse";
-import LangmaChineseCourse from "./Pages/HomePages/LangmaChineseCourse"
+const Test = lazy(() => import("./Components/Common/Header/Test"));
+const Termscondition = lazy(() => import("./Pages/HomePages/Termscondition"));
+const Test1 = lazy(() => import("./Pages/HomePages/Test1"));
+const StudyCyprusPage = lazy(() => import("./Pages/HomePages/StudyInCyprus"));
+const Certificate = lazy(() => import("./Pages/HomePages/Certificate"));
+const StudyDubaiPage = lazy(() => import("./Pages/HomePages/Studynew"));
+const StudyPolandPage = lazy(() => import("./Pages/HomePages/StudyPolandPage"));
+const StudyGeorgiaPage = lazy(() => import("./Pages/HomePages/StudyInGeorgia"));
+const Investment1 = lazy(() => import("./Pages/HomePages/Investment1"));
+const PRAssessment = lazy(() => import("./Pages/HomePages/PRAssessment"));
+const StudyAbrotHeroSection1 = lazy(() => import("./Pages/HomePages/StudyAbrotHeroSection1"));
+const GoldenVisaPage = lazy(() => import("./Pages/HomePages/GoldenVisa"));
+const PortugalGoldenVisaPage = lazy(() => import("./Pages/HomePages/PortugalGoldenVis"));
+const GreeceGoldenVisaPage = lazy(() => import("./Pages/HomePages/GreeceGoldenVisa"));
+const ItalyGoldenVisaPage = lazy(() => import("./Pages/HomePages/ItalyGoldenVisa"));
+const HungaryGoldenVisaPage = lazy(() => import("./Pages/HomePages/HungaryGoldenVisa"));
+const UaeGoldenVisaPage = lazy(() => import("./Pages/HomePages/UAEGoldenVisa"));
+const PanamaGoldenVisaPage = lazy(() => import("./Pages/HomePages/PanamaGoldenVisa"));
+const LatviaGoldenVisaPage = lazy(() => import("./Pages/HomePages/LatviaGoldenVisa"));
+const LangmaStudyAbroadAssessment = lazy(() => import("./Pages/HomePages/LangmaStudyAbroadAssessment"));
+const InternationalHeroSection = lazy(() => import("./Pages/HomePages/InternationalHeroSection"));
+const StudyMauritiusPage = lazy(() => import("./Pages/HomePages/StudyInMauritius"));
+const StudySingaporePage = lazy(() => import("./Pages/HomePages/StudyInSingapore"));
+const LangmaMaltaGlobalResidenceProgrammePage = lazy(() => import("./Pages/HomePages/MaltaGlobalResidenceProgrammePage"));
+const LangmaMaltaPermanentResidenceProgrammePage = lazy(() => import("./Pages/HomePages/MaltaResidencyProgram"));
+const AndorraPRPage = lazy(() => import("./Pages/HomePages/AndorraPR"));
+const AustriaResidencePage = lazy(() => import("./Pages/HomePages/AustriaPR"));
+const CyprusPRPage = lazy(() => import("./Pages/HomePages/CyprusPRPage"));
+const LangmaEB5USAPage = lazy(() => import("./Pages/HomePages/EB5USA"));
+const HungaryBusinessResidencyPage = lazy(() => import("./Pages/HomePages/HungaryBusiness"));
+const HungaryWhiteCardPage = lazy(() => import("./Pages/HomePages/HungaryWhiteCard"));
+const LangmaIndonesiaSecondHomeVisaPage = lazy(() => import("./Pages/HomePages/IndonesiaSecondHomeVisa"));
+const ItalyDNVPage = lazy(() => import("./Pages/HomePages/ItalyDNV"));
+const LangmaMaltaNomadPage = lazy(() => import("./Pages/HomePages/MaltaNomad"));
+const PortugalGlobalTalentPage = lazy(() => import("./Pages/HomePages/PortugalGlobalTalent"));
+const LangmaPortugalStartupVisaPage = lazy(() => import("./Pages/HomePages/PortugalStartup"));
+const PortugalD7VisaPage = lazy(() => import("./Pages/HomePages/Portugal_D7"));
+const PortugalD8Page = lazy(() => import("./Pages/HomePages/Portugal_D8"));
+const SpainDNVPage = lazy(() => import("./Pages/HomePages/SpainDNV"));
+const SpainNLVPage = lazy(() => import("./Pages/HomePages/SpainNLVPage"));
+const SwitzerlandPRPage = lazy(() => import("./Pages/HomePages/SwitzerlandPR"));
+const LangmaThailandEliteVisaPage = lazy(() => import("./Pages/HomePages/ThilandEliteVisa"));
+const GoldenVisaAssessment = lazy(() => import("./Pages/HomePages/GoldenVisaAssessment"));
+const AboutLangma = lazy(() => import("./Pages/HomePages/Aboutus"));
+const LearnGermanLanguage = lazy(() => import("./Pages/HomePages/LearnGermanLanguage"));
+const LearnKoreanLanguage = lazy(() => import("./Pages/HomePages/LearnKoreanLanguage"));
+const LearnJapaneseLanguage = lazy(() => import("./Pages/HomePages/LearnJapaneseLanguage"));
+const LangmaFrenchCourse = lazy(() => import("./Pages/HomePages/LangmaFrenchCourse"));
+const LangmaChineseCourse = lazy(() => import("./Pages/HomePages/LangmaChineseCourse"));
 
-import TranslationServices from "./Pages/HomePages/TranslationServices";
-import HomeLangma from "./Pages/HomePages/Homepage";
-import SuccessStories from "./Pages/HomePages/SuccessStories";
+const TranslationServices = lazy(() => import("./Pages/HomePages/TranslationServices"));
+const HomeLangma = lazy(() => import("./Pages/HomePages/Homepage"));
+const SuccessStories = lazy(() => import("./Pages/HomePages/SuccessStories"));
 import {
   GOOGLE_ADS_ID,
   GOOGLE_ANALYTICS_ID,
@@ -208,7 +208,9 @@ function App() {
       {!isStandaloneLanding && loading && <Loader />}
       {isStandaloneLanding && <StandaloneLandingGtm />}
 
-      <Routes>
+      <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center" role="status">Loading page…</div>}>
+
+        <Routes>
           {/* <Route path="/" element={<HeroSection />} /> */}
           <Route path="/" element={<HomeLangma />} />
           {/* <Route path="/about" element={<AboutHeroSection />} />*/}
@@ -333,7 +335,8 @@ function App() {
           <Route path="/golden-visa-assessment" element={<GoldenVisaAssessment/>} />
         <Route path="/thank-you" element={<Thankyou />} />
           {/* <Route path="/newhome" element={<HomeLangma/>} /> */}
-        </Routes>
+          </Routes>
+        </Suspense>
       {!isStandaloneLanding && <Footer />}
       </div>
     </HelmetProvider>

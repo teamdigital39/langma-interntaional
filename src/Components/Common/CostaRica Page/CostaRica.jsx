@@ -71,7 +71,7 @@ const CostaRica = () => {
 
           <GlobalPR />
 
-          <FAQ />
+          <FAQ section="golden-visa" />
         </>
       )}
 

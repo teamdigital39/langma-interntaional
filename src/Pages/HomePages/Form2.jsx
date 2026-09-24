@@ -90,7 +90,9 @@ const ConsultationForm = () => {
       let data = {};
       try {
         data = JSON.parse(text);
-      } catch (_) {}
+      } catch (_) {
+        // Keep the raw response fallback; the HTTP status determines the user-facing result.
+      }
 
       if (response.status === 200 || response.status === 201) {
         setIsSuccess(true);

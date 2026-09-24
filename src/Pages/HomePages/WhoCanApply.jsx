@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import ConsultationForm from "./Form2";
 
 const WhoCanApply = () => {
-  const [formData, setFormData] = useState({
+  const [_formData, setFormData] = useState({
     fname: "", lname: "", email: "", phone: "", progInterest: "", message: "",
   });
 
-  const handleChange = (e) => {
+  const _handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 

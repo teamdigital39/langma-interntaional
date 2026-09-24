@@ -17,7 +17,7 @@ const Check = () => (
   </svg>
 );
 
-function Reveal({ as: Tag = "div", className = "", children, ...rest }) {
+function Reveal({ as: _Tag = "div", className = "", children, ...rest }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -398,8 +398,8 @@ function sameDay(a, b) {
 ============================================================ */
 
 export default function ItalyGoldenVisa() {
-  const [scrolled, setScrolled] = useState(false);
-  const [navOpen, setNavOpen] = useState(false);
+  const [_scrolled, setScrolled] = useState(false);
+  const [_navOpen, _setNavOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
   const faqRefs = useRef({});
 

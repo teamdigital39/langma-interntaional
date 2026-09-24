@@ -6,6 +6,7 @@ import WhyChoosePR from "./WhyChoosePR";
 import WhoCanApply from "./WhoCanApply";
 import InvestmentOption from "./InvestmentOption";
 import ResidencyFinder from "./Form";
+import FAQ from "./FAQ";
 
 const Investment1 = () => {
   return (
@@ -115,6 +116,7 @@ const Investment1 = () => {
       <WhyChoosePR />
       <WhoCanApply />
       <InvestmentOption />
+      <FAQ section="pr-investment" />
     </>
   );
 };

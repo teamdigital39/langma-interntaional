@@ -48,7 +48,7 @@ function useCountUp(target, duration = 1600, start = false) {
 /* ===================================================================
  *  Reveal wrapper
  * ================================================================ */
-function Reveal({ children, delay = 0, y = 24, as: Tag = "div", style }) {
+function Reveal({ children, delay = 0, y = 24, as: _Tag = "div", style }) {
   const [ref, visible] = useReveal();
   return (
     <Tag
@@ -130,7 +130,7 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay, text
 /* ===================================================================
  *  Section header
  * ================================================================ */
-function SectionHead({ style, tag, title, sub, light, center }) {
+function SectionHead({ style, tag, title, sub, _light, center }) {
   return (
     <Reveal>
       <div
@@ -1102,7 +1102,7 @@ const support = [
   { icon: "💬", title: "Dedicated Student Advisor", body: "One point of contact from application to arrival. Real people, real answers — not a call centre queue or an automated chatbot." },
 ];
 
-const faqs = [
+const _faqs = [
   { q: "How much does it cost to study in Cyprus as an international student?", a: "Foundation programs start at €5,500 per year (all fees included). Bachelor's programs are €6,500 in the first year with reduced fees from Year 2. Master's programs are €7,500 for the full 18-month course. Living costs average approximately €300 per month — making Cyprus one of the most affordable EU study destinations." },
   { q: "Can international students work while studying in Cyprus?", a: "Yes. International students can work part-time in Cyprus as permitted under student immigration regulations. The service sector — tourism, hospitality, retail and IT — offers the most student work opportunities." },
   { q: "What is the minimum IELTS score required to study in Cyprus?", a: "Cyprus accepts some of the lowest English proficiency scores in the EU. Foundation programs require IELTS 4.0–4.5 or PTE 43–57. Bachelor's programs require IELTS 5.0–6.0 depending on the course. Master's programs require IELTS 6.0–6.5. TOEFL is not accepted." },
@@ -1119,7 +1119,7 @@ const faqs = [
  *  MAIN
  * ================================================================ */
 export default function StudyCyprusPage() {
-  const [openFAQ, setOpenFAQ] = useState(0);
+  const [_openFAQ, _setOpenFAQ] = useState(0);
   const [open, setOpen] = useState(false);
 
   return (
@@ -1785,7 +1785,7 @@ export default function StudyCyprusPage() {
       </section>
 
       {/* ---------------- FAQ ---------------- */}
-      <FAQ />
+      <FAQ section="study-abroad" />
       {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead tag={<span style={{ color: "#296166" }}>FAQs</span>} title="Frequently Asked Questions — Study in Cyprus" center />

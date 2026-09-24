@@ -297,6 +297,10 @@ const sections = [
             <div key={p} className="flex items-start gap-3 mb-4 w-full">
               <img
                 src="/images/check.svg"
+                alt=""
+                aria-hidden="true"
+                width={20}
+                height={20}
                 className="w-5 h-5 mt-1"
               />
               <p className="text-[#212529] text-[16px] text-left">

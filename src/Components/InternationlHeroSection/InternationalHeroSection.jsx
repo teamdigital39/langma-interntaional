@@ -64,7 +64,7 @@ const InternationalHeroSection1 = () => {
       />
       {/* <BlogSection />
       <LangmaSection /> */}
-      <FAQ />
+      <FAQ section="language-courses" />
       {/* <ContactForm /> */}
       <PopupForm open={open} onClose={() => setOpen(false)} />
     </>

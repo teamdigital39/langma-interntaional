@@ -5,8 +5,8 @@ const SERVICE = 'Hungary White Card';
 
 const HungaryWhiteCardPage = () => {
   const [openFaq, setOpenFaq] = useState(0);
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [_scrolled, setScrolled] = useState(false);
+  const [_menuOpen, setMenuOpen] = useState(false);
   const {
     handleLeadSubmit, handleOfficeSubmit,
     leadLoading, officeLoading,
@@ -33,7 +33,7 @@ const HungaryWhiteCardPage = () => {
   }, []);
 
   const toggleFaq = (index) => setOpenFaq(openFaq === index ? null : index);
-  const closeMenu = () => setMenuOpen(false);
+  const _closeMenu = () => setMenuOpen(false);
 
   const heroBadges = [
     { num: '€3,000+', lbl: 'Min. Monthly Income' },
@@ -162,7 +162,7 @@ const HungaryWhiteCardPage = () => {
     { i: '↪', t: 'Personalised roadmap discussion', p: 'Leave with a clear understanding of your application pathway, realistic timelines, and next steps.' },
   ];
 
-  const navLinks = [
+  const _navLinks = [
     { href: '#about-hungary', label: 'Hungary' },
     { href: '#white-card', label: 'The White Card' },
     { href: '#finance', label: 'Requirements' },

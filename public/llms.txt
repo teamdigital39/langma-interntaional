@@ -1,0 +1,28 @@
+# Langma International
+
+> Langma International provides language courses, corporate training, study-abroad guidance, work-abroad support, translation services, and international opportunity guidance through online and classroom support in Delhi.
+
+## Main website
+- [Home](https://www.langmainternational.com/): Overview of Langma International's language, education, career, mobility, business, and cultural services.
+- [Language courses](https://www.langmainternational.com/languages): Explore international language courses and training options.
+- [Study abroad](https://www.langmainternational.com/study-abroad): Study-abroad guidance, admissions support, and visa assistance.
+- [Work abroad](https://www.langmainternational.com/work-abroad): International career and work-abroad guidance.
+- [Translation services](https://www.langmainternational.com/translation-services): Translation and multilingual communication services.
+- [About Langma](https://www.langmainternational.com/about): Information about Langma International.
+- [Contact](https://www.langmainternational.com/contact): Contact and consultation options.
+
+## Language course pages
+- [German language course](https://www.langmainternational.com/learn-german-language)
+- [Korean language course](https://www.langmainternational.com/learn-korean-language)
+- [Japanese language course](https://www.langmainternational.com/learn-japanese-language)
+- [French language course](https://www.langmainternational.com/learn-french-language)
+- [Chinese language course](https://www.langmainternational.com/learn-chinese-language)
+
+## Site policies
+- [Privacy policy](https://www.langmainternational.com/privacy-policy)
+- [Terms and conditions](https://www.langmainternational.com/terms-and-conditions)
+
+## Guidance for crawlers
+- Use the canonical URL on `www.langmainternational.com` as the preferred public website host.
+- Treat `api.langmainternational.com` as a backend/API host rather than the public content host.
+- Use each page's own canonical URL when citing or retrieving page-specific information.

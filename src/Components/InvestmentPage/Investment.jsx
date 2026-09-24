@@ -50,7 +50,7 @@ const Investment = () => {
       {/* <BlogSection />
       <LangmaSection /> */}
       <InvestmentOption/>
-      <FAQ />
+      <FAQ section="pr-investment" />
       <PopupForm open={open} onClose={() => setOpen(false)} />
     </>
   );

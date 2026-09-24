@@ -73,7 +73,7 @@ function useCountUp(target, duration = 1600, start = false) {
 /* ===================================================================
  *  Reveal wrapper (fade + slide up on scroll)
  * ================================================================ */
-function Reveal({ children, delay = 0, y = 24, as: Tag = "div", style }) {
+function Reveal({ children, delay = 0, y = 24, as: _Tag = "div", style }) {
   const [ref, visible] = useReveal();
   return (
     <Tag
@@ -1950,7 +1950,7 @@ export default function StudyDubaiPage() {
                   "Official Offer Letter from MIBD",
                   "Proof of fee payment / receipt",
                   "Visa application details (as specified)",
-                ].map((d, i) => (
+                ].map((d, _i) => (
                   <div
                     key={d}
                     style={{

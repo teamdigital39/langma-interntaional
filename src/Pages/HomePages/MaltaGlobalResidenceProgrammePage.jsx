@@ -40,8 +40,8 @@ const isPastDate = (value) => value && value < todayStr();
 
 const LangmaMaltaGlobalResidenceProgrammePage = () => {
   const [openFaq, setOpenFaq] = useState(null);
-  const [navOpen, setNavOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [_navOpen, _setNavOpen] = useState(false);
+  const [_scrolled, setScrolled] = useState(false);
 
   const [leadForm, setLeadForm] = useState({ fname: '', lname: '', email: '', phone: '', country: '', route: '' });
   const [leadErrors, setLeadErrors] = useState({});

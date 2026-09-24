@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, _useRef } from "react";
 // import API_BASE from "../../config.js";
 const COLORS = {
   navy: "#296166",
@@ -1327,7 +1327,11 @@ function ResultsSection({ assessmentAnswers }) {
 
       const text = await response.text();
       let data = {};
-      try { data = JSON.parse(text); } catch (_) {}
+      try {
+        data = JSON.parse(text);
+      } catch (_) {
+        // Keep the default response object when the endpoint returns non-JSON content.
+      }
 
       if (response.status === 200 || response.status === 201) {
         setStatus("success");

@@ -30,7 +30,7 @@ function useReveal(threshold = 0.15) {
 /* ===================================================================
  *  Reveal wrapper
  * ================================================================ */
-function Reveal({ children, delay = 0, y = 24, as: Tag = "div", style }) {
+function Reveal({ children, delay = 0, y = 24, as: _Tag = "div", style }) {
   const [ref, visible] = useReveal();
   return (
     <Tag
@@ -50,7 +50,7 @@ function Reveal({ children, delay = 0, y = 24, as: Tag = "div", style }) {
 /* ===================================================================
  *  Section header
  * ================================================================ */
-function SectionHead({ style, tag, title, sub, light, center }) {
+function SectionHead({ style, tag, title, sub, _light, center }) {
   return (
     <Reveal>
       <div
@@ -982,7 +982,7 @@ const support = [
   { icon: "💯", title: "Student-First Approach", body: "Every decision we make is guided by what is genuinely best for your career, education, and future — not just what is convenient." },
 ];
 
-const faqs = [
+const _faqs = [
   { q: "Is Mauritius a good destination for international students?", a: "Absolutely. Mauritius combines internationally recognised education, an English-friendly academic environment, a multicultural student community, and an exceptional quality of life — all at a cost significantly lower than traditional study-abroad destinations." },
   { q: "Can I work part-time while studying in Mauritius?", a: "Yes — with conditions. Students have a legal right to work up to 20 hours per week, but this right does not apply during the first 90 days. After that, part-time employment requires an employer-obtained Ministry of Labour clearance." },
   { q: "What is the cost of living in Mauritius for a student?", a: "Student living costs in Mauritius are genuinely affordable. Accommodation, food, transport, and personal expenses combined are far more manageable than equivalent costs in Western study destinations." },
@@ -1004,7 +1004,7 @@ const faqs = [
  *  MAIN
  * ================================================================ */
 export default function StudyMauritiusPage() {
-  const [openFAQ, setOpenFAQ] = useState(0);
+  const [_openFAQ, _setOpenFAQ] = useState(0);
   const [open, setOpen] = useState(false);
 
   return (
@@ -1735,7 +1735,7 @@ export default function StudyMauritiusPage() {
       </section>
 
       {/* ---------------- FAQ ---------------- */}
-      <FAQ />
+      <FAQ section="study-abroad" />
       {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead tag={<span style={{ color: "#296166" }}>Got Questions?</span>} title="Frequently Asked Questions" center />

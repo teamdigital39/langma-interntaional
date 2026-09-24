@@ -25,7 +25,14 @@ const LanguageProgramSection = () => {
         {/* RIGHT IMAGE CLUSTER */}
         <div className="relative flex items-center justify-center">
           {/* TOP LEFT IMAGE */}
-          <img src="/images/Group 4445.png" className="   " />
+          <img
+            src="/images/Group 4445.png"
+            alt="Students learning international languages for study, work, and travel"
+            width={694}
+            height={512}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </section>

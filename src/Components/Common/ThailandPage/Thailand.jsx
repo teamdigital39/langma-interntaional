@@ -71,7 +71,7 @@ const Thailand = () => {
 
           <GlobalPR />
 
-          <FAQ />
+          <FAQ section="golden-visa" />
         </>
       )}
 

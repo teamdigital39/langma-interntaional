@@ -61,7 +61,7 @@ const Russian = () => {
 
       {/* <BlogSection />
       <LangmaSection /> */}
-      <FAQ />
+      <FAQ language="Russian" />
       {/* <ContactForm /> */}
     </>
   );

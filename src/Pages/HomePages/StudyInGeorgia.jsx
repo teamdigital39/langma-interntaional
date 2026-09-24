@@ -48,7 +48,7 @@ function useCountUp(target, duration = 1600, start = false) {
 /* ===================================================================
  *  Reveal wrapper
  * ================================================================ */
-function Reveal({ children, delay = 0, y = 24, as: Tag = "div", style }) {
+function Reveal({ children, delay = 0, y = 24, as: _Tag = "div", style }) {
   const [ref, visible] = useReveal();
   return (
     <Tag
@@ -130,7 +130,7 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay, text
 /* ===================================================================
  *  Section header
  * ================================================================ */
-function SectionHead({ style, tag, title, sub, light, center }) {
+function SectionHead({ style, tag, title, sub, _light, center }) {
   return (
     <Reveal>
       <div
@@ -1120,7 +1120,7 @@ const visaDocs = [
   "Apostille of academic documents (notarised & translated)",
 ];
 
-const faqs = [
+const _faqs = [
   { q: "Why study in Georgia?", a: "Georgia has become one of the most preferred destinations for higher education among Indian and international students. It offers European-standard education, English-medium programs, affordable tuition, budget-friendly living, and a safe, low-crime environment. Over 60,000 international students — including more than 10,000 Indian students — currently study there, with Tbilisi just a 5-hour direct flight from New Delhi." },
   { q: "What is the average cost of studying and living in Georgia?", a: "Tuition for medicine is USD 5,550 per year, with an estimated total of ₹20–25 Lakh for the full course. Living costs average around ₹20,000 per month including food and accommodation, with a recommended food budget of about ₹6,000. The Georgian Lari trades at roughly ₹31.20." },
   { q: "Is IELTS or TOEFL required for studying in Georgia?", a: "English language requirements vary by institution and program. Applicants may be required to demonstrate English proficiency through accepted tests or other institution-approved methods. Your Langma International advisor will confirm the exact requirement for your chosen course before you apply." },
@@ -1132,7 +1132,7 @@ const faqs = [
  *  MAIN
  * ================================================================ */
 export default function StudyGeorgiaPage() {
-  const [openFAQ, setOpenFAQ] = useState(0);
+  const [_openFAQ, _setOpenFAQ] = useState(0);
   const [open, setOpen] = useState(false);
 
   return (
@@ -1866,7 +1866,7 @@ export default function StudyGeorgiaPage() {
       </section>
 
       {/* ---------------- FAQ ---------------- */}
-      <FAQ />
+      <FAQ section="study-abroad" />
       {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead tag={<span style={{ color: "#296166" }}>FAQs</span>} title="Common Questions About Studying in Georgia" center />

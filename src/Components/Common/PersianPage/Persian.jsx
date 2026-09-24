@@ -61,7 +61,7 @@ const Persian = () => {
 {/* 
       <BlogSection />
       <LangmaSection /> */}
-      <FAQ />
+      <FAQ language="Persian" />
       {/* <ContactForm /> */}
     </>
   );

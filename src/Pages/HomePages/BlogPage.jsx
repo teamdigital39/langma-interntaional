@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CalendarDays, ArrowRight } from "lucide-react";
 
+const API_URL = `${API_BASE}/api/blog-list`;
+
 function BlogPage() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
-
-const API_URL = `${API_BASE}/api/blog-list`;
 
   useEffect(() => {
     fetch(API_URL)

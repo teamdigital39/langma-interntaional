@@ -48,7 +48,7 @@ function useCountUp(target, duration = 1600, start = false) {
 /* ===================================================================
  *  Reveal wrapper
  * ================================================================ */
-function Reveal({ children, delay = 0, y = 24, as: Tag = "div", style }) {
+function Reveal({ children, delay = 0, y = 24, as: _Tag = "div", style }) {
   const [ref, visible] = useReveal();
   return (
     <Tag
@@ -124,7 +124,7 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay }) {
 /* ===================================================================
  *  Section header
  * ================================================================ */
-function SectionHead({ style, tag, title, sub, light, center }) {
+function SectionHead({ style, tag, title, sub, _light, center }) {
   return (
     <Reveal>
       <div
@@ -1119,7 +1119,7 @@ const careerTags = [
   "Event Management", "EU Career Pathways",
 ];
 
-const faqs = [
+const _faqs = [
   { q: "Is Malta a good destination for international students?", a: "Malta is an excellent study destination for international students seeking affordable, internationally recognised, English-taught qualifications within the European Union. It combines EU academic recognition, a fully English-speaking environment, a safe culture, and a Mediterranean lifestyle — at a significantly lower cost than Western European destinations." },
   { q: "Is English the language of instruction in Malta?", a: "Yes. English is an official language of Malta and the primary language of instruction across all higher education programmes. Students do not need to learn Maltese or any other language to study or live comfortably in Malta." },
   { q: "Can I study in Malta without IELTS?", a: "IELTS is the most widely accepted test, but TOEFL iBT, PTE Academic, and Cambridge English qualifications are also accepted by most programmes. Foundation programmes require lower scores (IELTS 4.5–5.5), Bachelor's require 5.5–6.0, and postgraduate require 6.0–6.5 or equivalent." },
@@ -1136,7 +1136,7 @@ const faqs = [
  *  MAIN
  * ================================================================ */
 export default function StudyMaltaPage() {
-  const [openFAQ, setOpenFAQ] = useState(0);
+  const [_openFAQ, _setOpenFAQ] = useState(0);
   const [open, setOpen] = useState(false);
 
   return (
@@ -1889,7 +1889,7 @@ export default function StudyMaltaPage() {
       </section>
 
       {/* ---------------- FAQ ---------------- */}
-      <FAQ />
+      <FAQ section="study-abroad" />
       {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead tag={<span style={{ color: "#296166" }}>FAQs</span>} title="Frequently Asked Questions" center />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
 import Studyform from "./Studyform";
+import FAQ from "./FAQ";
 
 /*
   Langma International — Study Abroad landing page (React / JSX)
@@ -781,11 +782,11 @@ export default function StudyAbrotHeroSection1() {
 
   const today = useMemo(() => { const d = new Date(); d.setHours(0,0,0,0); return d; }, []);
   const [view, setView] = useState(() => { const d = new Date(); return { y: d.getFullYear(), m: d.getMonth() }; });
-  const [mode, setMode] = useState("Virtual Meeting");
+  const [mode, _setMode] = useState("Virtual Meeting");
   const [selDate, setSelDate] = useState(null);
   const [selSlot, setSelSlot] = useState(null);
-  const [confirmed, setConfirmed] = useState(false);
-  const [conf, setConf] = useState(null);
+  const [_confirmed, setConfirmed] = useState(false);
+  const [_conf, setConf] = useState(null);
   const [form, setForm] = useState({ name: "", phone: "", email: "", dest: "Not sure yet", note: "" });
 
   const fmtDate = (dt) => dt.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" });
@@ -818,13 +819,13 @@ export default function StudyAbrotHeroSection1() {
     cells.push({ key: "d" + d, d, disabled: past || sunday, isToday, selected });
   }
 
-  const goPrev = () => { if (isCurrentMonth) return; setView((v) => v.m === 0 ? { y: v.y - 1, m: 11 } : { y: v.y, m: v.m - 1 }); };
-  const goNext = () => setView((v) => v.m === 11 ? { y: v.y + 1, m: 0 } : { y: v.y, m: v.m + 1 });
-  const selectDate = (d) => { setSelDate(new Date(view.y, view.m, d)); setSelSlot(null); };
+  const _goPrev = () => { if (isCurrentMonth) return; setView((v) => v.m === 0 ? { y: v.y - 1, m: 11 } : { y: v.y, m: v.m - 1 }); };
+  const _goNext = () => setView((v) => v.m === 11 ? { y: v.y + 1, m: 0 } : { y: v.y, m: v.m + 1 });
+  const _selectDate = (d) => { setSelDate(new Date(view.y, view.m, d)); setSelSlot(null); };
 
   const canConfirm = !!selDate && !!selSlot;
 
-  const handleSubmit = (e) => {
+  const _handleSubmit = (e) => {
     e.preventDefault();
     if (!canConfirm) return;
     setConf({
@@ -840,7 +841,7 @@ export default function StudyAbrotHeroSection1() {
        rendering a confirmation. */
   };
 
-  const resetBooking = () => {
+  const _resetBooking = () => {
     setSelDate(null); setSelSlot(null);
     setForm({ name: "", phone: "", email: "", dest: "Not sure yet", note: "" });
     setConfirmed(false); setConf(null);
@@ -1012,6 +1013,8 @@ export default function StudyAbrotHeroSection1() {
             <p className="trust-note">Tuition, visa, and admission requirements are subject to change and vary by institution and nationality. Langma International does not guarantee admission or visa outcomes all visa decisions rest with the relevant immigration authorities. Always confirm current requirements with your Langma International counsellor.</p>
           </div>
         </section>
+
+        <FAQ section="study-abroad" />
 
         {/* ===================== FINAL CTA + BOOKING ===================== */}
         <Studyform />

@@ -48,7 +48,7 @@ function useCountUp(target, duration = 1600, start = false) {
 /* ===================================================================
  *  Reveal wrapper
  * ================================================================ */
-function Reveal({ children, delay = 0, y = 24, as: Tag = "div", style }) {
+function Reveal({ children, delay = 0, y = 24, as: _Tag = "div", style }) {
   const [ref, visible] = useReveal();
   return (
     <Tag
@@ -130,7 +130,7 @@ function BoardingStat({ prefix = "", value, suffix = "", label, sub, delay, text
 /* ===================================================================
  *  Section header
  * ================================================================ */
-function SectionHead({ style, tag, title, sub, light, center }) {
+function SectionHead({ style, tag, title, sub, _light, center }) {
   return (
     <Reveal>
       <div
@@ -1161,7 +1161,7 @@ const visaDocs = [
   "Completed application form (provided by Langma)",
 ];
 
-const faqs = [
+const _faqs = [
   { q: "Is IELTS required to study in Singapore?", a: "No — IELTS, TOEFL, and PTE are not required for admission to diploma programmes in Singapore. English proficiency is assessed as part of the application and admissions process itself." },
   { q: "Can I earn money while studying in Singapore?", a: "Yes — every diploma programme includes a structured 6-month paid internship where students earn SGD 1,000–2,000 per month. Placements are arranged through a network of 500+ corporate partners." },
   { q: "How long does the Singapore student visa take to process?", a: "The Student Pass — Singapore's student visa — is processed by the Immigration and Checkpoints Authority (ICA) and typically takes approximately 30 days." },
@@ -1178,7 +1178,7 @@ const faqs = [
  *  MAIN
  * ================================================================ */
 export default function StudySingaporePage() {
-  const [openFAQ, setOpenFAQ] = useState(0);
+  const [_openFAQ, _setOpenFAQ] = useState(0);
   const [open, setOpen] = useState(false);
 
   return (
@@ -1893,7 +1893,7 @@ export default function StudySingaporePage() {
       </section>
 
       {/* ---------------- FAQ ---------------- */}
-      <FAQ />
+      <FAQ section="study-abroad" />
       {/* <section style={{ background: C.cream, padding: "100px 48px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <SectionHead tag={<span style={{ color: "#296166" }}>FAQs</span>} title="Frequently Asked Questions About Studying in Singapore" center />

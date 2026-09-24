@@ -63,7 +63,7 @@ const Cyprus = () => {
 
           <GlobalPR />
 
-          <FAQ />
+          <FAQ section="golden-visa" />
         </>
       )}
     </>

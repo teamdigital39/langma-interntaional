@@ -60,7 +60,7 @@ const UnitedArabEmirates = () => {
             buttonText="Book Your Free Consultation Now"
           />
           <GlobalPR />
-          <FAQ />
+          <FAQ section="golden-visa" />
           <PopupForm open={open} onClose={() => setOpen(false)} />
         </>
       )}
