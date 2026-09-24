@@ -130,7 +130,7 @@ const Korean = () => {
       />
 
       {/* FAQ */}
-      <FAQ />
+      <FAQ language="Korean" />
     </>
   );
 };
