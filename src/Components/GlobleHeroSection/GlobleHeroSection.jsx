@@ -51,7 +51,7 @@ const GlobleHeroSection = () => {
       /> */}
       {/* <BlogSection />
       <LangmaSection /> */}
-      <FAQ />
+      <FAQ section="global-mobility" />
       <ConnectedSection />
       {/* <ContactForm /> */}
       <PopupForm open={open} onClose={() => setOpen(false)} />
