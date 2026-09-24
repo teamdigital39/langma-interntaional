@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useRef, _useMemo } from "react";
 import { Link } from "react-router-dom";
 import GoldenVisaForm from "./GoldenVisaform";
 import Goldenvisaform2 from "./Goldenvisaform2";
@@ -452,9 +452,9 @@ function FaqItem({ q, a }) {
 /* ── MAIN COMPONENT ── */
 export default function GoldenVisaPage() {
   const rootRef = useRef(null);
-  const [form, setForm] = useState({ name: "", phone: "", email: "", program: "", consult: "", date: "", time: TIME_SLOTS[0] });
-  const [submitted, setSubmitted] = useState(false);
-  const [leadForm, setLeadForm] = useState({ name: "", phone: "" });
+  const [_form, _setForm] = useState({ name: "", phone: "", email: "", program: "", consult: "", date: "", time: TIME_SLOTS[0] });
+  const [_submitted, setSubmitted] = useState(false);
+  const [leadForm, _setLeadForm] = useState({ name: "", phone: "" });
   const [leadSent, setLeadSent] = useState(false);
 
   /* scroll reveal */
@@ -470,12 +470,12 @@ export default function GoldenVisaPage() {
     return () => io.disconnect();
   }, []);
 
-  const handleFormSubmit = e => {
+  const _handleFormSubmit = e => {
     e.preventDefault();
     setSubmitted(true);
   };
 
-  const handleLeadSubmit = e => {
+  const _handleLeadSubmit = e => {
     e.preventDefault();
     setLeadSent(true);
   };
