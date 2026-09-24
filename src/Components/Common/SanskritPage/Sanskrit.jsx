@@ -61,7 +61,7 @@ const Sanskrit = () => {
 
       {/* <BlogSection />
       <LangmaSection /> */}
-      <FAQ />
+      <FAQ language="Sanskrit" />
       {/* <ContactForm /> */}
     </>
   );
