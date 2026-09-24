@@ -71,7 +71,7 @@ const Singapore = () => {
 
           <GlobalPR />
 
-          <FAQ />
+          <FAQ section="golden-visa" />
         </>
       )}
 
