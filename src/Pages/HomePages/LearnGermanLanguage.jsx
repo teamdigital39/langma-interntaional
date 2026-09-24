@@ -630,7 +630,7 @@ export default function LangmaGermanCourse() {
 
   /* ===== HERO ===== */
   @keyframes fadeUpIn{from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}}
-  .hero{position:relative; overflow:hidden; border-bottom:1px solid var(--line); max-width:100vw; padding:0;}
+  .hero{position:relative; overflow:hidden; border-bottom:1px solid var(--line); max-width:100vw; padding:calc(var(--header-h) + var(--announce-h, 0px)) 0 0;}
   .hero-grid{opacity:.35;}
   .hero-photo{position:absolute; inset:0; background-image:linear-gradient(100deg, rgba(250,250,250,.985) 0%, rgba(250,250,250,.96) 48%, rgba(250,250,250,.78) 68%, rgba(250,250,250,.38) 100%), url('https://images.unsplash.com/photo-1467269204594-9661b134dd2b?fm=jpg&q=80&w=1800&auto=format&fit=crop'); background-size:cover; background-position:center 65%; opacity:.03;}
   .hero-inner{position:relative; z-index:2; display:grid; grid-template-columns:1.15fr .85fr; gap:56px; padding:40px 32px 48px; max-width:1180px; margin:0 auto; align-items:center;}
