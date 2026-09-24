@@ -131,7 +131,7 @@ const Hindi = () => {
       />
 
       {/* FAQ */}
-      <FAQ />
+      <FAQ language="Hindi" />
     </>
   );
 };
