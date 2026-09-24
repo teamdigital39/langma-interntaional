@@ -155,7 +155,7 @@ const StudyAbrotHeroSection = () => {
   </div>
 </div>
 
-      <FAQ />
+      <FAQ section="study-abroad" />
       {/* <ContactForm /> */}
       <PopupForm open={open} onClose={() => setOpen(false)} />
     </>
