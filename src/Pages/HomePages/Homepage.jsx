@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import ContactForm from "./ContactForm";
 import PopupForm from "./PopupForm";
@@ -10,7 +9,7 @@ const Check = () => (
   </svg>
 );
 
-function Reveal({ as: Tag = "div", className = "", children, delay = 0, style, ...rest }) {
+function Reveal({ as: _Tag = "div", className = "", children, delay = 0, style, ...rest }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -35,9 +34,9 @@ function Reveal({ as: Tag = "div", className = "", children, delay = 0, style, .
   const mergedStyle = delay ? { ...style, transitionDelay: `${delay}ms` } : style;
 
   return (
-    <Tag ref={ref} className={`reveal${visible ? " in" : ""} ${className}`} style={mergedStyle} {...rest}>
+    <_Tag ref={ref} className={`reveal${visible ? " in" : ""} ${className}`} style={mergedStyle} {...rest}>
       {children}
-    </Tag>
+    </_Tag>
   );
 }
 
@@ -55,7 +54,7 @@ function twoLineTitle(title) {
   return title;
 }
 
-function focusConnectForm() {
+function _focusConnectForm() {
   const el = document.getElementById("connect-name-input");
   if (el) {
     el.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -396,17 +395,6 @@ export default function HomeLangma() {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <Helmet>
-        <title>
-          Foreign Language Institute in Delhi & Online | Langma International
-        </title>
-        <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
-        <meta
-          name="description"
-          content="Learn 50+ international languages with Langma. Join expert-led online & classroom courses, corporate training, and certification preparation for study, career, and global opportunities."
-        />
-        
-      </Helmet>
       <style>{`
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600;1,700&family=Roboto:wght@300;400;500;700&display=swap');
 

@@ -2,10 +2,10 @@ export const SITE_URL = "https://www.langmainternational.com";
 export const API_BASE = "https://api.langmainternational.com";
 
 export const HOMEPAGE_METADATA = {
-  title: "Foreign Language Institute in Delhi & Online | Langma International",
+  title: "Foreign Language Institute in Delhi | Langma International",
   description:
-    "Learn 50+ international languages with Langma. Join expert-led online and classroom courses, corporate training, and certification preparation for study, career, and global opportunities.",
-  h1: "50+ Language Courses, Career & Global Opportunities",
+    "Learn 50+ languages online and offline with Langma International. Explore language courses, corporate training, study abroad and global career support.",
+  h1: "Language Courses, Study Abroad & Global Careers",
   image: `${SITE_URL}/images/learnlangma.jpg`,
 };
 
