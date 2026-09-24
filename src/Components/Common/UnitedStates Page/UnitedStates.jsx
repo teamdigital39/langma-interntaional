@@ -72,7 +72,7 @@ const UnitedStates = () => {
       )}
 
       {(activeTab === null || activeTab === "investment") && (
-        <FAQ />
+        <FAQ section="golden-visa" />
       )}
 
         </>
