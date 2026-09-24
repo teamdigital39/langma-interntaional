@@ -17,7 +17,7 @@ const Check = () => (
   </svg>
 );
 
-function Reveal({ as: Tag = "div", className = "", children, ...rest }) {
+function Reveal({ as: _Tag = "div", className = "", children, ...rest }) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
 
@@ -185,7 +185,7 @@ const TILES = [
     pin: "Capital",
     loc: "Riga",
     d: "A UNESCO Old Town and the world's finest Art Nouveau architecture",
-    image: "/images/latvia-golden-visa/riga.jpg",
+    image: "/images/latvia-golden-visa/riga-optimized.jpg",
   },
   {
     pin: "Heritage",
@@ -336,8 +336,8 @@ function sameDay(a, b) {
 ============================================================ */
 
 export default function LatviaGoldenVisa() {
-  const [scrolled, setScrolled] = useState(false);
-  const [navOpen, setNavOpen] = useState(false);
+  const [_scrolled, setScrolled] = useState(false);
+  const [_navOpen, _setNavOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
   const faqRefs = useRef({});
 
