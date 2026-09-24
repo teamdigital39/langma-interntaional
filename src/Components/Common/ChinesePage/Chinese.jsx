@@ -107,7 +107,7 @@ const Chinese = () => {
         buttonText="Start Your Journey Today."
       />
 
-      <FAQ />
+      <FAQ language="Chinese" />
     </>
   );
 };
