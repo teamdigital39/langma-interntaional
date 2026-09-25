@@ -179,8 +179,10 @@ const ConnectedSection = () => {
           <div className="absolute inset-0 z-0">
             <img
               src="/images/Group 4568.png"
+              width={409}
+              height={512}
               className="w-full h-full"
-              alt="bg"
+              alt="Connected consultation form background pattern"
             />
           </div>
 
@@ -220,8 +222,10 @@ const ConnectedSection = () => {
                 <div className="relative">
                   <img
                     src="/images/user.png"
+                    width={20}
+                    height={20}
                     className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5"
-                    alt="user"
+                    alt="Name field icon"
                   />
                   <input
                     type="text"
@@ -242,8 +246,10 @@ const ConnectedSection = () => {
                 <div className="relative">
                   <img
                     src="/images/call.png"
+                    width={512}
+                    height={512}
                     className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5"
-                    alt="call"
+                    alt="Phone field icon"
                   />
                   <input
                     type="text"
@@ -264,8 +270,10 @@ const ConnectedSection = () => {
                 <div className="relative">
                   <img
                     src="/images/mail.png"
+                    width={512}
+                    height={512}
                     className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5"
-                    alt="mail"
+                    alt="Email field icon"
                   />
                   <input
                     type="email"
@@ -286,8 +294,10 @@ const ConnectedSection = () => {
                 <div className="relative">
                   <img
                     src="/images/service.png"
+                    width={512}
+                    height={512}
                     className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5"
-                    alt="service"
+                    alt="Services field icon"
                   />
                   <FiChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500" />
                   <select
@@ -316,8 +326,10 @@ const ConnectedSection = () => {
                   <div className="relative">
                     <img
                       src="https://api.iconify.design/mdi/translate.svg?color=%230B6B6B"
+                      width={20}
+                      height={20}
                       className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5"
-                      alt="language"
+                      alt="Language selection icon"
                     />
                     <FiChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500" />
                     <select
@@ -373,8 +385,10 @@ const ConnectedSection = () => {
                 <div className="relative">
                   <img
                     src="/images/describ.png"
+                    width={512}
+                    height={512}
                     className="absolute left-4 top-4 w-5 h-5"
-                    alt="message"
+                    alt="Message field icon"
                   />
                   <textarea
                     name="message"
