@@ -171,6 +171,8 @@ const ContactForm = () => {
             <img
               src="/images/knowledge-opportunity.png"
               alt="Advisor consulting with a client on travel and residency documents"
+              width={1024}
+              height={666}
               className="w-full h-full object-cover"
             />
 
@@ -203,7 +205,9 @@ const ContactForm = () => {
             <div className="absolute inset-0">
               <img
                 src="/images/Group 4568.png"
-                alt="background"
+                alt="Consultation form background pattern"
+                width={409}
+                height={512}
                 className="w-full h-full object-cover opacity-60"
               />
             </div>
@@ -266,7 +270,9 @@ const ContactForm = () => {
                     <div className="relative">
                       <img
                         src="/images/user.png"
-                        alt="user"
+                        alt="Name field icon"
+                        width={20}
+                        height={20}
                         className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
                       />
                       <input
@@ -288,7 +294,9 @@ const ContactForm = () => {
                     <div className="relative">
                       <img
                         src="/images/call.png"
-                        alt="phone"
+                        alt="Phone field icon"
+                        width={512}
+                        height={512}
                         className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
                       />
                       <input
@@ -314,7 +322,9 @@ const ContactForm = () => {
                     <div className="relative">
                       <img
                         src="/images/mail.png"
-                        alt="email"
+                        alt="Email field icon"
+                        width={512}
+                        height={512}
                         className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
                       />
                       <input
@@ -336,7 +346,9 @@ const ContactForm = () => {
                     <div className="relative">
                       <img
                         src="/images/service.png"
-                        alt="services"
+                        alt="Services field icon"
+                        width={512}
+                        height={512}
                         className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
                       />
                       <FiChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-[#0B6B6B] text-base pointer-events-none" />
@@ -367,7 +379,9 @@ const ContactForm = () => {
                       <div className="relative">
                         <img
                           src="https://api.iconify.design/mdi/translate.svg?color=%230B6B6B"
-                          alt="language"
+                          alt="Language selection icon"
+                          width={20}
+                          height={20}
                           className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
                         />
                         <FiChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-[#0B6B6B] text-base pointer-events-none" />
@@ -424,7 +438,9 @@ const ContactForm = () => {
                     <div className="relative">
                       <img
                         src="/images/describ.png"
-                        alt="pen"
+                        alt="Message field icon"
+                        width={512}
+                        height={512}
                         className="absolute left-4 top-4 w-4 h-4"
                       />
                       <textarea
