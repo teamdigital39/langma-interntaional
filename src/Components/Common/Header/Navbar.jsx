@@ -159,7 +159,7 @@ const Navbar = () => {
             {/* Sidebar Header */}
             <div className="flex justify-between items-center p-5 border-b">
               <Link to="/" onClick={closeMenu}>
-                <img src="/images/Logo.png" alt="logo" className="h-9" />
+                <img src="/images/Logo.png" alt="Langma International wordmark" className="h-9" />
               </Link>
               <button
                 onClick={closeMenu}
