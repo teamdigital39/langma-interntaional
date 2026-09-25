@@ -179,6 +179,24 @@ function languageNameFor(path, metadata) {
 }
 
 function staticFallbackHtml(pathname, metadata) {
+  if (pathname === "/") {
+    return `
+      <h1>${escapeHtml(metadata.h1 || metadata.title)}</h1>
+      <p>Langma International provides foreign language courses, exam preparation, study abroad guidance, overseas career support, and global mobility services through online, classroom, and corporate programs.</p>
+      <p>Learn 50+ international languages with practical training for communication, education, employment, and globally recognized language examinations. Learners can choose flexible online classes, classroom courses in New Delhi, or corporate language training for teams.</p>
+      <h2>Foreign language courses and exam preparation</h2>
+      <p>Explore beginner to advanced language learning with experienced trainers and structured support for international exams. Course guidance can cover German, Japanese, Korean, Chinese, French, Spanish, Italian, and many other languages according to your goals, level, schedule, and destination.</p>
+      <h2>Study abroad and international career guidance</h2>
+      <p>Get support with overseas education planning, university applications, student placement, scholarships, visa preparation, and destination decisions. Langma also helps learners prepare for international careers through language training, career guidance, and overseas recruitment support.</p>
+      <h2>Global mobility and investment solutions</h2>
+      <p>Explore Golden Visa and permanent residency by investment options with guidance on eligibility, documentation, timelines, and professional next steps. Requirements, fees, and approval decisions depend on the relevant country and government authority.</p>
+      <h2>Corporate language training and trusted support</h2>
+      <p>Organizations can use language training and communication support to prepare teams for international clients, relocation, global recruitment, and cross-border business. Langma also offers translation and multilingual assistance for education, business, and professional communication.</p>
+      <p>Every learner and applicant has different goals, documents, timelines, and eligibility requirements. A consultation helps clarify the right course, exam pathway, destination, study plan, career option, or mobility service without promising an outcome that depends on an external institution or government authority. Guidance is designed to make the next step clearer and more practical.</p>
+      <p>Visit the <a href="/languages">language courses</a>, <a href="/study-abroad">study abroad</a>, <a href="/work-abroad">work abroad</a>, <a href="/investment">investment and mobility</a>, <a href="/about">about</a>, and <a href="/contact">contact</a> pages to learn more or request a consultation.</p>
+    `;
+  }
+
   if (pathname === "/learn-japanese-language") {
     return `
       <h1>${escapeHtml(metadata.h1 || metadata.title)}</h1>
