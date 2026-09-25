@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.langmainternational.com/sitemap.xml
+
+# AI-readable site guidance
+Llms-Txt: https://www.langmainternational.com/llms.txt
