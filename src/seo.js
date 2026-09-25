@@ -74,6 +74,11 @@ const STATIC_METADATA = {
       "Explore international career opportunities with practical language, application, destination, and work-abroad guidance from Langma International.",
     h1: "Build Your International Career with Confidence",
   },
+  "/editorial-policy": {
+    title: "Editorial Policy | Langma International",
+    description: "Read Langma International's editorial policy for language learning, study abroad, careers, and global mobility content.",
+    h1: "Editorial Policy",
+  },
   "/contact": {
     title: "Contact Langma International | Language & Global Opportunity Support",
     description:
@@ -162,6 +167,7 @@ export function upsertLink(rel, href) {
 export function setRouteJsonLd(metadata, url, isCourse = false) {
   const id = "langma-route-jsonld";
   let script = document.head.querySelector(`#${id}`);
+  document.querySelectorAll('script[data-langma-static-schema="true"]').forEach((staticScript) => staticScript.remove());
   if (!script) {
     script = document.createElement("script");
     script.id = id;
@@ -193,7 +199,7 @@ export function setRouteJsonLd(metadata, url, isCourse = false) {
       url: SITE_URL,
       parentOrganization: { "@id": `${SITE_URL}/#organization` },
       telephone: "+91-9810117094",
-      image: `${SITE_URL}/images/lngm2.png`,
+      image: `${SITE_URL}/images/lngm2.webp`,
       address: {
         "@type": "PostalAddress",
         streetAddress: "E 73, South Extension Part-1",
@@ -242,6 +248,10 @@ export function setRouteJsonLd(metadata, url, isCourse = false) {
 
   script.textContent = JSON.stringify({
     "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
+    name: metadata.h1 || metadata.title,
+    url,
     "@graph": graph,
   });
 }

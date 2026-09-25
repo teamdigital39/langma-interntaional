@@ -116,6 +116,7 @@ const SwitzerlandPRPage = lazy(() => import("./Pages/HomePages/SwitzerlandPR"));
 const LangmaThailandEliteVisaPage = lazy(() => import("./Pages/HomePages/ThilandEliteVisa"));
 const GoldenVisaAssessment = lazy(() => import("./Pages/HomePages/GoldenVisaAssessment"));
 const AboutLangma = lazy(() => import("./Pages/HomePages/Aboutus"));
+const EditorialPolicy = lazy(() => import("./Pages/HomePages/EditorialPolicy"));
 const LearnGermanLanguage = lazy(() => import("./Pages/HomePages/LearnGermanLanguage"));
 const LearnKoreanLanguage = lazy(() => import("./Pages/HomePages/LearnKoreanLanguage"));
 const LearnJapaneseLanguage = lazy(() => import("./Pages/HomePages/LearnJapaneseLanguage"));
@@ -215,6 +216,7 @@ function App() {
           <Route path="/" element={<HomeLangma />} />
           {/* <Route path="/about" element={<AboutHeroSection />} />*/}
           <Route path="/about" element={<AboutLangma />} />
+          <Route path="/editorial-policy" element={<EditorialPolicy />} />
           <Route path="/work-abroad" element={<AbrotHeroSection />} />
           {/* <Route path="/study-abroad" element={<StudyAbrotHeroSection />} /> */}
           <Route path="/study-abroad" element={<StudyAbrotHeroSection1 />} />

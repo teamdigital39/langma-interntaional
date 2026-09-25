@@ -178,6 +178,30 @@ function languageNameFor(path, metadata) {
   return null;
 }
 
+function staticFallbackHtml(pathname, metadata) {
+  if (pathname === "/learn-japanese-language") {
+    return `
+      <h1>${escapeHtml(metadata.h1 || metadata.title)}</h1>
+      <p>${escapeHtml(metadata.description)} Japanese language classes cover beginner N5 through advanced N1 learning, speaking practice, writing systems, JLPT preparation, and practical guidance for study or work in Japan.</p>
+      <h2>Japanese language courses for JLPT preparation</h2>
+      <p>Choose live online Japanese classes, classroom training in New Delhi, or a flexible hybrid batch. The course pathway builds hiragana, katakana, kanji, grammar, listening, reading, and real conversation step by step. Learners can ask about JLPT, JFT-Basic, NAT-TEST, J.TEST, BJT, and EJU preparation.</p>
+      <h2>Study and work in Japan guidance</h2>
+      <p>Langma provides practical counselling for learners considering language schools, universities, specified skilled worker routes, engineering and specialist roles, and other Japan-focused opportunities. Eligibility, visa decisions, employer requirements, and government fees depend on the applicable authorities and each applicant's circumstances.</p>
+      <p>Japanese language training is useful for more than an exam score. Regular listening and speaking practice helps learners communicate in daily life, prepare for interviews, understand workplace expectations, and participate more confidently in Japanese culture. Students can ask for guidance on choosing a level, setting a realistic study schedule, selecting an exam, and comparing online Japanese classes with classroom learning. Course fees, batch timings, trainer availability, admissions requirements, employment outcomes, and visa conditions should be confirmed during a current consultation.</p>
+      <p>Before enrolling, learners can discuss their goals with a counsellor, including travel, university admission, employment, relocation, or personal interest. A structured plan makes it easier to practise consistently, track progress, and decide when additional speaking practice or exam coaching is useful.</p>
+      <ul>
+        <li>Beginner-friendly Japanese classes from N5 through N1</li>
+        <li>Online, classroom, and hybrid learning options</li>
+        <li>Exam preparation and progress guidance</li>
+        <li>Study abroad and Japan career counselling</li>
+      </ul>
+      <p><strong>Reviewed by:</strong> Langma Japanese Language Training Team · <time dateTime="2026-09-25">Updated September 25, 2026</time></p>
+      <p><strong>Visit:</strong> E 73, South Extension Part-1, New Delhi – 110049, India · <a href="/about">About Langma International</a> · <a href="/editorial-policy">Editorial policy</a> · <a href="/contact">Contact</a></p>
+    `;
+  }
+  return `<h1>${escapeHtml(metadata.h1 || metadata.title)}</h1><p>${escapeHtml(metadata.description)}</p>`;
+}
+
 function schemaFor(metadata, url) {
   const path = canonicalPath(new URL(url).pathname);
   const graph = [
@@ -203,7 +227,7 @@ function schemaFor(metadata, url) {
       url: SITE_URL,
       parentOrganization: { "@id": `${SITE_URL}/#organization` },
       telephone: "+91-9810117094",
-      image: `${SITE_URL}/images/lngm2.png`,
+      image: `${SITE_URL}/images/lngm2.webp`,
       address: {
         "@type": "PostalAddress",
         streetAddress: "E 73, South Extension Part-1",
@@ -282,7 +306,14 @@ function schemaFor(metadata, url) {
     });
   }
 
-  return { "@context": "https://schema.org", "@graph": graph };
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
+    name: metadata.h1 || metadata.title,
+    url,
+    "@graph": graph,
+  };
 }
 
 let generated = 0;
@@ -325,6 +356,9 @@ for (const rawUrl of urls) {
     <meta name="description" content="${escapeHtml(metadata.description)}" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href="${escapeHtml(canonical)}" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs guidance" />
+    ${pathname === "/learn-japanese-language" ? `<link rel="preload" as="image" href="${SITE_URL}/images/lngm2.webp" fetchpriority="high" />` : ""}
+    ${pathname === "/learn-japanese-language" ? `<meta name="author" content="Langma Japanese Language Training Team" /><meta property="article:published_time" content="2026-01-01" /><meta property="article:modified_time" content="2026-09-25" />` : ""}
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="${metadata.courseName ? "article" : "website"}" />
     <meta property="og:title" content="${escapeHtml(metadata.title)}" />
@@ -337,7 +371,7 @@ for (const rawUrl of urls) {
     <meta name="twitter:title" content="${escapeHtml(metadata.title)}" />
     <meta name="twitter:description" content="${escapeHtml(metadata.description)}" />
     <meta name="twitter:image" content="${escapeHtml(image)}" />
-    <script type="application/ld+json">${schema}</script>
+    <script type="application/ld+json" data-langma-static-schema="true">${schema}</script>
   `;
   const gtmNoscript = isStandaloneLanding
     ? `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>`
@@ -346,8 +380,7 @@ for (const rawUrl of urls) {
     ${gtmNoscript}
     <noscript>
       <main>
-        <p class="seo-fallback-heading" role="heading" aria-level="1">${escapeHtml(metadata.h1 || metadata.title)}</p>
-        <p>${escapeHtml(metadata.description)}</p>
+        <div class="seo-fallback-content">${staticFallbackHtml(pathname, metadata)}</div>
       </main>
     </noscript>
   `;

@@ -16,18 +16,30 @@ RewriteCond %{REQUEST_FILENAME} !-d
 # Everything else loads React app
 RewriteRule ^ index.html [QSA,L]
 
+<IfModule mod_headers.c>
+    <FilesMatch "\.(css|js|jpg|jpeg|png|gif|svg|webp|woff|woff2|eot|ttf|otf)$">
+        Header set Cache-Control "public, max-age=2592000, must-revalidate"
+    </FilesMatch>
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    Header always set Content-Security-Policy "default-src 'self' https: data: blob: 'unsafe-inline'; script-src 'self' https: 'unsafe-inline' 'unsafe-eval'; style-src 'self' https: 'unsafe-inline'; img-src 'self' https: data: blob:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https:; media-src 'self' https: blob:; frame-src https://www.googletagmanager.com https://www.google.com;"
+</IfModule>
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/javascript application/json application/ld+json image/svg+xml
+</IfModule>
+
 <IfModule mod_expires.c>
     ExpiresActive On
     ExpiresByType text/css "access plus 1 week"
     ExpiresByType application/javascript "access plus 1 week"
     ExpiresByType image/jpeg "access plus 1 month"
     ExpiresByType image/png "access plus 1 month"
-    ExpiresByType image/webp "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
     ExpiresByType font/woff2 "access plus 1 month"
-</IfModule>
-
-<IfModule mod_headers.c>
-    <FilesMatch "\.(css|js|jpg|jpeg|png|gif|svg|webp|woff|woff2|eot|ttf|otf)$">
-        Header set Cache-Control "public, max-age=2592000, must-revalidate"
-    </FilesMatch>
+    ExpiresByType image/svg+xml "access plus 1 year"
 </IfModule>
