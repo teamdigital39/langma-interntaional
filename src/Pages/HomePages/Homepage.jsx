@@ -137,6 +137,47 @@ function ConnectForm() {
 }
 
 /* ---------- data ---------- */
+const HOMEPAGE_RESPONSIVE_IMAGES = {
+  "/images/Global Learning.png": { file: "Global Learning.webp", smallFile: "Global Learning-480.webp", width: 1536, height: 1024, sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" },
+  "/images/Global education.png": { file: "Global education.webp", smallFile: "Global education-480.webp", width: 1402, height: 1122, sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" },
+  "/images/Global Careers.png": { file: "Global Careers.webp", smallFile: "Global Careers-480.webp", width: 1402, height: 1122, sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" },
+  "/images/Global Mobility.png": { file: "Global Mobility.webp", smallFile: "Global Mobility-480.webp", width: 1254, height: 1254, sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" },
+  "/images/Global Business Services.png": { file: "Global Business Services.webp", smallFile: "Global Business Services-480.webp", width: 1254, height: 1254, sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" },
+  "/images/Global Cultural Immersion Tours.png": { file: "Global Cultural Immersion Tours.webp", smallFile: "Global Cultural Immersion Tours-480.webp", width: 1402, height: 817, sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" },
+  "/images/Global Trade Assist Excursion Program.png": { file: "Global Trade Assist Excursion Program.webp", smallFile: "Global Trade Assist Excursion Program-480.webp", width: 1254, height: 1254, sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" },
+  "/images/Yoga-Centric Wellness Immersion Program.jpg": { file: "Yoga-Centric Wellness Immersion Program.webp", smallFile: "Yoga-Centric Wellness Immersion Program-480.webp", width: 736, height: 736, sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" },
+  "/images/Cultural Immersion Tours_01.png": { file: "Cultural Immersion Tours_01.webp", smallFile: "Cultural Immersion Tours_01-480.webp", width: 1588, height: 991, sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" },
+  "/images/Educational Exchange Programs.png": { file: "Educational Exchange Programs.webp", smallFile: "Educational Exchange Programs-480.webp", width: 1587, height: 991, sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" },
+  "/images/Yoga & Wellness Retreats.png": { file: "Yoga & Wellness Retreats.webp", smallFile: "Yoga & Wellness Retreats-480.webp", width: 1589, height: 990, sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" },
+  "/images/Connecting Businesses to Global Opportunities.png": { file: "Connecting Businesses to Global Opportunities.webp", smallFile: "Connecting Businesses to Global Opportunities-480.webp", width: 1536, height: 1024, sizes: "(max-width: 768px) 100vw, 50vw" },
+  "/images/Learn. Explore. Connect. Grow Globally..jpg": { file: "Learn. Explore. Connect. Grow Globally..webp", smallFile: "Learn. Explore. Connect. Grow Globally.-480.webp", width: 736, height: 1104, sizes: "(max-width: 900px) 100vw, 50vw" },
+  "/images/South korea.webp": { file: "South korea-736.webp", smallFile: "South korea-480.webp", width: 736, height: 1308, sizes: "(max-width: 768px) 50vw, 25vw" },
+  "/images/Japan.webp": { file: "Japan-736.webp", smallFile: "Japan-480.webp", width: 736, height: 1308, sizes: "(max-width: 768px) 50vw, 25vw" },
+  "/images/Germany.webp": { file: "Germany-736.webp", smallFile: "Germany-480.webp", width: 736, height: 1104, sizes: "(max-width: 768px) 50vw, 25vw" },
+  "/images/Dubai.webp": { file: "Dubai-736.webp", smallFile: "Dubai-480.webp", width: 736, height: 1104, sizes: "(max-width: 768px) 50vw, 25vw" },
+  "/images/Singapore.webp": { file: "Singapore-1000.webp", smallFile: "Singapore-480.webp", width: 1000, height: 666, sizes: "(max-width: 768px) 50vw, 25vw" },
+  "/images/Poland.webp": { file: "Poland-736.webp", smallFile: "Poland-480.webp", width: 736, height: 414, sizes: "(max-width: 768px) 50vw, 25vw" },
+  "/images/Netherland.webp": { file: "Netherland-736.webp", smallFile: "Netherland-480.webp", width: 736, height: 981, sizes: "(max-width: 768px) 50vw, 25vw" },
+  "/images/Cyprus.webp": { file: "Cyprus-736.webp", smallFile: "Cyprus-480.webp", width: 736, height: 1104, sizes: "(max-width: 768px) 50vw, 25vw" },
+};
+
+function homepageImageProps(source, alt, attrs = {}) {
+  const preset = HOMEPAGE_RESPONSIVE_IMAGES[source];
+  if (!preset) return { src: source, alt, ...attrs };
+  const full = "/images/" + encodeURIComponent(preset.file);
+  const small = "/images/" + encodeURIComponent(preset.smallFile);
+  return {
+    src: full,
+    srcSet: small + " 480w, " + full + " " + preset.width + "w",
+    sizes: preset.sizes,
+    width: preset.width,
+    height: preset.height,
+    alt,
+    loading: "lazy",
+    decoding: "async",
+    ...attrs,
+  };
+};
 
 const ECOSYSTEM = [
   {
@@ -910,7 +951,7 @@ export default function HomeLangma() {
               <div className="split" style={{ alignItems: "center" }}>
                 <Reveal style={{ position: "relative" }}>
                   <div className="photo-frame photo-frame--tall">
-                    <img src="/images/Learn. Explore. Connect. Grow Globally..jpg" alt="Learners connecting through language and culture, reflecting Langma International's global learning community" width={736} height={1104} loading="lazy" decoding="async" />
+                    <img {...homepageImageProps("/images/Learn. Explore. Connect. Grow Globally..jpg", "Learners connecting through language and culture, reflecting Langma International's global learning community")} />
                   </div>
                   <svg className="year-ring" viewBox="0 0 120 120" aria-label="Established 2012, over a decade of experience" style={{ position: "absolute", bottom: "-24px", right: "12px", background: "#fff", borderRadius: "50%", boxShadow: "var(--shadow-lg)", padding: "6px" }}>
                     <path d="M 60 18 A 42 42 0 0 1 93.9787137637478 84.68698059628386 L 81.03444185374863 75.2824165596043 A 26 26 0 0 0 60 34 Z" fill="#2FC7A1" />
@@ -992,7 +1033,7 @@ export default function HomeLangma() {
                 {ECOSYSTEM.map((item, i) => (
                   <Reveal key={item.title} as="article" className="card card--photo" delay={(i % 3) * 90}>
                     <div className="card__photo">
-                      <img src={item.img} alt={item.title} loading="lazy" />
+                      <img {...homepageImageProps(item.img, item.title)} />
                       <div className="card__ico">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">{item.icon}</svg>
                       </div>
@@ -1106,7 +1147,7 @@ export default function HomeLangma() {
                 {CULTURAL_WELLNESS.map((item, i) => (
                   <Reveal key={item.title} as="article" className="card card--photo" delay={(i % 3) * 90}>
                     <div className="card__photo" style={{ aspectRatio: "16/10" }}>
-                      <img src={item.img} alt={item.title} loading="lazy" style={{ objectFit: "contain" }} />
+                      <img {...homepageImageProps(item.img, item.title, { style: { objectFit: "contain" } })} />
                       <div className="card__ico">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">{item.icon}</svg>
                       </div>
@@ -1131,7 +1172,7 @@ export default function HomeLangma() {
                   <p className="lede" style={{ marginTop: "12px" }}>Designed for entrepreneurs, exporters, investors, startups, and business leaders seeking international exposure and growth.</p>
                   <p className="closing-line">Through experiential learning and strategic networking, Langma helps businesses build meaningful global connections.</p>
                   <div className="photo-frame photo-frame--wide" style={{ marginTop: "22px" }}>
-                    <img src="/images/Connecting Businesses to Global Opportunities.png" alt="Business leaders connecting to explore global trade opportunities" width={1536} height={1024} loading="lazy" decoding="async" />
+                    <img {...homepageImageProps("/images/Connecting Businesses to Global Opportunities.png", "Business leaders connecting to explore global trade opportunities")} />
                   </div>
                 </Reveal>
                 <Reveal>
@@ -1183,7 +1224,7 @@ export default function HomeLangma() {
               <Reveal className="reach-mosaic section-body">
                 {REACH_MOSAIC.map((item) => (
                   <div className="tile" key={item.country}>
-                    <img src={item.img} alt={`${item.country} skyline`} loading="lazy" />
+                    <img {...homepageImageProps(item.img, `${item.country} skyline`)} />
                     <span className="name">{item.country}</span>
                   </div>
                 ))}
