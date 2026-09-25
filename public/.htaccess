@@ -1,7 +1,11 @@
 Options -MultiViews
 RewriteEngine On
 
-# Force HTTPS
+# Canonicalize the bare domain to the primary www host
+RewriteCond %{HTTP_HOST} ^langmainternational\.com$ [NC]
+RewriteRule ^ https://www.langmainternational.com%{REQUEST_URI} [R=301,L,NE]
+
+# Force HTTPS for any remaining non-secure request
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
