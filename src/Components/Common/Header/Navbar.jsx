@@ -51,6 +51,8 @@ const Navbar = () => {
             <Link to="/" className="shrink-0" onClick={closeMenu}>
               <img
                 src="/images/lngm2.png"
+                width={2462}
+                height={589}
                 alt="Langma International"
                 className="h-10 sm:h-16 w-auto"
               />
@@ -159,7 +161,7 @@ const Navbar = () => {
             {/* Sidebar Header */}
             <div className="flex justify-between items-center p-5 border-b">
               <Link to="/" onClick={closeMenu}>
-                <img src="/images/Logo.png" alt="Langma International wordmark" className="h-9" />
+                <img src="/images/Logo.png" width={1473} height={512} alt="Langma International wordmark" className="h-9" />
               </Link>
               <button
                 onClick={closeMenu}
