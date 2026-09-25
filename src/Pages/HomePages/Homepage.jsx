@@ -839,10 +839,10 @@ export default function HomeLangma() {
                   </div>
                   <div className="hero__trust">
                     <div className="hero__trust-avatars">
-                      <img src="/images/img1001.png" alt="" width={36} height={36} loading="lazy" decoding="async" />
-                      <img src="/images/img1002.avif" alt="" width={36} height={36} loading="lazy" decoding="async" />
-                      <img src="/images/img1003.jpeg" alt="" width={36} height={36} loading="lazy" decoding="async" />
-                      <img src="/images/img1004.avif" alt="" width={36} height={36} loading="lazy" decoding="async" />
+                      <img src="/images/img1001.png" alt="Langma language learner" width={36} height={36} loading="lazy" decoding="async" />
+                      <img src="/images/img1002.avif" alt="Langma study abroad learner" width={36} height={36} loading="lazy" decoding="async" />
+                      <img src="/images/img1003.jpeg" alt="Langma career support learner" width={36} height={36} loading="lazy" decoding="async" />
+                      <img src="/images/img1004.avif" alt="Langma global mobility learner" width={36} height={36} loading="lazy" decoding="async" />
                     </div>
                     <div className="hero__trust-text">
                       <strong>100,000+ learners</strong> trusted us for their global journey
