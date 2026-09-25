@@ -70,7 +70,9 @@ const Footer = () => {
         <div className="col-span-2 md:col-span-1">
           <img
             src="/images/ftrnlg.png"
-            alt="Langma International"
+            width={2467}
+            height={588}
+            alt="Langma International footer logo"
             className=" mb-3 h-14"
           />
           <p className="text-xs sm:text-sm leading-relaxed text-gray-400">
