@@ -4,7 +4,7 @@ export const API_BASE = "https://api.langmainternational.com";
 export const HOMEPAGE_METADATA = {
   title: "Foreign Language Courses, Study Abroad, Overseas Jobs & PR",
   description:
-    "Learn 50+ foreign languages online or in Delhi with Langma International. Get expert language training, exam preparation, study abroad guidance, overseas career support, and global mobility solutions.",
+    "Learn 50+ foreign languages online or in Delhi with exam preparation, study abroad guidance, overseas jobs, PR and Golden Visa support.",
   h1: "Foreign Language Courses, Study Abroad & Global Careers",
   image: `${SITE_URL}/images/learnlangma.jpg`,
 };
