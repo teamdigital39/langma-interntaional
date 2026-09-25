@@ -2005,6 +2005,26 @@ export default function LangmaGermanCourse() {
       <footer className="de-footer">
         <div className="wrap"><div className="footer-grid"><div className="footer-brand"><img src="https://www.langmainternational.com/images/ftrnlg.png" alt="Langma International" className="footer-logo" /><p>Learn German with structured A1–C2 learning, practical communication, cultural activities and Germany-focused counselling.</p></div><div className="footer-col"><h4>Contact</h4><a href="tel:+919810117094">+91-98101-17094</a><a href="https://wa.me/919810117094" target="_blank" rel="noopener">Chat on WhatsApp</a></div><div className="footer-col"><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms-and-conditions">Terms and Conditions</a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Langma International Pvt. Ltd.</span><span>GERMAN LANGUAGE · {locationProfile.city.toUpperCase()}</span></div></div>
       </footer>
+      {/* FLOATING CALL */}
+      <a href="tel:+919810117094" className="call-float" id="callFloat" aria-label="Call Langma at +91-98101-17094">
+        <span className="call-float-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+      </a>
+
+      {/* FLOATING WHATSAPP */}
+      <a href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I'd%20like%20to%20know%20more%20about%20the%20German%20course." target="_blank" rel="noopener" className="wa-float" id="waFloat" aria-label="Chat on WhatsApp"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm5.86 14.13c-.25.7-1.45 1.34-2 1.42-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.69-.63-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.05-2.49.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.68.53.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.1.2-.15.32-.3.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.75 1.25 1.62 2.02 1.11.99 2.05 1.3 2.35 1.45.3.15.47.12.65-.07.18-.19.75-.87.95-1.17.2-.3.4-.25.66-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.13.07.75-.18 1.45z"/></svg></a>
+      <div className="wa-tip" id="waTip">Chat with us, usually replies in minutes</div>
+
+      {/* STICKY MOBILE CTA BAR (floating call/WhatsApp buttons, no white strip) */}
+      <div className="mobile-cta-bar" aria-label="Quick contact buttons">
+        <div className="mobile-cta-bar-actions">
+          <a className="mobile-cta-bar-call" href="tel:+919810117094" aria-label="Call Langma at +91-98101-17094"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+          <span className="mobile-cta-label">Call</span>
+        </div>
+        <div className="mobile-cta-bar-actions">
+          <a className="mobile-cta-bar-wa" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I'd%20like%20to%20know%20more%20about%20the%20German%20course." target="_blank" rel="noopener" aria-label="Chat with Langma on WhatsApp"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm5.86 14.13c-.25.7-1.45 1.34-2 1.42-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.69-.63-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.05-2.49.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.68.53.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.1.2-.15.32-.3.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.75 1.25 1.62 2.02 1.11.99 2.05 1.3 2.35 1.45.3.15.47.12.65-.07.18-.19.75-.87.95-1.17.2-.3.4-.25.66-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.13.07.75-.18 1.45z"/></svg></a>
+          <span className="mobile-cta-label">Chat</span>
+        </div>
+      </div>
     </div>
   );
 }
