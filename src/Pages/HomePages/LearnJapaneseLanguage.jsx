@@ -1,17 +1,17 @@
 import { useState, useRef, useEffect } from "react";
 import API_BASE from "../../config";
 import { LanguageFaqSchema } from "./FAQ";
-const calligraphyImage = "/images/calligraphy.jpg";
-const chopsticksCandyImage = "/images/chopsticks-candy.jpg";
-const cultureKimonoImage = "/images/culture-kimono.jpg";
-const littleJapanImage = "/images/little-japan.jpg";
-const oneBigFamilyImage = "/images/one-big-family.jpg";
-const studentStageImage = "/images/student-stage.jpg";
-const origamiImage = "/images/origami.jpg";
-const kintsugiCupsImage = "/images/kintsugi-cups.jpg";
-const kintsugiIntroImage = "/images/kintsugi-intro.jpg";
-const kintsugiFixingImage = "/images/kintsugi-fixing.jpg";
-const kintsugiLessonImage = "/images/kintsugi-lesson.jpg";
+const calligraphyImage = "/images/calligraphy.webp";
+const chopsticksCandyImage = "/images/chopsticks-candy.webp";
+const cultureKimonoImage = "/images/culture-kimono.webp";
+const littleJapanImage = "/images/little-japan.webp";
+const oneBigFamilyImage = "/images/one-big-family.webp";
+const studentStageImage = "/images/student-stage.webp";
+const origamiImage = "/images/origami.webp";
+const kintsugiCupsImage = "/images/kintsugi-cups.webp";
+const kintsugiIntroImage = "/images/kintsugi-intro.webp";
+const kintsugiFixingImage = "/images/kintsugi-fixing.webp";
+const kintsugiLessonImage = "/images/kintsugi-lesson.webp";
 
 const ACTIVITIES = [
   {
@@ -699,6 +699,8 @@ export default function LangmaJapaneseCourse() {
   .hero-title{font-size:clamp(40px, 5.2vw, 72px); line-height:1.06; margin:0 0 22px; word-break:break-word; animation:fadeUpIn .7s var(--ease) .06s both;}
   .hero-title em{font-style:normal; color:var(--prussian); font-weight:700;}
   .hero-sub{font-size:19.5px; max-width:620px; color:var(--ink); font-weight:500; margin-bottom:26px; text-shadow:0 1px 1px rgba(255,255,255,.65); animation:fadeUpIn .7s var(--ease) .14s both;}
+  .content-meta{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--ink-mute);font-family:'Roboto',sans-serif;font-size:13px;margin:-12px 0 22px;}
+  .content-meta span::before{content:'✓';color:var(--rust);font-weight:700;margin-right:6px;}
   .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:34px; animation:fadeUpIn .7s var(--ease) .22s both;}
   .hero-stats{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:0; border-top:1px solid var(--line); padding-top:24px; animation:fadeUpIn .7s var(--ease) .3s both;}
   .stat{min-width:0; display:flex; align-items:flex-start; gap:12px; padding:0 18px; border-right:1px solid var(--line); transition:transform .2s ease;}
@@ -965,6 +967,7 @@ export default function LangmaJapaneseCourse() {
   .batch-note{font-size:13.5px; color:var(--ink-mute); margin-top:20px;}
   .trust-badges{display:flex; flex-wrap:wrap; gap:11px 24px; justify-content:center; margin-top:24px; padding-top:22px; border-top:1px dashed var(--line);}
   .trust-badges span{font-family:'Roboto', sans-serif; font-size:13.5px; font-weight:700; color:var(--prussian-deep); display:inline-flex; align-items:center; gap:6px;}
+  .footer-address{display:block;color:rgba(255,255,255,.7);font-size:13px;line-height:1.55;margin-top:10px;}
 
   /* ===== FAQ ===== */
   .faq-list{display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden;}
@@ -1259,8 +1262,13 @@ export default function LangmaJapaneseCourse() {
           <a className="jp-brand" href="#top" aria-label="Langma Japanese Course">
             <span className="jp-brand-text">
               <img
-                src="https://www.langmainternational.com/images/lngm2.png"
-                alt="Langma International"
+                src="/images/lngm2.webp"
+                alt="Langma International Japanese language courses logo"
+                srcSet="/images/lngm2.webp 2462w"
+                sizes="200px"
+                width="2462"
+                height="589"
+                fetchPriority="high"
                 className="jp-brand-logo"
               />
             </span>
@@ -1284,6 +1292,7 @@ export default function LangmaJapaneseCourse() {
             <span className="hero-kicker">Japanese Language Course · Online &amp; Offline Classes</span>
             <h1 className="hero-title">Your Gateway to Japan. Begins with <span className="heading-accent">Japanese Language</span>.</h1>
             <p className="hero-sub">Langma helps students and professionals master Japanese with expert trainers, small batch learning, JLPT preparation, and practical support for study in Japan, work in Japan, and visa pathways. Choose flexible online or offline Japanese classes in {locationProfile.city} and build real fluency for your future in Japan.</p>
+            <p className="content-meta"><span>Reviewed by Langma Japanese Language Training Team</span><time dateTime="2026-09-25">Updated September 25, 2026</time></p>
             <div className="hero-actions">
               <a href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20a%20free%20Japanese%20demo%20class." target="_blank" rel="noopener" className="btn btn-wa">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm5.86 14.13c-.25.7-1.45 1.34-2 1.42-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.69-.63-2.97-1.28-4.9-4.27-5.05-4.47-.15-.2-1.22-1.62-1.22-3.09 0-1.47.77-2.19 1.05-2.49.27-.3.6-.37.8-.37.2 0 .4 0 .58.01.19.01.44-.07.68.53.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.1.2-.15.32-.3.49-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.3.75 1.25 1.62 2.02 1.11.99 2.05 1.3 2.35 1.45.3.15.47.12.65-.07.18-.19.75-.87.95-1.17.2-.3.4-.25.66-.15.27.1 1.73.82 2.02.97.3.15.5.22.57.35.07.13.07.75-.18 1.45z"/></svg>
@@ -1629,7 +1638,7 @@ export default function LangmaJapaneseCourse() {
               </div>
             </div>
             <div>
-              <img className="lang-photo" src="https://res.cloudinary.com/dzv9zcrlz/image/upload/v1788939628/caligraphy_l6zzsq.jpg" alt="Hand-brushed Japanese kanji calligraphy" loading="lazy" />
+              <img className="lang-photo" src="https://res.cloudinary.com/dzv9zcrlz/image/upload/f_auto,q_auto/v1788939628/caligraphy_l6zzsq.jpg" srcSet="https://res.cloudinary.com/dzv9zcrlz/image/upload/f_auto,q_auto,w_640/v1788939628/caligraphy_l6zzsq.jpg 640w, https://res.cloudinary.com/dzv9zcrlz/image/upload/f_auto,q_auto,w_1080/v1788939628/caligraphy_l6zzsq.jpg 1080w" sizes="(max-width: 780px) 100vw, 50vw" alt="Hand-brushed Japanese kanji calligraphy" width="1080" height="1350" loading="lazy" />
               <div className="fact-strip reveal-group">
                 <div className="fact-box"><b>~125M</b><span>native speakers, almost entirely within Japan</span></div>
                 <div className="fact-box"><b>#4</b><span>world's fourth-largest economy by nominal GDP</span></div>
@@ -1702,7 +1711,7 @@ export default function LangmaJapaneseCourse() {
             <h2>Choose your course: online or offline.</h2>
             <p>Every format runs the same rigorous, expert-taught curriculum pick the one that fits your life.</p>
           </div>
-          <img className="modes-photo" src="https://res.cloudinary.com/dzv9zcrlz/image/upload/v1788939648/Platform_ew7pvo.png" alt="Students in a Japanese language course classroom listening to their instructor" loading="lazy" />
+          <img className="modes-photo" src="https://res.cloudinary.com/dzv9zcrlz/image/upload/f_auto,q_auto/v1788939648/Platform_ew7pvo.png" srcSet="https://res.cloudinary.com/dzv9zcrlz/image/upload/f_auto,q_auto,w_768/v1788939648/Platform_ew7pvo.png 768w, https://res.cloudinary.com/dzv9zcrlz/image/upload/f_auto,q_auto,w_1200/v1788939648/Platform_ew7pvo.png 1200w" sizes="(max-width: 780px) 100vw, 100vw" alt="Students in a Japanese language course classroom listening to their instructor" width="1672" height="941" loading="lazy" />
           <div className="modes-grid reveal-group">
             <div className="mode-card">
               <span className="mode-tag">Most Popular</span>
@@ -1784,7 +1793,7 @@ export default function LangmaJapaneseCourse() {
           </div>
           <div className="path-grid reveal-group">
             <div className="path-card">
-              <div className="path-photo-wrap"><img className="path-photo" src="https://res.cloudinary.com/dzv9zcrlz/image/upload/v1788941070/ssw_wqhvh8.jpg" alt="Sparks flying as a worker welds metal, representing SSW manufacturing roles" loading="lazy" /></div>
+              <div className="path-photo-wrap"><img className="path-photo" src="https://res.cloudinary.com/dzv9zcrlz/image/upload/f_auto,q_auto/v1788941070/ssw_wqhvh8.jpg" srcSet="https://res.cloudinary.com/dzv9zcrlz/image/upload/f_auto,q_auto,w_480/v1788941070/ssw_wqhvh8.jpg 480w, https://res.cloudinary.com/dzv9zcrlz/image/upload/f_auto,q_auto,w_736/v1788941070/ssw_wqhvh8.jpg 736w" sizes="(max-width: 780px) 100vw, (max-width: 1100px) 50vw, 33vw" alt="Sparks flying as a worker welds metal, representing SSW manufacturing roles" width="1200" height="800" loading="lazy" /></div>
               <div className="path-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
               </div>
@@ -1800,7 +1809,7 @@ export default function LangmaJapaneseCourse() {
             </div>
 
             <div className="path-card">
-              <div className="path-photo-wrap"><img className="path-photo" src="https://res.cloudinary.com/dzv9zcrlz/image/upload/v1788941036/Engineers_imtxk0.jpg" alt="Busy Shibuya crossing at night with neon lights, representing Tokyo's business and tech scene" loading="lazy" /></div>
+              <div className="path-photo-wrap"><img className="path-photo" src="https://res.cloudinary.com/dzv9zcrlz/image/upload/f_auto,q_auto/v1788941036/Engineers_imtxk0.jpg" srcSet="https://res.cloudinary.com/dzv9zcrlz/image/upload/f_auto,q_auto,w_480/v1788941036/Engineers_imtxk0.jpg 480w, https://res.cloudinary.com/dzv9zcrlz/image/upload/f_auto,q_auto,w_736/v1788941036/Engineers_imtxk0.jpg 736w" sizes="(max-width: 780px) 100vw, (max-width: 1100px) 50vw, 33vw" alt="Busy Shibuya crossing at night with neon lights, representing Tokyo's business and tech scene" width="736" height="946" loading="lazy" /></div>
               <div className="path-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
               </div>
@@ -1816,7 +1825,7 @@ export default function LangmaJapaneseCourse() {
             </div>
 
             <div className="path-card">
-              <div className="path-photo-wrap"><img className="path-photo" src="https://res.cloudinary.com/dzv9zcrlz/image/upload/v1788941037/study_in_japan_qfx2ha.jpg" alt="Path through vibrant orange torii gates in Japan" loading="lazy" /></div>
+              <div className="path-photo-wrap"><img className="path-photo" src="https://res.cloudinary.com/dzv9zcrlz/image/upload/f_auto,q_auto/v1788941037/study_in_japan_qfx2ha.jpg" srcSet="https://res.cloudinary.com/dzv9zcrlz/image/upload/f_auto,q_auto,w_640/v1788941037/study_in_japan_qfx2ha.jpg 640w, https://res.cloudinary.com/dzv9zcrlz/image/upload/f_auto,q_auto,w_1080/v1788941037/study_in_japan_qfx2ha.jpg 1080w" sizes="(max-width: 780px) 100vw, (max-width: 1100px) 50vw, 33vw" alt="Path through vibrant orange torii gates in Japan" width="1080" height="810" loading="lazy" /></div>
               <div className="path-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/></svg>
               </div>
@@ -1847,7 +1856,7 @@ export default function LangmaJapaneseCourse() {
       {sectionFormCta}
 
         {/* UPCOMING BATCHES */}
-      <section className="batches" id="batches"><div className="wrap"><div className="sec-head reveal"><h2>Find a batch that fits your schedule.</h2><p>We offer online, classroom and hybrid options. Ask us for the latest batch start dates, timings and course fee details.</p></div><div className="batch-grid reveal-group"><div className="batch-card"><div className="batch-tag">Online</div><h3>Live Online Batch</h3><div className="batch-meta"><div><b>Level</b><span>N5 / N4 / N3 / N2 / N1</span></div><div><b>Format</b><span>Instructor-led</span></div><div><b>Timings</b><span>Ask for current schedule</span></div></div><a className="btn btn-primary" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20latest%20Japanese%20online%20batch%20details." target="_blank" rel="noopener">Get Online Batch Details →</a></div><div className="batch-card"><div className="batch-tag">{locationProfile.centre}</div><h3>Classroom Batch</h3><div className="batch-meta"><div><b>Location</b><span>{locationProfile.area}</span></div><div><b>Format</b><span>Face-to-face</span></div><div><b>Timings</b><span>Ask for current schedule</span></div></div><a className="btn btn-primary" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20latest%20Japanese%20classroom%20batch%20details." target="_blank" rel="noopener">Get Classroom Details →</a></div><div className="batch-card"><div className="batch-tag">Flexible</div><h3>Hybrid Batch</h3><div className="batch-meta"><div><b>Format</b><span>Online + classroom</span></div><div><b>Level</b><span>Based on availability</span></div><div><b>Timings</b><span>Ask for current schedule</span></div></div><a className="btn btn-primary" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20latest%20Japanese%20hybrid%20batch%20details." target="_blank" rel="noopener">Get Hybrid Details →</a></div></div><p className="batch-note">Course fees, schedules and batch availability may vary. Contact Langma International for the latest.rent course options.</p><div className="trust-badges"><span>✓ Free demo before you enrol</span><span>✓ Flexible batch switching</span><span>✓ Certified native-level trainers</span><span>✓ Visa &amp; placement support included</span></div></div></section>
+      <section className="batches" id="batches"><div className="wrap"><div className="sec-head reveal"><h2>Find a batch that fits your schedule.</h2><p>We offer online, classroom and hybrid options. Ask us for the latest batch start dates, timings and course fee details.</p></div><div className="batch-grid reveal-group"><div className="batch-card"><div className="batch-tag">Online</div><h3>Live Online Batch</h3><div className="batch-meta"><div><b>Level</b><span>N5 / N4 / N3 / N2 / N1</span></div><div><b>Format</b><span>Instructor-led</span></div><div><b>Timings</b><span>Ask for current schedule</span></div></div><a className="btn btn-primary" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20latest%20Japanese%20online%20batch%20details." target="_blank" rel="noopener">Get Online Batch Details →</a></div><div className="batch-card"><div className="batch-tag">{locationProfile.centre}</div><h3>Classroom Batch</h3><div className="batch-meta"><div><b>Location</b><span>{locationProfile.area}</span></div><div><b>Format</b><span>Face-to-face</span></div><div><b>Timings</b><span>Ask for current schedule</span></div></div><a className="btn btn-primary" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20latest%20Japanese%20classroom%20batch%20details." target="_blank" rel="noopener">Get Classroom Details →</a></div><div className="batch-card"><div className="batch-tag">Flexible</div><h3>Hybrid Batch</h3><div className="batch-meta"><div><b>Format</b><span>Online + classroom</span></div><div><b>Level</b><span>Based on availability</span></div><div><b>Timings</b><span>Ask for current schedule</span></div></div><a className="btn btn-primary" href="https://wa.me/919810117094?text=Hi%20Langma%2C%20I%27d%20like%20the%20latest%20Japanese%20hybrid%20batch%20details." target="_blank" rel="noopener">Get Hybrid Details →</a></div></div><p className="batch-note">Course fees, schedules and batch availability may vary. Contact Langma International for the latest course options.</p><div className="trust-badges"><span>✓ Free demo before you enrol</span><span>✓ Flexible batch switching</span><span>✓ Certified native-level trainers</span><span>✓ Visa &amp; placement support included</span></div></div></section>
 
       {sectionFormCta}
 
@@ -1910,7 +1919,7 @@ export default function LangmaJapaneseCourse() {
                   <div className="activity-slide" key={i} style={{ width: `${slideWidthPct}%` }}>
                     <article className="activity-card">
                       <div className="activity-image-wrap">
-                        <img className="activity-image" src={item.image} alt={item.alt} loading="lazy" />
+                        <img className="activity-image" src={item.image} srcSet={`${item.image} 1080w`} sizes="(max-width: 780px) 100vw, (max-width: 1100px) 50vw, 33vw" alt={item.alt} width="1080" height="1080" loading="lazy" />
                       </div>
                       <div className="activity-content">
                         <div className="activity-icon" aria-hidden="true">{String(i + 1).padStart(2, '0')}</div>
@@ -2017,10 +2026,10 @@ export default function LangmaJapaneseCourse() {
       <footer className="fr-footer">
         <div className="seigaiha-dark" aria-hidden="true"></div>
         <div className="wrap"><div className="footer-grid">
-          <div className="footer-brand"><img src="https://www.langmainternational.com/images/ftrnlg.png" alt="Langma International" className="footer-logo" /><br /><div className="fr-motto">Learn Japanese. Understand Japan. Build Your Future.</div><p>Learn Japanese with structured N5–N1 learning, practical communication, cultural activities and Japan-focused counselling.</p></div>
+          <div className="footer-brand"><img src="/images/ftrnlg.webp" alt="Langma International Japanese language training logo" width="2467" height="588" loading="lazy" className="footer-logo" /><br /><div className="fr-motto">Learn Japanese. Understand Japan. Build Your Future.</div><p>Learn Japanese with structured N5–N1 learning, practical communication, cultural activities and Japan-focused counselling.</p></div>
           <div className="footer-col"><h4>Start Here</h4><a href="#contact">Book a Free Demo</a></div>
           <div className="footer-col"><h4>Contact</h4><a href="tel:+919810117094">+91-98101-17094</a><a href="https://wa.me/919810117094" target="_blank" rel="noopener">Chat on WhatsApp</a><a href="https://maps.app.goo.gl/NoVexf8RiHPrtW6D7" target="_blank" rel="noopener">{locationProfile.area}, {locationProfile.city}</a></div>
-          <div className="footer-col"><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms-and-conditions">Terms and Conditions</a></div>
+          <div className="footer-col"><h4>About &amp; trust</h4><a href="/about">About Langma International</a><a href="/editorial-policy">Editorial policy</a><span className="footer-address">E 73, South Extension Part-1<br />New Delhi – 110049, India</span></div><div className="footer-col"><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms-and-conditions">Terms and Conditions</a></div>
         </div><div className="footer-bottom"><span>© {new Date().getFullYear()} Langma International Pvt. Ltd.</span><span>JAPANESE LANGUAGE · {locationProfile.city.toUpperCase()}</span></div></div>
       </footer>
       <a href="tel:+919810117094" className="call-float" aria-label="Call Langma at +91-98101-17094">Call</a>
