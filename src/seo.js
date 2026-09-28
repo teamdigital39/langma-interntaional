@@ -55,33 +55,33 @@ const STANDALONE_LANDING_METADATA = {
 
 const CLEAN_LANDING_METADATA = {
   "/german-language-course": {
-    title: "German Language Course Online | Langma International",
-    description: "Learn German online or in the classroom with structured levels, Goethe and telc preparation, speaking practice, and practical support.",
-    h1: "German Language Course for Study, Work & Global Goals",
+    title: "German Language Course Online & Offline | Langma International",
+    description: "Learn German online and offline with Langma International through structured levels, Goethe and telc preparation, speaking practice, and practical support.",
+    h1: "German Language Course Online & Offline at Langma International",
     courseName: "German Language Course",
   },
   "/korean-language-course": {
-    title: "Korean Language Course Online | Langma International",
-    description: "Learn Korean with structured levels, TOPIK preparation, practical conversation, and flexible online or classroom language training.",
-    h1: "Korean Language Course for Study, Work & Global Goals",
+    title: "Korean Language Course Online & Offline | Langma International",
+    description: "Learn Korean online and offline with Langma International through structured levels, TOPIK preparation, practical conversation, and flexible training.",
+    h1: "Korean Language Course Online & Offline at Langma International",
     courseName: "Korean Language Course",
   },
   "/japanese-language-course": {
-    title: "Japanese Language Course Online | Langma International",
-    description: "Learn Japanese with structured levels, JLPT preparation, practical communication, and flexible online or classroom language training.",
-    h1: "Japanese Language Course for Study, Work & Global Goals",
+    title: "Japanese Language Course Online & Offline | Langma International",
+    description: "Learn Japanese online and offline with Langma International through structured levels, JLPT preparation, practical communication, and flexible training.",
+    h1: "Japanese Language Course Online & Offline at Langma International",
     courseName: "Japanese Language Course",
   },
   "/french-language-course": {
-    title: "French Language Course Online | Langma International",
-    description: "Learn French with structured levels, DELF and TCF preparation, practical conversation, and flexible online or classroom language training.",
-    h1: "French Language Course for Study, Work & Global Goals",
+    title: "French Language Course Online & Offline | Langma International",
+    description: "Learn French online and offline with Langma International through structured levels, DELF and TCF preparation, practical conversation, and flexible training.",
+    h1: "French Language Course Online & Offline at Langma International",
     courseName: "French Language Course",
   },
   "/chinese-language-course": {
-    title: "Chinese Language Course Online | Langma International",
-    description: "Learn Chinese with structured HSK levels, Mandarin conversation, tones, character practice, and flexible online or classroom training.",
-    h1: "Chinese Language Course for Study, Work & Global Goals",
+    title: "Chinese Language Course Online & Offline | Langma International",
+    description: "Learn Chinese online and offline with Langma International through structured HSK levels, Mandarin conversation, tones, character practice, and flexible training.",
+    h1: "Chinese Language Course Online & Offline at Langma International",
     courseName: "Chinese Language Course",
   },
 };
