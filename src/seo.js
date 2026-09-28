@@ -4,7 +4,7 @@ export const API_BASE = "https://api.langmainternational.com";
 export const HOMEPAGE_METADATA = {
   title: "Foreign Language Courses, Study Abroad, Overseas Jobs & PR",
   description:
-    "Learn 50+ foreign languages online or in Delhi with exam preparation, study abroad guidance, overseas jobs, PR and Golden Visa support.",
+    "Learn 50+ foreign languages online or in Delhi with Langma International. Get expert language training, exam preparation, study abroad guidance, overseas career support, and global mobility solutions.",
   h1: "Foreign Language Courses, Study Abroad & Global Careers",
   image: `${SITE_URL}/images/learnlangma.jpg`,
 };
@@ -53,8 +53,42 @@ const STANDALONE_LANDING_METADATA = {
   },
 };
 
+const CLEAN_LANDING_METADATA = {
+  "/german-language-course": {
+    title: "German Language Course Online | Langma International",
+    description: "Learn German online or in the classroom with structured levels, Goethe and telc preparation, speaking practice, and practical support.",
+    h1: "German Language Course for Study, Work & Global Goals",
+    courseName: "German Language Course",
+  },
+  "/korean-language-course": {
+    title: "Korean Language Course Online | Langma International",
+    description: "Learn Korean with structured levels, TOPIK preparation, practical conversation, and flexible online or classroom language training.",
+    h1: "Korean Language Course for Study, Work & Global Goals",
+    courseName: "Korean Language Course",
+  },
+  "/japanese-language-course": {
+    title: "Japanese Language Course Online | Langma International",
+    description: "Learn Japanese with structured levels, JLPT preparation, practical communication, and flexible online or classroom language training.",
+    h1: "Japanese Language Course for Study, Work & Global Goals",
+    courseName: "Japanese Language Course",
+  },
+  "/french-language-course": {
+    title: "French Language Course Online | Langma International",
+    description: "Learn French with structured levels, DELF and TCF preparation, practical conversation, and flexible online or classroom language training.",
+    h1: "French Language Course for Study, Work & Global Goals",
+    courseName: "French Language Course",
+  },
+  "/chinese-language-course": {
+    title: "Chinese Language Course Online | Langma International",
+    description: "Learn Chinese with structured HSK levels, Mandarin conversation, tones, character practice, and flexible online or classroom training.",
+    h1: "Chinese Language Course for Study, Work & Global Goals",
+    courseName: "Chinese Language Course",
+  },
+};
+
 const STATIC_METADATA = {
   ...STANDALONE_LANDING_METADATA,
+  ...CLEAN_LANDING_METADATA,
   "/": HOMEPAGE_METADATA,
   "/languages": {
     title: "International Language Courses Online & in Delhi | Langma",
@@ -73,11 +107,6 @@ const STATIC_METADATA = {
     description:
       "Explore international career opportunities with practical language, application, destination, and work-abroad guidance from Langma International.",
     h1: "Build Your International Career with Confidence",
-  },
-  "/editorial-policy": {
-    title: "Editorial Policy | Langma International",
-    description: "Read Langma International's editorial policy for language learning, study abroad, careers, and global mobility content.",
-    h1: "Editorial Policy",
   },
   "/contact": {
     title: "Contact Langma International | Language & Global Opportunity Support",
@@ -167,7 +196,6 @@ export function upsertLink(rel, href) {
 export function setRouteJsonLd(metadata, url, isCourse = false) {
   const id = "langma-route-jsonld";
   let script = document.head.querySelector(`#${id}`);
-  document.querySelectorAll('script[data-langma-static-schema="true"]').forEach((staticScript) => staticScript.remove());
   if (!script) {
     script = document.createElement("script");
     script.id = id;
@@ -199,7 +227,7 @@ export function setRouteJsonLd(metadata, url, isCourse = false) {
       url: SITE_URL,
       parentOrganization: { "@id": `${SITE_URL}/#organization` },
       telephone: "+91-9810117094",
-      image: `${SITE_URL}/images/lngm2.webp`,
+      image: `${SITE_URL}/images/lngm2.png`,
       address: {
         "@type": "PostalAddress",
         streetAddress: "E 73, South Extension Part-1",
@@ -248,10 +276,6 @@ export function setRouteJsonLd(metadata, url, isCourse = false) {
 
   script.textContent = JSON.stringify({
     "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": `${url}#webpage`,
-    name: metadata.h1 || metadata.title,
-    url,
     "@graph": graph,
   });
 }

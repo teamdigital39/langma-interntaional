@@ -138,23 +138,8 @@ const ConnectedSection = () => {
       }
 
       if (response.status === 200 || response.status === 201) {
-        setIsSuccess(true);
-        setResponseMsg("Form submitted successfully!");
-
-        setFormData({
-          name: "",
-          phone: "",
-          email: "",
-          service: "",
-          language: "",
-          message: "",
-        });
-
-        setErrors({});
-
-        setTimeout(() => {
-          setResponseMsg("");
-        }, 3000);
+        window.location.assign("/thank-you");
+        return;
       } else {
         setIsSuccess(false);
         setResponseMsg(data.message || "Submission failed");
@@ -179,10 +164,8 @@ const ConnectedSection = () => {
           <div className="absolute inset-0 z-0">
             <img
               src="/images/Group 4568.png"
-              width={409}
-              height={512}
               className="w-full h-full"
-              alt="Connected consultation form background pattern"
+              alt="bg"
             />
           </div>
 
@@ -222,10 +205,8 @@ const ConnectedSection = () => {
                 <div className="relative">
                   <img
                     src="/images/user.png"
-                    width={20}
-                    height={20}
                     className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5"
-                    alt="Name field icon"
+                    alt="user"
                   />
                   <input
                     type="text"
@@ -246,10 +227,8 @@ const ConnectedSection = () => {
                 <div className="relative">
                   <img
                     src="/images/call.png"
-                    width={512}
-                    height={512}
                     className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5"
-                    alt="Phone field icon"
+                    alt="call"
                   />
                   <input
                     type="text"
@@ -270,10 +249,8 @@ const ConnectedSection = () => {
                 <div className="relative">
                   <img
                     src="/images/mail.png"
-                    width={512}
-                    height={512}
                     className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5"
-                    alt="Email field icon"
+                    alt="mail"
                   />
                   <input
                     type="email"
@@ -294,10 +271,8 @@ const ConnectedSection = () => {
                 <div className="relative">
                   <img
                     src="/images/service.png"
-                    width={512}
-                    height={512}
                     className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5"
-                    alt="Services field icon"
+                    alt="service"
                   />
                   <FiChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500" />
                   <select
@@ -326,10 +301,8 @@ const ConnectedSection = () => {
                   <div className="relative">
                     <img
                       src="https://api.iconify.design/mdi/translate.svg?color=%230B6B6B"
-                      width={20}
-                      height={20}
                       className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5"
-                      alt="Language selection icon"
+                      alt="language"
                     />
                     <FiChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500" />
                     <select
@@ -385,10 +358,8 @@ const ConnectedSection = () => {
                 <div className="relative">
                   <img
                     src="/images/describ.png"
-                    width={512}
-                    height={512}
                     className="absolute left-4 top-4 w-5 h-5"
-                    alt="Message field icon"
+                    alt="message"
                   />
                   <textarea
                     name="message"

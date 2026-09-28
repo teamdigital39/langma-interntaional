@@ -186,7 +186,8 @@ const LangmaThankYouPageMinimal = ({
   ];
 
   const getMessage = () => {
-    const key = `message_${programmeType}`;
+    const selectedProgrammeType = new URLSearchParams(window.location.search).get('programme') || programmeType;
+    const key = `message_${selectedProgrammeType}`;
     return translations[language]?.[key] || translations['en'][key];
   };
 

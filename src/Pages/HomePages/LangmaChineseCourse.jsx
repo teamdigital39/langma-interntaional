@@ -331,9 +331,7 @@ export default function LangmaChineseCourse() {
         body: formData,
       });
       if (res.ok) {
-        setSubmitted(true);
-        setMessage(successText);
-        form.reset();
+        window.location.assign("/thank-you?programme=language");
         return;
       }
       throw new Error("apply-submit failed");
@@ -351,9 +349,8 @@ export default function LangmaChineseCourse() {
           }),
         });
         if (fallback.ok) {
-          setSubmitted(true);
-          setMessage(successText);
-          form.reset();
+          window.location.assign("/thank-you?programme=language");
+          return;
         } else {
           setMessage("Something went wrong. Please try again.");
         }
@@ -438,9 +435,7 @@ export default function LangmaChineseCourse() {
         }),
       });
       if (res.ok) {
-        setRequestSubmitted(true);
-        setRequestFormMessage("Thank you! A counsellor will reach out shortly.");
-        setTimeout(() => closeRequestPopup(), 2000);
+        window.location.assign("/thank-you?programme=language");
         return;
       }
       throw new Error("Submit failed");
@@ -459,9 +454,8 @@ export default function LangmaChineseCourse() {
           }),
         });
         if (fallback.ok) {
-          setRequestSubmitted(true);
-          setRequestFormMessage("Thank you! A counsellor will reach out shortly.");
-          setTimeout(() => closeRequestPopup(), 2000);
+          window.location.assign("/thank-you?programme=language");
+          return;
         } else {
           setRequestFormMessage("Error submitting form. Please try WhatsApp or call us.");
         }

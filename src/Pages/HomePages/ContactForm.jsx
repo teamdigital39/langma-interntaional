@@ -113,20 +113,8 @@ const ContactForm = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setIsSuccess(true);
-
-        setResponseMsg("Form submitted successfully!");
-
-        setFormData({
-          name: "",
-          phone: "",
-          email: "",
-          service: "",
-          language: "",
-          message: "",
-        });
-
-        setErrors({});
+        window.location.assign("/thank-you");
+        return;
       } else {
         setIsSuccess(false);
 
@@ -171,8 +159,6 @@ const ContactForm = () => {
             <img
               src="/images/knowledge-opportunity.png"
               alt="Advisor consulting with a client on travel and residency documents"
-              width={1024}
-              height={666}
               className="w-full h-full object-cover"
             />
 
@@ -205,9 +191,7 @@ const ContactForm = () => {
             <div className="absolute inset-0">
               <img
                 src="/images/Group 4568.png"
-                alt="Consultation form background pattern"
-                width={409}
-                height={512}
+                alt="background"
                 className="w-full h-full object-cover opacity-60"
               />
             </div>
@@ -270,9 +254,7 @@ const ContactForm = () => {
                     <div className="relative">
                       <img
                         src="/images/user.png"
-                        alt="Name field icon"
-                        width={20}
-                        height={20}
+                        alt="user"
                         className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
                       />
                       <input
@@ -294,9 +276,7 @@ const ContactForm = () => {
                     <div className="relative">
                       <img
                         src="/images/call.png"
-                        alt="Phone field icon"
-                        width={512}
-                        height={512}
+                        alt="phone"
                         className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
                       />
                       <input
@@ -322,9 +302,7 @@ const ContactForm = () => {
                     <div className="relative">
                       <img
                         src="/images/mail.png"
-                        alt="Email field icon"
-                        width={512}
-                        height={512}
+                        alt="email"
                         className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
                       />
                       <input
@@ -346,9 +324,7 @@ const ContactForm = () => {
                     <div className="relative">
                       <img
                         src="/images/service.png"
-                        alt="Services field icon"
-                        width={512}
-                        height={512}
+                        alt="services"
                         className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
                       />
                       <FiChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-[#0B6B6B] text-base pointer-events-none" />
@@ -379,9 +355,7 @@ const ContactForm = () => {
                       <div className="relative">
                         <img
                           src="https://api.iconify.design/mdi/translate.svg?color=%230B6B6B"
-                          alt="Language selection icon"
-                          width={20}
-                          height={20}
+                          alt="language"
                           className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4"
                         />
                         <FiChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-[#0B6B6B] text-base pointer-events-none" />
@@ -438,9 +412,7 @@ const ContactForm = () => {
                     <div className="relative">
                       <img
                         src="/images/describ.png"
-                        alt="Message field icon"
-                        width={512}
-                        height={512}
+                        alt="pen"
                         className="absolute left-4 top-4 w-4 h-4"
                       />
                       <textarea

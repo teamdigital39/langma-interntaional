@@ -542,25 +542,27 @@ useEffect(() => {
               overflow-hidden
               transition-all
               duration-300
-              cursor-pointer h-[400px]
+              cursor-pointer h-auto min-h-[400px]
             "
           >
 
-            <img
-              src={item.image}
-              alt={item.title}
-              className="w-full h-[250px] object-cover"
-            />
+            <div className="relative aspect-[16/9] overflow-hidden bg-white">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-contain bg-white transition-transform duration-500 hover:scale-105"
+              />
+            </div>
 
-            <div className="p-5">
+            <div className="p-5 flex min-h-[150px] flex-col">
 
-              <h2 className="text-2xl font-bold">
+              <h2 className="text-2xl font-bold leading-snug">
                 {item.title}
               </h2>
 
-              <p className="text-sm text-gray-500 mt-2">
-                {item.slug}
-              </p>
+              <span className="mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-[#134E4A] px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors duration-300 hover:bg-[#0f3d3a]">
+                Learn More <span aria-hidden="true">→</span>
+              </span>
 
             </div>
 
