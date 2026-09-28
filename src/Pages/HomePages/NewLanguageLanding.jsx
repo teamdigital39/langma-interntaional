@@ -212,9 +212,9 @@ export default function NewLanguageLanding({ language }) {
         <section className="new-hero" style={{ backgroundImage: `linear-gradient(90deg, rgba(5,18,36,.98) 0%, rgba(5,18,36,.95) 52%, rgba(5,18,36,.90) 100%), url(${page.heroImage})` }}>
           <div className="new-container new-hero-grid">
             <div className="new-hero-copy">
-              <p className="new-eyebrow">{page.short} language course · online and classroom</p>
-              <h1>{page.short} Language Course for Study, Work &amp; Global Goals</h1>
-              <p className="new-hero-intro">{page.intro}</p>
+              <p className="new-eyebrow">{page.short} language course · hybrid online and offline learning</p>
+              <h1>{page.short} Language Course Online &amp; Offline at Langma International</h1>
+              <p className="new-hero-intro">{page.intro} Learn with Langma International through flexible hybrid online and offline classroom options.</p>
               <div className="new-actions">
                 <a className="new-button new-button-primary" href={whatsappUrl} target="_blank" rel="noopener"><WhatsAppIcon /> Chat on WhatsApp</a>
                 <a className="new-button new-button-light" href={`tel:${PHONE}`}><PhoneIcon /> Talk to a counsellor</a>
