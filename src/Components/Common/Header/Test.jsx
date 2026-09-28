@@ -90,79 +90,76 @@ function Test() {
   }
 
   return (
-    <div className="w-full bg-[#f8fbfc]">
+    <div className="course-detail-page w-full bg-[#f5fafb] text-[#16343a]">
 
       {/* HERO SECTION */}
-      <section className="relative w-full h-[350px] md:h-[500px] overflow-hidden">
+      <section className="course-detail-hero relative isolate min-h-[430px] overflow-hidden bg-[#0b2738] md:min-h-[560px]">
 
         <img
           src={course.banner}
           alt={course.title}
-          className="w-full h-full object-cover scale-105"
+          className="absolute inset-0 h-full w-full object-cover object-center"
         />
 
-        {/* OVERLAY */}
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(6,28,43,0.94)_0%,rgba(6,28,43,0.76)_46%,rgba(6,28,43,0.35)_100%)]"></div>
+        <div className="absolute -bottom-24 -right-16 h-72 w-72 rounded-full border border-white/10 bg-[#33c39a]/10 blur-2xl"></div>
 
-        {/* TEXT */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+        <div className="relative mx-auto flex min-h-[430px] max-w-7xl items-center px-5 py-16 sm:px-8 md:min-h-[560px] lg:px-12">
+          <div className="max-w-3xl">
+            <div className="mb-6 flex flex-wrap items-center gap-3 text-sm font-semibold tracking-wide text-white/90">
+              <span className="rounded-full border border-[#8be0c2]/50 bg-[#33c39a]/20 px-4 py-2 text-[#c9ffed]">
+                Langma Language Programme
+              </span>
+              <span className="text-white/60">Online · Classroom · Corporate</span>
+            </div>
 
-          <h1 className="text-white text-4xl md:text-6xl font-bold leading-tight drop-shadow-lg max-w-5xl">
-            {course.title}
-          </h1>
+            <h1 className="max-w-4xl text-4xl font-bold leading-[1.08] tracking-tight text-white drop-shadow-lg sm:text-5xl md:text-7xl">
+              {course.title}
+            </h1>
 
-          <p className="text-white/80 mt-5 text-lg max-w-2xl leading-8">
-            Explore complete language learning programs,
-            curriculum, speaking mastery, and international opportunities.
-          </p>
+            <p className="mt-6 max-w-2xl text-base leading-7 text-white/85 sm:text-lg">
+              Build practical speaking, listening and writing skills with structured guidance, flexible classes and a clear learning path.
+            </p>
 
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="#course-content" className="inline-flex items-center rounded-full bg-[#33c39a] px-6 py-3 font-semibold text-[#073c39] shadow-lg transition hover:-translate-y-0.5 hover:bg-[#62dcb3]">
+                Explore the course <span className="ml-2" aria-hidden="true">↓</span>
+              </a>
+              <a href="tel:+919810117094" className="inline-flex items-center rounded-full border border-white/40 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur transition hover:bg-white/20">
+                Speak to a counsellor
+              </a>
+            </div>
+          </div>
         </div>
-
       </section>
 
       {/* MAIN SECTION */}
-      <section className="max-w-7xl mx-auto px-4 md:px-8 py-14">
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:px-8 md:py-16">
 
         {/* FEATURE IMAGE */}
-        <div className="overflow-hidden rounded-[35px] shadow-[0_15px_40px_rgba(0,0,0,0.15)] mb-14">
-
+        <div className="overflow-hidden rounded-[28px] border border-[#d9ecea] bg-white p-2 shadow-[0_15px_40px_rgba(13,71,76,0.1)] md:rounded-[35px] md:p-3">
           <img
             src={course.image}
             alt={course.title}
-            className="w-full h-[260px] md:h-[600px]  hover:scale-105 transition duration-700"
+            className="aspect-[16/8] w-full rounded-[22px] object-contain bg-white md:aspect-[16/7]"
           />
-
         </div>
 
         {/* TITLE */}
-        <div className="mb-12">
-
-          <span className="inline-block bg-[#dff6f8] text-[#006064] px-5 py-2 rounded-full text-sm font-semibold tracking-wide shadow-sm">
-            {course.slug}
+        <div className="mx-auto mb-8 mt-10 max-w-4xl text-center md:mb-12 md:mt-14">
+          <span className="inline-flex rounded-full bg-[#dff6f8] px-5 py-2 text-sm font-semibold tracking-wide text-[#006064] shadow-sm">
+            Course details
           </span>
-
-          <h2 className="text-3xl md:text-5xl font-bold text-[#1a1a1a] mt-6 leading-tight">
+          <h2 className="mt-5 text-3xl font-bold leading-tight text-[#16343a] sm:text-4xl md:text-5xl">
             {course.title}
           </h2>
-
-          <div className="w-28 h-1 bg-[#33c39a] rounded-full mt-5"></div>
-
+          <div className="mx-auto mt-5 h-1.5 w-24 rounded-full bg-[#33c39a]"></div>
         </div>
 
         {/* CONTENT */}
         <div
- p-1
-
-          className="
-            course-content
-            leading-9
-            text-[12px] md:text-[17px]
-            bg-white
-            rounded-[35px]
-            shadow-[0_10px_35px_rgba(0,0,0,0.08)]
-
-            md:p-12
-          "
+          id="course-content"
+          className="course-content rounded-[28px] border border-[#d9ecea] bg-white px-5 py-7 shadow-[0_10px_35px_rgba(13,71,76,0.08)] sm:px-8 md:rounded-[35px] md:px-12 md:py-10"
           dangerouslySetInnerHTML={{
             __html: course.content,
           }}
@@ -231,51 +228,43 @@ function Test() {
                 >
 
                   {/* IMAGE */}
-                  <div className="overflow-hidden relative">
+                  <div className="relative aspect-[16/9] overflow-hidden bg-white">
 
                     <img
                       src={item.image}
                       alt={item.title}
                       className="
                         w-full
-                        h-[260px]
-                        object-cover
+                        h-full
+                        object-contain
+                        bg-white
                         transition-transform
                         duration-700
-                        group-hover:scale-110
+                        group-hover:scale-105
                       "
                     />
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
 
                   </div>
 
                   {/* CONTENT */}
-                  <div className="p-6">
+                  <div className="p-6 flex min-h-[190px] flex-col">
 
-                    <span className="inline-block bg-[#e8fbf6] text-[#0d8f6f] px-4 py-1 rounded-full text-sm font-medium mb-4">
-                      {item.slug}
-                    </span>
-
-                    <h3 className="text-2xl font-bold text-[#1a1a1a] leading-snug mb-4 line-clamp-2">
+                    <h3 className="text-2xl font-bold text-[#1a1a1a] leading-snug line-clamp-2">
                       {item.title}
                     </h3>
 
-                    {/* <button
+                    <span
                       className="
-                        bg-[#134E4A]
-                        hover:bg-[#0f3d3a]
-                        text-white
-                        px-6
-                        py-3
-                        rounded-full
-                        font-medium
-                        transition-all
-                        duration-300
+                        mt-auto inline-flex w-fit items-center gap-2
+                        rounded-full bg-[#134E4A] px-5 py-2.5
+                        text-sm font-semibold text-white
+                        shadow-sm transition-all duration-300
+                        group-hover:bg-[#0f3d3a] group-hover:shadow-md
                       "
                     >
-                      Explore Course
-                    </button> */}
+                      Learn More
+                      <span aria-hidden="true">→</span>
+                    </span>
 
                   </div>
 
@@ -294,112 +283,574 @@ function Test() {
       {/* CUSTOM STYLE */}
       <style>
         {`
+          .course-detail-page {
+            --detail-ink: #16343a;
+            --detail-teal: #075d62;
+            --detail-mint: #33c39a;
+            --detail-line: #d9ecea;
+            background-image:
+              radial-gradient(circle at 7% 31%, rgba(51, 195, 154, 0.08) 0 2px, transparent 2.5px),
+              radial-gradient(circle at 92% 68%, rgba(7, 93, 98, 0.06) 0 2px, transparent 2.5px);
+            background-size: 30px 30px, 34px 34px;
+          }
+
+          .course-detail-hero::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: -190px;
+            right: -120px;
+            width: 470px;
+            height: 470px;
+            border: 1px solid rgba(163, 246, 219, 0.28);
+            border-radius: 50%;
+            box-shadow:
+              0 0 0 28px rgba(163, 246, 219, 0.06),
+              0 0 0 58px rgba(163, 246, 219, 0.04),
+              0 0 0 88px rgba(163, 246, 219, 0.025);
+            pointer-events: none;
+          }
+
+          .course-detail-hero::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            left: 7%;
+            bottom: 8%;
+            width: 150px;
+            height: 150px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            transform: rotate(45deg);
+            pointer-events: none;
+          }
+
+          .course-detail-page .course-content {
+            position: relative;
+          }
+
+          .course-detail-page .course-content::before {
+            content: "";
+            position: absolute;
+            top: 22px;
+            right: 24px;
+            width: 46px;
+            height: 46px;
+            border-top: 2px solid rgba(51, 195, 154, 0.35);
+            border-right: 2px solid rgba(51, 195, 154, 0.35);
+            border-radius: 0 16px 0 0;
+            pointer-events: none;
+          }
+
+          .course-content {
+            color: #36545a;
+            font-size: 17px;
+            line-height: 1.85;
+            overflow-wrap: anywhere;
+          }
+
+          .course-content > *:first-child {
+            margin-top: 0;
+          }
+
+          .course-content > *:last-child {
+            margin-bottom: 0;
+          }
+
+          /* The API wraps each programme in a Bootstrap-style section. */
+          .course-content .container {
+            max-width: 1020px;
+            padding: 0;
+            margin-right: auto;
+            margin-left: auto;
+          }
+
+          .course-content > .container > .py-3,
+          .course-content section .container > .py-3 {
+            padding: 0 !important;
+          }
+
+          .course-content section .container > p,
+          .course-content section .container > h1,
+          .course-content section .container > h2,
+          .course-content section .container > h3,
+          .course-content section .container > h4,
+          .course-content section .container > table,
+          .course-content section .container .py-3 > p,
+          .course-content section .container .py-3 > h1,
+          .course-content section .container .py-3 > h2,
+          .course-content section .container .py-3 > h3,
+          .course-content section .container .py-3 > h4,
+          .course-content section .container .py-3 > table {
+            max-width: 900px;
+            margin-right: auto;
+            margin-left: auto;
+          }
+
+          .course-content section .container > p:first-of-type,
+          .course-content section .container .py-3 > p:first-child {
+            margin-top: 0;
+            padding: 22px 26px;
+            border-left: 4px solid #33c39a;
+            border-radius: 0 18px 18px 0;
+            background: #f1fbf8;
+            color: #214d54;
+            font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+            line-height: 1.8;
+          }
+
+          .course-content > .container > .py-3 {
+            padding: 0 !important;
+          }
+
+          /* Avoid showing the CMS label immediately before its semantic heading. */
+          .course-content .text-uppercase.fw-bold.py-2 {
+            display: none;
+          }
+
+          .course-content .py-3,
+          .course-content > section {
+            max-width: 1020px;
+            margin-right: auto;
+            margin-left: auto;
+          }
+
+          .course-content .py-3 > p,
+          .course-content > section > p,
+          .course-content > section > h1,
+          .course-content > section > h2,
+          .course-content > section > h3,
+          .course-content > section > h4,
+          .course-content > section > table {
+            max-width: 900px;
+            margin-right: auto;
+            margin-left: auto;
+          }
+
+          .course-content .py-3 > p,
+          .course-content .py-3 > h2,
+          .course-content .py-3 > h3,
+          .course-content .py-3 > table {
+            max-width: 900px;
+            margin-right: auto;
+            margin-left: auto;
+          }
+
+          .course-content .py-3 > p:first-child,
+          .course-content > section > p:first-child {
+            margin-top: 0;
+            padding: 22px 26px;
+            border-left: 4px solid #33c39a;
+            border-radius: 0 18px 18px 0;
+            background: #f1fbf8;
+            color: #214d54;
+            font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+            line-height: 1.8;
+          }
+
           .course-content h1,
           .course-content h2,
           .course-content h3,
           .course-content h4,
           .course-content h5,
           .course-content h6 {
-            color: #006064;
-            font-weight: 700;
-            margin-top: 30px;
-            margin-bottom: 18px;
-            line-height: 1.4;
+            color: #075d62;
+            font-weight: 750;
+            letter-spacing: -0.015em;
+            margin-top: 42px;
+            margin-bottom: 16px;
+            line-height: 1.25;
+            scroll-margin-top: 24px;
           }
 
           .course-content h1 {
-            font-size: 40px;
+            font-size: clamp(1.75rem, 3vw, 2.6rem);
           }
 
           .course-content h2 {
-            font-size: 32px;
+            position: relative;
+            padding: 14px 0 14px 20px;
+            border-bottom: 1px solid #d9ecea;
+            font-size: clamp(1.5rem, 2.4vw, 2.05rem);
+          }
+
+          .course-content h2::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 14px;
+            bottom: 14px;
+            width: 4px;
+            border-radius: 99px;
+            background: #33c39a;
+          }
+
+          .course-content h2::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -2px;
+            width: 58px;
+            height: 3px;
+            border-radius: 99px;
+            background: #33c39a;
           }
 
           .course-content h3 {
-            font-size: 26px;
+            font-size: clamp(1.25rem, 2vw, 1.55rem);
+            color: #16343a;
+          }
+
+          .course-content h3,
+          .course-content h4 {
+            position: relative;
+            padding: 14px 0 14px 20px;
+            border-bottom: 1px solid #d9ecea;
+            color: #075d62 !important;
+          }
+
+          .course-content h3::before,
+          .course-content h4::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 14px;
+            bottom: 14px;
+            width: 4px;
+            border-radius: 99px;
+            background: #33c39a;
+          }
+
+          .course-content h3::after,
+          .course-content h4::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -2px;
+            width: 52px;
+            height: 3px;
+            border-radius: 99px;
+            background: #33c39a;
+          }
+
+          .course-content > section > h3,
+          .course-content > section > h4 {
+            position: relative;
+            padding: 14px 0 14px 20px !important;
+            border-bottom: 1px solid #d9ecea;
+            color: #075d62 !important;
+            font-size: clamp(1.2rem, 2vw, 1.6rem) !important;
+            font-weight: 750 !important;
+            text-align: left !important;
+          }
+
+          .course-content > section > h3::before,
+          .course-content > section > h4::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 14px;
+            bottom: 14px;
+            width: 4px;
+            border-radius: 99px;
+            background: #33c39a;
+          }
+
+          .course-content > section > h3::after,
+          .course-content > section > h4::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -2px;
+            width: 52px;
+            height: 3px;
+            border-radius: 99px;
+            background: #33c39a;
+          }
+
+          .course-content h4,
+          .course-content h5,
+          .course-content h6 {
+            font-size: 1.1rem !important;
+            color: #16896f !important;
+          }
+
+          /* Some legacy API entries contain inline heading styles. */
+          .course-content h1 {
+            font-size: clamp(1.75rem, 3vw, 2.6rem) !important;
+            color: #075d62 !important;
+          }
+
+          .course-content h2 {
+            font-size: clamp(1.5rem, 2.4vw, 2.05rem) !important;
+            color: #075d62 !important;
+          }
+
+          .course-content h3 {
+            font-size: clamp(1.25rem, 2vw, 1.55rem) !important;
+            color: #16343a !important;
           }
 
           .course-content p {
-            margin-bottom: 22px;
-            color: #444;
-            font-size: 17px;
-            line-height: 1.95;
+            margin: 0 0 22px;
+            color: #456269;
+            font-size: 1em;
+            line-height: 1.9;
+          }
+
+          .course-content > p:first-of-type {
+            color: #294b53;
+            font-size: 1.08em;
+            line-height: 1.8;
+          }
+
+          .course-content strong,
+          .course-content b {
+            color: #16343a;
+            font-weight: 750;
           }
 
           .course-content ul,
           .course-content ol {
-            padding-left: 24px;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin: 22px 0 26px;
+            padding-left: 1.6rem;
           }
 
-          .course-content ul li,
-          .course-content ol li {
-            margin-bottom: 12px;
-            color: #333;
+          .course-content ul {
+            list-style: disc;
+          }
+
+          .course-content ol {
+            list-style: decimal;
+          }
+
+          .course-content li {
+            margin: 0 0 11px;
+            padding-left: 5px;
+            color: #456269;
+          }
+
+          .course-content li::marker {
+            color: #20a47d;
+            font-weight: 700;
+          }
+
+          .course-content hr {
+            margin: 34px 0;
+            border: 0;
+            border-top: 1px solid #d9ecea;
           }
 
           .course-content img {
-            border-radius: 24px;
-            margin-top: 30px;
-            margin-bottom: 30px;
+            display: block;
             width: 100%;
-            box-shadow: 0px 10px 30px rgba(0,0,0,0.08);
+            height: auto;
+            max-height: 620px;
+            margin: 30px auto;
+            border: 1px solid #d9ecea;
+            border-radius: 20px;
+            object-fit: contain;
+            background: #fff;
+            box-shadow: 0 10px 28px rgba(13, 71, 76, 0.08);
+          }
+
+          /* API image-and-copy rows: image left, supporting content right. */
+          .course-content .row {
+            display: grid;
+            grid-template-columns: minmax(190px, 0.72fr) minmax(0, 1.28fr) !important;
+            align-items: start;
+            gap: clamp(24px, 4vw, 56px);
+            max-width: 1020px;
+            margin: 42px auto;
+          }
+
+          .course-content .row {
+            display: flex !important;
+            flex-wrap: nowrap;
+          }
+
+          .course-content .row > .col-12.col-lg-3 {
+            flex: 0 0 28%;
+          }
+
+          .course-content .row > .col-12.col-lg-9 {
+            flex: 1 1 auto;
+            min-width: 0;
+          }
+
+          /* Keep image-bearing columns on the left even when API column order varies. */
+          .course-content .row > [class*="col-"]:has(img) {
+            order: 1;
+            flex: 0 0 clamp(240px, 28%, 380px);
+          }
+
+          .course-content .row > [class*="col-"]:not(:has(img)) {
+            order: 2;
+            flex: 1 1 auto;
+            min-width: 0;
+          }
+
+          .course-content .row > [class*="col-"] {
+            width: auto;
+            max-width: none;
+            padding: 0;
+          }
+
+          .course-content .row > [class*="col-"] img {
+            width: 100%;
+            max-height: 520px;
+            margin: 0;
+            border-radius: 18px;
+          }
+
+          .course-content .row > .col-lg-9 > *:first-child,
+          .course-content .row > .col-12.col-lg-9 > *:first-child {
+            margin-top: 0;
+          }
+
+          .course-content .row > .col-lg-9 p,
+          .course-content .row > .col-12.col-lg-9 p {
+            max-width: none;
           }
 
           .course-content table {
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 35px;
-            margin-bottom: 35px;
+            margin: 32px 0;
+            border: 1px solid #d9ecea;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 16px;
             overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0px 10px 25px rgba(0,0,0,0.08);
+            background: #fff;
+            box-shadow: 0 8px 24px rgba(13, 71, 76, 0.07);
           }
 
           .course-content table tr:nth-child(even) {
-            background: #f4fbfb;
+            background: #f5fbfa;
           }
 
           .course-content table td,
           .course-content table th {
-            border: 1px solid #dbeaea;
-            padding: 16px;
-            text-align: center;
+            border-right: 1px solid #d9ecea;
+            border-bottom: 1px solid #d9ecea;
+            padding: 14px 16px;
+            text-align: left;
+            vertical-align: top;
             font-size: 15px;
+            line-height: 1.55;
+          }
+
+          .course-content table tr:last-child td,
+          .course-content table tr:last-child th {
+            border-bottom: 0;
+          }
+
+          .course-content table td:last-child,
+          .course-content table th:last-child {
+            border-right: 0;
           }
 
           .course-content table th {
-            background: #006064;
-            color: white;
+            background: #075d62;
+            color: #fff;
+            font-weight: 700;
+          }
+
+          .course-content table td:first-child {
+            width: 34%;
+            background: #f1fbf8;
+            color: #075d62;
+            font-weight: 750;
+          }
+
+          .course-content table td:last-child {
+            color: #456269;
             font-weight: 600;
+          }
+
+          .course-content h3 + p {
+            padding-left: 18px;
+            border-left: 3px solid #a6ead2;
           }
 
           .course-content a {
-            color: #00838f;
-            font-weight: 600;
-            text-decoration: none;
+            color: #007d83;
+            font-weight: 700;
+            text-decoration: underline;
+            text-decoration-color: rgba(0, 125, 131, 0.35);
+            text-underline-offset: 3px;
           }
 
           .course-content a:hover {
-            text-decoration: underline;
+            color: #0d5558;
+            text-decoration-color: currentColor;
           }
 
-          blockquote {
+          .course-content blockquote {
+            margin: 28px 0;
+            padding: 18px 20px;
             border-left: 4px solid #33c39a;
-            padding-left: 20px;
-            margin: 25px 0;
-            color: #555;
+            border-radius: 0 14px 14px 0;
+            background: #f1fbf8;
+            color: #456269;
             font-style: italic;
-            background: #f7ffff;
-            padding: 20px;
-            border-radius: 14px;
           }
 
           @media (max-width: 768px) {
+            .course-detail-hero::before {
+              top: -150px;
+              right: -210px;
+              width: 340px;
+              height: 340px;
+            }
+
+            .course-detail-hero::after {
+              left: 4%;
+              bottom: 6%;
+              width: 90px;
+              height: 90px;
+            }
+
+            .course-detail-page .course-content::before {
+              top: 14px;
+              right: 16px;
+              width: 30px;
+              height: 30px;
+            }
 
             .course-content {
-              padding: 22px;
+              font-size: 15px;
+              line-height: 1.8;
+            }
+
+            .course-content .row {
+              flex-direction: column;
+              flex-wrap: wrap;
+              gap: 22px;
+              margin: 32px auto;
+            }
+
+            .course-content .row > .col-12.col-lg-3,
+            .course-content .row > .col-12.col-lg-9 {
+              flex: 0 0 auto;
+              width: 100%;
+            }
+
+            .course-content .row > [class*="col-"] img {
+              width: min(100%, 420px);
+              margin: 0 auto;
+            }
+
+            .course-content h1,
+            .course-content h2,
+            .course-content h3,
+            .course-content h4,
+            .course-content h5,
+            .course-content h6 {
+              margin-top: 30px;
+            }
+
+            .course-content p {
+              line-height: 1.8;
             }
 
             .course-content table {
@@ -408,21 +859,14 @@ function Test() {
               white-space: nowrap;
             }
 
-            .course-content p {
-              font-size: 15px;
-              line-height: 1.85;
+            .course-content table td,
+            .course-content table th {
+              padding: 12px 14px;
             }
 
-            .course-content h1 {
-              font-size: 28px;
-            }
-
-            .course-content h2 {
-              font-size: 24px;
-            }
-
-            .course-content h3 {
-              font-size: 20px;
+            .course-content img {
+              margin: 24px auto;
+              border-radius: 14px;
             }
           }
         `}
