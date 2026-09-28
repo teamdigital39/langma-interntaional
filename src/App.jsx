@@ -116,12 +116,12 @@ const SwitzerlandPRPage = lazy(() => import("./Pages/HomePages/SwitzerlandPR"));
 const LangmaThailandEliteVisaPage = lazy(() => import("./Pages/HomePages/ThilandEliteVisa"));
 const GoldenVisaAssessment = lazy(() => import("./Pages/HomePages/GoldenVisaAssessment"));
 const AboutLangma = lazy(() => import("./Pages/HomePages/Aboutus"));
-const EditorialPolicy = lazy(() => import("./Pages/HomePages/EditorialPolicy"));
 const LearnGermanLanguage = lazy(() => import("./Pages/HomePages/LearnGermanLanguage"));
 const LearnKoreanLanguage = lazy(() => import("./Pages/HomePages/LearnKoreanLanguage"));
 const LearnJapaneseLanguage = lazy(() => import("./Pages/HomePages/LearnJapaneseLanguage"));
 const LangmaFrenchCourse = lazy(() => import("./Pages/HomePages/LangmaFrenchCourse"));
 const LangmaChineseCourse = lazy(() => import("./Pages/HomePages/LangmaChineseCourse"));
+const NewLanguageLanding = lazy(() => import("./Pages/HomePages/NewLanguageLanding"));
 
 const TranslationServices = lazy(() => import("./Pages/HomePages/TranslationServices"));
 const HomeLangma = lazy(() => import("./Pages/HomePages/Homepage"));
@@ -216,7 +216,6 @@ function App() {
           <Route path="/" element={<HomeLangma />} />
           {/* <Route path="/about" element={<AboutHeroSection />} />*/}
           <Route path="/about" element={<AboutLangma />} />
-          <Route path="/editorial-policy" element={<EditorialPolicy />} />
           <Route path="/work-abroad" element={<AbrotHeroSection />} />
           {/* <Route path="/study-abroad" element={<StudyAbrotHeroSection />} /> */}
           <Route path="/study-abroad" element={<StudyAbrotHeroSection1 />} />
@@ -330,7 +329,12 @@ function App() {
           <Route path="/learn-korean-language" element={<LearnKoreanLanguage />} />
           <Route path="/learn-japanese-language" element={<LearnJapaneseLanguage />} />
           <Route path="/learn-french-language" element={<LangmaFrenchCourse />} />
-        <Route path="/learn-chinese-language" element={<LangmaChineseCourse />} />
+          <Route path="/learn-chinese-language" element={<LangmaChineseCourse />} />
+          <Route path="/german-language-course" element={<NewLanguageLanding language="German" />} />
+          <Route path="/korean-language-course" element={<NewLanguageLanding language="Korean" />} />
+          <Route path="/japanese-language-course" element={<NewLanguageLanding language="Japanese" />} />
+          <Route path="/french-language-course" element={<NewLanguageLanding language="French" />} />
+          <Route path="/chinese-language-course" element={<NewLanguageLanding language="Chinese" />} />
 
           <Route path="/translation-services" element={<TranslationServices />} />
           <Route path="/:slug" element={<Arabic/>} />
