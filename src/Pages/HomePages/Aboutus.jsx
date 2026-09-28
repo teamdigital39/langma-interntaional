@@ -29,9 +29,9 @@ function Reveal({ as: _Tag = "div", className = "", children, ...rest }) {
   }, []);
 
   return (
-    <Tag ref={ref} className={`reveal${visible ? " in" : ""} ${className}`} {...rest}>
+    <_Tag ref={ref} className={`reveal${visible ? " in" : ""} ${className}`} {...rest}>
       {children}
-    </Tag>
+    </_Tag>
   );
 }
 
