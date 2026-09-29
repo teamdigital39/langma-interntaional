@@ -8,6 +8,47 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
+function normalizeCourseContent(html = "") {
+  if (!html || typeof document === "undefined") return html;
+
+  const template = document.createElement("template");
+  template.innerHTML = html;
+
+  template.content.querySelectorAll(".row").forEach((row) => {
+    const columns = Array.from(row.children).filter((child) =>
+      child.matches("[class*='col-']")
+    );
+    const imageColumns = columns.filter((column) => column.querySelector("img"));
+    const textColumns = columns.filter((column) => !column.querySelector("img"));
+
+    // Keep one-image rows unchanged; group multiple images into a single gallery.
+    if (imageColumns.length < 2 || textColumns.length === 0) return;
+
+    const pair = document.createElement("div");
+    pair.className = "course-media-copy-pair";
+    const gallery = document.createElement("div");
+    gallery.className = "course-media-gallery";
+    const copy = document.createElement("div");
+    copy.className = "course-copy-group";
+
+    imageColumns.forEach((imageColumn) => {
+      imageColumn.classList.add("course-media-item");
+      gallery.appendChild(imageColumn);
+    });
+
+    textColumns.forEach((column) => {
+      column.classList.add("course-copy-item");
+      copy.appendChild(column);
+    });
+
+    pair.append(gallery, copy);
+    row.replaceChildren(pair);
+    row.classList.add("course-content-multi-media-row");
+  });
+
+  return template.innerHTML;
+}
+
 function Test() {
 
   // URL PARAMS
@@ -89,6 +130,8 @@ function Test() {
     );
   }
 
+  const formattedCourseContent = normalizeCourseContent(course.content);
+
   return (
     <div className="course-detail-page w-full bg-[#f5fafb] text-[#16343a]">
 
@@ -161,7 +204,7 @@ function Test() {
           id="course-content"
           className="course-content rounded-[28px] border border-[#d9ecea] bg-white px-5 py-7 shadow-[0_10px_35px_rgba(13,71,76,0.08)] sm:px-8 md:rounded-[35px] md:px-12 md:py-10"
           dangerouslySetInnerHTML={{
-            __html: course.content,
+            __html: formattedCourseContent,
           }}
         />
 
@@ -712,6 +755,86 @@ function Test() {
             max-width: none;
           }
 
+          /* Multi-image rows become independent image-left/content-right
+             pairs. One-image rows keep the existing treatment above. */
+          .course-content .course-content-multi-media-row {
+            display: grid !important;
+            grid-template-columns: 1fr !important;
+            gap: clamp(28px, 4vw, 48px);
+            max-width: 1020px;
+            margin: 42px auto;
+          }
+
+          .course-content .course-media-copy-pair {
+            display: grid;
+            grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr);
+            align-items: center;
+            gap: clamp(26px, 4vw, 58px);
+            min-width: 0;
+          }
+
+          .course-content .course-media-gallery {
+            position: relative;
+            min-height: 430px;
+          }
+
+          .course-content .course-media-item,
+          .course-content .course-copy-item {
+            width: auto !important;
+            max-width: none !important;
+            min-width: 0;
+            padding: 0 !important;
+          }
+
+          .course-content .course-media-item img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 5 / 6;
+            max-height: 560px;
+            margin: 0;
+            object-fit: cover;
+            border-radius: 18px;
+          }
+
+          .course-content .course-media-gallery > .course-media-item:first-child {
+            width: 78% !important;
+          }
+
+          .course-content .course-media-gallery > .course-media-item:first-child img {
+            height: 460px;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+          }
+
+          .course-content .course-media-gallery > .course-media-item:nth-child(2) {
+            position: absolute;
+            right: 0;
+            bottom: 24px;
+            z-index: 1;
+            width: 54% !important;
+            padding: 8px !important;
+            border: 1px solid #d9ecea;
+            border-radius: 20px;
+            background: #fff;
+            box-shadow: 0 16px 36px rgba(13, 71, 76, 0.16);
+          }
+
+          .course-content .course-media-gallery > .course-media-item:nth-child(2) img {
+            aspect-ratio: 4 / 5;
+            max-height: 300px;
+            object-fit: contain;
+            object-position: center top;
+            border-radius: 13px;
+          }
+
+          .course-content .course-copy-item > *:first-child {
+            margin-top: 0;
+          }
+
+          .course-content .course-copy-item p {
+            max-width: none;
+          }
+
           .course-content table {
             width: 100%;
             margin: 32px 0;
@@ -827,6 +950,54 @@ function Test() {
               flex-wrap: wrap;
               gap: 22px;
               margin: 32px auto;
+            }
+
+            .course-content .course-content-multi-media-row {
+              gap: 32px;
+              margin: 32px auto;
+            }
+
+            .course-content .course-media-copy-pair {
+              grid-template-columns: 1fr;
+              gap: 20px;
+            }
+
+            .course-content .course-media-gallery {
+              display: grid;
+              grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr) !important;
+              align-items: end;
+              gap: 12px;
+              min-height: 0;
+            }
+
+            .course-content .course-media-gallery > .course-media-item {
+              grid-column: auto !important;
+              min-width: 0;
+            }
+
+            .course-content .course-media-gallery > .course-media-item:first-child,
+            .course-content .course-media-gallery > .course-media-item:nth-child(2) {
+              position: static;
+              width: auto !important;
+              padding: 0 !important;
+              border: 0;
+              border-radius: 0;
+              background: transparent;
+              box-shadow: none;
+            }
+
+            .course-content .course-media-gallery > .course-media-item:first-child img,
+            .course-content .course-media-gallery > .course-media-item:nth-child(2) img {
+              height: auto;
+              aspect-ratio: 4 / 5;
+              max-height: none;
+              border-radius: 14px;
+            }
+
+            .course-content .course-media-item img {
+              width: min(100%, 420px);
+              margin: 0 auto;
+              border-radius: 14px;
             }
 
             .course-content .row > .col-12.col-lg-3,
