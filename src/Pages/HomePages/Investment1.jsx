@@ -53,7 +53,7 @@ const Investment1 = () => {
                 <ArrowRight className="w-4 h-4 shrink-0" aria-hidden="true" />
               </a>
               <Link
-                to="/assessment"
+                to="/assessment/"
                 className="w-full sm:w-auto bg-white text-[#1A2540] border-2 border-[#2FC7A1] rounded-full px-6 py-3 text-sm font-semibold inline-flex items-center justify-center gap-2 tracking-wide hover:bg-[#E6F8F3] transition-all duration-200"
               >
                 <Calendar className="w-4 h-4 shrink-0 text-[#2FC7A1]" aria-hidden="true" />
@@ -104,7 +104,7 @@ const Investment1 = () => {
             </div>
           ))}
           <Link
-            to="/assessment"
+            to="/assessment/"
             className="inline-flex items-center gap-2 bg-[#E6F8F3] hover:bg-[#2FC7A1]/20 border border-[#2FC7A1]/40 text-[#296166] px-5 py-2 rounded-full text-[13px] font-bold transition-all"
           >
             Free Assessment
