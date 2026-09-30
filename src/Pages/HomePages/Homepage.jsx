@@ -245,28 +245,28 @@ const PATHWAYS = [
     icon: (<><path d="M12 4L3 9l9 5 9-5-9-5z" /><path d="M7 11.5V16c0 1.4 2.5 2.5 5 2.5s5-1.1 5-2.5v-4.5" /></>),
     title: "Study Abroad Consultants",
     body: "Find university admissions, scholarships, student visa guidance, and study abroad opportunities matched to your goals.",
-    href: "/study-abroad",
+    href: "/study-abroad/",
     img: "https://images.unsplash.com/photo-1559135197-8a45ea74d367?auto=format&fit=crop&w=600&q=80",
   },
   {
     icon: (<><rect x="3" y="8" width="18" height="12" rx="2" /><path d="M8 8V6a2 2 0 012-2h4a2 2 0 012 2v2" /><path d="M3 13h18" /></>),
     title: "Work Abroad & Overseas Jobs",
     body: "Explore overseas jobs, international recruitment, work visa guidance, and career preparation for working abroad.",
-    href: "/work-abroad",
+    href: "/work-abroad/",
     img: "https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=600&q=80",
   },
   {
     icon: (<><path d="M22 2L11 13" /><path d="M22 2l-7 20-4-9-9-4z" /></>),
     title: "Immigration & Residency",
     body: "Explore pathways for long-term mobility, residency, and international settlement.",
-    href: "/pr-by-investment",
+    href: "/pr-by-investment/",
     img: "https://images.unsplash.com/photo-1530469525856-cf37954301f7?auto=format&fit=crop&w=600&q=80",
   },
   {
     icon: (<><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z" /><path d="M9 12l2 2 4-4" /></>),
     title: "Golden Visa Programs",
     body: "Access investment-linked residency opportunities and global mobility solutions.",
-    href: "/golden-visa",
+    href: "/golden-visa/",
     img: "https://images.unsplash.com/photo-1544984243-ec57ea16fe25?auto=format&fit=crop&w=600&q=80",
   },
   {
@@ -927,7 +927,7 @@ export default function HomeLangma() {
                   <h2 className="display">Learn. Explore. Connect. <em>Grow Globally.</em></h2>
                   <p style={{ color: "var(--muted)", marginTop: "14px" }}>Langma International began with a vision to bridge cultures through language learning. Over the years, that vision has evolved into a broader mission: empowering individuals and organizations to access opportunities beyond geographical and linguistic boundaries.</p>
                   <p style={{ color: "var(--muted)" }}>Today, Langma serves as a trusted partner for students, professionals, institutions, businesses, and investors seeking global growth through learning, education, careers, mobility, cultural immersion, and international collaboration.</p>
-                  <Link to="/about" className="btn btn--ghost btn--sm" style={{ marginTop: "10px" }}>Read More About Us</Link>
+                  <Link to="/about/" className="btn btn--ghost btn--sm" style={{ marginTop: "10px" }}>Read More About Us</Link>
                 </Reveal>
               </div>
             </div>
@@ -1082,10 +1082,10 @@ export default function HomeLangma() {
 
               {/* CTA row */}
               <Reveal className="pathway-cta">
-                <Link to="/study-abroad" className="btn btn--teal">
+                <Link to="/study-abroad/" className="btn btn--teal">
                   Explore Study Abroad
                 </Link>
-                <Link to="/work-abroad" className="btn btn--ghost">
+                <Link to="/work-abroad/" className="btn btn--ghost">
                   Explore Work Abroad
                 </Link>
                 <button type="button" className="btn" onClick={() => setOpen(true)}>
@@ -1167,7 +1167,7 @@ export default function HomeLangma() {
                 ))}
               </div>
               <Reveal style={{ textAlign: "center", marginTop: "32px" }}>
-                <Link to="/success-stories" className="btn">View Success Stories</Link>
+                <Link to="/success-stories/" className="btn">View Success Stories</Link>
               </Reveal>
             </div>
           </section>
