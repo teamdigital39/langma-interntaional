@@ -145,6 +145,20 @@ export function canonicalUrl(pathname = "/") {
   return `${SITE_URL}${canonicalDocumentPath(pathname)}`;
 }
 
+export function internalRoute(pathname = "/") {
+  const value = String(pathname || "/");
+  if (!value.startsWith("/") || value.startsWith("//")) return value;
+
+  const hashIndex = value.indexOf("#");
+  const queryIndex = value.indexOf("?");
+  const cutAt = [hashIndex, queryIndex]
+    .filter((index) => index >= 0)
+    .sort((a, b) => a - b)[0];
+  const path = cutAt === undefined ? value : value.slice(0, cutAt);
+  const suffix = cutAt === undefined ? "" : value.slice(cutAt);
+  return `${canonicalDocumentPath(path)}${suffix}`;
+}
+
 export function readablePath(pathname = "/") {
   const value = decodeURIComponent(canonicalPath(pathname))
     .split("/")
