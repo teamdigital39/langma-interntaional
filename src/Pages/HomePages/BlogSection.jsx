@@ -39,7 +39,7 @@ const BlogSection = () => {
             <h2 id="homepage-blog-heading" className="blog-heading max-w-2xl text-3xl font-extrabold tracking-tight text-[#0F2A44] md:text-4xl">Insights for learning, travel and global careers.</h2>
             <p className="mt-3 max-w-xl text-sm leading-6 text-slate-500 md:text-base">Useful ideas and practical guidance to help you make your next international move with confidence.</p>
           </div>
-          <Link to="/blog" className="inline-flex w-fit items-center gap-2 rounded-full border border-[#2FC7A1] bg-white px-5 py-3 text-sm font-extrabold text-[#16826B] shadow-sm transition hover:bg-[#2FC7A1] hover:text-white">See all articles <ArrowRight size={16} /></Link>
+          <Link to="/blog/" className="inline-flex w-fit items-center gap-2 rounded-full border border-[#2FC7A1] bg-white px-5 py-3 text-sm font-extrabold text-[#16826B] shadow-sm transition hover:bg-[#2FC7A1] hover:text-white">See all articles <ArrowRight size={16} /></Link>
         </div>
 
         <Swiper
@@ -55,15 +55,15 @@ const BlogSection = () => {
         >
           {blogs.map((blog, index) => <SwiperSlide key={`${blog.slug || blog.id}-${index}`} className="!h-auto">
             <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-[0_8px_26px_rgba(15,42,68,0.07)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_34px_rgba(15,42,68,0.13)]">
-              <Link to={`/blog-detail/${blog.slug}`} className="relative block aspect-[16/9] overflow-hidden bg-slate-100">
+              <Link to={`/blog-detail/${blog.slug}/`} className="relative block aspect-[16/9] overflow-hidden bg-slate-100">
                 <img src={blog.image} alt={blog.title} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
                 <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 px-3 py-1.5 text-xs font-bold text-[#16826B] shadow-sm"><Tag size={12} />{getCategory(blog)}</span>
               </Link>
               <div className="flex flex-1 flex-col p-5">
                 <div className="flex items-center gap-4 text-xs font-semibold text-slate-400"><span className="inline-flex items-center gap-1.5"><CalendarDays size={14} className="text-[#FC6441]" />Latest</span><span className="inline-flex items-center gap-1.5"><Clock3 size={14} className="text-[#2FC7A1]" />5 min read</span></div>
-                <h3 className="mt-3 line-clamp-2 text-lg font-extrabold leading-snug text-[#0F2A44] transition group-hover:text-[#16826B]"><Link to={`/blog-detail/${blog.slug}`}>{blog.title}</Link></h3>
+                <h3 className="mt-3 line-clamp-2 text-lg font-extrabold leading-snug text-[#0F2A44] transition group-hover:text-[#16826B]"><Link to={`/blog-detail/${blog.slug}/`}>{blog.title}</Link></h3>
                 <p className="mt-3 line-clamp-3 text-sm leading-6 text-slate-500">{getExcerpt(blog)}</p>
-                <Link to={`/blog-detail/${blog.slug}`} className="mt-5 inline-flex items-center gap-2 text-sm font-extrabold text-[#16826B]">Read article <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></Link>
+                <Link to={`/blog-detail/${blog.slug}/`} className="mt-5 inline-flex items-center gap-2 text-sm font-extrabold text-[#16826B]">Read article <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></Link>
               </div>
             </article>
           </SwiperSlide>)}
