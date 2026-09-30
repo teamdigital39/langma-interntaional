@@ -7,6 +7,7 @@ import {
   LAST_UPDATED,
   SITE_URL,
   canonicalPath,
+  canonicalUrl,
   fallbackMetadata,
 } from "../src/seo.js";
 import { getLanguageFaqs, getSectionFaqs } from "../src/languageFaqs.js";
@@ -316,7 +317,7 @@ for (const rawUrl of urls) {
   const url = new URL(rawUrl);
   const pathname = canonicalPath(url.pathname);
   const metadata = await metadataFor(pathname);
-  const canonical = `${SITE_URL}${pathname}`;
+  const canonical = canonicalUrl(pathname);
   const image = absoluteImage(metadata.image);
   const isStandaloneLanding = STANDALONE_LANDING_ROUTES.includes(pathname);
   const schema = JSON.stringify(schemaFor(metadata, canonical)).replace(/</g, "\\u003c");
