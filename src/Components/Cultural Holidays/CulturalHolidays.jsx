@@ -224,7 +224,7 @@ const CulturalHolidays = () => {
                 {place.title}
               </h3>
               
-              <Link to="/contact">
+              <Link to="/contact/">
   <div className="border border-white rounded-full p-2 hover:bg-white hover:text-black transition cursor-pointer">
     <ArrowRight size={16} />
   </div>
