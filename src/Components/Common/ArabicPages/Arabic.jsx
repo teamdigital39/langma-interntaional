@@ -531,7 +531,7 @@ useEffect(() => {
       <SwiperSlide key={index} className="py-4"> {/* ✅ FIX: spacing for shadow */}
 
         {/* WHOLE CARD LINK */}
-        <Link to={`/course-details/${slug}/${item.slug}`}>
+        <Link to={`/course-details/${slug}/${item.slug}/`}>
 
           <div
             className="
