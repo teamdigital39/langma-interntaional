@@ -1,5 +1,8 @@
+import { getSectionFaqs } from "./languageFaqs.js";
+
 export const SITE_URL = "https://www.langmainternational.com";
 export const API_BASE = "https://api.langmainternational.com";
+export const LAST_UPDATED = "2026-09-30";
 
 export const HOMEPAGE_METADATA = {
   title: "Foreign Language Courses, Study Abroad, Overseas Jobs & PR",
@@ -221,6 +224,13 @@ export function setRouteJsonLd(metadata, url, isCourse = false) {
       ],
     },
     {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: "Langma International",
+      url: SITE_URL,
+      publisher: { "@id": `${SITE_URL}/#organization` },
+    },
+    {
       "@type": "LocalBusiness",
       "@id": `${SITE_URL}/#localbusiness`,
       name: "Langma International",
@@ -258,7 +268,29 @@ export function setRouteJsonLd(metadata, url, isCourse = false) {
             ]),
       ],
     },
+    {
+      "@type": "WebPage",
+      "@id": `${url}#webpage`,
+      name: metadata.title,
+      description: metadata.description,
+      url,
+      dateModified: LAST_UPDATED,
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      about: { "@id": `${SITE_URL}/#organization` },
+    },
   ];
+
+  if (path === "/") {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${url}#homepage-faq`,
+      mainEntity: getSectionFaqs("global-mobility").map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
+    });
+  }
 
   if (isCourse) {
     graph.push({
