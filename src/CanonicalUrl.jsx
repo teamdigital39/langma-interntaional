@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import {
   API_BASE,
+  LAST_UPDATED,
   SITE_URL,
   canonicalPath,
   canonicalUrl,
@@ -27,6 +28,7 @@ function applyMetadata(metadata, pathname) {
     "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
   );
   upsertMeta("property", "og:url", url);
+  upsertMeta("property", "article:modified_time", LAST_UPDATED);
   upsertMeta("property", "og:title", metadata.title);
   upsertMeta("property", "og:description", metadata.description);
   upsertMeta("property", "og:type", isCourse ? "article" : "website");
