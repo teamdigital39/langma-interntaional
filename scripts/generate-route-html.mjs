@@ -20,6 +20,8 @@ import {
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
+// Canonical URLs mirror the deployed trailing-slash directory routes.
+
 const template = await readFile(path.join(dist, "index.html"), "utf8");
 const sitemap = await readFile(path.join(root, "public", "sitemap.xml"), "utf8");
 const sitemapUrls = [...sitemap.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/g)].map((match) => match[1].trim());
