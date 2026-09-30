@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import {
   API_BASE,
   HOMEPAGE_METADATA,
+  LAST_UPDATED,
   SITE_URL,
   canonicalPath,
   fallbackMetadata,
@@ -178,6 +179,15 @@ function languageNameFor(path, metadata) {
   return null;
 }
 
+function faqsForRoute(path, metadata) {
+  const languageName = languageNameFor(path, metadata);
+  if (languageName) return getLanguageFaqs(languageName);
+  const sectionName = SECTION_FAQ_ROUTES[path];
+  if (sectionName) return getSectionFaqs(sectionName);
+  if (path === "/") return getSectionFaqs("global-mobility");
+  return [];
+}
+
 function schemaFor(metadata, url) {
   const path = canonicalPath(new URL(url).pathname);
   const graph = [
@@ -195,6 +205,13 @@ function schemaFor(metadata, url) {
         "https://x.com/official_langma",
         "https://www.youtube.com/@langmaInternational",
       ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: "Langma International",
+      url: SITE_URL,
+      publisher: { "@id": `${SITE_URL}/#organization` },
     },
     {
       "@type": "LocalBusiness",
@@ -234,7 +251,29 @@ function schemaFor(metadata, url) {
             ]),
       ],
     },
+    {
+      "@type": "WebPage",
+      "@id": `${url}#webpage`,
+      name: metadata.title,
+      description: metadata.description,
+      url,
+      dateModified: LAST_UPDATED,
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      about: { "@id": `${SITE_URL}/#organization` },
+    },
   ];
+
+  if (path === "/") {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${url}#homepage-faq`,
+      mainEntity: getSectionFaqs("global-mobility").map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
+    });
+  }
 
   const languageName = languageNameFor(path, metadata);
   if (languageName) {
@@ -331,6 +370,7 @@ for (const rawUrl of urls) {
     <meta property="og:description" content="${escapeHtml(metadata.description)}" />
     <meta property="og:url" content="${escapeHtml(canonical)}" />
     <meta property="og:site_name" content="Langma International" />
+    <meta property="article:modified_time" content="${LAST_UPDATED}" />
     <meta property="og:image" content="${escapeHtml(image)}" />
     <meta property="og:image:alt" content="${escapeHtml(metadata.h1 || metadata.title)}" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -342,12 +382,30 @@ for (const rawUrl of urls) {
   const gtmNoscript = isStandaloneLanding
     ? `<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>`
     : "";
+  const routeFaqs = faqsForRoute(pathname, metadata);
+  const faqFallback = routeFaqs.length
+    ? `
+        <section aria-labelledby="seo-faq-heading">
+          <h2 id="seo-faq-heading">Frequently Asked Questions</h2>
+          ${routeFaqs
+            .map(
+              (faq) => `
+                <article>
+                  <h3>${escapeHtml(faq.question)}</h3>
+                  <p>${escapeHtml(faq.answer)}</p>
+                </article>`
+            )
+            .join("")}
+        </section>`
+    : "";
   const fallback = `
     ${gtmNoscript}
     <noscript>
       <main>
         <p class="seo-fallback-heading" role="heading" aria-level="1">${escapeHtml(metadata.h1 || metadata.title)}</p>
         <p>${escapeHtml(metadata.description)}</p>
+        <p>Last updated: ${LAST_UPDATED}</p>
+        ${faqFallback}
       </main>
     </noscript>
   `;
