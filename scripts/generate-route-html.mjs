@@ -184,7 +184,6 @@ function faqsForRoute(path, metadata) {
   if (languageName) return getLanguageFaqs(languageName);
   const sectionName = SECTION_FAQ_ROUTES[path];
   if (sectionName) return getSectionFaqs(sectionName);
-  if (path === "/") return getSectionFaqs("global-mobility");
   return [];
 }
 
@@ -262,18 +261,6 @@ function schemaFor(metadata, url) {
       about: { "@id": `${SITE_URL}/#organization` },
     },
   ];
-
-  if (path === "/") {
-    graph.push({
-      "@type": "FAQPage",
-      "@id": `${url}#homepage-faq`,
-      mainEntity: getSectionFaqs("global-mobility").map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: { "@type": "Answer", text: faq.answer },
-      })),
-    });
-  }
 
   const languageName = languageNameFor(path, metadata);
   if (languageName) {
