@@ -36,13 +36,13 @@ import { Link } from "react-router-dom";
 //   { name: "Jordan", flag: "/images/jd.jpg", link: "/" },
 //   { name: "Portugal", flag: "https://flagcdn.com/w320/pt.png", link: "/" },
 //   { name: "Taiwan", flag: "https://flagcdn.com/w320/tw.png", link: "/" },
-//   { name: "Poland", flag: "https://flagcdn.com/w320/pl.png", link: "/poland" },
+//   { name: "Poland", flag: "https://flagcdn.com/w320/pl.png", link: "/poland/" },
 // ];
 
 const destinations = [
   { name: "Germany", flag: "https://flagcdn.com/w320/de.png", link: "/" },
   { name: "Japan", flag: "https://flagcdn.com/w320/jp.png", link: "/" },
-  { name: "Poland", flag: "https://flagcdn.com/w320/pl.png", link: "/poland" },
+  { name: "Poland", flag: "https://flagcdn.com/w320/pl.png", link: "/poland/" },
   { name: "South Korea", flag: "https://flagcdn.com/w320/kr.png", link: "/" },
   { name: "Mauritius", flag: "https://flagcdn.com/w320/mu.png", link: "/" },
   { name: "Cyprus", flag: "https://flagcdn.com/w320/cy.png", link: "/" },
