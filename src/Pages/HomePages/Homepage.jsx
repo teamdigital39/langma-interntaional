@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import ContactForm from "./ContactForm";
 import PopupForm from "./PopupForm";
+import { LAST_UPDATED } from "../../seo";
+import { getSectionFaqs } from "../../languageFaqs";
 
 const Check = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -374,6 +376,8 @@ const RESOURCES = [
   "Wellness & Cultural Perspectives",
 ];
 
+const HOMEPAGE_FAQS = getSectionFaqs("global-mobility");
+
 /* Global city photo mosaic for the Global Reach section */
 const REACH_MOSAIC = [
   { country: "South Korea", img: "/images/South korea.webp" },
@@ -732,6 +736,12 @@ export default function HomeLangma() {
 .langma-home .final-band h2{color:#fff;}
 .langma-home .final-band .lede{color:rgba(255,255,255,.72);}
 .langma-home .final-band .closing-line{color:var(--teal-300);}
+.langma-home .faq-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:28px;}
+.langma-home .faq-item{margin:0;padding:22px 24px;border:1px solid rgba(41,97,102,.15);border-radius:18px;background:#fff;box-shadow:0 10px 28px rgba(24,55,63,.06);}
+.langma-home .faq-item h3{margin:0 0 9px;color:var(--navy);font-family:var(--font-display);font-size:1.02rem;line-height:1.35;}
+.langma-home .faq-item p{margin:0;color:var(--muted);line-height:1.7;font-size:.96rem;}
+.langma-home .updated-note{margin:16px auto 0;text-align:center;color:var(--muted);font-size:.82rem;}
+@media (max-width:640px){.langma-home .faq-grid{grid-template-columns:1fr;}}
 .langma-home .final-band .btn--ghost{background:transparent;color:#fff !important;border-color:rgba(255,255,255,.45);}
 .langma-home .final-band .btn--ghost:hover{background:rgba(255,255,255,.12);color:#fff !important;border-color:#fff;}
 .langma-home .final-band .btn--light{background:#fff;color:var(--navy) !important;}
@@ -1212,6 +1222,22 @@ export default function HomeLangma() {
                   <span className="pill" key={r}>{r}</span>
                 ))}
               </Reveal>
+              <div className="section-body" id="frequently-asked-questions">
+                <Reveal className="head head--center" style={{ margin: "0 auto" }}>
+                  <span className="eyebrow eyebrow--center">Helpful Answers</span>
+                  <h2 className="display">Frequently Asked <em>Questions</em></h2>
+                  <p className="lede" style={{ margin: "12px auto 0" }}>Find clear answers about language training, study abroad, overseas careers, and global mobility support.</p>
+                </Reveal>
+                <div className="faq-grid">
+                  {HOMEPAGE_FAQS.map((faq) => (
+                    <Reveal as="article" className="faq-item" key={faq.question}>
+                      <h3>{faq.question}</h3>
+                      <p>{faq.answer}</p>
+                    </Reveal>
+                  ))}
+                </div>
+                <p className="updated-note">Page reviewed and updated: {LAST_UPDATED}</p>
+              </div>
             </div>
             <div className="wrap section-body">
               <ContactForm />
