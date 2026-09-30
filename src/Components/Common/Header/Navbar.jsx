@@ -3,20 +3,21 @@ import React, { useEffect, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import PopupForm from "./PopupForm";
+import { internalRoute } from "../../../seo";
 
 /* ══════════════════════════════════════════════════════════════════
    NAVBAR — Updated submenu & new nav items
    ══════════════════════════════════════════════════════════════════ */
 
 const globalAssistLinks = [
-  { label: "Cultural Infusion",        path: "/programs" },
-  { label: "Langma Wellness Program",  path: "/global-assist" },
-  { label: "Cultural Holidays",        path: "/holidays" },
-  { label: "Business Exchange",        path: "/business_Programs" },
-  { label: "Business Delegation",      path: "/business_delegation_programs" },
-  // { label: "PR by Investment",         path: "/investment" },
-  { label: "PR by Investment",         path: "/pr-by-investment" },
-  { label: "Golden Visa",              path: "/golden-visa" },
+  { label: "Cultural Infusion",        path: "/programs/" },
+  { label: "Langma Wellness Program",  path: "/global-assist/" },
+  { label: "Cultural Holidays",        path: "/holidays/" },
+  { label: "Business Exchange",        path: "/business_Programs/" },
+  { label: "Business Delegation",      path: "/business_delegation_programs/" },
+  // { label: "PR by Investment",         path: "/investment/" },
+  { label: "PR by Investment",         path: "/pr-by-investment/" },
+  { label: "Golden Visa",              path: "/golden-visa/" },
 ];
 
 const Navbar = () => {
@@ -66,7 +67,7 @@ const Navbar = () => {
               {/* International Languages dropdown */}
               <div className="relative group">
                 <button className="flex items-center gap-1 hover:text-teal-700 transition-colors duration-200">
-                  <Link to="/languages">International Languages</Link>
+                  <Link to="/languages/">International Languages</Link>
                   <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-200" />
                 </button>
                 <div className="absolute left-0 top-full mt-3 w-[420px] bg-white rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 p-4">
@@ -74,7 +75,7 @@ const Navbar = () => {
                     {languages.map((lang) => (
                       <Link
                         key={lang.id}
-                        to={`/${lang.url}`}
+                        to={internalRoute(`/${lang.url}`)}
                         className="py-1 hover:text-teal-700 text-sm transition-colors duration-150"
                       >
                         {formatText(lang.title)}
@@ -84,25 +85,25 @@ const Navbar = () => {
                 </div>
               </div>
 
-              <Link to="/study-abroad" className="hover:text-teal-700 transition-colors duration-200">
+              <Link to="/study-abroad/" className="hover:text-teal-700 transition-colors duration-200">
                 Study Abroad
               </Link>
 
-              <NavLink to="/work-abroad" className="hover:text-teal-700 transition-colors duration-200">
+              <NavLink to="/work-abroad/" className="hover:text-teal-700 transition-colors duration-200">
                 Work Abroad
               </NavLink>
 
               {/* Global Assist dropdown — updated submenu */}
               <div className="relative group">
                 <button className="flex items-center gap-1 hover:text-teal-700 transition-colors duration-200">
-                  <Link to="/global-assist">Global Assist</Link>
+                  <Link to="/global-assist/">Global Assist</Link>
                   <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-200" />
                 </button>
                 <div className="absolute left-0 top-full mt-3 w-56 bg-white rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
                   {globalAssistLinks.map((item) => (
                     <Link
                       key={item.label}
-                      to={item.path}
+                      to={internalRoute(item.path)}
                       className="block px-4 py-2 hover:bg-gray-50 hover:text-teal-700 text-sm transition-colors duration-150"
                     >
                       {item.label}
@@ -112,15 +113,15 @@ const Navbar = () => {
               </div>
 
               {/* ── New nav items ─────────────────────────────── */}
-              <Link to="/events" className="hover:text-teal-700 transition-colors duration-200">
+              <Link to="/events/" className="hover:text-teal-700 transition-colors duration-200">
                 Events
               </Link>
 
-              <Link to="/certificate" className="hover:text-teal-700 transition-colors duration-200">
+              <Link to="/certificate/" className="hover:text-teal-700 transition-colors duration-200">
                 Certificate
               </Link>
 
-              <Link to="/contact" className="hover:text-teal-700 transition-colors duration-200">
+              <Link to="/contact/" className="hover:text-teal-700 transition-colors duration-200">
                 Contact
               </Link>
 
@@ -182,7 +183,7 @@ const Navbar = () => {
                 onClick={() => setMobileDrop(mobileDrop === "languages" ? null : "languages")}
                 className="py-3 border-b flex justify-between items-center hover:text-teal-700 transition text-left w-full"
               >
-                <Link to="/languages" onClick={closeMenu} className="hover:text-teal-700 transition">
+                <Link to="/languages/" onClick={closeMenu} className="hover:text-teal-700 transition">
                   International Languages
                 </Link>
                 <ChevronDown
@@ -193,18 +194,18 @@ const Navbar = () => {
               <div className={`overflow-hidden transition-all duration-500 ${mobileDrop === "languages" ? "max-h-[600px] opacity-100 mt-2" : "max-h-0 opacity-0"}`}>
                 <div className="grid grid-cols-2 gap-2 pl-2 pb-3 text-sm">
                   {languages.map((lang) => (
-                    <Link key={lang.id} to={`/${lang.url}`} onClick={closeMenu} className="py-1 hover:text-teal-700">
+                    <Link key={lang.id} to={internalRoute(`/${lang.url}`)} onClick={closeMenu} className="py-1 hover:text-teal-700">
                       {formatText(lang.title)}
                     </Link>
                   ))}
                 </div>
               </div>
 
-              <Link to="/study-abroad" onClick={closeMenu} className="py-3 border-b hover:text-teal-700 transition">
+              <Link to="/study-abroad/" onClick={closeMenu} className="py-3 border-b hover:text-teal-700 transition">
                 Study Abroad
               </Link>
 
-              <Link to="/work-abroad" onClick={closeMenu} className="py-3 border-b hover:text-teal-700 transition">
+              <Link to="/work-abroad/" onClick={closeMenu} className="py-3 border-b hover:text-teal-700 transition">
                 Work Abroad
               </Link>
 
@@ -213,7 +214,7 @@ const Navbar = () => {
                 onClick={() => setMobileDrop(mobileDrop === "assist" ? null : "assist")}
                 className="py-3 border-b flex justify-between items-center hover:text-teal-700 transition text-left w-full"
               >
-                <Link to="/global-assist" onClick={closeMenu} className="hover:text-teal-700 transition">
+                <Link to="/global-assist/" onClick={closeMenu} className="hover:text-teal-700 transition">
                   Global Assist
                 </Link>
                 <ChevronDown
@@ -224,7 +225,7 @@ const Navbar = () => {
               <div className={`overflow-hidden transition-all duration-500 ${mobileDrop === "assist" ? "max-h-[500px] opacity-100 mt-2" : "max-h-0 opacity-0"}`}>
                 <div className="flex flex-col gap-3 pl-2 pb-3 text-sm">
                   {globalAssistLinks.map((item) => (
-                    <Link key={item.label} to={item.path} onClick={closeMenu} className="py-1 hover:text-teal-700">
+                    <Link key={item.label} to={internalRoute(item.path)} onClick={closeMenu} className="py-1 hover:text-teal-700">
                       {item.label}
                     </Link>
                   ))}
@@ -232,19 +233,19 @@ const Navbar = () => {
               </div>
 
               {/* New items */}
-              <Link to="/events" onClick={closeMenu} className="py-3 border-b hover:text-teal-700 transition">
+              <Link to="/events/" onClick={closeMenu} className="py-3 border-b hover:text-teal-700 transition">
                 Events
               </Link>
 
-              <Link to="/certificate" onClick={closeMenu} className="py-3 border-b hover:text-teal-700 transition">
+              <Link to="/certificate/" onClick={closeMenu} className="py-3 border-b hover:text-teal-700 transition">
                 Apply for Certificate
               </Link>
 
-              <Link to="/contact" onClick={closeMenu} className="py-3 border-b hover:text-teal-700 transition">
+              <Link to="/contact/" onClick={closeMenu} className="py-3 border-b hover:text-teal-700 transition">
                 Contact Us
               </Link>
 
-              <Link to="/blog" onClick={closeMenu} className="py-3 border-b hover:text-teal-700 transition">
+              <Link to="/blog/" onClick={closeMenu} className="py-3 border-b hover:text-teal-700 transition">
                 Blog
               </Link>
 
