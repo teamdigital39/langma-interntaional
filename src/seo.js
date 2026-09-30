@@ -1,5 +1,3 @@
-import { getSectionFaqs } from "./languageFaqs.js";
-
 export const SITE_URL = "https://www.langmainternational.com";
 export const API_BASE = "https://api.langmainternational.com";
 export const LAST_UPDATED = "2026-09-30";
@@ -279,18 +277,6 @@ export function setRouteJsonLd(metadata, url, isCourse = false) {
       about: { "@id": `${SITE_URL}/#organization` },
     },
   ];
-
-  if (path === "/") {
-    graph.push({
-      "@type": "FAQPage",
-      "@id": `${url}#homepage-faq`,
-      mainEntity: getSectionFaqs("global-mobility").map((faq) => ({
-        "@type": "Question",
-        name: faq.question,
-        acceptedAnswer: { "@type": "Answer", text: faq.answer },
-      })),
-    });
-  }
 
   if (isCourse) {
     graph.push({
