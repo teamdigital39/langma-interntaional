@@ -172,7 +172,7 @@ const ResidencyFinder = () => {
         </div>
 
         <Link
-          to="/assessment"
+          to="/assessment/"
           className="flex items-center justify-center gap-2 w-full border-2 border-[#2FC7A1] hover:bg-[#E6F8F3] text-[#296166] py-3 rounded-full font-semibold text-[14px] transition-all"
         >
           Take the Full Assessment →

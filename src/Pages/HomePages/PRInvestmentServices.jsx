@@ -105,7 +105,7 @@ const sections = [
       {
         name: "Greece",
         image: "/images/fg.jpg",
-        link: "/greece",
+        link: "/greece/",
         points: [
           "Golden Visa through real estate investment starting from €250,000.",
           // "Allows residency for you and family with access to Schengen travel.",
@@ -115,7 +115,7 @@ const sections = [
       {
         name: "Cyprus",
         image: "/images/cyp.jpg",
-        link: "/cyprus",
+        link: "/cyprus/",
         points: [
           "Residency via real estate investment in the heart of the Mediterranean.",
           // "Fast processing and quality lifestyle benefits.",
@@ -124,7 +124,7 @@ const sections = [
       {
         name: "Latvia",
         image: "/images/ast.jpg",
-        link: "/latvia",
+        link: "/latvia/",
         points: [
           "Flexible investment options with minimum qualifying purchase and visa-free Schengen travel.",
         ],
@@ -132,7 +132,7 @@ const sections = [
       {
         name: "Canada",
         image: "/images/cnd.jpg",
-        link: "/canada",
+        link: "/canada/",
         points: [
           "Options include Start-Up Visa and investor streams.",
           // "Residencies lead to permanent status and education/work benefits.",
@@ -141,7 +141,7 @@ const sections = [
       {
         name: "United States (EB-5)",
         image: "/images/US.svg",
-        link: "/unitedstate",
+        link: "/unitedstate/",
         points: [
           "Requires a minimum investment of USD 800,000 in qualifying projects.",
           // "Provides pathway to permanent residency.",
@@ -150,7 +150,7 @@ const sections = [
       {
         name: "Costa Rica",
         image: "/images/crr.svg",
-        link: "/costaRica",
+        link: "/costaRica/",
         points: [
           "Investor residence via minimum business contribution.",
           // "Live, work, or retire in one of Central America’s stable economies.",
@@ -159,7 +159,7 @@ const sections = [
       {
         name: "Hong Kong",
         image: "/images/hnkn.svg",
-        link: "/hongkong",
+        link: "/hongkong/",
         points: [
           "Investment residence options in one of Asia’s premier business hubs.",
           // "Strategic gateway to Greater China markets.",
@@ -168,7 +168,7 @@ const sections = [
       {
         name: "Malaysia",
         image: "/images/sia.svg",
-        link: "/malasiya",
+        link: "/malasiya/",
         points: [
           "Multiple investment categories to receive long-term visa privileges.",
           // "Welcoming environment with strong cultural and economic appeal.",
@@ -177,7 +177,7 @@ const sections = [
       {
         name: "Singapore",
         image: "/images/fss.jpg",
-        link: "/singapore",
+        link: "/singapore/",
         points: [
           "Global Investor Program for entrepreneurs and business owners.",
           // "Prestigious residency status with significant lifestyle advantages.",
@@ -186,7 +186,7 @@ const sections = [
       {
         name: "Thailand",
         image: "/images/tf.jpg",
-        link: "/thailand",
+        link: "/thailand/",
         points: [
           "Privileged Residency and Long-Term Residence programs for qualified investors.",
         ],
@@ -194,7 +194,7 @@ const sections = [
       // {
       //   name: "Australia",
       //   image: "/images/af.jpg",
-      //   link: "/australia1",
+      //   link: "/australia1/",
       //   points: [
       //     "Pathways through innovative business and investment visas.",
       //     // "Provides broad access to one of the world’s most stable economies.",
@@ -203,7 +203,7 @@ const sections = [
       {
         name: "United Arab Emirates",
         image: "/images/uf1.jpg",
-        link: "/unitedarab",
+        link: "/unitedarab/",
         points: [
           "Long-term Golden Visa through real estate or business investment.",
           // "Zero personal income tax and quality of life advantages.",
@@ -212,7 +212,7 @@ const sections = [
        {
         name: "Mauritius",
         image: "https://flagcdn.com/w320/mu.png",
-        link: "/mauritius",
+        link: "/mauritius/",
         points: [
           "Attractive investment residency in a low-tax, business-friendly environment.",
         ],

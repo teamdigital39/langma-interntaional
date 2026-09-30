@@ -398,7 +398,7 @@ export default function TranslationServices() {
                     <Link
                       className="btn btn-primary border-secondary rounded-pill text-white py-3 px-5 wow fadeInUp"
                       data-wow-delay="0.7s"
-                      to="/translational"
+                      to="/translational/"
                       style={{ color: "#B0C4DE", borderColor: "#B0C4DE" }}
                     >
                       More Details
@@ -678,8 +678,8 @@ export default function TranslationServices() {
               <div className="col-md-6 col-lg-3">
                 <div className="footer-item d-flex flex-column">
                   <h4 className="text-secondary mb-2" style={{ fontSize: "1.1rem" }}>Legal</h4>
-                  <Link to="/privacy-policy">Privacy Policy</Link>
-                  <Link to="/terms-and-conditions">Terms and Conditions</Link>
+                  <Link to="/privacy-policy/">Privacy Policy</Link>
+                  <Link to="/terms-and-conditions/">Terms and Conditions</Link>
                 </div>
               </div>
             </div>

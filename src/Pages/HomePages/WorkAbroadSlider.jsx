@@ -40,7 +40,7 @@ const workDestinations = [
   // { name: "Jordan",                  flag: "/images/jd.jpg",                  link: "/" },
   // { name: "Portugal",                flag: "https://flagcdn.com/w320/pt.png", link: "/" },
   // { name: "Taiwan",                  flag: "https://flagcdn.com/w320/tw.png", link: "/" },
-  // { name: "Poland",                  flag: "https://flagcdn.com/w320/pl.png", link: "/poland" },
+  // { name: "Poland",                  flag: "https://flagcdn.com/w320/pl.png", link: "/poland/" },
  
 ];
 

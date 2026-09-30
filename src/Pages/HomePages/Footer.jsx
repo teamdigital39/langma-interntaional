@@ -85,12 +85,12 @@ const Footer = () => {
           </h3>
           <ul className="flex flex-col gap-2 text-xs sm:text-sm text-gray-400">
             <Link to="/" className="hover:text-[#80CBC4] transition">Home</Link>
-            <Link to="/languages" className="hover:text-[#80CBC4] transition">International Languages</Link>
-            <Link to="/study-abroad" className="hover:text-[#80CBC4] transition">Study Abroad</Link>
-            <Link to="/work-abroad" className="hover:text-[#80CBC4] transition">Work Abroad</Link>
-            <Link to="/global-assist" className="hover:text-[#80CBC4] transition">Global Assist</Link>
-            <Link to="/events" className="hover:text-[#80CBC4] transition">Event</Link>
-            <Link to="/certificate" className="hover:text-[#80CBC4] transition">Apply for Certificate</Link>
+            <Link to="/languages/" className="hover:text-[#80CBC4] transition">International Languages</Link>
+            <Link to="/study-abroad/" className="hover:text-[#80CBC4] transition">Study Abroad</Link>
+            <Link to="/work-abroad/" className="hover:text-[#80CBC4] transition">Work Abroad</Link>
+            <Link to="/global-assist/" className="hover:text-[#80CBC4] transition">Global Assist</Link>
+            <Link to="/events/" className="hover:text-[#80CBC4] transition">Event</Link>
+            <Link to="/certificate/" className="hover:text-[#80CBC4] transition">Apply for Certificate</Link>
           </ul>
         </div>
 
@@ -100,13 +100,13 @@ const Footer = () => {
             Site Links
           </h3>
           <ul className="flex flex-col gap-2 text-xs sm:text-sm text-gray-400">
-            <Link to="/pr-by-investment" className="hover:text-[#80CBC4] transition">PR by Investment</Link>
-            <Link to="/programs" className="hover:text-[#80CBC4] transition">Cultural Infusion Programs</Link>
-            <Link to="/holidays" className="hover:text-[#80CBC4] transition">Cultural Holidays</Link>
-            <Link to="/business_Programs" className="hover:text-[#80CBC4] transition">Business Exchange</Link>
-            <Link to="/business_delegation_programs" className="hover:text-[#80CBC4] transition">Business Delegation</Link>
-            <Link to="/lagmabusinesshub" className="hover:text-[#80CBC4] transition">Langma Business Hub</Link>
-            <Link to="/payment" className="hover:text-[#80CBC4] transition">Pay Now</Link>
+            <Link to="/pr-by-investment/" className="hover:text-[#80CBC4] transition">PR by Investment</Link>
+            <Link to="/programs/" className="hover:text-[#80CBC4] transition">Cultural Infusion Programs</Link>
+            <Link to="/holidays/" className="hover:text-[#80CBC4] transition">Cultural Holidays</Link>
+            <Link to="/business_Programs/" className="hover:text-[#80CBC4] transition">Business Exchange</Link>
+            <Link to="/business_delegation_programs/" className="hover:text-[#80CBC4] transition">Business Delegation</Link>
+            <Link to="/lagmabusinesshub/" className="hover:text-[#80CBC4] transition">Langma Business Hub</Link>
+            <Link to="/payment/" className="hover:text-[#80CBC4] transition">Pay Now</Link>
           </ul>
         </div>
 
@@ -116,15 +116,15 @@ const Footer = () => {
             Our Services
           </h3>
           <ul className="flex flex-col gap-2 text-xs sm:text-sm text-gray-400">
-            <Link to="/transcription" className="hover:text-[#80CBC4] transition">Transcription</Link>
-            <Link to="/translational" className="hover:text-[#80CBC4] transition">Translational</Link>
-            <Link to="/localization" className="hover:text-[#80CBC4] transition">Localization Service</Link>
-            <Link to="/multilanguage" className="hover:text-[#80CBC4] transition">Multilanguage DTP</Link>
-            <Link to="/profreding" className="hover:text-[#80CBC4] transition">Proofreading</Link>
-            <Link to="/voiceover" className="hover:text-[#80CBC4] transition">Voice Over Services</Link>
-            <Link to="/content-writing" className="hover:text-[#80CBC4] transition">Content Writing</Link>
-            <Link to="/dubbing" className="hover:text-[#80CBC4] transition">Dubbing</Link>
-            <Link to="/subtitle" className="hover:text-[#80CBC4] transition">Subtitle</Link>
+            <Link to="/transcription/" className="hover:text-[#80CBC4] transition">Transcription</Link>
+            <Link to="/translational/" className="hover:text-[#80CBC4] transition">Translational</Link>
+            <Link to="/localization/" className="hover:text-[#80CBC4] transition">Localization Service</Link>
+            <Link to="/multilanguage/" className="hover:text-[#80CBC4] transition">Multilanguage DTP</Link>
+            <Link to="/profreding/" className="hover:text-[#80CBC4] transition">Proofreading</Link>
+            <Link to="/voiceover/" className="hover:text-[#80CBC4] transition">Voice Over Services</Link>
+            <Link to="/content-writing/" className="hover:text-[#80CBC4] transition">Content Writing</Link>
+            <Link to="/dubbing/" className="hover:text-[#80CBC4] transition">Dubbing</Link>
+            <Link to="/subtitle/" className="hover:text-[#80CBC4] transition">Subtitle</Link>
           </ul>
         </div>
 
@@ -134,11 +134,11 @@ const Footer = () => {
             Reach Us
           </h3>
           <ul className="flex flex-col gap-2 text-xs sm:text-sm text-gray-400 mb-5">
-            <Link to="/career" className="hover:text-[#80CBC4] transition">Careers</Link>
-            <Link to="/contact" className="hover:text-[#80CBC4] transition">Contact Us</Link>
-            <Link to="/blog" className="hover:text-[#80CBC4] transition">Blog</Link>
-            <Link to="/terms-and-conditions" className="hover:text-[#80CBC4] transition">Terms and condition</Link>
-            <Link to="/privacy-policy" className="hover:text-[#80CBC4] transition">Privacy Policy</Link>
+            <Link to="/career/" className="hover:text-[#80CBC4] transition">Careers</Link>
+            <Link to="/contact/" className="hover:text-[#80CBC4] transition">Contact Us</Link>
+            <Link to="/blog/" className="hover:text-[#80CBC4] transition">Blog</Link>
+            <Link to="/terms-and-conditions/" className="hover:text-[#80CBC4] transition">Terms and condition</Link>
+            <Link to="/privacy-policy/" className="hover:text-[#80CBC4] transition">Privacy Policy</Link>
           </ul>
 
           {/* Social Icons */}

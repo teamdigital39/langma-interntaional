@@ -17,6 +17,7 @@ import {
   GTM_ID,
   STANDALONE_LANDING_ROUTES,
 } from "../src/standaloneLandingRoutes.js";
+import { APP_STATIC_ROUTES } from "../src/siteRoutes.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
@@ -28,6 +29,7 @@ const sitemapUrls = [...sitemap.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/g)].map((ma
 const urls = [
   ...new Set([
     ...sitemapUrls,
+    ...APP_STATIC_ROUTES.map((route) => `${SITE_URL}${route}`),
     ...STANDALONE_LANDING_ROUTES.map((route) => `${SITE_URL}${route}`),
   ]),
 ];

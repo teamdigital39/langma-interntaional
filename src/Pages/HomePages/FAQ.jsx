@@ -62,7 +62,7 @@ const FAQ = ({ language, section = "general" }) => {
       return (
         <>
           {parts[0]}
-          <Link to="/payment" className="text-blue-600 font-semibold underline hover:text-blue-800">Click here</Link>
+          <Link to="/payment/" className="text-blue-600 font-semibold underline hover:text-blue-800">Click here</Link>
           {parts[1]}
         </>
       );
@@ -73,7 +73,7 @@ const FAQ = ({ language, section = "general" }) => {
       return (
         <>
           {parts[0]}
-          <Link to="/contact" className="text-blue-600 font-semibold underline hover:text-blue-800">here</Link>
+          <Link to="/contact/" className="text-blue-600 font-semibold underline hover:text-blue-800">here</Link>
           {parts[1]}
         </>
       );

@@ -303,10 +303,10 @@ export default function NewLanguageLanding({ language }) {
             <strong>Contact</strong>
             <a href="tel:+919810117094">+91 98101 17094</a>
             <a href="mailto:info@langmainternational.com">info@langmainternational.com</a>
-            <a href="/contact">Contact us</a>
+            <a href="/contact/">Contact us</a>
           </div>
         </div>
-        <div className="new-container new-footer-bottom"><span>© {new Date().getFullYear()} Langma International Pvt. Ltd.</span><a href="/privacy-policy">Privacy Policy</a></div>
+        <div className="new-container new-footer-bottom"><span>© {new Date().getFullYear()} Langma International Pvt. Ltd.</span><a href="/privacy-policy/">Privacy Policy</a></div>
       </footer>
 
       <a className="new-float new-float-phone" href={`tel:${PHONE}`} aria-label={`Call Langma about the ${page.short} course`}><PhoneIcon /></a>

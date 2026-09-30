@@ -39,8 +39,8 @@ import { Link } from "react-router-dom";
 //   { name: "Jordan", flag: "/images/jd.jpg", link: "/" },
 //   { name: "Portugal", flag: "https://flagcdn.com/w320/pt.png", link: "/" },
 //   { name: "Taiwan", flag: "https://flagcdn.com/w320/tw.png", link: "/" },
-//   { name: "Poland", flag: "https://flagcdn.com/w320/pl.png", link: "/poland" },
-//   { name: "Europe", flag: "/images/ep.jpg", link: "/work-abroad1" },
+//   { name: "Poland", flag: "https://flagcdn.com/w320/pl.png", link: "/poland/" },
+//   { name: "Europe", flag: "/images/ep.jpg", link: "/work-abroad1/" },
 // ];
 
 const destinations = [

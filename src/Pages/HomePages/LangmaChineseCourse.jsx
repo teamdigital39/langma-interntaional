@@ -1918,7 +1918,7 @@ export default function LangmaChineseCourse() {
             <br /><div className="fr-motto">Learn Chinese. Understand China. Build Your Future.</div><p>Learn Chinese with structured HSK 1–6 learning, practical communication, cultural activities and China-focused counselling.</p></div>
             <div className="footer-col"><h4>Start Here</h4><a href="#contact">Book a Free Demo</a></div>
             <div className="footer-col"><h4>Contact</h4><a href="tel:+919810117094">+91-98101-17094</a><a href="https://wa.me/919810117094" target="_blank" rel="noopener">Chat on WhatsApp</a><a href="https://maps.app.goo.gl/NoVexf8RiHPrtW6D7" target="_blank" rel="noopener">{locationProfile.area}, {locationProfile.city}</a></div>
-            <div className="footer-col"><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms-and-conditions">Terms and Conditions</a></div>
+            <div className="footer-col"><h4>Legal</h4><a href="/privacy-policy/">Privacy Policy</a><a href="/terms-and-conditions/">Terms and Conditions</a></div>
           </div>
           <div className="footer-bottom"><span>© {new Date().getFullYear()} Langma International Pvt. Ltd.</span><span>CHINESE LANGUAGE · {locationProfile.city.toUpperCase()}</span></div>
         </div>

@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { internalRoute } from "../../seo";
 
 /* ── OTHER RESIDENCY OPTIONS ── */
 const otherOptions = [
   {
     name: "Portugal Global Talent Programme",
-    slug: "/portugal-global-talent",
+    slug: "/portugal-global-talent/",
     category: "Specialist Residence Pathway",
     badge: "Profile-Specific",
     benefits: [
@@ -18,7 +19,7 @@ const otherOptions = [
   },
   {
     name: "Malta Global Residence Programme",
-    slug: "/malta-global",
+    slug: "/malta-global/",
     category: "Specialist Residence Pathway",
     badge: "EU-Linked",
     benefits: [
@@ -31,7 +32,7 @@ const otherOptions = [
   },
   {
     name: "Thailand Privilege Visa",
-    slug: "/thailand-elite-visa",
+    slug: "/thailand-elite-visa/",
     category: "Long-Term Stay Programme",
     badge: "Lifestyle Route",
     benefits: [
@@ -44,7 +45,7 @@ const otherOptions = [
   },
   {
     name: "Indonesia Second Home Visa",
-    slug: "/indonesia-second-home-visa",
+    slug: "/indonesia-second-home-visa/",
     category: "Long-Term Residence Pathway",
     badge: "Emerging Route",
     benefits: [
@@ -210,7 +211,7 @@ const WhyChoosePR = () => {
                 <div className="px-5 pb-5 flex flex-col gap-2">
                   {opt.slug && (
                     <Link
-                      to={opt.slug}
+                      to={internalRoute(opt.slug)}
                       className="block text-center bg-[#296166] text-white hover:bg-[#1f4a4e] py-2 rounded-full text-[13px] font-semibold transition-colors"
                     >
                       View Programme Details
@@ -267,7 +268,7 @@ const WhyChoosePR = () => {
               Request a Tailored Programme Assessment
             </a>
             <Link
-              to="/assessment"
+              to="/assessment/"
               className="inline-flex items-center gap-2 bg-[#4FA3D1] hover:bg-[#3a8ab8] text-white px-8 py-3.5 rounded-full font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg"
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -359,7 +360,7 @@ const WhyChoosePR = () => {
                 Discuss Your Situation
               </a>
               <Link
-                to="/assessment"
+                to="/assessment/"
                 className="inline-flex items-center gap-2 bg-[#4FA3D1] hover:bg-[#3a8ab8] text-white px-7 py-3 rounded-full font-semibold text-[14px] transition-all hover:-translate-y-0.5 hover:shadow-lg"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

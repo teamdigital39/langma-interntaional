@@ -778,7 +778,7 @@ const PRAssessment = () => {
                 <h3 className="text-[22px] font-bold text-[#1A2540] mb-3">Report Requested</h3>
                 <p className="text-[16px] text-[#1B2B28] leading-relaxed">✓ Our Advisor Will Contact You Shortly</p>
                 <p className="text-[14px] text-gray-500 mt-3">A Langma International Residency Advisor will reach out within one business day.</p>
-                <Link to="/investment" className="inline-flex items-center gap-2 mt-7 bg-[#296166] hover:bg-[#296166] text-white px-7 py-3 rounded-full font-semibold text-[14px] transition-all">
+                <Link to="/investment/" className="inline-flex items-center gap-2 mt-7 bg-[#296166] hover:bg-[#296166] text-white px-7 py-3 rounded-full font-semibold text-[14px] transition-all">
                   ← Back to Residency Programmes
                 </Link>
               </div>
