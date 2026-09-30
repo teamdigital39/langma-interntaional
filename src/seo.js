@@ -136,8 +136,13 @@ export function canonicalPath(pathname = "/") {
   return path || "/";
 }
 
+export function canonicalDocumentPath(pathname = "/") {
+  const path = canonicalPath(pathname);
+  return path === "/" ? "/" : `${path}/`;
+}
+
 export function canonicalUrl(pathname = "/") {
-  return `${SITE_URL}${canonicalPath(pathname)}`;
+  return `${SITE_URL}${canonicalDocumentPath(pathname)}`;
 }
 
 export function readablePath(pathname = "/") {
