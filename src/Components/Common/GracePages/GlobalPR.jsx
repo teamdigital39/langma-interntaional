@@ -1,84 +1,85 @@
 import React, { useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { internalRoute } from "../../../seo";
 
 const cards = [
   {
     title: "Greece Golden Visa",
     subtitle: "Residency by Investment",
     image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=80",
-    path: "/greece",
+    path: "/greece/",
   },
   {
     title: "Cyprus Permanent Residency",
     subtitle: "Investment Program",
     image: "https://images.unsplash.com/photo-1603569283847-aa295f0d016a?auto=format&fit=crop&w=800&q=80",
-    path: "/cyprus",
+    path: "/cyprus/",
   },
   {
     title: "Latvia Residency Program",
     subtitle: "EU Investment Pathway",
     image: "https://images.unsplash.com/photo-1565008576549-57569a49371d?auto=format&fit=crop&w=800&q=80",
-    path: "/latvia",
+    path: "/latvia/",
   },
   {
     title: "Canada Start-up Visa",
     subtitle: "Entrepreneur PR Program",
     image: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=800&q=80",
-    path: "/canada",
+    path: "/canada/",
   },
   {
     title: "United States EB-5",
     subtitle: "Investor Green Card",
     image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80",
-    path: "/unitedstate",
+    path: "/unitedstate/",
   },
   {
     title: "Costa Rica Residency",
     subtitle: "Investment Residency",
     image: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=80",
-    path: "/costaRica",
+    path: "/costaRica/",
   },
   {
     title: "Hong Kong Investment Visa",
     subtitle: "Business Residency",
     image: "https://images.unsplash.com/photo-1506970845246-18f21d533b20?auto=format&fit=crop&w=800&q=80",
-    path: "/hongkong",
+    path: "/hongkong/",
   },
   {
     title: "Malaysia MM2H",
     subtitle: "Long-Term Residency",
     image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=800&q=80",
-    path: "/malaysiya",
+    path: "/malaysiya/",
   },
   {
     title: "Singapore Investor Program",
     subtitle: "Global Investor Programme",
     image: "https://images.unsplash.com/photo-1496939376851-89342e90adcd?auto=format&fit=crop&w=800&q=80",
-    path: "/singapore",
+    path: "/singapore/",
   },
   {
     title: "Thailand Elite Visa",
     subtitle: "Long-Term Residency",
     image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-    path: "/thailand",
+    path: "/thailand/",
   },
   {
     title: "Australia Investment Visa",
     subtitle: "Business Innovation Stream",
     image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-    path: "/australia",
+    path: "/australia/",
   },
   {
     title: "UAE Golden Visa",
     subtitle: "Long-Term Residency",
     image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80",
-    path: "/unitedarab",
+    path: "/unitedarab/",
   },
   {
     title: "Mauritius Residency",
     subtitle: "Investment Pathway",
     image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80",
-    path: "/mauritius",
+    path: "/mauritius/",
   },
 
 
@@ -86,79 +87,79 @@ const cards = [
   //   title: "Arabic Language",
   //   subtitle: "Language Certification",
   //   image: "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=800&q=80",
-  //   path: "/arabic",
+  //   path: "/arabic/",
   // },
   // {
   //   title: "Balkan Languages",
   //   subtitle: "Regional Language Programs",
   //   image: "https://images.unsplash.com/photo-1526481280691-9069a6d08c68?auto=format&fit=crop&w=800&q=80",
-  //   path: "/balkanLanguage",
+  //   path: "/balkanLanguage/",
   // },
   // {
   //   title: "Chinese Language",
   //   subtitle: "Mandarin Certification",
   //   image: "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=800&q=80",
-  //   path: "/chinese",
+  //   path: "/chinese/",
   // },
   // {
   //   title: "French Language",
   //   subtitle: "DELF / DALF Preparation",
   //   image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=800&q=80",
-  //   path: "/french",
+  //   path: "/french/",
   // },
   // {
   //   title: "German Language",
   //   subtitle: "Goethe Certification",
   //   image: "https://images.unsplash.com/photo-1525610553991-2bede1a236e2?auto=format&fit=crop&w=800&q=80",
-  //   path: "/german",
+  //   path: "/german/",
   // },
   // {
   //   title: "Hindi Language",
   //   subtitle: "Proficiency Program",
   //   image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=800&q=80",
-  //   path: "/hindi",
+  //   path: "/hindi/",
   // },
   // {
   //   title: "Italian Language",
   //   subtitle: "CILS Certification",
   //   image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=800&q=80",
-  //   path: "/italian",
+  //   path: "/italian/",
   // },
   // {
   //   title: "Japanese Language",
   //   subtitle: "JLPT Preparation",
   //   image: "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=800&q=80",
-  //   path: "/japanese",
+  //   path: "/japanese/",
   // },
   // {
   //   title: "Korean Language",
   //   subtitle: "TOPIK Preparation",
   //   image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=800&q=80",
-  //   path: "/korian",
+  //   path: "/korian/",
   // },
   // {
   //   title: "Russian Language",
   //   subtitle: "TORFL Certification",
   //   image: "https://images.unsplash.com/photo-1513326738677-b964603b136d?auto=format&fit=crop&w=800&q=80",
-  //   path: "/russian",
+  //   path: "/russian/",
   // },
   // {
   //   title: "Persian Language",
   //   subtitle: "Farsi Proficiency",
   //   image: "https://images.unsplash.com/photo-1580834341580-8c17a3a630ca?auto=format&fit=crop&w=800&q=80",
-  //   path: "/persian",
+  //   path: "/persian/",
   // },
   // {
   //   title: "Polish Language",
   //   subtitle: "State Certification",
   //   image: "https://images.unsplash.com/photo-1519197924294-4ba991a11128?auto=format&fit=crop&w=800&q=80",
-  //   path: "/polish",
+  //   path: "/polish/",
   // },
   // {
   //   title: "Sanskrit Language",
   //   subtitle: "Classical Language Program",
   //   image: "https://images.unsplash.com/photo-1518638150340-f706e86654de?auto=format&fit=crop&w=800&q=80",
-  //   path: "/sanskrit",
+  //   path: "/sanskrit/",
   // },
 ];
 
@@ -227,7 +228,7 @@ const GlobalPR = () => {
             {cards
               .filter((item) => location.pathname !== item.path)
               .map((item, index) => (
-                <Link to={item.path} key={index}>
+                <Link to={internalRoute(item.path)} key={index}>
                   <div className="snap-start min-w-[280px] h-[180px] rounded-full overflow-hidden relative shadow-md cursor-pointer transition-all duration-500 hover:scale-105 hover:shadow-xl">
                     <img
                       src={item.image}
