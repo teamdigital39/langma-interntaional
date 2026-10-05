@@ -186,6 +186,12 @@ const STATIC_METADATA = {
       "Read verified testimonials about language learning, career preparation, and global support from Langma International.",
     h1: "Success Stories",
   },
+    "/about": {
+    title: "About Langma International | Language, Study Abroad & Global Opportunities",
+    description:
+      "Learn about Langma International, our language training, study-abroad guidance, global mobility solutions, and international career support services.",
+    h1: "About Langma International",
+  },
 };
 
 export function canonicalPath(pathname = "/") {
