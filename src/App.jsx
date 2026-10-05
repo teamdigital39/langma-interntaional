@@ -298,7 +298,7 @@ function App() {
           <Route path="/study-assessment" element={<LangmaStudyAbroadAssessment />} />
           {/* <Route path="/jkl" element={<StudyAbrotHeroSection1 />} /> */}
           <Route path="/languages" element={<InternationalHeroSection />} />
-          <Route path="/netherland" element={<StudyNetherlandsPage />} />
+          <Route path="/netherlands" element={<StudyNetherlandsPage />} />
           <Route path="/south-korea" element={<StudyInSouthKorea />} />
           <Route path="/malta" element={<StudyMaltaPage />} />
           <Route path="/study-in-mauritius" element={<StudyMauritiusPage />} />
