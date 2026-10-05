@@ -1558,7 +1558,7 @@ export default function StudyPolandPage() {
             <div className="relative z-10">
               <div className="w-[320px] h-[320px] md:w-[420px] md:h-[420px] lg:w-[520px] lg:h-[520px] rounded-full overflow-hidden">
                 <img
-                  src="images/wd.png"
+                  src="https://www.langmainternational.com/images/wd.png"
                   alt="Study in Poland"
                   className="w-full h-full object-cover"
                 />
