@@ -48,7 +48,7 @@ function useCountUp(target, duration = 1600, start = false) {
 /* ===================================================================
  *  Reveal wrapper
  * ================================================================ */
-function Reveal({ children, delay = 0, y = 24, as: _Tag = "div", style }) {
+function Reveal({ children, delay = 0, y = 24, as: Tag = "div", style }) {
   const [ref, visible] = useReveal();
   return (
     <Tag
