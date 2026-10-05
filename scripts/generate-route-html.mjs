@@ -17,20 +17,20 @@ import {
   GTM_ID,
   STANDALONE_LANDING_ROUTES,
 } from "../src/standaloneLandingRoutes.js";
-import { APP_STATIC_ROUTES } from "../src/siteRoutes.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
-// Canonical URLs mirror the deployed trailing-slash directory routes.
-
 const template = await readFile(path.join(dist, "index.html"), "utf8");
 const sitemap = await readFile(path.join(root, "public", "sitemap.xml"), "utf8");
 const sitemapUrls = [...sitemap.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/g)].map((match) => match[1].trim());
+const ROUTE_ALIASES = {
+  "/netherland": "/netherlands",
+};
 const urls = [
   ...new Set([
     ...sitemapUrls,
-    ...APP_STATIC_ROUTES.map((route) => `${SITE_URL}${route}`),
     ...STANDALONE_LANDING_ROUTES.map((route) => `${SITE_URL}${route}`),
+    ...Object.keys(ROUTE_ALIASES).map((route) => `${SITE_URL}${route}`),
   ]),
 ];
 
@@ -319,7 +319,8 @@ function schemaFor(metadata, url) {
 let generated = 0;
 for (const rawUrl of urls) {
   const url = new URL(rawUrl);
-  const pathname = canonicalPath(url.pathname);
+  const routePath = canonicalPath(url.pathname);
+  const pathname = ROUTE_ALIASES[routePath] || routePath;
   const metadata = await metadataFor(pathname);
   const canonical = canonicalUrl(pathname);
   const image = absoluteImage(metadata.image);
@@ -405,7 +406,7 @@ for (const rawUrl of urls) {
     .replace("<!-- SEO_ROUTE_HEAD -->", `${seoHead}\n    <!-- SEO_ROUTE_HEAD -->`)
     .replace('<div id="root"></div>', `${fallback}\n    <div id="root"></div>`);
 
-  const segments = pathname.split("/").filter(Boolean).map(decodeURIComponent);
+  const segments = routePath.split("/").filter(Boolean).map(decodeURIComponent);
   const target = segments.length
     ? path.join(dist, ...segments, "index.html")
     : path.join(dist, "index.html");
