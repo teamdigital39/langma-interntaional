@@ -1309,7 +1309,7 @@ export default function StudySingaporePage() {
               <div className="relative z-10">
                 <div className="w-[320px] h-[320px] md:w-[420px] md:h-[420px] lg:w-[520px] lg:h-[520px] rounded-full overflow-hidden">
                   <img
-                    src="images/singa.jpeg"
+                    src="https://www.langmainternational.com/images/singa.jpeg"
                     alt="Study in Singapore"
                     className="w-full h-full object-cover"
                   />
