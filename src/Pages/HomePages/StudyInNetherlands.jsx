@@ -310,7 +310,7 @@ function ReasonCard({ num, title, body, icon, delay }) {
             right: 0,
             width: 80,
             height: 80,
-            background: `radial-gradient(circle at top right, ${C.goldSoft}, transparent 70%)`,
+            background: `radial-gradient( at top right, ${C.goldSoft}, transparent 70%)`,
             opacity: h ? 1 : 0.5,
             transition: "opacity 0.3s ease",
           }}
@@ -805,7 +805,7 @@ function OutlookCard({ tag, title, body, icon, delay }) {
             right: -30,
             width: 110,
             height: 110,
-            background: `radial-gradient(circle, ${C.goldSoft} 0%, transparent 70%)`,
+            background: `radial-gradient(, ${C.goldSoft} 0%, transparent 70%)`,
             opacity: 0.6,
           }}
         />
@@ -983,7 +983,7 @@ function DocsBox({ title, items, note }) {
             right: -50,
             width: 200,
             height: 200,
-            background: `radial-gradient(circle, ${C.gold} 0%, transparent 70%)`,
+            background: `radial-gradient(, ${C.gold} 0%, transparent 70%)`,
             opacity: 0.1,
           }}
         />
@@ -1545,7 +1545,7 @@ export default function StudyNetherlandsPage() {
               <div className="relative z-10">
                 <div className="w-[320px] h-[320px] md:w-[420px] md:h-[420px] lg:w-[520px] lg:h-[520px] rounded-full overflow-hidden">
                   <img
-                    src="images//Netherland.jpeg"
+                    src="https://www.langmainternational.com/images//Netherland.jpeg"
                     alt="Study in the Netherlands"
                     className="w-full h-full object-cover"
                   />
