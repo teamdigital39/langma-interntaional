@@ -26,11 +26,13 @@ const sitemapUrls = [...sitemap.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/g)].map((ma
 const ROUTE_ALIASES = {
   "/netherland": "/netherlands",
 };
+const NON_SITEMAP_ROUTES = ["/thank-you"];
 const urls = [
   ...new Set([
     ...sitemapUrls,
     ...STANDALONE_LANDING_ROUTES.map((route) => `${SITE_URL}${route}`),
     ...Object.keys(ROUTE_ALIASES).map((route) => `${SITE_URL}${route}`),
+    ...NON_SITEMAP_ROUTES.map((route) => `${SITE_URL}${route}`),
   ]),
 ];
 
@@ -325,6 +327,7 @@ for (const rawUrl of urls) {
   const canonical = canonicalUrl(pathname);
   const image = absoluteImage(metadata.image);
   const isStandaloneLanding = STANDALONE_LANDING_ROUTES.includes(pathname);
+  const isNoIndex = NON_SITEMAP_ROUTES.includes(pathname);
   const schema = JSON.stringify(schemaFor(metadata, canonical)).replace(/</g, "\\u003c");
   const gtmHead = isStandaloneLanding
     ? `
@@ -355,7 +358,7 @@ for (const rawUrl of urls) {
     ${gtmHead}
     <title>${escapeHtml(metadata.title)}</title>
     <meta name="description" content="${escapeHtml(metadata.description)}" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="robots" content="${isNoIndex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}" />
     <link rel="canonical" href="${escapeHtml(canonical)}" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="${metadata.courseName ? "article" : "website"}" />
