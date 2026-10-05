@@ -1251,7 +1251,7 @@ export default function StudyCyprusPage() {
               <div className="relative z-10">
                 <div className="w-[320px] h-[320px] md:w-[420px] md:h-[420px] lg:w-[520px] lg:h-[520px] rounded-full overflow-hidden">
                   <img
-                    src="images/cyp1.jpeg"
+                    src="https://www.langmainternational.com/images/cyp1.jpeg"
                     alt="Study in Cyprus"
                     className="w-full h-full object-cover"
                   />
