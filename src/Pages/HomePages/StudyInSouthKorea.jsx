@@ -1136,7 +1136,7 @@ export default function StudySouthKoreaPage() {
               <div className="relative z-10">
                 <div className="w-[320px] h-[320px] md:w-[420px] md:h-[420px] lg:w-[520px] lg:h-[520px] rounded-full overflow-hidden">
                   <img
-                    src="images/skv.jpeg"
+                    src="https://www.langmainternational.com/images/skv.jpeg"
                     alt="Study in South Korea"
                     className="w-full h-full object-cover"
                   />
