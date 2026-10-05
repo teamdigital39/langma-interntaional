@@ -169,6 +169,11 @@ const STATIC_METADATA = {
       "Contact Langma International for language courses, study-abroad guidance, work-abroad support, and global mobility services.",
     h1: "Let's Get Connected",
   },
+  "/thank-you": {
+    title: "Thank You | Langma International",
+    description: "Thank you for contacting Langma International. Your enquiry has been received.",
+    h1: "Thank You",
+  },
   "/blog": {
     title: "Language Learning, Study Abroad & Global Opportunity Blog | Langma",
     description:
