@@ -22,15 +22,15 @@ import API_BASE from "../../config";
 const destinations = [
 //    { name: "Germany", flag: "https://flagcdn.com/w320/de.png", link: "/" },
 // { name: "Japan", flag: "https://flagcdn.com/w320/jp.png", link: "/" },
-{ name: "Poland", flag: "https://flagcdn.com/w320/pl.png", link: "/poland/" },
-{ name: "South Korea", flag: "https://flagcdn.com/w320/kr.png", link: "/south-korea/" },
-{ name: "Mauritius", flag: "https://flagcdn.com/w320/mu.png", link: "/study-in-mauritius/" },
-{ name: "Cyprus", flag: "https://flagcdn.com/w320/cy.png", link: "/study-in-cyprus/" },
-{ name: "United Arab Emirates (Dubai)", flag: "https://flagcdn.com/w320/ae.png", link: "/dubai/" },
-{ name: "Singapore", flag: "https://flagcdn.com/w320/sg.png", link: "/study-in-singapore/" },
-{ name: "Malta", flag: "https://flagcdn.com/w320/mt.png", link: "/malta/" },
-{ name: "Netherlands", flag: "https://flagcdn.com/w320/nl.png", link: "/netherland/" },
-{ name: "Georgia", flag: "https://flagcdn.com/w320/ge.png", link: "/georgia/" },
+{ name: "Poland", flag: "https://flagcdn.com/w320/pl.png", link: "/poland" },
+{ name: "South Korea", flag: "https://flagcdn.com/w320/kr.png", link: "/south-korea" },
+{ name: "Mauritius", flag: "https://flagcdn.com/w320/mu.png", link: "/study-in-mauritius" },
+{ name: "Cyprus", flag: "https://flagcdn.com/w320/cy.png", link: "/study-in-cyprus" },
+{ name: "United Arab Emirates (Dubai)", flag: "https://flagcdn.com/w320/ae.png", link: "/dubai" },
+{ name: "Singapore", flag: "https://flagcdn.com/w320/sg.png", link: "/study-in-singapore" },
+{ name: "Malta", flag: "https://flagcdn.com/w320/mt.png", link: "/malta" },
+{ name: "Netherlands", flag: "https://flagcdn.com/w320/nl.png", link: "/netherlands" },
+{ name: "Georgia", flag: "https://flagcdn.com/w320/ge.png", link: "/georgia" },
   // { name: "Kingdom of Saudi Arabia", flag: "https://flagcdn.com/w320/sa.png", link: "/" },
   // { name: "Israel",                  flag: "https://flagcdn.com/w320/il.png", link: "/" },
   // { name: "Qatar",                   flag: "/images/qt1.jpg",                 link: "/" },
@@ -49,7 +49,7 @@ const destinations = [
   // { name: "Jordan",                  flag: "/images/jrrd.jpg",                  link: "/" },
   // { name: "Portugal",                flag: "https://flagcdn.com/w320/pt.png", link: "/" },
   // { name: "Taiwan",                  flag: "https://flagcdn.com/w320/tw.png", link: "/" },
-  // { name: "Poland",                  flag: "https://flagcdn.com/w320/pl.png", link: "/poland/" },
+  // { name: "Poland",                  flag: "https://flagcdn.com/w320/pl.png", link: "/poland" },
 ];
 
 /* ── Reusable flag-strip slider ──────────────────────────────────── */
