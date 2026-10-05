@@ -1266,7 +1266,7 @@ export default function StudyMaltaPage() {
               <div className="relative z-10">
                 <div className="w-[320px] h-[320px] md:w-[420px] md:h-[420px] lg:w-[520px] lg:h-[520px] rounded-full overflow-hidden">
                   <img
-                    src="images/malta.jpeg"
+                    src="https://www.langmainternational.com//images/malta.jpeg"
                     alt="Study in Malta"
                     className="w-full h-full object-cover"
                   />
