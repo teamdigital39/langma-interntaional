@@ -684,17 +684,17 @@ const Arrow = () => (
 );
 
 const COUNTRIES = [
-  { name: "Poland", code: "pl", link: "/poland/", blurb: "EU-recognised degrees, low tuition, and a post-study work pathway." },
-  { name: "Cyprus", code: "cy", link: "/study-in-cyprus/", blurb: "Affordable, English-taught EU degrees on one of Europe's safest islands." },
-  { name: "Singapore", code: "sg", link: "/study-in-singapore/", blurb: "Asia's innovation capital — paid internships and PR-eligible pathways." },
-  { name: "United Arab Emirates", code: "ae", link: "/dubai/", blurb: "UK-accredited diplomas, 0% income tax, three hours from India." },
-  { name: "Mauritius", code: "mu", link: "/study-in-mauritius/", blurb: "English & French medium programmes with global recognition." },
+  { name: "Poland", code: "pl", link: "/poland", blurb: "EU-recognised degrees, low tuition, and a post-study work pathway." },
+  { name: "Cyprus", code: "cy", link: "/study-in-cyprus", blurb: "Affordable, English-taught EU degrees on one of Europe's safest islands." },
+  { name: "Singapore", code: "sg", link: "/study-in-singapore", blurb: "Asia's innovation capital — paid internships and PR-eligible pathways." },
+  { name: "United Arab Emirates", code: "ae", link: "/dubai", blurb: "UK-accredited diplomas, 0% income tax, three hours from India." },
+  { name: "Mauritius", code: "mu", link: "/study-in-mauritius", blurb: "English & French medium programmes with global recognition." },
   // { name: "Germany", code: "de", link: null, blurb: "Tuition-free public universities and a strong post-study job market." },
   // { name: "Japan", code: "jp", link: null, blurb: "World-ranked universities, generous scholarships, leading tech hubs." },
-  { name: "South Korea", code: "kr", link: "/south-korea/", blurb: "Global campuses, TOPIK-linked scholarships, and a rising study culture." },
-  { name: "Malta", code: "mt", link: "/malta/", blurb: "English-speaking EU island with full Schengen access." },
-  { name: "Netherlands", code: "nl", link: "/netherlands/", blurb: "Ranked #1 in English proficiency, with a post-study orientation visa." },
-  { name: "Georgia", code: "ge", link: "/georgia/", blurb: "Unique cultural experience with growing educational opportunities." },
+  { name: "South Korea", code: "kr", link: "/south-korea", blurb: "Global campuses, TOPIK-linked scholarships, and a rising study culture." },
+  { name: "Malta", code: "mt", link: "/malta", blurb: "English-speaking EU island with full Schengen access." },
+  { name: "Netherlands", code: "nl", link: "/netherlands", blurb: "Ranked #1 in English proficiency, with a post-study orientation visa." },
+  { name: "Georgia", code: "ge", link: "/georgia", blurb: "Unique cultural experience with growing educational opportunities." },
 ];
 
 function CountrySlider() {
@@ -930,7 +930,7 @@ export default function StudyAbrotHeroSection1() {
               <p className="section-sub">Answer a short assessment and get a personalized country recommendation for your study abroad plans.</p>
             </div>
             <div style={{ textAlign: "center", marginTop: 24 }}>
-              <a href="/study-assessment/" className="btn btn-primary">
+              <a href="/study-assessment" className="btn btn-primary">
                 Not Sure Which Country Fits You? Take the Study Abroad Global Mobility Assessment →
               </a>
             </div>
