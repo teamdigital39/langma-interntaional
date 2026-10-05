@@ -103,6 +103,60 @@ const STATIC_METADATA = {
       "Get expert study-abroad guidance, university admissions support, scholarships, and student visa assistance from Langma International.",
     h1: "Study Abroad with Expert Guidance",
   },
+  "/poland": {
+    title: "Study in Poland for International Students | Langma",
+    description:
+      "Explore English-taught degrees, affordable tuition, EU work opportunities, and guided university and visa support for studying in Poland.",
+    h1: "Study in Poland",
+  },
+  "/dubai": {
+    title: "Study in Dubai for International Students | Langma",
+    description:
+      "Explore career-focused study options in Dubai with Langma International's university guidance, admissions support, and visa assistance.",
+    h1: "Study in Dubai",
+  },
+  "/netherlands": {
+    title: "Study in the Netherlands for International Students | Langma",
+    description:
+      "Find English-taught study options in the Netherlands with expert course selection, university applications, and student visa guidance.",
+    h1: "Study in the Netherlands",
+  },
+  "/south-korea": {
+    title: "Study in South Korea for International Students | Langma",
+    description:
+      "Explore study opportunities in South Korea with guidance on universities, scholarships, language requirements, admissions, and visas.",
+    h1: "Study in South Korea",
+  },
+  "/malta": {
+    title: "Study in Malta for International Students | Langma",
+    description:
+      "Explore English-taught study options in Malta with expert university guidance, admissions support, and student visa assistance.",
+    h1: "Study in Malta",
+  },
+  "/study-in-mauritius": {
+    title: "Study in Mauritius for International Students | Langma",
+    description:
+      "Explore English and French medium study programmes in Mauritius with university selection, admissions, and visa guidance from Langma.",
+    h1: "Study in Mauritius",
+  },
+  "/study-in-singapore": {
+    title: "Study in Singapore for International Students | Langma",
+    description:
+      "Explore study and career pathways in Singapore with university guidance, admissions support, internship information, and visa assistance.",
+    h1: "Study in Singapore",
+  },
+  "/georgia": {
+    title: "Study in Georgia for International Students | Langma",
+    description:
+      "Explore affordable study opportunities in Georgia with expert course selection, university applications, and student visa guidance.",
+    h1: "Study in Georgia",
+  },
+  "/study-in-cyprus": {
+    title: "Study in Cyprus for International Students | Langma",
+    description:
+      "Explore English-taught study options in Cyprus with expert university selection, admissions support, and student visa guidance.",
+    h1: "Study in Cyprus",
+  },
   "/work-abroad": {
     title: "Work Abroad Guidance & International Career Support | Langma",
     description:
@@ -143,20 +197,6 @@ export function canonicalDocumentPath(pathname = "/") {
 
 export function canonicalUrl(pathname = "/") {
   return `${SITE_URL}${canonicalDocumentPath(pathname)}`;
-}
-
-export function internalRoute(pathname = "/") {
-  const value = String(pathname || "/");
-  if (!value.startsWith("/") || value.startsWith("//")) return value;
-
-  const hashIndex = value.indexOf("#");
-  const queryIndex = value.indexOf("?");
-  const cutAt = [hashIndex, queryIndex]
-    .filter((index) => index >= 0)
-    .sort((a, b) => a - b)[0];
-  const path = cutAt === undefined ? value : value.slice(0, cutAt);
-  const suffix = cutAt === undefined ? "" : value.slice(cutAt);
-  return `${canonicalDocumentPath(path)}${suffix}`;
 }
 
 export function readablePath(pathname = "/") {
