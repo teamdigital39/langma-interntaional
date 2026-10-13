@@ -12,8 +12,6 @@ import {
 } from "../src/seo.js";
 import { getLanguageFaqs, getSectionFaqs } from "../src/languageFaqs.js";
 import {
-  GOOGLE_ADS_ID,
-  GOOGLE_ANALYTICS_ID,
   GTM_ID,
   STANDALONE_LANDING_ROUTES,
 } from "../src/standaloneLandingRoutes.js";
@@ -342,15 +340,6 @@ for (const rawUrl of urls) {
         j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
         f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','${GTM_ID}');
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ADS_ID}" data-google-ads-id="${GOOGLE_ADS_ID}"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '${GOOGLE_ADS_ID}');
-      gtag('config', '${GOOGLE_ANALYTICS_ID}');
-      window.__langmaTrackingConfigured = true;
     </script>
   `
     : "";
