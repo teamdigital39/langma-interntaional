@@ -45,6 +45,18 @@ function normalizeCourseContent(html = "") {
     heading.replaceWith(...heading.childNodes);
   });
 
+  template.content.querySelectorAll("h1, h2, h3, h4, h5").forEach((heading) => {
+    if (heading.classList.contains("course-lead-title")) return;
+
+    const nextLevel = Number(heading.tagName.slice(1)) + 1;
+    const replacement = document.createElement(`h${nextLevel}`);
+    Array.from(heading.attributes).forEach(({ name, value }) => {
+      replacement.setAttribute(name, value);
+    });
+    replacement.append(...heading.childNodes);
+    heading.replaceWith(replacement);
+  });
+
   template.content.querySelectorAll("[style]").forEach((element) => {
     [
       "background-color",
