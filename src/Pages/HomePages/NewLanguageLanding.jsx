@@ -10,9 +10,6 @@ const BROCHURE_URLS = {
   Chinese: "https://res.cloudinary.com/dzv9zcrlz/image/upload/v1791530466/MANDARIN_lxbwoa.pdf",
 };
 
-const CONTACT_PHONE = "+919810117094";
-const WHATSAPP_NUMBER = "919810117094";
-
 const CAREER_GUIDE_URLS = {
   French: "",
   German: "https://res.cloudinary.com/dzv9zcrlz/image/upload/v1791530457/GERMAN_u3yf7i.pdf",
@@ -539,7 +536,6 @@ export default function NewLanguageLanding({ language }) {
   const page = LANGUAGE_PAGES[language] || LANGUAGE_PAGES.French;
   const brochureUrl = getBrochureDownloadUrl(BROCHURE_URLS[language]);
   const careerGuideUrl = getBrochureDownloadUrl(CAREER_GUIDE_URLS[language]);
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hi Langma, I would like to know more about the ${page.short} language course.`)}`;
   const faqs = buildFaqs(page);
   const testimonialItems = [
     ...page.videos.slice(0, 3).map((video) => ({
@@ -874,16 +870,6 @@ export default function NewLanguageLanding({ language }) {
         <div className="new-container new-footer-bottom"><span>© {new Date().getFullYear()} Langma International Pvt. Ltd.</span><a href="/privacy-policy">Privacy Policy</a></div>
       </footer>
 
-      <div className="new-floating-contact" aria-label="Contact Langma">
-        <a className="new-floating-contact-call" href={`tel:${CONTACT_PHONE}`} aria-label="Call Langma at +91 98101 17094" title="Call Langma">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.32.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02z" /></svg>
-          <span>Call</span>
-        </a>
-        <a className="new-floating-contact-whatsapp" href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label={`Chat on WhatsApp about the ${page.short} course`} title="Chat on WhatsApp">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.5 0 .16 5.34.16 11.91c0 2.1.55 4.15 1.6 5.96L.06 24l6.28-1.65a11.9 11.9 0 0 0 5.72 1.46h.01c6.57 0 11.91-5.34 11.91-11.91 0-3.18-1.24-6.17-3.46-8.42ZM12.07 21.8h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.73.98.99-3.64-.24-.37a9.86 9.86 0 0 1-1.52-5.27c0-5.47 4.45-9.92 9.92-9.92a9.85 9.85 0 0 1 7.02 2.91 9.85 9.85 0 0 1 2.9 7.02c0 5.47-4.45 9.92-9.93 9.92Zm5.44-7.43c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.08 4.48.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z" /></svg>
-          <span>WhatsApp</span>
-        </a>
-      </div>
     </main>
   );
 }
