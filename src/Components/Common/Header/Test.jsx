@@ -14,6 +14,64 @@ function normalizeCourseContent(html = "") {
   const template = document.createElement("template");
   template.innerHTML = html;
 
+  const firstHeading = template.content.querySelector("h2");
+  const emphasizedTitle = firstHeading?.querySelector("font, strong, b");
+  const leadTitle = emphasizedTitle?.textContent.trim();
+  const leadSummary = leadTitle
+    ? firstHeading.textContent
+        .replace(leadTitle, "")
+        .replace(/([.!?])(?=[A-Za-z])/g, "$1 ")
+        .trim()
+    : "";
+
+  if (firstHeading && leadTitle && leadSummary) {
+    const lead = document.createElement("div");
+    lead.className = "course-lead";
+
+    const title = document.createElement("h2");
+    title.className = "course-lead-title";
+    title.textContent = leadTitle;
+
+    const summary = document.createElement("p");
+    summary.className = "course-lead-summary";
+    summary.textContent = leadSummary;
+
+    lead.append(title, summary);
+    firstHeading.replaceWith(lead);
+  }
+
+  template.content.querySelectorAll("h1, h2, h3, h4, h5, h6").forEach((heading) => {
+    if (!heading.querySelector("p, ul, ol, table, div, section, blockquote")) return;
+    heading.replaceWith(...heading.childNodes);
+  });
+
+  template.content.querySelectorAll("[style]").forEach((element) => {
+    [
+      "background-color",
+      "color",
+      "font-family",
+      "font-size",
+      "font-weight",
+      "font-variant",
+      "text-align",
+      "vertical-align",
+      "white-space",
+    ].forEach((property) => element.style.removeProperty(property));
+
+    if (!element.getAttribute("style")?.trim()) {
+      element.removeAttribute("style");
+    }
+  });
+
+  template.content.querySelectorAll("font[color]").forEach((font) => {
+    font.removeAttribute("color");
+  });
+
+  template.content.querySelectorAll("table").forEach((table) => {
+    table.style.removeProperty("width");
+    table.parentElement?.style.removeProperty("margin-left");
+  });
+
   template.content.querySelectorAll(".row").forEach((row) => {
     const columns = Array.from(row.children).filter((child) =>
       child.matches("[class*='col-']")
@@ -397,6 +455,34 @@ function Test() {
 
           .course-content > *:last-child {
             margin-bottom: 0;
+          }
+
+          .course-content .course-lead {
+            margin: 0 auto 42px;
+            padding: 26px 30px;
+            border-left: 4px solid #33c39a;
+            border-radius: 0 18px 18px 0;
+            background: #f1fbf8;
+          }
+
+          .course-content .course-lead-title {
+            margin: 0 0 10px;
+            padding: 0;
+            border: 0;
+            color: #075d62;
+            font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+          }
+
+          .course-content .course-lead-title::before,
+          .course-content .course-lead-title::after {
+            content: none;
+          }
+
+          .course-content .course-lead-summary {
+            margin: 0;
+            color: #456269;
+            font-size: 1.08em;
+            line-height: 1.75;
           }
 
           /* The API wraps each programme in a Bootstrap-style section. */
@@ -955,6 +1041,11 @@ function Test() {
             .course-content .course-content-multi-media-row {
               gap: 32px;
               margin: 32px auto;
+            }
+
+            .course-content .course-lead {
+              margin-bottom: 32px;
+              padding: 20px;
             }
 
             .course-content .course-media-copy-pair {
