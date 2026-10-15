@@ -935,7 +935,7 @@ function Test() {
 
           .course-content table {
             width: 100%;
-            margin: 32px 0;
+            margin: 32px auto;
             border: 1px solid #d9ecea;
             border-collapse: separate;
             border-spacing: 0;
@@ -954,8 +954,8 @@ function Test() {
             border-right: 1px solid #d9ecea;
             border-bottom: 1px solid #d9ecea;
             padding: 14px 16px;
-            text-align: left;
-            vertical-align: top;
+            text-align: center;
+            vertical-align: middle;
             font-size: 15px;
             line-height: 1.55;
           }
