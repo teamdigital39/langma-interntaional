@@ -25,14 +25,6 @@ const ROUTE_ALIASES = {
   "/netherland": "/netherlands",
 };
 const NON_SITEMAP_ROUTES = ["/thank-you"];
-const urls = [
-  ...new Set([
-    ...sitemapUrls,
-    ...STANDALONE_LANDING_ROUTES.map((route) => `${SITE_URL}${route}`),
-    ...Object.keys(ROUTE_ALIASES).map((route) => `${SITE_URL}${route}`),
-    ...NON_SITEMAP_ROUTES.map((route) => `${SITE_URL}${route}`),
-  ]),
-];
 
 function escapeHtml(value = "") {
   return String(value)
@@ -78,10 +70,64 @@ async function fetchJson(url) {
 }
 
 const languageList = await fetchJson(`${API_BASE}/api/languages`);
+if (!languageList?.status || !Array.isArray(languageList.languages)) {
+  throw new Error("Could not generate language course routes: the language list is unavailable.");
+}
+
 const languageSlugs = new Set(
   (languageList?.languages || []).map((item) => item.url).filter(Boolean)
 );
 const languagePages = new Map();
+const courseDetailUrls = (
+  await Promise.all(
+    [...languageSlugs].map(async (languageSlug) => {
+      const data = await fetchJson(
+        `${API_BASE}/api/language-page/${encodeURIComponent(languageSlug)}`
+      );
+
+      if (!data?.status || !Array.isArray(data.details)) {
+        throw new Error(
+          `Could not generate course routes for "${languageSlug}": language course details are unavailable.`
+        );
+      }
+
+      return data.details
+        .filter((course) => course.slug)
+        .map(
+          (course) =>
+            `${SITE_URL}/course-details/${encodeURIComponent(languageSlug)}/${encodeURIComponent(course.slug)}/`
+        );
+    })
+  )
+).flat();
+const urls = [
+  ...new Set([
+    ...sitemapUrls,
+    ...courseDetailUrls,
+    ...STANDALONE_LANDING_ROUTES.map((route) => `${SITE_URL}${route}`),
+    ...Object.keys(ROUTE_ALIASES).map((route) => `${SITE_URL}${route}`),
+    ...NON_SITEMAP_ROUTES.map((route) => `${SITE_URL}${route}`),
+  ]),
+];
+const existingSitemapUrls = new Set(sitemapUrls.map((url) => url.replace(/\/+$/, "")));
+const additionalSitemapEntries = [...new Set(courseDetailUrls)]
+  .filter((url) => !existingSitemapUrls.has(url.replace(/\/+$/, "")))
+  .map(
+    (url) => `  <url>
+    <loc>${escapeHtml(url)}</loc>
+    <lastmod>${LAST_UPDATED}</lastmod>
+    <priority>0.8</priority>
+  </url>`
+  )
+  .join("\n");
+const generatedSitemap = sitemap.replace(
+  /<\/urlset>\s*$/,
+  `${additionalSitemapEntries ? `\n${additionalSitemapEntries}\n` : ""}</urlset>\n`
+);
+
+if (generatedSitemap === sitemap && additionalSitemapEntries) {
+  throw new Error("Could not add API course URLs to the generated sitemap.");
+}
 
 async function metadataFor(pathname) {
   const normalized = canonicalPath(pathname);
@@ -407,4 +453,5 @@ for (const rawUrl of urls) {
   generated += 1;
 }
 
+await writeFile(path.join(dist, "sitemap.xml"), generatedSitemap, "utf8");
 console.log(`Generated ${generated} route HTML files in ${dist}`);
