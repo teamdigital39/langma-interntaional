@@ -5,7 +5,7 @@ import { API_BASE, SITE_URL } from "../src/seo.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
-const sitemapPath = path.join(root, "public", "sitemap.xml");
+const sitemapPath = path.join(dist, "sitemap.xml");
 
 async function htmlFiles(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -47,6 +47,15 @@ const sitemap = await readFile(sitemapPath, "utf8");
 for (const url of matches(sitemap, /<loc>\s*([^<]+?)\s*<\/loc>/g)) {
   if (url.includes(API_BASE) || !url.startsWith(SITE_URL)) {
     errors.push(`${sitemapPath}: non-primary sitemap URL: ${url}`);
+  }
+
+  const pathname = new URL(url).pathname;
+  if (pathname.startsWith("/course-details/")) {
+    const segments = pathname.split("/").filter(Boolean).map(decodeURIComponent);
+    const routeFile = path.join(dist, ...segments, "index.html");
+    if (!files.includes(routeFile)) {
+      errors.push(`${sitemapPath}: course URL has no generated route file: ${url}`);
+    }
   }
 }
 
