@@ -76,7 +76,7 @@ const German = () => {
         </div>
       </section>
 
-      <ConnectedSection />
+      <ConnectedSection headingAs="div" />
 
       {/* ================= PROGRAM SECTION ================= */}
       <section className="w-full bg-[#f4fbfb] py-10 px-4 sm:px-6">
@@ -95,9 +95,9 @@ const German = () => {
           <div className="w-full lg:w-1/2 text-left">
 
             {/* TITLE */}
-            <h2 className="text-3xl font-bold mb-5">
+            <h1 className="text-3xl font-bold mb-5">
               {languageData?.title}
-            </h2>
+            </h1>
 
             {/* CONTENT */}
             <div className="text-gray-700 leading-relaxed">
