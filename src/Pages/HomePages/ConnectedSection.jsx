@@ -7,7 +7,8 @@ import {
 } from "react-icons/fi";
 import API_BASE from "../../config";
 
-const ConnectedSection = () => {
+const ConnectedSection = ({ headingAs = "h2" }) => {
+  const Heading = headingAs;
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -170,9 +171,9 @@ const ConnectedSection = () => {
           </div>
 
           <div className="relative z-10">
-            <h2 className="text-[18px] lg:text-[32px] font-semibold text-center text-[#296166]">
+            <Heading className="text-[18px] lg:text-[32px] font-semibold text-center text-[#296166]">
               Let's Get Connected
-            </h2>
+            </Heading>
 
             <p className="text-center text-[15px] lg:text-sm text-[#212529] mb-8">
               We're Here to Help You Better
