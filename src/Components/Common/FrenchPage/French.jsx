@@ -65,7 +65,7 @@ const French = () => {
         </div>
       </section>
 
-      <ConnectedSection />
+      <ConnectedSection headingAs="div" />
 
       {/* ================= PROGRAM ================= */}
       <section className="w-full bg-[#f4fbfb] py-10 px-4 sm:px-6">
@@ -81,9 +81,9 @@ const French = () => {
           </div>
 
           <div className="w-full lg:w-1/2">
-            <h2 className="text-3xl font-bold mb-5">
+            <h1 className="text-3xl font-bold mb-5">
               {languageData?.title}
-            </h2>
+            </h1>
 
             <div
               className="text-gray-700 leading-relaxed"
