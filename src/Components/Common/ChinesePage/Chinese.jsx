@@ -65,7 +65,7 @@ const Chinese = () => {
         </div>
       </section>
 
-      <ConnectedSection />
+      <ConnectedSection headingAs="div" />
 
       {/* ================= PROGRAM SECTION ================= */}
       <section className="w-full bg-[#f4fbfb] py-10 px-4 sm:px-6">
@@ -83,9 +83,9 @@ const Chinese = () => {
           {/* RIGHT CONTENT */}
           <div className="w-full lg:w-1/2 text-left mt-20 lg:mt-0">
 
-            <h2 className="text-3xl font-bold mb-5">
+            <h1 className="text-3xl font-bold mb-5">
               {languageData?.title}
-            </h2>
+            </h1>
 
             <div
               className="text-gray-700 leading-relaxed"
