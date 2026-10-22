@@ -28,6 +28,10 @@ for (const file of files) {
   const html = await readFile(file, "utf8");
   const canonicals = matches(html, /<link\s+rel=["']canonical["']\s+href=["']([^"']+)["']/gi);
   const ogUrls = matches(html, /<meta\s+property=["']og:url["']\s+content=["']([^"']+)["']/gi);
+  const seoHeadings = matches(
+    html,
+    /<h1\b[^>]*class=["'][^"']*\bseo-fallback-heading\b[^"']*["'][^>]*>([\s\S]*?)<\/h1>/gi
+  );
 
   for (const url of [...canonicals, ...ogUrls]) {
     if (url.includes(API_BASE)) {
@@ -40,6 +44,9 @@ for (const file of files) {
 
   if (canonicals.length !== 1) {
     errors.push(`${file}: expected exactly one canonical URL, found ${canonicals.length}`);
+  }
+  if (seoHeadings.length !== 1 || !seoHeadings[0].trim()) {
+    errors.push(`${file}: expected exactly one non-empty SEO fallback H1`);
   }
 }
 
