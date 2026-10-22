@@ -433,7 +433,7 @@ for (const rawUrl of urls) {
     ${gtmNoscript}
     <noscript>
       <main>
-        <p class="seo-fallback-heading" role="heading" aria-level="1">${escapeHtml(metadata.h1 || metadata.title)}</p>
+        <h1 class="seo-fallback-heading">${escapeHtml(metadata.h1 || metadata.title)}</h1>
         <p>${escapeHtml(metadata.description)}</p>
         <p>Last updated: ${LAST_UPDATED}</p>
         ${faqFallback}
