@@ -210,7 +210,6 @@ function App() {
       {isStandaloneLanding && <StandaloneLandingGtm />}
 
       <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center" role="status">Loading page…</div>}>
-        <main id="route-content">
         <Routes>
           {/* <Route path="/" element={<HeroSection />} /> */}
           <Route path="/" element={<HomeLangma />} />
@@ -342,7 +341,6 @@ function App() {
         <Route path="/thank-you" element={<Thankyou />} />
           {/* <Route path="/newhome" element={<HomeLangma/>} /> */}
           </Routes>
-          </main>
         </Suspense>
       {!isStandaloneLanding && <Footer />}
       </div>
