@@ -13,6 +13,45 @@ import {
   upsertMeta,
 } from "./seo";
 
+function replaceHeadingTag(heading, tagName) {
+  const replacement = document.createElement(tagName);
+  Array.from(heading.attributes).forEach(({ name, value }) => {
+    replacement.setAttribute(name, value);
+  });
+  replacement.replaceChildren(...heading.childNodes);
+  heading.replaceWith(replacement);
+  return replacement;
+}
+
+function ensurePageHeading(container, metadata) {
+  const fallbackHeadings = container.querySelectorAll("h1[data-route-seo-heading]");
+  const pageHeadings = Array.from(
+    container.querySelectorAll("h1, h2, h3, h4, h5, h6")
+  ).filter((heading) => !heading.hasAttribute("data-route-seo-heading"));
+
+  if (!pageHeadings.length) {
+    const fallbackHeading = fallbackHeadings[0] || document.createElement("h1");
+    const fallbackText = metadata.h1 || metadata.title || "Langma International";
+    if (fallbackHeading.textContent !== fallbackText) {
+      fallbackHeading.textContent = fallbackText;
+    }
+    fallbackHeading.className = "text-3xl font-bold mb-5";
+    fallbackHeading.dataset.routeSeoHeading = "true";
+    if (!fallbackHeading.isConnected) container.prepend(fallbackHeading);
+    return;
+  }
+
+  fallbackHeadings.forEach((heading) => heading.remove());
+
+  if (pageHeadings[0].tagName !== "H1") {
+    pageHeadings[0] = replaceHeadingTag(pageHeadings[0], "h1");
+  }
+
+  pageHeadings.slice(1).forEach((heading) => {
+    if (heading.tagName === "H1") replaceHeadingTag(heading, "h2");
+  });
+}
+
 function applyMetadata(metadata, pathname) {
   const url = canonicalUrl(pathname);
   const isCourse =
@@ -48,9 +87,19 @@ export default function CanonicalUrl() {
   useEffect(() => {
     const controller = new AbortController();
     const path = canonicalPath(pathname);
-    const baseMetadata = fallbackMetadata(path);
+    let currentMetadata = fallbackMetadata(path);
+    const pageContent = document.querySelector("#route-content") || document.body;
+    const syncPageHeading = () => ensurePageHeading(pageContent, currentMetadata);
 
-    applyMetadata(baseMetadata, path);
+    applyMetadata(currentMetadata, path);
+    syncPageHeading();
+
+    const headingObserver = new MutationObserver(syncPageHeading);
+    headingObserver.observe(pageContent, {
+      childList: true,
+      characterData: true,
+      subtree: true,
+    });
 
     async function loadRouteMetadata() {
       try {
@@ -64,16 +113,15 @@ export default function CanonicalUrl() {
           const data = await response.json();
           const course = data?.details?.find((item) => item.slug === courseSlug);
           if (course) {
-            applyMetadata(
-              {
-                title: `${course.title} | Langma International`,
-                description: `Explore ${course.title.toLowerCase()} with practical language training and expert guidance from Langma International.`,
-                h1: course.title,
-                courseName: course.title,
-                image: course.banner || course.image,
-              },
-              path
-            );
+            currentMetadata = {
+              title: `${course.title} | Langma International`,
+              description: `Explore ${course.title.toLowerCase()} with practical language training and expert guidance from Langma International.`,
+              h1: course.title,
+              courseName: course.title,
+              image: course.banner || course.image,
+            };
+            applyMetadata(currentMetadata, path);
+            syncPageHeading();
           }
           return;
         }
@@ -86,17 +134,16 @@ export default function CanonicalUrl() {
         );
         const data = await response.json();
         if (data?.status && data.page) {
-          applyMetadata(
-            {
-              title: data.page.seo_title || `${data.page.title} Language Course | Langma`,
-              description:
-                data.page.seo_description ||
-                `Learn ${data.page.title} with live online and classroom courses from Langma International.`,
-              h1: `Learn ${data.page.title} with Langma`,
-              image: data.page.banner || data.page.image,
-            },
-            path
-          );
+          currentMetadata = {
+            title: data.page.seo_title || `${data.page.title} Language Course | Langma`,
+            description:
+              data.page.seo_description ||
+              `Learn ${data.page.title} with live online and classroom courses from Langma International.`,
+            h1: `Learn ${data.page.title} with Langma`,
+            image: data.page.banner || data.page.image,
+          };
+          applyMetadata(currentMetadata, path);
+          syncPageHeading();
         }
       } catch (error) {
         if (error.name !== "AbortError") {
@@ -106,7 +153,10 @@ export default function CanonicalUrl() {
     }
 
     loadRouteMetadata();
-    return () => controller.abort();
+    return () => {
+      controller.abort();
+      headingObserver.disconnect();
+    };
   }, [pathname]);
 
   return null;
