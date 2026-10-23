@@ -42,8 +42,34 @@ function applyMetadata(metadata, pathname) {
   setRouteJsonLd(metadata, url, isCourse);
 }
 
+function keepSinglePageH1(root) {
+  root.querySelectorAll("h1").forEach((heading, index) => {
+    if (index === 0) return;
+
+    const replacement = document.createElement("h2");
+    for (const attribute of heading.attributes) {
+      replacement.setAttribute(attribute.name, attribute.value);
+    }
+    replacement.replaceChildren(...heading.childNodes);
+    heading.replaceWith(replacement);
+  });
+}
+
 export default function CanonicalUrl() {
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    const root = document.getElementById("root");
+    if (!root) return undefined;
+
+    const enforceSingleH1 = () => keepSinglePageH1(root);
+    enforceSingleH1();
+
+    const observer = new MutationObserver(enforceSingleH1);
+    observer.observe(root, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -62,12 +88,16 @@ export default function CanonicalUrl() {
           const data = await response.json();
           const course = data?.details?.find((item) => item.slug === courseSlug);
           if (course) {
+            const languageName =
+              data?.language?.title ||
+              data?.page?.title ||
+              languageSlug.replaceAll("-", " ");
             applyMetadata(
               {
-              title: `${course.title} | Langma International`,
-              description: `Explore ${course.title.toLowerCase()} with practical language training and expert guidance from Langma International.`,
+              title: `${course.title} ${languageName} Course | Langma International`,
+              description: `Explore ${course.title} in ${languageName} with structured language training and practical guidance from Langma International.`,
               h1: course.title,
-              courseName: course.title,
+              courseName: `${course.title} ${languageName}`,
               image: course.banner || course.image,
               },
               path
@@ -84,13 +114,25 @@ export default function CanonicalUrl() {
         );
         const data = await response.json();
         if (data?.status && data.page) {
+          const languageName = data.page.title;
+          const baseTitle =
+            data.page.seo_title || `${languageName} Language Course | Langma`;
+          const title = baseTitle.toLowerCase().includes(languageName.toLowerCase())
+            ? baseTitle
+            : `${baseTitle} | ${languageName}`;
+          const baseDescription =
+            data.page.seo_description ||
+            `Learn ${languageName} with live online and classroom courses from Langma International.`;
+          const languageDescription = `Learn ${languageName} with Langma International.`;
+          const description =
+            baseDescription.toLowerCase().includes(languageName.toLowerCase())
+              ? baseDescription
+              : `${baseDescription.slice(0, 160 - languageDescription.length - 1).trim()} ${languageDescription}`;
           applyMetadata(
             {
-            title: data.page.seo_title || `${data.page.title} Language Course | Langma`,
-            description:
-              data.page.seo_description ||
-              `Learn ${data.page.title} with live online and classroom courses from Langma International.`,
-            h1: `Learn ${data.page.title} with Langma`,
+            title,
+            description,
+            h1: `Learn ${languageName} with Langma`,
             image: data.page.banner || data.page.image,
             },
             path
