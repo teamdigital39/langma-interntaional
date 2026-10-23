@@ -51,6 +51,7 @@ const Australia = lazy(() => import("./Components/Common/Aust/Australia"));
 const America = lazy(() => import("./Components/Common/America/America"));
 const BlogPage = lazy(() => import("./Pages/HomePages/BlogPage"));
 const BlogDetailPage = lazy(() => import("./Pages/HomePages/BlogDetails"));
+const ApplyNow = lazy(() => import("./Pages/HomePages/ApplyNow"));
 const Poland = lazy(() => import("./Pages/HomePages/Poland"));
 import PopupForm from "./Components/PopupForm";
 const ContactUs = lazy(() => import("./Pages/HomePages/ContactUs"));
@@ -269,6 +270,7 @@ function App() {
           <Route path="/blog-detail/:slug" element={<BlogDetailPage />} />
           {/* <Route path="/poland" element={<Poland/>} /> */}
           <Route path="/contact" element={<ContactUs/>} />
+          <Route path="/apply-now" element={<ApplyNow />} />
           <Route path="/career" element={<Career/>} />
           <Route path="/privacy-policy" element={<Privacy/>} />
           <Route path="/payment" element={<Payment />} />
