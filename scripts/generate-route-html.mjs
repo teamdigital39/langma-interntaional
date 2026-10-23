@@ -38,7 +38,7 @@ const ROUTE_ALIASES = {
   "/netherland": "/netherlands",
 };
 const NON_SITEMAP_ROUTES = ["/thank-you"];
-const ADDITIONAL_SITEMAP_ROUTES = ["/apply-now"];
+const ADDITIONAL_SITEMAP_ROUTES = ["/apply-now", "/about"];
 const ADDITIONAL_APP_ROUTES = [
   "/italy-golden-visa",
   "/spain-nlv",
