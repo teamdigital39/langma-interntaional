@@ -2,11 +2,18 @@ import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { API_BASE, SITE_URL } from "../src/seo.js";
-import { cleanBlogSlug } from "../src/blogUrls.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const sitemapPath = path.join(dist, "sitemap.xml");
+
+function cleanBlogSlug(value) {
+  return String(value || "")
+    .normalize("NFC")
+    .toLowerCase()
+    .replace(/[^\p{L}\p{M}\p{N}]+/gu, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
 async function htmlFiles(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
