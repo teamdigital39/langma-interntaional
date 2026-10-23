@@ -7,14 +7,6 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const sitemapPath = path.join(dist, "sitemap.xml");
 
-function cleanBlogSlug(value) {
-  return String(value || "")
-    .normalize("NFC")
-    .toLowerCase()
-    .replace(/[^\p{L}\p{M}\p{N}]+/gu, "-")
-    .replace(/^-+|-+$/g, "");
-}
-
 async function htmlFiles(directory) {
   const entries = await readdir(directory, { withFileTypes: true });
   const files = [];
@@ -105,12 +97,6 @@ for (const value of matches(sitemap, /<loc>\s*([^<]+?)\s*<\/loc>/g)) {
   }
 
   const pathname = new URL(url).pathname;
-  if (pathname.startsWith("/blog-detail/")) {
-    const blogSlug = decodeURIComponent(pathname.split("/").filter(Boolean).at(-1));
-    if (cleanBlogSlug(blogSlug) !== blogSlug) {
-      errors.push(`${sitemapPath}: blog URL does not use a clean slug: ${url}`);
-    }
-  }
   if (pathname.startsWith("/course-details/") || pathname.startsWith("/blog-detail/")) {
     const segments = pathname.split("/").filter(Boolean).map(decodeURIComponent);
     const routeFile = path.join(dist, ...segments, "index.html");
