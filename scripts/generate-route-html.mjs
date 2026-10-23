@@ -21,25 +21,6 @@ const dist = path.join(root, "dist");
 const template = await readFile(path.join(dist, "index.html"), "utf8");
 const sitemap = await readFile(path.join(root, "public", "sitemap.xml"), "utf8");
 
-function cleanBlogSlug(value) {
-  let slug = String(value || "");
-  try {
-    slug = decodeURIComponent(slug);
-  } catch {
-    // Preserve the slug if the source contains malformed percent escapes.
-  }
-
-  return slug
-    .normalize("NFC")
-    .toLowerCase()
-    .replace(/[^\p{L}\p{M}\p{N}]+/gu, "-")
-    .replace(/^-+|-+$/g, "");
-}
-
-function blogDetailPath(slug) {
-  return `/blog-detail/${encodeURIComponent(cleanBlogSlug(slug))}/`;
-}
-
 function decodeXml(value) {
   return value.replace(/&(#x[\da-f]+|#\d+|amp|lt|gt|quot|apos);/gi, (entity, code) => {
     if (code[0] === "#") {
@@ -110,6 +91,44 @@ function staticRoute(pathname) {
   return { ...metadata, image: metadata.image || `${SITE_URL}/assets/hs-image-2.png` };
 }
 
+function routeLabel(pathname) {
+  return pathname
+    .split("/")
+    .filter(Boolean)
+    .map((segment) => {
+      try {
+        return decodeURIComponent(segment).replace(/[-_]+/g, " ");
+      } catch {
+        return segment.replace(/[-_]+/g, " ");
+      }
+    })
+    .join(" ");
+}
+
+function uniqueMetadata(metadata, pathname, usedTitles, usedDescriptions) {
+  const label = routeLabel(pathname) || "Langma International";
+  const descriptionLabel = label.slice(0, 75);
+  let title = metadata.title;
+  let titleSuffix = label;
+  let index = 2;
+  while (usedTitles.has(title)) {
+    title = `${metadata.title} | ${titleSuffix}`;
+    titleSuffix = `${label} ${index++}`;
+  }
+  usedTitles.add(title);
+
+  let description = metadata.description;
+  let descriptionSuffix = `Learn more about ${descriptionLabel} from Langma International.`;
+  index = 2;
+  while (usedDescriptions.has(description)) {
+    description = `${truncate(metadata.description, 159 - descriptionSuffix.length)} ${descriptionSuffix}`;
+    descriptionSuffix = `Learn more about ${descriptionLabel} (${index++}) from Langma International.`;
+  }
+  usedDescriptions.add(description);
+
+  return { ...metadata, title, description };
+}
+
 const jsonCache = new Map();
 async function fetchJson(url) {
   if (jsonCache.has(url)) return jsonCache.get(url);
@@ -124,24 +143,6 @@ const languageList = await fetchJson(`${API_BASE}/api/languages`);
 if (!languageList?.status || !Array.isArray(languageList.languages)) {
   throw new Error("Could not generate language course routes: the language list is unavailable.");
 }
-const blogList = await fetchJson(`${API_BASE}/api/blog-list`);
-if (!blogList?.status || !Array.isArray(blogList.data)) {
-  throw new Error("Could not generate blog routes: the blog list is unavailable.");
-}
-const blogs = blogList.data.filter((blog) => blog.slug && blog.title);
-const blogsBySlug = new Map();
-for (const blog of blogs) {
-  const routeSlug = cleanBlogSlug(blog.slug);
-  if (!routeSlug) {
-    throw new Error(`Could not generate a clean blog URL for "${blog.title}".`);
-  }
-  if (blogsBySlug.has(routeSlug)) {
-    throw new Error(`Blog URL slug collision for "${routeSlug}".`);
-  }
-  blogsBySlug.set(routeSlug, blog);
-}
-const blogDetailUrls = blogs.map((blog) => `${SITE_URL}${blogDetailPath(blog.slug)}`);
-
 const languageSlugs = new Set(
   (languageList?.languages || []).map((item) => item.url).filter(Boolean)
 );
@@ -149,16 +150,6 @@ const languageNames = new Map(
   languageList.languages.filter((item) => item.url && item.title).map((item) => [item.url, item.title])
 );
 const languagePages = new Map();
-const blogDetails = new Map(
-  await Promise.all(
-    blogs.map(async (blog) => {
-      const result = await fetchJson(
-        `${API_BASE}/api/blog-detail/${encodeURIComponent(blog.slug)}`
-      );
-      return [blog.slug, result || { data: blog }];
-    })
-  )
-);
 const courseDetailUrls = (
   await Promise.all(
     [...languageSlugs].map(async (languageSlug) => {
@@ -190,34 +181,16 @@ function normalizedUrl(value) {
   return `${url.origin}${canonicalPath(pathname)}`;
 }
 
-function canonicalBlogUrl(value) {
-  const url = new URL(value);
-  const path = canonicalPath(url.pathname);
-  if (!path.startsWith("/blog-detail/")) return value;
-  const sourceSlug = decodeURIComponent(path.split("/").at(-1));
-  const blog = blogsBySlug.get(cleanBlogSlug(sourceSlug));
-  return blog ? `${SITE_URL}${blogDetailPath(blog.slug)}` : value;
-}
-
 const routeUrls = [
-  ...sitemapUrls.map(canonicalBlogUrl),
+  ...sitemapUrls,
   ...courseDetailUrls,
-  ...blogDetailUrls,
   ...STANDALONE_LANDING_ROUTES.map((route) => `${SITE_URL}${route}`),
   ...Object.keys(ROUTE_ALIASES).map((route) => `${SITE_URL}${route}`),
   ...NON_SITEMAP_ROUTES.map((route) => `${SITE_URL}${route}`),
 ];
 const urls = [...new Map(routeUrls.map((url) => [normalizedUrl(url), url])).values()];
-const canonicalizedSitemap = sitemap.replace(
-  /<loc>\s*([^<]+?)\s*<\/loc>/g,
-  (entry, value) =>
-    `<loc>${escapeHtml(canonicalBlogUrl(decodeXml(value.trim())))}</loc>`
-);
-const canonicalSitemapUrls = [
-  ...canonicalizedSitemap.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/g),
-].map((match) => decodeXml(match[1].trim()));
-const existingSitemapUrls = new Set(canonicalSitemapUrls.map(normalizedUrl));
-const additionalSitemapEntries = [...new Set([...courseDetailUrls, ...blogDetailUrls])]
+const existingSitemapUrls = new Set(sitemapUrls.map(normalizedUrl));
+const additionalSitemapEntries = [...new Set(courseDetailUrls)]
   .filter((url) => !existingSitemapUrls.has(normalizedUrl(url)))
   .map(
     (url) => `  <url>
@@ -227,7 +200,7 @@ const additionalSitemapEntries = [...new Set([...courseDetailUrls, ...blogDetail
   </url>`
   )
   .join("\n");
-const generatedSitemap = canonicalizedSitemap.replace(
+const generatedSitemap = sitemap.replace(
   /<\/urlset>\s*$/,
   `${additionalSitemapEntries ? `\n${additionalSitemapEntries}\n` : ""}</urlset>\n`
 );
@@ -242,30 +215,21 @@ async function metadataFor(pathname) {
   if (STANDALONE_LANDING_ROUTES.includes(normalized)) return staticRoute(normalized);
 
   if (normalized === "/blog") {
-    const metadata = fallbackMetadata(normalized);
-    return {
-      ...metadata,
-      contentText: fallbackContent(
-        blogs.map((blog) => blog.title).filter(Boolean).join(". ")
-      ),
-    };
+    return fallbackMetadata(normalized);
   }
 
   if (normalized.startsWith("/blog-detail/")) {
-    const slug = cleanBlogSlug(decodeURIComponent(normalized.split("/").at(-1)));
-    let blog = [...blogsBySlug].find(([blogSlug]) => cleanBlogSlug(blogSlug) === slug)?.[1];
-    let recentBlogs = [];
-    if (!blog) {
-      const result = await fetchJson(
-        `${API_BASE}/api/blog-detail/${encodeURIComponent(slug)}`
-      );
-      blog = result?.data;
-      recentBlogs = result?.recentBlog || [];
-    } else {
-      const result = blogDetails.get(blog.slug);
-      blog = result?.data || blog;
-      recentBlogs = result?.recentBlog || [];
+    let slug = normalized.split("/").at(-1);
+    try {
+      slug = decodeURIComponent(slug);
+    } catch {
+      throw new Error(`Could not decode blog route slug "${slug}".`);
     }
+    const result = await fetchJson(
+      `${API_BASE}/api/blog-detail/${encodeURIComponent(slug)}`
+    );
+    const blog = result?.data;
+    const recentBlogs = result?.recentBlog || [];
     if (blog?.title) {
       return {
         title: `${blog.title} | Langma International`,
@@ -547,11 +511,18 @@ function schemaFor(metadata, url) {
 }
 
 let generated = 0;
+const usedTitles = new Set();
+const usedDescriptions = new Set();
 for (const rawUrl of urls) {
   const url = new URL(rawUrl);
   const routePath = canonicalPath(url.pathname);
   const pathname = ROUTE_ALIASES[routePath] || routePath;
-  const metadata = await metadataFor(pathname);
+  const metadata = uniqueMetadata(
+    await metadataFor(pathname),
+    pathname,
+    usedTitles,
+    usedDescriptions
+  );
   const canonical = canonicalUrl(pathname);
   const image = absoluteImage(metadata.image);
   const isStandaloneLanding = STANDALONE_LANDING_ROUTES.includes(pathname);
