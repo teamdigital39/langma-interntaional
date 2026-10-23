@@ -38,6 +38,27 @@ const ROUTE_ALIASES = {
   "/netherland": "/netherlands",
 };
 const NON_SITEMAP_ROUTES = ["/thank-you"];
+const ADDITIONAL_SITEMAP_ROUTES = ["/apply-now"];
+const ADDITIONAL_APP_ROUTES = [
+  "/italy-golden-visa",
+  "/spain-nlv",
+  "/georgia",
+  "/latvia-golden-visa",
+  "/greece-golden-visa",
+  "/south-korea",
+  "/dubai",
+  "/study-in-singapore",
+  "/hungary-golden-visa",
+  "/portugal-golden-visa",
+  "/australia",
+  "/pr-by-investment",
+  "/golden-visa",
+  "/golden-visa-assessment",
+  "/andorra-residency",
+  "/cyprus-pr",
+  "/malta-residency",
+  "/study-assessment",
+];
 
 function escapeHtml(value = "") {
   return String(value)
@@ -184,13 +205,18 @@ function normalizedUrl(value) {
 const routeUrls = [
   ...sitemapUrls,
   ...courseDetailUrls,
+  ...ADDITIONAL_SITEMAP_ROUTES.map((route) => `${SITE_URL}${route}`),
   ...STANDALONE_LANDING_ROUTES.map((route) => `${SITE_URL}${route}`),
   ...Object.keys(ROUTE_ALIASES).map((route) => `${SITE_URL}${route}`),
+  ...ADDITIONAL_APP_ROUTES.map((route) => `${SITE_URL}${route}`),
   ...NON_SITEMAP_ROUTES.map((route) => `${SITE_URL}${route}`),
 ];
 const urls = [...new Map(routeUrls.map((url) => [normalizedUrl(url), url])).values()];
 const existingSitemapUrls = new Set(sitemapUrls.map(normalizedUrl));
-const additionalSitemapEntries = [...new Set(courseDetailUrls)]
+const additionalSitemapEntries = [...new Set([
+  ...courseDetailUrls,
+  ...ADDITIONAL_SITEMAP_ROUTES.map((route) => `${SITE_URL}${route}/`),
+])]
   .filter((url) => !existingSitemapUrls.has(normalizedUrl(url)))
   .map(
     (url) => `  <url>
@@ -303,14 +329,23 @@ async function metadataFor(pathname) {
       languagePages.set(normalized, data);
     }
     if (data?.page) {
+      const languageName = data.page.title;
+      const baseTitle =
+        data.page.seo_title || `${languageName} Language Course | Langma`;
+      const title = baseTitle.toLowerCase().includes(languageName.toLowerCase())
+        ? baseTitle
+        : `${baseTitle} | ${languageName}`;
+      const baseDescription =
+        data.page.seo_description ||
+        `Learn ${languageName} with live online and classroom courses from Langma International.`;
+      const languageDescription = `Learn ${languageName} with Langma International.`;
+      const description = baseDescription.toLowerCase().includes(languageName.toLowerCase())
+        ? truncate(baseDescription, 160)
+        : `${truncate(baseDescription, 160 - languageDescription.length - 1)} ${languageDescription}`;
       return {
-        title: data.page.seo_title || `${data.page.title} Language Course | Langma`,
-        description: truncate(
-          data.page.seo_description ||
-            `Learn ${data.page.title} with live online and classroom courses from Langma International.`,
-          160
-        ),
-        h1: `Learn ${data.page.title} with Langma`,
+        title,
+        description,
+        h1: `Learn ${languageName} with Langma`,
         image: absoluteImage(data.page.banner || data.page.image),
         contentText: fallbackContent(
           [
