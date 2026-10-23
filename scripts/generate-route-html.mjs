@@ -15,12 +15,30 @@ import {
   GTM_ID,
   STANDALONE_LANDING_ROUTES,
 } from "../src/standaloneLandingRoutes.js";
-import { blogDetailPath, cleanBlogSlug } from "../src/blogUrls.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const template = await readFile(path.join(dist, "index.html"), "utf8");
 const sitemap = await readFile(path.join(root, "public", "sitemap.xml"), "utf8");
+
+function cleanBlogSlug(value) {
+  let slug = String(value || "");
+  try {
+    slug = decodeURIComponent(slug);
+  } catch {
+    // Preserve the slug if the source contains malformed percent escapes.
+  }
+
+  return slug
+    .normalize("NFC")
+    .toLowerCase()
+    .replace(/[^\p{L}\p{M}\p{N}]+/gu, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function blogDetailPath(slug) {
+  return `/blog-detail/${encodeURIComponent(cleanBlogSlug(slug))}/`;
+}
 
 function decodeXml(value) {
   return value.replace(/&(#x[\da-f]+|#\d+|amp|lt|gt|quot|apos);/gi, (entity, code) => {
