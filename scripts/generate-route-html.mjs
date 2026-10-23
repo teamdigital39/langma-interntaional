@@ -15,12 +15,26 @@ import {
   GTM_ID,
   STANDALONE_LANDING_ROUTES,
 } from "../src/standaloneLandingRoutes.js";
+import { blogDetailPath, cleanBlogSlug } from "../src/blogUrls.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const template = await readFile(path.join(dist, "index.html"), "utf8");
 const sitemap = await readFile(path.join(root, "public", "sitemap.xml"), "utf8");
-const sitemapUrls = [...sitemap.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/g)].map((match) => match[1].trim());
+
+function decodeXml(value) {
+  return value.replace(/&(#x[\da-f]+|#\d+|amp|lt|gt|quot|apos);/gi, (entity, code) => {
+    if (code[0] === "#") {
+      const radix = code[1].toLowerCase() === "x" ? 16 : 10;
+      return String.fromCodePoint(Number.parseInt(code.slice(radix === 16 ? 2 : 1), radix));
+    }
+    return { amp: "&", lt: "<", gt: ">", quot: '"', apos: "'" }[code.toLowerCase()];
+  });
+}
+
+const sitemapUrls = [...sitemap.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/g)].map((match) =>
+  decodeXml(match[1].trim())
+);
 const ROUTE_ALIASES = {
   "/netherland": "/netherlands",
 };
@@ -37,6 +51,25 @@ function escapeHtml(value = "") {
 
 function stripTags(value = "") {
   return value.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function contentText(value = "") {
+  return stripTags(value)
+    .replace(/&nbsp;|&#160;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
+    .replace(/&#x([\da-f]+);/gi, (_, code) => String.fromCodePoint(Number.parseInt(code, 16)))
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function fallbackContent(value = "", maxWords = 700) {
+  const words = contentText(value).split(/\s+/).filter(Boolean);
+  return words.length > maxWords ? `${words.slice(0, maxWords).join(" ")}…` : words.join(" ");
 }
 
 function truncate(value, max = 160) {
@@ -73,11 +106,41 @@ const languageList = await fetchJson(`${API_BASE}/api/languages`);
 if (!languageList?.status || !Array.isArray(languageList.languages)) {
   throw new Error("Could not generate language course routes: the language list is unavailable.");
 }
+const blogList = await fetchJson(`${API_BASE}/api/blog-list`);
+if (!blogList?.status || !Array.isArray(blogList.data)) {
+  throw new Error("Could not generate blog routes: the blog list is unavailable.");
+}
+const blogs = blogList.data.filter((blog) => blog.slug && blog.title);
+const blogsBySlug = new Map();
+for (const blog of blogs) {
+  const routeSlug = cleanBlogSlug(blog.slug);
+  if (!routeSlug) {
+    throw new Error(`Could not generate a clean blog URL for "${blog.title}".`);
+  }
+  if (blogsBySlug.has(routeSlug)) {
+    throw new Error(`Blog URL slug collision for "${routeSlug}".`);
+  }
+  blogsBySlug.set(routeSlug, blog);
+}
+const blogDetailUrls = blogs.map((blog) => `${SITE_URL}${blogDetailPath(blog.slug)}`);
 
 const languageSlugs = new Set(
   (languageList?.languages || []).map((item) => item.url).filter(Boolean)
 );
+const languageNames = new Map(
+  languageList.languages.filter((item) => item.url && item.title).map((item) => [item.url, item.title])
+);
 const languagePages = new Map();
+const blogDetails = new Map(
+  await Promise.all(
+    blogs.map(async (blog) => {
+      const result = await fetchJson(
+        `${API_BASE}/api/blog-detail/${encodeURIComponent(blog.slug)}`
+      );
+      return [blog.slug, result || { data: blog }];
+    })
+  )
+);
 const courseDetailUrls = (
   await Promise.all(
     [...languageSlugs].map(async (languageSlug) => {
@@ -100,18 +163,44 @@ const courseDetailUrls = (
     })
   )
 ).flat();
-const urls = [
-  ...new Set([
-    ...sitemapUrls,
-    ...courseDetailUrls,
-    ...STANDALONE_LANDING_ROUTES.map((route) => `${SITE_URL}${route}`),
-    ...Object.keys(ROUTE_ALIASES).map((route) => `${SITE_URL}${route}`),
-    ...NON_SITEMAP_ROUTES.map((route) => `${SITE_URL}${route}`),
-  ]),
+function normalizedUrl(value) {
+  const url = new URL(value);
+  const pathname = url.pathname
+    .split("/")
+    .map((segment) => decodeURIComponent(segment))
+    .join("/");
+  return `${url.origin}${canonicalPath(pathname)}`;
+}
+
+function canonicalBlogUrl(value) {
+  const url = new URL(value);
+  const path = canonicalPath(url.pathname);
+  if (!path.startsWith("/blog-detail/")) return value;
+  const sourceSlug = decodeURIComponent(path.split("/").at(-1));
+  const blog = blogsBySlug.get(cleanBlogSlug(sourceSlug));
+  return blog ? `${SITE_URL}${blogDetailPath(blog.slug)}` : value;
+}
+
+const routeUrls = [
+  ...sitemapUrls.map(canonicalBlogUrl),
+  ...courseDetailUrls,
+  ...blogDetailUrls,
+  ...STANDALONE_LANDING_ROUTES.map((route) => `${SITE_URL}${route}`),
+  ...Object.keys(ROUTE_ALIASES).map((route) => `${SITE_URL}${route}`),
+  ...NON_SITEMAP_ROUTES.map((route) => `${SITE_URL}${route}`),
 ];
-const existingSitemapUrls = new Set(sitemapUrls.map((url) => url.replace(/\/+$/, "")));
-const additionalSitemapEntries = [...new Set(courseDetailUrls)]
-  .filter((url) => !existingSitemapUrls.has(url.replace(/\/+$/, "")))
+const urls = [...new Map(routeUrls.map((url) => [normalizedUrl(url), url])).values()];
+const canonicalizedSitemap = sitemap.replace(
+  /<loc>\s*([^<]+?)\s*<\/loc>/g,
+  (entry, value) =>
+    `<loc>${escapeHtml(canonicalBlogUrl(decodeXml(value.trim())))}</loc>`
+);
+const canonicalSitemapUrls = [
+  ...canonicalizedSitemap.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/g),
+].map((match) => decodeXml(match[1].trim()));
+const existingSitemapUrls = new Set(canonicalSitemapUrls.map(normalizedUrl));
+const additionalSitemapEntries = [...new Set([...courseDetailUrls, ...blogDetailUrls])]
+  .filter((url) => !existingSitemapUrls.has(normalizedUrl(url)))
   .map(
     (url) => `  <url>
     <loc>${escapeHtml(url)}</loc>
@@ -120,19 +209,68 @@ const additionalSitemapEntries = [...new Set(courseDetailUrls)]
   </url>`
   )
   .join("\n");
-const generatedSitemap = sitemap.replace(
+const generatedSitemap = canonicalizedSitemap.replace(
   /<\/urlset>\s*$/,
   `${additionalSitemapEntries ? `\n${additionalSitemapEntries}\n` : ""}</urlset>\n`
 );
 
 if (generatedSitemap === sitemap && additionalSitemapEntries) {
-  throw new Error("Could not add API course URLs to the generated sitemap.");
+  throw new Error("Could not add API detail URLs to the generated sitemap.");
 }
 
 async function metadataFor(pathname) {
   const normalized = canonicalPath(pathname);
   if (normalized === "/") return HOMEPAGE_METADATA;
   if (STANDALONE_LANDING_ROUTES.includes(normalized)) return staticRoute(normalized);
+
+  if (normalized === "/blog") {
+    const metadata = fallbackMetadata(normalized);
+    return {
+      ...metadata,
+      contentText: fallbackContent(
+        blogs.map((blog) => blog.title).filter(Boolean).join(". ")
+      ),
+    };
+  }
+
+  if (normalized.startsWith("/blog-detail/")) {
+    const slug = cleanBlogSlug(decodeURIComponent(normalized.split("/").at(-1)));
+    let blog = [...blogsBySlug].find(([blogSlug]) => cleanBlogSlug(blogSlug) === slug)?.[1];
+    let recentBlogs = [];
+    if (!blog) {
+      const result = await fetchJson(
+        `${API_BASE}/api/blog-detail/${encodeURIComponent(slug)}`
+      );
+      blog = result?.data;
+      recentBlogs = result?.recentBlog || [];
+    } else {
+      const result = blogDetails.get(blog.slug);
+      blog = result?.data || blog;
+      recentBlogs = result?.recentBlog || [];
+    }
+    if (blog?.title) {
+      return {
+        title: `${blog.title} | Langma International`,
+        description: truncate(
+          blog.description || blog.excerpt || contentText(blog.content) ||
+          `Read ${blog.title} for practical insights from Langma International.`
+        ),
+        h1: blog.title,
+        image: absoluteImage(blog.image),
+        contentText: fallbackContent(
+          [
+            blog.content,
+            recentBlogs.length
+              ? `Related articles: ${recentBlogs.map((item) => item.title).filter(Boolean).join(". ")}`
+              : "",
+          ]
+            .filter(Boolean)
+            .join(" ")
+        ),
+      };
+    }
+    return staticRoute(normalized);
+  }
 
   if (normalized.startsWith("/course-details/")) {
     const [, , languageSlug, courseSlug] = normalized.split("/");
@@ -142,15 +280,32 @@ async function metadataFor(pathname) {
       );
       const course = data?.details?.find((item) => item.slug === courseSlug);
       if (course) {
+        const languageName = languageNames.get(languageSlug) || languageSlug.replaceAll("-", " ");
         return {
-          title: `${course.title} | Langma International`,
+          title: `${course.title} ${languageName} Course | Langma International`,
           description: truncate(
-            `Explore ${course.title} with practical language training and expert guidance from Langma International.`,
+            `Explore ${course.title} in ${languageName} with structured language training and practical guidance from Langma International.`,
             160
           ),
           h1: course.title,
           image: absoluteImage(course.banner || course.image),
-          courseName: course.title,
+          courseName: `${course.title} ${languageName}`,
+          contentText: fallbackContent(
+            [
+              course.content,
+              course.course_feature,
+              course.important_info,
+              data.details
+                .filter((item) => item.slug !== course.slug)
+                .map(
+                  (item) =>
+                    `${item.title}. ${fallbackContent(item.content, 60)}`
+                )
+                .join(" "),
+            ]
+              .filter(Boolean)
+              .join(" ")
+          ),
         };
       }
     }
@@ -175,6 +330,17 @@ async function metadataFor(pathname) {
         ),
         h1: `Learn ${data.page.title} with Langma`,
         image: absoluteImage(data.page.banner || data.page.image),
+        contentText: fallbackContent(
+          [
+            data.page.content,
+            data.page.content_2,
+            (data.details || [])
+              .map((course) => `${course.title}. ${fallbackContent(course.content, 60)}`)
+              .join(" "),
+          ]
+            .filter(Boolean)
+            .join(" ")
+        ),
       };
     }
   }
@@ -435,6 +601,7 @@ for (const rawUrl of urls) {
       <main>
         <h1 class="seo-fallback-heading">${escapeHtml(metadata.h1 || metadata.title)}</h1>
         <p>${escapeHtml(metadata.description)}</p>
+        ${metadata.contentText ? `<p>${escapeHtml(metadata.contentText)}</p>` : ""}
         <p>Last updated: ${LAST_UPDATED}</p>
         ${faqFallback}
       </main>
