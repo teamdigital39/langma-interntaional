@@ -11,6 +11,18 @@ RewriteRule ^ https://www.langmainternational.com%{REQUEST_URI} [R=301,L,NE]
 # Keep common index-file variants from becoming separate accessible URLs.
 RewriteRule ^(?:index|home)\.(?:html?|php)$ / [R=301,L,NE]
 
+# Redirect legacy main-site URLs to their current equivalent pages.
+RewriteRule ^public/227/vietnamese-language-proficiency-test-language-program/?$ /vietnamese-language-courses/ [R=301,L,NE]
+RewriteRule ^online\+urdu\+language\+course/?$ /online-urdu-language-course/ [R=301,L,NE]
+RewriteRule ^online-italian-lang/?$ /online-italian-language-course/ [R=301,L,NE]
+RewriteRule ^japanese-language-language-program/?$ /online-japanese-language-course/ [R=301,L,NE]
+RewriteRule ^TOEFL\.aspx$ /online-english-language-course/ [R=301,L,NC,NE]
+RewriteRule ^russia-medical/?$ /study-abroad/ [R=301,L,NE]
+RewriteRule ^blog-detail/learn-spanish-language-for-study,-work-and-everyday-life-with-langma-international/?$ /blog-detail/scope-of-spanish-language-in-india/ [R=301,L,NC]
+RewriteRule ^blog-detail/learn-french-language-for-study,-work-and-everyday-life-with-langma-international/?$ /blog-detail/french-language-course-in-delhi-india/ [R=301,L,NC]
+RewriteRule ^blog-detail/ಲ್ಯಾಂಗ್ಮಾ-ಇಂಟರ್-ನ್ಯಾಷನಲ್:-ಭಾಷೆ-ಮತ್ತು-ಸಂಸ್ಕೃತಿಯ-ಮೂಲಕ-ಜಾಗತಿಕ-ನಾಗರಿಕರನ್ನು-ರೂಪಿಸುವುದು/?$ /blog-detail/ಲ್ಯಾಂಗ್ಮಾ-ಇಂಟರ್-ನ್ಯಾಷನಲ್:-ಭಾಷೆ-ಮತ್ತು-ಸಂಸ್ಕೃತಿಯ-ಮೂಲಕ-ಜಾಗತಿಕ-ನಾಗರಿಕರನ್ನು-ರೂಪಿಸುವುದು./ [R=301,L]
+RewriteRule ^blog-detail/ಲ್ಯಾಂಗ್ಮಾ-ಇಂಟರ್-ನ್ಯಾಷನൽ:-ಭಾಷೆ-ಮತ್ತು-ಸಂಸ್ಕೃತಿಯ-മൂലം-ജാഗതിക-നാഗരികരെ-രൂപികുന്നതു/?$ /blog-detail/ಲ್ಯಾಂಗ್ಮಾ-ಇಂಟರ್-ನ್ಯಾಷನಲ್:-ಭಾಷೆ-ಮತ್ತು-ಸಂಸ್ಕೃತಿಯ-മൂലം-ജാഗತിക-ನಾಗരികരെ-രൂപികുന്നതു./ [R=301,L]
+
 # Forward API requests to Laravel public folder.
 RewriteCond %{REQUEST_URI} ^/api/ [NC]
 RewriteRule ^api/(.*)$ /home/langmain/public/index.php [L]
