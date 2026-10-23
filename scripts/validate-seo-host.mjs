@@ -49,6 +49,7 @@ for (const file of files) {
     html,
     /<h1\b[^>]*class=["'][^"']*\bseo-fallback-heading\b[^"']*["'][^>]*>([\s\S]*?)<\/h1>/gi
   );
+  const h1Count = matches(html, /<h1\b[^>]*>[\s\S]*?<\/h1>/gi).length;
 
   if (titles.length === 1) {
     const paths = titlesByValue.get(titles[0]) || [];
@@ -75,6 +76,9 @@ for (const file of files) {
   }
   if (seoHeadings.length !== 1 || !seoHeadings[0].trim()) {
     errors.push(`${file}: expected exactly one non-empty SEO fallback H1`);
+  }
+  if (h1Count !== 1) {
+    errors.push(`${file}: expected exactly one H1 tag in generated HTML, found ${h1Count}`);
   }
 }
 
