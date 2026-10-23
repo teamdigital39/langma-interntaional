@@ -169,6 +169,12 @@ const STATIC_METADATA = {
       "Contact Langma International for language courses, study-abroad guidance, work-abroad support, and global mobility services.",
     h1: "Let's Get Connected",
   },
+  "/apply-now": {
+    title: "Apply for a Language Course | Langma International",
+    description:
+      "Apply for a language course with Langma International. Share your contact details and learning goals, and our team will help you choose the right programme.",
+    h1: "Apply for a Language Course",
+  },
   "/thank-you": {
     title: "Thank You | Langma International",
     description: "Thank you for contacting Langma International. Your enquiry has been received.",
