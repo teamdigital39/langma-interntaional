@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate, useLocation, useParams } from "react-router-dom";
 import { lazy, Suspense, useEffect, useState } from "react";
-import { HelmetProvider } from "react-helmet-async";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 const Thankyou = lazy(() => import("./Pages/HomePages/Thankyou"));
 import TopBar from "./Components/Common/Header/TopBar";
 const HeroSection = lazy(() => import("./Pages/HomePages/HeroSection"));
@@ -127,7 +127,7 @@ const NewLanguageLanding = lazy(() => import("./Pages/HomePages/NewLanguageLandi
 const TranslationServices = lazy(() => import("./Pages/HomePages/TranslationServices"));
 const HomeLangma = lazy(() => import("./Pages/HomePages/Homepage"));
 const SuccessStories = lazy(() => import("./Pages/HomePages/SuccessStories"));
-const FAQPage = lazy(() => import("./Pages/HomePages/FAQPage"));
+const FAQ = lazy(() => import("./Pages/HomePages/FAQ"));
 const LegacyInfoPage = lazy(() => import("./Pages/HomePages/LegacyInfoPage"));
 import {
   GOOGLE_ADS_ID,
@@ -149,6 +149,21 @@ function LegacyRouteRedirect({ to }) {
       to={{ pathname: to, search: location.search, hash: location.hash }}
       replace
     />
+  );
+}
+
+function FAQPage() {
+  return (
+    <main className="min-h-screen bg-white">
+      <Helmet>
+        <title>Frequently Asked Questions | Langma International</title>
+        <meta
+          name="description"
+          content="Find answers to common questions about Langma International programmes, enrolment, payments, study formats, and certificates."
+        />
+      </Helmet>
+      <FAQ section="general" />
+    </main>
   );
 }
 
