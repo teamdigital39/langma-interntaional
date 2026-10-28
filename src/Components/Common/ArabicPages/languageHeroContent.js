@@ -85,10 +85,11 @@ export const LANGUAGE_HERO_CONTENT = {
     "Goethe-Zertifikat Pathway"
   ),
   hebrew: buildEntry(
-    "Learn Hebrew with Langma International",
-    "Explore the language, learn its structure,",
-    "and build useful Hebrew skills with us."
-    "Hebrew bridges an ancient literary tradition with contemporary communication in modern Israel. Studying Hebrew gives you access to a distinctive writing system, expressive vocabulary, and a grammatical structure characterized by consonant roots and systematic word patterns. At Langma International, learners systematically explore Hebrew foundations and build proficiency in reading, pronunciation, and sentence construction."
+    "Hebrew",
+    "Learn Hebrew with Langma International.",
+    " Explore the language, learn its structure, and build useful Hebrew skills with us.",
+    " Hebrew bridges an ancient literary tradition with contemporary communication in modern Israel. Studying Hebrew gives you access to a distinctive writing system, expressive vocabulary, and a grammatical structure characterized by consonant roots and systematic word patterns. At Langma International, learners systematically explore Hebrew foundations and build proficiency in reading, pronunciation, and sentence construction.",
+    "CEFR Pathway",
   ),
   hindi: buildEntry(
     "Hindi",
