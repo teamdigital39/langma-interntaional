@@ -166,9 +166,11 @@ export const LANGUAGE_HERO_CONTENT = {
   ),
   polish: buildEntry(
     "Polish",
-    "Learn Polish.",
-    "Resilience, Industry, and Opportunity.",
-    "Polish anchors one of Central Europe's fastest-growing economies and a proud cultural heritage. Fluency for work permits, higher education, and daily life — with practical, CEFR-aligned training.",
+    "Discover the Polish Language with Langma International",
+    "Learn Polish. Understand Poland. Expand your opportunities.",
+    "The Polish language is a window into one of Central Europe's most historically important, culturally rich, and fast-moving countries. You've got medieval cities and royal castles alongside the modern business centers of today.
+     At Langma International, our Polish language learning goes far beyond vocabulary and grammar. It's about giving learners cultural understanding, enabling practical communication, and building a foundation for real interaction in all sorts of situations (academic, professional, social, etc.).
+     Whether you're looking to study in Poland, pursue international career opportunities, plan your relocation, or simply want to learn a new language, learning Polish can go a long way to helping you achieve your aims with greater confidence.",
     "CEFR Pathway"
   ),
   portuguese: buildEntry(
