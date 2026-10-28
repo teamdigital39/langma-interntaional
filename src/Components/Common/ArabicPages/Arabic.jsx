@@ -122,6 +122,7 @@ useEffect(() => {
 
   const contentHtml = languageData?.content || "";
   const heroContent = getLanguageHeroContent(languageData?.title, slug);
+  const isHebrewPage = slug === "hebrew-language-course";
 
   return (
     <>
@@ -145,11 +146,29 @@ useEffect(() => {
                   {heroContent.badge}
                 </span>
 
-                <h1 className="text-[28px] lg:text-[60px] font-bold text-[#1D1B4B] leading-tight">
-                  {heroContent.titlePrefix} <span>{languageData?.title}</span>{heroContent.titleSuffix}
-                  <br />
-                  {heroContent.titleLine2}
+                <h1
+                  className={`font-bold text-[#1D1B4B] leading-tight ${
+                    isHebrewPage
+                      ? "text-[30px] sm:text-[36px] lg:text-[44px]"
+                      : "text-[28px] lg:text-[60px]"
+                  }`}
+                >
+                  {heroContent.titleOverride ? (
+                    heroContent.titleOverride
+                  ) : (
+                    <>
+                      {heroContent.titlePrefix} <span>{languageData?.title}</span>{heroContent.titleSuffix}
+                      <br />
+                      {heroContent.titleLine2}
+                    </>
+                  )}
                 </h1>
+
+                {isHebrewPage && heroContent?.titleLine2 && (
+                  <p className="-mt-2 max-w-xl text-lg font-semibold leading-relaxed text-[#296166]">
+                    {heroContent.titleLine2}
+                  </p>
+                )}
 
                 <p className="text-[17px] text-[#4A4A4A] font-medium leading-relaxed max-w-xl">
                   {getHeroDescription(heroContent, languageData?.title)}
