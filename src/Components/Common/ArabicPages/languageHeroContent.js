@@ -3,17 +3,19 @@ const CTA = "Book Free Assessment";
 const TRUST_DEFAULT = ["Certified Trainers", "Live Interactive Classes"];
 
 function parseTitleLine1(line) {
+  if (!line) return { prefix: "", suffix: "" };
   const match = line?.match(/^(Master|Learn)\s+(.+)\.$/i);
-  if (!match) return { prefix: "Learn", suffix: "." };
+  if (!match) return { prefix: "", suffix: "" };
   return { prefix: match[1], suffix: "." };
 }
 
-function buildEntry(languageName, titleLine1, titleLine2, description, trustPoint3) {
+function buildEntry(languageName, titleLine1, titleLine2, description, trustPoint3, titleOverride = null) {
   const { prefix, suffix } = parseTitleLine1(titleLine1);
   return {
     languageName,
     titlePrefix: prefix,
     titleSuffix: suffix,
+    titleOverride,
     titleLine2,
     description,
     trustPoints: [...TRUST_DEFAULT, trustPoint3],
