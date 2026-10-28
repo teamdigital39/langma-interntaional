@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation, useParams } from "react-router-dom";
 import { lazy, Suspense, useEffect, useState } from "react";
 import { HelmetProvider } from "react-helmet-async";
 const Thankyou = lazy(() => import("./Pages/HomePages/Thankyou"));
@@ -127,12 +127,30 @@ const NewLanguageLanding = lazy(() => import("./Pages/HomePages/NewLanguageLandi
 const TranslationServices = lazy(() => import("./Pages/HomePages/TranslationServices"));
 const HomeLangma = lazy(() => import("./Pages/HomePages/Homepage"));
 const SuccessStories = lazy(() => import("./Pages/HomePages/SuccessStories"));
+const FAQPage = lazy(() => import("./Pages/HomePages/FAQPage"));
+const LegacyInfoPage = lazy(() => import("./Pages/HomePages/LegacyInfoPage"));
 import {
   GOOGLE_ADS_ID,
   GOOGLE_ANALYTICS_ID,
   GTM_ID,
   STANDALONE_LANDING_ROUTES,
 } from "./standaloneLandingRoutes";
+import { LEGACY_ROUTE_REDIRECTS } from "./legacyRouteRedirects";
+
+function LegacyBlogRedirect() {
+  const { slug } = useParams();
+  return <Navigate to={`/blog-detail/${encodeURIComponent(slug || "")}`} replace />;
+}
+
+function LegacyRouteRedirect({ to }) {
+  const location = useLocation();
+  return (
+    <Navigate
+      to={{ pathname: to, search: location.search, hash: location.hash }}
+      replace
+    />
+  );
+}
 
 function StandaloneLandingGtm() {
   useEffect(() => {
@@ -212,10 +230,21 @@ function App() {
 
       <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center" role="status">Loading page…</div>}>
         <Routes>
+          {Object.entries(LEGACY_ROUTE_REDIRECTS).map(([from, to]) => (
+            <Route
+              key={from}
+              path={from}
+              element={<LegacyRouteRedirect to={to} />}
+            />
+          ))}
           {/* <Route path="/" element={<HeroSection />} /> */}
           <Route path="/" element={<HomeLangma />} />
           {/* <Route path="/about" element={<AboutHeroSection />} />*/}
           <Route path="/about" element={<AboutLangma />} />
+          <Route path="/our-vision" element={<LegacyInfoPage page="our-vision" />} />
+          <Route path="/what-we-get" element={<LegacyInfoPage page="what-we-get" />} />
+          <Route path="/refund-policy" element={<LegacyInfoPage page="refund-policy" />} />
+          <Route path="/disclaimer" element={<LegacyInfoPage page="disclaimer" />} />
           <Route path="/work-abroad" element={<AbrotHeroSection />} />
           {/* <Route path="/study-abroad" element={<StudyAbrotHeroSection />} /> */}
           <Route path="/study-abroad" element={<StudyAbrotHeroSection1 />} />
@@ -266,7 +295,10 @@ function App() {
           <Route path="/aust" element={<Australia/>} />
           <Route path="/america" element={<America/>} />
           <Route path="/blog" element={<BlogPage/>} />
+          <Route path="/blog/:slug" element={<LegacyBlogRedirect />} />
           <Route path="/success-stories" element={<SuccessStories />} />
+          <Route path="/gallery" element={<Navigate to="/success-stories" replace />} />
+          <Route path="/faqs" element={<FAQPage />} />
           <Route path="/blog-detail/:slug" element={<BlogDetailPage />} />
           {/* <Route path="/poland" element={<Poland/>} /> */}
           <Route path="/contact" element={<ContactUs/>} />
@@ -279,6 +311,7 @@ function App() {
           <Route path="/translational" element={<Translational />} />
           <Route path="/localization" element={<Localization />} />
           <Route path="/multilanguage" element={<Multilanguage />} />
+          <Route path="/proofreading" element={<Profreding />} />
           <Route path="/profreding" element={<Profreding />} />
           <Route path="/voiceover" element={<Voiceover />} />
           <Route path="/content-writing" element={<Contentwriting />} />
