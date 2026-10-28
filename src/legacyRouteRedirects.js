@@ -108,6 +108,17 @@ const routes = `
 /siele-examination-center-in-delhi /course-details/online-spanish-language-courses/dele-and-siele-spanish-exam-preparation-course
 /about-us /about
 /119/general-burmese-language /course-details/online-burmese-language-course/general-burmese-language
+/14/english-for-everyone-language-program /online-english-language-course
+/129/international-exam-preparation-(hsk)-language-program /course-details/online-chinese-language-course/hsk-chinese-proficiency-test
+/24/german-language /course-details/online-german-language-course/german-language-course
+/181/konkani-language-programme- /course-details/best-institute-for-regional-languages/konkani-language-programme-language-program
+/81/learn-spanish-language-at-langma /course-details/online-spanish-language-courses/spanish-language-course
+/45/learn-japanese-at-langma-language-program /course-details/online-japanese-language-course/learn-japanese-at-langma
+/20/teachers-training-programme-language-program /online-english-language-course
+/9/english-for-academics-language-program /online-english-language-course
+/22/nordic-languages-for-professionals /course-details/best-nordic-languages-course/general-nordic-languages
+/127/general-mandarin-language-course /online-chinese-language-course
+/51/summer-programme-for--japanese /course-details/online-japanese-language-course/summer-programme-for-japanese
 `.trim();
 
 export const LEGACY_ROUTE_REDIRECTS = Object.freeze(
