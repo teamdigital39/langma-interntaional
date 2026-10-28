@@ -15,6 +15,7 @@ import {
   GTM_ID,
   STANDALONE_LANDING_ROUTES,
 } from "../src/standaloneLandingRoutes.js";
+import { LEGACY_ROUTE_REDIRECTS } from "../src/legacyRouteRedirects.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
@@ -35,6 +36,7 @@ const sitemapUrls = [...sitemap.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/g)].map((ma
   decodeXml(match[1].trim())
 );
 const ROUTE_ALIASES = {
+  ...LEGACY_ROUTE_REDIRECTS,
   "/netherland": "/netherlands",
   "/gallery": "/success-stories",
   "/blog/learn-japanese-language-for-study-abroad-and-ssw-jobs-in-japan-with-langma-international":
@@ -72,6 +74,7 @@ const ADDITIONAL_APP_ROUTES = [
   "/malta-residency",
   "/study-assessment",
   "/proofreading",
+  ...new Set(Object.values(LEGACY_ROUTE_REDIRECTS)),
 ];
 
 function escapeHtml(value = "") {
