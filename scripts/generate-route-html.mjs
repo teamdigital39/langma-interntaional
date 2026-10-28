@@ -36,9 +36,22 @@ const sitemapUrls = [...sitemap.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/g)].map((ma
 );
 const ROUTE_ALIASES = {
   "/netherland": "/netherlands",
+  "/gallery": "/success-stories",
+  "/blog/learn-japanese-language-for-study-abroad-and-ssw-jobs-in-japan-with-langma-international":
+    "/blog-detail/learn-japanese-language-for-study-abroad-and-ssw-jobs-in-japan-with-langma-international",
+  "/blog/why-should-i-learn-arabic-in-india":
+    "/blog-detail/why-should-i-learn-arabic-in-india",
 };
 const NON_SITEMAP_ROUTES = ["/thank-you"];
-const ADDITIONAL_SITEMAP_ROUTES = ["/apply-now", "/about"];
+const ADDITIONAL_SITEMAP_ROUTES = [
+  "/apply-now",
+  "/about",
+  "/faqs",
+  "/refund-policy",
+  "/disclaimer",
+  "/our-vision",
+  "/what-we-get",
+];
 const ADDITIONAL_APP_ROUTES = [
   "/italy-golden-visa",
   "/spain-nlv",
@@ -58,6 +71,7 @@ const ADDITIONAL_APP_ROUTES = [
   "/cyprus-pr",
   "/malta-residency",
   "/study-assessment",
+  "/proofreading",
 ];
 
 function escapeHtml(value = "") {
@@ -179,9 +193,10 @@ const courseDetailUrls = (
       );
 
       if (!data?.status || !Array.isArray(data.details)) {
-        throw new Error(
-          `Could not generate course routes for "${languageSlug}": language course details are unavailable.`
+        console.warn(
+          `Skipping API course routes for "${languageSlug}": language course details are unavailable.`
         );
+        return [];
       }
 
       return data.details
@@ -386,6 +401,7 @@ const STATIC_LANGUAGE_NAMES = {
 };
 
 const SECTION_FAQ_ROUTES = {
+  "/faqs": "general",
   "/languages": "language-courses",
   "/study-abroad": "study-abroad",
   "/investment": "pr-investment",
@@ -552,12 +568,18 @@ for (const rawUrl of urls) {
   const url = new URL(rawUrl);
   const routePath = canonicalPath(url.pathname);
   const pathname = ROUTE_ALIASES[routePath] || routePath;
-  const metadata = uniqueMetadata(
-    await metadataFor(pathname),
-    pathname,
-    usedTitles,
-    usedDescriptions
-  );
+  const resolvedMetadata = await metadataFor(pathname);
+  const routeMetadata = routePath === "/gallery"
+    ? {
+        ...resolvedMetadata,
+        title: "Gallery | Langma International",
+        description: "Explore Langma International success stories and student gallery.",
+        h1: "Gallery",
+      }
+    : resolvedMetadata;
+  const metadata = routePath === pathname
+    ? uniqueMetadata(routeMetadata, pathname, usedTitles, usedDescriptions)
+    : uniqueMetadata(routeMetadata, routePath, usedTitles, usedDescriptions);
   const canonical = canonicalUrl(pathname);
   const image = absoluteImage(metadata.image);
   const isStandaloneLanding = STANDALONE_LANDING_ROUTES.includes(pathname);
