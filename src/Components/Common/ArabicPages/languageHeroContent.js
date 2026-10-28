@@ -85,11 +85,10 @@ export const LANGUAGE_HERO_CONTENT = {
     "Goethe-Zertifikat Pathway"
   ),
   hebrew: buildEntry(
-    "Hebrew",
-    "Learn Hebrew.",
-    "A Revived Language, A Living Nation.",
-    "Hebrew's revival from ancient text to daily spoken language is one of history's most remarkable linguistic stories. Real fluency for relocation, faith study, business, and confident daily life in Israel.",
-    "CEFR Pathway"
+    "Learn Hebrew with Langma International",
+    "Explore the language, learn its structure,",
+    "and build useful Hebrew skills with us."
+    "Hebrew bridges an ancient literary tradition with contemporary communication in modern Israel. Studying Hebrew gives you access to a distinctive writing system, expressive vocabulary, and a grammatical structure characterized by consonant roots and systematic word patterns. At Langma International, learners systematically explore Hebrew foundations and build proficiency in reading, pronunciation, and sentence construction."
   ),
   hindi: buildEntry(
     "Hindi",
