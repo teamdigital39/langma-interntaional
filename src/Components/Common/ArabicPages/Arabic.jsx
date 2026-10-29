@@ -122,7 +122,6 @@ useEffect(() => {
 
   const contentHtml = languageData?.content || "";
   const heroContent = getLanguageHeroContent(languageData?.title, slug);
-  const isHebrewPage = slug === "hebrew-language-course";
 
   return (
     <>
@@ -133,8 +132,9 @@ useEffect(() => {
 
         <meta name="keywords" content={languageData?.seo_keyword} />
       </Helmet>
-      {/* ================= BANNER ================= */}
-      <section className="relative w-full min-h-0 lg:min-h-[500px] overflow-hidden flex items-center py-10 sm:py-12 px-4 sm:px-6 lg:px-20">
+    <div className="dynamic-language-page">
+    {/* ================= BANNER ================= */}
+    <section className="relative w-full min-h-0 lg:min-h-[500px] overflow-hidden flex items-center py-10 sm:py-12 px-4 sm:px-6 lg:px-20">
 
         <div className="container mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
 
@@ -146,13 +146,7 @@ useEffect(() => {
                   {heroContent.badge}
                 </span>
 
-                <h1
-                  className={`font-bold text-[#1D1B4B] leading-tight ${
-                    isHebrewPage
-                      ? "text-[30px] sm:text-[36px] lg:text-[44px]"
-                      : "text-[28px] lg:text-[60px]"
-                  }`}
-                >
+                <h1 className="text-[28px] lg:text-[60px] font-bold text-[#1D1B4B] leading-tight">
                   {heroContent.titleOverride ? (
                     heroContent.titleOverride
                   ) : (
@@ -163,12 +157,6 @@ useEffect(() => {
                     </>
                   )}
                 </h1>
-
-                {isHebrewPage && heroContent?.titleLine2 && (
-                  <p className="-mt-2 max-w-xl text-lg font-semibold leading-relaxed text-[#296166]">
-                    {heroContent.titleLine2}
-                  </p>
-                )}
 
                 <p className="text-[17px] text-[#4A4A4A] font-medium leading-relaxed max-w-xl">
                   {getHeroDescription(heroContent, languageData?.title)}
@@ -287,7 +275,7 @@ useEffect(() => {
 
           {/* CONTENT (ONLY ONCE) */}
           <div
-            className={`
+            className={`dynamic-language-content
               text-gray-700 leading-relaxed
               [&_table]:w-full
               [&_table]:border-collapse
@@ -1040,6 +1028,7 @@ useEffect(() => {
       <FAQ language={languageData?.title || "Arabic"} />
       <ConnectedSection />
       <PopupForm open={open} onClose={() => setOpen(false)} />
+      </div>
     </>
   );
 };
