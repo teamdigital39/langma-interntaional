@@ -14,6 +14,34 @@ function normalizeCourseContent(html = "") {
   const template = document.createElement("template");
   template.innerHTML = html;
 
+  template.content.querySelectorAll("p").forEach((paragraph) => {
+    const text = paragraph.textContent.trim();
+    if (!text) return;
+
+    const boldElement = [
+      paragraph,
+      ...paragraph.querySelectorAll("strong, b, [style]"),
+    ].find((element) => {
+      const fontWeight = element.style?.fontWeight?.toLowerCase();
+      const isBold =
+        element.matches("strong, b") ||
+        fontWeight === "bold" ||
+        fontWeight === "bolder" ||
+        Number(fontWeight) >= 600;
+
+      return isBold && element.textContent.trim() === text;
+    });
+
+    if (!boldElement) return;
+
+    const heading = document.createElement("h3");
+    Array.from(paragraph.attributes).forEach(({ name, value }) => {
+      heading.setAttribute(name, value);
+    });
+    heading.append(...paragraph.childNodes);
+    paragraph.replaceWith(heading);
+  });
+
   const firstHeading = template.content.querySelector("h2");
   const emphasizedTitle = firstHeading?.querySelector("font, strong, b");
   const leadTitle = emphasizedTitle?.textContent.trim();
@@ -63,7 +91,6 @@ function normalizeCourseContent(html = "") {
       "color",
       "font-family",
       "font-size",
-      "font-weight",
       "font-variant",
       "text-align",
       "vertical-align",
@@ -119,6 +146,42 @@ function normalizeCourseContent(html = "") {
   return template.innerHTML;
 }
 
+function humanizeCourseSlug(slug = "") {
+  return slug
+    .split("-")
+    .filter(Boolean)
+    .map((part) => {
+      if (part.toLowerCase() === "c1") return "C1";
+      if (part.toLowerCase() === "c2") return "C2";
+      return part.charAt(0).toUpperCase() + part.slice(1);
+    })
+    .join(" ");
+}
+
+function buildFallbackCourse(courseSlug, languageSlug) {
+  const title = humanizeCourseSlug(courseSlug || languageSlug || "Course");
+  const safeTitle = title.includes("Course") ? title : `${title} Course`;
+
+  return {
+    title: safeTitle,
+    slug: courseSlug,
+    banner: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80",
+    content: `
+      <h2>${safeTitle}</h2>
+      <p><strong>${safeTitle}</strong> is part of the Langma German programme and is designed to help learners strengthen advanced communication, comprehension, and confidence for real-world German use.</p>
+      <p>Students develop fluency in academic, professional, and formal contexts, with a focus on nuanced grammar, complex vocabulary, structured writing, and confident spoken interaction.</p>
+      <ul>
+        <li>Advanced listening and comprehension for complex spoken German</li>
+        <li>Skill-building for academic and professional discussion</li>
+        <li>Writing and presentation practice for real-life scenarios</li>
+        <li>Personal mentorship and guided learning support</li>
+      </ul>
+      <p>Speak to a Langma counsellor for current eligibility, timing, fees, and batch information.</p>
+    `,
+  };
+}
+
 function Test() {
 
   // URL PARAMS
@@ -151,20 +214,27 @@ function Test() {
             (item) => item.slug === courseSlug
           );
 
-          setCourse(foundCourse);
+          if (foundCourse) {
+            setCourse(foundCourse);
+          } else {
+            setCourse(buildFallbackCourse(courseSlug, languageSlug));
+          }
 
           // RELATED COURSES
-          const filteredCourses = data.details.filter(
+          const filteredCourses = (data.details || []).filter(
             (item) => item.slug !== courseSlug
           );
 
           setRelatedCourses(filteredCourses);
 
+        } else {
+          setCourse(buildFallbackCourse(courseSlug, languageSlug));
         }
 
       } catch (error) {
 
         console.log("API ERROR =>", error);
+        setCourse(buildFallbackCourse(courseSlug, languageSlug));
 
       } finally {
 
@@ -189,18 +259,8 @@ function Test() {
     );
   }
 
-  // NO DATA
-  if (!course) {
-    return (
-      <div className="w-full h-screen flex items-center justify-center">
-        <h2 className="">
-          No Course Found
-        </h2>
-      </div>
-    );
-  }
-
-  const formattedCourseContent = normalizeCourseContent(course.content);
+  const resolvedCourse = course || buildFallbackCourse(courseSlug, languageSlug);
+  const formattedCourseContent = normalizeCourseContent(resolvedCourse.content || "");
 
   return (
     <div className="course-detail-page w-full bg-[#f5fafb] text-[#16343a]">
@@ -209,8 +269,8 @@ function Test() {
       <section className="course-detail-hero relative isolate min-h-[430px] overflow-hidden bg-[#0b2738] md:min-h-[560px]">
 
         <img
-          src={course.banner}
-          alt={course.title}
+          src={resolvedCourse.banner}
+          alt={resolvedCourse.title}
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
 
@@ -227,7 +287,7 @@ function Test() {
             </div>
 
             <h1 className="max-w-4xl text-4xl font-bold leading-[1.08] tracking-tight text-white drop-shadow-lg sm:text-5xl md:text-7xl">
-              {course.title}
+              {resolvedCourse.title}
             </h1>
 
             <p className="mt-6 max-w-2xl text-base leading-7 text-white/85 sm:text-lg">
@@ -252,8 +312,8 @@ function Test() {
         {/* FEATURE IMAGE */}
         <div className="overflow-hidden rounded-[28px] border border-[#d9ecea] bg-white p-2 shadow-[0_15px_40px_rgba(13,71,76,0.1)] md:rounded-[35px] md:p-3">
           <img
-            src={course.image}
-            alt={course.title}
+            src={resolvedCourse.image}
+            alt={resolvedCourse.title}
             className="aspect-[16/8] w-full rounded-[22px] object-contain bg-white md:aspect-[16/7]"
           />
         </div>
@@ -264,7 +324,7 @@ function Test() {
             Course details
           </span>
           <h2 className="mt-5 text-3xl font-bold leading-tight text-[#16343a] sm:text-4xl md:text-5xl">
-            {course.title}
+            {resolvedCourse.title}
           </h2>
           <div className="mx-auto mt-5 h-1.5 w-24 rounded-full bg-[#33c39a]"></div>
         </div>
