@@ -25,10 +25,14 @@ function buildEntry(languageName, titleLine1, titleLine2, description, trustPoin
 export const LANGUAGE_HERO_CONTENT = {
   arabic: buildEntry(
     "Arabic",
-    "Master Arabic.",
-    "Speak the Language of Global Business.",
-    "Arabic opens doors across trade, diplomacy, and media spanning the Gulf to North Africa. Certified trainers guide professionals and students toward real fluency for business, embassy pathways, and everyday confidence — blending Modern Standard Arabic with practical spoken dialects.",
-    "CEFR Pathway"
+    "Learn Arabic",
+    "and Connect with a Wider World",
+    "Arabic opens the door to a vast world of communication, literature, history, culture, and contemporary life. It's spoken from North Africa across the Arabian Peninsula and the Gulf, making it useful for international communication, travel, education, research, and more.
+
+At Langma International, you can learn Arabic step by step. You'll build up a basic grounding in the language and see how it's used in formal writing, in the media, and in everyday conversation. The script will feel a bit alien at first, but with a clear, structured approach, it becomes much easier and more satisfying to learn.
+
+Whether you're a complete novice or learning Arabic for personal, academic, or professional reasons, start by understanding the different forms of the language and choosing the one that's right for you.`,
+    "CEFR Pathway",
   ),
   armenian: buildEntry(
     "Armenian",
