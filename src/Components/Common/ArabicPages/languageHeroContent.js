@@ -116,7 +116,7 @@ Whether you're a complete novice or learning Arabic for personal, academic, or p
   indonesian: buildEntry(
     "Indonesian",
     "Learn Indonesian.",
-    "Speak the Language of Southeast Asia's Giant.",
+    "The Language and Legacy of Indonesia",
     "Bahasa Indonesia connects one of the world's largest economies and most populous nations. Practical fluency for corporate relocation, trade partnerships, and everyday confidence across Indonesia's islands.",
     "CEFR Pathway"
   ),
