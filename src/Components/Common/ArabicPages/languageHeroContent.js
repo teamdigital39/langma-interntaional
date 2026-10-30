@@ -120,7 +120,7 @@ Whether you're a complete novice or learning Arabic for personal, academic, or p
 `Indonesia is highly linguistically and culturally diverse. Many regional languages are spoken across the islands, with Bahasa Indonesia (Indonesian) as the national language and the common language of communication.
 Indonesian (essentially Malay, with influences from other languages over the centuries) is the language of education, government, the media, business, and everyday life. It's the language of Indonesia, so anyone interested in Indonesia, Indonesian society, or Indonesia's increasingly international profile will want to learn it.
 At Langma International, learning Indonesian is about going beyond just memorisation. It's about gaining real insight into Indonesian society, communicating with greater confidence, and engaging with the culture.
-`
+`,
     "CEFR Pathway"
   ),
   italian: buildEntry(
