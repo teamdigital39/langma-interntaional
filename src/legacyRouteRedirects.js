@@ -1,4 +1,7 @@
 const routes = `
+/foreign-language-courses-in-nepal /languages
+/foreign-language-courses-in-bangladesh /languages
+/fidescu-examination-centre-for-spanish /course-details/online-spanish-language-courses/dele-and-siele-spanish-exam-preparation-course
 /blog/foreign-language-courses:-scope-and-opportunities-in-india /blog-detail/foreign-language-courses:-scope-and-opportunities-in-india
 /177/assamese-language-course /course-details/best-institute-for-regional-languages/assamese-language-course
 /144/learn-mongolian-at-langma-language-program /course-details/online-mongolian-classes/learn-mongolian-at-langma-language-program
@@ -14,6 +17,18 @@ const routes = `
 /chinese-proficiency-test /course-details/online-chinese-language-course/hsk-chinese-proficiency-test
 /study-international /study-abroad
 /171/bengali-language-course /course-details/best-institute-for-regional-languages/bengali-language-course
+/ecl /languages
+/our-staff /about
+/foreign-language-courses-in-sri-lanka /languages
+/foreign-language-courses-in-fujairah /languages
+/newuilangma/blog-detail/langma-international:-mehr-als-eine-sprache,-es-ist-eine-neue-perspektive /blog-detail/langma-international:-mehr-als-eine-sprache,-es-ist-eine-neue-perspektive
+/management-france /study-abroad
+/switzerland /switzerland-residency
+/spain /spain-nlv
+/uae /unitedarab
+/german-guide /online-german-language-course
+/portuguese-language-course /online-portuguese-classes
+/multicultural-marketing /multilanguage
 /94/portuguese-language-course-for-healthcare-providers /course-details/online-portuguese-classes/portuguese-language-course-for-healthcare-providers
 /206/polish-for-attache /course-details/polish-language-course/polish-for-attache
 /39/learn-balkan-languages /course-details/online-balkan-languages/learn-balkan-languages
