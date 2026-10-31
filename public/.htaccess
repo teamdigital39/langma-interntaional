@@ -11,6 +11,10 @@ RewriteRule ^ https://www.langmainternational.com%{REQUEST_URI} [R=301,L,NE]
 # Keep common index-file variants from becoming separate accessible URLs.
 RewriteRule ^(?:index|home)\.(?:html?|php)$ / [R=301,L,NE]
 
+# Remove the obsolete PHP front-controller segment from legacy public URLs.
+RewriteRule ^public/index\.php/sitemap\.xml/?$ /sitemap.xml [R=301,L,NE]
+RewriteRule ^public/index\.php(?:/(.*))?$ /public/$1 [R=301,L,NE]
+
 # Redirect legacy main-site URLs to their current equivalent pages.
 # Frontend legacy route mappings, served as direct HTTP redirects.
 RewriteRule ^blog/foreign-language-courses:-scope-and-opportunities-in-india/?$ /blog-detail/foreign-language-courses:-scope-and-opportunities-in-india/ [R=301,L,NE]
