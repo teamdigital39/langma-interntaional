@@ -10,8 +10,13 @@ const routes = `
 /spanish+language+institute /online-spanish-language-courses
 /english-speaking-course /online-english-language-course
 /test.aspx /assessment
+/japanese+language+course /japanese-language-course
+/burmese+language+course /online-burmese-language-course
 /9-fun-ways-to-improve-your-english-speaking-skills /blog-detail/6-fun-ways-to-improve-your-english-speaking-skills
 /blog/9-fun-ways-to-improve-your-english-speaking-skills /blog-detail/6-fun-ways-to-improve-your-english-speaking-skills
+/blog/ವಿದೇಶಿ-ಭಾಷೆಗಳ-ವ್ಯಾಪ್ತಿ /blog-detail/ವಿದೇಶಿ-ಭಾಷೆಗಳ-ವ್ಯಾಪ್ತಿ
+/blog/한국어의-밤위 /blog-detail/한국어의-밤위
+/blog/லாங்மா-இன்டர்நேஷனல்ஃ-மொழி-மற்றும்-கலாச்சாரத்தின்-மூலம்-உலகளாவிய-குடிமக்களை-வடிவமைத்தல் /blog-detail/லாங்மா-இன்டர்நேஷனல்ஃ-மொழி-மற்றும்-கலாச்சாரத்தின்-மூலம்-உலகளாவிய-குடிமக்களை-வடிவமைத்தல்
 /blog/രണ്ടാംഭാഷപഠിക്കുന്നതിന്റെപ്രാധാന്യം /blog-detail/രണ്ടാംഭാഷപഠിക്കുന്നതിന്റെപ്രാധാന്യം
 /blog/제2외국어학습의중요성 /blog-detail/제2외국어학습의중요성
 /blog/alcance-de-las-lenguas-extranjeras /blog-detail/alcance-de-las-lenguas-extranjeras
