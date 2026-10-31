@@ -123,6 +123,8 @@ const LearnJapaneseLanguage = lazy(() => import("./Pages/HomePages/LearnJapanese
 const LangmaFrenchCourse = lazy(() => import("./Pages/HomePages/LangmaFrenchCourse"));
 const LangmaChineseCourse = lazy(() => import("./Pages/HomePages/LangmaChineseCourse"));
 const NewLanguageLanding = lazy(() => import("./Pages/HomePages/NewLanguageLanding"));
+const ForeignLanguageCoursesInNepal = lazy(() => import("./Pages/HomePages/ForeignLanguageCoursesInNepal"));
+const ECLPage = lazy(() => import("./Pages/HomePages/ECLPage"));
 
 const TranslationServices = lazy(() => import("./Pages/HomePages/TranslationServices"));
 const HomeLangma = lazy(() => import("./Pages/HomePages/Homepage"));
@@ -541,6 +543,11 @@ function App() {
           <Route path="/chinese-language-course" element={<NewLanguageLanding language="Chinese" />} />
 
           <Route path="/translation-services" element={<TranslationServices />} />
+          <Route path="/ecl" element={<ECLPage />} />
+          <Route
+            path="/foreign-language-courses-in-nepal"
+            element={<ForeignLanguageCoursesInNepal />}
+          />
           <Route path="/:slug" element={<Arabic/>} />
           <Route path="/golden-visa-assessment" element={<GoldenVisaAssessment/>} />
         <Route path="/thank-you" element={<Thankyou />} />
