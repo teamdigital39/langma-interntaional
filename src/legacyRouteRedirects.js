@@ -1,5 +1,27 @@
 const routes = `
 /foreign-language-courses-in-bangladesh /languages
+/courses.aspx /languages
+/toefl.aspx /online-english-language-course
+/english-language /online-english-language-course
+/chinese-language /online-chinese-language-course
+/online-french- /online-french-language-course
+/online-spanish- /online-spanish-language-courses
+/online+dutch+course /dutch-language-course
+/spanish+language+institute /online-spanish-language-courses
+/english-speaking-course /online-english-language-course
+/test.aspx /assessment
+/japanese.aspx /online-japanese-language-course
+/german.aspx /online-german-language-course
+/ielts.aspx /online-english-language-course
+/130/bct-business-chinese-proficiency-test /course-details/online-chinese-language-course/bct-business-chinese-proficiency-test
+/131/ctc-certified-chinese-teacher /course-details/online-chinese-language-course/ctc-certified-chinese-teacher
+/97/portuguese-language-summer-programme /course-details/online-portuguese-classes/portuguese-language-summer-programme
+/163/learn-swahili-at-langma /course-details/swahili-language-courses/learn-swahili-language
+/226/vietnamese-for-kids-language-program /course-details/vietnamese-language-courses/vietnamese-for-kids-language-program
+/237/french-exam-delf-dalf /course-details/online-french-language-course/french-exam-delf-dalf
+/239/french-exam-tcf /course-details/online-french-language-course/french-exam-tcf
+/232/french-a2-level /course-details/online-french-language-course/french-a2-level
+/72/teaching-hindi-as-a-foreign-language /course-details/hindi-language-classes/teaching-hindi-as-a-foreign-language
 /fidescu-examination-centre-for-spanish /course-details/online-spanish-language-courses/dele-and-siele-spanish-exam-preparation-course
 /blog/foreign-language-courses:-scope-and-opportunities-in-india /blog-detail/foreign-language-courses:-scope-and-opportunities-in-india
 /177/assamese-language-course /course-details/best-institute-for-regional-languages/assamese-language-course
@@ -137,3 +159,60 @@ const routes = `
 export const LEGACY_ROUTE_REDIRECTS = Object.freeze(
   Object.fromEntries(routes.split("\n").map((route) => route.split(" ")))
 );
+
+export const LEGACY_PUBLIC_ROUTES = Object.freeze([
+  "/our-staff",
+  "/227/vietnamese-language-proficiency-test-language-program",
+  "/",
+  "/blog/രണ്ടാംഭാഷപഠിക്കുന്നതിന്റെപ്രാധാന്യം",
+  "/82/spanish-for-attache",
+  "/125/indonesian-for-attache",
+  "/159/learn-sinhala-at-langma",
+  "/blog/scope-of-spanish-language-in-india",
+  "/112/italian-for-attache",
+  "/blog/l’histoire-de-la-langue-allemande",
+  "/index.php/blog/comprendre-l'importance-de-la-langue-hindi-:-un-pont-pour-relier",
+  "/blog/the-scope-of-french-language-in-the-world",
+  "/index.php/blog/los-beneficios-del-bilinguismo",
+  "/86/spanish-language-course-for-professionals",
+  "/176/oriya-language-programme-language-program",
+  "/129/hsk-chinese-proficiency-test",
+  "/127/chinese-bridge-contest",
+  "/131/ctc-certified-chinese-teacher",
+  "/118/caple-exam-preparation",
+  "/index.php/blog/beneficiile-bilingvismului",
+  "/163/learn-swahili-at-langma",
+  "/blog/comprendre-l'importance-de-la-langue-hindi-:-un-pont-pour-relier",
+  "/226/vietnamese-for-kids-language-program",
+  "/index.php/sitemap.xml",
+  "/index.php/97/portuguese-language-summer-programme",
+  "/index.php/130/bct-business-chinese-proficiency-test",
+  "/online-italian-language-course",
+  "/72/teaching-hindi-as-a-foreign-language",
+  "/arabic-language-online-course",
+  "/online-korean-language-courses",
+  "/index.php/dubbing",
+  "/239/french-exam-tcf",
+  "/index.php/blog/die-vorteile-der-zweisprachigkeit",
+  "/sinhala-language-course",
+  "/online-burmese-language-course",
+  "/best-nordic-languages-course",
+  "/best-institute-for-regional-languages",
+  "/dari-pashto-language-online-course",
+  "/online-russian-language-course",
+  "/237/french-exam-delf-dalf",
+  "/65/french-course-for-hospitality",
+  "/232/french-a2-level",
+  "/151/learn-thai-at-langma",
+  "/202/learn-pashto-language",
+  "/online-german-language-course",
+  "/online-japanese-language-course",
+  "/armenia-language-program",
+  "/index.php/armenia-language-program",
+  "/blog/alcance-de-las-lenguas-extranjeras",
+  "/hebrew-language-course",
+  "/gallery",
+  "/indonesian-language-course",
+  "/180/kashmiri-language-course",
+  "/171/bengali-language-course",
+]);
