@@ -153,6 +153,31 @@ function LegacyRouteRedirect({ to }) {
   );
 }
 
+function LegacyPublicRedirect() {
+  const location = useLocation();
+  const legacyPath = location.pathname.replace(/^\/public(?=\/|$)/, "") || "/";
+  const normalizedPath = legacyPath.replace(/^\/index\.php(?=\/|$)/, "") || "/";
+  const isSitemap = normalizedPath === "/sitemap.xml";
+  const to = LEGACY_ROUTE_REDIRECTS[normalizedPath] || normalizedPath;
+
+  useEffect(() => {
+    if (isSitemap) {
+      window.location.replace("/sitemap.xml");
+    }
+  }, [isSitemap]);
+
+  if (isSitemap) {
+    return null;
+  }
+
+  return (
+    <Navigate
+      to={{ pathname: to, search: location.search, hash: location.hash }}
+      replace
+    />
+  );
+}
+
 function FAQPage() {
   return (
     <main className="min-h-screen bg-white">
@@ -402,6 +427,8 @@ function App() {
 
       <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center" role="status">Loading page…</div>}>
         <Routes>
+          <Route path="/public" element={<LegacyPublicRedirect />} />
+          <Route path="/public/*" element={<LegacyPublicRedirect />} />
           {Object.entries(LEGACY_ROUTE_REDIRECTS).map(([from, to]) => (
             <Route
               key={from}
