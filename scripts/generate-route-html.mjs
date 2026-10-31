@@ -15,10 +15,7 @@ import {
   GTM_ID,
   STANDALONE_LANDING_ROUTES,
 } from "../src/standaloneLandingRoutes.js";
-import {
-  LEGACY_PUBLIC_ROUTES,
-  LEGACY_ROUTE_REDIRECTS,
-} from "../src/legacyRouteRedirects.js";
+import { LEGACY_ROUTE_REDIRECTS } from "../src/legacyRouteRedirects.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
@@ -40,19 +37,6 @@ const sitemapUrls = [...sitemap.matchAll(/<loc>\s*([^<]+?)\s*<\/loc>/g)].map((ma
 );
 const ROUTE_ALIASES = {
   ...LEGACY_ROUTE_REDIRECTS,
-  ...Object.fromEntries(
-    LEGACY_PUBLIC_ROUTES.map((legacyPath) => {
-      const pathWithoutIndex = legacyPath.replace(/^\/index\.php(?=\/|$)/, "") || "/";
-      if (pathWithoutIndex === "/sitemap.xml") {
-        return null;
-      }
-      const normalizedPath = pathWithoutIndex.startsWith("/blog/")
-        ? `/blog-detail/${pathWithoutIndex.slice("/blog/".length)}`
-        : pathWithoutIndex;
-      const route = pathWithoutIndex === "/" ? "/public" : `/public${pathWithoutIndex}`;
-      return [route, LEGACY_ROUTE_REDIRECTS[normalizedPath] || normalizedPath];
-    }).filter(Boolean)
-  ),
   "/netherland": "/netherlands",
   "/gallery": "/success-stories",
   "/blog/learn-japanese-language-for-study-abroad-and-ssw-jobs-in-japan-with-langma-international":
