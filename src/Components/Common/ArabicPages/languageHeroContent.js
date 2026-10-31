@@ -244,10 +244,13 @@ At Langma International, learning Indonesian is about going beyond just memorisa
   ),
   dutch: buildEntry(
     "Dutch",
-    "Master Dutch.",
-    "Connect with the Netherlands.",
-    "Learn Dutch through immersive, CEFR-aligned training delivered by experienced language professionals. Whether you're preparing for career opportunities, higher education, business communication, migration, or everyday conversations, Langma International helps you build practical fluency with confidence.",
-    "CEFR A1–C2 Pathway"
+    "What Is the Dutch Language?",
+    "A Beginner's Guide",
+    `Dutch is a West Germanic language, closely related to English and German, so you may recognize some vocabulary and patterns. It has its own grammar, pronunciation, and expressions, too. With guided practice, listening, and conversation, beginners can steadily build confidence.
+
+Dutch is the first language of over 25 million people and is widely used in education, work, and daily life. It is an official language of the Netherlands, Flanders (the Dutch-speaking region of Belgium), Suriname, and several Caribbean territories in the Kingdom of the Netherlands, including Aruba, Curaçao, and Sint Maarten.`,
+    "CEFR A1–C2 Pathway",
+    "What Is the Dutch Language? A Beginner's Guide"
   ),
 };
 
