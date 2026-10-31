@@ -16,7 +16,7 @@ const routes = `
 /130/bct-business-chinese-proficiency-test /course-details/online-chinese-language-course/bct-business-chinese-proficiency-test
 /131/ctc-certified-chinese-teacher /course-details/online-chinese-language-course/ctc-certified-chinese-teacher
 /97/portuguese-language-summer-programme /course-details/online-portuguese-classes/portuguese-language-summer-programme
-/163/learn-swahili-at-langma /course-details/swahili-language-courses/learn-swahili-language
+/163/learn-swahili-at-langma /course-details/swahili-language-courses/learn-swahili-at-langma
 /226/vietnamese-for-kids-language-program /course-details/vietnamese-language-courses/vietnamese-for-kids-language-program
 /237/french-exam-delf-dalf /course-details/online-french-language-course/french-exam-delf-dalf
 /239/french-exam-tcf /course-details/online-french-language-course/french-exam-tcf
@@ -135,6 +135,7 @@ const routes = `
 /burmese /online-burmese-language-course
 /korean-language /online-korean-language-courses
 /64/french-language-course-for-kids /course-details/online-french-language-course/french-language-course-for-kids
+/65/french-course-for-hospitality /course-details/online-french-language-course/french-course-for-hospitality
 /188/korean-course-for-hospitality /course-details/online-korean-language-courses/korean-course-for-hospitality
 /159/learn-sinhala-at-langma /course-details/sinhala-language-course/learn-sinhala-at-langma
 /blog/langma-international:-mehr-als-eine-sprache,-es-ist-eine-neue-perspektive /blog-detail/langma-international:-mehr-als-eine-sprache,-es-ist-eine-neue-perspektive
