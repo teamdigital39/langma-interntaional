@@ -65,6 +65,7 @@ const ADDITIONAL_APP_ROUTES = [
   "/study-in-singapore",
   "/study-in-cyprus",
   "/study-in-mauritius",
+  "/blog-detail/learn-german-language:-the-complete-guide-to-choosing-a-german-language-course",
   "/hungary-golden-visa",
   "/portugal-golden-visa",
   "/australia",
