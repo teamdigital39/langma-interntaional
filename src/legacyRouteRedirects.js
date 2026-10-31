@@ -1,5 +1,4 @@
 const routes = `
-/foreign-language-courses-in-nepal /languages
 /foreign-language-courses-in-bangladesh /languages
 /fidescu-examination-centre-for-spanish /course-details/online-spanish-language-courses/dele-and-siele-spanish-exam-preparation-course
 /blog/foreign-language-courses:-scope-and-opportunities-in-india /blog-detail/foreign-language-courses:-scope-and-opportunities-in-india
@@ -17,7 +16,6 @@ const routes = `
 /chinese-proficiency-test /course-details/online-chinese-language-course/hsk-chinese-proficiency-test
 /study-international /study-abroad
 /171/bengali-language-course /course-details/best-institute-for-regional-languages/bengali-language-course
-/ecl /languages
 /our-staff /about
 /foreign-language-courses-in-sri-lanka /languages
 /foreign-language-courses-in-fujairah /languages
