@@ -24,7 +24,6 @@ function buildEntry(languageName, titleLine1, titleLine2, description, trustPoin
 
 export const LANGUAGE_HERO_CONTENT = {
   arabic: buildEntry(
-    "Arabic",
     "Learn Arabic and Connect with a Wider World",
         "Learn Arabic and Connect with a Wider World",
 
