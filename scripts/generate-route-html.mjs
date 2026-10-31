@@ -43,12 +43,15 @@ const ROUTE_ALIASES = {
   ...Object.fromEntries(
     LEGACY_PUBLIC_ROUTES.map((legacyPath) => {
       const pathWithoutIndex = legacyPath.replace(/^\/index\.php(?=\/|$)/, "") || "/";
+      if (pathWithoutIndex === "/sitemap.xml") {
+        return null;
+      }
       const normalizedPath = pathWithoutIndex.startsWith("/blog/")
         ? `/blog-detail/${pathWithoutIndex.slice("/blog/".length)}`
         : pathWithoutIndex;
-      const route = legacyPath === "/" ? "/public" : `/public${legacyPath}`;
+      const route = pathWithoutIndex === "/" ? "/public" : `/public${pathWithoutIndex}`;
       return [route, LEGACY_ROUTE_REDIRECTS[normalizedPath] || normalizedPath];
-    })
+    }).filter(Boolean)
   ),
   "/netherland": "/netherlands",
   "/gallery": "/success-stories",
