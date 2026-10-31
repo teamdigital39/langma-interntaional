@@ -11,12 +11,27 @@ RewriteRule ^ https://www.langmainternational.com%{REQUEST_URI} [R=301,L,NE]
 # Keep common index-file variants from becoming separate accessible URLs.
 RewriteRule ^(?:index|home)\.(?:html?|php)$ / [R=301,L,NE]
 
-# Remove the obsolete PHP front-controller segment from legacy public URLs.
+# Redirect old backend-public URLs to the matching frontend path before SPA fallback.
+RewriteRule ^public/?$ / [R=301,L,NE]
 RewriteRule ^public/index\.php/sitemap\.xml/?$ /sitemap.xml [R=301,L,NE]
-RewriteRule ^public/index\.php(?:/(.*))?$ /public/$1 [R=301,L,NE]
+RewriteRule ^public/index\.php/?$ / [R=301,L,NE]
+RewriteRule ^public/index\.php/(.*)$ /$1 [R=301,L,NE]
+RewriteRule ^public/(.*)$ /$1 [R=301,L,NE]
 
 # Redirect legacy main-site URLs to their current equivalent pages.
 # Frontend legacy route mappings, served as direct HTTP redirects.
+RewriteRule ^our-staff/?$ /about/ [R=301,L,NE]
+RewriteRule ^courses\.aspx/?$ /languages/ [R=301,L,NE]
+RewriteRule ^130/bct-business-chinese-proficiency-test/?$ /course-details/online-chinese-language-course/bct-business-chinese-proficiency-test/ [R=301,L,NE]
+RewriteRule ^131/ctc-certified-chinese-teacher/?$ /course-details/online-chinese-language-course/ctc-certified-chinese-teacher/ [R=301,L,NE]
+RewriteRule ^163/learn-swahili-at-langma/?$ /course-details/swahili-language-courses/learn-swahili-at-langma/ [R=301,L,NE]
+RewriteRule ^226/vietnamese-for-kids-language-program/?$ /course-details/vietnamese-language-courses/vietnamese-for-kids-language-program/ [R=301,L,NE]
+RewriteRule ^97/portuguese-language-summer-programme/?$ /course-details/online-portuguese-classes/portuguese-language-summer-programme/ [R=301,L,NE]
+RewriteRule ^237/french-exam-delf-dalf/?$ /course-details/online-french-language-course/french-exam-delf-dalf/ [R=301,L,NE]
+RewriteRule ^239/french-exam-tcf/?$ /course-details/online-french-language-course/french-exam-tcf/ [R=301,L,NE]
+RewriteRule ^232/french-a2-level/?$ /course-details/online-french-language-course/french-a2-level/ [R=301,L,NE]
+RewriteRule ^72/teaching-hindi-as-a-foreign-language/?$ /course-details/hindi-language-classes/teaching-hindi-as-a-foreign-language/ [R=301,L,NE]
+RewriteRule ^65/french-course-for-hospitality/?$ /course-details/online-french-language-course/french-course-for-hospitality/ [R=301,L,NE]
 RewriteRule ^blog/foreign-language-courses:-scope-and-opportunities-in-india/?$ /blog-detail/foreign-language-courses:-scope-and-opportunities-in-india/ [R=301,L,NE]
 RewriteRule ^177/assamese-language-course/?$ /course-details/best-institute-for-regional-languages/assamese-language-course/ [R=301,L,NE]
 RewriteRule ^144/learn-mongolian-at-langma-language-program/?$ /course-details/online-mongolian-classes/learn-mongolian-at-langma-language-program/ [R=301,L,NE]
@@ -137,7 +152,6 @@ RewriteRule ^9/english-for-academics-language-program/?$ /online-english-languag
 RewriteRule ^22/nordic-languages-for-professionals/?$ /course-details/best-nordic-languages-course/general-nordic-languages/ [R=301,L,NE]
 RewriteRule ^127/general-mandarin-language-course/?$ /online-chinese-language-course/ [R=301,L,NE]
 RewriteRule ^51/summer-programme-for--japanese/?$ /course-details/online-japanese-language-course/summer-programme-for-japanese/ [R=301,L,NE]
-RewriteRule ^public/227/vietnamese-language-proficiency-test-language-program/?$ /vietnamese-language-courses/ [R=301,L,NE]
 RewriteRule ^online\+urdu\+language\+course/?$ /online-urdu-language-course/ [R=301,L,NE]
 RewriteRule ^online-italian-lang/?$ /online-italian-language-course/ [R=301,L,NE]
 RewriteRule ^japanese-language-language-program/?$ /online-japanese-language-course/ [R=301,L,NE]
