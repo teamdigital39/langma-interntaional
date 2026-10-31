@@ -25,7 +25,7 @@ function buildEntry(languageName, titleLine1, titleLine2, description, trustPoin
 export const LANGUAGE_HERO_CONTENT = {
   arabic: buildEntry(
     "Arabic",
-    "Learn Arabic.",
+    "Learn Arabic",
     "and Connect with a Wider World",
     `Arabic opens the door to a vast world of communication, literature, history, culture, and contemporary life. It's spoken from North Africa across the Arabian Peninsula and the Gulf, making it useful for international communication, travel, education, research, and more.
 
