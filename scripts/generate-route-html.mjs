@@ -51,6 +51,7 @@ const ADDITIONAL_SITEMAP_ROUTES = [
   "/foreign-language-courses-in-nepal",
   "/about",
   "/faqs",
+  "/explore-the-world-of-bahasa-indonesia-with-langma-international",
   "/refund-policy",
   "/disclaimer",
   "/our-vision",
