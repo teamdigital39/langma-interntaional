@@ -12,6 +12,7 @@ const routes = `
 /test.aspx /assessment
 /9-fun-ways-to-improve-your-english-speaking-skills /blog-detail/6-fun-ways-to-improve-your-english-speaking-skills
 /blog/9-fun-ways-to-improve-your-english-speaking-skills /blog-detail/6-fun-ways-to-improve-your-english-speaking-skills
+/blog/രണ്ടാംഭാഷപഠിക്കുന്നതിന്റെപ്രാധാന്യം /blog-detail/രണ്ടാംഭാഷപഠിക്കുന്നതിന്റെപ്രാധാന്യം
 /blog/제2외국어학습의중요성 /blog-detail/제2외국어학습의중요성
 /blog/alcance-de-las-lenguas-extranjeras /blog-detail/alcance-de-las-lenguas-extranjeras
 /blog/die-vorteile-der-zweisprachigkeit /blog-detail/die-vorteile-der-zweisprachigkeit
