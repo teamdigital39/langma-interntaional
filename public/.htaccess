@@ -36,6 +36,7 @@ RewriteRule ^blog/the-scope-of-french-language-in-the-world/?$ /blog-detail/the-
 RewriteRule ^blog/l’histoire-de-la-langue-allemande/?$ /blog-detail/l’histoire-de-la-langue-allemande/ [R=301,L,NE]
 RewriteRule ^blog/scope-of-spanish-language-in-india/?$ /blog-detail/scope-of-spanish-language-in-india/ [R=301,L,NE]
 RewriteRule ^our-staff/?$ /about/ [R=301,L,NE]
+RewriteRule ^foreign-language-courses-in-sri-lanka/?$ /sinhala-language-course/ [R=301,L,NE]
 RewriteRule ^courses\.aspx/?$ /languages/ [R=301,L,NE]
 RewriteRule ^130/bct-business-chinese-proficiency-test/?$ /course-details/online-chinese-language-course/bct-business-chinese-proficiency-test/ [R=301,L,NE]
 RewriteRule ^131/ctc-certified-chinese-teacher/?$ /course-details/online-chinese-language-course/ctc-certified-chinese-teacher/ [R=301,L,NE]
