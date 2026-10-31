@@ -47,6 +47,8 @@ const ROUTE_ALIASES = {
 const NON_SITEMAP_ROUTES = ["/thank-you"];
 const ADDITIONAL_SITEMAP_ROUTES = [
   "/apply-now",
+  "/ecl",
+  "/foreign-language-courses-in-nepal",
   "/about",
   "/faqs",
   "/refund-policy",
@@ -55,6 +57,8 @@ const ADDITIONAL_SITEMAP_ROUTES = [
   "/what-we-get",
 ];
 const ADDITIONAL_APP_ROUTES = [
+  "/ecl",
+  "/foreign-language-courses-in-nepal",
   "/italy-golden-visa",
   "/spain-nlv",
   "/georgia",
