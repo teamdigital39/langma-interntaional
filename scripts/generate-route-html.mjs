@@ -63,6 +63,8 @@ const ADDITIONAL_APP_ROUTES = [
   "/south-korea",
   "/dubai",
   "/study-in-singapore",
+  "/study-in-cyprus",
+  "/study-in-mauritius",
   "/hungary-golden-visa",
   "/portugal-golden-visa",
   "/australia",
