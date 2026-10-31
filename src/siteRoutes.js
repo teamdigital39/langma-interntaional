@@ -85,7 +85,7 @@ export const APP_STATIC_ROUTES = [
   "/languages",
   "/ecl",
   "/foreign-language-courses-in-nepal",
-  "/netherland",
+  "/netherlands",
   "/south-korea",
   "/malta",
   "/study-in-mauritius",
