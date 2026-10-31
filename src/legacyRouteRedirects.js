@@ -10,6 +10,17 @@ const routes = `
 /spanish+language+institute /online-spanish-language-courses
 /english-speaking-course /online-english-language-course
 /test.aspx /assessment
+/9-fun-ways-to-improve-your-english-speaking-skills /blog-detail/6-fun-ways-to-improve-your-english-speaking-skills
+/blog/9-fun-ways-to-improve-your-english-speaking-skills /blog-detail/6-fun-ways-to-improve-your-english-speaking-skills
+/blog/제2외국어학습의중요성 /blog-detail/제2외국어학습의중요성
+/blog/alcance-de-las-lenguas-extranjeras /blog-detail/alcance-de-las-lenguas-extranjeras
+/blog/die-vorteile-der-zweisprachigkeit /blog-detail/die-vorteile-der-zweisprachigkeit
+/blog/comprendre-l'importance-de-la-langue-hindi-:-un-pont-pour-relier /blog-detail/comprendre-l'importance-de-la-langue-hindi-:-un-pont-pour-relier
+/blog/beneficiile-bilingvismului /blog-detail/beneficiile-bilingvismului
+/blog/los-beneficios-del-bilinguismo /blog-detail/los-beneficios-del-bilinguismo
+/blog/the-scope-of-french-language-in-the-world /blog-detail/the-scope-of-french-language-in-the-world
+/blog/l’histoire-de-la-langue-allemande /blog-detail/l’histoire-de-la-langue-allemande
+/blog/scope-of-spanish-language-in-india /blog-detail/scope-of-spanish-language-in-india
 /japanese.aspx /online-japanese-language-course
 /german.aspx /online-german-language-course
 /ielts.aspx /online-english-language-course
