@@ -192,12 +192,54 @@ const STATIC_METADATA = {
       "Read verified testimonials about language learning, career preparation, and global support from Langma International.",
     h1: "Success Stories",
   },
+  "/faqs": {
+    title: "Frequently Asked Questions | Langma International",
+    description:
+      "Find answers to common questions about Langma International programmes, enrolment, payments, study formats, and certificates.",
+    h1: "Frequently Asked Questions",
+  },
+  "/refund-policy": {
+    title: "Refund Policy | Langma International",
+    description:
+      "Learn how to confirm the refund and cancellation terms that apply to your Langma International enrolment or service.",
+    h1: "Refund Policy",
+  },
+  "/disclaimer": {
+    title: "Disclaimer | Langma International",
+    description:
+      "Important information about using Langma International's website and education, career, and global-opportunity guidance.",
+    h1: "Disclaimer",
+  },
+  "/our-vision": {
+    title: "Our Vision | Langma International",
+    description:
+      "Learn about Langma International's vision to connect language learning, education, careers, and cultures.",
+    h1: "Our Vision",
+  },
+  "/what-we-get": {
+    title: "What You Get | Langma International",
+    description:
+      "Explore the language learning and international opportunity support available through Langma International.",
+    h1: "What You Get",
+  },
     "/about": {
     title: "About Langma International | Language, Study Abroad & Global Opportunities",
     description:
       "Learn about Langma International, our language training, study-abroad guidance, global mobility solutions, and international career support services.",
     h1: "About Langma International",
   },
+    "/foreign-language-courses-in-nepal": {
+      title: "Foreign Language Courses in Nepal | Online Classes | Langma",
+      description:
+        "Explore online foreign language courses for learners in Nepal. Choose from language programmes, discuss one-to-one or group class options, and learn with Langma International.",
+      h1: "Foreign Language Courses in Nepal",
+    },
+    "/ecl": {
+      title: "ECL Exam Centre in India | Levels, Format & Languages | Langma",
+      description:
+        "Learn about the ECL language examination at Langma in India: available languages, CEFR levels, four exam skills, test format, scoring, and exam periods.",
+      h1: "ECL Examination",
+    },
 };
 
 export function canonicalPath(pathname = "/") {
