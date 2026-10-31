@@ -16,6 +16,7 @@ import {
   STANDALONE_LANDING_ROUTES,
 } from "../src/standaloneLandingRoutes.js";
 import { LEGACY_ROUTE_REDIRECTS } from "../src/legacyRouteRedirects.js";
+import { APP_STATIC_ROUTES } from "../src/siteRoutes.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
@@ -233,6 +234,7 @@ function normalizedUrl(value) {
 }
 
 const routeUrls = [
+  ...APP_STATIC_ROUTES.map((route) => `${SITE_URL}${route}`),
   ...sitemapUrls,
   ...courseDetailUrls,
   ...ADDITIONAL_SITEMAP_ROUTES.map((route) => `${SITE_URL}${route}`),
