@@ -240,6 +240,12 @@ const STATIC_METADATA = {
         "Learn about the ECL language examination at Langma in India: available languages, CEFR levels, four exam skills, test format, scoring, and exam periods.",
       h1: "ECL Examination",
     },
+    "/explore-the-world-of-bahasa-indonesia-with-langma-international": {
+      title: "Explore the World of Bahasa Indonesia | Langma International",
+      description:
+        "Explore Bahasa Indonesia and discover Indonesian language learning opportunities with Langma International.",
+      h1: "Explore the World of Bahasa Indonesia",
+    },
 };
 
 export function canonicalPath(pathname = "/") {
