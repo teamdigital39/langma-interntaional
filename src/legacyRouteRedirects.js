@@ -51,7 +51,7 @@ const routes = `
 /study-international /study-abroad
 /171/bengali-language-course /course-details/best-institute-for-regional-languages/bengali-language-course
 /our-staff /about
-/foreign-language-courses-in-sri-lanka /languages
+/foreign-language-courses-in-sri-lanka /sinhala-language-course
 /foreign-language-courses-in-fujairah /languages
 /newuilangma/blog-detail/langma-international:-mehr-als-eine-sprache,-es-ist-eine-neue-perspektive /blog-detail/langma-international:-mehr-als-eine-sprache,-es-ist-eine-neue-perspektive
 /management-france /study-abroad
