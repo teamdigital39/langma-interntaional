@@ -306,7 +306,13 @@ export function fallbackMetadata(pathname = "/") {
 
 export function languagePath(pathname = "/") {
   const path = canonicalPath(pathname);
-  if (path.startsWith("/course-details/") || path.startsWith("/blog-detail/")) return null;
+  if (
+    path.startsWith("/course-details/") ||
+    path.startsWith("/blog/") ||
+    path.startsWith("/blog-detail/")
+  ) {
+    return null;
+  }
   if (STATIC_METADATA[path]) return null;
   return path.slice(1);
 }
