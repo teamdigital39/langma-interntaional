@@ -199,14 +199,20 @@ async function fetchJson(url) {
 }
 
 const languageList = await fetchJson(`${API_BASE}/api/languages`);
-if (!languageList?.status || !Array.isArray(languageList.languages)) {
-  throw new Error("Could not generate language course routes: the language list is unavailable.");
+const apiLanguages =
+  languageList?.status && Array.isArray(languageList.languages)
+    ? languageList.languages
+    : [];
+if (apiLanguages.length === 0) {
+  console.warn(
+    "Language API unavailable; generating routes from the checked-in sitemap and static route lists."
+  );
 }
 const languageSlugs = new Set(
-  (languageList?.languages || []).map((item) => item.url).filter(Boolean)
+  apiLanguages.map((item) => item.url).filter(Boolean)
 );
 const languageNames = new Map(
-  languageList.languages.filter((item) => item.url && item.title).map((item) => [item.url, item.title])
+  apiLanguages.filter((item) => item.url && item.title).map((item) => [item.url, item.title])
 );
 const languagePages = new Map();
 const courseDetailUrls = (
