@@ -40,12 +40,20 @@ const ROUTE_ALIASES = {
   ...LEGACY_ROUTE_REDIRECTS,
   "/netherland": "/netherlands",
   "/gallery": "/success-stories",
-  "/blog/learn-japanese-language-for-study-abroad-and-ssw-jobs-in-japan-with-langma-international":
-    "/blog-detail/learn-japanese-language-for-study-abroad-and-ssw-jobs-in-japan-with-langma-international",
-  "/blog/why-should-i-learn-arabic-in-india":
-    "/blog-detail/why-should-i-learn-arabic-in-india",
+  "/blog-detail/learn-spanish-language-for-study,-work-and-everyday-life-with-langma-international":
+    "/blog/scope-of-spanish-language-in-india",
+  "/blog-detail/learn-french-language-for-study,-work-and-everyday-life-with-langma-international":
+    "/blog/french-language-course-in-delhi-india",
 };
 const NON_SITEMAP_ROUTES = ["/thank-you"];
+
+function canonicalRoutePath(pathname) {
+  const route = canonicalPath(pathname);
+  const alias = ROUTE_ALIASES[route] || route;
+  return alias.startsWith("/blog-detail/")
+    ? `/blog/${alias.split("/").filter(Boolean).at(-1)}`
+    : alias;
+}
 const ADDITIONAL_SITEMAP_ROUTES = [
   "/apply-now",
   "/ecl",
@@ -230,7 +238,7 @@ function normalizedUrl(value) {
     .split("/")
     .map((segment) => decodeURIComponent(segment))
     .join("/");
-  return `${url.origin}${canonicalPath(pathname)}`;
+  return `${url.origin}${canonicalRoutePath(pathname)}`;
 }
 
 const routeUrls = [
@@ -258,12 +266,19 @@ const additionalSitemapEntries = [...new Set([
   </url>`
   )
   .join("\n");
-const generatedSitemap = sitemap.replace(
+const canonicalSitemap = sitemap.replace(
+  /<loc>\s*([^<]+?)\s*<\/loc>/g,
+  (_, value) => {
+    const url = new URL(decodeXml(value.trim()));
+    return `<loc>${escapeHtml(canonicalUrl(canonicalRoutePath(url.pathname)))}</loc>`;
+  }
+);
+const generatedSitemap = canonicalSitemap.replace(
   /<\/urlset>\s*$/,
   `${additionalSitemapEntries ? `\n${additionalSitemapEntries}\n` : ""}</urlset>\n`
 );
 
-if (generatedSitemap === sitemap && additionalSitemapEntries) {
+if (generatedSitemap === canonicalSitemap && additionalSitemapEntries) {
   throw new Error("Could not add API detail URLs to the generated sitemap.");
 }
 
@@ -276,7 +291,7 @@ async function metadataFor(pathname) {
     return fallbackMetadata(normalized);
   }
 
-  if (normalized.startsWith("/blog-detail/")) {
+  if (normalized.startsWith("/blog/") || normalized.startsWith("/blog-detail/")) {
     let slug = normalized.split("/").at(-1);
     try {
       slug = decodeURIComponent(slug);
@@ -584,7 +599,7 @@ const usedDescriptions = new Set();
 for (const rawUrl of urls) {
   const url = new URL(rawUrl);
   const routePath = canonicalPath(url.pathname);
-  const pathname = ROUTE_ALIASES[routePath] || routePath;
+  const pathname = canonicalRoutePath(routePath);
   const resolvedMetadata = await metadataFor(pathname);
   const routeMetadata = routePath === "/gallery"
     ? {
@@ -674,7 +689,10 @@ for (const rawUrl of urls) {
     .replace("<!-- SEO_ROUTE_HEAD -->", `${seoHead}\n    <!-- SEO_ROUTE_HEAD -->`)
     .replace('<div id="root"></div>', `${fallback}\n    <div id="root"></div>`);
 
-  const segments = routePath.split("/").filter(Boolean).map(decodeURIComponent);
+  const outputPath = routePath.startsWith("/blog-detail/") || routePath.startsWith("/blog/")
+    ? pathname
+    : routePath;
+  const segments = outputPath.split("/").filter(Boolean).map(decodeURIComponent);
   const target = segments.length
     ? path.join(dist, ...segments, "index.html")
     : path.join(dist, "index.html");
