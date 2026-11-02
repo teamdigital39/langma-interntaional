@@ -109,7 +109,7 @@ const BlogDetailPage = () => {
                       className="w-16 h-16 object-cover rounded-md"
                     />
                     <a
-                      href={`/blog-detail/${item.slug}`}
+                      href={`/blog/${item.slug}`}
                       className="text-sm font-medium hover:text-[#FC6441] line-clamp-2"
                     >
                       {item.title}
@@ -142,4 +142,3 @@ const BlogDetailPage = () => {
 };
 
 export default BlogDetailPage;
-
