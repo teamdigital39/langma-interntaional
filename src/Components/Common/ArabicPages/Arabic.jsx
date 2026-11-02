@@ -122,6 +122,9 @@ useEffect(() => {
 
   const contentHtml = languageData?.content || "";
   const heroContent = getLanguageHeroContent(languageData?.title, slug);
+  const heroDescription = heroContent
+    ? getHeroDescription(heroContent, languageData?.title)
+    : "";
 
   return (
     <>
@@ -148,7 +151,11 @@ useEffect(() => {
 
                 <h1 className="text-[28px] lg:text-[60px] font-bold text-[#1D1B4B] leading-tight">
                   {heroContent.titleOverride ? (
-                    heroContent.titleOverride
+                    <>
+                      {heroContent.titleOverride}
+                      <br />
+                      {heroContent.titleLine2}
+                    </>
                   ) : (
                     <>
                       {heroContent.titlePrefix} <span>{languageData?.title}</span>{heroContent.titleSuffix}
@@ -158,9 +165,14 @@ useEffect(() => {
                   )}
                 </h1>
 
-                <p className="text-[17px] text-[#4A4A4A] font-medium leading-relaxed max-w-xl">
-                  {getHeroDescription(heroContent, languageData?.title)}
-                </p>
+                {heroDescription.split(/\n\n+/).map((paragraph) => (
+                  <p
+                    key={paragraph}
+                    className="text-[17px] text-[#4A4A4A] font-medium leading-relaxed max-w-xl"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
 
                 <button
                   onClick={() => setOpen(!open)}
