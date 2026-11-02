@@ -32,7 +32,8 @@ export const LANGUAGE_HERO_CONTENT = {
 At Langma International, you can learn Arabic step by step. You'll build up a basic grounding in the language and see how it's used in formal writing, in the media, and in everyday conversation. The script may be unfamiliar at first, but with a clear, structured approach, it becomes much easier and more satisfying to learn.
 
 Whether you're a complete novice or learning Arabic for personal, academic, or professional reasons, start by understanding the different forms of the language and choosing the one that's right for you.`,
-    "CEFR Pathway"
+    "CEFR Pathway",
+    "Learn Arabic"
   ),
   armenian: buildEntry(
     "Armenian",
