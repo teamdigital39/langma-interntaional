@@ -106,6 +106,32 @@ export default function CanonicalUrl() {
           return;
         }
 
+        if (path.startsWith("/blog/")) {
+          const slug = path.split("/").filter(Boolean).at(-1);
+          if (!slug) return;
+          const response = await fetch(
+            `${API_BASE}/api/blog-detail/${encodeURIComponent(slug)}`,
+            { signal: controller.signal }
+          );
+          const result = await response.json();
+          const blog = result?.data;
+          if (blog?.title) {
+            applyMetadata(
+              {
+                title: `${blog.title} | Langma International`,
+                description:
+                  blog.description ||
+                  blog.excerpt ||
+                  `Read ${blog.title} for practical insights from Langma International.`,
+                h1: blog.title,
+                image: blog.image,
+              },
+              path
+            );
+          }
+          return;
+        }
+
         const slug = languagePath(path);
         if (!slug) return;
         const response = await fetch(
