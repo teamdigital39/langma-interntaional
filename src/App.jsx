@@ -140,7 +140,7 @@ import { LEGACY_ROUTE_REDIRECTS } from "./legacyRouteRedirects";
 
 function LegacyBlogRedirect() {
   const { slug } = useParams();
-  return <Navigate to={`/blog-detail/${encodeURIComponent(slug || "")}`} replace />;
+  return <Navigate to={`/blog/${encodeURIComponent(slug || "")}`} replace />;
 }
 
 function LegacyRouteRedirect({ to }) {
@@ -494,11 +494,11 @@ function App() {
           <Route path="/aust" element={<Australia/>} />
           <Route path="/america" element={<America/>} />
           <Route path="/blog" element={<BlogPage/>} />
-          <Route path="/blog/:slug" element={<LegacyBlogRedirect />} />
+          <Route path="/blog/:slug" element={<BlogDetailPage />} />
           <Route path="/success-stories" element={<SuccessStories />} />
           <Route path="/gallery" element={<Navigate to="/success-stories" replace />} />
           <Route path="/faqs" element={<FAQPage />} />
-          <Route path="/blog-detail/:slug" element={<BlogDetailPage />} />
+          <Route path="/blog-detail/:slug" element={<LegacyBlogRedirect />} />
           {/* <Route path="/poland" element={<Poland/>} /> */}
           <Route path="/contact" element={<ContactUs/>} />
           <Route path="/apply-now" element={<ApplyNow />} />
