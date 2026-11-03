@@ -88,7 +88,7 @@ const Chinese = () => {
             </h1>
 
             <div
-              className="text-gray-700 leading-relaxed"
+              className="dynamic-language-content text-gray-700 leading-relaxed"
               dangerouslySetInnerHTML={{
                 __html: cleanHTML(languageData?.content),
               }}
