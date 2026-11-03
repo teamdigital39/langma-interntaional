@@ -122,9 +122,11 @@ body{
 .dynamic-language-content h4,
 .dynamic-language-content h5,
 .dynamic-language-content h6 {
-  font-size: 18px !important;
-  margin-top: 0.75em !important;
-  margin-bottom: 0.35em !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: inherit !important;
+  margin-top: 0 !important;
+  margin-bottom: 0.75rem !important;
 }
 
 .dynamic-language-content p,
