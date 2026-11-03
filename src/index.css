@@ -74,6 +74,7 @@ body{
 .dynamic-language-content,
 .dynamic-language-content * {
   font-family: "Roboto", sans-serif !important;
+  color: #374151 !important;
 }
 
 .dynamic-language-content {
@@ -103,8 +104,8 @@ body{
 .dynamic-language-content h6 {
   font-family: "Roboto", sans-serif !important;
   color: #111827 !important;
-  margin-top: 1.5em !important;
-  margin-bottom: 0.75em !important;
+  margin-top: 1.1em !important;
+  margin-bottom: 0.45em !important;
   line-height: 1.25 !important;
   font-weight: 700 !important;
 }
@@ -122,13 +123,32 @@ body{
 .dynamic-language-content h5,
 .dynamic-language-content h6 {
   font-size: 18px !important;
+  margin-top: 0.75em !important;
+  margin-bottom: 0.35em !important;
+}
+
+.dynamic-language-content p,
+.dynamic-language-content li,
+.dynamic-language-content td {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+
+.dynamic-language-content b,
+.dynamic-language-content strong {
+  font-weight: 700 !important;
+}
+
+.dynamic-language-content a {
+  color: #006064 !important;
 }
 
 .dynamic-language-content p,
 .dynamic-language-content ul,
 .dynamic-language-content ol,
 .dynamic-language-content table {
-  margin-bottom: 1rem !important;
+  margin-top: 0 !important;
+  margin-bottom: 0.75rem !important;
 }
 
 .dynamic-language-content ul,
@@ -137,7 +157,7 @@ body{
 }
 
 .dynamic-language-content li {
-  margin-bottom: 0.45rem !important;
+  margin-bottom: 0.35rem !important;
 }
 
 .dynamic-language-content strong {
