@@ -19,6 +19,10 @@ import RecognitionSlider from "./RecognitionSlider";
 import { getRecognitionSlides } from "./recognitionSlidesData";
 import AdaptiveBannerMedia from "../AdaptiveBannerMedia";
 import { getLanguageHeroContent, getHeroDescription } from "./languageHeroContent";
+import {
+  getCourseLanguage,
+  ONLINE_ENGLISH_LANGUAGE_SLUG,
+} from "../../../courseLanguage";
 
 const Arabic = () => {
    const [open, setOpen] = useState(false);
@@ -121,6 +125,12 @@ useEffect(() => {
   // const shortContent = textContent.slice(0, LIMIT);
 
   const contentHtml = languageData?.content || "";
+  const visibleDetails =
+    slug === ONLINE_ENGLISH_LANGUAGE_SLUG
+      ? details.filter(
+          (item) => getCourseLanguage(item.course_feature, item.title) === "English"
+        )
+      : details;
   const heroContent = getLanguageHeroContent(languageData?.title, slug);
   const heroDescription = heroContent
     ? getHeroDescription(heroContent, languageData?.title)
@@ -546,7 +556,7 @@ useEffect(() => {
     modules={[Autoplay, Navigation, Pagination]}
     className="pb-20"   // ✅ FIX: gives space for bottom shadow
   >
-    {details.map((item, index) => (
+    {visibleDetails.map((item, index) => (
       <SwiperSlide key={index} className="py-4"> {/* ✅ FIX: spacing for shadow */}
 
         {/* WHOLE CARD LINK */}
