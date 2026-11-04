@@ -15,6 +15,10 @@ import {
   GTM_ID,
   STANDALONE_LANDING_ROUTES,
 } from "../src/standaloneLandingRoutes.js";
+import {
+  getCourseLanguage,
+  ONLINE_ENGLISH_LANGUAGE_SLUG,
+} from "../src/courseLanguage.js";
 import { LEGACY_ROUTE_REDIRECTS } from "../src/legacyRouteRedirects.js";
 import { APP_STATIC_ROUTES } from "../src/siteRoutes.js";
 
@@ -230,7 +234,12 @@ const courseDetailUrls = (
       }
 
       return data.details
-        .filter((course) => course.slug)
+        .filter(
+          (course) =>
+            course.slug &&
+            (languageSlug !== ONLINE_ENGLISH_LANGUAGE_SLUG ||
+              getCourseLanguage(course.course_feature, course.title) === "English")
+        )
         .map(
           (course) =>
             `${SITE_URL}/course-details/${encodeURIComponent(languageSlug)}/${encodeURIComponent(course.slug)}/`
