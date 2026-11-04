@@ -22,7 +22,7 @@ import { getLanguageHeroContent, getHeroDescription } from "./languageHeroConten
 import {
   getCourseLanguage,
   ONLINE_ENGLISH_LANGUAGE_SLUG,
-} from "../../../courseLanguage";
+} from "../../../courseLanguage.js";
 
 const Arabic = () => {
    const [open, setOpen] = useState(false);
