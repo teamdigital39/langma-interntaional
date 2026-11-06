@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import API_BASE from "../../../config.js";
+import { filterCoursesByLanguage } from "../../../courseLanguage.js";
 
 const CARD_WIDTH = 320; // card + gap
 
@@ -29,7 +30,12 @@ const GermanCoursesSlider = () => {
           throw new Error(data.message || "German courses could not be loaded");
         }
 
-        setCourses(data.details.filter((course) => course.title && course.slug));
+        setCourses(
+          filterCoursesByLanguage(
+            data.details.filter((course) => course.title && course.slug),
+            "German"
+          )
+        );
       } catch (loadError) {
         if (loadError.name !== "AbortError") {
           console.error("German courses could not be loaded", loadError);
