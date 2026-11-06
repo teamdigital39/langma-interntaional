@@ -266,7 +266,21 @@ const routeUrls = [
   ...ADDITIONAL_APP_ROUTES.map((route) => `${SITE_URL}${route}`),
   ...NON_SITEMAP_ROUTES.map((route) => `${SITE_URL}${route}`),
 ];
-const urls = [...new Map(routeUrls.map((url) => [normalizedUrl(url), url])).values()];
+const urlsByCanonicalUrl = new Map();
+for (const url of routeUrls) {
+  const canonicalUrl = normalizedUrl(url);
+  const existingUrl = urlsByCanonicalUrl.get(canonicalUrl);
+  const isCanonicalRoute =
+    canonicalPath(new URL(url).pathname) === new URL(canonicalUrl).pathname;
+  const existingIsCanonicalRoute =
+    existingUrl &&
+    canonicalPath(new URL(existingUrl).pathname) === new URL(canonicalUrl).pathname;
+
+  if (!existingUrl || (isCanonicalRoute && !existingIsCanonicalRoute)) {
+    urlsByCanonicalUrl.set(canonicalUrl, url);
+  }
+}
+const urls = [...urlsByCanonicalUrl.values()];
 const existingSitemapUrls = new Set(sitemapUrls.map(normalizedUrl));
 const additionalSitemapEntries = [...new Set([
   ...courseDetailUrls,
@@ -616,17 +630,12 @@ for (const rawUrl of urls) {
   const routePath = canonicalPath(url.pathname);
   const pathname = canonicalRoutePath(routePath);
   const resolvedMetadata = await metadataFor(pathname);
-  const routeMetadata = routePath === "/gallery"
-    ? {
-        ...resolvedMetadata,
-        title: "Gallery | Langma International",
-        description: "Explore Langma International success stories and student gallery.",
-        h1: "Gallery",
-      }
-    : resolvedMetadata;
-  const metadata = routePath === pathname
-    ? uniqueMetadata(routeMetadata, pathname, usedTitles, usedDescriptions)
-    : uniqueMetadata(routeMetadata, routePath, usedTitles, usedDescriptions);
+  const metadata = uniqueMetadata(
+    resolvedMetadata,
+    pathname,
+    usedTitles,
+    usedDescriptions
+  );
   const canonical = canonicalUrl(pathname);
   const image = absoluteImage(metadata.image);
   const isStandaloneLanding = STANDALONE_LANDING_ROUTES.includes(pathname);
