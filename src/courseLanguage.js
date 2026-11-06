@@ -1,3 +1,4 @@
+export const ONLINE_ENGLISH_LANGUAGE_SLUG = "online-english-language-course";
 
 export function getCourseLanguage(courseFeature, courseTitle = "unknown course") {
   if (!courseFeature) return null;
