@@ -20,9 +20,17 @@ import { getRecognitionSlides } from "./recognitionSlidesData";
 import AdaptiveBannerMedia from "../AdaptiveBannerMedia";
 import { getLanguageHeroContent, getHeroDescription } from "./languageHeroContent";
 import {
-  getCourseLanguage,
-  ONLINE_ENGLISH_LANGUAGE_SLUG,
+  filterCoursesByLanguage,
 } from "../../../courseLanguage.js";
+
+const BALTIC_COURSE_FALLBACKS = [
+  { title: "Learn Baltic Languages at Langma", slug: "learn-baltic-languages" },
+  {
+    title: "Baltic Languages for professionals",
+    slug: "baltic-languages-for-professionals",
+  },
+  { title: "General Baltic Languages", slug: "general-baltic-languages" },
+];
 
 const Arabic = () => {
    const [open, setOpen] = useState(false);
@@ -125,12 +133,20 @@ useEffect(() => {
   // const shortContent = textContent.slice(0, LIMIT);
 
   const contentHtml = languageData?.content || "";
-  const visibleDetails =
-    slug === ONLINE_ENGLISH_LANGUAGE_SLUG
-      ? details.filter(
-          (item) => getCourseLanguage(item.course_feature, item.title) === "English"
-        )
-      : details;
+  const visibleDetails = filterCoursesByLanguage(
+    details,
+    languageData?.title
+  );
+  const sliderDetails =
+    slug === "online-baltic-languages-course"
+      ? [
+          ...visibleDetails,
+          ...BALTIC_COURSE_FALLBACKS.filter(
+            (fallback) =>
+              !visibleDetails.some((item) => item.slug === fallback.slug)
+          ),
+        ]
+      : visibleDetails;
   const heroContent = getLanguageHeroContent(languageData?.title, slug);
   const heroDescription = heroContent
     ? getHeroDescription(heroContent, languageData?.title)
@@ -536,7 +552,7 @@ useEffect(() => {
   <Swiper
     slidesPerView={1}
     spaceBetween={20}
-    loop={true}
+    loop={sliderDetails.length > 3}
     autoplay={{
       delay: 3000,
       disableOnInteraction: false,
@@ -556,7 +572,7 @@ useEffect(() => {
     modules={[Autoplay, Navigation, Pagination]}
     className="pb-20"   // ✅ FIX: gives space for bottom shadow
   >
-    {visibleDetails.map((item, index) => (
+    {sliderDetails.map((item, index) => (
       <SwiperSlide key={index} className="py-4"> {/* ✅ FIX: spacing for shadow */}
 
         {/* WHOLE CARD LINK */}
@@ -577,7 +593,7 @@ useEffect(() => {
 
             <div className="relative aspect-[16/9] overflow-hidden bg-white">
               <img
-                src={item.image}
+                src={item.image || languageData?.image}
                 alt={item.title}
                 className="w-full h-full object-contain bg-white transition-transform duration-500 hover:scale-105"
               />
