@@ -1,5 +1,39 @@
 export const ONLINE_ENGLISH_LANGUAGE_SLUG = "online-english-language-course";
 
+const LANGUAGE_ALIAS_GROUPS = [
+  ["chinese", "mandarin", "mandarin chinese"],
+  ["farsi", "persian", "persian farsi"],
+  ["russian", "russain"],
+];
+
+function normalizeLanguage(value) {
+  return value?.trim().toLowerCase().replace(/[\s_-]+/g, " ");
+}
+
+function getLanguageVariants(language) {
+  const normalized = normalizeLanguage(language);
+  return (
+    LANGUAGE_ALIAS_GROUPS.find((aliases) => aliases.includes(normalized)) || [
+      normalized,
+    ]
+  );
+}
+
+function titleMatchesLanguage(title, language) {
+  const titleWords = normalizeLanguage(title)?.split(/[^a-z0-9]+/).filter(Boolean);
+
+  if (!titleWords) return false;
+
+  return getLanguageVariants(language).some((variant) => {
+    const languageWords = variant.split(/[^a-z0-9]+/).filter(Boolean);
+    return titleWords.some((_, index) =>
+      languageWords.every(
+        (word, wordIndex) => titleWords[index + wordIndex] === word
+      )
+    );
+  });
+}
+
 export function getCourseLanguage(courseFeature, courseTitle = "unknown course") {
   if (!courseFeature) return null;
 
@@ -19,24 +53,30 @@ export function getCourseLanguage(courseFeature, courseTitle = "unknown course")
 }
 
 export function filterCoursesByLanguage(courses, language) {
-  const expectedLanguage = language?.trim().toLowerCase();
+  const expectedLanguage = normalizeLanguage(language);
   if (!expectedLanguage) return courses;
 
   const coursesWithLanguages = courses.map((course) => ({
     course,
-    language: getCourseLanguage(course.course_feature, course.title)?.trim().toLowerCase(),
+    language: normalizeLanguage(
+      getCourseLanguage(course.course_feature, course.title)
+    ),
   }));
-  const hasMatchingLanguage = coursesWithLanguages.some(
-    ({ language: courseLanguage }) => courseLanguage === expectedLanguage
-  );
   const hasOtherLanguage = coursesWithLanguages.some(
     ({ language: courseLanguage }) =>
-      courseLanguage && courseLanguage !== expectedLanguage
+      courseLanguage &&
+      !getLanguageVariants(expectedLanguage).includes(courseLanguage)
   );
 
-  if (!hasMatchingLanguage || !hasOtherLanguage) return courses;
+  if (!hasOtherLanguage) return courses;
 
   return coursesWithLanguages
-    .filter(({ language: courseLanguage }) => courseLanguage === expectedLanguage)
+    .filter(({ course, language: courseLanguage }) => {
+      if (courseLanguage) {
+        return getLanguageVariants(expectedLanguage).includes(courseLanguage);
+      }
+
+      return titleMatchesLanguage(course.title, expectedLanguage);
+    })
     .map(({ course }) => course);
 }
