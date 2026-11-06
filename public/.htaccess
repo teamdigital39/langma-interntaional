@@ -1,12 +1,46 @@
 Options -MultiViews
 RewriteEngine On
 
+# Redirect public pages on the API hostname to the frontend while leaving
+# actual API endpoints and backend-served assets on the API host.
+RewriteCond %{HTTP_HOST} ^api\.langmainternational\.com$ [NC]
+RewriteRule ^(?:public/)?translation/?$ https://www.langmainternational.com/translation-services/ [R=301,L,NE]
+
+RewriteCond %{HTTP_HOST} ^api\.langmainternational\.com$ [NC]
+RewriteRule ^35/teach-german-as-a-foreign-language/?$ https://www.langmainternational.com/course-details/online-german-language-course/teach-german-as-a-foreign-language/ [R=301,L,NE]
+
+RewriteCond %{HTTP_HOST} ^api\.langmainternational\.com$ [NC]
+RewriteRule ^(?:public/?)?$ https://www.langmainternational.com/ [R=301,L,NE]
+
+# Redirect only legacy API-host URLs whose mapped destinations are in the frontend sitemap.
+# Unmapped API-host pages and endpoints remain on the API host.
+RewriteCond %{REQUEST_URI} ^/(?:public/(?:index\.php/)?)?(?:237/french-exam-delf-dalf|239/french-exam-tcf|232/french-a2-level|72/teaching-hindi-as-a-foreign-language|65/french-course-for-hospitality|177/assamese-language-course|180/kashmiri-language-course|223/hindi-language-summer-programme|181/konkani-language-programme-language-program|179/malayalam-language-course|174/maithali-language-course|171/bengali-language-course)/?$ [NC,OR]
+RewriteCond %{REQUEST_URI} ^/(?:public/(?:index\.php/)?)?(?:39/learn-balkan-languages|178/punjabi-language-course|173/tamil-language-course|238/french-exam-tef|233/french-b1-level|29/german-for-doctors|69/delf-and-dalf-french-exam-preparation-course|176/oriya-language-programme-language-program|231/french-a1-level|202/learn-pashto-language|60/french-for-attache|30/german-language-levels)/?$ [NC,OR]
+RewriteCond %{REQUEST_URI} ^/(?:public/(?:index\.php/)?)?(?:32/german-for-professional-language-program|35/teach-german-as-a-foreign-language|105/dutch-language-course-for-kids|58/general-french-language-course|73/learn-hindi-language-at-langma|101/learn-dutch-at-langma|222/hindi-course-for-hospitality|125/indonesian-for-attache|43/baltic-languages-for-professionals|37/german-language-summer-programme|216/hebrew-for-professionals|40/balkan-languages-for-professionals)/?$ [NC,OR]
+RewriteCond %{REQUEST_URI} ^/(?:public/(?:index\.php/)?)?(?:44/general-baltic-languages|67/teaching-french-as-a-foreign-language|64/french-language-course-for-kids|119/general-burmese-language|14/english-for-everyone-language-program|24/german-language|181/konkani-language-programme-|20/teachers-training-programme-language-program|9/english-for-academics-language-program|127/general-mandarin-language-course)/?$ [NC,OR]
+RewriteCond %{REQUEST_URI} ^/(?:public/(?:index\.php/)?)?(?:japanese\+language\+course|burmese\+language\+course|foreign-language-courses-in-sri-lanka|courses\.aspx|dutch-language-proficiency-test|study-international|spanish|contact\.aspx|korean\.aspx|spanish\.aspx|italian-language|chinese\.aspx)/?$ [NC,OR]
+RewriteCond %{REQUEST_URI} ^/(?:public/(?:index\.php/)?)?(?:malaysiya|program|japanese|online-russian-language-cour|online-german-classest|portuguese-language|english\.aspx|dutch-language-courserenc|german-language-program|burmese|korean-language|online\+urdu\+language\+course)/?$ [NC,OR]
+RewriteCond %{REQUEST_URI} ^/(?:public/(?:index\.php/)?)?(?:online-italian-lang|japanese-language-language-program|russia-medical)/?$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^api\.langmainternational\.com$ [NC]
+RewriteRule ^ https://www.langmainternational.com%{REQUEST_URI} [R=301,L,NE]
+
 # Force the canonical host and HTTPS scheme.
 RewriteCond %{HTTP_HOST} ^langmainternational\.com$ [NC]
 RewriteRule ^ https://www.langmainternational.com%{REQUEST_URI} [R=301,L,NE]
 
+RewriteCond %{HTTP_HOST} ^api\.langmainternational\.com$ [NC]
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://api.langmainternational.com%{REQUEST_URI} [R=301,L,NE]
+
+RewriteCond %{HTTP_HOST} !^api\.langmainternational\.com$ [NC]
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://www.langmainternational.com%{REQUEST_URI} [R=301,L,NE]
+
+# Redirect the old translation URL directly to the current service page.
+RewriteRule ^(?:public/)?translation/?$ https://www.langmainternational.com/translation-services/ [R=301,L,NE]
+
+# Discard malformed URLs that contain an HTML-escaped list of unrelated URLs.
+RewriteRule ^&lt;br&gt;http:.*$ https://www.langmainternational.com/ [R=301,L,NE]
 
 # Keep common index-file variants from becoming separate accessible URLs.
 RewriteRule ^(?:index|home)\.(?:html?|php)$ / [R=301,L,NE]
@@ -22,6 +56,7 @@ RewriteRule ^public/(.*)$ /$1 [R=301,L,NE]
 
 # Redirect legacy main-site URLs to their current equivalent pages.
 # Frontend legacy route mappings, served as direct HTTP redirects.
+RewriteRule ^gallery/?$ /success-stories/ [R=301,L,NE]
 RewriteRule ^blog-detail/learn-spanish-language-for-study,-work-and-everyday-life-with-langma-international/?$ /blog/scope-of-spanish-language-in-india/ [R=301,L,NC,NE]
 RewriteRule ^blog-detail/learn-french-language-for-study,-work-and-everyday-life-with-langma-international/?$ /blog/french-language-course-in-delhi-india/ [R=301,L,NC,NE]
 RewriteRule ^blog-detail/ಲ್ಯಾಂಗ್ಮಾ-ಇಂಟರ್-ನ್ಯಾಷನಲ್:-ಭಾಷೆ-ಮತ್ತು-ಸಂಸ್ಕೃತಿಯ-ಮೂಲಕ-ಜಾಗತಿಕ-ನಾಗರಿಕರನ್ನು-ರೂಪಿಸುವುದು/?$ /blog/ಲ್ಯಾಂಗ್ಮಾ-ಇಂಟರ್-ನ್ಯಾಷನಲ್:-ಭಾಷೆ-ಮತ್ತು-ಸಂಸ್ಕೃತಿಯ-ಮೂಲಕ-ಜಾಗತಿಕ-ನಾಗರಿಕರನ್ನು-ರೂಪಿಸುವುದು./ [R=301,L,NE]
@@ -94,6 +129,7 @@ RewriteRule ^60/french-for-attache/?$ /course-details/online-french-language-cou
 RewriteRule ^117/teach-italian-as-a-foreign-language/?$ /course-details/online-italian-language-course/teach-italian-as-a-foreign-language/ [R=301,L,NE]
 RewriteRule ^30/german-language-levels/?$ /course-details/online-german-language-course/german-language-levels/ [R=301,L,NE]
 RewriteRule ^32/german-for-professional-language-program/?$ /course-details/online-german-language-course/german-for-professional-language-program/ [R=301,L,NE]
+RewriteRule ^35/teach-german-as-a-foreign-language/?$ /course-details/online-german-language-course/teach-german-as-a-foreign-language/ [R=301,L,NE]
 RewriteRule ^105/dutch-language-course-for-kids/?$ /course-details/dutch-language-course/dutch-language-course-for-kids/ [R=301,L,NE]
 RewriteRule ^58/general-french-language-course/?$ /course-details/online-french-language-course/general-french-language-course/ [R=301,L,NE]
 RewriteRule ^137/russain-for-attache/?$ /course-details/online-russian-language-course/russain-for-attache/ [R=301,L,NE]
