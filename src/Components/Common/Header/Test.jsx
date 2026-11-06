@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
+import { filterCoursesByLanguage } from "../../../courseLanguage.js";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -221,7 +222,11 @@ function Test() {
           }
 
           // RELATED COURSES
-          const filteredCourses = (data.details || []).filter(
+          const languageCourses = filterCoursesByLanguage(
+            data.details || [],
+            data.page?.title
+          );
+          const filteredCourses = languageCourses.filter(
             (item) => item.slug !== courseSlug
           );
 
