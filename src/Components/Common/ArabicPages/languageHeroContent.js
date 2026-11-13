@@ -233,9 +233,10 @@ At Langma International, learning Indonesian is about going beyond just memorisa
   urdu: buildEntry(
     "Urdu",
     "Learn Urdu.",
-    "Poetry, Precision, and Everyday Grace.",
+    "Explore the Language of Poetry, Expression, and Cultural Heritage",
     "Urdu carries centuries of poetry and refined expression alongside daily life across Pakistan and South Asian communities worldwide. Genuine fluency for family connection, migration, and appreciating a literary language.",
-    "CEFR Pathway"
+    "CEFR Pathway",
+    "Urdu Language Program"
   ),
   vietnamese: buildEntry(
     "Vietnamese",
