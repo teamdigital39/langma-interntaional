@@ -43,13 +43,25 @@ const LanguageProgramCarousel = ({ language, apiSlug }) => {
       const rail = railRef.current;
       if (!rail || rail.matches(":hover")) return;
       const atEnd = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 12;
-      rail.scrollBy({ left: atEnd ? -rail.scrollWidth : 320, behavior: "smooth" });
+      if (atEnd) {
+        rail.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        const firstCard = rail.querySelector("a");
+        const cardWidth = firstCard?.getBoundingClientRect().width || rail.clientWidth;
+        const gap = Number.parseFloat(window.getComputedStyle(rail).columnGap) || 0;
+        rail.scrollBy({ left: cardWidth + gap, behavior: "smooth" });
+      }
     }, 4500);
     return () => window.clearInterval(timer);
   }, [courses.length]);
 
   const scroll = (direction) => {
-    railRef.current?.scrollBy({ left: direction * 320, behavior: "smooth" });
+    const rail = railRef.current;
+    if (!rail) return;
+    const firstCard = rail.querySelector("a");
+    const cardWidth = firstCard?.getBoundingClientRect().width || rail.clientWidth;
+    const gap = Number.parseFloat(window.getComputedStyle(rail).columnGap) || 0;
+    rail.scrollBy({ left: direction * (cardWidth + gap), behavior: "smooth" });
   };
 
   const heading = `${language} Courses & Programmes`;
@@ -81,12 +93,12 @@ const LanguageProgramCarousel = ({ language, apiSlug }) => {
         ) : (
           <div ref={railRef} className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-3">
             {courses.map((course) => (
-              <Link key={course.id ?? course.slug} to={`/course-details/${encodeURIComponent(apiSlug)}/${encodeURIComponent(course.slug)}/`} className="min-w-[260px] max-w-[320px] flex-1 snap-start overflow-hidden rounded-2xl border border-[#D8E0EC] bg-white shadow-sm transition-shadow hover:shadow-lg">
-                <div className="h-48 overflow-hidden bg-[#eef6f6]">
+              <Link key={course.id ?? course.slug} to={`/course-details/${encodeURIComponent(apiSlug)}/${encodeURIComponent(course.slug)}/`} className="w-[86vw] min-w-[220px] max-w-[320px] flex-none snap-start overflow-hidden rounded-2xl border border-[#D8E0EC] bg-white shadow-sm transition-shadow hover:shadow-lg sm:min-w-[260px] sm:max-w-[320px] sm:flex-1">
+                <div className="h-40 overflow-hidden bg-[#eef6f6] sm:h-48">
                   <img src={course.image || course.banner || "/images/learnlangma.jpg"} alt={course.title} loading="lazy" className="h-full w-full object-cover" />
                 </div>
-                <div className="p-5">
-                  <h3 className="font-bold text-[#1A2540]">{course.title}</h3>
+                <div className="p-4 sm:p-5">
+                  <h3 className="break-words text-sm font-bold text-[#1A2540] sm:text-base">{course.title}</h3>
                   <span className="mt-4 inline-flex rounded-full bg-[#1A2540] px-5 py-2 text-sm font-semibold text-white">Explore course <span className="ml-2" aria-hidden="true">→</span></span>
                 </div>
               </Link>
