@@ -5,6 +5,20 @@ import API_BASE from "../../config.js";
 import { filterCoursesByLanguage } from "../../courseLanguage.js";
 import { fetchAllLanguageCourses } from "../../languageCourses.js";
 
+const isIndianRegionalLanguage = (language) =>
+  String(language || "").trim().toLowerCase() === "indian regional";
+
+function getCarouselCourses(allCourses, language, regionalFallbacks = []) {
+  const matchedCourses = filterCoursesByLanguage(allCourses, language);
+  if (!isIndianRegionalLanguage(language)) return matchedCourses;
+
+  const coursesBySlug = new Map(matchedCourses.map((course) => [course.slug, course]));
+  return [
+    ...matchedCourses,
+    ...regionalFallbacks.filter((course) => !coursesBySlug.has(course.slug)),
+  ];
+}
+
 const LanguageProgramCarousel = ({ language, apiSlug }) => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,22 +30,32 @@ const LanguageProgramCarousel = ({ language, apiSlug }) => {
     setLoading(true);
     setError(false);
 
-    fetchAllLanguageCourses(API_BASE)
-      .then((allCourses) => {
-        if (!isCurrent) return;
-        setCourses(filterCoursesByLanguage(allCourses, language));
-      })
-      .catch((loadError) => {
+    const loadCourses = async () => {
+      const hasRegionalFallback = isIndianRegionalLanguage(language);
+      let regionalFallbacks = [];
+
+      try {
+        if (hasRegionalFallback) {
+          const fallbackModule = await import("../../regionalCourseFallbacks.js");
+          regionalFallbacks = fallbackModule.REGIONAL_COURSE_FALLBACKS;
+        }
+
+        const allCourses = await fetchAllLanguageCourses(API_BASE);
+        if (isCurrent) {
+          setCourses(getCarouselCourses(allCourses, language, regionalFallbacks));
+        }
+      } catch (loadError) {
         console.error(`Could not load ${language} programmes`, loadError);
         if (isCurrent) {
-          setCourses([]);
-          setError(true);
+          setCourses(regionalFallbacks);
+          setError(!hasRegionalFallback || regionalFallbacks.length === 0);
         }
-      })
-      .finally(() => {
+      } finally {
         if (isCurrent) setLoading(false);
-      });
+      }
+    };
 
+    loadCourses();
     return () => {
       isCurrent = false;
     };
@@ -93,13 +117,13 @@ const LanguageProgramCarousel = ({ language, apiSlug }) => {
         ) : (
           <div ref={railRef} className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-3">
             {courses.map((course) => (
-              <Link key={course.id ?? course.slug} to={`/course-details/${encodeURIComponent(apiSlug)}/${encodeURIComponent(course.slug)}/`} className="w-[86vw] min-w-[220px] max-w-[320px] flex-none snap-start overflow-hidden rounded-2xl border border-[#D8E0EC] bg-white shadow-sm transition-shadow hover:shadow-lg sm:min-w-[260px] sm:max-w-[320px] sm:flex-1">
-                <div className="h-40 overflow-hidden bg-[#eef6f6] sm:h-48">
-                  <img src={course.image || course.banner || "/images/learnlangma.jpg"} alt={course.title} loading="lazy" className="h-full w-full object-cover" />
+              <Link key={course.id ?? course.slug} to={`/course-details/${encodeURIComponent(apiSlug)}/${encodeURIComponent(course.slug)}/`} aria-label={`Learn more about ${course.title}`} className={`${isIndianRegionalLanguage(language) ? "w-[min(86vw,320px)] min-w-0 max-w-[320px] flex flex-col" : "w-[86vw] min-w-[220px] max-w-[320px] sm:min-w-[260px] sm:flex-1"} flex-none snap-start overflow-hidden rounded-2xl border border-[#D8E0EC] bg-white shadow-sm transition-shadow hover:shadow-lg`}>
+                <div className={isIndianRegionalLanguage(language) ? "flex aspect-[3/1] w-full items-center justify-center overflow-hidden bg-white px-3 py-2" : "h-40 overflow-hidden bg-[#eef6f6] sm:h-48"}>
+                  <img src={course.image || course.banner || "/images/learnlangma.jpg"} alt={course.title} loading="lazy" decoding="async" className={isIndianRegionalLanguage(language) ? "h-full w-full object-contain" : "h-full w-full object-cover"} />
                 </div>
-                <div className="p-4 sm:p-5">
-                  <h3 className="break-words text-sm font-bold text-[#1A2540] sm:text-base">{course.title}</h3>
-                  <span className="mt-4 inline-flex rounded-full bg-[#1A2540] px-5 py-2 text-sm font-semibold text-white">Explore course <span className="ml-2" aria-hidden="true">→</span></span>
+                <div className={isIndianRegionalLanguage(language) ? "flex flex-1 flex-col items-start gap-3 p-4 sm:p-5" : "p-4 sm:p-5"}>
+                  <h3 className={`break-words text-sm font-bold text-[#1A2540] sm:text-base ${isIndianRegionalLanguage(language) ? "min-h-[2.5rem]" : ""}`}>{course.title}</h3>
+                  <span className="mt-auto inline-flex items-center rounded-full bg-[#1A2540] px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#296166]">{isIndianRegionalLanguage(language) ? "Learn More" : "Explore course"}<span className="ml-2" aria-hidden="true">→</span></span>
                 </div>
               </Link>
             ))}

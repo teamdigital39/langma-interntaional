@@ -19,7 +19,11 @@ import {
   getCourseLanguage,
   ONLINE_ENGLISH_LANGUAGE_SLUG,
 } from "../src/courseLanguage.js";
-import { LEGACY_ROUTE_REDIRECTS } from "../src/legacyRouteRedirects.js";
+import {
+  BLOG_CONTENT_SLUG_ALIASES,
+  LEGACY_BLOG_SLUG_REDIRECTS,
+  LEGACY_ROUTE_REDIRECTS,
+} from "../src/legacyRouteRedirects.js";
 import { APP_STATIC_ROUTES } from "../src/siteRoutes.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -47,7 +51,15 @@ const ROUTE_ALIASES = {
   "/blog-detail/learn-spanish-language-for-study,-work-and-everyday-life-with-langma-international":
     "/blog/scope-of-spanish-language-in-india",
   "/blog-detail/learn-french-language-for-study,-work-and-everyday-life-with-langma-international":
-    "/blog/french-language-course-in-delhi-india",
+    "/blog/top-3-french-class-checks-in-delhi-for-gurgaon-learners",
+  "/blog-detail/french-language-course-in-delhi-india":
+    "/blog/top-3-french-class-checks-in-delhi-for-gurgaon-learners",
+  ...Object.fromEntries(
+    Object.entries(LEGACY_BLOG_SLUG_REDIRECTS).map(([from, to]) => [
+      `/blog/${from}`,
+      `/blog/${to}`,
+    ])
+  ),
 };
 const NON_SITEMAP_ROUTES = ["/thank-you"];
 
@@ -219,6 +231,23 @@ const languageNames = new Map(
   apiLanguages.filter((item) => item.url && item.title).map((item) => [item.url, item.title])
 );
 const languagePages = new Map();
+const blogList = await fetchJson(`${API_BASE}/api/blog-list`);
+const apiBlogPosts =
+  Array.isArray(blogList?.data)
+    ? blogList.data.filter((blog) => typeof blog.slug === "string" && blog.slug)
+    : [];
+if (apiBlogPosts.length === 0) {
+  console.warn(
+    "Blog API unavailable or empty; generating blog routes from the checked-in sitemap."
+  );
+}
+const blogUrls = [
+  ...new Set(
+    apiBlogPosts.map((blog) =>
+      `${SITE_URL}${canonicalRoutePath(`/blog/${encodeURIComponent(blog.slug)}`)}/`
+    )
+  ),
+];
 const courseDetailUrls = (
   await Promise.all(
     [...languageSlugs].map(async (languageSlug) => {
@@ -259,6 +288,7 @@ function normalizedUrl(value) {
 const routeUrls = [
   ...APP_STATIC_ROUTES.map((route) => `${SITE_URL}${route}`),
   ...sitemapUrls,
+  ...blogUrls,
   ...courseDetailUrls,
   ...ADDITIONAL_SITEMAP_ROUTES.map((route) => `${SITE_URL}${route}`),
   ...STANDALONE_LANDING_ROUTES.map((route) => `${SITE_URL}${route}`),
@@ -266,9 +296,24 @@ const routeUrls = [
   ...ADDITIONAL_APP_ROUTES.map((route) => `${SITE_URL}${route}`),
   ...NON_SITEMAP_ROUTES.map((route) => `${SITE_URL}${route}`),
 ];
-const urls = [...new Map(routeUrls.map((url) => [normalizedUrl(url), url])).values()];
+const urlsByCanonicalUrl = new Map();
+for (const url of routeUrls) {
+  const canonicalUrl = normalizedUrl(url);
+  const existingUrl = urlsByCanonicalUrl.get(canonicalUrl);
+  const isCanonicalRoute =
+    canonicalPath(new URL(url).pathname) === new URL(canonicalUrl).pathname;
+  const existingIsCanonicalRoute =
+    existingUrl &&
+    canonicalPath(new URL(existingUrl).pathname) === new URL(canonicalUrl).pathname;
+
+  if (!existingUrl || (isCanonicalRoute && !existingIsCanonicalRoute)) {
+    urlsByCanonicalUrl.set(canonicalUrl, url);
+  }
+}
+const urls = [...urlsByCanonicalUrl.values()];
 const existingSitemapUrls = new Set(sitemapUrls.map(normalizedUrl));
 const additionalSitemapEntries = [...new Set([
+  ...blogUrls,
   ...courseDetailUrls,
   ...ADDITIONAL_SITEMAP_ROUTES.map((route) => `${SITE_URL}${route}/`),
 ])]
@@ -313,6 +358,7 @@ async function metadataFor(pathname) {
     } catch {
       throw new Error(`Could not decode blog route slug "${slug}".`);
     }
+    slug = BLOG_CONTENT_SLUG_ALIASES[slug] || slug;
     const result = await fetchJson(
       `${API_BASE}/api/blog-detail/${encodeURIComponent(slug)}`
     );
@@ -616,17 +662,12 @@ for (const rawUrl of urls) {
   const routePath = canonicalPath(url.pathname);
   const pathname = canonicalRoutePath(routePath);
   const resolvedMetadata = await metadataFor(pathname);
-  const routeMetadata = routePath === "/gallery"
-    ? {
-        ...resolvedMetadata,
-        title: "Gallery | Langma International",
-        description: "Explore Langma International success stories and student gallery.",
-        h1: "Gallery",
-      }
-    : resolvedMetadata;
-  const metadata = routePath === pathname
-    ? uniqueMetadata(routeMetadata, pathname, usedTitles, usedDescriptions)
-    : uniqueMetadata(routeMetadata, routePath, usedTitles, usedDescriptions);
+  const metadata = uniqueMetadata(
+    resolvedMetadata,
+    pathname,
+    usedTitles,
+    usedDescriptions
+  );
   const canonical = canonicalUrl(pathname);
   const image = absoluteImage(metadata.image);
   const isStandaloneLanding = STANDALONE_LANDING_ROUTES.includes(pathname);

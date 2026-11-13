@@ -100,11 +100,12 @@ Whether you're a complete novice or learning Arabic for personal, academic, or p
     "Learn Hebrew with Langma International."
   ),
   hindi: buildEntry(
-    "Hindi",
-    "Learn Hindi.",
-    "Connect With a Billion Conversations.",
+    "Hindi Language Program",
+    "Discover the Language,",
+    "Discover the Language, Culture and Soul of India",
     "Hindi links business, cinema, and everyday life across one of the world's largest economies. Genuine spoken fluency for careers, family connection, travel, and confident participation in India's culture.",
-    "CEFR Pathway"
+    "CEFR Pathway",
+    "Hindi Language Program"
   ),
   "indian regional languages": buildEntry(
     "Indian Regional Languages",

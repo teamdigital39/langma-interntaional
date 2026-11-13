@@ -1,10 +1,15 @@
 import API_BASE from "../../config.js";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { Search, ChevronRight } from "lucide-react";
+import {
+  BLOG_CONTENT_SLUG_ALIASES,
+  LEGACY_BLOG_SLUG_REDIRECTS,
+} from "../../legacyRouteRedirects.js";
 
 const BlogDetailPage = () => {
   const { slug } = useParams();
+  const contentSlug = BLOG_CONTENT_SLUG_ALIASES[slug] || slug;
   const [blog, setBlog] = useState(null);
   const [recentBlogs, setRecentBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,7 +18,7 @@ const BlogDetailPage = () => {
     const fetchBlogDetail = async () => {
       try {
         const response = await fetch(
-          `${API_BASE}/api/blog-detail/${encodeURIComponent(slug)}`
+          `${API_BASE}/api/blog-detail/${encodeURIComponent(contentSlug)}`
         );
         const result = await response.json();
 
@@ -26,8 +31,13 @@ const BlogDetailPage = () => {
       }
     };
 
-    if (slug) fetchBlogDetail();
-  }, [slug]);
+    if (contentSlug) fetchBlogDetail();
+  }, [contentSlug]);
+
+  const canonicalSlug = LEGACY_BLOG_SLUG_REDIRECTS[slug];
+  if (canonicalSlug) {
+    return <Navigate to={`/blog/${canonicalSlug}`} replace />;
+  }
 
   if (loading)
     return (

@@ -101,12 +101,10 @@ for (const value of matches(sitemap, /<loc>\s*([^<]+?)\s*<\/loc>/g)) {
   }
 
   const pathname = new URL(url).pathname;
-  if (pathname.startsWith("/course-details/") || pathname.startsWith("/blog-detail/")) {
-    const segments = pathname.split("/").filter(Boolean).map(decodeURIComponent);
-    const routeFile = path.join(dist, ...segments, "index.html");
-    if (!files.includes(routeFile)) {
-      errors.push(`${sitemapPath}: detail URL has no generated route file: ${url}`);
-    }
+  const segments = pathname.split("/").filter(Boolean).map(decodeURIComponent);
+  const routeFile = path.join(dist, ...segments, "index.html");
+  if (!files.includes(routeFile)) {
+    errors.push(`${sitemapPath}: URL has no generated route file: ${url}`);
   }
 }
 

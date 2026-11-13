@@ -4,6 +4,8 @@ import { useParams, Link } from "react-router-dom";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
+import { filterCoursesByLanguage } from "../../../courseLanguage.js";
+import { fetchAllLanguageCourses } from "../../../languageCourses.js";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -146,42 +148,6 @@ function normalizeCourseContent(html = "") {
   return template.innerHTML;
 }
 
-function humanizeCourseSlug(slug = "") {
-  return slug
-    .split("-")
-    .filter(Boolean)
-    .map((part) => {
-      if (part.toLowerCase() === "c1") return "C1";
-      if (part.toLowerCase() === "c2") return "C2";
-      return part.charAt(0).toUpperCase() + part.slice(1);
-    })
-    .join(" ");
-}
-
-function buildFallbackCourse(courseSlug, languageSlug) {
-  const title = humanizeCourseSlug(courseSlug || languageSlug || "Course");
-  const safeTitle = title.includes("Course") ? title : `${title} Course`;
-
-  return {
-    title: safeTitle,
-    slug: courseSlug,
-    banner: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1600&q=80",
-    content: `
-      <h2>${safeTitle}</h2>
-      <p><strong>${safeTitle}</strong> is part of the Langma German programme and is designed to help learners strengthen advanced communication, comprehension, and confidence for real-world German use.</p>
-      <p>Students develop fluency in academic, professional, and formal contexts, with a focus on nuanced grammar, complex vocabulary, structured writing, and confident spoken interaction.</p>
-      <ul>
-        <li>Advanced listening and comprehension for complex spoken German</li>
-        <li>Skill-building for academic and professional discussion</li>
-        <li>Writing and presentation practice for real-life scenarios</li>
-        <li>Personal mentorship and guided learning support</li>
-      </ul>
-      <p>Speak to a Langma counsellor for current eligibility, timing, fees, and batch information.</p>
-    `,
-  };
-}
-
 function Test() {
 
   // URL PARAMS
@@ -191,61 +157,91 @@ function Test() {
   const [course, setCourse] = useState(null);
   const [relatedCourses, setRelatedCourses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [courseError, setCourseError] = useState("");
 
   // FETCH COURSE DATA
   useEffect(() => {
+    let isCurrentRequest = true;
+    setLoading(true);
+    setCourse(null);
+    setCourseError("");
+    setRelatedCourses([]);
 
     const fetchData = async () => {
-
       try {
-
-        const res = await fetch(
-          `${API_BASE}/api/language-page/${languageSlug}`
-        );
-
-        const data = await res.json();
-
-        console.log(data);
-
-        if (data.status) {
-
-          // CURRENT COURSE
-          const foundCourse = data.details.find(
-            (item) => item.slug === courseSlug
+        let data;
+        try {
+          const res = await fetch(
+            `${API_BASE}/api/language-page/${encodeURIComponent(languageSlug)}`
           );
-
-          if (foundCourse) {
-            setCourse(foundCourse);
-          } else {
-            setCourse(buildFallbackCourse(courseSlug, languageSlug));
+          if (!res.ok) {
+            throw new Error(`Language page request failed (${res.status})`);
           }
 
-          // RELATED COURSES
-          const filteredCourses = (data.details || []).filter(
-            (item) => item.slug !== courseSlug
-          );
-
-          setRelatedCourses(filteredCourses);
-
-        } else {
-          setCourse(buildFallbackCourse(courseSlug, languageSlug));
+          data = await res.json();
+          if (!data.status) {
+            throw new Error(data.message || "Language page data is unavailable");
+          }
+        } catch (error) {
+          console.error("Language page details could not be loaded", error);
         }
 
+        let availableCourses = data?.details || [];
+        try {
+          availableCourses = await fetchAllLanguageCourses(API_BASE);
+        } catch (error) {
+          console.error("All language courses could not be loaded", error);
+        }
+
+        if (!isCurrentRequest) return;
+
+        const languageCourses = filterCoursesByLanguage(
+          availableCourses,
+          data?.page?.title
+        );
+        let foundCourse =
+          availableCourses.find((item) => item.slug === courseSlug) ||
+          languageCourses.find((item) => item.slug === courseSlug) ||
+          data?.details?.find((item) => item.slug === courseSlug);
+
+        if (
+          !foundCourse &&
+          languageSlug === "best-institute-for-regional-languages"
+        ) {
+          const fallbackModule = await import("../../../regionalCourseFallbacks.js");
+          foundCourse = fallbackModule.getRegionalCourseFallback(courseSlug);
+        }
+
+        if (!foundCourse) {
+          setCourseError(
+            availableCourses.length || data?.details?.length
+              ? "Course details are not available."
+              : "Course details could not be loaded. Please try again later."
+          );
+          setRelatedCourses(languageCourses);
+          return;
+        }
+
+        setCourse(foundCourse);
+        setRelatedCourses(
+          languageCourses.filter((item) => item.slug !== courseSlug)
+        );
       } catch (error) {
-
-        console.log("API ERROR =>", error);
-        setCourse(buildFallbackCourse(courseSlug, languageSlug));
-
+        console.error("Course details could not be loaded", error);
+        if (isCurrentRequest) {
+          setCourseError(
+            "Course details could not be loaded. Please try again later."
+          );
+        }
       } finally {
-
-        setLoading(false);
-
+        if (isCurrentRequest) setLoading(false);
       }
-
     };
 
     fetchData();
-
+    return () => {
+      isCurrentRequest = false;
+    };
   }, [languageSlug, courseSlug]);
 
   // LOADING
@@ -259,7 +255,23 @@ function Test() {
     );
   }
 
-  const resolvedCourse = course || buildFallbackCourse(courseSlug, languageSlug);
+  if (courseError || !course) {
+    return (
+      <main className="flex min-h-[50vh] flex-col items-center justify-center px-6 text-center">
+        <h1 className="text-2xl font-bold text-[#16343a]">
+          {courseError || "Course details are not available."}
+        </h1>
+        <Link
+          to={`/${languageSlug}`}
+          className="mt-5 font-semibold text-[#006064] underline"
+        >
+          Browse language courses
+        </Link>
+      </main>
+    );
+  }
+
+  const resolvedCourse = course;
   const formattedCourseContent = normalizeCourseContent(resolvedCourse.content || "");
 
   return (
@@ -382,7 +394,7 @@ function Test() {
             <SwiperSlide key={index}>
 
               <Link
-                to={`/course-details/${languageSlug}/${item.slug}`}
+                to={`/course-details/${languageSlug}/${item.slug}/`}
               >
 
                 <div

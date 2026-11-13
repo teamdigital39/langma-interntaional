@@ -12,6 +12,9 @@ import {
   upsertLink,
   upsertMeta,
 } from "./seo";
+import { BLOG_CONTENT_SLUG_ALIASES } from "./legacyRouteRedirects.js";
+import { getCourseLanguage } from "./courseLanguage.js";
+import { fetchAllLanguageCourses } from "./languageCourses.js";
 
 function applyMetadata(metadata, pathname) {
   const url = canonicalUrl(pathname);
@@ -81,14 +84,36 @@ export default function CanonicalUrl() {
         if (path.startsWith("/course-details/")) {
           const [, , languageSlug, courseSlug] = path.split("/");
           if (!languageSlug || !courseSlug) return;
-          const response = await fetch(
-            `${API_BASE}/api/language-page/${encodeURIComponent(languageSlug)}`,
-            { signal: controller.signal }
-          );
-          const data = await response.json();
-          const course = data?.details?.find((item) => item.slug === courseSlug);
+          let data;
+          try {
+            const response = await fetch(
+              `${API_BASE}/api/language-page/${encodeURIComponent(languageSlug)}`,
+              { signal: controller.signal }
+            );
+            if (!response.ok) {
+              throw new Error(
+                `Language page request failed (${response.status})`
+              );
+            }
+            data = await response.json();
+            if (!data?.status) {
+              throw new Error(
+                data?.message || "Language page data is unavailable"
+              );
+            }
+          } catch (error) {
+            if (controller.signal.aborted) return;
+            console.error("Language page metadata could not be loaded", error);
+          }
+
+          let course = data?.details?.find((item) => item.slug === courseSlug);
+          if (!course) {
+            const allCourses = await fetchAllLanguageCourses(API_BASE);
+            course = allCourses.find((item) => item.slug === courseSlug);
+          }
           if (course) {
             const languageName =
+              getCourseLanguage(course.course_feature, course.title) ||
               data?.language?.title ||
               data?.page?.title ||
               languageSlug.replaceAll("-", " ");
@@ -109,8 +134,9 @@ export default function CanonicalUrl() {
         if (path.startsWith("/blog/")) {
           const slug = path.split("/").filter(Boolean).at(-1);
           if (!slug) return;
+          const contentSlug = BLOG_CONTENT_SLUG_ALIASES[slug] || slug;
           const response = await fetch(
-            `${API_BASE}/api/blog-detail/${encodeURIComponent(slug)}`,
+            `${API_BASE}/api/blog-detail/${encodeURIComponent(contentSlug)}`,
             { signal: controller.signal }
           );
           const result = await response.json();

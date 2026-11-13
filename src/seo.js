@@ -1,3 +1,5 @@
+import { REGIONAL_COURSE_METADATA } from "./regionalCourseSeo.js";
+
 export const SITE_URL = "https://www.langmainternational.com";
 export const API_BASE = "https://api.langmainternational.com";
 export const LAST_UPDATED = "2026-09-30";
@@ -90,6 +92,7 @@ const CLEAN_LANDING_METADATA = {
 const STATIC_METADATA = {
   ...STANDALONE_LANDING_METADATA,
   ...CLEAN_LANDING_METADATA,
+  ...REGIONAL_COURSE_METADATA,
   "/": HOMEPAGE_METADATA,
   "/languages": {
     title: "International Language Courses Online & in Delhi | Langma",
