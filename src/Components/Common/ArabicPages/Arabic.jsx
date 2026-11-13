@@ -19,6 +19,9 @@ import RecognitionSlider from "./RecognitionSlider";
 import { getRecognitionSlides } from "./recognitionSlidesData";
 import AdaptiveBannerMedia from "../AdaptiveBannerMedia";
 import { getLanguageHeroContent, getHeroDescription } from "./languageHeroContent";
+import LanguageProgramCarousel from "../LanguageProgramCarousel";
+import { filterCoursesByLanguage } from "../../../courseLanguage.js";
+import { fetchAllLanguageCourses } from "../../../languageCourses.js";
 
 const Arabic = () => {
    const [open, setOpen] = useState(false);
@@ -82,8 +85,13 @@ useEffect(() => {
       if (data.status) {
         setLanguageData(data.page);
 
-        // ADD THIS
-        setDetails(data.details || []);
+        try {
+          const allCourses = await fetchAllLanguageCourses(API_BASE);
+          setDetails(allCourses);
+        } catch (courseError) {
+          console.error("All language courses could not be loaded", courseError);
+          setDetails(data.details || []);
+        }
       } else {
         setLanguageData(null);
       }
@@ -121,6 +129,7 @@ useEffect(() => {
   // const shortContent = textContent.slice(0, LIMIT);
 
   const contentHtml = languageData?.content || "";
+  const visibleDetails = filterCoursesByLanguage(details, languageData?.title);
   const heroContent = getLanguageHeroContent(languageData?.title, slug);
   const heroDescription = heroContent
     ? getHeroDescription(heroContent, languageData?.title)
@@ -339,6 +348,12 @@ useEffect(() => {
         </div>
       </div>
     </section>
+      {slug === "best-institute-for-regional-languages" && (
+        <LanguageProgramCarousel
+          language="Indian Regional"
+          apiSlug={slug}
+        />
+      )}
       {/* <ArabicCoursesSlider /> */}
       {/* <PopularCourses data={apiData?.languages} /> */}
      {/* <div className="max-w-7xl mx-auto my-8 px-4 relative">
@@ -522,6 +537,7 @@ useEffect(() => {
   </Swiper>
 </div> */}
 
+ {slug !== "best-institute-for-regional-languages" && (
  <div className="max-w-7xl mx-auto py-10 px-4">
   <Swiper
     slidesPerView={1}
@@ -546,7 +562,7 @@ useEffect(() => {
     modules={[Autoplay, Navigation, Pagination]}
     className="pb-20"   // ✅ FIX: gives space for bottom shadow
   >
-    {details.map((item, index) => (
+    {visibleDetails.map((item, index) => (
       <SwiperSlide key={index} className="py-4"> {/* ✅ FIX: spacing for shadow */}
 
         {/* WHOLE CARD LINK */}
@@ -593,6 +609,7 @@ useEffect(() => {
     ))}
   </Swiper>
 </div>
+ )}
 
       {slug === "online-english-language-course" && (
         <>

@@ -137,6 +137,7 @@ import {
   STANDALONE_LANDING_ROUTES,
 } from "./standaloneLandingRoutes";
 import { LEGACY_ROUTE_REDIRECTS } from "./legacyRouteRedirects";
+import RelatedLanguagePrograms from "./Components/Common/RelatedLanguagePrograms";
 
 function LegacyBlogRedirect() {
   const { slug } = useParams();
@@ -402,6 +403,13 @@ function StandaloneLandingGtm() {
   );
 }
 
+const withRelatedPrograms = (page) => (
+  <>
+    {page}
+    <RelatedLanguagePrograms />
+  </>
+);
+
 function App() {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -476,19 +484,19 @@ function App() {
           <Route path="/australia" element={<Australia/>} />
           <Route path="/unitedarab" element={<UnitedArabEmirates/>} />
           <Route path="/mauritius" element={<Mauritius/>} />
-          <Route path="/balkan-language" element={<BalkanLanguage/>} />
-          <Route path="/chinese" element={<Chinese/>} />
-          <Route path="/frame" element={<Frame/>} />
-          <Route path="/french" element={<French/>} />
-          <Route path="/german" element={<German/>} />
-          <Route path="/hind" element={<Hindi/>} />
-          <Route path="/online-italian-la" element={<ItalianLanguage/>} />
-          <Route path="/online-japanese-la" element={<Japanese/>} />
-          <Route path="/online-ko" element={<Korean/>} />
-          <Route path="/russian" element={<Russian/>} />
-          <Route path="/persian" element={<Persian/>} />
-          <Route path="/polish" element={<Polish/>} />
-          <Route path="/sanskrit" element={<Sanskrit/>} />
+          <Route path="/balkan-language" element={withRelatedPrograms(<BalkanLanguage />)} />
+          <Route path="/chinese" element={withRelatedPrograms(<Chinese />)} />
+          <Route path="/frame" element={withRelatedPrograms(<Frame />)} />
+          <Route path="/french" element={withRelatedPrograms(<French />)} />
+          <Route path="/german" element={withRelatedPrograms(<German />)} />
+          <Route path="/hind" element={withRelatedPrograms(<Hindi />)} />
+          <Route path="/online-italian-la" element={withRelatedPrograms(<ItalianLanguage />)} />
+          <Route path="/online-japanese-la" element={withRelatedPrograms(<Japanese />)} />
+          <Route path="/online-ko" element={withRelatedPrograms(<Korean />)} />
+          <Route path="/russian" element={withRelatedPrograms(<Russian />)} />
+          <Route path="/persian" element={withRelatedPrograms(<Persian />)} />
+          <Route path="/polish" element={withRelatedPrograms(<Polish />)} />
+          <Route path="/sanskrit" element={withRelatedPrograms(<Sanskrit />)} />
           <Route path="/asia" element={<Asia/>} />
           <Route path="/europe" element ={<Europe/>} />
           <Route path="/aust" element={<Australia/>} />
@@ -558,16 +566,16 @@ function App() {
           <Route path="/eb5-usa" element={<LangmaEB5USAPage />} />
           <Route path="/indonesia-second-home-visa" element={<LangmaIndonesiaSecondHomeVisaPage />} />
           <Route path="/thailand-elite-visa" element={<LangmaThailandEliteVisaPage />} />
-          <Route path="/learn-german-language" element={<LearnGermanLanguage />} />
-          <Route path="/learn-korean-language" element={<LearnKoreanLanguage />} />
-          <Route path="/learn-japanese-language" element={<LearnJapaneseLanguage />} />
-          <Route path="/learn-french-language" element={<LangmaFrenchCourse />} />
-          <Route path="/learn-chinese-language" element={<LangmaChineseCourse />} />
-          <Route path="/german-language-course" element={<NewLanguageLanding language="German" />} />
-          <Route path="/korean-language-course" element={<NewLanguageLanding language="Korean" />} />
-          <Route path="/japanese-language-course" element={<NewLanguageLanding language="Japanese" />} />
-          <Route path="/french-language-course" element={<NewLanguageLanding language="French" />} />
-          <Route path="/chinese-language-course" element={<NewLanguageLanding language="Chinese" />} />
+          <Route path="/learn-german-language" element={withRelatedPrograms(<LearnGermanLanguage />)} />
+          <Route path="/learn-korean-language" element={withRelatedPrograms(<LearnKoreanLanguage />)} />
+          <Route path="/learn-japanese-language" element={withRelatedPrograms(<LearnJapaneseLanguage />)} />
+          <Route path="/learn-french-language" element={withRelatedPrograms(<LangmaFrenchCourse />)} />
+          <Route path="/learn-chinese-language" element={withRelatedPrograms(<LangmaChineseCourse />)} />
+          <Route path="/german-language-course" element={withRelatedPrograms(<NewLanguageLanding language="German" />)} />
+          <Route path="/korean-language-course" element={withRelatedPrograms(<NewLanguageLanding language="Korean" />)} />
+          <Route path="/japanese-language-course" element={withRelatedPrograms(<NewLanguageLanding language="Japanese" />)} />
+          <Route path="/french-language-course" element={withRelatedPrograms(<NewLanguageLanding language="French" />)} />
+          <Route path="/chinese-language-course" element={withRelatedPrograms(<NewLanguageLanding language="Chinese" />)} />
 
           <Route path="/translation-services" element={<TranslationServices />} />
           <Route path="/ecl" element={<ECLPage />} />
@@ -575,7 +583,7 @@ function App() {
             path="/foreign-language-courses-in-nepal"
             element={<ForeignLanguageCoursesInNepal />}
           />
-          <Route path="/:slug" element={<Arabic/>} />
+          <Route path="/:slug" element={withRelatedPrograms(<Arabic />)} />
           <Route path="/golden-visa-assessment" element={<GoldenVisaAssessment/>} />
         <Route path="/thank-you" element={<Thankyou />} />
           {/* <Route path="/newhome" element={<HomeLangma/>} /> */}
