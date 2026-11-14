@@ -76,6 +76,7 @@ const ADDITIONAL_SITEMAP_ROUTES = [
   "/foreign-language-courses-in-nepal",
   "/about",
   "/faqs",
+  "/blog/foreign-language-courses-in-delhi-enquiries-from-noida",
   "/explore-the-world-of-bahasa-indonesia-with-langma-international",
   "/refund-policy",
   "/disclaimer",
@@ -231,6 +232,7 @@ const languageNames = new Map(
   apiLanguages.filter((item) => item.url && item.title).map((item) => [item.url, item.title])
 );
 const languagePages = new Map();
+const courseRecordsBySlug = new Map();
 const blogList = await fetchJson(`${API_BASE}/api/blog-list`);
 const apiBlogPosts =
   Array.isArray(blogList?.data)
@@ -262,6 +264,13 @@ const courseDetailUrls = (
         return [];
       }
 
+      data.details.forEach((course) => {
+        if (!course.slug) return;
+        const records = courseRecordsBySlug.get(course.slug) || [];
+        records.push({ course, data, languageSlug });
+        courseRecordsBySlug.set(course.slug, records);
+      });
+
       return data.details
         .filter(
           (course) =>
@@ -276,6 +285,17 @@ const courseDetailUrls = (
     })
   )
 ).flat();
+const redirectedCourseDetailUrls = [
+  ...new Set(
+    Object.values(LEGACY_ROUTE_REDIRECTS)
+      .filter((route) => route.startsWith("/course-details/"))
+      .filter((route) => {
+        const courseSlug = route.split("/").at(-1);
+        return courseRecordsBySlug.has(courseSlug);
+      })
+      .map((route) => `${SITE_URL}${route}/`)
+  ),
+];
 function normalizedUrl(value) {
   const url = new URL(value);
   const pathname = url.pathname
@@ -290,6 +310,7 @@ const routeUrls = [
   ...sitemapUrls,
   ...blogUrls,
   ...courseDetailUrls,
+  ...redirectedCourseDetailUrls,
   ...ADDITIONAL_SITEMAP_ROUTES.map((route) => `${SITE_URL}${route}`),
   ...STANDALONE_LANDING_ROUTES.map((route) => `${SITE_URL}${route}`),
   ...Object.keys(ROUTE_ALIASES).map((route) => `${SITE_URL}${route}`),
@@ -315,6 +336,7 @@ const existingSitemapUrls = new Set(sitemapUrls.map(normalizedUrl));
 const additionalSitemapEntries = [...new Set([
   ...blogUrls,
   ...courseDetailUrls,
+  ...redirectedCourseDetailUrls,
   ...ADDITIONAL_SITEMAP_ROUTES.map((route) => `${SITE_URL}${route}/`),
 ])]
   .filter((url) => !existingSitemapUrls.has(normalizedUrl(url)))
@@ -391,12 +413,23 @@ async function metadataFor(pathname) {
   if (normalized.startsWith("/course-details/")) {
     const [, , languageSlug, courseSlug] = normalized.split("/");
     if (languageSlug && courseSlug) {
-      const data = await fetchJson(
+      let data = await fetchJson(
         `${API_BASE}/api/language-page/${encodeURIComponent(languageSlug)}`
       );
-      const course = data?.details?.find((item) => item.slug === courseSlug);
+      let course = data?.details?.find((item) => item.slug === courseSlug);
+      if (!course) {
+        const record = courseRecordsBySlug
+          .get(courseSlug)
+          ?.find(({ course: item }) => item.slug === courseSlug);
+        if (record) {
+          ({ course, data } = record);
+        }
+      }
       if (course) {
-        const languageName = languageNames.get(languageSlug) || languageSlug.replaceAll("-", " ");
+        const languageName =
+          getCourseLanguage(course.course_feature, course.title) ||
+          languageNames.get(languageSlug) ||
+          languageSlug.replaceAll("-", " ");
         return {
           title: `${course.title} ${languageName} Course | Langma International`,
           description: truncate(
