@@ -243,9 +243,13 @@ export const LEGACY_ROUTE_REDIRECTS = Object.freeze(
 export const BLOG_CONTENT_SLUG_ALIASES = Object.freeze({
   "top-3-french-class-checks-in-delhi-for-gurgaon-learners":
     "french-language-classes-in-delhi:-3-checks-for-gurgaon-learners",
+  "foreign-language-courses-in-delhi-enquiries-from-noida":
+    "foreign-language-courses-in-delhi:-choosing-from-noida",
 });
 
 export const LEGACY_BLOG_SLUG_REDIRECTS = Object.freeze({
+  "foreign-language-courses-in-delhi:-choosing-from-noida":
+    "foreign-language-courses-in-delhi-enquiries-from-noida",
   "french-language-classes-in-delhi:-3-checks-for-gurgaon-learners":
     "top-3-french-class-checks-in-delhi-for-gurgaon-learners",
   "french-language-course-in-delhi-india":
