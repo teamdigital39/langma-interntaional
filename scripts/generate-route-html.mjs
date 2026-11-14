@@ -65,7 +65,17 @@ const NON_SITEMAP_ROUTES = ["/thank-you"];
 
 function canonicalRoutePath(pathname) {
   const route = canonicalPath(pathname);
-  const alias = ROUTE_ALIASES[route] || route;
+  const decodedRoute = route
+    .split("/")
+    .map((segment) => {
+      try {
+        return decodeURIComponent(segment);
+      } catch {
+        return segment;
+      }
+    })
+    .join("/");
+  const alias = ROUTE_ALIASES[route] || ROUTE_ALIASES[decodedRoute] || route;
   return alias.startsWith("/blog-detail/")
     ? `/blog/${alias.split("/").filter(Boolean).at(-1)}`
     : alias;
