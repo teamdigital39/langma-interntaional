@@ -87,6 +87,8 @@ const ADDITIONAL_SITEMAP_ROUTES = [
   "/about",
   "/faqs",
   "/blog/foreign-language-courses-in-delhi-enquiries-from-noida",
+  "/blog/french-classes-in-delhi-ncr-for-study-new-delhi",
+  "/blog/overseas-jobs-vs-remote-work-career-guidance-in-delhi",
   "/explore-the-world-of-bahasa-indonesia-with-langma-international",
   "/refund-policy",
   "/disclaimer",
