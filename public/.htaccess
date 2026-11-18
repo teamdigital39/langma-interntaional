@@ -57,6 +57,9 @@ RewriteRule ^public/blog/(.*)$ /blog/$1 [R=301,L,NE]
 RewriteRule ^public/index\.php/(.*)$ /$1 [R=301,L,NE]
 RewriteRule ^public/(.*)$ /$1 [R=301,L,NE]
 
+# Redirect the punctuation-bearing JLPT/NAT-TEST blog URL to its clean public slug.
+RewriteRule ^blog/jlpt-vs-nat-test(?::|%3A)-differences(?:,|%2C)-exam-pattern(?:,|%2C)-passing-scores-and-registration-in-india/?$ /blog/jlpt-vs-nat-test-differences-exam-pattern-passing-scores-registration-india/ [R=301,L,NC,NE]
+
 # Redirect legacy main-site URLs to their current equivalent pages.
 # Frontend legacy route mappings, served as direct HTTP redirects.
 RewriteRule ^gallery/?$ /success-stories/ [R=301,L,NE]
