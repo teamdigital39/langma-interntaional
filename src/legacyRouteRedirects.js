@@ -245,9 +245,19 @@ export const BLOG_CONTENT_SLUG_ALIASES = Object.freeze({
     "french-language-classes-in-delhi:-3-checks-for-gurgaon-learners",
   "foreign-language-courses-in-delhi-enquiries-from-noida":
     "foreign-language-courses-in-delhi:-choosing-from-noida",
+  "french-classes-in-delhi-ncr-for-study-new-delhi":
+    "how-to-choose-french-classes-in-delhi-ncr-for-your-studies",
+  "overseas-jobs-vs-remote-work-career-guidance-in-delhi":
+    "overseas-jobs-or-remote-work:-which-fits-your-career-in-delhi?",
 });
 
 export const LEGACY_BLOG_SLUG_REDIRECTS = Object.freeze({
+  "how-to-choose-french-classes-in-delhi-ncr-for-your-studies":
+    "french-classes-in-delhi-ncr-for-study-new-delhi",
+  "overseas-jobs-or-remote-work:-which-fits-your-career-in-delhi":
+    "overseas-jobs-vs-remote-work-career-guidance-in-delhi",
+  "overseas-jobs-or-remote-work:-which-fits-your-career-in-delhi?":
+    "overseas-jobs-vs-remote-work-career-guidance-in-delhi",
   "foreign-language-courses-in-delhi:-choosing-from-noida":
     "foreign-language-courses-in-delhi-enquiries-from-noida",
   "french-language-classes-in-delhi:-3-checks-for-gurgaon-learners":
