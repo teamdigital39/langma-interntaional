@@ -29,3 +29,105 @@
 .langma-blog-ui .blog-muted {
   color: #64748b;
 }
+
+.blog-detail-ui .blog-article-content {
+  color: #475569;
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+.blog-detail-ui .blog-article-content > * + * {
+  margin-top: 1.25rem;
+}
+
+.blog-detail-ui .blog-article-content h1,
+.blog-detail-ui .blog-article-content h2,
+.blog-detail-ui .blog-article-content h3,
+.blog-detail-ui .blog-article-content h4 {
+  color: #0f2a44;
+  font-weight: 750;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.blog-detail-ui .blog-article-content h1 {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+}
+
+.blog-detail-ui .blog-article-content h2 {
+  margin-top: 2rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+}
+
+.blog-detail-ui .blog-article-content h3 {
+  margin-top: 1.75rem;
+  font-size: 1.25rem;
+}
+
+.blog-detail-ui .blog-article-content p,
+.blog-detail-ui .blog-article-content li {
+  color: #475569;
+}
+
+.blog-detail-ui .blog-article-content ul,
+.blog-detail-ui .blog-article-content ol {
+  padding-left: 1.5rem;
+}
+
+.blog-detail-ui .blog-article-content ul {
+  list-style: disc;
+}
+
+.blog-detail-ui .blog-article-content ol {
+  list-style: decimal;
+}
+
+.blog-detail-ui .blog-article-content li + li {
+  margin-top: 0.5rem;
+}
+
+.blog-detail-ui .blog-article-content a {
+  color: #16826b;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.blog-detail-ui .blog-article-content a:hover {
+  color: #0f2a44;
+}
+
+.blog-detail-ui .blog-article-content img,
+.blog-detail-ui .blog-article-content iframe {
+  max-width: 100%;
+  border-radius: 1rem;
+}
+
+.blog-detail-ui .blog-article-content blockquote {
+  border-left: 4px solid #2fc7a1;
+  padding: 0.25rem 0 0.25rem 1rem;
+  color: #334155;
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.blog-detail-ui .blog-article-content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.blog-detail-ui .blog-article-content th,
+.blog-detail-ui .blog-article-content td {
+  border: 1px solid #e2e8f0;
+  padding: 0.625rem 0.75rem;
+  text-align: left;
+}
+
+.blog-detail-ui .blog-article-content th {
+  background: #f1f8f6;
+  color: #0f2a44;
+  font-weight: 700;
+}
