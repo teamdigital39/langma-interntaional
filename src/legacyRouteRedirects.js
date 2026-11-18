@@ -248,7 +248,7 @@ export const BLOG_CONTENT_SLUG_ALIASES = Object.freeze({
   "french-classes-in-delhi-ncr-for-study-new-delhi":
     "how-to-choose-french-classes-in-delhi-ncr-for-your-studies",
   "overseas-jobs-vs-remote-work-career-guidance-in-delhi":
-    "overseas-jobs-or-remote-work:-which-fits-your-career-in-delhi?",
+    "overseas-jobs-or-remote-work:-which-fits-your-career-in-delhi",
 });
 
 export const LEGACY_BLOG_SLUG_REDIRECTS = Object.freeze({
