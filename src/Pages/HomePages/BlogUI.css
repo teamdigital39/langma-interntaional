@@ -131,3 +131,125 @@
   color: #0f2a44;
   font-weight: 700;
 }
+
+.blog-detail-ui .blog-heading-compact {
+  max-width: 56rem;
+}
+
+@media (min-width: 768px) {
+  .blog-detail-ui .blog-heading-compact {
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    line-height: 1.15;
+  }
+}
+
+.blog-detail-ui .blog-article-content .blog-exam-section-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 2.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #dceee9;
+  color: #0f2a44;
+  font-size: clamp(1.35rem, 2.7vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.blog-detail-ui .blog-article-content .blog-exam-marker {
+  display: inline-flex;
+  min-width: 1.85rem;
+  height: 1.85rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #e8f8f3;
+  color: #16826b;
+  font-size: 0.875rem;
+  font-weight: 800;
+}
+
+.blog-detail-ui .blog-article-content .blog-exam-question {
+  margin-top: 1.35rem;
+  padding: 0.85rem 1rem;
+  border-left: 3px solid #2fc7a1;
+  border-radius: 0 0.75rem 0.75rem 0;
+  background: #f1f8f6;
+  color: #0f2a44;
+  font-size: 1.05rem;
+  font-weight: 750;
+  line-height: 1.5;
+}
+
+.blog-detail-ui .blog-article-content .blog-exam-question .blog-exam-marker {
+  min-width: 1.55rem;
+  height: 1.55rem;
+  margin-right: 0.45rem;
+  font-size: 0.72rem;
+}
+
+.blog-detail-ui .blog-article-content .blog-exam-answer {
+  margin-top: 0.6rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid #e2ece9;
+  border-radius: 0.75rem;
+  background: #fff;
+}
+
+.blog-detail-ui .blog-article-content .blog-exam-answer-label {
+  margin-right: 0.35rem;
+  color: #16826b;
+  font-weight: 800;
+}
+
+.blog-detail-ui .blog-article-content .blog-exam-japanese-question,
+.blog-detail-ui .blog-article-content .blog-exam-japanese-answer {
+  margin-top: 0.45rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid #dceee9;
+  color: #526173;
+  font-size: 0.96rem;
+  line-height: 1.8;
+}
+
+.blog-detail-ui .blog-article-content .blog-exam-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  border: 1px solid #e2ece9;
+  border-radius: 0.875rem;
+  background: #fff;
+  -webkit-overflow-scrolling: touch;
+}
+
+.blog-detail-ui .blog-article-content .blog-exam-table {
+  display: table;
+  width: max-content;
+  min-width: 100%;
+  max-width: none;
+  margin-top: 0;
+  overflow: visible;
+  border: 0;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+  line-height: 1.55;
+}
+
+.blog-detail-ui .blog-article-content .blog-exam-table td,
+.blog-detail-ui .blog-article-content .blog-exam-table th {
+  min-width: 7rem;
+  padding: 0.75rem 0.875rem;
+  vertical-align: top;
+}
+
+@media (max-width: 640px) {
+  .blog-detail-ui .blog-article-content .blog-exam-table {
+    font-size: 0.875rem;
+  }
+
+  .blog-detail-ui .blog-article-content .blog-exam-table td,
+  .blog-detail-ui .blog-article-content .blog-exam-table th {
+    min-width: 6.5rem;
+    padding: 0.625rem 0.75rem;
+  }
+}

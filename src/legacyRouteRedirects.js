@@ -249,9 +249,13 @@ export const BLOG_CONTENT_SLUG_ALIASES = Object.freeze({
     "how-to-choose-french-classes-in-delhi-ncr-for-your-studies",
   "overseas-jobs-vs-remote-work-career-guidance-in-delhi":
     "overseas-jobs-or-remote-work:-which-fits-your-career-in-delhi",
+  "jlpt-vs-nat-test-differences-exam-pattern-passing-scores-registration-india":
+    "jlpt-vs-nat-test:-differences,-exam-pattern,-passing-scores-and-registration-in-india",
 });
 
 export const LEGACY_BLOG_SLUG_REDIRECTS = Object.freeze({
+  "jlpt-vs-nat-test:-differences,-exam-pattern,-passing-scores-and-registration-in-india":
+    "jlpt-vs-nat-test-differences-exam-pattern-passing-scores-registration-india",
   "how-to-choose-french-classes-in-delhi-ncr-for-your-studies":
     "french-classes-in-delhi-ncr-for-study-new-delhi",
   "overseas-jobs-or-remote-work:-which-fits-your-career-in-delhi":

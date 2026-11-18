@@ -95,6 +95,8 @@ const ADDITIONAL_SITEMAP_ROUTES = [
   "/blog/foreign-language-courses-in-delhi-enquiries-from-noida",
   "/blog/french-classes-in-delhi-ncr-for-study-new-delhi",
   "/blog/overseas-jobs-vs-remote-work-career-guidance-in-delhi",
+  "/blog/how-to-choose-german-classes-in-delhi-for-exam-preparation",
+  "/blog/jlpt-vs-nat-test-differences-exam-pattern-passing-scores-registration-india",
   "/explore-the-world-of-bahasa-indonesia-with-langma-international",
   "/refund-policy",
   "/disclaimer",

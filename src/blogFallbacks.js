@@ -30,7 +30,20 @@ export function getLocalBlogFallback(slug = "") {
 }
 
 export function getBlogPublicSlug(slug = "") {
-  return getLocalBlogFallback(slug)?.slug || String(slug || "");
+  const value = String(slug || "");
+  const localFallback = getLocalBlogFallback(value);
+  if (localFallback) return localFallback.slug;
+  try {
+    const decoded = decodeURIComponent(value);
+    if (
+      decoded === "jlpt-vs-nat-test:-differences,-exam-pattern,-passing-scores-and-registration-in-india"
+    ) {
+      return "jlpt-vs-nat-test-differences-exam-pattern-passing-scores-registration-india";
+    }
+  } catch {
+    // Keep the current slug when a legacy URL cannot be decoded.
+  }
+  return value;
 }
 
 export function getBlogArticlePath(slug = "") {

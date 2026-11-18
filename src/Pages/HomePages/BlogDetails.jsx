@@ -6,13 +6,23 @@ import {
   BLOG_CONTENT_SLUG_ALIASES,
   LEGACY_BLOG_SLUG_REDIRECTS,
 } from "../../legacyRouteRedirects.js";
-import { getLocalBlogFallback, getBlogArticlePath } from "../../blogFallbacks.js";
+import {
+  getLocalBlogFallback,
+  getBlogArticlePath,
+  getBlogPublicSlug,
+} from "../../blogFallbacks.js";
+import {
+  formatJpExamBlogContent,
+  JLPT_NAT_TEST_BLOG_SLUG,
+} from "../../blogContentFormatting.js";
 import "./BlogUI.css";
 
 const BlogDetailPage = () => {
   const { slug } = useParams();
   const contentSlug = BLOG_CONTENT_SLUG_ALIASES[slug] || slug;
   const localFallback = getLocalBlogFallback(slug);
+  const isJlptNatTestArticle =
+    getBlogPublicSlug(slug) === JLPT_NAT_TEST_BLOG_SLUG;
   const [blog, setBlog] = useState(null);
   const [recentBlogs, setRecentBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -50,7 +60,14 @@ const BlogDetailPage = () => {
           return;
         }
 
-        setBlog(result.data);
+        setBlog(
+          isJlptNatTestArticle
+            ? {
+                ...result.data,
+                content: formatJpExamBlogContent(result.data.content),
+              }
+            : result.data
+        );
         setRecentBlogs(result.recentBlog || []);
       } catch (error) {
         console.error("Error fetching blog:", error);
@@ -61,7 +78,7 @@ const BlogDetailPage = () => {
     };
 
     if (contentSlug) fetchBlogDetail();
-  }, [contentSlug, localFallback]);
+  }, [contentSlug, isJlptNatTestArticle, localFallback]);
 
   const canonicalSlug = LEGACY_BLOG_SLUG_REDIRECTS[slug];
   if (canonicalSlug) {
@@ -142,7 +159,11 @@ const BlogDetailPage = () => {
             <p className="mb-4 text-xs font-extrabold uppercase tracking-[0.2em] text-[#7DE0C4]">
               Langma insights
             </p>
-            <h1 className="blog-heading text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
+            <h1
+              className={`blog-heading text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl${
+                isJlptNatTestArticle ? " blog-heading-compact" : ""
+              }`}
+            >
               {blog.title}
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-white/75 md:text-lg">
