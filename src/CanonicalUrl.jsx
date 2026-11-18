@@ -12,8 +12,11 @@ import {
   upsertLink,
   upsertMeta,
 } from "./seo";
-import { BLOG_CONTENT_SLUG_ALIASES } from "./legacyRouteRedirects.js";
-import { getLocalBlogFallback } from "./blogFallbacks.js";
+import {
+  BLOG_CONTENT_SLUG_ALIASES,
+  LEGACY_BLOG_SLUG_REDIRECTS,
+} from "./legacyRouteRedirects.js";
+import { getBlogPublicSlug, getLocalBlogFallback } from "./blogFallbacks.js";
 import { getCourseLanguage } from "./courseLanguage.js";
 import { fetchAllLanguageCourses } from "./languageCourses.js";
 
@@ -44,6 +47,23 @@ function applyMetadata(metadata, pathname) {
   upsertMeta("name", "twitter:description", metadata.description);
   upsertMeta("name", "twitter:image", image);
   setRouteJsonLd(metadata, url, isCourse);
+}
+
+function canonicalBlogPath(pathname) {
+  const path = canonicalPath(pathname);
+  if (!path.startsWith("/blog/")) return path;
+
+  const rawSlug = path.split("/").filter(Boolean).at(-1) || "";
+  let slug = rawSlug;
+  try {
+    slug = decodeURIComponent(rawSlug);
+  } catch {
+    // Keep malformed legacy slugs unchanged rather than breaking page metadata.
+  }
+
+  const publicSlug =
+    LEGACY_BLOG_SLUG_REDIRECTS[slug] || getBlogPublicSlug(slug);
+  return `/blog/${publicSlug}`;
 }
 
 function keepSinglePageH1(root) {
@@ -77,7 +97,7 @@ export default function CanonicalUrl() {
 
   useEffect(() => {
     const controller = new AbortController();
-    const path = canonicalPath(pathname);
+    const path = canonicalBlogPath(pathname);
     applyMetadata(fallbackMetadata(path), path);
 
     async function loadRouteMetadata() {

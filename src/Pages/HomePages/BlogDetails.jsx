@@ -18,8 +18,17 @@ import {
 import "./BlogUI.css";
 
 const BlogDetailPage = () => {
-  const { slug } = useParams();
-  const contentSlug = BLOG_CONTENT_SLUG_ALIASES[slug] || slug;
+  const { slug: routeSlug = "" } = useParams();
+  let slug = routeSlug;
+  try {
+    slug = decodeURIComponent(routeSlug);
+  } catch {
+    // Keep the router value when a malformed legacy path cannot be decoded.
+  }
+  const contentSlug =
+    BLOG_CONTENT_SLUG_ALIASES[slug] ||
+    BLOG_CONTENT_SLUG_ALIASES[routeSlug] ||
+    slug;
   const localFallback = getLocalBlogFallback(slug);
   const isJlptNatTestArticle =
     getBlogPublicSlug(slug) === JLPT_NAT_TEST_BLOG_SLUG;
