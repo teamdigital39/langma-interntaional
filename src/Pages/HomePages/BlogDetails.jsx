@@ -6,11 +6,13 @@ import {
   BLOG_CONTENT_SLUG_ALIASES,
   LEGACY_BLOG_SLUG_REDIRECTS,
 } from "../../legacyRouteRedirects.js";
+import { getLocalBlogFallback, getBlogArticlePath } from "../../blogFallbacks.js";
 import "./BlogUI.css";
 
 const BlogDetailPage = () => {
   const { slug } = useParams();
   const contentSlug = BLOG_CONTENT_SLUG_ALIASES[slug] || slug;
+  const localFallback = getLocalBlogFallback(slug);
   const [blog, setBlog] = useState(null);
   const [recentBlogs, setRecentBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,6 +21,21 @@ const BlogDetailPage = () => {
   useEffect(() => {
     const fetchBlogDetail = async () => {
       try {
+        if (localFallback) {
+          const response = await fetch(localFallback.contentUrl);
+          if (!response.ok) throw new Error(`Local blog content request failed (${response.status})`);
+          setBlog({ ...localFallback, content: await response.text() });
+          try {
+            const recentResponse = await fetch(`${API_BASE}/api/home`);
+            if (recentResponse.ok) {
+              const recent = await recentResponse.json();
+              setRecentBlogs((recent.blogs || []).filter(item => item.id !== 107));
+            }
+          } catch {
+            // Optional recent articles must not prevent the fallback rendering.
+          }
+          return;
+        }
         const response = await fetch(
           `${API_BASE}/api/blog-detail/${encodeURIComponent(contentSlug)}`
         );
@@ -44,7 +61,7 @@ const BlogDetailPage = () => {
     };
 
     if (contentSlug) fetchBlogDetail();
-  }, [contentSlug]);
+  }, [contentSlug, localFallback]);
 
   const canonicalSlug = LEGACY_BLOG_SLUG_REDIRECTS[slug];
   if (canonicalSlug) {
@@ -183,7 +200,7 @@ const BlogDetailPage = () => {
                     return (
                       <li key={item.id || item.slug || index} className="py-4 first:pt-0 last:pb-0">
                         <Link
-                          to={`/blog/${encodeURIComponent(itemSlug)}/`}
+                          to={getBlogArticlePath(itemSlug)}
                           className="group flex items-start gap-3"
                         >
                           {item.image && (

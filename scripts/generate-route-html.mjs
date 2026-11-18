@@ -24,6 +24,7 @@ import {
   LEGACY_BLOG_SLUG_REDIRECTS,
   LEGACY_ROUTE_REDIRECTS,
 } from "../src/legacyRouteRedirects.js";
+import { getLocalBlogFallback } from "../src/blogFallbacks.js";
 import { APP_STATIC_ROUTES } from "../src/siteRoutes.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -64,6 +65,11 @@ const ROUTE_ALIASES = {
 const NON_SITEMAP_ROUTES = ["/thank-you"];
 
 function canonicalRoutePath(pathname) {
+  const rawRoute = String(pathname || "/");
+  if (rawRoute.startsWith("/blog/")) {
+    const localFallback = getLocalBlogFallback(rawRoute.split("/").filter(Boolean).at(-1));
+    if (localFallback) return `/blog/${localFallback.slug}`;
+  }
   const route = canonicalPath(pathname);
   const decodedRoute = route
     .split("/")
@@ -391,6 +397,22 @@ async function metadataFor(pathname) {
       slug = decodeURIComponent(slug);
     } catch {
       throw new Error(`Could not decode blog route slug "${slug}".`);
+    }
+    const localFallback = getLocalBlogFallback(slug);
+    if (localFallback) {
+      const contentPath = path.join(
+        root,
+        "public",
+        localFallback.contentUrl.replace(/^\//, "")
+      );
+      const content = await readFile(contentPath, "utf8");
+      return {
+        title: `${localFallback.title} | Langma International`,
+        description: truncate(localFallback.description),
+        h1: localFallback.title,
+        image: absoluteImage(localFallback.image),
+        contentText: fallbackContent(content),
+      };
     }
     slug = BLOG_CONTENT_SLUG_ALIASES[slug] || slug;
     const result = await fetchJson(

@@ -13,6 +13,7 @@ import {
   upsertMeta,
 } from "./seo";
 import { BLOG_CONTENT_SLUG_ALIASES } from "./legacyRouteRedirects.js";
+import { getLocalBlogFallback } from "./blogFallbacks.js";
 import { getCourseLanguage } from "./courseLanguage.js";
 import { fetchAllLanguageCourses } from "./languageCourses.js";
 
@@ -135,6 +136,19 @@ export default function CanonicalUrl() {
           const slug = path.split("/").filter(Boolean).at(-1);
           if (!slug) return;
           const contentSlug = BLOG_CONTENT_SLUG_ALIASES[slug] || slug;
+          const localFallback = getLocalBlogFallback(slug);
+          if (localFallback) {
+            applyMetadata(
+              {
+                title: `${localFallback.title} | Langma International`,
+                description: localFallback.description,
+                h1: localFallback.title,
+                image: localFallback.image,
+              },
+              path
+            );
+            return;
+          }
           const response = await fetch(
             `${API_BASE}/api/blog-detail/${encodeURIComponent(contentSlug)}`,
             { signal: controller.signal }
