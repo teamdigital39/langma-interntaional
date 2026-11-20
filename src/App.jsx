@@ -6,6 +6,7 @@ import TopBar from "./Components/Common/Header/TopBar";
 const HeroSection = lazy(() => import("./Pages/HomePages/HeroSection"));
 const AboutHeroSection = lazy(() => import("./Pages/HomePages/Aboutpage/AboutHeroSection"));
 import Footer from "./Pages/HomePages/Footer";
+import RelatedLanguagePrograms from "./Components/Common/RelatedLanguagePrograms";
 const AbrotHeroSection = lazy(() => import("./Components/Common/WorkAbrot/AbrotHeroSection"));
 const StudyAbrotHeroSection = lazy(() => import("./Components/Common/StudyAbortSection/StudyAbrotHeroSection"));
 // import InternationalHeroSection1 from "./Components/InternationlHeroSection/InternationalHeroSection1";
@@ -125,6 +126,7 @@ const LangmaChineseCourse = lazy(() => import("./Pages/HomePages/LangmaChineseCo
 const NewLanguageLanding = lazy(() => import("./Pages/HomePages/NewLanguageLanding"));
 const ForeignLanguageCoursesInNepal = lazy(() => import("./Pages/HomePages/ForeignLanguageCoursesInNepal"));
 const ECLPage = lazy(() => import("./Pages/HomePages/ECLPage"));
+const CorporateLanguageTraining = lazy(() => import("./Pages/HomePages/CorporateLanguageTraining"));
 
 const TranslationServices = lazy(() => import("./Pages/HomePages/TranslationServices"));
 const HomeLangma = lazy(() => import("./Pages/HomePages/Homepage"));
@@ -136,8 +138,11 @@ import {
   GTM_ID,
   STANDALONE_LANDING_ROUTES,
 } from "./standaloneLandingRoutes";
-import { LEGACY_ROUTE_REDIRECTS } from "./legacyRouteRedirects";
-import RelatedLanguagePrograms from "./Components/Common/RelatedLanguagePrograms";
+import {
+  LEGACY_PUBLIC_ROUTES,
+  LEGACY_ROUTE_REDIRECTS,
+  normalizeLegacyPublicPath,
+} from "./legacyRouteRedirects";
 
 function LegacyBlogRedirect() {
   const { slug } = useParams();
@@ -146,9 +151,11 @@ function LegacyBlogRedirect() {
 
 function LegacyRouteRedirect({ to }) {
   const location = useLocation();
+  const destination = typeof to === "string" ? to.trim() : to;
+
   return (
     <Navigate
-      to={{ pathname: to, search: location.search, hash: location.hash }}
+      to={{ pathname: destination, search: location.search, hash: location.hash }}
       replace
     />
   );
@@ -156,10 +163,23 @@ function LegacyRouteRedirect({ to }) {
 
 function LegacyPublicRedirect() {
   const location = useLocation();
-  const legacyPath = location.pathname.replace(/^\/public(?=\/|$)/, "") || "/";
-  const normalizedPath = legacyPath.replace(/^\/index\.php(?=\/|$)/, "") || "/";
+  const normalizedPath = normalizeLegacyPublicPath(location.pathname);
   const isSitemap = normalizedPath === "/sitemap.xml";
-  const to = LEGACY_ROUTE_REDIRECTS[normalizedPath] || normalizedPath;
+  let decodedPath = location.pathname;
+
+  try {
+    decodedPath = decodeURIComponent(location.pathname);
+  } catch {
+    // Ignore malformed encodings from old legacy URLs.
+  }
+
+  const legacyPublicMatch =
+    LEGACY_PUBLIC_ROUTES.includes(normalizedPath) ||
+    LEGACY_PUBLIC_ROUTES.includes(decodedPath.replace(/\/+$/, "") || "/");
+  const to =
+    legacyPublicMatch && LEGACY_ROUTE_REDIRECTS[normalizedPath]
+      ? LEGACY_ROUTE_REDIRECTS[normalizedPath]
+      : LEGACY_ROUTE_REDIRECTS[normalizedPath] || normalizedPath;
 
   useEffect(() => {
     if (isSitemap) {
@@ -503,6 +523,7 @@ function App() {
           <Route path="/america" element={<America/>} />
           <Route path="/blog" element={<BlogPage/>} />
           <Route path="/blog/:slug" element={<BlogDetailPage />} />
+          <Route path="/corporate-language-training" element={<CorporateLanguageTraining />} />
           <Route path="/success-stories" element={<SuccessStories />} />
           <Route path="/gallery" element={<Navigate to="/success-stories" replace />} />
           <Route path="/faqs" element={<FAQPage />} />
