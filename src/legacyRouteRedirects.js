@@ -110,7 +110,7 @@ const routes = `
 /116/italian-language-summer-programme /course-details/online-italian-language-course/italian-language-summer-programme
 /43/baltic-languages-for-professionals /course-details/online-baltic-languages-course/baltic-languages-for-professionals
 /186/korean-course-for-professionals /course-details/online-english-language-course/korean-course-for-professionals
-/program /programs
+/program /corporate-language-training
 /87/spanish-language-summer-programme /online-spanish-language-courses
 /143/mongolian-for-professionals-language-program /course-details/online-mongolian-classes/mongolian-for-professionals-language-program
 /Thai.aspx /thai-language-courses
@@ -249,13 +249,9 @@ export const BLOG_CONTENT_SLUG_ALIASES = Object.freeze({
     "how-to-choose-french-classes-in-delhi-ncr-for-your-studies",
   "overseas-jobs-vs-remote-work-career-guidance-in-delhi":
     "overseas-jobs-or-remote-work:-which-fits-your-career-in-delhi",
-  "jlpt-vs-nat-test-differences-exam-pattern-passing-scores-registration-india":
-    "jlpt-vs-nat-test:-differences,-exam-pattern,-passing-scores-and-registration-in-india",
 });
 
 export const LEGACY_BLOG_SLUG_REDIRECTS = Object.freeze({
-  "jlpt-vs-nat-test:-differences,-exam-pattern,-passing-scores-and-registration-in-india":
-    "jlpt-vs-nat-test-differences-exam-pattern-passing-scores-registration-india",
   "how-to-choose-french-classes-in-delhi-ncr-for-your-studies":
     "french-classes-in-delhi-ncr-for-study-new-delhi",
   "overseas-jobs-or-remote-work:-which-fits-your-career-in-delhi":
