@@ -64,7 +64,7 @@ const routes = `
 /238/french-exam-tef /course-details/online-french-language-course/french-exam-tef
 /151/learn-thai-at-langma /course-details/thai-language-courses/learn-thai-at-langma
 /212/sanskrit-for-kids /course-details/best-sanskrit-language-institute/sanskrit-for-kids
-/112/italian-for-attache /course-details/online-english-language-course/italian-for-attache
+/112/italian-for-attache /online-italian-language-course
 /233/french-b1-level /course-details/online-french-language-course/french-b1-level
 /spanish /online-spanish-language-courses
 /29/german-for-doctors /course-details/online-german-language-course/german-for-doctors
@@ -76,7 +76,7 @@ const routes = `
 /89/general-portuguese-language-course /online-portuguese-classes
 /231/french-a1-level /course-details/online-french-language-course/french-a1-level
 /contact.aspx /contact
-/202/learn-pashto-language /course-details/dari-pashto-language-online-course/learn-pashto-language
+/202/learn-pashto-language /dari-pashto-language-online-course
 /187/topik-exam-preparation-course /course-details/online-korean-language-courses/topik-exam-preparation-course
 /161/sinhala-for-professionals /course-details/sinhala-language-course/sinhala-for-professionals
 /227/vietnamese-language-proficiency-test-language-program /course-details/vietnamese-language-courses/vietnamese-language-proficiency-test-language-program
@@ -170,7 +170,7 @@ const routes = `
 /169/urdu-for-professionals /course-details/online-urdu-language-course/urdu-for-professionals
 /42/learn-baltic-languages /course-details/online-baltic-languages-course/learn-baltic-languages
 /21/learn-nordic-languages /course-details/best-nordic-languages-course/learn-nordic-languages
-/214/learn-hebrew-language /course-details/online-english-language-course/learn-hebrew-language
+/214/learn-hebrew-language /course-details/hebrew-language-course/learn-hebrew-language
 /205/learn-polish-language /polish-language-course
 /Toefl.aspx /online-english-language-course
 /TOEFL.aspx /online-english-language-course
@@ -229,6 +229,26 @@ const routes = `
 /course-details/swahili-language-courses/learn-swahili-language /course-details/online-english-language-course/learn-swahili-language
 /course-details/online-italian-language-course/italian-for-attache /course-details/online-english-language-course/italian-for-attache
 /course-details/online-korean-language-courses/korean-course-for-professionals /course-details/online-english-language-course/korean-course-for-professionals
+/editorial-policy /about
+/course-details/thai-language-courses/thai-language-course /thai-language-courses
+/course-details/best-sanskrit-language-institute/learn-sanskrit-at-langma-language-program /best-sanskrit-language-institute
+/course-details/online-spanish-language-courses/spanish-course-for-hospitality /online-spanish-language-courses
+/course-details/indonesian-language-course/explore-the-world-of-bahasa-indonesia-with-langma-international /explore-the-world-of-bahasa-indonesia-with-langma-international
+/course-details/online-urdu-language-course/general-urdu-language /online-urdu-language-course
+/course-details/sinhala-language-course/sinhala-for-attache /sinhala-language-course
+/course-details/online-italian-language-course/general-italian-language-course /online-italian-language-course
+/course-details/polish-language-course/international-exam-preparation-language-program /polish-language-course
+/course-details/online-portuguese-classes/portuguese-language-course-for-professionals /online-portuguese-classes
+/course-details/online-japanese-language-course/japanese-for-professionals-language-program /online-japanese-language-course
+/course-details/online-portuguese-classes/portuguese-language-summer-programme /online-portuguese-classes
+/course-details/online-japanese-language-course/japanese-for-attache-language-program /online-japanese-language-course
+/135/torfl-exam-preparation /online-russian-language-course
+/71/hindi-for-attache-course /course-details/hindi-language-classes/hindi-for-attache-course
+/46/general-japanese-language-programme /online-japanese-language-course
+/201/general-pashto-language-course /course-details/dari-pashto-language-online-course/general-pashto-language-course
+/124/indonesian-language /course-details/indonesian-language-course/indonesian-language
+/blog/രണ്ടാംഭാഷപഠിക്കുന്നതിന്റെപ്രാധാന്യം /blog/the-importance-of-learning-second-language
+/blog/l’histoire-de-la-langue-allemande /blog
 `.trim();
 
 export const LEGACY_ROUTE_REDIRECTS = Object.freeze(
